@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+       http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.0.xsd
+       http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.0.xsd">
+
+	<!-- Must be placed after the EntityManagerFactory bean definition to work -->
+	<aop:spring-configured />
+
+	<bean id="userActivationRequester"
+		class="com.gb1.healthcheck.domain.users.EmailUserActivationRequester">
+		<property name="tokenFactory" ref="tokenFactory" />
+		<property name="emailBuilder" ref="userActivationEmailBuilder" />
+		<property name="emailSender" ref="mailSender" />
+	</bean>
+
+	<bean id="userActivationEmailBuilder"
+		class="com.gb1.healthcheck.domain.users.StaticUserActivationRequestEmailBuilder">
+		<property name="subject" value="[HealthCheck] Account activation" />
+		<property name="fromAddress" value="gbilodeau@yahoo.com" />
+		<property name="activationFormUrl"
+			value="http://localhost:8080/healthcheck/public/register/challenge.go" />
+	</bean>
+
+	<bean id="userCreationValidator"
+		class="com.gb1.healthcheck.domain.users.FullUserCreationValidator">
+		<property name="userRepository" ref="userRepository" />
+	</bean>
+	<bean id="userUpdateValidator" class="com.gb1.healthcheck.domain.users.FullUserUpdateValidator">
+		<property name="userRepository" ref="userRepository" />
+	</bean>
+
+	<bean id="lostPasswordSender"
+		class="com.gb1.healthcheck.domain.users.EmailLostPasswordReminder">
+		<property name="lostPasswordEmailBuilder" ref="lostPasswordEmailBuilder" />
+		<property name="mailSender" ref="mailSender" />
+	</bean>
+
+	<bean id="lostPasswordEmailBuilder"
+		class="com.gb1.healthcheck.domain.users.StaticLostPasswordEmailBuilder">
+		<property name="subject" value="[HealthCheck] Password" />
+		<property name="fromAddress" value="gbilodeau@yahoo.com" />
+	</bean>
+
+	<bean id="tokenFactory" class="com.gb1.commons.tokens.UuidTokenFactory" />
+
+	<bean id="userRepository" class="com.gb1.healthcheck.domain.users.JpaUserRepository" />
+
+</beans>
