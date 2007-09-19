@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<constant name="struts.devMode" value="true" />
+	<constant name="struts.i18n.encoding" value="UTF-8" />
+	<constant name="struts.action.extension" value="go" />
+	<constant name="struts.objectFactory" value="spring" />
+	<constant name="struts.custom.i18n.resources" value="ApplicationMessages" />
+	<constant name="struts.ui.theme" value="css_xhtml" />
+
+	<include file="struts-default.xml" />
+
+	<package name="registration" extends="struts-default" namespace="/public/register">
+		<action name="request" method="input" class="userRegistrationAction">
+			<result>/views/public/security/register/request.jsp</result>
+		</action>
+		<action name="register" method="register" class="userRegistrationAction">
+			<result name="input">/views/public/security/register/request.jsp</result>
+			<result>/views/public/security/register/requestReceived.jsp</result>
+		</action>
+
+		<action name="challenge" method="input" class="userActivationAction">
+			<result>/views/public/security/register/activate.jsp</result>
+		</action>
+		<action name="activate" method="activate" class="userActivationAction">
+			<result name="input">/views/public/security/register/activate.jsp</result>
+			<result>/views/public/security/register/activated.jsp</result>
+		</action>
+	</package>
+
+	<package name="security" extends="struts-default" namespace="/public/security">
+		<action name="lostPassword" method="input" class="lostPasswordAction">
+			<result>/views/public/security/lostPassword.jsp</result>
+		</action>
+		<action name="sendPassword" method="sendLostPassword" class="lostPasswordAction">
+			<result name="input">/views/public/security/lostPassword.jsp</result>
+			<result>/views/public/security/passwordSent.jsp</result>
+		</action>
+	</package>
+
+	<package name="workbench" extends="struts-default" namespace="/workbench">
+		<action name="show" method="execute" class="workbenchAction">
+			<result>/views/workbench/main.jsp</result>
+		</action>
+	</package>
+</struts>

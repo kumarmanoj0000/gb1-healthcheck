@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+       http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.0.xsd
+       http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.0.xsd">
+
+	<bean id="userRegistrationAction"
+		class="com.gb1.healthcheck.web.users.UserRegistrationAction" scope="prototype">
+		<property name="userService" ref="userService" />
+	</bean>
+
+	<bean id="userActivationAction"
+		class="com.gb1.healthcheck.web.users.UserActivationAction" scope="prototype">
+		<property name="userService" ref="userService" />
+	</bean>
+
+	<bean id="lostPasswordAction"
+		class="com.gb1.healthcheck.web.security.LostPasswordAction" scope="prototype">
+		<property name="userService" ref="userService" />
+	</bean>
+
+	<bean id="workbenchAction" class="com.gb1.healthcheck.web.workbench.WorkbenchAction"
+		scope="prototype" />
+
+	<bean id="signOffAction" class="com.gb1.healthcheck.web.security.SignOffAction"
+		scope="prototype" />
+
+</beans>
