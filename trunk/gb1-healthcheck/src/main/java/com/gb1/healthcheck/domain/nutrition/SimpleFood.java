@@ -4,11 +4,17 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
 import org.apache.commons.lang.Validate;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 
+@Entity
 public class SimpleFood implements Food {
+	@Id
+	private Long id;
 	private String name;
 	private Group group;
 	private Set<Nutrient> nutrients = new HashSet<Nutrient>();
@@ -17,6 +23,10 @@ public class SimpleFood implements Food {
 		Validate.notNull(name);
 		this.name = name;
 		this.group = group;
+	}
+
+	public Long getId() {
+		return id;
 	}
 
 	public String getName() {

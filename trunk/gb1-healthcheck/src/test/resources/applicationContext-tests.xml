@@ -30,6 +30,7 @@
 	<bean class="org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor" />
 
 	<!-- Repositories -->
+	<bean id="foodRepository" class="com.gb1.healthcheck.domain.nutrition.JpaFoodRepository" />
 	<bean id="userRepository" class="com.gb1.healthcheck.domain.users.JpaUserRepository" />
 
 </beans>
