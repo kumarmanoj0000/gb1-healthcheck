@@ -2,7 +2,9 @@ package com.gb1.healthcheck.domain.nutrition;
 
 import java.util.Set;
 
-public interface Food {
+import com.gb1.commons.Identifiable;
+
+public interface Food extends Identifiable {
 	String getName();
 
 	boolean isPartOfGroup(Group group);

@@ -4,17 +4,27 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
 import org.apache.commons.lang.Validate;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 
+@Entity
 public class ComplexFood implements Food {
+	@Id
+	private Long id;
 	private String name;
 	private Set<Food> ingredients = new HashSet<Food>();
 
 	public ComplexFood(String name) {
 		Validate.notNull(name);
 		this.name = name;
+	}
+
+	public Long getId() {
+		return id;
 	}
 
 	public String getName() {
