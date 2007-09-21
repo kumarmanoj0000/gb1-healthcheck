@@ -53,5 +53,12 @@
 		<action name="listFoods" method="listFoods" class="foodAction">
 			<result>/views/nutrition/foods.jsp</result>
 		</action>
+		<action name="prepareNewSimpleFood" method="prepareNewSimpleFood" class="createSimpleFoodAction">
+			<result>/views/nutrition/newSimpleFood.jsp</result>
+		</action>
+		<action name="createSimpleFood" method="createSimpleFood" class="createSimpleFoodAction">
+			<result name="input">/views/nutrition/newSimpleFood.jsp</result>
+			<result>/views/nutrition/newSimpleFood.jsp</result>
+		</action>
 	</package>
 </struts>

@@ -13,22 +13,28 @@ import com.opensymphony.xwork2.Action;
 public class FoodAction {
 	private FoodService foodService;
 
+	private List<SimpleFood> simpleFoods;
+	private List<ComplexFood> complexFoods;
+
+	public FoodAction() {
+	}
+
 	public String listFoods() {
+		simpleFoods = new ArrayList<SimpleFood>(foodService.getSimpleFoods());
+		Collections.sort(simpleFoods, new Food.ByNameComparator());
+
+		complexFoods = new ArrayList<ComplexFood>(foodService.getComplexFoods());
+		Collections.sort(complexFoods, new Food.ByNameComparator());
+
 		return Action.SUCCESS;
 	}
 
-	public List<SimpleFood> getSimpleFoodList() {
-		List<SimpleFood> sortedFoods = new ArrayList<SimpleFood>(foodService.getSimpleFoods());
-		Collections.sort(sortedFoods, new Food.ByNameComparator());
-
-		return sortedFoods;
+	public List<SimpleFood> getSimpleFoods() {
+		return simpleFoods;
 	}
 
-	public List<ComplexFood> getComplexFoodList() {
-		List<ComplexFood> sortedFoods = new ArrayList<ComplexFood>(foodService.getComplexFoods());
-		Collections.sort(sortedFoods, new Food.ByNameComparator());
-
-		return sortedFoods;
+	public List<ComplexFood> getComplexFoods() {
+		return complexFoods;
 	}
 
 	public void setFoodService(FoodService foodService) {

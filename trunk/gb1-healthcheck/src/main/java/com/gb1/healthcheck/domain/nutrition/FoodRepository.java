@@ -10,4 +10,6 @@ public interface FoodRepository {
 	Set<SimpleFood> findSimpleFoods();
 
 	Set<ComplexFood> findComplexFoods();
+
+	void saveSimpleFood(SimpleFood food);
 }

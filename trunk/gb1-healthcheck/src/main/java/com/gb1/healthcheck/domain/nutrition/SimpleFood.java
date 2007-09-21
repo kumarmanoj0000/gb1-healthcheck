@@ -28,6 +28,11 @@ public class SimpleFood extends Food {
 		this.group = group;
 	}
 
+	public SimpleFood(SimpleFoodPropertyProvider propertyProvider) {
+		this(propertyProvider.getName(), propertyProvider.getGroup());
+		nutrients.addAll(propertyProvider.getNutrients());
+	}
+
 	public Group getGroup() {
 		return group;
 	}

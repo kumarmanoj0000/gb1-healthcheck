@@ -11,10 +11,8 @@ import com.gb1.healthcheck.domain.users.UserException;
 import com.gb1.healthcheck.services.users.UserService;
 import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionSupport;
-import com.opensymphony.xwork2.ModelDriven;
 
-public class UserRegistrationAction extends ActionSupport implements
-		ModelDriven<UserRegistrationRequest> {
+public class UserRegistrationAction extends ActionSupport {
 	private UserService userService;
 	private UserRegistrationRequest userRegRequest = new UserRegistrationRequest(Role.STANDARD);
 
