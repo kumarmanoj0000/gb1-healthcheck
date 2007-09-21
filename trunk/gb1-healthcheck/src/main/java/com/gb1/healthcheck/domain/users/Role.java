@@ -6,7 +6,7 @@ package com.gb1.healthcheck.domain.users;
  * @author Guillaume Bilodeau
  */
 public enum Role {
-	ADMINISTRATOR("administrator"), STANDARD("standard");
+	ADMINISTRATOR("role_administrator"), STANDARD("role_standard");
 
 	/**
 	 * The role's name
