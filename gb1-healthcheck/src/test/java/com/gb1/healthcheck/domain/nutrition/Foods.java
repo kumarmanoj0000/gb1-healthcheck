@@ -1,5 +1,8 @@
 package com.gb1.healthcheck.domain.nutrition;
 
+import java.util.HashSet;
+import java.util.Set;
+
 public class Foods {
 	private Foods() {
 	}
@@ -29,7 +32,7 @@ public class Foods {
 	}
 
 	public static SimpleFood redGrape() {
-		return new SimpleFood("red grapes", Group.FRUITS).addNutrient(Nutrient.VITAMIN_B);
+		return new SimpleFood("red grape", Group.FRUITS).addNutrient(Nutrient.VITAMIN_B);
 	}
 
 	public static SimpleFood alcohol() {
@@ -47,5 +50,28 @@ public class Foods {
 	public static ComplexFood spaghetti() {
 		return new ComplexFood("spaghetti").addIngredient(tomato()).addIngredient(beef())
 				.addIngredient(beefStock()).addIngredient(pasta());
+	}
+
+	public static Set<SimpleFood> allSimpleFoods() {
+		Set<SimpleFood> allSimpleFoods = new HashSet<SimpleFood>();
+		allSimpleFoods.add(water());
+		allSimpleFoods.add(apple());
+		allSimpleFoods.add(sugar());
+		allSimpleFoods.add(pasta());
+		allSimpleFoods.add(beef());
+		allSimpleFoods.add(tomato());
+		allSimpleFoods.add(redGrape());
+		allSimpleFoods.add(alcohol());
+
+		return allSimpleFoods;
+	}
+
+	public static Set<ComplexFood> allComplexFoods() {
+		Set<ComplexFood> allComplexFoods = new HashSet<ComplexFood>();
+		allComplexFoods.add(redWine());
+		allComplexFoods.add(beefStock());
+		allComplexFoods.add(spaghetti());
+
+		return allComplexFoods;
 	}
 }

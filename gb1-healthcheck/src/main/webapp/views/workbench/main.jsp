@@ -11,11 +11,12 @@
 
 		<h1><fmt:message key="workbench.welcome" /></h1>
 
-		<authz:authorize ifAllGranted="ROLE_ADMINISTRATOR">
-			<div class="menu">
-				<fmt:message key="workbench.menu.userManagement.title" /><p/>
-				<fmt:message key="workbench.menu.userManagement.listUsers" />
-			</div>
+		<authz:authorize ifAllGranted="role_administrator">
+			<fmt:message key="workbench.menu.userManagement.title" /><p/>
+			<fmt:message key="workbench.menu.userManagement.listUsers" />
 		</authz:authorize>
+
+		<h2><fmt:message key="workbench.menu.foodManagement.title" /></h2>
+		<a href='<c:url value="/nutrition/listFoods.go" />'><fmt:message key="workbench.menu.foodManagement.listFoods" /></a>
 	</body>
 </html>

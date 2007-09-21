@@ -26,6 +26,10 @@
 	<bean id="workbenchAction" class="com.gb1.healthcheck.web.workbench.WorkbenchAction"
 		scope="prototype" />
 
+	<bean id="foodAction" class="com.gb1.healthcheck.web.nutrition.FoodAction" scope="prototype">
+		<property name="foodService" ref="foodService" />
+	</bean>
+
 	<bean id="signOffAction" class="com.gb1.healthcheck.web.security.SignOffAction"
 		scope="prototype" />
 

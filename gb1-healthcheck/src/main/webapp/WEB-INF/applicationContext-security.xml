@@ -47,13 +47,13 @@
 			<value>
 				CONVERT_URL_TO_LOWERCASE_BEFORE_COMPARISON
 				PATTERN_TYPE_APACHE_ANT
-				/images/**=ROLE_ANONYMOUS,ROLE_STANDARD,ROLE_ADMINISTRATOR
-				/scripts/**=ROLE_ANONYMOUS,ROLE_STANDARD,ROLE_ADMINISTRATOR
-				/styles/**=ROLE_ANONYMOUS,ROLE_STANDARD,ROLE_ADMINISTRATOR
-				/views/index.jsp=ROLE_ANONYMOUS,ROLE_STANDARD,ROLE_ADMINISTRATOR
-				/views/public/**=ROLE_ANONYMOUS,ROLE_STANDARD,ROLE_ADMINISTRATOR
-				/public/**=ROLE_ANONYMOUS,ROLE_STANDARD,ROLE_ADMINISTRATOR
-				/**=ROLE_STANDARD,ROLE_ADMINISTRATOR
+				/images/**=role_anonymous,role_standard,role_administrator
+				/scripts/**=role_anonymous,role_standard,role_administrator
+				/styles/**=role_anonymous,role_standard,role_administrator
+				/views/index.jsp=role_anonymous,role_standard,role_administrator
+				/views/public/**=role_anonymous,role_standard,role_administrator
+				/public/**=role_anonymous,role_standard,role_administrator
+				/**=role_standard,role_administrator
 			</value>
 		</property>
 	</bean>
@@ -109,13 +109,13 @@
 	</bean>
 
 	<bean id="roleVoter" class="org.acegisecurity.vote.RoleVoter">
-		<property name="rolePrefix" value="ROLE_" />
+		<property name="rolePrefix" value="role_" />
 	</bean>
 
 	<bean id="anonymousProcessingFilter"
 		class="org.acegisecurity.providers.anonymous.AnonymousProcessingFilter">
 		<property name="key" value="anonymousToken" />
-		<property name="userAttribute" value="anonymous,ROLE_ANONYMOUS" />
+		<property name="userAttribute" value="anonymous,role_anonymous" />
 	</bean>
 
 	<bean id="anonymousAuthenticationProvider"

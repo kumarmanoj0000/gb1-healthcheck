@@ -17,7 +17,7 @@
 <%--
  % Define a shortcut to the signed in user once (obtaining it from Acegi is tedious)
  --%>
-<authz:authorize ifNotGranted="ROLE_ANONYMOUS">
+<authz:authorize ifNotGranted="role_anonymous">
 	<c:set var="userDetails" value="<%= SecurityContextHolder.getContext().getAuthentication().getPrincipal() %>" />
 	<c:set var="user" scope="request" value="${userDetails.user}" />
 </authz:authorize>

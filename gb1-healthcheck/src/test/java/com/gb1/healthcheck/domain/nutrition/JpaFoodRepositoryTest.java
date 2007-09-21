@@ -1,5 +1,9 @@
 package com.gb1.healthcheck.domain.nutrition;
 
+import java.util.Set;
+
+import org.apache.commons.collections.CollectionUtils;
+
 import com.gb1.healthcheck.domain.support.BaseRepositoryTestCase;
 
 public class JpaFoodRepositoryTest extends BaseRepositoryTestCase {
@@ -22,6 +26,18 @@ public class JpaFoodRepositoryTest extends BaseRepositoryTestCase {
 		// test loading of all dependencies
 		assertTrue(spag.isPartOfGroup(Group.FRUITS));
 		assertTrue(spag.isSourceOfNutrient(Nutrient.VITAMIN_C));
+	}
+
+	public void testFindSimpleFoods() {
+		Set<SimpleFood> expectedFoods = Foods.allSimpleFoods();
+		Set<SimpleFood> loadedFoods = foodRepo.findSimpleFoods();
+		assertTrue(CollectionUtils.isEqualCollection(expectedFoods, loadedFoods));
+	}
+
+	public void testFindComplexFoods() {
+		Set<ComplexFood> expectedFoods = Foods.allComplexFoods();
+		Set<ComplexFood> loadedFoods = foodRepo.findComplexFoods();
+		assertTrue(CollectionUtils.isEqualCollection(expectedFoods, loadedFoods));
 	}
 
 	public void setFoodRepository(FoodRepository foodRepo) {

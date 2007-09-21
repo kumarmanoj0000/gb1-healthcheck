@@ -45,4 +45,10 @@
 			<result>/views/workbench/main.jsp</result>
 		</action>
 	</package>
+
+	<package name="nutrition" extends="struts-default" namespace="/nutrition">
+		<action name="listFoods" method="listFoods" class="foodAction">
+			<result>/views/nutrition/foods.jsp</result>
+		</action>
+	</package>
 </struts>

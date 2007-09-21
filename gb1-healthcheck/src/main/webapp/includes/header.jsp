@@ -3,7 +3,7 @@
 
 <div>
 	<fmt:message key="app.header" /><br />
-	<authz:authorize ifNotGranted="ROLE_ANONYMOUS">
+	<authz:authorize ifNotGranted="role_anonymous">
 		<fmt:message key="header.userlogin" />: <authz:authentication operation="username" />
 		<br />
 		<a href="<c:url value="/users/editProfile.go?id=${user.id}" />"><fmt:message key="header.profile" /></a>
