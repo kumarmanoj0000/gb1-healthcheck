@@ -12,7 +12,7 @@
 		<h1><fmt:message key="workbench.welcome" /></h1>
 
 		<authz:authorize ifAllGranted="role_administrator">
-			<fmt:message key="workbench.menu.userManagement.title" /><p/>
+			<h2><fmt:message key="workbench.menu.userManagement.title" /></h2>
 			<fmt:message key="workbench.menu.userManagement.listUsers" />
 		</authz:authorize>
 
