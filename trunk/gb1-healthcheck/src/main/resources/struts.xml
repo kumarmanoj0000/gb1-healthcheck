@@ -31,6 +31,9 @@
 	</package>
 
 	<package name="security" extends="struts-default" namespace="/public/security">
+		<action name="signOff" method="execute" class="com.gb1.healthcheck.web.security.SignOffAction">
+			<result>/</result>
+		</action>
 		<action name="lostPassword" method="input" class="lostPasswordAction">
 			<result>/views/public/security/lostPassword.jsp</result>
 		</action>

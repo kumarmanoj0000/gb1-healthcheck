@@ -8,6 +8,6 @@
 		<br />
 		<a href="<c:url value="/users/editProfile.go?id=${user.id}" />"><fmt:message key="header.profile" /></a>
 		<br />
-		<a href="<c:url value="/public/signOff.go" />"><fmt:message key="header.logoff" /></a>
+		<a href="<c:url value="/public/security/signOff.go" />"><fmt:message key="header.logoff" /></a>
 	</authz:authorize>
 </div>
