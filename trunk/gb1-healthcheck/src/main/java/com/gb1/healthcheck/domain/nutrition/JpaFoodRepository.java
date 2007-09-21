@@ -1,6 +1,8 @@
 package com.gb1.healthcheck.domain.nutrition;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -30,6 +32,24 @@ public class JpaFoodRepository implements FoodRepository {
 		}
 
 		return food;
+	}
+
+	@SuppressWarnings("unchecked")
+	public Set<SimpleFood> findSimpleFoods() {
+		List<SimpleFood> foods = entityManager.createQuery("select sf from SimpleFood sf")
+				.getResultList();
+		Set<SimpleFood> foodSet = new HashSet<SimpleFood>(foods);
+
+		return foodSet;
+	}
+
+	@SuppressWarnings("unchecked")
+	public Set<ComplexFood> findComplexFoods() {
+		List<ComplexFood> foods = entityManager.createQuery("select cf from ComplexFood cf")
+				.getResultList();
+		Set<ComplexFood> foodSet = new HashSet<ComplexFood>(foods);
+
+		return foodSet;
 	}
 
 	@PersistenceContext

@@ -63,15 +63,24 @@ public class AcegiUserDetailsAdapter implements UserDetails, Serializable {
 		return target.isActive();
 	}
 
+	@Override
+	public String toString() {
+		return target.getLogin();
+	}
+
 	public static class AcegiGrantedAuthorityAdapter implements GrantedAuthority, Serializable {
 		private Role target;
 
 		public AcegiGrantedAuthorityAdapter(Role target) {
-			Validate.notNull(target);
 			this.target = target;
 		}
 
 		public String getAuthority() {
+			return target.getName();
+		}
+
+		@Override
+		public String toString() {
 			return target.getName();
 		}
 	}

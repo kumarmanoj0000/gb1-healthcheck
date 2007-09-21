@@ -48,6 +48,8 @@
 
 	<bean id="tokenFactory" class="com.gb1.commons.tokens.UuidTokenFactory" />
 
+	<!-- Repositories -->
 	<bean id="userRepository" class="com.gb1.healthcheck.domain.users.JpaUserRepository" />
+	<bean id="foodRepository" class="com.gb1.healthcheck.domain.nutrition.JpaFoodRepository" />
 
 </beans>

@@ -1,6 +1,7 @@
 package com.gb1.healthcheck.domain.nutrition;
 
 import java.io.Serializable;
+import java.util.Comparator;
 import java.util.Set;
 
 import javax.persistence.DiscriminatorColumn;
@@ -64,5 +65,11 @@ public abstract class Food implements Identifiable, Serializable {
 	public int hashCode() {
 		HashCodeBuilder builder = new HashCodeBuilder().append(this.getName());
 		return builder.toHashCode();
+	}
+
+	public static class ByNameComparator implements Comparator<Food> {
+		public int compare(Food f1, Food f2) {
+			return f1.getName().compareTo(f2.getName());
+		}
 	}
 }

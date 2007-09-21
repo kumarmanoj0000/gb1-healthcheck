@@ -22,6 +22,10 @@
 		<property name="lostPasswordSender" ref="lostPasswordSender" />
 	</bean>
 
+	<bean id="foodService" class="com.gb1.healthcheck.services.nutrition.FoodServiceImpl">
+		<property name="foodRepository" ref="foodRepository" />
+	</bean>
+
 	<!-- Must be used in place of the tx:annotation-driven tag, which oddly does not work when
 		application uses aop:spring-configured -->
 	<bean class="org.springframework.transaction.aspectj.AnnotationTransactionAspect"
