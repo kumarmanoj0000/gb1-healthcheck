@@ -1,10 +1,5 @@
 package com.gb1.healthcheck.services.users;
 
-import static org.easymock.EasyMock.createMock;
-import static org.easymock.EasyMock.expect;
-import static org.easymock.EasyMock.isA;
-import static org.easymock.EasyMock.replay;
-import static org.easymock.EasyMock.verify;
 import junit.framework.TestCase;
 
 import org.easymock.EasyMock;
@@ -30,28 +25,30 @@ public class UserServiceImplTest extends TestCase {
 	@Override
 	protected void setUp() throws Exception {
 		PlatformTransactionManager txManager = EasyMock
-				.createMock(PlatformTransactionManager.class);
+				.createNiceMock(PlatformTransactionManager.class);
 		AnnotationTransactionAspect.aspectOf().setTransactionManager(txManager);
+		EasyMock.replay(txManager);
 	}
 
 	public void testRegisterUser() throws UserException {
 		UserRegistrationRequest regRequest = new UserRegistrationRequest();
 		regRequest.setLogin("login");
 
-		UserValidator validator = createMock(UserValidator.class);
-		validator.validate(isA(User.class));
-		replay(validator);
+		UserValidator validator = EasyMock.createMock(UserValidator.class);
+		validator.validate(EasyMock.isA(User.class));
+		EasyMock.replay(validator);
 
 		User expectedUser = new ExposedUser(regRequest);
 		UserActivationRequest expectedActRequest = new UserActivationRequest(expectedUser, null);
 
-		UserActivationRequester requester = createMock(UserActivationRequester.class);
-		expect(requester.requestUserActivation(isA(User.class))).andReturn(expectedActRequest);
-		replay(requester);
+		UserActivationRequester requester = EasyMock.createMock(UserActivationRequester.class);
+		EasyMock.expect(requester.requestUserActivation(EasyMock.isA(User.class))).andReturn(
+				expectedActRequest);
+		EasyMock.replay(requester);
 
-		UserRepository repo = createMock(UserRepository.class);
-		repo.saveUser(isA(User.class));
-		replay(repo);
+		UserRepository repo = EasyMock.createMock(UserRepository.class);
+		repo.saveUser(EasyMock.isA(User.class));
+		EasyMock.replay(repo);
 
 		UserServiceImpl svc = new UserServiceImpl();
 		svc.setUserRepository(repo);
@@ -62,18 +59,18 @@ public class UserServiceImplTest extends TestCase {
 
 		// make sure that the user was validated and saved, and that the activation request was sent
 		assertEquals(expectedActRequest, actRequest);
-		verify(validator);
-		verify(repo);
-		verify(requester);
+		EasyMock.verify(validator);
+		EasyMock.verify(repo);
+		EasyMock.verify(requester);
 	}
 
 	public void testModifyUnknownUser() throws UserException {
 		ExposedUserUpdateRequest modifReq = new ExposedUserUpdateRequest();
 		modifReq.setId(1L);
 
-		UserRepository userRepo = createMock(UserRepository.class);
-		expect(userRepo.loadUser(modifReq.getId())).andReturn(null);
-		replay(userRepo);
+		UserRepository userRepo = EasyMock.createMock(UserRepository.class);
+		EasyMock.expect(userRepo.loadUser(modifReq.getId())).andReturn(null);
+		EasyMock.replay(userRepo);
 
 		UserServiceImpl svc = new UserServiceImpl();
 		svc.setUserRepository(userRepo);
@@ -96,13 +93,13 @@ public class UserServiceImplTest extends TestCase {
 
 		UserUpdateRequest updateRequest = new UserUpdateRequest(originalUser);
 
-		UserValidator validator = createMock(UserValidator.class);
+		UserValidator validator = EasyMock.createMock(UserValidator.class);
 		validator.validate(originalUser);
-		replay(validator);
+		EasyMock.replay(validator);
 
-		UserRepository userRepo = createMock(UserRepository.class);
-		expect(userRepo.loadUser(updateRequest.getId())).andReturn(originalUser);
-		replay(userRepo);
+		UserRepository userRepo = EasyMock.createMock(UserRepository.class);
+		EasyMock.expect(userRepo.loadUser(updateRequest.getId())).andReturn(originalUser);
+		EasyMock.replay(userRepo);
 
 		UserServiceImpl svc = new UserServiceImpl();
 		svc.setUserRepository(userRepo);
@@ -121,13 +118,13 @@ public class UserServiceImplTest extends TestCase {
 		User u = new ExposedUser();
 		u.setEmail(email);
 
-		UserRepository userRepo = createMock(UserRepository.class);
-		expect(userRepo.findUserByEmail(email)).andReturn(u);
-		replay(userRepo);
+		UserRepository userRepo = EasyMock.createMock(UserRepository.class);
+		EasyMock.expect(userRepo.findUserByEmail(email)).andReturn(u);
+		EasyMock.replay(userRepo);
 
-		LostPasswordReminder sender = createMock(LostPasswordReminder.class);
+		LostPasswordReminder sender = EasyMock.createMock(LostPasswordReminder.class);
 		sender.remindLostPassword(u);
-		replay(sender);
+		EasyMock.replay(sender);
 
 		UserServiceImpl svc = new UserServiceImpl();
 		svc.setUserRepository(userRepo);
@@ -136,15 +133,15 @@ public class UserServiceImplTest extends TestCase {
 		svc.sendLostPassword(email);
 
 		// make sure an email was sent
-		verify(sender);
+		EasyMock.verify(sender);
 	}
 
 	public void testSendLostPasswordUnknownUser() {
 		final String email = "user@gb.com";
 
-		UserRepository userRepo = createMock(UserRepository.class);
-		expect(userRepo.findUserByEmail(email)).andReturn(null);
-		replay(userRepo);
+		UserRepository userRepo = EasyMock.createMock(UserRepository.class);
+		EasyMock.expect(userRepo.findUserByEmail(email)).andReturn(null);
+		EasyMock.replay(userRepo);
 
 		UserServiceImpl svc = new UserServiceImpl();
 		svc.setUserRepository(userRepo);
@@ -166,9 +163,9 @@ public class UserServiceImplTest extends TestCase {
 		user.setEmail(email);
 		user.activationRequested(new UserActivationRequest(user, rightToken));
 
-		UserRepository userRepo = createMock(UserRepository.class);
-		expect(userRepo.findUserByEmail(email)).andReturn(user);
-		replay(userRepo);
+		UserRepository userRepo = EasyMock.createMock(UserRepository.class);
+		EasyMock.expect(userRepo.findUserByEmail(email)).andReturn(user);
+		EasyMock.replay(userRepo);
 
 		UserServiceImpl svc = new UserServiceImpl();
 		svc.setUserRepository(userRepo);
@@ -180,9 +177,9 @@ public class UserServiceImplTest extends TestCase {
 	public void testActivateUnknownUser() throws UserActivationException {
 		final String email = "user@gb.com";
 
-		UserRepository userRepo = createMock(UserRepository.class);
-		expect(userRepo.findUserByEmail(email)).andReturn(null);
-		replay(userRepo);
+		UserRepository userRepo = EasyMock.createMock(UserRepository.class);
+		EasyMock.expect(userRepo.findUserByEmail(email)).andReturn(null);
+		EasyMock.replay(userRepo);
 
 		UserServiceImpl svc = new UserServiceImpl();
 		svc.setUserRepository(userRepo);

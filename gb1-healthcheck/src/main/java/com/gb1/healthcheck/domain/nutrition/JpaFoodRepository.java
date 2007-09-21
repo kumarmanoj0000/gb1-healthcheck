@@ -52,6 +52,10 @@ public class JpaFoodRepository implements FoodRepository {
 		return foodSet;
 	}
 
+	public void saveSimpleFood(SimpleFood food) {
+		entityManager.persist(food);
+	}
+
 	@PersistenceContext
 	public void setEntityManager(EntityManager em) {
 		this.entityManager = em;
