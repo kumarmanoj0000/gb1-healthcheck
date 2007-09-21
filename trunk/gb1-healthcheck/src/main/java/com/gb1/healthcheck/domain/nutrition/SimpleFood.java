@@ -4,33 +4,28 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.Column;
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
-import javax.persistence.Id;
 
-import org.apache.commons.lang.Validate;
-import org.apache.commons.lang.builder.EqualsBuilder;
-import org.apache.commons.lang.builder.HashCodeBuilder;
+import org.hibernate.annotations.CollectionOfElements;
 
 @Entity
-public class SimpleFood implements Food {
-	@Id
-	private Long id;
-	private String name;
+@DiscriminatorValue("S")
+public class SimpleFood extends Food {
+	@Column(name = "FOOD_GROUP")
 	private Group group;
+
+	@CollectionOfElements
 	private Set<Nutrient> nutrients = new HashSet<Nutrient>();
 
+	SimpleFood() {
+		super("");
+	}
+
 	public SimpleFood(String name, Group group) {
-		Validate.notNull(name);
-		this.name = name;
+		super(name);
 		this.group = group;
-	}
-
-	public Long getId() {
-		return id;
-	}
-
-	public String getName() {
-		return name;
 	}
 
 	public Group getGroup() {
@@ -52,26 +47,5 @@ public class SimpleFood implements Food {
 
 	public boolean isSourceOfNutrient(Nutrient nutrient) {
 		return nutrients.contains(nutrient);
-	}
-
-	@Override
-	public boolean equals(Object o) {
-		if (o == this) {
-			return true;
-		}
-		if (!(o instanceof SimpleFood)) {
-			return false;
-		}
-
-		SimpleFood that = (SimpleFood) o;
-		EqualsBuilder builder = new EqualsBuilder().append(this.getName(), that.getName());
-
-		return builder.isEquals();
-	}
-
-	@Override
-	public int hashCode() {
-		HashCodeBuilder builder = new HashCodeBuilder().append(this.getName());
-		return builder.toHashCode();
 	}
 }

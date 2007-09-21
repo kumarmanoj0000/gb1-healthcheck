@@ -4,31 +4,26 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 
 import org.apache.commons.lang.Validate;
-import org.apache.commons.lang.builder.EqualsBuilder;
-import org.apache.commons.lang.builder.HashCodeBuilder;
 
 @Entity
-public class ComplexFood implements Food {
-	@Id
-	private Long id;
-	private String name;
+@DiscriminatorValue("C")
+public class ComplexFood extends Food {
+	@ManyToMany
+	@JoinTable(name = "FOOD_INGREDIENTS")
 	private Set<Food> ingredients = new HashSet<Food>();
 
+	ComplexFood() {
+		super("");
+	}
+
 	public ComplexFood(String name) {
-		Validate.notNull(name);
-		this.name = name;
-	}
-
-	public Long getId() {
-		return id;
-	}
-
-	public String getName() {
-		return name;
+		super(name);
 	}
 
 	public ComplexFood addIngredient(Food ingredient) {
@@ -42,8 +37,7 @@ public class ComplexFood implements Food {
 		for (Food candidate : ingredients) {
 			if (candidate.equals(ingredient)) {
 				return true;
-			}
-			else if (candidate instanceof ComplexFood) {
+			} else if (candidate instanceof ComplexFood) {
 				ComplexFood complexCandidate = (ComplexFood) candidate;
 				if (complexCandidate.containsIngredient(ingredient)) {
 					return true;
@@ -74,32 +68,11 @@ public class ComplexFood implements Food {
 
 	public boolean isSourceOfNutrient(Nutrient nutrient) {
 		for (Food ingredient : ingredients) {
-			if (ingredient.getNutrients().contains(nutrient)) {
+			if (ingredient.isSourceOfNutrient(nutrient)) {
 				return true;
 			}
 		}
 
 		return false;
-	}
-
-	@Override
-	public boolean equals(Object o) {
-		if (o == this) {
-			return true;
-		}
-		if (!(o instanceof ComplexFood)) {
-			return false;
-		}
-
-		ComplexFood that = (ComplexFood) o;
-		EqualsBuilder builder = new EqualsBuilder().append(this.getName(), that.getName());
-
-		return builder.isEquals();
-	}
-
-	@Override
-	public int hashCode() {
-		HashCodeBuilder builder = new HashCodeBuilder().append(this.getName());
-		return builder.toHashCode();
 	}
 }
