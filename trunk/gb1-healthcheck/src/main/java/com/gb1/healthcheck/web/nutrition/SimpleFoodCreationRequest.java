@@ -1,9 +1,7 @@
 package com.gb1.healthcheck.web.nutrition;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 import com.gb1.healthcheck.domain.nutrition.Group;
@@ -34,13 +32,15 @@ public class SimpleFoodCreationRequest implements SimpleFoodPropertyProvider {
 		this.name = name;
 	}
 
-	public void setSelectedNutrients(List<Nutrient> nutrients) {
-		this.nutrients.clear();
-		this.nutrients.addAll(nutrients);
+	public void setSelectedNutrients(Nutrient[] selectedNutrients) {
+		nutrients.clear();
+		for (Nutrient n : selectedNutrients) {
+			nutrients.add(n);
+		}
 	}
 
-	public List<Nutrient> getSelectedNutrients() {
-		return new ArrayList<Nutrient>(nutrients);
+	public Nutrient[] getSelectedNutrients() {
+		return nutrients.toArray(new Nutrient[0]);
 	}
 
 	public Set<Nutrient> getNutrients() {
