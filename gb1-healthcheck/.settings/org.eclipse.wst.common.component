@@ -6,6 +6,9 @@
 <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/test/java"/>
 <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/resources"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/test/resources"/>
+        <dependent-module deploy-path="/WEB-INF/lib" handle="module:/resource/gb1-commons/gb1-commons">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
 <property name="java-output-path" value="build/classes"/>
 <property name="context-root" value="healthcheck"/>
 </wb-module>
