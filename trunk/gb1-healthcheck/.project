@@ -3,6 +3,7 @@
 	<name>gb1-healthcheck</name>
 	<comment></comment>
 	<projects>
+		<project>gb1-commons</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>
