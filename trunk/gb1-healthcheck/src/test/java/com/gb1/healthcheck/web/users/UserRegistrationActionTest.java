@@ -7,8 +7,6 @@ import org.easymock.EasyMock;
 import com.gb1.healthcheck.domain.users.LoginAlreadyExistsException;
 import com.gb1.healthcheck.domain.users.UserActivationRequest;
 import com.gb1.healthcheck.services.users.UserService;
-import com.gb1.healthcheck.web.users.UserRegistrationAction;
-import com.gb1.healthcheck.web.users.UserRegistrationRequest;
 import com.opensymphony.xwork2.Action;
 
 public class UserRegistrationActionTest extends TestCase {

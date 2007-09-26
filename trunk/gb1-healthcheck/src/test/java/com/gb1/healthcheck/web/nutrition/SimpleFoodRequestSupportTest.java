@@ -6,9 +6,10 @@ import org.apache.commons.lang.ArrayUtils;
 
 import com.gb1.healthcheck.domain.nutrition.Nutrient;
 
-public class SimpleFoodCreationRequestTest extends TestCase {
+public class SimpleFoodRequestSupportTest extends TestCase {
 	public void testSetSelectedNutrients() {
-		SimpleFoodCreationRequest req = new SimpleFoodCreationRequest();
+		SimpleFoodRequestSupport req = new SimpleFoodRequestSupport() {
+		};
 
 		req.setSelectedNutrients(new String[] {});
 		assertEquals(0, req.getSelectedNutrients().length);
