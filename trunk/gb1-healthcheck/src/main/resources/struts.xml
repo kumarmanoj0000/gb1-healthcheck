@@ -63,5 +63,15 @@
 				<param name="actionName">listFoods</param>
 			</result>
 		</action>
+		<action name="prepareSimpleFoodUpdate" method="prepareSimpleFoodUpdate" class="updateSimpleFoodAction">
+			<result>/views/nutrition/updateSimpleFood.jsp</result>
+		</action>
+		<action name="updateSimpleFood" method="updateSimpleFood" class="updateSimpleFoodAction">
+			<result name="input">/views/nutrition/updateSimpleFood.jsp</result>
+			<result type="chain">
+				<param name="namespace">/nutrition</param>
+				<param name="actionName">listFoods</param>
+			</result>
+		</action>
 	</package>
 </struts>
