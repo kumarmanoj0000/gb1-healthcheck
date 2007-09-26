@@ -97,4 +97,17 @@ public class FoodServiceImplTest extends TestCase {
 		assertEquals(newName, oldApple.getName());
 		EasyMock.verify(foodRepo);
 	}
+
+	public void testLoadSimpleFood() {
+		final Long foodId = 1L;
+
+		FoodRepository foodRepo = EasyMock.createMock(FoodRepository.class);
+		EasyMock.expect(foodRepo.loadSimpleFood(foodId)).andReturn(Foods.apple());
+		EasyMock.replay(foodRepo);
+
+		FoodServiceImpl svc = new FoodServiceImpl();
+		svc.setFoodRepository(foodRepo);
+
+		assertEquals(Foods.apple(), svc.loadSimpleFood(foodId));
+	}
 }

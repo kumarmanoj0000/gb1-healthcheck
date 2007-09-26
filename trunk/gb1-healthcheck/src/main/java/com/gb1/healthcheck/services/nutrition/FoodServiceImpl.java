@@ -17,6 +17,11 @@ public class FoodServiceImpl implements FoodService {
 	}
 
 	@Transactional(readOnly = true)
+	public SimpleFood loadSimpleFood(Long foodId) {
+		return foodRepo.loadSimpleFood(foodId);
+	}
+
+	@Transactional(readOnly = true)
 	public Set<SimpleFood> getSimpleFoods() {
 		return foodRepo.findSimpleFoods();
 	}

@@ -8,6 +8,8 @@ import com.gb1.healthcheck.domain.nutrition.SimpleFood;
 import com.gb1.healthcheck.domain.nutrition.SimpleFoodPropertyProvider;
 
 public interface FoodService {
+	SimpleFood loadSimpleFood(Long foodId);
+
 	Set<SimpleFood> getSimpleFoods();
 
 	Set<ComplexFood> getComplexFoods();
