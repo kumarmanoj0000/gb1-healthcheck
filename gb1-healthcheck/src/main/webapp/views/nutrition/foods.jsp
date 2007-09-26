@@ -11,10 +11,13 @@
 		<s:else>
 			<ul>
 				<s:iterator value="simpleFoods">
-					<li><s:property value="name" /></li>
+					<li>
+						${name} |
+						<a href='<c:url value="/nutrition/prepareSimpleFoodUpdate.go?foodId=${id}" />'><fmt:message key="nutrition.foods.simpleFoods.edit" /></a> |
+						<fmt:message key="nutrition.foods.simpleFoods.delete" />
+					</li>
 				</s:iterator>
 			</ul>
-
 		</s:else>
 		<a href='<c:url value="/nutrition/prepareNewSimpleFood.go" />'><fmt:message key="nutrition.foods.simpleFoods.create" /></a>
 
@@ -23,7 +26,7 @@
 		<s:else>
 			<ul>
 				<s:iterator value="complexFoods">
-					<li><s:property value="name" /></li>
+					<li>${name}</li>
 				</s:iterator>
 			</ul>
 		</s:else>

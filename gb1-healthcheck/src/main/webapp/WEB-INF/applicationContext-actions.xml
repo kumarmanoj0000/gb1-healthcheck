@@ -8,23 +8,19 @@
        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.0.xsd
        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.0.xsd">
 
-	<bean id="userRegistrationAction"
-		class="com.gb1.healthcheck.web.users.UserRegistrationAction" scope="prototype">
+	<bean id="userRegistrationAction" class="com.gb1.healthcheck.web.users.UserRegistrationAction" scope="prototype">
 		<property name="userService" ref="userService" />
 	</bean>
 
-	<bean id="userActivationAction"
-		class="com.gb1.healthcheck.web.users.UserActivationAction" scope="prototype">
+	<bean id="userActivationAction" class="com.gb1.healthcheck.web.users.UserActivationAction" scope="prototype">
 		<property name="userService" ref="userService" />
 	</bean>
 
-	<bean id="lostPasswordAction"
-		class="com.gb1.healthcheck.web.security.LostPasswordAction" scope="prototype">
+	<bean id="lostPasswordAction" class="com.gb1.healthcheck.web.security.LostPasswordAction" scope="prototype">
 		<property name="userService" ref="userService" />
 	</bean>
 
-	<bean id="workbenchAction" class="com.gb1.healthcheck.web.workbench.WorkbenchAction"
-		scope="prototype" />
+	<bean id="workbenchAction" class="com.gb1.healthcheck.web.workbench.WorkbenchAction" scope="prototype" />
 
 	<bean id="foodAction" class="com.gb1.healthcheck.web.nutrition.FoodAction" scope="prototype">
 		<property name="foodService" ref="foodService" />
@@ -34,7 +30,10 @@
 		<property name="foodService" ref="foodService" />
 	</bean>
 
-	<bean id="signOffAction" class="com.gb1.healthcheck.web.security.SignOffAction"
-		scope="prototype" />
+	<bean id="updateSimpleFoodAction" class="com.gb1.healthcheck.web.nutrition.UpdateSimpleFoodAction" scope="prototype">
+		<property name="foodService" ref="foodService" />
+	</bean>
+
+	<bean id="signOffAction" class="com.gb1.healthcheck.web.security.SignOffAction" scope="prototype" />
 
 </beans>

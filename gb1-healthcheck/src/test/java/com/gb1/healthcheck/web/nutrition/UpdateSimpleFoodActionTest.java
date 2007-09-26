@@ -1,8 +1,5 @@
 package com.gb1.healthcheck.web.nutrition;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import junit.framework.TestCase;
 
 import org.easymock.EasyMock;
@@ -15,27 +12,21 @@ public class UpdateSimpleFoodActionTest extends TestCase {
 	public void testPrepareUpdateSimpleFood() {
 		final Long foodId = 1L;
 
-		Map<String, String> params = new HashMap<String, String>();
-		params.put("foodId", Long.toString(foodId));
-
 		FoodService foodSvc = EasyMock.createMock(FoodService.class);
 		EasyMock.expect(foodSvc.loadSimpleFood(foodId)).andReturn(Foods.apple());
 		EasyMock.replay(foodSvc);
 
 		UpdateSimpleFoodAction action = new UpdateSimpleFoodAction();
 		action.setFoodService(foodSvc);
-		action.setParameters(params);
+		action.setFoodId(foodId);
 
-		assertEquals(Action.SUCCESS, action.prepareUpdateSimpleFood());
+		assertEquals(Action.SUCCESS, action.prepareSimpleFoodUpdate());
 		assertEquals(foodId, action.getFoodId());
 		assertEquals(Foods.apple().getName(), action.getModel().getName());
 	}
 
 	public void testUpdateSimpleFood() throws Exception {
 		final Long foodId = 1L;
-
-		Map<String, String> params = new HashMap<String, String>();
-		params.put("foodId", Long.toString(foodId));
 
 		FoodService foodService = EasyMock.createMock(FoodService.class);
 		EasyMock.expect(foodService.loadSimpleFood(foodId)).andReturn(Foods.apple());
@@ -46,8 +37,8 @@ public class UpdateSimpleFoodActionTest extends TestCase {
 
 		UpdateSimpleFoodAction action = new UpdateSimpleFoodAction();
 		action.setFoodService(foodService);
-		action.setParameters(params);
-		action.prepareUpdateSimpleFood();
+		action.setFoodId(foodId);
+		action.prepareSimpleFoodUpdate();
 
 		assertEquals(Action.SUCCESS, action.updateSimpleFood());
 		EasyMock.verify(foodService);

@@ -1,19 +1,15 @@
 package com.gb1.healthcheck.web.nutrition;
 
-import java.util.Map;
-
-import org.apache.struts2.interceptor.ParameterAware;
-
 import com.gb1.healthcheck.domain.nutrition.FoodException;
 import com.gb1.healthcheck.services.nutrition.FoodService;
 import com.opensymphony.xwork2.Action;
 
-public class UpdateSimpleFoodAction implements ParameterAware {
+public class UpdateSimpleFoodAction {
 	private Long foodId = null;
 	private SimpleFoodUpdateRequest model = null;
 	private FoodService foodService;
 
-	public String prepareUpdateSimpleFood() {
+	public String prepareSimpleFoodUpdate() {
 		model = new SimpleFoodUpdateRequest(foodService.loadSimpleFood(foodId));
 		return Action.SUCCESS;
 	}
@@ -27,12 +23,12 @@ public class UpdateSimpleFoodAction implements ParameterAware {
 		return foodId;
 	}
 
-	public SimpleFoodUpdateRequest getModel() {
-		return model;
+	public void setFoodId(Long foodId) {
+		this.foodId = foodId;
 	}
 
-	public void setParameters(Map params) {
-		foodId = Long.parseLong((String) params.get("foodId"));
+	public SimpleFoodUpdateRequest getModel() {
+		return model;
 	}
 
 	public void setFoodService(FoodService foodService) {
