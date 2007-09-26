@@ -28,8 +28,7 @@ public abstract class Food implements Identifiable, Serializable {
 	private String name;
 
 	protected Food(String name) {
-		Validate.notNull(name);
-		this.name = name;
+		setName(name);
 	}
 
 	public Long getId() {
@@ -38,6 +37,11 @@ public abstract class Food implements Identifiable, Serializable {
 
 	public String getName() {
 		return name;
+	}
+
+	protected void setName(String name) {
+		Validate.notNull(name);
+		this.name = name;
 	}
 
 	public abstract boolean isPartOfGroup(Group group);

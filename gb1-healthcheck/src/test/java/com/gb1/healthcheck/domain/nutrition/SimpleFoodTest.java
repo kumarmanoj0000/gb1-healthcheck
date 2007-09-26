@@ -37,4 +37,28 @@ public class SimpleFoodTest extends TestCase {
 		assertTrue(CollectionUtils.isEqualCollection(Foods.apple().getNutrients(), food
 				.getNutrients()));
 	}
+
+	public void testUpdateUsingPropertyProvider() {
+		SimpleFoodPropertyProvider request = new SimpleFoodPropertyProvider() {
+			public Group getGroup() {
+				return Foods.apple().getGroup();
+			}
+
+			public String getName() {
+				return Foods.apple().getName();
+			}
+
+			public Set<Nutrient> getNutrients() {
+				return Foods.apple().getNutrients();
+			}
+		};
+
+		SimpleFood food = new SimpleFood();
+		food.update(request);
+
+		assertEquals(Foods.apple().getName(), food.getName());
+		assertEquals(Foods.apple().getGroup(), food.getGroup());
+		assertTrue(CollectionUtils.isEqualCollection(Foods.apple().getNutrients(), food
+				.getNutrients()));
+	}
 }
