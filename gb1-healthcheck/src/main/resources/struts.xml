@@ -58,7 +58,10 @@
 		</action>
 		<action name="createSimpleFood" method="createSimpleFood" class="createSimpleFoodAction">
 			<result name="input">/views/nutrition/newSimpleFood.jsp</result>
-			<result>/views/nutrition/newSimpleFood.jsp</result>
+			<result type="chain">
+				<param name="namespace">/nutrition</param>
+				<param name="actionName">listFoods</param>
+			</result>
 		</action>
 	</package>
 </struts>
