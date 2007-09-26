@@ -5,7 +5,6 @@ import junit.framework.TestCase;
 import org.springframework.mock.web.MockHttpServletRequest;
 import org.springframework.mock.web.MockHttpServletResponse;
 
-import com.gb1.healthcheck.web.security.SignOffAction;
 import com.opensymphony.xwork2.Action;
 
 public class SignOffActionTest extends TestCase {

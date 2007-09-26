@@ -6,7 +6,6 @@ import org.easymock.EasyMock;
 
 import com.gb1.healthcheck.domain.users.UnknownUserException;
 import com.gb1.healthcheck.services.users.UserService;
-import com.gb1.healthcheck.web.security.LostPasswordAction;
 import com.opensymphony.xwork2.Action;
 
 public class LostPasswordActionTest extends TestCase {

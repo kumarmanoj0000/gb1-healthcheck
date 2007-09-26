@@ -8,7 +8,6 @@ import com.gb1.commons.tokens.Token;
 import com.gb1.healthcheck.domain.users.ExposedUser;
 import com.gb1.healthcheck.domain.users.InvalidTokenException;
 import com.gb1.healthcheck.services.users.UserService;
-import com.gb1.healthcheck.web.users.UserActivationAction;
 import com.opensymphony.xwork2.Action;
 
 public class UserActivationActionTest extends TestCase {
