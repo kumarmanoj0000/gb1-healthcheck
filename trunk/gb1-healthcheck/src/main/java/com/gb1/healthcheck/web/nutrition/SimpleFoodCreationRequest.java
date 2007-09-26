@@ -32,15 +32,22 @@ public class SimpleFoodCreationRequest implements SimpleFoodPropertyProvider {
 		this.name = name;
 	}
 
-	public void setSelectedNutrients(Nutrient[] selectedNutrients) {
+	public void setSelectedNutrients(String[] nutrientNames) {
 		nutrients.clear();
-		for (Nutrient n : selectedNutrients) {
-			nutrients.add(n);
+		for (String nutrientName : nutrientNames) {
+			nutrients.add(Nutrient.valueOf(nutrientName));
 		}
 	}
 
-	public Nutrient[] getSelectedNutrients() {
-		return nutrients.toArray(new Nutrient[0]);
+	public String[] getSelectedNutrients() {
+		String[] nutrientNames = new String[nutrients.size()];
+		int i = 0;
+
+		for (Nutrient n : nutrients) {
+			nutrientNames[i++] = n.name();
+		}
+
+		return nutrientNames;
 	}
 
 	public Set<Nutrient> getNutrients() {
