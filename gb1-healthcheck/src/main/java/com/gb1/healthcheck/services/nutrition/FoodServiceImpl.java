@@ -32,6 +32,13 @@ public class FoodServiceImpl implements FoodService {
 		foodRepo.saveSimpleFood(food);
 	}
 
+	@Transactional(rollbackFor = { RuntimeException.class, FoodException.class })
+	public void updateSimpleFood(Long foodId, SimpleFoodPropertyProvider propertyProvider)
+			throws FoodException {
+		SimpleFood food = foodRepo.loadSimpleFood(foodId);
+		food.update(propertyProvider);
+	}
+
 	public void setFoodRepository(FoodRepository foodRepo) {
 		this.foodRepo = foodRepo;
 	}

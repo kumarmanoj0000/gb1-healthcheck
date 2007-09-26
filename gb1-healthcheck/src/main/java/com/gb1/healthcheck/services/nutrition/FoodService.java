@@ -13,4 +13,7 @@ public interface FoodService {
 	Set<ComplexFood> getComplexFoods();
 
 	void createSimpleFood(SimpleFoodPropertyProvider propertyProvider) throws FoodException;
+
+	void updateSimpleFood(Long foodId, SimpleFoodPropertyProvider propertyProvider)
+			throws FoodException;
 }
