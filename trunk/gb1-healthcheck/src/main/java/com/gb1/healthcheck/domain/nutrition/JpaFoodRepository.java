@@ -21,6 +21,10 @@ public class JpaFoodRepository implements FoodRepository {
 		return entityManager.find(Food.class, foodId);
 	}
 
+	public SimpleFood loadSimpleFood(Long foodId) {
+		return entityManager.find(SimpleFood.class, foodId);
+	}
+
 	@SuppressWarnings("unchecked")
 	public Food findFoodByName(String name) {
 		List<Food> foods = entityManager.createQuery("select f from Food f where f.name = ?1")

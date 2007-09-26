@@ -3,7 +3,9 @@ package com.gb1.healthcheck.domain.nutrition;
 import java.util.Set;
 
 public interface FoodRepository {
-	Food loadFood(Long id);
+	Food loadFood(Long foodId);
+
+	SimpleFood loadSimpleFood(Long foodId);
 
 	Food findFoodByName(String name);
 
