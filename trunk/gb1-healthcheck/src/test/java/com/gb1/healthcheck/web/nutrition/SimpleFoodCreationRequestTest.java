@@ -1,8 +1,10 @@
 package com.gb1.healthcheck.web.nutrition;
 
-import com.gb1.healthcheck.domain.nutrition.Nutrient;
-
 import junit.framework.TestCase;
+
+import org.apache.commons.lang.ArrayUtils;
+
+import com.gb1.healthcheck.domain.nutrition.Nutrient;
 
 public class SimpleFoodCreationRequestTest extends TestCase {
 	public void testSetSelectedNutrients() {
@@ -11,9 +13,10 @@ public class SimpleFoodCreationRequestTest extends TestCase {
 		req.setSelectedNutrients(new String[] {});
 		assertEquals(0, req.getSelectedNutrients().length);
 
-		req.setSelectedNutrients(new String[] { "VITAMIN_A", "VITAMIN_B" });
+		req.setSelectedNutrients(new String[] { Nutrient.VITAMIN_A.name(),
+				Nutrient.VITAMIN_B.name() });
 		assertEquals(2, req.getSelectedNutrients().length);
-		assertEquals(Nutrient.VITAMIN_A.name(), req.getSelectedNutrients()[0]);
-		assertEquals(Nutrient.VITAMIN_B.name(), req.getSelectedNutrients()[1]);
+		assertTrue(ArrayUtils.contains(req.getSelectedNutrients(), Nutrient.VITAMIN_A.name()));
+		assertTrue(ArrayUtils.contains(req.getSelectedNutrients(), Nutrient.VITAMIN_B.name()));
 	}
 }

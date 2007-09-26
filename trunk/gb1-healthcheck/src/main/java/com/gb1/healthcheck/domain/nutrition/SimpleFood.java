@@ -12,7 +12,7 @@ import org.hibernate.annotations.CollectionOfElements;
 
 @Entity
 @DiscriminatorValue("S")
-public class SimpleFood extends Food {
+public class SimpleFood extends Food implements SimpleFoodPropertyProvider {
 	@Column(name = "FOOD_GROUP")
 	private Group group;
 
@@ -52,5 +52,13 @@ public class SimpleFood extends Food {
 
 	public boolean isSourceOfNutrient(Nutrient nutrient) {
 		return nutrients.contains(nutrient);
+	}
+
+	public void update(SimpleFoodPropertyProvider propertyProvider) {
+		setName(propertyProvider.getName());
+		group = propertyProvider.getGroup();
+
+		nutrients.clear();
+		nutrients.addAll(propertyProvider.getNutrients());
 	}
 }
