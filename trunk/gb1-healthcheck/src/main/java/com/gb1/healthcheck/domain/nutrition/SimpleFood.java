@@ -7,6 +7,7 @@ import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 
 import org.hibernate.annotations.CollectionOfElements;
 
@@ -16,7 +17,7 @@ public class SimpleFood extends Food implements SimpleFoodPropertyProvider {
 	@Column(name = "FOOD_GROUP")
 	private Group group;
 
-	@CollectionOfElements
+	@CollectionOfElements(fetch = FetchType.EAGER)
 	private Set<Nutrient> nutrients = new HashSet<Nutrient>();
 
 	SimpleFood() {
