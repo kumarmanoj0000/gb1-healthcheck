@@ -17,7 +17,7 @@ import com.gb1.healthcheck.domain.nutrition.SimpleFood;
 import com.gb1.healthcheck.services.nutrition.FoodService;
 import com.opensymphony.xwork2.Action;
 
-public class FoodActionTest extends TestCase {
+public class ListFoodsActionTest extends TestCase {
 	public void testListFoods() {
 		Set<SimpleFood> allSimpleFoods = Foods.allSimpleFoods();
 		List<SimpleFood> sortedSimpleFoods = new ArrayList<SimpleFood>(allSimpleFoods);
@@ -32,7 +32,7 @@ public class FoodActionTest extends TestCase {
 		EasyMock.expect(foodSvc.getComplexFoods()).andReturn(allComplexFoods);
 		EasyMock.replay(foodSvc);
 
-		FoodAction action = new FoodAction();
+		ListFoodsAction action = new ListFoodsAction();
 		action.setFoodService(foodSvc);
 
 		assertEquals(Action.SUCCESS, action.listFoods());

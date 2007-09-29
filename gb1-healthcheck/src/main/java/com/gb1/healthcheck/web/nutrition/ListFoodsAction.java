@@ -10,13 +10,13 @@ import com.gb1.healthcheck.domain.nutrition.SimpleFood;
 import com.gb1.healthcheck.services.nutrition.FoodService;
 import com.opensymphony.xwork2.Action;
 
-public class FoodAction {
+public class ListFoodsAction {
 	private FoodService foodService;
 
 	private List<SimpleFood> simpleFoods;
 	private List<ComplexFood> complexFoods;
 
-	public FoodAction() {
+	public ListFoodsAction() {
 	}
 
 	public String listFoods() {
