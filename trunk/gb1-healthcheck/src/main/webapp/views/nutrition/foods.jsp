@@ -12,8 +12,7 @@
 			<ul>
 				<s:iterator value="simpleFoods">
 					<li>
-						${name} |
-						<a href='<c:url value="/nutrition/prepareSimpleFoodUpdate.go?foodId=${id}" />'><fmt:message key="nutrition.foods.simpleFoods.edit" /></a> |
+						<a href='<c:url value="/nutrition/prepareSimpleFoodUpdate.go?foodId=${id}" />'>${name}</a> |
 						<fmt:message key="nutrition.foods.simpleFoods.delete" />
 					</li>
 				</s:iterator>
