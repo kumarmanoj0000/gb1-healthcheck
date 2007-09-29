@@ -41,6 +41,10 @@ public class UpdateSimpleFoodAction implements SessionAware {
 		return Action.SUCCESS;
 	}
 
+	public String cancel() {
+		return Action.SUCCESS;
+	}
+
 	public Long getFoodId() {
 		return foodId;
 	}
