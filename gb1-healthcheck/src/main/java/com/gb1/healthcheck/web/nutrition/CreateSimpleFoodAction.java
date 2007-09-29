@@ -34,6 +34,10 @@ public class CreateSimpleFoodAction {
 		return result;
 	}
 
+	public String cancel() {
+		return Action.SUCCESS;
+	}
+
 	public SimpleFoodCreationRequest getModel() {
 		return foodCreationRequest;
 	}

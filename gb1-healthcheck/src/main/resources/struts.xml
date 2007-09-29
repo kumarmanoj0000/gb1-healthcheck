@@ -58,7 +58,7 @@
 		</action>
 		<action name="createSimpleFood" method="createSimpleFood" class="createSimpleFoodAction">
 			<result name="input">/views/nutrition/newSimpleFood.jsp</result>
-			<result type="chain">
+			<result name="success" type="chain">
 				<param name="namespace">/nutrition</param>
 				<param name="actionName">listFoods</param>
 			</result>
@@ -68,7 +68,7 @@
 		</action>
 		<action name="updateSimpleFood" method="updateSimpleFood" class="updateSimpleFoodAction">
 			<result name="input">/views/nutrition/updateSimpleFood.jsp</result>
-			<result type="chain">
+			<result name="success" type="chain">
 				<param name="namespace">/nutrition</param>
 				<param name="actionName">listFoods</param>
 			</result>

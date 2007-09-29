@@ -4,7 +4,6 @@ HealthCheck
 
 . features:
   - food
-    > cancel create / edit simple food
     > validation for create / edit simple food
     > delete simple food
     > create / edit / delete complex food

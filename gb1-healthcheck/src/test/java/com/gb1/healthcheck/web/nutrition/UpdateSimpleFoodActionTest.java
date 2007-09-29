@@ -60,4 +60,9 @@ public class UpdateSimpleFoodActionTest extends TestCase {
 		assertFalse(session.containsKey(modelSessionKey));
 		EasyMock.verify(foodSvc);
 	}
+
+	public void testCancel() {
+		UpdateSimpleFoodAction action = new UpdateSimpleFoodAction();
+		assertEquals(Action.SUCCESS, action.cancel());
+	}
 }

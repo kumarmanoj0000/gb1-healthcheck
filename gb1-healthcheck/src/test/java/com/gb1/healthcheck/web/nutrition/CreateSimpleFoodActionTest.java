@@ -26,4 +26,9 @@ public class CreateSimpleFoodActionTest extends TestCase {
 		assertEquals(Action.SUCCESS, action.createSimpleFood());
 		EasyMock.verify(foodSvc);
 	}
+
+	public void testCancel() {
+		CreateSimpleFoodAction action = new CreateSimpleFoodAction();
+		assertEquals(Action.SUCCESS, action.cancel());
+	}
 }
