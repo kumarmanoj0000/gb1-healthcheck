@@ -50,7 +50,7 @@
 	</package>
 
 	<package name="nutrition" extends="struts-default" namespace="/nutrition">
-		<action name="listFoods" method="listFoods" class="foodAction">
+		<action name="listFoods" method="listFoods" class="listFoodsAction">
 			<result>/views/nutrition/foods.jsp</result>
 		</action>
 		<action name="prepareNewSimpleFood" method="prepareNewSimpleFood" class="createSimpleFoodAction">

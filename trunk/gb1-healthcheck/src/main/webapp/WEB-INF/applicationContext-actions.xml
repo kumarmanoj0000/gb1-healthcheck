@@ -22,7 +22,7 @@
 
 	<bean id="workbenchAction" class="com.gb1.healthcheck.web.workbench.WorkbenchAction" scope="prototype" />
 
-	<bean id="foodAction" class="com.gb1.healthcheck.web.nutrition.FoodAction" scope="prototype">
+	<bean id="listFoodsAction" class="com.gb1.healthcheck.web.nutrition.ListFoodsAction" scope="prototype">
 		<property name="foodService" ref="foodService" />
 	</bean>
 
