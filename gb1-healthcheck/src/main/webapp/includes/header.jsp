@@ -2,7 +2,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt" %>
 
 <div>
-	<fmt:message key="app.name" /><br />
+	<h1><fmt:message key="app.name" /></h1>
 	<authz:authorize ifNotGranted="role_anonymous">
 		<fmt:message key="header.userlogin" />: <authz:authentication operation="username" />
 		<br />
