@@ -12,12 +12,10 @@ import com.gb1.healthcheck.domain.nutrition.Nutrient;
 import com.gb1.healthcheck.domain.nutrition.SimpleFood;
 import com.gb1.healthcheck.services.nutrition.FoodService;
 import com.opensymphony.xwork2.Action;
-import com.opensymphony.xwork2.Preparable;
 
-public class UpdateSimpleFoodAction implements SessionAware, Preparable {
+public class UpdateSimpleFoodAction implements SessionAware {
 	private Map<String, Object> session;
 	private Long foodId = null;
-	private SimpleFoodUpdateRequest model = null;
 	private FoodService foodService;
 
 	public UpdateSimpleFoodAction() {
@@ -28,20 +26,16 @@ public class UpdateSimpleFoodAction implements SessionAware, Preparable {
 		this.session = session;
 	}
 
-	public void prepare() {
-		model = (SimpleFoodUpdateRequest) session.get(modelSessionName());
-	}
-
 	public String prepareSimpleFoodUpdate() {
 		SimpleFood food = foodService.loadSimpleFood(foodId);
-		model = new SimpleFoodUpdateRequest(food);
+		SimpleFoodUpdateRequest model = new SimpleFoodUpdateRequest(food);
 		session.put(modelSessionName(), model);
 
 		return Action.SUCCESS;
 	}
 
 	public String updateSimpleFood() throws FoodException {
-		foodService.updateSimpleFood(foodId, model);
+		foodService.updateSimpleFood(foodId, getModel());
 		return Action.SUCCESS;
 	}
 
@@ -54,7 +48,7 @@ public class UpdateSimpleFoodAction implements SessionAware, Preparable {
 	}
 
 	public SimpleFoodUpdateRequest getModel() {
-		return model;
+		return (SimpleFoodUpdateRequest) session.get(modelSessionName());
 	}
 
 	public List<Group> getAvailableGroups() {

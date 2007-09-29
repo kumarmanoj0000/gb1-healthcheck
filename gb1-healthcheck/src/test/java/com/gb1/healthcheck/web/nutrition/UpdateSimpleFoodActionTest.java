@@ -25,7 +25,6 @@ public class UpdateSimpleFoodActionTest extends TestCase {
 		action.setFoodService(foodSvc);
 
 		action.setSession(new HashMap());
-		action.prepare();
 		action.setFoodId(foodId);
 		String result = action.prepareSimpleFoodUpdate();
 
@@ -53,7 +52,6 @@ public class UpdateSimpleFoodActionTest extends TestCase {
 		action.setFoodService(foodSvc);
 
 		action.setSession(session);
-		action.prepare();
 		action.setFoodId(foodId);
 		String result = action.updateSimpleFood();
 
