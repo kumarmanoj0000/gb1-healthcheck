@@ -29,13 +29,15 @@ public class UpdateSimpleFoodAction implements SessionAware {
 	public String prepareSimpleFoodUpdate() {
 		SimpleFood food = foodService.loadSimpleFood(foodId);
 		SimpleFoodUpdateRequest model = new SimpleFoodUpdateRequest(food);
-		session.put(modelSessionName(), model);
+		session.put(modelSessionKey(), model);
 
 		return Action.SUCCESS;
 	}
 
 	public String updateSimpleFood() throws FoodException {
 		foodService.updateSimpleFood(foodId, getModel());
+		session.remove(modelSessionKey());
+
 		return Action.SUCCESS;
 	}
 
@@ -48,7 +50,7 @@ public class UpdateSimpleFoodAction implements SessionAware {
 	}
 
 	public SimpleFoodUpdateRequest getModel() {
-		return (SimpleFoodUpdateRequest) session.get(modelSessionName());
+		return (SimpleFoodUpdateRequest) session.get(modelSessionKey());
 	}
 
 	public List<Group> getAvailableGroups() {
@@ -63,7 +65,7 @@ public class UpdateSimpleFoodAction implements SessionAware {
 		this.foodService = foodService;
 	}
 
-	private String modelSessionName() {
+	private String modelSessionKey() {
 		return getClass().getName() + ".model";
 	}
 }

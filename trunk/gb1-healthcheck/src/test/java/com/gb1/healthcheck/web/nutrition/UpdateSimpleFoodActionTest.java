@@ -40,8 +40,9 @@ public class UpdateSimpleFoodActionTest extends TestCase {
 		final SimpleFood apple = Foods.apple();
 		SimpleFoodUpdateRequest model = new SimpleFoodUpdateRequest(apple);
 
+		final String modelSessionKey = UpdateSimpleFoodAction.class.getName() + ".model";
 		Map session = new HashMap();
-		session.put(UpdateSimpleFoodAction.class.getName() + ".model", model);
+		session.put(modelSessionKey, model);
 
 		FoodService foodSvc = EasyMock.createMock(FoodService.class);
 		foodSvc.updateSimpleFood(foodId, model);
@@ -56,6 +57,7 @@ public class UpdateSimpleFoodActionTest extends TestCase {
 		String result = action.updateSimpleFood();
 
 		assertEquals(Action.SUCCESS, result);
+		assertFalse(session.containsKey(modelSessionKey));
 		EasyMock.verify(foodSvc);
 	}
 }
