@@ -1,15 +1,20 @@
 package com.gb1.healthcheck.web.nutrition;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import junit.framework.TestCase;
 
 import org.easymock.EasyMock;
 
 import com.gb1.healthcheck.domain.nutrition.Foods;
+import com.gb1.healthcheck.domain.nutrition.SimpleFood;
 import com.gb1.healthcheck.services.nutrition.FoodService;
 import com.opensymphony.xwork2.Action;
 
 public class UpdateSimpleFoodActionTest extends TestCase {
-	public void testPrepareUpdateSimpleFood() {
+	@SuppressWarnings("unchecked")
+	public void testPrepareUpdateSimpleFood() throws Exception {
 		final Long foodId = 1L;
 
 		FoodService foodSvc = EasyMock.createMock(FoodService.class);
@@ -18,29 +23,41 @@ public class UpdateSimpleFoodActionTest extends TestCase {
 
 		UpdateSimpleFoodAction action = new UpdateSimpleFoodAction();
 		action.setFoodService(foodSvc);
-		action.setFoodId(foodId);
 
-		assertEquals(Action.SUCCESS, action.prepareSimpleFoodUpdate());
+		action.setSession(new HashMap());
+		action.prepare();
+		action.setFoodId(foodId);
+		String result = action.prepareSimpleFoodUpdate();
+
+		assertEquals(Action.SUCCESS, result);
 		assertEquals(foodId, action.getFoodId());
 		assertEquals(Foods.apple().getName(), action.getModel().getName());
+		EasyMock.verify(foodSvc);
 	}
 
+	@SuppressWarnings("unchecked")
 	public void testUpdateSimpleFood() throws Exception {
 		final Long foodId = 1L;
+		final SimpleFood apple = Foods.apple();
+		SimpleFoodUpdateRequest model = new SimpleFoodUpdateRequest(apple);
 
-		FoodService foodService = EasyMock.createMock(FoodService.class);
-		EasyMock.expect(foodService.loadSimpleFood(foodId)).andReturn(Foods.apple());
-		foodService.updateSimpleFood(EasyMock.eq(foodId), EasyMock
-				.isA(SimpleFoodUpdateRequest.class));
+		Map session = new HashMap();
+		session.put(UpdateSimpleFoodAction.class.getName() + ".model", model);
+
+		FoodService foodSvc = EasyMock.createMock(FoodService.class);
+		foodSvc.updateSimpleFood(foodId, model);
 		EasyMock.expectLastCall();
-		EasyMock.replay(foodService);
+		EasyMock.replay(foodSvc);
 
 		UpdateSimpleFoodAction action = new UpdateSimpleFoodAction();
-		action.setFoodService(foodService);
-		action.setFoodId(foodId);
-		action.prepareSimpleFoodUpdate();
+		action.setFoodService(foodSvc);
 
-		assertEquals(Action.SUCCESS, action.updateSimpleFood());
-		EasyMock.verify(foodService);
+		action.setSession(session);
+		action.prepare();
+		action.setFoodId(foodId);
+		String result = action.updateSimpleFood();
+
+		assertEquals(Action.SUCCESS, result);
+		EasyMock.verify(foodSvc);
 	}
 }

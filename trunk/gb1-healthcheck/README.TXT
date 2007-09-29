@@ -4,8 +4,7 @@ HealthCheck
 
 . features:
   - food
-    > edit / delete simple food
-    > list complex foods
+    > delete simple food
     > create / edit / delete complex food
 
   - meals

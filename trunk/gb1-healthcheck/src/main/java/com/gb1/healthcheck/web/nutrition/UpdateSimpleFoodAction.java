@@ -2,14 +2,20 @@ package com.gb1.healthcheck.web.nutrition;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
+
+import org.apache.struts2.interceptor.SessionAware;
 
 import com.gb1.healthcheck.domain.nutrition.FoodException;
 import com.gb1.healthcheck.domain.nutrition.Group;
 import com.gb1.healthcheck.domain.nutrition.Nutrient;
+import com.gb1.healthcheck.domain.nutrition.SimpleFood;
 import com.gb1.healthcheck.services.nutrition.FoodService;
 import com.opensymphony.xwork2.Action;
+import com.opensymphony.xwork2.Preparable;
 
-public class UpdateSimpleFoodAction {
+public class UpdateSimpleFoodAction implements SessionAware, Preparable {
+	private Map<String, Object> session;
 	private Long foodId = null;
 	private SimpleFoodUpdateRequest model = null;
 	private FoodService foodService;
@@ -17,8 +23,20 @@ public class UpdateSimpleFoodAction {
 	public UpdateSimpleFoodAction() {
 	}
 
+	@SuppressWarnings("unchecked")
+	public void setSession(Map session) {
+		this.session = session;
+	}
+
+	public void prepare() {
+		model = (SimpleFoodUpdateRequest) session.get(modelSessionName());
+	}
+
 	public String prepareSimpleFoodUpdate() {
-		model = new SimpleFoodUpdateRequest(foodService.loadSimpleFood(foodId));
+		SimpleFood food = foodService.loadSimpleFood(foodId);
+		model = new SimpleFoodUpdateRequest(food);
+		session.put(modelSessionName(), model);
+
 		return Action.SUCCESS;
 	}
 
@@ -49,5 +67,9 @@ public class UpdateSimpleFoodAction {
 
 	public void setFoodService(FoodService foodService) {
 		this.foodService = foodService;
+	}
+
+	private String modelSessionName() {
+		return getClass().getName() + ".model";
 	}
 }
