@@ -44,7 +44,8 @@ HealthCheck
 
   - improve visual design (CSS)
   - add Ajax whererever possible
-  - login: auto-focus on login field
   
 . technical
+  - remove duplication in create / update simple food stories
+  - improve strategy for model-driven actions (currently session-aware)
   - migrate unit tests to JUnit 4 (with Spring 2.1)
