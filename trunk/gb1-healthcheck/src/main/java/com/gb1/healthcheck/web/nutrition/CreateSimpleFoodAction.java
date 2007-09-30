@@ -16,11 +16,11 @@ public class CreateSimpleFoodAction {
 	public CreateSimpleFoodAction() {
 	}
 
-	public String prepareNewSimpleFood() {
+	public String input() {
 		return Action.SUCCESS;
 	}
 
-	public String createSimpleFood() {
+	public String submit() {
 		String result;
 
 		try {

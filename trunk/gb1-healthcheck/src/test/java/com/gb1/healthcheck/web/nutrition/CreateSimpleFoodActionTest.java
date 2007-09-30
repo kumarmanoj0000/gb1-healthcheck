@@ -9,12 +9,12 @@ import com.gb1.healthcheck.services.nutrition.FoodService;
 import com.opensymphony.xwork2.Action;
 
 public class CreateSimpleFoodActionTest extends TestCase {
-	public void testPrepareNewSimpleFood() {
+	public void testInput() {
 		CreateSimpleFoodAction action = new CreateSimpleFoodAction();
-		assertEquals(Action.SUCCESS, action.prepareNewSimpleFood());
+		assertEquals(Action.SUCCESS, action.input());
 	}
 
-	public void testCreateNewSimpleFood() throws Exception {
+	public void testSubmit() throws Exception {
 		FoodService foodSvc = EasyMock.createMock(FoodService.class);
 		foodSvc.createSimpleFood(EasyMock.isA(SimpleFoodPropertyProvider.class));
 		EasyMock.expectLastCall();
@@ -23,7 +23,7 @@ public class CreateSimpleFoodActionTest extends TestCase {
 		CreateSimpleFoodAction action = new CreateSimpleFoodAction();
 		action.setFoodService(foodSvc);
 
-		assertEquals(Action.SUCCESS, action.createSimpleFood());
+		assertEquals(Action.SUCCESS, action.submit());
 		EasyMock.verify(foodSvc);
 	}
 

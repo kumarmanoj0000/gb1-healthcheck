@@ -53,22 +53,25 @@
 		<action name="listFoods" method="listFoods" class="listFoodsAction">
 			<result>/views/nutrition/foods.jsp</result>
 		</action>
-		<action name="prepareNewSimpleFood" method="prepareNewSimpleFood" class="createSimpleFoodAction">
+	</package>
+
+	<package name="simpleFood" extends="struts-default" namespace="/nutrition/simpleFood">
+		<action name="createInput" method="input" class="createSimpleFoodAction">
 			<result>/views/nutrition/newSimpleFood.jsp</result>
 		</action>
-		<action name="createSimpleFood" method="createSimpleFood" class="createSimpleFoodAction">
+		<action name="createSubmit" method="submit" class="createSimpleFoodAction">
 			<result name="input">/views/nutrition/newSimpleFood.jsp</result>
-			<result name="success" type="chain">
+			<result name="success" type="redirect-action">
 				<param name="namespace">/nutrition</param>
 				<param name="actionName">listFoods</param>
 			</result>
 		</action>
-		<action name="prepareSimpleFoodUpdate" method="prepareSimpleFoodUpdate" class="updateSimpleFoodAction">
+		<action name="updateInput" method="input" class="updateSimpleFoodAction">
 			<result>/views/nutrition/updateSimpleFood.jsp</result>
 		</action>
-		<action name="updateSimpleFood" method="updateSimpleFood" class="updateSimpleFoodAction">
+		<action name="updateSubmit" method="submit" class="updateSimpleFoodAction">
 			<result name="input">/views/nutrition/updateSimpleFood.jsp</result>
-			<result name="success" type="chain">
+			<result name="success" type="redirect-action">
 				<param name="namespace">/nutrition</param>
 				<param name="actionName">listFoods</param>
 			</result>
