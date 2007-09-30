@@ -5,7 +5,7 @@
 <html>
 	<body>
 		<h1><fmt:message key="nutrition.foods.simpleFoods.create.title" /></h1>
-		<s:form action="createSimpleFood.go" method="post" namespace="/nutrition">
+		<s:form action="createSubmit.go" method="post" namespace="/nutrition/simpleFood">
 			<s:textfield key="food.name" name="model.name" /><br/>
 			<s:select key="food.group" name="model.group" list="availableGroups" />
 			<s:checkboxlist key="food.nutrients" name="model.selectedNutrients" list="availableNutrients" listKey="name()" listValue="name()" />

@@ -15,8 +15,9 @@ import com.opensymphony.xwork2.Action;
 
 public class UpdateSimpleFoodAction implements SessionAware {
 	private Map<String, Object> session;
-	private Long foodId = null;
 	private FoodService foodService;
+
+	private Long foodId = null;
 
 	public UpdateSimpleFoodAction() {
 	}
@@ -26,7 +27,7 @@ public class UpdateSimpleFoodAction implements SessionAware {
 		this.session = session;
 	}
 
-	public String prepareSimpleFoodUpdate() {
+	public String input() {
 		SimpleFood food = foodService.loadSimpleFood(foodId);
 		SimpleFoodUpdateRequest model = new SimpleFoodUpdateRequest(food);
 		session.put(modelSessionKey(), model);
@@ -34,7 +35,7 @@ public class UpdateSimpleFoodAction implements SessionAware {
 		return Action.SUCCESS;
 	}
 
-	public String updateSimpleFood() throws FoodException {
+	public String submit() throws FoodException {
 		foodService.updateSimpleFood(foodId, getModel());
 		session.remove(modelSessionKey());
 

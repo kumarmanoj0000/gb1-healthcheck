@@ -5,7 +5,7 @@
 <html>
 	<body>
 		<h1><fmt:message key="nutrition.foods.simpleFoods.update.title" /></h1>
-		<s:form action="updateSimpleFood.go" method="post" namespace="/nutrition">
+		<s:form action="updateSubmit.go" method="post" namespace="/nutrition/simpleFood">
 			<s:hidden name="foodId" />
 			<s:textfield key="food.name" name="model.name" /><br/>
 			<s:select key="food.group" name="model.group" list="availableGroups" />

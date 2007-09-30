@@ -12,13 +12,13 @@
 			<ul>
 				<s:iterator value="simpleFoods">
 					<li>
-						<a href='<c:url value="/nutrition/prepareSimpleFoodUpdate.go?foodId=${id}" />'>${name}</a> |
+						<a href='<c:url value="/nutrition/simpleFood/updateInput.go?foodId=${id}" />'>${name}</a> |
 						<fmt:message key="nutrition.foods.simpleFoods.delete" />
 					</li>
 				</s:iterator>
 			</ul>
 		</s:else>
-		<a href='<c:url value="/nutrition/prepareNewSimpleFood.go" />'><fmt:message key="nutrition.foods.simpleFoods.create" /></a>
+		<a href='<c:url value="/nutrition/simpleFood/createInput.go" />'><fmt:message key="nutrition.foods.simpleFoods.create" /></a>
 
 		<h2><fmt:message key="nutrition.foods.complexFoods" /></h2>
 		<s:if test="complexFoods.size == 0"><fmt:message key="nutrition.foods.noComplexFoods" /></s:if>

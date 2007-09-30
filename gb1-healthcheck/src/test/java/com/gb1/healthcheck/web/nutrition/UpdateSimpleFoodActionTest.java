@@ -14,11 +14,12 @@ import com.opensymphony.xwork2.Action;
 
 public class UpdateSimpleFoodActionTest extends TestCase {
 	@SuppressWarnings("unchecked")
-	public void testPrepareUpdateSimpleFood() throws Exception {
+	public void testInput() throws Exception {
 		final Long foodId = 1L;
+		final SimpleFood apple = Foods.apple();
 
 		FoodService foodSvc = EasyMock.createMock(FoodService.class);
-		EasyMock.expect(foodSvc.loadSimpleFood(foodId)).andReturn(Foods.apple());
+		EasyMock.expect(foodSvc.loadSimpleFood(foodId)).andReturn(apple);
 		EasyMock.replay(foodSvc);
 
 		UpdateSimpleFoodAction action = new UpdateSimpleFoodAction();
@@ -26,16 +27,16 @@ public class UpdateSimpleFoodActionTest extends TestCase {
 
 		action.setSession(new HashMap());
 		action.setFoodId(foodId);
-		String result = action.prepareSimpleFoodUpdate();
+		String result = action.input();
 
 		assertEquals(Action.SUCCESS, result);
 		assertEquals(foodId, action.getFoodId());
-		assertEquals(Foods.apple().getName(), action.getModel().getName());
+		assertEquals(apple.getName(), action.getModel().getName());
 		EasyMock.verify(foodSvc);
 	}
 
 	@SuppressWarnings("unchecked")
-	public void testUpdateSimpleFood() throws Exception {
+	public void testSubmit() throws Exception {
 		final Long foodId = 1L;
 		final SimpleFood apple = Foods.apple();
 		SimpleFoodUpdateRequest model = new SimpleFoodUpdateRequest(apple);
@@ -54,7 +55,7 @@ public class UpdateSimpleFoodActionTest extends TestCase {
 
 		action.setSession(session);
 		action.setFoodId(foodId);
-		String result = action.updateSimpleFood();
+		String result = action.submit();
 
 		assertEquals(Action.SUCCESS, result);
 		assertFalse(session.containsKey(modelSessionKey));
