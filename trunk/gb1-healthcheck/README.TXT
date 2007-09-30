@@ -49,4 +49,5 @@ HealthCheck
 . technical
   - remove duplication in create / update simple food stories
   - improve strategy for model-driven actions (currently session-aware)
+  - use annotations wherever possible
   - migrate unit tests to JUnit 4 (with Spring 2.1)

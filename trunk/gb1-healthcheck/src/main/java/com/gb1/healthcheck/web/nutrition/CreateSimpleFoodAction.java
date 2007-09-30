@@ -8,8 +8,9 @@ import com.gb1.healthcheck.domain.nutrition.Group;
 import com.gb1.healthcheck.domain.nutrition.Nutrient;
 import com.gb1.healthcheck.services.nutrition.FoodService;
 import com.opensymphony.xwork2.Action;
+import com.opensymphony.xwork2.ActionSupport;
 
-public class CreateSimpleFoodAction {
+public class CreateSimpleFoodAction extends ActionSupport {
 	private FoodService foodService;
 	private SimpleFoodCreationRequest foodCreationRequest = new SimpleFoodCreationRequest();
 
