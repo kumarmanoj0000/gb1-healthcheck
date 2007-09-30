@@ -15,6 +15,7 @@ import com.gb1.healthcheck.domain.nutrition.Foods;
 import com.gb1.healthcheck.domain.nutrition.Group;
 import com.gb1.healthcheck.domain.nutrition.Nutrient;
 import com.gb1.healthcheck.domain.nutrition.SimpleFood;
+import com.gb1.healthcheck.domain.nutrition.SimpleFoodCreationValidator;
 import com.gb1.healthcheck.domain.nutrition.SimpleFoodPropertyProvider;
 
 public class FoodServiceImplTest extends TestCase {
@@ -52,8 +53,14 @@ public class FoodServiceImplTest extends TestCase {
 		assertTrue(CollectionUtils.isEqualCollection(allComplexFoods, svc.getComplexFoods()));
 	}
 
-	public void testCreateSimpleFood() {
+	public void testCreateSimpleFood() throws Exception {
 		SimpleFood food = Foods.apple();
+
+		SimpleFoodCreationValidator validator = EasyMock
+				.createMock(SimpleFoodCreationValidator.class);
+		validator.validate(food);
+		EasyMock.expectLastCall();
+		EasyMock.replay(validator);
 
 		FoodRepository foodRepo = EasyMock.createMock(FoodRepository.class);
 		foodRepo.saveSimpleFood(EasyMock.eq(food));
@@ -61,9 +68,11 @@ public class FoodServiceImplTest extends TestCase {
 		EasyMock.replay(foodRepo);
 
 		FoodServiceImpl svc = new FoodServiceImpl();
+		svc.setSimpleFoodCreationValidator(validator);
 		svc.setFoodRepository(foodRepo);
 
 		svc.createSimpleFood(food);
+		EasyMock.verify(validator);
 		EasyMock.verify(foodRepo);
 	}
 

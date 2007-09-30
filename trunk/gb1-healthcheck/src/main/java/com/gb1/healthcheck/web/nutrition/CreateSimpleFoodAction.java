@@ -3,6 +3,7 @@ package com.gb1.healthcheck.web.nutrition;
 import java.util.Arrays;
 import java.util.List;
 
+import com.gb1.healthcheck.domain.nutrition.FoodAlreadyExistsException;
 import com.gb1.healthcheck.domain.nutrition.FoodException;
 import com.gb1.healthcheck.domain.nutrition.Group;
 import com.gb1.healthcheck.domain.nutrition.Nutrient;
@@ -21,14 +22,15 @@ public class CreateSimpleFoodAction extends ActionSupport {
 		return Action.SUCCESS;
 	}
 
-	public String submit() {
+	public String submit() throws FoodException {
 		String result;
 
 		try {
 			foodService.createSimpleFood(foodCreationRequest);
 			result = Action.SUCCESS;
 		}
-		catch (FoodException e) {
+		catch (FoodAlreadyExistsException e) {
+			addFieldError("model.name", "A food with this name already exists.");
 			result = Action.INPUT;
 		}
 
