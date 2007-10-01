@@ -27,15 +27,23 @@ public class JpaFoodRepository implements FoodRepository {
 
 	@SuppressWarnings("unchecked")
 	public Food findFoodByName(String name) {
-		List<Food> foods = entityManager.createQuery("select f from Food f where f.name = ?1")
-				.setParameter(1, name).getResultList();
+		Set<Food> foods = findFoodsByName(name);
 
 		Food food = null;
 		if (foods.size() == 1) {
-			food = foods.get(0);
+			food = foods.iterator().next();
 		}
 
 		return food;
+	}
+
+	@SuppressWarnings("unchecked")
+	public Set<Food> findFoodsByName(String name) {
+		List<Food> foodList = entityManager.createQuery("select f from Food f where f.name = ?1")
+				.setParameter(1, name).getResultList();
+		Set<Food> foodSet = new HashSet<Food>(foodList);
+
+		return foodSet;
 	}
 
 	@SuppressWarnings("unchecked")

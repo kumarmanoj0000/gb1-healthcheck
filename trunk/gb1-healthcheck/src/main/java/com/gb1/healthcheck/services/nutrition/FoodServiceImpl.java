@@ -10,10 +10,12 @@ import com.gb1.healthcheck.domain.nutrition.FoodRepository;
 import com.gb1.healthcheck.domain.nutrition.SimpleFood;
 import com.gb1.healthcheck.domain.nutrition.SimpleFoodCreationValidator;
 import com.gb1.healthcheck.domain.nutrition.SimpleFoodPropertyProvider;
+import com.gb1.healthcheck.domain.nutrition.SimpleFoodUpdateValidator;
 
 public class FoodServiceImpl implements FoodService {
 	private FoodRepository foodRepo;
 	private SimpleFoodCreationValidator simpleFoodCreationValidator = null;
+	private SimpleFoodUpdateValidator simpleFoodUpdateValidator = null;
 
 	public FoodServiceImpl() {
 	}
@@ -45,6 +47,7 @@ public class FoodServiceImpl implements FoodService {
 			throws FoodException {
 		SimpleFood food = foodRepo.loadSimpleFood(foodId);
 		food.update(propertyProvider);
+		simpleFoodUpdateValidator.validate(food);
 	}
 
 	public void setFoodRepository(FoodRepository foodRepo) {
@@ -53,5 +56,9 @@ public class FoodServiceImpl implements FoodService {
 
 	public void setSimpleFoodCreationValidator(SimpleFoodCreationValidator validator) {
 		this.simpleFoodCreationValidator = validator;
+	}
+
+	public void setSimpleFoodUpdateValidator(SimpleFoodUpdateValidator validator) {
+		this.simpleFoodUpdateValidator = validator;
 	}
 }

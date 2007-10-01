@@ -11,6 +11,8 @@
 	<!-- Must be placed after the EntityManagerFactory bean definition to work -->
 	<aop:spring-configured />
 
+	<!-- User management -->
+
 	<bean id="userActivationRequester"
 		class="com.gb1.healthcheck.domain.users.EmailUserActivationRequester">
 		<property name="tokenFactory" ref="tokenFactory" />
@@ -47,6 +49,15 @@
 	</bean>
 
 	<bean id="tokenFactory" class="com.gb1.commons.tokens.UuidTokenFactory" />
+
+	<!-- Food management -->
+
+	<bean id="simpleFoodCreationValidator" class="com.gb1.healthcheck.domain.nutrition.FullSimpleFoodCreationValidator">
+		<property name="foodRepository" ref="foodRepository" />
+	</bean>
+	<bean id="simpleFoodUpdateValidator" class="com.gb1.healthcheck.domain.nutrition.FullSimpleFoodUpdateValidator">
+		<property name="foodRepository" ref="foodRepository" />
+	</bean>
 
 	<!-- Repositories -->
 	<bean id="userRepository" class="com.gb1.healthcheck.domain.users.JpaUserRepository" />
