@@ -6,14 +6,16 @@ import java.util.Map;
 
 import org.apache.struts2.interceptor.SessionAware;
 
+import com.gb1.healthcheck.domain.nutrition.FoodAlreadyExistsException;
 import com.gb1.healthcheck.domain.nutrition.FoodException;
 import com.gb1.healthcheck.domain.nutrition.Group;
 import com.gb1.healthcheck.domain.nutrition.Nutrient;
 import com.gb1.healthcheck.domain.nutrition.SimpleFood;
 import com.gb1.healthcheck.services.nutrition.FoodService;
 import com.opensymphony.xwork2.Action;
+import com.opensymphony.xwork2.ActionSupport;
 
-public class UpdateSimpleFoodAction implements SessionAware {
+public class UpdateSimpleFoodAction extends ActionSupport implements SessionAware {
 	private Map<String, Object> session;
 	private FoodService foodService;
 
@@ -36,10 +38,19 @@ public class UpdateSimpleFoodAction implements SessionAware {
 	}
 
 	public String submit() throws FoodException {
-		foodService.updateSimpleFood(foodId, getModel());
-		session.remove(modelSessionKey());
+		String result;
 
-		return Action.SUCCESS;
+		try {
+			foodService.updateSimpleFood(foodId, getModel());
+			session.remove(modelSessionKey());
+			result = Action.SUCCESS;
+		}
+		catch (FoodAlreadyExistsException e) {
+			addFieldError("model.name", "A food with this name already exists.");
+			result = Action.INPUT;
+		}
+
+		return result;
 	}
 
 	public String cancel() {

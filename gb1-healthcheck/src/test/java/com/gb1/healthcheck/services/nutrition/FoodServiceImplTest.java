@@ -17,6 +17,7 @@ import com.gb1.healthcheck.domain.nutrition.Nutrient;
 import com.gb1.healthcheck.domain.nutrition.SimpleFood;
 import com.gb1.healthcheck.domain.nutrition.SimpleFoodCreationValidator;
 import com.gb1.healthcheck.domain.nutrition.SimpleFoodPropertyProvider;
+import com.gb1.healthcheck.domain.nutrition.SimpleFoodUpdateValidator;
 
 public class FoodServiceImplTest extends TestCase {
 	@Override
@@ -77,33 +78,37 @@ public class FoodServiceImplTest extends TestCase {
 	}
 
 	public void testUpdateSimpleFood() throws Exception {
-		Long foodId = 1L;
-		SimpleFood oldApple = new SimpleFood(Foods.apple());
-		final String newName = "new apple";
-
+		final SimpleFood oldApple = Foods.apple();
 		SimpleFoodPropertyProvider updateReq = new SimpleFoodPropertyProvider() {
 			public Group getGroup() {
-				return Foods.apple().getGroup();
+				return oldApple.getGroup();
 			}
 
 			public String getName() {
-				return newName;
+				return "new apple";
 			}
 
 			public Set<Nutrient> getNutrients() {
-				return Foods.apple().getNutrients();
+				return oldApple.getNutrients();
 			}
 		};
 
+		SimpleFoodUpdateValidator validator = EasyMock.createMock(SimpleFoodUpdateValidator.class);
+		validator.validate(oldApple);
+		EasyMock.expectLastCall();
+		EasyMock.replay(validator);
+
 		FoodRepository foodRepo = EasyMock.createMock(FoodRepository.class);
-		EasyMock.expect(foodRepo.loadSimpleFood(foodId)).andReturn(oldApple);
+		EasyMock.expect(foodRepo.loadSimpleFood(oldApple.getId())).andReturn(oldApple);
 		EasyMock.replay(foodRepo);
 
 		FoodServiceImpl svc = new FoodServiceImpl();
+		svc.setSimpleFoodUpdateValidator(validator);
 		svc.setFoodRepository(foodRepo);
-		svc.updateSimpleFood(foodId, updateReq);
+		svc.updateSimpleFood(oldApple.getId(), updateReq);
 
-		assertEquals(newName, oldApple.getName());
+		assertEquals(updateReq.getName(), oldApple.getName());
+		EasyMock.verify(validator);
 		EasyMock.verify(foodRepo);
 	}
 

@@ -9,6 +9,8 @@ public interface FoodRepository {
 
 	Food findFoodByName(String name);
 
+	Set<Food> findFoodsByName(String name);
+
 	Set<SimpleFood> findSimpleFoods();
 
 	Set<ComplexFood> findComplexFoods();
