@@ -40,6 +40,12 @@ public class JpaFoodRepositoryTest extends BaseRepositoryTestCase {
 		assertTrue(CollectionUtils.isEqualCollection(expectedFoods, loadedFoods));
 	}
 
+	public void testDeleteFood() {
+		final long foodId = 1L;
+		foodRepo.deleteFood(foodId);
+		assertNull(foodRepo.loadFood(foodId));
+	}
+
 	public void setFoodRepository(FoodRepository foodRepo) {
 		this.foodRepo = foodRepo;
 	}

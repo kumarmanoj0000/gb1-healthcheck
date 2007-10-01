@@ -10,10 +10,13 @@
 		<s:if test="simpleFoods.size == 0"><fmt:message key="nutrition.foods.noSimpleFoods" /></s:if>
 		<s:else>
 			<ul>
+				<fmt:message key="nutrition.foods.simpleFoods.confirmDelete" var="deleteConfirmMsg" />
 				<s:iterator value="simpleFoods">
 					<li>
 						<a href='<c:url value="/nutrition/simpleFood/updateInput.go?foodId=${id}" />'>${name}</a> |
-						<fmt:message key="nutrition.foods.simpleFoods.delete" />
+						<a href='<c:url value="/nutrition/simpleFood/delete.go?foodId=${id}" />' onclick="return confirm('${deleteConfirmMsg}')">
+							<fmt:message key="nutrition.foods.simpleFoods.delete" />
+						</a>
 					</li>
 				</s:iterator>
 			</ul>

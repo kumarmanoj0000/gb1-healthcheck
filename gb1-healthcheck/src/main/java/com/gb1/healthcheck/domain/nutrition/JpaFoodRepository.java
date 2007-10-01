@@ -68,6 +68,10 @@ public class JpaFoodRepository implements FoodRepository {
 		entityManager.persist(food);
 	}
 
+	public void deleteFood(long foodId) {
+		entityManager.remove(loadFood(foodId));
+	}
+
 	@PersistenceContext
 	public void setEntityManager(EntityManager em) {
 		this.entityManager = em;
