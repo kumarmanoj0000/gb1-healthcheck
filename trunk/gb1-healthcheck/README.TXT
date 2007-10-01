@@ -4,8 +4,16 @@ HealthCheck
 
 . features:
   - food
-    > delete simple food
-    > create / edit / delete complex food
+    > create complex food
+      . domain
+      . domain validation
+      . persistence
+      . service
+      . web controller
+      . web UI
+      . UI validation
+    > edit complex food
+    > delete complex food
 
   - meals
     > list meals

@@ -19,4 +19,6 @@ public interface FoodService {
 
 	void updateSimpleFood(Long foodId, SimpleFoodMutablePropertyProvider propertyProvider)
 			throws FoodException;
+
+	void deleteSimpleFood(Long foodId);
 }

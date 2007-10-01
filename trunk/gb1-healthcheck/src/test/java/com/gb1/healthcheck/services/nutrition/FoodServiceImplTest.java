@@ -124,4 +124,19 @@ public class FoodServiceImplTest extends TestCase {
 
 		assertEquals(Foods.apple(), svc.loadSimpleFood(foodId));
 	}
+
+	public void testDeleteSimpleFood() {
+		final Long foodId = 1L;
+
+		FoodRepository foodRepo = EasyMock.createMock(FoodRepository.class);
+		foodRepo.deleteFood(foodId);
+		EasyMock.expectLastCall();
+		EasyMock.replay(foodRepo);
+
+		FoodServiceImpl svc = new FoodServiceImpl();
+		svc.setFoodRepository(foodRepo);
+		svc.deleteSimpleFood(foodId);
+
+		EasyMock.verify(foodRepo);
+	}
 }

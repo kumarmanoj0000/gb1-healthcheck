@@ -16,4 +16,6 @@ public interface FoodRepository {
 	Set<ComplexFood> findComplexFoods();
 
 	void saveSimpleFood(SimpleFood food);
+
+	void deleteFood(long foodId);
 }

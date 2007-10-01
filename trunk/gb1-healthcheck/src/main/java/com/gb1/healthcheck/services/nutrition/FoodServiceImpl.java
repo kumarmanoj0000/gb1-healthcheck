@@ -51,6 +51,11 @@ public class FoodServiceImpl implements FoodService {
 		simpleFoodUpdateValidator.validate(food);
 	}
 
+	@Transactional(rollbackFor = { RuntimeException.class })
+	public void deleteSimpleFood(Long foodId) {
+		foodRepo.deleteFood(foodId);
+	}
+
 	public void setFoodRepository(FoodRepository foodRepo) {
 		this.foodRepo = foodRepo;
 	}
