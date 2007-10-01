@@ -41,16 +41,18 @@ public class Foods {
 	}
 
 	public static ComplexFood redWine() {
-		return new ComplexFood("red wine").addIngredient(redGrape()).addIngredient(alcohol());
+		return new ExposedComplexFood(9L, "red wine").addIngredient(redGrape()).addIngredient(
+				alcohol());
 	}
 
 	public static ComplexFood beefStock() {
-		return new ComplexFood("beef stock").addIngredient(water()).addIngredient(beef());
+		return new ExposedComplexFood(10L, "beef stock").addIngredient(water()).addIngredient(
+				beef());
 	}
 
 	public static ComplexFood spaghetti() {
-		return new ComplexFood("spaghetti").addIngredient(tomato()).addIngredient(beef())
-				.addIngredient(beefStock()).addIngredient(pasta());
+		return new ExposedComplexFood(11L, "spaghetti").addIngredient(tomato()).addIngredient(
+				beef()).addIngredient(beefStock()).addIngredient(pasta());
 	}
 
 	public static Set<SimpleFood> allSimpleFoods() {
