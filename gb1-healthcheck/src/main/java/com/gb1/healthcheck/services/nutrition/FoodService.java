@@ -5,6 +5,7 @@ import java.util.Set;
 import com.gb1.healthcheck.domain.nutrition.ComplexFood;
 import com.gb1.healthcheck.domain.nutrition.FoodException;
 import com.gb1.healthcheck.domain.nutrition.SimpleFood;
+import com.gb1.healthcheck.domain.nutrition.SimpleFoodMutablePropertyProvider;
 import com.gb1.healthcheck.domain.nutrition.SimpleFoodPropertyProvider;
 
 public interface FoodService {
@@ -16,6 +17,6 @@ public interface FoodService {
 
 	void createSimpleFood(SimpleFoodPropertyProvider propertyProvider) throws FoodException;
 
-	void updateSimpleFood(Long foodId, SimpleFoodPropertyProvider propertyProvider)
+	void updateSimpleFood(Long foodId, SimpleFoodMutablePropertyProvider propertyProvider)
 			throws FoodException;
 }

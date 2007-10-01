@@ -55,7 +55,7 @@ public class SimpleFood extends Food implements SimpleFoodPropertyProvider {
 		return nutrients.contains(nutrient);
 	}
 
-	public void update(SimpleFoodPropertyProvider propertyProvider) {
+	public void update(SimpleFoodMutablePropertyProvider propertyProvider) {
 		setName(propertyProvider.getName());
 		group = propertyProvider.getGroup();
 

@@ -9,6 +9,7 @@ import com.gb1.healthcheck.domain.nutrition.FoodException;
 import com.gb1.healthcheck.domain.nutrition.FoodRepository;
 import com.gb1.healthcheck.domain.nutrition.SimpleFood;
 import com.gb1.healthcheck.domain.nutrition.SimpleFoodCreationValidator;
+import com.gb1.healthcheck.domain.nutrition.SimpleFoodMutablePropertyProvider;
 import com.gb1.healthcheck.domain.nutrition.SimpleFoodPropertyProvider;
 import com.gb1.healthcheck.domain.nutrition.SimpleFoodUpdateValidator;
 
@@ -43,7 +44,7 @@ public class FoodServiceImpl implements FoodService {
 	}
 
 	@Transactional(rollbackFor = { RuntimeException.class, FoodException.class })
-	public void updateSimpleFood(Long foodId, SimpleFoodPropertyProvider propertyProvider)
+	public void updateSimpleFood(Long foodId, SimpleFoodMutablePropertyProvider propertyProvider)
 			throws FoodException {
 		SimpleFood food = foodRepo.loadSimpleFood(foodId);
 		food.update(propertyProvider);
