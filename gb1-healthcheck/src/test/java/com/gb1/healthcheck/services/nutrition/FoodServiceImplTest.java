@@ -10,6 +10,7 @@ import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.aspectj.AnnotationTransactionAspect;
 
 import com.gb1.healthcheck.domain.nutrition.ComplexFood;
+import com.gb1.healthcheck.domain.nutrition.ComplexFoodValidator;
 import com.gb1.healthcheck.domain.nutrition.FoodRepository;
 import com.gb1.healthcheck.domain.nutrition.Foods;
 import com.gb1.healthcheck.domain.nutrition.Group;
@@ -73,6 +74,28 @@ public class FoodServiceImplTest extends TestCase {
 		svc.setFoodRepository(foodRepo);
 
 		svc.createSimpleFood(food);
+		EasyMock.verify(validator);
+		EasyMock.verify(foodRepo);
+	}
+
+	public void testCreateComplexFood() throws Exception {
+		ComplexFood food = Foods.spaghetti();
+
+		ComplexFoodValidator validator = EasyMock.createMock(ComplexFoodValidator.class);
+		validator.validate(food);
+		EasyMock.expectLastCall();
+		EasyMock.replay(validator);
+
+		FoodRepository foodRepo = EasyMock.createMock(FoodRepository.class);
+		foodRepo.saveFood(EasyMock.eq(food));
+		EasyMock.expectLastCall();
+		EasyMock.replay(foodRepo);
+
+		FoodServiceImpl svc = new FoodServiceImpl();
+		svc.setComplexFoodCreationValidator(validator);
+		svc.setFoodRepository(foodRepo);
+
+		svc.createComplexFood(food);
 		EasyMock.verify(validator);
 		EasyMock.verify(foodRepo);
 	}

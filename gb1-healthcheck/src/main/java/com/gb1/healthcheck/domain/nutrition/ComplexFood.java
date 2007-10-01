@@ -13,17 +13,22 @@ import org.apache.commons.lang.Validate;
 
 @Entity
 @DiscriminatorValue("C")
-public class ComplexFood extends Food {
+public class ComplexFood extends Food implements ComplexFoodPropertyProvider {
 	@ManyToMany
 	@JoinTable(name = "FOOD_INGREDIENTS")
 	private Set<Food> ingredients = new HashSet<Food>();
 
 	ComplexFood() {
-		super("");
+		this("");
 	}
 
 	public ComplexFood(String name) {
 		super(name);
+	}
+
+	public ComplexFood(ComplexFoodPropertyProvider propertyProvider) {
+		super(propertyProvider.getName());
+		ingredients.addAll(propertyProvider.getIngredients());
 	}
 
 	public ComplexFood addIngredient(Food ingredient) {
@@ -37,7 +42,8 @@ public class ComplexFood extends Food {
 		for (Food candidate : ingredients) {
 			if (candidate.equals(ingredient)) {
 				return true;
-			} else if (candidate instanceof ComplexFood) {
+			}
+			else if (candidate instanceof ComplexFood) {
 				ComplexFood complexCandidate = (ComplexFood) candidate;
 				if (complexCandidate.containsIngredient(ingredient)) {
 					return true;
@@ -46,6 +52,10 @@ public class ComplexFood extends Food {
 		}
 
 		return false;
+	}
+
+	public Set<Food> getIngredients() {
+		return Collections.unmodifiableSet(ingredients);
 	}
 
 	public boolean isPartOfGroup(Group group) {

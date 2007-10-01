@@ -5,6 +5,8 @@ import java.util.Set;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.gb1.healthcheck.domain.nutrition.ComplexFood;
+import com.gb1.healthcheck.domain.nutrition.ComplexFoodPropertyProvider;
+import com.gb1.healthcheck.domain.nutrition.ComplexFoodValidator;
 import com.gb1.healthcheck.domain.nutrition.FoodException;
 import com.gb1.healthcheck.domain.nutrition.FoodRepository;
 import com.gb1.healthcheck.domain.nutrition.SimpleFood;
@@ -15,8 +17,9 @@ import com.gb1.healthcheck.domain.nutrition.SimpleFoodUpdateValidator;
 
 public class FoodServiceImpl implements FoodService {
 	private FoodRepository foodRepo;
-	private SimpleFoodCreationValidator simpleFoodCreationValidator = null;
-	private SimpleFoodUpdateValidator simpleFoodUpdateValidator = null;
+	private SimpleFoodCreationValidator simpleFoodCreationValidator;
+	private SimpleFoodUpdateValidator simpleFoodUpdateValidator;
+	private ComplexFoodValidator complexFoodCreationValidator;
 
 	public FoodServiceImpl() {
 	}
@@ -44,6 +47,14 @@ public class FoodServiceImpl implements FoodService {
 	}
 
 	@Transactional(rollbackFor = { RuntimeException.class, FoodException.class })
+	public void createComplexFood(ComplexFoodPropertyProvider propertyProvider)
+			throws FoodException {
+		ComplexFood food = new ComplexFood(propertyProvider);
+		complexFoodCreationValidator.validate(food);
+		foodRepo.saveFood(food);
+	}
+
+	@Transactional(rollbackFor = { RuntimeException.class, FoodException.class })
 	public void updateSimpleFood(Long foodId, SimpleFoodMutablePropertyProvider propertyProvider)
 			throws FoodException {
 		SimpleFood food = foodRepo.loadSimpleFood(foodId);
@@ -66,5 +77,9 @@ public class FoodServiceImpl implements FoodService {
 
 	public void setSimpleFoodUpdateValidator(SimpleFoodUpdateValidator validator) {
 		this.simpleFoodUpdateValidator = validator;
+	}
+
+	public void setComplexFoodCreationValidator(ComplexFoodValidator validator) {
+		this.complexFoodCreationValidator = validator;
 	}
 }
