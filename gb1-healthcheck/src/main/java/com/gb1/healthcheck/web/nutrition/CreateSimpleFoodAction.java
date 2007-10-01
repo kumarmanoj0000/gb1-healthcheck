@@ -1,18 +1,10 @@
 package com.gb1.healthcheck.web.nutrition;
 
-import java.util.Arrays;
-import java.util.List;
-
 import com.gb1.healthcheck.domain.nutrition.FoodAlreadyExistsException;
 import com.gb1.healthcheck.domain.nutrition.FoodException;
-import com.gb1.healthcheck.domain.nutrition.Group;
-import com.gb1.healthcheck.domain.nutrition.Nutrient;
-import com.gb1.healthcheck.services.nutrition.FoodService;
 import com.opensymphony.xwork2.Action;
-import com.opensymphony.xwork2.ActionSupport;
 
-public class CreateSimpleFoodAction extends ActionSupport {
-	private FoodService foodService;
+public class CreateSimpleFoodAction extends SimpleFoodActionSupport {
 	private SimpleFoodCreationRequest foodCreationRequest = new SimpleFoodCreationRequest();
 
 	public CreateSimpleFoodAction() {
@@ -26,7 +18,7 @@ public class CreateSimpleFoodAction extends ActionSupport {
 		String result;
 
 		try {
-			foodService.createSimpleFood(foodCreationRequest);
+			getFoodService().createSimpleFood(foodCreationRequest);
 			result = Action.SUCCESS;
 		}
 		catch (FoodAlreadyExistsException e) {
@@ -37,23 +29,7 @@ public class CreateSimpleFoodAction extends ActionSupport {
 		return result;
 	}
 
-	public String cancel() {
-		return Action.SUCCESS;
-	}
-
 	public SimpleFoodCreationRequest getModel() {
 		return foodCreationRequest;
-	}
-
-	public List<Group> getAvailableGroups() {
-		return Arrays.asList(Group.values());
-	}
-
-	public List<Nutrient> getAvailableNutrients() {
-		return Arrays.asList(Nutrient.values());
-	}
-
-	public void setFoodService(FoodService foodService) {
-		this.foodService = foodService;
 	}
 }
