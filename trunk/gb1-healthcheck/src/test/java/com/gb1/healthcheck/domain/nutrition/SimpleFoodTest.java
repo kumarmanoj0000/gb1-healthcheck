@@ -39,7 +39,7 @@ public class SimpleFoodTest extends TestCase {
 	}
 
 	public void testUpdateUsingPropertyProvider() {
-		SimpleFoodPropertyProvider request = new SimpleFoodPropertyProvider() {
+		SimpleFoodMutablePropertyProvider request = new SimpleFoodMutablePropertyProvider() {
 			public Group getGroup() {
 				return Foods.apple().getGroup();
 			}

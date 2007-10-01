@@ -16,7 +16,7 @@ import com.gb1.healthcheck.domain.nutrition.Group;
 import com.gb1.healthcheck.domain.nutrition.Nutrient;
 import com.gb1.healthcheck.domain.nutrition.SimpleFood;
 import com.gb1.healthcheck.domain.nutrition.SimpleFoodCreationValidator;
-import com.gb1.healthcheck.domain.nutrition.SimpleFoodPropertyProvider;
+import com.gb1.healthcheck.domain.nutrition.SimpleFoodMutablePropertyProvider;
 import com.gb1.healthcheck.domain.nutrition.SimpleFoodUpdateValidator;
 
 public class FoodServiceImplTest extends TestCase {
@@ -79,7 +79,7 @@ public class FoodServiceImplTest extends TestCase {
 
 	public void testUpdateSimpleFood() throws Exception {
 		final SimpleFood oldApple = Foods.apple();
-		SimpleFoodPropertyProvider updateReq = new SimpleFoodPropertyProvider() {
+		SimpleFoodMutablePropertyProvider updateReq = new SimpleFoodMutablePropertyProvider() {
 			public Group getGroup() {
 				return oldApple.getGroup();
 			}

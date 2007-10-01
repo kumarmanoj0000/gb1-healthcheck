@@ -10,7 +10,7 @@ import org.easymock.EasyMock;
 import com.gb1.healthcheck.domain.nutrition.FoodAlreadyExistsException;
 import com.gb1.healthcheck.domain.nutrition.Foods;
 import com.gb1.healthcheck.domain.nutrition.SimpleFood;
-import com.gb1.healthcheck.domain.nutrition.SimpleFoodPropertyProvider;
+import com.gb1.healthcheck.domain.nutrition.SimpleFoodMutablePropertyProvider;
 import com.gb1.healthcheck.services.nutrition.FoodService;
 import com.opensymphony.xwork2.Action;
 
@@ -75,7 +75,7 @@ public class UpdateSimpleFoodActionTest extends TestCase {
 
 		FoodService foodSvc = EasyMock.createMock(FoodService.class);
 		foodSvc.updateSimpleFood(EasyMock.eq(foodId), EasyMock
-				.isA(SimpleFoodPropertyProvider.class));
+				.isA(SimpleFoodMutablePropertyProvider.class));
 		EasyMock.expectLastCall().andThrow(new FoodAlreadyExistsException("apple"));
 		EasyMock.replay(foodSvc);
 
