@@ -5,10 +5,8 @@ HealthCheck
 . features:
   - food
     > create complex food
-      . domain model
-      . web controller
-      . web UI
       . UI validation
+      . end-to-end tests
     > edit complex food
     > delete complex food
 
