@@ -1,6 +1,6 @@
 package com.gb1.healthcheck.domain.nutrition;
 
-public class FullSimpleFoodCreationValidator implements SimpleFoodCreationValidator {
+public class FullSimpleFoodCreationValidator implements SimpleFoodValidator {
 	private FoodRepository foodRepo;
 
 	public FullSimpleFoodCreationValidator() {

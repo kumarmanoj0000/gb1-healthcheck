@@ -16,9 +16,8 @@ import com.gb1.healthcheck.domain.nutrition.Foods;
 import com.gb1.healthcheck.domain.nutrition.Group;
 import com.gb1.healthcheck.domain.nutrition.Nutrient;
 import com.gb1.healthcheck.domain.nutrition.SimpleFood;
-import com.gb1.healthcheck.domain.nutrition.SimpleFoodCreationValidator;
+import com.gb1.healthcheck.domain.nutrition.SimpleFoodValidator;
 import com.gb1.healthcheck.domain.nutrition.SimpleFoodMutablePropertyProvider;
-import com.gb1.healthcheck.domain.nutrition.SimpleFoodUpdateValidator;
 
 public class FoodServiceImplTest extends TestCase {
 	@Override
@@ -58,8 +57,8 @@ public class FoodServiceImplTest extends TestCase {
 	public void testCreateSimpleFood() throws Exception {
 		SimpleFood food = Foods.apple();
 
-		SimpleFoodCreationValidator validator = EasyMock
-				.createMock(SimpleFoodCreationValidator.class);
+		SimpleFoodValidator validator = EasyMock
+				.createMock(SimpleFoodValidator.class);
 		validator.validate(food);
 		EasyMock.expectLastCall();
 		EasyMock.replay(validator);
@@ -116,7 +115,7 @@ public class FoodServiceImplTest extends TestCase {
 			}
 		};
 
-		SimpleFoodUpdateValidator validator = EasyMock.createMock(SimpleFoodUpdateValidator.class);
+		SimpleFoodValidator validator = EasyMock.createMock(SimpleFoodValidator.class);
 		validator.validate(oldApple);
 		EasyMock.expectLastCall();
 		EasyMock.replay(validator);
