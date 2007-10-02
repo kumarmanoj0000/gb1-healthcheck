@@ -26,6 +26,7 @@
 		<property name="foodRepository" ref="foodRepository" />
 		<property name="simpleFoodCreationValidator" ref="simpleFoodCreationValidator" />
 		<property name="simpleFoodUpdateValidator" ref="simpleFoodUpdateValidator" />
+		<property name="complexFoodCreationValidator" ref="complexFoodCreationValidator" />
 	</bean>
 
 	<!-- Must be used in place of the tx:annotation-driven tag, which oddly does not work when

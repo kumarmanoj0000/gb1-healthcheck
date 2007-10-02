@@ -4,9 +4,6 @@ HealthCheck
 
 . features:
   - food
-    > create complex food
-      . UI validation
-      . end-to-end tests
     > edit complex food
     > delete complex food
 
