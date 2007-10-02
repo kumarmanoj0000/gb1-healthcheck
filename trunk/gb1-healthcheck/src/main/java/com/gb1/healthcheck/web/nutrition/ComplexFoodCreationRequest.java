@@ -4,10 +4,13 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
+import org.springframework.beans.factory.annotation.Configurable;
+
 import com.gb1.healthcheck.domain.nutrition.ComplexFoodPropertyProvider;
 import com.gb1.healthcheck.domain.nutrition.Food;
 import com.gb1.healthcheck.domain.nutrition.FoodRepository;
 
+@Configurable("complexFoodCreationRequest")
 public class ComplexFoodCreationRequest implements ComplexFoodPropertyProvider {
 	private FoodRepository foodRepo;
 	private String name;
