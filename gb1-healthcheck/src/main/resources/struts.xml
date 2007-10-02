@@ -83,4 +83,18 @@
 			</result>
 		</action>
 	</package>
+
+	<package name="complexFood" extends="struts-default" namespace="/nutrition/complexFood">
+		<action name="createInput" method="input" class="createComplexFoodAction">
+			<result>/views/nutrition/newComplexFood.jsp</result>
+		</action>
+		<action name="createSubmit" method="submit" class="createComplexFoodAction">
+			<result name="input">/views/nutrition/newComplexFood.jsp</result>
+			<result name="success" type="redirect-action">
+				<param name="namespace">/nutrition</param>
+				<param name="actionName">listFoods</param>
+			</result>
+		</action>
+	</package>
+
 </struts>

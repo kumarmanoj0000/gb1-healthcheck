@@ -32,5 +32,6 @@
 				</s:iterator>
 			</ul>
 		</s:else>
+		<a href='<c:url value="/nutrition/complexFood/createInput.go" />'><fmt:message key="nutrition.foods.complexFoods.create" /></a>
 	</body>
 </html>

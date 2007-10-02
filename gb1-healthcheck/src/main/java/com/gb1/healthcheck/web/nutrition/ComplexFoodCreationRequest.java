@@ -4,10 +4,11 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
+import com.gb1.healthcheck.domain.nutrition.ComplexFoodPropertyProvider;
 import com.gb1.healthcheck.domain.nutrition.Food;
 import com.gb1.healthcheck.domain.nutrition.FoodRepository;
 
-public class ComplexFoodCreationRequest {
+public class ComplexFoodCreationRequest implements ComplexFoodPropertyProvider {
 	private FoodRepository foodRepo;
 	private String name;
 	private Set<Long> ingredientIds = new HashSet<Long>();
