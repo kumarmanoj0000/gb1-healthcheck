@@ -2,7 +2,7 @@ package com.gb1.healthcheck.domain.nutrition;
 
 import java.util.Set;
 
-public class FullSimpleFoodUpdateValidator implements SimpleFoodUpdateValidator {
+public class FullSimpleFoodUpdateValidator implements SimpleFoodValidator {
 	private FoodRepository foodRepo;
 
 	public FullSimpleFoodUpdateValidator() {
