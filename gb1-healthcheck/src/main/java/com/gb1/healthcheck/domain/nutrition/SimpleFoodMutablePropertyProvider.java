@@ -5,7 +5,7 @@ import java.util.Set;
 public interface SimpleFoodMutablePropertyProvider {
 	String getName();
 
-	Group getGroup();
+	FoodGroup getFoodGroup();
 
 	Set<Nutrient> getNutrients();
 }

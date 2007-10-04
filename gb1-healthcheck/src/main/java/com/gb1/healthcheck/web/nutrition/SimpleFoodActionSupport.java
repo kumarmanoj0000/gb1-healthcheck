@@ -3,7 +3,7 @@ package com.gb1.healthcheck.web.nutrition;
 import java.util.Arrays;
 import java.util.List;
 
-import com.gb1.healthcheck.domain.nutrition.Group;
+import com.gb1.healthcheck.domain.nutrition.FoodGroup;
 import com.gb1.healthcheck.domain.nutrition.Nutrient;
 import com.gb1.healthcheck.services.nutrition.FoodService;
 import com.opensymphony.xwork2.Action;
@@ -19,8 +19,8 @@ public abstract class SimpleFoodActionSupport extends ActionSupport {
 		return Action.SUCCESS;
 	}
 
-	public List<Group> getAvailableGroups() {
-		return Arrays.asList(Group.values());
+	public List<FoodGroup> getAvailableGroups() {
+		return Arrays.asList(FoodGroup.values());
 	}
 
 	public List<Nutrient> getAvailableNutrients() {

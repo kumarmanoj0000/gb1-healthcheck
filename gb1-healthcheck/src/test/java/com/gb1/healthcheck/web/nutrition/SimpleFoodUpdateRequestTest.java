@@ -10,7 +10,7 @@ public class SimpleFoodUpdateRequestTest extends TestCase {
 	public void testNewRequestFromFood() {
 		SimpleFoodUpdateRequest req = new SimpleFoodUpdateRequest(Foods.apple());
 		assertEquals(Foods.apple().getName(), req.getName());
-		assertEquals(Foods.apple().getGroup(), req.getGroup());
+		assertEquals(Foods.apple().getFoodGroup(), req.getFoodGroup());
 		assertTrue(CollectionUtils.isEqualCollection(Foods.apple().getNutrients(), req
 				.getNutrients()));
 	}

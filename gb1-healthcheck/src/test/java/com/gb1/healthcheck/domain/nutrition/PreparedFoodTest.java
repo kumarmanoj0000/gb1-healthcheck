@@ -9,7 +9,7 @@ public class PreparedFoodTest extends TestCase {
 	}
 
 	public void testContainsGroup() {
-		assertTrue(Meals.spaghettiDish().containsGroup(Group.FRUITS));
-		assertTrue(Meals.spaghettiDish().containsGroup(Group.OTHERS)); // for water
+		assertTrue(Meals.spaghettiDish().containsGroup(FoodGroup.FRUITS));
+		assertTrue(Meals.spaghettiDish().containsGroup(FoodGroup.OTHERS)); // for water
 	}
 }

@@ -15,7 +15,7 @@ import org.hibernate.annotations.CollectionOfElements;
 @DiscriminatorValue("S")
 public class SimpleFood extends Food implements SimpleFoodPropertyProvider {
 	@Column(name = "FOOD_GROUP")
-	private Group group;
+	private FoodGroup foodGroup;
 
 	@CollectionOfElements(fetch = FetchType.EAGER)
 	private Set<Nutrient> nutrients = new HashSet<Nutrient>();
@@ -24,22 +24,22 @@ public class SimpleFood extends Food implements SimpleFoodPropertyProvider {
 		super("");
 	}
 
-	public SimpleFood(String name, Group group) {
+	public SimpleFood(String name, FoodGroup foodGroup) {
 		super(name);
-		this.group = group;
+		this.foodGroup = foodGroup;
 	}
 
 	public SimpleFood(SimpleFoodPropertyProvider propertyProvider) {
-		this(propertyProvider.getName(), propertyProvider.getGroup());
+		this(propertyProvider.getName(), propertyProvider.getFoodGroup());
 		nutrients.addAll(propertyProvider.getNutrients());
 	}
 
-	public Group getGroup() {
-		return group;
+	public FoodGroup getFoodGroup() {
+		return foodGroup;
 	}
 
-	public boolean isPartOfGroup(Group someGroup) {
-		return group.equals(someGroup);
+	public boolean isPartOfFoodGroup(FoodGroup group) {
+		return foodGroup.equals(group);
 	}
 
 	public SimpleFood addNutrient(Nutrient nutrient) {
@@ -57,7 +57,7 @@ public class SimpleFood extends Food implements SimpleFoodPropertyProvider {
 
 	public void update(SimpleFoodMutablePropertyProvider propertyProvider) {
 		setName(propertyProvider.getName());
-		group = propertyProvider.getGroup();
+		foodGroup = propertyProvider.getFoodGroup();
 
 		nutrients.clear();
 		nutrients.addAll(propertyProvider.getNutrients());
