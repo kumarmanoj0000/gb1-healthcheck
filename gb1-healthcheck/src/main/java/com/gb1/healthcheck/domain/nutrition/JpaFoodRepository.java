@@ -64,11 +64,7 @@ public class JpaFoodRepository implements FoodRepository {
 		return foodSet;
 	}
 
-	public void saveSimpleFood(SimpleFood food) {
-		entityManager.persist(food);
-	}
-
-	public void deleteFood(long foodId) {
+	public void deleteFood(Long foodId) {
 		entityManager.remove(loadFood(foodId));
 	}
 

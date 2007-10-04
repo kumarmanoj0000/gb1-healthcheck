@@ -42,7 +42,7 @@ public class FoodServiceImpl implements FoodService {
 	public void createSimpleFood(SimpleFoodPropertyProvider propertyProvider) throws FoodException {
 		SimpleFood food = new SimpleFood(propertyProvider);
 		simpleFoodCreationValidator.validate(food);
-		foodRepo.saveSimpleFood(food);
+		foodRepo.saveFood(food);
 	}
 
 	@Transactional(rollbackFor = { RuntimeException.class, FoodException.class })

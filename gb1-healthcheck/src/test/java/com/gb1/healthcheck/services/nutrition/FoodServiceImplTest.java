@@ -64,7 +64,7 @@ public class FoodServiceImplTest extends TestCase {
 		EasyMock.replay(validator);
 
 		FoodRepository foodRepo = EasyMock.createMock(FoodRepository.class);
-		foodRepo.saveSimpleFood(EasyMock.eq(food));
+		foodRepo.saveFood(EasyMock.eq(food));
 		EasyMock.expectLastCall();
 		EasyMock.replay(foodRepo);
 
