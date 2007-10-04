@@ -95,6 +95,16 @@
 				<param name="actionName">listFoods</param>
 			</result>
 		</action>
+		<action name="updateInput" method="input" class="updateComplexFoodAction">
+			<result>/views/nutrition/updateComplexFood.jsp</result>
+		</action>
+		<action name="updateSubmit" method="submit" class="updateComplexFoodAction">
+			<result name="input">/views/nutrition/updateComplexFood.jsp</result>
+			<result name="success" type="redirect-action">
+				<param name="namespace">/nutrition</param>
+				<param name="actionName">listFoods</param>
+			</result>
+		</action>
 	</package>
 
 </struts>

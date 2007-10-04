@@ -1,6 +1,6 @@
 package com.gb1.healthcheck.domain.nutrition;
 
-import java.util.Set;
+import java.util.List;
 
 public class FullSimpleFoodUpdateValidator implements SimpleFoodValidator {
 	private FoodRepository foodRepo;
@@ -16,7 +16,7 @@ public class FullSimpleFoodUpdateValidator implements SimpleFoodValidator {
 		// make sure that no other food has the same name, aside from the validated food itself
 
 		boolean nameAlreadyTaken;
-		Set<Food> foodsWithName = foodRepo.findFoodsByName(food.getName());
+		List<Food> foodsWithName = foodRepo.findFoodsByName(food.getName());
 
 		if (foodsWithName.isEmpty()) {
 			nameAlreadyTaken = false;

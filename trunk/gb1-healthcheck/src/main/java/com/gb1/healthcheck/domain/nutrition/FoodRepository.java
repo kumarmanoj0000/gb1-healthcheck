@@ -1,5 +1,6 @@
 package com.gb1.healthcheck.domain.nutrition;
 
+import java.util.List;
 import java.util.Set;
 
 public interface FoodRepository {
@@ -11,7 +12,7 @@ public interface FoodRepository {
 
 	Food findFoodByName(String name);
 
-	Set<Food> findFoodsByName(String name);
+	List<Food> findFoodsByName(String name);
 
 	Set<SimpleFood> findSimpleFoods();
 

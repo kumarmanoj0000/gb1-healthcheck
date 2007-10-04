@@ -5,10 +5,7 @@ HealthCheck
 . features:
   - food
     > edit complex food
-      . domain validation
-      . web UI
-      . web validation
-      . end-to-end
+      . end-to-end (lazy init exception)
     > delete complex food
 
   - meals
@@ -56,3 +53,5 @@ HealthCheck
 . pain points
   - repeating @Transactional on all service methods
   - many web files: AppMessages, struts.xml, appContext-actions, *conversion, *validation
+  - lazy initialization exceptions
+  - duplication in ApplicationMessages.properties
