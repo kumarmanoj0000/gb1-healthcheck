@@ -1,8 +1,8 @@
 package com.gb1.healthcheck.web.nutrition;
 
+import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.List;
 
 import com.gb1.healthcheck.domain.nutrition.ComplexFoodHasNoIngredientsException;
 import com.gb1.healthcheck.domain.nutrition.Food;
@@ -15,7 +15,7 @@ import com.opensymphony.xwork2.Preparable;
 
 public class CreateComplexFoodAction extends ActionSupport implements Preparable {
 	private ComplexFoodCreationRequest foodCreationRequest = new ComplexFoodCreationRequest();
-	private Set<Food> availableIngredients = new HashSet<Food>();
+	private List<Food> availableIngredients = new ArrayList<Food>();
 	private FoodService foodService;
 
 	public CreateComplexFoodAction() {
@@ -25,6 +25,7 @@ public class CreateComplexFoodAction extends ActionSupport implements Preparable
 		availableIngredients.clear();
 		availableIngredients.addAll(foodService.getSimpleFoods());
 		availableIngredients.addAll(foodService.getComplexFoods());
+		Collections.sort(availableIngredients, new Food.ByNameComparator());
 	}
 
 	public String input() {
@@ -59,8 +60,8 @@ public class CreateComplexFoodAction extends ActionSupport implements Preparable
 		return foodCreationRequest;
 	}
 
-	public Set<Food> getAvailableIngredients() {
-		return Collections.unmodifiableSet(availableIngredients);
+	public List<Food> getAvailableIngredients() {
+		return Collections.unmodifiableList(availableIngredients);
 	}
 
 	public void setFoodService(FoodService foodService) {
