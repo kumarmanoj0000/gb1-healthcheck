@@ -9,7 +9,7 @@ import com.gb1.healthcheck.services.nutrition.FoodService;
 import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionSupport;
 
-public class SimpleFoodActionSupport extends ActionSupport {
+public abstract class SimpleFoodActionSupport extends ActionSupport {
 	private FoodService foodService;
 
 	public SimpleFoodActionSupport() {
