@@ -8,36 +8,36 @@ public class Foods {
 	}
 
 	public static SimpleFood water() {
-		return new ExposedSimpleFood(1L, "water", Group.OTHERS);
+		return new ExposedSimpleFood(1L, "water", FoodGroup.OTHERS);
 	}
 
 	public static SimpleFood apple() {
-		return new ExposedSimpleFood(2L, "apple", Group.FRUITS).addNutrient(Nutrient.VITAMIN_C);
+		return new ExposedSimpleFood(2L, "apple", FoodGroup.FRUITS).addNutrient(Nutrient.VITAMIN_C);
 	}
 
 	public static SimpleFood sugar() {
-		return new ExposedSimpleFood(3L, "sugar", Group.OTHERS);
+		return new ExposedSimpleFood(3L, "sugar", FoodGroup.OTHERS);
 	}
 
 	public static SimpleFood pasta() {
-		return new ExposedSimpleFood(4L, "pasta", Group.GRAINS);
+		return new ExposedSimpleFood(4L, "pasta", FoodGroup.GRAINS);
 	}
 
 	public static SimpleFood beef() {
-		return new ExposedSimpleFood(5L, "beef", Group.MEAT_AND_SUBSTITUTES)
+		return new ExposedSimpleFood(5L, "beef", FoodGroup.MEAT_AND_SUBSTITUTES)
 				.addNutrient(Nutrient.PROTEIN);
 	}
 
 	public static SimpleFood tomato() {
-		return new ExposedSimpleFood(6L, "tomato", Group.FRUITS).addNutrient(Nutrient.VITAMIN_C);
+		return new ExposedSimpleFood(6L, "tomato", FoodGroup.FRUITS).addNutrient(Nutrient.VITAMIN_C);
 	}
 
 	public static SimpleFood redGrape() {
-		return new ExposedSimpleFood(7L, "red grape", Group.FRUITS).addNutrient(Nutrient.VITAMIN_B);
+		return new ExposedSimpleFood(7L, "red grape", FoodGroup.FRUITS).addNutrient(Nutrient.VITAMIN_B);
 	}
 
 	public static SimpleFood alcohol() {
-		return new ExposedSimpleFood(8L, "alcohol", Group.OTHERS).addNutrient(Nutrient.ALCOHOL);
+		return new ExposedSimpleFood(8L, "alcohol", FoodGroup.OTHERS).addNutrient(Nutrient.ALCOHOL);
 	}
 
 	public static ComplexFood redWine() {

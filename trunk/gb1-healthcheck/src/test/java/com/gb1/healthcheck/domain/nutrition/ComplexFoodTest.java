@@ -34,8 +34,8 @@ public class ComplexFoodTest extends TestCase {
 	}
 
 	public void testIsPartOfGroup() {
-		assertTrue(Foods.spaghetti().isPartOfGroup(Group.FRUITS));
-		assertTrue(Foods.spaghetti().isPartOfGroup(Group.MEAT_AND_SUBSTITUTES));
+		assertTrue(Foods.spaghetti().isPartOfFoodGroup(FoodGroup.FRUITS));
+		assertTrue(Foods.spaghetti().isPartOfFoodGroup(FoodGroup.MEAT_AND_SUBSTITUTES));
 	}
 
 	public void testUpdate() {

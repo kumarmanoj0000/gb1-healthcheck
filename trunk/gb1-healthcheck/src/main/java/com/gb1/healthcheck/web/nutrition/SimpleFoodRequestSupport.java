@@ -4,13 +4,13 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
-import com.gb1.healthcheck.domain.nutrition.Group;
+import com.gb1.healthcheck.domain.nutrition.FoodGroup;
 import com.gb1.healthcheck.domain.nutrition.Nutrient;
 import com.gb1.healthcheck.domain.nutrition.SimpleFoodPropertyProvider;
 
 public abstract class SimpleFoodRequestSupport implements SimpleFoodPropertyProvider {
 	private String name;
-	private Group group;
+	private FoodGroup foodGroup;
 	private Set<Nutrient> nutrients = new HashSet<Nutrient>();
 
 	public SimpleFoodRequestSupport() {
@@ -24,12 +24,12 @@ public abstract class SimpleFoodRequestSupport implements SimpleFoodPropertyProv
 		this.name = name;
 	}
 
-	public Group getGroup() {
-		return group;
+	public FoodGroup getFoodGroup() {
+		return foodGroup;
 	}
 
-	public void setGroup(Group group) {
-		this.group = group;
+	public void setGroup(FoodGroup foodGroup) {
+		this.foodGroup = foodGroup;
 	}
 
 	public void setSelectedNutrients(String[] nutrientNames) {

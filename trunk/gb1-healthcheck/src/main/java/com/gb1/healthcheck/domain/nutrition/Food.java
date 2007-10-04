@@ -48,7 +48,7 @@ public abstract class Food implements Identifiable, Serializable {
 		this.name = name;
 	}
 
-	public abstract boolean isPartOfGroup(Group group);
+	public abstract boolean isPartOfFoodGroup(FoodGroup foodGroup);
 
 	public abstract Set<Nutrient> getNutrients();
 

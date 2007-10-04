@@ -12,7 +12,7 @@ public class MealTest extends TestCase {
 
 		assertTrue(dinner.containsFood(Foods.tomato()));
 		assertTrue(dinner.containsFood(Foods.redGrape()));
-		assertTrue(dinner.containsGroup(Group.MEAT_AND_SUBSTITUTES));
+		assertTrue(dinner.containsGroup(FoodGroup.MEAT_AND_SUBSTITUTES));
 		assertTrue(dinner.isSourceOfNutrient(Nutrient.VITAMIN_C));
 		assertTrue(dinner.isSourceOfNutrient(Nutrient.ALCOHOL));
 	}

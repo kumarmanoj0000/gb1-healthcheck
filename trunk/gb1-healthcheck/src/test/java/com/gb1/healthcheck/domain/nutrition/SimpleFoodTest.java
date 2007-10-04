@@ -9,8 +9,8 @@ import org.apache.commons.collections.CollectionUtils;
 
 public class SimpleFoodTest extends TestCase {
 	public void testIsPartOfGroup() {
-		assertTrue(Foods.apple().isPartOfGroup(Group.FRUITS));
-		assertFalse(Foods.apple().isPartOfGroup(Group.MEAT_AND_SUBSTITUTES));
+		assertTrue(Foods.apple().isPartOfFoodGroup(FoodGroup.FRUITS));
+		assertFalse(Foods.apple().isPartOfFoodGroup(FoodGroup.MEAT_AND_SUBSTITUTES));
 	}
 
 	public void testIsSourceOfNutrient() {
@@ -24,8 +24,8 @@ public class SimpleFoodTest extends TestCase {
 				return oldFood.getName();
 			}
 
-			public Group getGroup() {
-				return oldFood.getGroup();
+			public FoodGroup getFoodGroup() {
+				return oldFood.getFoodGroup();
 			}
 
 			public Set<Nutrient> getNutrients() {
@@ -35,15 +35,15 @@ public class SimpleFoodTest extends TestCase {
 
 		SimpleFood food = new SimpleFood(request);
 		assertEquals(oldFood.getName(), food.getName());
-		assertEquals(oldFood.getGroup(), food.getGroup());
+		assertEquals(oldFood.getFoodGroup(), food.getFoodGroup());
 		assertTrue(CollectionUtils.isEqualCollection(oldFood.getNutrients(), food.getNutrients()));
 	}
 
 	public void testUpdateUsingPropertyProvider() {
 		final SimpleFood oldFood = Foods.apple();
 		SimpleFoodMutablePropertyProvider request = new SimpleFoodMutablePropertyProvider() {
-			public Group getGroup() {
-				return oldFood.getGroup();
+			public FoodGroup getFoodGroup() {
+				return oldFood.getFoodGroup();
 			}
 
 			public String getName() {
@@ -59,7 +59,7 @@ public class SimpleFoodTest extends TestCase {
 		food.update(request);
 
 		assertEquals("updated apple", food.getName());
-		assertEquals(oldFood.getGroup(), food.getGroup());
+		assertEquals(oldFood.getFoodGroup(), food.getFoodGroup());
 		assertTrue(CollectionUtils.isEqualCollection(Collections.singleton(Nutrient.VITAMIN_C),
 				food.getNutrients()));
 	}

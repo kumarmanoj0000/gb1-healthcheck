@@ -36,8 +36,8 @@ public class PreparedFood {
 		return contains;
 	}
 
-	public boolean containsGroup(Group group) {
-		return ingredient.isPartOfGroup(group);
+	public boolean containsGroup(FoodGroup foodGroup) {
+		return ingredient.isPartOfFoodGroup(foodGroup);
 	}
 
 	public boolean isSourceOfNutrient(Nutrient nutrient) {

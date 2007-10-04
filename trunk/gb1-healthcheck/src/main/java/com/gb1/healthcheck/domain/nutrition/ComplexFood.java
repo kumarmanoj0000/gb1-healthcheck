@@ -58,9 +58,9 @@ public class ComplexFood extends Food implements ComplexFoodPropertyProvider {
 		return Collections.unmodifiableSet(ingredients);
 	}
 
-	public boolean isPartOfGroup(Group group) {
+	public boolean isPartOfFoodGroup(FoodGroup foodGroup) {
 		for (Food ingredient : ingredients) {
-			if (ingredient.isPartOfGroup(group)) {
+			if (ingredient.isPartOfFoodGroup(foodGroup)) {
 				return true;
 			}
 		}

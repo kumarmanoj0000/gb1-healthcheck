@@ -24,7 +24,7 @@ public class JpaFoodRepositoryTest extends BaseRepositoryTestCase {
 		Food spag = foodRepo.findFoodByName(name);
 
 		// test loading of all dependencies
-		assertTrue(spag.isPartOfGroup(Group.FRUITS));
+		assertTrue(spag.isPartOfFoodGroup(FoodGroup.FRUITS));
 		assertTrue(spag.isSourceOfNutrient(Nutrient.VITAMIN_C));
 	}
 

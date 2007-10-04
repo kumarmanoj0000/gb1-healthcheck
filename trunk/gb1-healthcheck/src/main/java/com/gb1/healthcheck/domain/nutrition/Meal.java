@@ -47,15 +47,15 @@ public class Meal {
 		return false;
 	}
 
-	public boolean containsGroup(Group group) {
+	public boolean containsGroup(FoodGroup foodGroup) {
 		for (PreparedFood dish : dishes) {
-			if (dish.containsGroup(group)) {
+			if (dish.containsGroup(foodGroup)) {
 				return true;
 			}
 		}
 
 		for (PreparedFood drink : drinks) {
-			if (drink.containsGroup(group)) {
+			if (drink.containsGroup(foodGroup)) {
 				return true;
 			}
 		}
