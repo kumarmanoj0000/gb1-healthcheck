@@ -17,7 +17,5 @@ public interface FoodRepository {
 
 	void saveFood(Food food);
 
-	void saveSimpleFood(SimpleFood food);
-
-	void deleteFood(long foodId);
+	void deleteFood(Long foodId);
 }

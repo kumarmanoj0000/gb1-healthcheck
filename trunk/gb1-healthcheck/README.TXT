@@ -46,6 +46,5 @@ HealthCheck
   - add Ajax whererever possible
   
 . technical
-  - remove FoodRepository.saveSimpleFood(SimpleFood)
   - use annotations wherever possible
   - migrate unit tests to JUnit 4 (with Spring 2.1)
