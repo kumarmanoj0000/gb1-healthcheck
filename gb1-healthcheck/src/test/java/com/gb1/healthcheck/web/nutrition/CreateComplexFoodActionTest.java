@@ -1,7 +1,8 @@
 package com.gb1.healthcheck.web.nutrition;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 import junit.framework.TestCase;
 
@@ -23,9 +24,10 @@ public class CreateComplexFoodActionTest extends TestCase {
 	}
 
 	public void testPrepare() {
-		final Set<Food> availableIngredients = new HashSet<Food>();
+		final List<Food> availableIngredients = new ArrayList<Food>();
 		availableIngredients.addAll(Foods.allSimpleFoods());
 		availableIngredients.addAll(Foods.allComplexFoods());
+		Collections.sort(availableIngredients, new Food.ByNameComparator());
 
 		FoodService foodService = EasyMock.createMock(FoodService.class);
 		EasyMock.expect(foodService.getSimpleFoods()).andReturn(Foods.allSimpleFoods());
