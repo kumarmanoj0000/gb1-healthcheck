@@ -5,20 +5,22 @@ import java.util.Set;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.gb1.healthcheck.domain.nutrition.ComplexFood;
+import com.gb1.healthcheck.domain.nutrition.ComplexFoodMutablePropertyProvider;
 import com.gb1.healthcheck.domain.nutrition.ComplexFoodPropertyProvider;
 import com.gb1.healthcheck.domain.nutrition.ComplexFoodValidator;
 import com.gb1.healthcheck.domain.nutrition.FoodException;
 import com.gb1.healthcheck.domain.nutrition.FoodRepository;
 import com.gb1.healthcheck.domain.nutrition.SimpleFood;
-import com.gb1.healthcheck.domain.nutrition.SimpleFoodValidator;
 import com.gb1.healthcheck.domain.nutrition.SimpleFoodMutablePropertyProvider;
 import com.gb1.healthcheck.domain.nutrition.SimpleFoodPropertyProvider;
+import com.gb1.healthcheck.domain.nutrition.SimpleFoodValidator;
 
 public class FoodServiceImpl implements FoodService {
 	private FoodRepository foodRepo;
 	private SimpleFoodValidator simpleFoodCreationValidator;
 	private SimpleFoodValidator simpleFoodUpdateValidator;
 	private ComplexFoodValidator complexFoodCreationValidator;
+	private ComplexFoodValidator complexFoodUpdateValidator;
 
 	public FoodServiceImpl() {
 	}
@@ -61,6 +63,14 @@ public class FoodServiceImpl implements FoodService {
 		simpleFoodUpdateValidator.validate(food);
 	}
 
+	@Transactional(rollbackFor = { RuntimeException.class, FoodException.class })
+	public void updateComplexFood(Long foodId, ComplexFoodMutablePropertyProvider propertyProvider)
+			throws FoodException {
+		ComplexFood food = foodRepo.loadComplexFood(foodId);
+		food.update(propertyProvider);
+		complexFoodUpdateValidator.validate(food);
+	}
+
 	@Transactional(rollbackFor = { RuntimeException.class })
 	public void deleteSimpleFood(Long foodId) {
 		foodRepo.deleteFood(foodId);
@@ -80,5 +90,9 @@ public class FoodServiceImpl implements FoodService {
 
 	public void setComplexFoodCreationValidator(ComplexFoodValidator validator) {
 		this.complexFoodCreationValidator = validator;
+	}
+
+	public void setComplexFoodUpdateValidator(ComplexFoodValidator validator) {
+		this.complexFoodUpdateValidator = validator;
 	}
 }

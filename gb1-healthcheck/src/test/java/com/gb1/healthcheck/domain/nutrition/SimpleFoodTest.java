@@ -1,5 +1,6 @@
 package com.gb1.healthcheck.domain.nutrition;
 
+import java.util.Collections;
 import java.util.Set;
 
 import junit.framework.TestCase;
@@ -17,48 +18,49 @@ public class SimpleFoodTest extends TestCase {
 	}
 
 	public void testNewSimpleFoodUsingPropertyProvider() {
+		final SimpleFood oldFood = Foods.apple();
 		SimpleFoodPropertyProvider request = new SimpleFoodPropertyProvider() {
 			public String getName() {
-				return Foods.apple().getName();
+				return oldFood.getName();
 			}
 
 			public Group getGroup() {
-				return Foods.apple().getGroup();
+				return oldFood.getGroup();
 			}
 
 			public Set<Nutrient> getNutrients() {
-				return Foods.apple().getNutrients();
+				return oldFood.getNutrients();
 			}
 		};
 
 		SimpleFood food = new SimpleFood(request);
-		assertEquals(Foods.apple().getName(), food.getName());
-		assertEquals(Foods.apple().getGroup(), food.getGroup());
-		assertTrue(CollectionUtils.isEqualCollection(Foods.apple().getNutrients(), food
-				.getNutrients()));
+		assertEquals(oldFood.getName(), food.getName());
+		assertEquals(oldFood.getGroup(), food.getGroup());
+		assertTrue(CollectionUtils.isEqualCollection(oldFood.getNutrients(), food.getNutrients()));
 	}
 
 	public void testUpdateUsingPropertyProvider() {
+		final SimpleFood oldFood = Foods.apple();
 		SimpleFoodMutablePropertyProvider request = new SimpleFoodMutablePropertyProvider() {
 			public Group getGroup() {
-				return Foods.apple().getGroup();
+				return oldFood.getGroup();
 			}
 
 			public String getName() {
-				return Foods.apple().getName();
+				return "updated apple";
 			}
 
 			public Set<Nutrient> getNutrients() {
-				return Foods.apple().getNutrients();
+				return Collections.singleton(Nutrient.VITAMIN_C);
 			}
 		};
 
 		SimpleFood food = new SimpleFood();
 		food.update(request);
 
-		assertEquals(Foods.apple().getName(), food.getName());
-		assertEquals(Foods.apple().getGroup(), food.getGroup());
-		assertTrue(CollectionUtils.isEqualCollection(Foods.apple().getNutrients(), food
-				.getNutrients()));
+		assertEquals("updated apple", food.getName());
+		assertEquals(oldFood.getGroup(), food.getGroup());
+		assertTrue(CollectionUtils.isEqualCollection(Collections.singleton(Nutrient.VITAMIN_C),
+				food.getNutrients()));
 	}
 }

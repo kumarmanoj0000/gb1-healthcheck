@@ -85,4 +85,11 @@ public class ComplexFood extends Food implements ComplexFoodPropertyProvider {
 
 		return false;
 	}
+
+	public void update(ComplexFoodMutablePropertyProvider propertyProvider) {
+		setName(propertyProvider.getName());
+
+		ingredients.clear();
+		ingredients.addAll(propertyProvider.getIngredients());
+	}
 }

@@ -10,14 +10,16 @@ import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.aspectj.AnnotationTransactionAspect;
 
 import com.gb1.healthcheck.domain.nutrition.ComplexFood;
+import com.gb1.healthcheck.domain.nutrition.ComplexFoodMutablePropertyProvider;
 import com.gb1.healthcheck.domain.nutrition.ComplexFoodValidator;
+import com.gb1.healthcheck.domain.nutrition.Food;
 import com.gb1.healthcheck.domain.nutrition.FoodRepository;
 import com.gb1.healthcheck.domain.nutrition.Foods;
 import com.gb1.healthcheck.domain.nutrition.Group;
 import com.gb1.healthcheck.domain.nutrition.Nutrient;
 import com.gb1.healthcheck.domain.nutrition.SimpleFood;
-import com.gb1.healthcheck.domain.nutrition.SimpleFoodValidator;
 import com.gb1.healthcheck.domain.nutrition.SimpleFoodMutablePropertyProvider;
+import com.gb1.healthcheck.domain.nutrition.SimpleFoodValidator;
 
 public class FoodServiceImplTest extends TestCase {
 	@Override
@@ -57,8 +59,7 @@ public class FoodServiceImplTest extends TestCase {
 	public void testCreateSimpleFood() throws Exception {
 		SimpleFood food = Foods.apple();
 
-		SimpleFoodValidator validator = EasyMock
-				.createMock(SimpleFoodValidator.class);
+		SimpleFoodValidator validator = EasyMock.createMock(SimpleFoodValidator.class);
 		validator.validate(food);
 		EasyMock.expectLastCall();
 		EasyMock.replay(validator);
@@ -130,6 +131,37 @@ public class FoodServiceImplTest extends TestCase {
 		svc.updateSimpleFood(oldApple.getId(), updateReq);
 
 		assertEquals(updateReq.getName(), oldApple.getName());
+		EasyMock.verify(validator);
+		EasyMock.verify(foodRepo);
+	}
+
+	public void testUpdateComplexFood() throws Exception {
+		final ComplexFood oldSpag = Foods.spaghetti();
+
+		ComplexFoodMutablePropertyProvider updateReq = new ComplexFoodMutablePropertyProvider() {
+			public Set<Food> getIngredients() {
+				return oldSpag.getIngredients();
+			}
+
+			public String getName() {
+				return "updated spag";
+			}
+		};
+
+		ComplexFoodValidator validator = EasyMock.createMock(ComplexFoodValidator.class);
+		validator.validate(oldSpag);
+		EasyMock.expectLastCall();
+		EasyMock.replay(validator);
+
+		FoodRepository foodRepo = EasyMock.createMock(FoodRepository.class);
+		EasyMock.expect(foodRepo.loadComplexFood(oldSpag.getId())).andReturn(oldSpag);
+		EasyMock.replay(foodRepo);
+
+		FoodServiceImpl svc = new FoodServiceImpl();
+		svc.setComplexFoodUpdateValidator(validator);
+		svc.setFoodRepository(foodRepo);
+		svc.updateComplexFood(oldSpag.getId(), updateReq);
+
 		EasyMock.verify(validator);
 		EasyMock.verify(foodRepo);
 	}

@@ -1,5 +1,6 @@
 package com.gb1.healthcheck.domain.nutrition;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import junit.framework.TestCase;
@@ -20,7 +21,8 @@ public class ComplexFoodTest extends TestCase {
 
 		ComplexFood food = new ComplexFood(provider);
 		assertEquals(Foods.spaghetti(), food);
-		assertTrue(CollectionUtils.isEqualCollection(Foods.spaghetti().getIngredients(), food.getIngredients()));
+		assertTrue(CollectionUtils.isEqualCollection(Foods.spaghetti().getIngredients(), food
+				.getIngredients()));
 	}
 
 	public void testGetNutrients() {
@@ -34,5 +36,30 @@ public class ComplexFoodTest extends TestCase {
 	public void testIsPartOfGroup() {
 		assertTrue(Foods.spaghetti().isPartOfGroup(Group.FRUITS));
 		assertTrue(Foods.spaghetti().isPartOfGroup(Group.MEAT_AND_SUBSTITUTES));
+	}
+
+	public void testUpdate() {
+		// no more beef & beef broth!
+		final String updatedName = "vegetarian spaghetti";
+		final Set<Food> updatedIngredients = new HashSet<Food>();
+		updatedIngredients.add(Foods.tomato());
+		updatedIngredients.add(Foods.pasta());
+
+		ComplexFoodMutablePropertyProvider provider = new ComplexFoodMutablePropertyProvider() {
+			public Set<Food> getIngredients() {
+				return updatedIngredients;
+			}
+
+			public String getName() {
+				return updatedName;
+			}
+		};
+
+		ComplexFood spaghetti = Foods.spaghetti();
+		spaghetti.update(provider);
+
+		assertEquals(updatedName, spaghetti.getName());
+		assertTrue(CollectionUtils
+				.isEqualCollection(updatedIngredients, spaghetti.getIngredients()));
 	}
 }
