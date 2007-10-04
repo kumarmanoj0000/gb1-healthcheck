@@ -7,6 +7,8 @@ public interface FoodRepository {
 
 	SimpleFood loadSimpleFood(Long foodId);
 
+	ComplexFood loadComplexFood(Long foodId);
+
 	Food findFoodByName(String name);
 
 	Set<Food> findFoodsByName(String name);

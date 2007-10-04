@@ -46,6 +46,10 @@
 		<property name="foodRepository" ref="foodRepository" />
 	</bean>
 
+	<bean id="complexFoodUpdateRequest" class="com.gb1.healthcheck.web.nutrition.ComplexFoodUpdateRequest" scope="prototype">
+		<property name="foodRepository" ref="foodRepository" />
+	</bean>
+
 	<bean id="signOffAction" class="com.gb1.healthcheck.web.security.SignOffAction" scope="prototype" />
 
 </beans>
