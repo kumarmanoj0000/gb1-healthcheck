@@ -9,8 +9,6 @@
 			<div class="notification"><fmt:message key="${notificationMessage}" /></div>
 		</c:if>
 
-		<h1><fmt:message key="workbench.welcome" /></h1>
-
 		<authz:authorize ifAllGranted="role_administrator">
 			<h2><fmt:message key="workbench.menu.userManagement.title" /></h2>
 			<fmt:message key="workbench.menu.userManagement.listUsers" />
