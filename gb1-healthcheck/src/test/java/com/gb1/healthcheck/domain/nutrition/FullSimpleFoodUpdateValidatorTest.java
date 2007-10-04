@@ -1,7 +1,7 @@
 package com.gb1.healthcheck.domain.nutrition;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 import junit.framework.TestCase;
 
@@ -12,7 +12,7 @@ public class FullSimpleFoodUpdateValidatorTest extends TestCase {
 		final SimpleFood food = Foods.apple();
 
 		FoodRepository foodRepo = EasyMock.createMock(FoodRepository.class);
-		EasyMock.expect(foodRepo.findFoodsByName(food.getName())).andReturn(new HashSet<Food>());
+		EasyMock.expect(foodRepo.findFoodsByName(food.getName())).andReturn(new ArrayList<Food>());
 		EasyMock.replay(foodRepo);
 
 		FullSimpleFoodUpdateValidator v = new FullSimpleFoodUpdateValidator();
@@ -22,7 +22,7 @@ public class FullSimpleFoodUpdateValidatorTest extends TestCase {
 
 	public void testValidateNameAlreadyExistsSameFood() throws Exception {
 		final SimpleFood food = Foods.apple();
-		final Set<Food> foodsWithSameName = new HashSet<Food>();
+		final List<Food> foodsWithSameName = new ArrayList<Food>();
 		foodsWithSameName.add(food);
 
 		FoodRepository foodRepo = EasyMock.createMock(FoodRepository.class);
@@ -38,7 +38,7 @@ public class FullSimpleFoodUpdateValidatorTest extends TestCase {
 		final SimpleFood foodWithSameName = new SimpleFood(Foods.apple());
 		foodWithSameName.setId(-1L);
 
-		Set<Food> foodsWithSameName = new HashSet<Food>();
+		List<Food> foodsWithSameName = new ArrayList<Food>();
 		foodsWithSameName.add(Foods.apple());
 		foodsWithSameName.add(foodWithSameName);
 

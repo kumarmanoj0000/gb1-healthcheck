@@ -1,7 +1,7 @@
 package com.gb1.healthcheck.domain.nutrition;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 import junit.framework.TestCase;
 
@@ -12,18 +12,19 @@ public class FullComplexFoodCreationValidatorTest extends TestCase {
 		final ComplexFood food = Foods.spaghetti();
 
 		FoodRepository foodRepo = EasyMock.createMock(FoodRepository.class);
-		EasyMock.expect(foodRepo.findFoodsByName(food.getName())).andReturn(new HashSet<Food>());
+		EasyMock.expect(foodRepo.findFoodsByName(food.getName())).andReturn(new ArrayList<Food>());
 		EasyMock.replay(foodRepo);
 
 		FullComplexFoodCreationValidator v = new FullComplexFoodCreationValidator();
 		v.setFoodRepository(foodRepo);
+
 		v.validate(food);
 	}
 
 	public void testValidateNameAlreadyTaken() throws FoodException {
 		final ComplexFood food = Foods.spaghetti();
 
-		Set<Food> foodsWithSameName = new HashSet<Food>();
+		List<Food> foodsWithSameName = new ArrayList<Food>();
 		foodsWithSameName.add(food);
 
 		FoodRepository foodRepo = EasyMock.createMock(FoodRepository.class);
@@ -45,7 +46,7 @@ public class FullComplexFoodCreationValidatorTest extends TestCase {
 		final ComplexFood food = new ComplexFood("no ingredients");
 
 		FoodRepository foodRepo = EasyMock.createMock(FoodRepository.class);
-		EasyMock.expect(foodRepo.findFoodsByName(food.getName())).andReturn(new HashSet<Food>());
+		EasyMock.expect(foodRepo.findFoodsByName(food.getName())).andReturn(new ArrayList<Food>());
 		EasyMock.replay(foodRepo);
 
 		FullComplexFoodCreationValidator v = new FullComplexFoodCreationValidator();

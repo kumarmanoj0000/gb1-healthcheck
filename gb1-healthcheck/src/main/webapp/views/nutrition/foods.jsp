@@ -27,8 +27,14 @@
 		<s:if test="complexFoods.size == 0"><fmt:message key="nutrition.foods.noComplexFoods" /></s:if>
 		<s:else>
 			<ul>
+				<fmt:message key="nutrition.foods.complexFoods.confirmDelete" var="deleteConfirmMsg" />
 				<s:iterator value="complexFoods">
-					<li>${name}</li>
+					<li>
+						<a href='<c:url value="/nutrition/complexFood/updateInput.go?foodId=${id}" />'>${name}</a> |
+						<a href='<c:url value="/nutrition/complexFood/delete.go?foodId=${id}" />' onclick="return confirm('${deleteConfirmMsg} }')">
+							<fmt:message key="nutrition.foods.complexFoods.delete" />
+						</a>
+					</li>
 				</s:iterator>
 			</ul>
 		</s:else>
