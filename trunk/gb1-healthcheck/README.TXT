@@ -1,10 +1,14 @@
----------
+-----------
 HealthCheck
----------
+-----------
 
 . features:
   - food
     > edit complex food
+      . domain validation
+      . web UI
+      . web validation
+      . end-to-end
     > delete complex food
 
   - meals
@@ -48,3 +52,7 @@ HealthCheck
 . technical
   - use annotations wherever possible
   - migrate unit tests to JUnit 4 (with Spring 2.1)
+
+. pain points
+  - repeating @Transactional on all service methods
+  - many web files: AppMessages, struts.xml, appContext-actions, *conversion, *validation
