@@ -31,7 +31,7 @@
 				<s:iterator value="complexFoods">
 					<li>
 						<a href='<c:url value="/nutrition/complexFood/updateInput.go?foodId=${id}" />'>${name}</a> |
-						<a href='<c:url value="/nutrition/complexFood/delete.go?foodId=${id}" />' onclick="return confirm('${deleteConfirmMsg} }')">
+						<a href='<c:url value="/nutrition/complexFood/delete.go?foodId=${id}" />' onclick="return confirm('${deleteConfirmMsg}')">
 							<fmt:message key="nutrition.foods.complexFoods.delete" />
 						</a>
 					</li>

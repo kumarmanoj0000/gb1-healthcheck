@@ -2,10 +2,10 @@ package com.gb1.healthcheck.web.nutrition;
 
 import com.opensymphony.xwork2.Action;
 
-public class DeleteSimpleFoodAction extends SimpleFoodActionSupport {
+public class DeleteComplexFoodAction extends ComplexFoodActionSupport {
 	private Long foodId;
 
-	public DeleteSimpleFoodAction() {
+	public DeleteComplexFoodAction() {
 	}
 
 	public String submit() {

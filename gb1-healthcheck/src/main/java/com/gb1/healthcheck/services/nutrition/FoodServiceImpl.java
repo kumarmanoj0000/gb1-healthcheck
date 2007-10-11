@@ -77,7 +77,7 @@ public class FoodServiceImpl implements FoodService {
 	}
 
 	@Transactional(rollbackFor = { RuntimeException.class })
-	public void deleteSimpleFood(Long foodId) {
+	public void deleteFood(Long foodId) {
 		foodRepo.deleteFood(foodId);
 	}
 

@@ -7,7 +7,7 @@ import org.easymock.EasyMock;
 import com.gb1.healthcheck.services.nutrition.FoodService;
 import com.opensymphony.xwork2.Action;
 
-public class DeleteSimpleFoodActionTest extends TestCase {
+public class DeleteComplexFoodActionTest extends TestCase {
 	public void testDelete() {
 		final Long foodId = 1L;
 
@@ -16,7 +16,7 @@ public class DeleteSimpleFoodActionTest extends TestCase {
 		EasyMock.expectLastCall();
 		EasyMock.replay(foodSvc);
 
-		DeleteSimpleFoodAction action = new DeleteSimpleFoodAction();
+		DeleteComplexFoodAction action = new DeleteComplexFoodAction();
 		action.setFoodService(foodSvc);
 
 		action.setFoodId(foodId);
