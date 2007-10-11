@@ -40,21 +40,21 @@ public abstract class ComplexFoodRequestSupport implements ComplexFoodMutablePro
 		}
 	}
 
-	public String[] getSelectedIngredientIds() {
-		String[] ids = new String[selectedIngredientIds.size()];
+	public Long[] getSelectedIngredientIds() {
+		Long[] ids = new Long[selectedIngredientIds.size()];
 
 		int i = 0;
 		for (Long ingredientId : selectedIngredientIds) {
-			ids[i++] = ingredientId.toString();
+			ids[i++] = ingredientId;
 		}
 
 		return ids;
 	}
 
-	public void setSelectedIngredientIds(String[] ids) {
+	public void setSelectedIngredientIds(Long[] ids) {
 		selectedIngredientIds.clear();
-		for (String id : ids) {
-			selectedIngredientIds.add(Long.parseLong(id));
+		for (Long id : ids) {
+			selectedIngredientIds.add(id);
 		}
 	}
 

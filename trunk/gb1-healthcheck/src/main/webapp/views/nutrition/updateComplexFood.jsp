@@ -8,7 +8,7 @@
 		<s:form action="updateSubmit.go" method="post" namespace="/nutrition/complexFood">
 			<s:hidden name="foodId" />
 			<s:textfield key="food.name" name="model.name" /><br/>
-			<s:checkboxlist key="food.ingredients" name="model.selectedIngredientIds" list="availableIngredients" listKey="getId()" listValue="getName()" />
+			<s:checkboxlist key="food.ingredients" name="model.selectedIngredientIds" list="availableIngredients" listKey="id" listValue="name" />
 
 			<s:submit key="nutrition.foods.complexFoods.update.submit" />
 			<s:submit key="nutrition.foods.complexFoods.update.cancel" name="method:cancel" />

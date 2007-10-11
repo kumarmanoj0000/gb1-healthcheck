@@ -56,7 +56,8 @@ public class UpdateComplexFoodAction extends ComplexFoodActionSupport implements
 	}
 
 	public ComplexFoodUpdateRequest getModel() {
-		return (ComplexFoodUpdateRequest) session.get(MODEL_SESSION_KEY);
+		ComplexFoodUpdateRequest model = (ComplexFoodUpdateRequest) session.get(MODEL_SESSION_KEY);
+		return model;
 	}
 
 	@SuppressWarnings("unchecked")

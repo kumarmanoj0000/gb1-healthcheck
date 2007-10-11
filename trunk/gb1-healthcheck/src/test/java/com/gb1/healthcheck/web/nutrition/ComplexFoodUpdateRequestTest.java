@@ -15,10 +15,10 @@ public class ComplexFoodUpdateRequestTest extends TestCase {
 		final ComplexFood food = Foods.spaghetti();
 		ComplexFoodUpdateRequest req = new ComplexFoodUpdateRequest(food);
 
-		String[] selectedIngredientIds = new String[food.getIngredients().size()];
+		Long[] selectedIngredientIds = new Long[food.getIngredients().size()];
 		int i = 0;
 		for (Food f : food.getIngredients()) {
-			selectedIngredientIds[i++] = Long.toString(f.getId());
+			selectedIngredientIds[i++] = f.getId();
 		}
 
 		assertEquals(food.getName(), req.getName());
