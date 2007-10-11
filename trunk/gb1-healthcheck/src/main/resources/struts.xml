@@ -12,7 +12,18 @@
 
 	<include file="struts-default.xml" />
 
-	<package name="registration" extends="struts-default" namespace="/public/register">
+	<package name="default" extends="struts-default">
+		<interceptors>
+			<interceptor name="openEntityManagerInController"
+				class="com.gb1.commons.web.interceptors.OpenEntityManagerInControllerInterceptor" />
+			<interceptor-stack name="defaultStackPlusOpenEntityManagerInController">
+				<interceptor-ref name="defaultStack" />
+				<interceptor-ref name="openEntityManagerInController" />
+			</interceptor-stack>
+		</interceptors>
+	</package>
+
+	<package name="registration" extends="default" namespace="/public/register">
 		<action name="request" method="input" class="userRegistrationAction">
 			<result>/views/public/security/register/request.jsp</result>
 		</action>
@@ -30,8 +41,9 @@
 		</action>
 	</package>
 
-	<package name="security" extends="struts-default" namespace="/public/security">
-		<action name="signOff" method="execute" class="com.gb1.healthcheck.web.security.SignOffAction">
+	<package name="security" extends="default" namespace="/public/security">
+		<action name="signOff" method="execute"
+			class="com.gb1.healthcheck.web.security.SignOffAction">
 			<result>/</result>
 		</action>
 		<action name="lostPassword" method="input" class="lostPasswordAction">
@@ -43,19 +55,19 @@
 		</action>
 	</package>
 
-	<package name="workbench" extends="struts-default" namespace="/workbench">
+	<package name="workbench" extends="default" namespace="/workbench">
 		<action name="show" method="execute" class="workbenchAction">
 			<result>/views/workbench/main.jsp</result>
 		</action>
 	</package>
 
-	<package name="nutrition" extends="struts-default" namespace="/nutrition">
+	<package name="nutrition" extends="default" namespace="/nutrition">
 		<action name="listFoods" method="listFoods" class="listFoodsAction">
 			<result>/views/nutrition/foods.jsp</result>
 		</action>
 	</package>
 
-	<package name="simpleFood" extends="struts-default" namespace="/nutrition/simpleFood">
+	<package name="simpleFood" extends="default" namespace="/nutrition/simpleFood">
 		<action name="createInput" method="input" class="createSimpleFoodAction">
 			<result>/views/nutrition/newSimpleFood.jsp</result>
 		</action>
@@ -84,7 +96,7 @@
 		</action>
 	</package>
 
-	<package name="complexFood" extends="struts-default" namespace="/nutrition/complexFood">
+	<package name="complexFood" extends="default" namespace="/nutrition/complexFood">
 		<action name="createInput" method="input" class="createComplexFoodAction">
 			<result>/views/nutrition/newComplexFood.jsp</result>
 		</action>
@@ -96,9 +108,11 @@
 			</result>
 		</action>
 		<action name="updateInput" method="input" class="updateComplexFoodAction">
+			<interceptor-ref name="defaultStackPlusOpenEntityManagerInController" />
 			<result>/views/nutrition/updateComplexFood.jsp</result>
 		</action>
 		<action name="updateSubmit" method="submit" class="updateComplexFoodAction">
+			<interceptor-ref name="defaultStackPlusOpenEntityManagerInController" />
 			<result name="input">/views/nutrition/updateComplexFood.jsp</result>
 			<result name="success" type="redirect-action">
 				<param name="namespace">/nutrition</param>
