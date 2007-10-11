@@ -189,7 +189,7 @@ public class FoodServiceImplTest extends TestCase {
 
 		FoodServiceImpl svc = new FoodServiceImpl();
 		svc.setFoodRepository(foodRepo);
-		svc.deleteSimpleFood(foodId);
+		svc.deleteFood(foodId);
 
 		EasyMock.verify(foodRepo);
 	}
