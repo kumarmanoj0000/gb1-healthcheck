@@ -173,12 +173,12 @@
 			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="var" path="M2_REPO/org/springframework/spring-jpa/2.0.7/spring-jpa-2.0.7.jar" sourcepath="/DEV_HOME/spring-framework-2.0.7/src">
+	<classpathentry kind="var" path="M2_REPO/org/springframework/spring-jpa/2.0.7/spring-jpa-2.0.7.jar" sourcepath="/DEV_HOME/spring-framework-2.0.7/tiger/src">
 		<attributes>
 			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="var" path="M2_REPO/org/springframework/spring-mock/2.0.7/spring-mock-2.0.7.jar" sourcepath="/DEV_HOME/spring-framework-2.0.7/src" />
+	<classpathentry kind="var" path="M2_REPO/org/springframework/spring-mock/2.0.7/spring-mock-2.0.7.jar" sourcepath="/DEV_HOME/spring-framework-2.0.7/src"/>
 	<classpathentry kind="var" path="M2_REPO/org/springframework/spring-remoting/2.0.7/spring-remoting-2.0.7.jar" sourcepath="/DEV_HOME/spring-framework-2.0.7/src">
 		<attributes>
 			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
