@@ -65,7 +65,7 @@
 	</scm>
 
 	<properties>
-		<spring.version>2.0.6</spring.version>
+		<spring.version>2.0.7</spring.version>
 		<struts.version>2.0.9</struts.version>
 	</properties>
 
