@@ -57,6 +57,9 @@
 		<action name="listFoods" method="listFoods" class="listFoodsAction">
 			<result>/views/nutrition/foods.jsp</result>
 		</action>
+		<action name="listMeals" method="listMeals" class="listMealsAction">
+			<result>/views/nutrition/meals.jsp</result>
+		</action>
 	</package>
 
 	<package name="simpleFood" extends="default" namespace="/nutrition/simpleFood">

@@ -8,7 +8,7 @@ public class MealTest extends TestCase {
 	public void testMealOk() {
 		Meal dinner = new Meal(new Date());
 		dinner.addDish(Meals.spaghettiDish());
-		dinner.addDrink(Meals.redWineDrink());
+		dinner.addDish(Meals.redWineDrink());
 
 		assertTrue(dinner.containsFood(Foods.tomato()));
 		assertTrue(dinner.containsFood(Foods.redGrape()));

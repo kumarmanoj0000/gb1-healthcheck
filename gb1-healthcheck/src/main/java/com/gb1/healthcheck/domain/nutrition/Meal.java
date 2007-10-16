@@ -1,45 +1,62 @@
 package com.gb1.healthcheck.domain.nutrition;
 
+import java.util.Comparator;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
+
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.OneToMany;
 
 import org.apache.commons.lang.Validate;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 
-public class Meal {
-	private Date time;
+import com.gb1.commons.Identifiable;
+
+@Entity
+public class Meal implements Identifiable {
+	@Id
+	@GeneratedValue
+	private Long id;
+
+	private Date dateAndTime;
+
+	@OneToMany(fetch = FetchType.LAZY)
+	@JoinTable(name = "MEAL_DISHES", joinColumns = { @JoinColumn(name = "meal_id") }, inverseJoinColumns = { @JoinColumn(name = "dish_id") })
 	private Set<PreparedFood> dishes = new HashSet<PreparedFood>();
-	private Set<PreparedFood> drinks = new HashSet<PreparedFood>();
 
-	public Meal(Date time) {
-		this.time = time;
+	Meal() {
+		// for JPA
 	}
 
-	public Date getTime() {
-		return new Date(time.getTime());
+	public Meal(Date dateAndTime) {
+		this.dateAndTime = dateAndTime;
 	}
 
-	public void addDish(PreparedFood dish) {
+	public Long getId() {
+		return id;
+	}
+
+	public Date getDateAndTime() {
+		return new Date(dateAndTime.getTime());
+	}
+
+	public Meal addDish(PreparedFood dish) {
 		Validate.notNull(dish);
 		dishes.add(dish);
-	}
 
-	public void addDrink(PreparedFood drink) {
-		Validate.notNull(drink);
-		drinks.add(drink);
+		return this;
 	}
 
 	public boolean containsFood(Food food) {
 		for (PreparedFood dish : dishes) {
 			if (dish.containsIngredient(food)) {
-				return true;
-			}
-		}
-
-		for (PreparedFood drink : drinks) {
-			if (drink.containsIngredient(food)) {
 				return true;
 			}
 		}
@@ -54,24 +71,12 @@ public class Meal {
 			}
 		}
 
-		for (PreparedFood drink : drinks) {
-			if (drink.containsGroup(foodGroup)) {
-				return true;
-			}
-		}
-
 		return false;
 	}
 
 	public boolean isSourceOfNutrient(Nutrient nutrient) {
 		for (PreparedFood dish : dishes) {
 			if (dish.isSourceOfNutrient(nutrient)) {
-				return true;
-			}
-		}
-
-		for (PreparedFood drink : drinks) {
-			if (drink.isSourceOfNutrient(nutrient)) {
 				return true;
 			}
 		}
@@ -89,14 +94,21 @@ public class Meal {
 		}
 
 		Meal that = (Meal) o;
-		EqualsBuilder builder = new EqualsBuilder().append(this.getTime(), that.getTime());
+		EqualsBuilder builder = new EqualsBuilder().append(this.getDateAndTime(), that
+				.getDateAndTime());
 
 		return builder.isEquals();
 	}
 
 	@Override
 	public int hashCode() {
-		HashCodeBuilder builder = new HashCodeBuilder().append(this.getTime());
+		HashCodeBuilder builder = new HashCodeBuilder().append(this.getDateAndTime());
 		return builder.toHashCode();
+	}
+
+	public static class ByDateAndTimeComparator implements Comparator<Meal> {
+		public int compare(Meal meal1, Meal meal2) {
+			return meal1.getDateAndTime().compareTo(meal2.getDateAndTime());
+		}
 	}
 }
