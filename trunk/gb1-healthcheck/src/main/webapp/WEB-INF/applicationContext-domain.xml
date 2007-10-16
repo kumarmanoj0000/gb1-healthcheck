@@ -68,5 +68,6 @@
 	<!-- Repositories -->
 	<bean id="userRepository" class="com.gb1.healthcheck.domain.users.JpaUserRepository" />
 	<bean id="foodRepository" class="com.gb1.healthcheck.domain.nutrition.JpaFoodRepository" />
+	<bean id="mealRepository" class="com.gb1.healthcheck.domain.nutrition.JpaMealRepository" />
 
 </beans>

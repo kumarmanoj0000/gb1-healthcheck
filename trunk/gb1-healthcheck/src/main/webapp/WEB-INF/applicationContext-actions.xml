@@ -58,6 +58,10 @@
 		<property name="foodService" ref="foodService" />
 	</bean>
 
+	<bean id="listMealsAction" class="com.gb1.healthcheck.web.nutrition.ListMealsAction" scope="prototype">
+		<property name="mealService" ref="mealService" />
+	</bean>
+
 	<bean id="signOffAction" class="com.gb1.healthcheck.web.security.SignOffAction" scope="prototype" />
 
 </beans>

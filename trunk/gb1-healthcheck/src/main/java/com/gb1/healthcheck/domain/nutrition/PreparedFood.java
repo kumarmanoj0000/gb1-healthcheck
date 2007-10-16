@@ -1,11 +1,28 @@
 package com.gb1.healthcheck.domain.nutrition;
 
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+
 import org.apache.commons.lang.Validate;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 
-public class PreparedFood {
+import com.gb1.commons.Identifiable;
+
+@Entity
+public class PreparedFood implements Identifiable {
+	@Id
+	@GeneratedValue
+	private Long id;
+
+	@OneToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "food_id")
 	private Food ingredient;
+
 	private PreparationMethod preparationMethod;
 
 	public PreparedFood(Food ingredient, PreparationMethod preparationMethod) {
@@ -13,6 +30,10 @@ public class PreparedFood {
 
 		this.ingredient = ingredient;
 		this.preparationMethod = preparationMethod;
+	}
+
+	public Long getId() {
+		return id;
 	}
 
 	public String getName() {

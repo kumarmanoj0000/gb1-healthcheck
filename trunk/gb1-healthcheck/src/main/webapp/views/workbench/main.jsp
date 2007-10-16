@@ -15,6 +15,9 @@
 		</authz:authorize>
 
 		<h2><fmt:message key="workbench.menu.foodManagement.title" /></h2>
-		<a href='<c:url value="/nutrition/listFoods.go" />'><fmt:message key="workbench.menu.foodManagement.listFoods" /></a>
+		<ul>
+			<li><a href='<c:url value="/nutrition/listFoods.go" />'><fmt:message key="workbench.menu.foodManagement.listFoods" /></a></li>
+			<li><a href='<c:url value="/nutrition/listMeals.go" />'><fmt:message key="workbench.menu.foodManagement.listMeals" /></a></li>
+		</ul>
 	</body>
 </html>
