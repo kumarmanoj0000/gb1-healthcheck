@@ -4,6 +4,7 @@ import java.util.Set;
 
 import org.springframework.transaction.annotation.Transactional;
 
+import com.gb1.commons.dao.Hydrater;
 import com.gb1.healthcheck.domain.nutrition.ComplexFood;
 import com.gb1.healthcheck.domain.nutrition.ComplexFoodMutablePropertyProvider;
 import com.gb1.healthcheck.domain.nutrition.ComplexFoodPropertyProvider;
@@ -31,8 +32,11 @@ public class FoodServiceImpl implements FoodService {
 	}
 
 	@Transactional(readOnly = true)
-	public ComplexFood loadComplexFood(Long foodId) {
-		return foodRepo.loadComplexFood(foodId);
+	public ComplexFood loadComplexFood(Long foodId, Hydrater<ComplexFood> hydrater) {
+		ComplexFood food = foodRepo.loadComplexFood(foodId);
+		hydrater.hydrate(food);
+
+		return food;
 	}
 
 	@Transactional(readOnly = true)
@@ -41,8 +45,13 @@ public class FoodServiceImpl implements FoodService {
 	}
 
 	@Transactional(readOnly = true)
-	public Set<ComplexFood> getComplexFoods() {
-		return foodRepo.findComplexFoods();
+	public Set<ComplexFood> getComplexFoods(Hydrater<ComplexFood> hydrater) {
+		Set<ComplexFood> foods = foodRepo.findComplexFoods();
+		for (ComplexFood food : foods) {
+			hydrater.hydrate(food);
+		}
+
+		return foods;
 	}
 
 	@Transactional(rollbackFor = { RuntimeException.class, FoodException.class })

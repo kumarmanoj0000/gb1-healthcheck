@@ -10,6 +10,7 @@ import junit.framework.TestCase;
 import org.apache.commons.collections.CollectionUtils;
 import org.easymock.EasyMock;
 
+import com.gb1.commons.dao.NullHydrater;
 import com.gb1.healthcheck.domain.nutrition.ComplexFood;
 import com.gb1.healthcheck.domain.nutrition.Food;
 import com.gb1.healthcheck.domain.nutrition.Foods;
@@ -18,6 +19,7 @@ import com.gb1.healthcheck.services.nutrition.FoodService;
 import com.opensymphony.xwork2.Action;
 
 public class ListFoodsActionTest extends TestCase {
+	@SuppressWarnings("unchecked")
 	public void testListFoods() {
 		Set<SimpleFood> allSimpleFoods = Foods.allSimpleFoods();
 		List<SimpleFood> sortedSimpleFoods = new ArrayList<SimpleFood>(allSimpleFoods);
@@ -29,7 +31,8 @@ public class ListFoodsActionTest extends TestCase {
 
 		FoodService foodSvc = EasyMock.createMock(FoodService.class);
 		EasyMock.expect(foodSvc.getSimpleFoods()).andReturn(allSimpleFoods);
-		EasyMock.expect(foodSvc.getComplexFoods()).andReturn(allComplexFoods);
+		EasyMock.expect(foodSvc.getComplexFoods(EasyMock.isA(NullHydrater.class))).andReturn(
+				allComplexFoods);
 		EasyMock.replay(foodSvc);
 
 		ListFoodsAction action = new ListFoodsAction();

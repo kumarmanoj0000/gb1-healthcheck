@@ -9,13 +9,14 @@ import org.easymock.EasyMock;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.aspectj.AnnotationTransactionAspect;
 
+import com.gb1.commons.dao.Hydrater;
 import com.gb1.healthcheck.domain.nutrition.ComplexFood;
 import com.gb1.healthcheck.domain.nutrition.ComplexFoodMutablePropertyProvider;
 import com.gb1.healthcheck.domain.nutrition.ComplexFoodValidator;
 import com.gb1.healthcheck.domain.nutrition.Food;
+import com.gb1.healthcheck.domain.nutrition.FoodGroup;
 import com.gb1.healthcheck.domain.nutrition.FoodRepository;
 import com.gb1.healthcheck.domain.nutrition.Foods;
-import com.gb1.healthcheck.domain.nutrition.FoodGroup;
 import com.gb1.healthcheck.domain.nutrition.Nutrient;
 import com.gb1.healthcheck.domain.nutrition.SimpleFood;
 import com.gb1.healthcheck.domain.nutrition.SimpleFoodMutablePropertyProvider;
@@ -43,8 +44,14 @@ public class FoodServiceImplTest extends TestCase {
 		assertTrue(CollectionUtils.isEqualCollection(allSimpleFoods, svc.getSimpleFoods()));
 	}
 
+	@SuppressWarnings("unchecked")
 	public void testGetComplexFoods() {
 		Set<ComplexFood> allComplexFoods = Foods.allComplexFoods();
+
+		Hydrater<ComplexFood> hydrater = EasyMock.createMock(Hydrater.class);
+		EasyMock.expect(hydrater.hydrate(EasyMock.isA(ComplexFood.class))).andReturn(null).times(
+				allComplexFoods.size());
+		EasyMock.replay(hydrater);
 
 		FoodRepository foodRepo = EasyMock.createMock(FoodRepository.class);
 		EasyMock.expect(foodRepo.findComplexFoods()).andReturn(allComplexFoods);
@@ -53,7 +60,9 @@ public class FoodServiceImplTest extends TestCase {
 		FoodServiceImpl svc = new FoodServiceImpl();
 		svc.setFoodRepository(foodRepo);
 
-		assertTrue(CollectionUtils.isEqualCollection(allComplexFoods, svc.getComplexFoods()));
+		assertTrue(CollectionUtils
+				.isEqualCollection(allComplexFoods, svc.getComplexFoods(hydrater)));
+		EasyMock.verify(hydrater);
 	}
 
 	public void testCreateSimpleFood() throws Exception {

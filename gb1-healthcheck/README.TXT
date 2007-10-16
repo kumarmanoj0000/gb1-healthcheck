@@ -46,6 +46,7 @@ HealthCheck
   - migrate unit tests to JUnit 4 (with Spring 2.1)
 
 . pain points
-  - repeating @Transactional on all service methods
+  - lazy initialization exceptions
+  - repeating @Transactional on all service methods (especially exception lists)
   - many web files: AppMessages, struts.xml, appContext-actions, *conversion, *validation
   - duplication in ApplicationMessages.properties

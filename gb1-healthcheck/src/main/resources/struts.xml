@@ -13,14 +13,6 @@
 	<include file="struts-default.xml" />
 
 	<package name="default" extends="struts-default">
-		<interceptors>
-			<interceptor name="openEntityManagerInController"
-				class="com.gb1.commons.web.interceptors.OpenEntityManagerInControllerInterceptor" />
-			<interceptor-stack name="defaultStackPlusOpenEntityManagerInController">
-				<interceptor-ref name="defaultStack" />
-				<interceptor-ref name="openEntityManagerInController" />
-			</interceptor-stack>
-		</interceptors>
 	</package>
 
 	<package name="registration" extends="default" namespace="/public/register">
@@ -108,11 +100,9 @@
 			</result>
 		</action>
 		<action name="updateInput" method="input" class="updateComplexFoodAction">
-			<interceptor-ref name="defaultStackPlusOpenEntityManagerInController" />
 			<result>/views/nutrition/updateComplexFood.jsp</result>
 		</action>
 		<action name="updateSubmit" method="submit" class="updateComplexFoodAction">
-			<interceptor-ref name="defaultStackPlusOpenEntityManagerInController" />
 			<result name="input">/views/nutrition/updateComplexFood.jsp</result>
 			<result name="success" type="redirect-action">
 				<param name="namespace">/nutrition</param>

@@ -7,6 +7,7 @@ import org.apache.struts2.interceptor.SessionAware;
 import com.gb1.healthcheck.domain.nutrition.ComplexFood;
 import com.gb1.healthcheck.domain.nutrition.FoodAlreadyExistsException;
 import com.gb1.healthcheck.domain.nutrition.FoodException;
+import com.gb1.healthcheck.domain.nutrition.FullComplexFoodHydrater;
 import com.opensymphony.xwork2.Action;
 
 public class UpdateComplexFoodAction extends ComplexFoodActionSupport implements SessionAware {
@@ -20,7 +21,7 @@ public class UpdateComplexFoodAction extends ComplexFoodActionSupport implements
 	}
 
 	public String input() {
-		ComplexFood food = getFoodService().loadComplexFood(foodId);
+		ComplexFood food = getFoodService().loadComplexFood(foodId, new FullComplexFoodHydrater());
 		ComplexFoodUpdateRequest model = new ComplexFoodUpdateRequest(food);
 		session.put(MODEL_SESSION_KEY, model);
 

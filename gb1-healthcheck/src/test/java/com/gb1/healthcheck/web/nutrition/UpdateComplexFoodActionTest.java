@@ -11,6 +11,7 @@ import com.gb1.healthcheck.domain.nutrition.ComplexFood;
 import com.gb1.healthcheck.domain.nutrition.ComplexFoodMutablePropertyProvider;
 import com.gb1.healthcheck.domain.nutrition.FoodAlreadyExistsException;
 import com.gb1.healthcheck.domain.nutrition.Foods;
+import com.gb1.healthcheck.domain.nutrition.FullComplexFoodHydrater;
 import com.gb1.healthcheck.services.nutrition.FoodService;
 import com.opensymphony.xwork2.Action;
 
@@ -23,7 +24,9 @@ public class UpdateComplexFoodActionTest extends TestCase {
 		final ComplexFood spag = Foods.spaghetti();
 
 		FoodService foodSvc = EasyMock.createMock(FoodService.class);
-		EasyMock.expect(foodSvc.loadComplexFood(spag.getId())).andReturn(spag);
+		EasyMock.expect(
+				foodSvc.loadComplexFood(EasyMock.eq(spag.getId()), EasyMock
+						.isA(FullComplexFoodHydrater.class))).andReturn(spag);
 		EasyMock.replay(foodSvc);
 
 		UpdateComplexFoodAction action = new UpdateComplexFoodAction();
