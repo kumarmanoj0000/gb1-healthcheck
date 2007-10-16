@@ -26,7 +26,7 @@ public class SimpleFood extends Food implements SimpleFoodPropertyProvider {
 
 	public SimpleFood(String name, FoodGroup foodGroup) {
 		super(name);
-		this.foodGroup = foodGroup;
+		setFoodGroup(foodGroup);
 	}
 
 	public SimpleFood(SimpleFoodPropertyProvider propertyProvider) {
@@ -38,11 +38,16 @@ public class SimpleFood extends Food implements SimpleFoodPropertyProvider {
 		return foodGroup;
 	}
 
+	protected SimpleFood setFoodGroup(FoodGroup foodGroup) {
+		this.foodGroup = foodGroup;
+		return this;
+	}
+
 	public boolean isPartOfFoodGroup(FoodGroup group) {
 		return foodGroup.equals(group);
 	}
 
-	public SimpleFood addNutrient(Nutrient nutrient) {
+	protected SimpleFood addNutrient(Nutrient nutrient) {
 		nutrients.add(nutrient);
 		return this;
 	}
@@ -55,11 +60,15 @@ public class SimpleFood extends Food implements SimpleFoodPropertyProvider {
 		return nutrients.contains(nutrient);
 	}
 
+	protected SimpleFood setNutrients(Set<Nutrient> nutrients) {
+		this.nutrients.clear();
+		this.nutrients.addAll(nutrients);
+		return this;
+	}
+
 	public void update(SimpleFoodMutablePropertyProvider propertyProvider) {
 		setName(propertyProvider.getName());
-		foodGroup = propertyProvider.getFoodGroup();
-
-		nutrients.clear();
-		nutrients.addAll(propertyProvider.getNutrients());
+		setFoodGroup(propertyProvider.getFoodGroup());
+		setNutrients(propertyProvider.getNutrients());
 	}
 }

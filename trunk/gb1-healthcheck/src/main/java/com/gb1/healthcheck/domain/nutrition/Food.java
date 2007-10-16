@@ -43,9 +43,11 @@ public abstract class Food implements Identifiable, Serializable {
 		return name;
 	}
 
-	protected void setName(String name) {
+	protected Food setName(String name) {
 		Validate.notNull(name);
 		this.name = name;
+
+		return this;
 	}
 
 	public abstract boolean isPartOfFoodGroup(FoodGroup foodGroup);
