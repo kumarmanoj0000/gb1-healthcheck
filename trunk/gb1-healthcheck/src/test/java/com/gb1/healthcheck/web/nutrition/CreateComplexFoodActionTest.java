@@ -9,6 +9,7 @@ import junit.framework.TestCase;
 import org.apache.commons.collections.CollectionUtils;
 import org.easymock.EasyMock;
 
+import com.gb1.commons.dao.NullHydrater;
 import com.gb1.healthcheck.domain.nutrition.ComplexFoodPropertyProvider;
 import com.gb1.healthcheck.domain.nutrition.Food;
 import com.gb1.healthcheck.domain.nutrition.FoodAlreadyExistsException;
@@ -23,6 +24,7 @@ public class CreateComplexFoodActionTest extends TestCase {
 		assertEquals(Action.SUCCESS, action.input());
 	}
 
+	@SuppressWarnings("unchecked")
 	public void testPrepare() {
 		final List<Food> availableIngredients = new ArrayList<Food>();
 		availableIngredients.addAll(Foods.allSimpleFoods());
@@ -31,7 +33,8 @@ public class CreateComplexFoodActionTest extends TestCase {
 
 		FoodService foodService = EasyMock.createMock(FoodService.class);
 		EasyMock.expect(foodService.getSimpleFoods()).andReturn(Foods.allSimpleFoods());
-		EasyMock.expect(foodService.getComplexFoods()).andReturn(Foods.allComplexFoods());
+		EasyMock.expect(foodService.getComplexFoods(EasyMock.isA(NullHydrater.class))).andReturn(
+				Foods.allComplexFoods());
 		EasyMock.replay(foodService);
 
 		CreateComplexFoodAction action = new CreateComplexFoodAction();
