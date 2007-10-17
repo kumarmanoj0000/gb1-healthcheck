@@ -1,6 +1,6 @@
 package com.gb1.healthcheck.domain.support;
 
-import com.gb1.commons.dao.AbstractInMemoryPersistenceTestCase;
+import com.gb1.commons.dataaccess.AbstractInMemoryPersistenceTestCase;
 
 public abstract class BaseRepositoryTestCase extends AbstractInMemoryPersistenceTestCase {
 	private String[] CONFIG_LOCATIONS = { "classpath:applicationContext-tests.xml" };

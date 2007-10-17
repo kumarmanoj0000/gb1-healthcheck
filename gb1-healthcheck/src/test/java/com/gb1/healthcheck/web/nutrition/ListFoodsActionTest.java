@@ -10,7 +10,7 @@ import junit.framework.TestCase;
 import org.apache.commons.collections.CollectionUtils;
 import org.easymock.EasyMock;
 
-import com.gb1.commons.dao.NullHydrater;
+import com.gb1.commons.dataaccess.NullHydrater;
 import com.gb1.healthcheck.domain.nutrition.ComplexFood;
 import com.gb1.healthcheck.domain.nutrition.Food;
 import com.gb1.healthcheck.domain.nutrition.Foods;
