@@ -1,5 +1,6 @@
 package com.gb1.healthcheck.domain.nutrition;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -14,6 +15,13 @@ public class JpaMealRepository implements MealRepository {
 	@SuppressWarnings("unchecked")
 	public List<Meal> loadMeals() {
 		List<Meal> meals = entityManager.createQuery("select m from Meal m").getResultList();
+		return meals;
+	}
+
+	@SuppressWarnings("unchecked")
+	public List<Meal> findMealsByDateAndTime(Date dateAndTime) {
+		List<Meal> meals = entityManager.createQuery("select m from Meal m where m.dateAndTime = ?1")
+				.setParameter(1, dateAndTime).getResultList();
 		return meals;
 	}
 

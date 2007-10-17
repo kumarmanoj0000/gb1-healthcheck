@@ -10,9 +10,12 @@
 		<s:else>
 			<ul>
 				<s:iterator value="mealHistory">
-					<li><fmt:formatDate value="${dateAndTime}" type="both" pattern="yyyy-MM-dd HH:mm" /></li>
+					<li>
+						<fmt:formatDate value="${dateAndTime}" type="both" pattern="yyyy-MM-dd HH:mm" />
+					</li>
 				</s:iterator>
 			</ul>
 		</s:else>
+		<a href='<c:url value="/nutrition/meals/createInput.go" />'><fmt:message key="nutrition.meals.create" /></a>
 	</body>
 </html>
