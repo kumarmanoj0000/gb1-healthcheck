@@ -1,5 +1,6 @@
 package com.gb1.healthcheck.domain.nutrition;
 
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.HashSet;
@@ -20,7 +21,7 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
 import com.gb1.commons.Identifiable;
 
 @Entity
-public class Meal implements Identifiable {
+public class Meal implements Identifiable, MealPropertyProvider {
 	@Id
 	@GeneratedValue
 	private Long id;
@@ -39,6 +40,13 @@ public class Meal implements Identifiable {
 		this.dateAndTime = dateAndTime;
 	}
 
+	public Meal(MealPropertyProvider propertyProvider) {
+		this.dateAndTime = new Date(propertyProvider.getDateAndTime().getTime());
+		for (PreparedFood dish : propertyProvider.getDishes()) {
+			addDish(dish);
+		}
+	}
+
 	public Long getId() {
 		return id;
 	}
@@ -52,6 +60,10 @@ public class Meal implements Identifiable {
 		dishes.add(dish);
 
 		return this;
+	}
+
+	public Set<PreparedFood> getDishes() {
+		return Collections.unmodifiableSet(dishes);
 	}
 
 	public boolean containsFood(Food food) {

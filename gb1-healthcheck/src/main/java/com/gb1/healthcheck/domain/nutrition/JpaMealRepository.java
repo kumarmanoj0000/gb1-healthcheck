@@ -17,6 +17,10 @@ public class JpaMealRepository implements MealRepository {
 		return meals;
 	}
 
+	public void saveMeal(Meal meal) {
+		entityManager.persist(meal);
+	}
+
 	@PersistenceContext
 	public void setEntityManager(EntityManager em) {
 		this.entityManager = em;
