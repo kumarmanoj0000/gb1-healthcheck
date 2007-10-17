@@ -326,14 +326,14 @@ public class User implements Identifiable, UserPropertyProvider, Serializable {
 		}
 
 		User that = (User) o;
-		EqualsBuilder builder = new EqualsBuilder().append(this.login, that.login);
+		EqualsBuilder builder = new EqualsBuilder().append(this.getLogin(), that.getLogin());
 
 		return builder.isEquals();
 	}
 
 	@Override
 	public int hashCode() {
-		HashCodeBuilder builder = new HashCodeBuilder().append(this.login);
+		HashCodeBuilder builder = new HashCodeBuilder().append(this.getLogin());
 		return builder.toHashCode();
 	}
 
