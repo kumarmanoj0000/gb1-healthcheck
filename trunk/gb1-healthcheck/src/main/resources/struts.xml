@@ -120,4 +120,17 @@
 		</action>
 	</package>
 
+	<package name="meals" extends="default" namespace="/nutrition/meals">
+		<action name="createInput" method="input" class="createMealAction">
+			<result>/views/nutrition/newMeal.jsp</result>
+		</action>
+		<action name="createSubmit" method="submit" class="createMealAction">
+			<result name="input">/views/nutrition/newMeal.jsp</result>
+			<result name="success" type="redirect-action">
+				<param name="namespace">/nutrition</param>
+				<param name="actionName">listMeals</param>
+			</result>
+		</action>
+	</package>
+
 </struts>
