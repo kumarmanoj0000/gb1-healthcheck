@@ -3,6 +3,8 @@ package com.gb1.healthcheck.services.nutrition;
 import java.util.List;
 
 import com.gb1.healthcheck.domain.nutrition.Meal;
+import com.gb1.healthcheck.domain.nutrition.MealException;
+import com.gb1.healthcheck.domain.nutrition.MealPropertyProvider;
 
 public interface MealService {
 	/**
@@ -11,4 +13,12 @@ public interface MealService {
 	 * @return All meals sorted chronologically
 	 */
 	List<Meal> getMealHistory();
+
+	/**
+	 * Creates a new meal, based on the property provider.
+	 * 
+	 * @param propertyProvider The provider of meal properties
+	 * @throws MealException When creation fails
+	 */
+	void createMeal(MealPropertyProvider propertyProvider) throws MealException;
 }

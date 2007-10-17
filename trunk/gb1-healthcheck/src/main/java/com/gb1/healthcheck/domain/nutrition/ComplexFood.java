@@ -43,6 +43,7 @@ public class ComplexFood extends Food implements ComplexFoodPropertyProvider {
 			if (candidate.equals(ingredient)) {
 				return true;
 			}
+			// TODO Ugly instanceof - polymorphism possible?
 			else if (candidate instanceof ComplexFood) {
 				ComplexFood complexCandidate = (ComplexFood) candidate;
 				if (complexCandidate.containsIngredient(ingredient)) {

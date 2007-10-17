@@ -47,11 +47,15 @@ public class PreparedFood implements Identifiable {
 	public boolean containsIngredient(Food food) {
 		boolean contains;
 
-		if (ingredient instanceof ComplexFood) {
+		// TODO Ugly instanceof - polymorphism possible?
+		if (ingredient.equals(food)) {
+			contains = true;
+		}
+		else if (ingredient instanceof ComplexFood) {
 			contains = ((ComplexFood) ingredient).containsIngredient(food);
 		}
 		else {
-			contains = ingredient.equals(food);
+			contains = false;
 		}
 
 		return contains;

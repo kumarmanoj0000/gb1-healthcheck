@@ -1,9 +1,12 @@
 package com.gb1.healthcheck.domain.nutrition;
 
 import java.text.ParseException;
+import java.util.Collections;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 
 import org.apache.commons.lang.time.DateUtils;
 
@@ -17,6 +20,14 @@ public class Meals {
 
 	public static PreparedFood redWineDrink() {
 		return new PreparedFood(Foods.redWine(), PreparationMethod.RAW);
+	}
+
+	public static Set<PreparedFood> allDishes() {
+		final Set<PreparedFood> dishes = new HashSet<PreparedFood>();
+		dishes.add(spaghettiDish());
+		dishes.add(redWineDrink());
+
+		return Collections.unmodifiableSet(dishes);
 	}
 
 	public static List<Meal> mealHistory() {
