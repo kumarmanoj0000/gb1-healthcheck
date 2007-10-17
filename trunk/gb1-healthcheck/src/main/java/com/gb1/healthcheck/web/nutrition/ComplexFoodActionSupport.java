@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import com.gb1.commons.dao.NullHydrater;
+import com.gb1.commons.dataaccess.NullHydrater;
 import com.gb1.healthcheck.domain.nutrition.ComplexFood;
 import com.gb1.healthcheck.domain.nutrition.Food;
 import com.gb1.healthcheck.services.nutrition.FoodService;

@@ -4,7 +4,7 @@ import java.util.Set;
 
 import org.springframework.transaction.annotation.Transactional;
 
-import com.gb1.commons.dao.Hydrater;
+import com.gb1.commons.dataaccess.Hydrater;
 import com.gb1.healthcheck.domain.nutrition.ComplexFood;
 import com.gb1.healthcheck.domain.nutrition.ComplexFoodMutablePropertyProvider;
 import com.gb1.healthcheck.domain.nutrition.ComplexFoodPropertyProvider;
