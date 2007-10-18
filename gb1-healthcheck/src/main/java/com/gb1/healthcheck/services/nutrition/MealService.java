@@ -21,4 +21,11 @@ public interface MealService {
 	 * @throws MealException When creation fails
 	 */
 	void createMeal(MealPropertyProvider propertyProvider) throws MealException;
+
+	/**
+	 * Deletes the meal identified by the given ID.
+	 * 
+	 * @param mealId The ID of the meal to delete
+	 */
+	void deleteMeal(Long mealId);
 }

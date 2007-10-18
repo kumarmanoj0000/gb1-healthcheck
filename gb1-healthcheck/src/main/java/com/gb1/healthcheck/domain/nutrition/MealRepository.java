@@ -11,4 +11,6 @@ public interface MealRepository {
 	List<Meal> findMealsByDateAndTime(Date dateAndTime);
 
 	void saveMeal(Meal meal);
+
+	void deleteMeal(Long mealId);
 }

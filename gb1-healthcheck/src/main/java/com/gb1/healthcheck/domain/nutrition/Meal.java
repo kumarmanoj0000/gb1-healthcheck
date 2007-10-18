@@ -37,8 +37,13 @@ public class Meal implements Identifiable, MealPropertyProvider {
 		// for JPA
 	}
 
-	public Meal(Date dateAndTime) {
+	Meal(Long id, Date dateAndTime) {
+		this.id = id;
 		this.dateAndTime = dateAndTime;
+	}
+
+	public Meal(Date dateAndTime) {
+		this(null, dateAndTime);
 	}
 
 	public Meal(MealPropertyProvider propertyProvider) {

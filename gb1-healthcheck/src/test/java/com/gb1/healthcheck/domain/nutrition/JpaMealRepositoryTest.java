@@ -42,6 +42,12 @@ public class JpaMealRepositoryTest extends BaseRepositoryTestCase {
 		assertEquals(meal, mealRepo.loadMeal(meal.getId()));
 	}
 
+	public void testDeleteMeal() {
+		final Long mealId = 1L;
+		mealRepo.deleteMeal(mealId);
+		assertNull(mealRepo.loadMeal(mealId));
+	}
+
 	private Date parseDateAndTime(String text) throws ParseException {
 		return DateUtils.parseDate(text, new String[] { "yyyy-MM-dd hh:mm" });
 	}

@@ -131,6 +131,12 @@
 				<param name="actionName">listMeals</param>
 			</result>
 		</action>
+		<action name="delete" method="delete" class="deleteMealAction">
+			<result name="success" type="redirect-action">
+				<param name="namespace">/nutrition</param>
+				<param name="actionName">listMeals</param>
+			</result>
+		</action>
 	</package>
 
 </struts>
