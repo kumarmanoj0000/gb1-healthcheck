@@ -11,11 +11,11 @@ import org.easymock.EasyMock;
 public class FullMealCreationValidatorTest extends TestCase {
 	public void testValidateNoDishes() throws MealException {
 		Meal meal = new Meal(new Date());
-		List<Meal> mealsOnSameDateAndTime = Collections.emptyList();
+		List<Meal> mealsOnSameInstant = Collections.emptyList();
 
 		MealRepository mealRepo = EasyMock.createMock(MealRepository.class);
-		EasyMock.expect(mealRepo.findMealsByDateAndTime(meal.getDateAndTime())).andReturn(
-				mealsOnSameDateAndTime);
+		EasyMock.expect(mealRepo.findMealsByInstant(meal.getInstant())).andReturn(
+				mealsOnSameInstant);
 		EasyMock.replay(mealRepo);
 
 		FullMealCreationValidator v = new FullMealCreationValidator();
@@ -33,11 +33,11 @@ public class FullMealCreationValidatorTest extends TestCase {
 		Meal meal = new Meal(new Date());
 		meal.addDish(Meals.spaghettiDish());
 
-		List<Meal> mealsOnSameDateAndTime = Collections.singletonList(meal);
+		List<Meal> mealsOnSameInstant = Collections.singletonList(meal);
 
 		MealRepository mealRepo = EasyMock.createMock(MealRepository.class);
-		EasyMock.expect(mealRepo.findMealsByDateAndTime(meal.getDateAndTime())).andReturn(
-				mealsOnSameDateAndTime);
+		EasyMock.expect(mealRepo.findMealsByInstant(meal.getInstant())).andReturn(
+				mealsOnSameInstant);
 		EasyMock.replay(mealRepo);
 
 		FullMealCreationValidator v = new FullMealCreationValidator();
@@ -55,11 +55,11 @@ public class FullMealCreationValidatorTest extends TestCase {
 		Meal meal = new Meal(new Date());
 		meal.addDish(Meals.spaghettiDish());
 
-		List<Meal> mealsOnSameDateAndTime = Collections.emptyList();
+		List<Meal> mealsOnSameInstant = Collections.emptyList();
 
 		MealRepository mealRepo = EasyMock.createMock(MealRepository.class);
-		EasyMock.expect(mealRepo.findMealsByDateAndTime(meal.getDateAndTime())).andReturn(
-				mealsOnSameDateAndTime);
+		EasyMock.expect(mealRepo.findMealsByInstant(meal.getInstant())).andReturn(
+				mealsOnSameInstant);
 		EasyMock.replay(mealRepo);
 
 		FullMealCreationValidator v = new FullMealCreationValidator();

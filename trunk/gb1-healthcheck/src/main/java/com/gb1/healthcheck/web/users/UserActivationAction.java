@@ -21,7 +21,8 @@ public class UserActivationAction extends ActionSupport {
 		try {
 			userService.activateUser(email, new Token(token));
 			result = Action.SUCCESS;
-		} catch (UserException e) {
+		}
+		catch (UserException e) {
 			addFieldError("credentials", getText("register.activate.activationToken.invalid"));
 			result = Action.INPUT;
 		}

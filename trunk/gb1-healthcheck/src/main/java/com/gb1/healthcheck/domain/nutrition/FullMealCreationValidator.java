@@ -18,8 +18,8 @@ public class FullMealCreationValidator implements MealValidator {
 	}
 
 	private boolean mealAlreadyExists(Meal meal) {
-		List<Meal> mealsOnSameDateAndTime = mealRepo.findMealsByDateAndTime(meal.getDateAndTime());
-		return !mealsOnSameDateAndTime.isEmpty();
+		List<Meal> mealsOnSameInstant = mealRepo.findMealsByInstant(meal.getInstant());
+		return !mealsOnSameInstant.isEmpty();
 	}
 
 	private boolean mealHasNoDishes(Meal meal) {

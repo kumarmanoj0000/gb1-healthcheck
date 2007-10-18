@@ -12,7 +12,7 @@
 			<ul>
 				<s:iterator value="mealHistory">
 					<li>
-						<fmt:formatDate value="${dateAndTime}" type="both" pattern="yyyy-MM-dd HH:mm" />
+						<fmt:formatDate value="${instant}" type="both" pattern="yyyy-MM-dd HH:mm" />
 						<a href='<c:url value="/nutrition/meals/delete.go?mealId=${id}" />' onclick="return confirm('${deleteConfirmMsg}')">
 							<fmt:message key="nutrition.meals.delete" />
 						</a>

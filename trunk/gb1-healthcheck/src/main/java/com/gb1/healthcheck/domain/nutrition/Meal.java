@@ -27,7 +27,7 @@ public class Meal implements Identifiable, MealPropertyProvider {
 	@GeneratedValue
 	private Long id;
 
-	private Date dateAndTime;
+	private Date instant;
 
 	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinTable(name = "MEAL_DISHES", joinColumns = { @JoinColumn(name = "meal_id") }, inverseJoinColumns = { @JoinColumn(name = "dish_id") })
@@ -37,17 +37,17 @@ public class Meal implements Identifiable, MealPropertyProvider {
 		// for JPA
 	}
 
-	Meal(Long id, Date dateAndTime) {
+	Meal(Long id, Date instant) {
 		this.id = id;
-		this.dateAndTime = dateAndTime;
+		this.instant = instant;
 	}
 
-	public Meal(Date dateAndTime) {
-		this(null, dateAndTime);
+	public Meal(Date instant) {
+		this(null, instant);
 	}
 
 	public Meal(MealPropertyProvider propertyProvider) {
-		this.dateAndTime = new Date(propertyProvider.getDateAndTime().getTime());
+		this.instant = new Date(propertyProvider.getInstant().getTime());
 		for (PreparedFood dish : propertyProvider.getDishes()) {
 			addDish(dish);
 		}
@@ -57,8 +57,8 @@ public class Meal implements Identifiable, MealPropertyProvider {
 		return id;
 	}
 
-	public Date getDateAndTime() {
-		return new Date(dateAndTime.getTime());
+	public Date getInstant() {
+		return new Date(instant.getTime());
 	}
 
 	public Meal addDish(PreparedFood dish) {
@@ -112,21 +112,20 @@ public class Meal implements Identifiable, MealPropertyProvider {
 		}
 
 		Meal that = (Meal) o;
-		EqualsBuilder builder = new EqualsBuilder().append(this.getDateAndTime(), that
-				.getDateAndTime());
+		EqualsBuilder builder = new EqualsBuilder().append(this.getInstant(), that.getInstant());
 
 		return builder.isEquals();
 	}
 
 	@Override
 	public int hashCode() {
-		HashCodeBuilder builder = new HashCodeBuilder().append(this.getDateAndTime());
+		HashCodeBuilder builder = new HashCodeBuilder().append(this.getInstant());
 		return builder.toHashCode();
 	}
 
-	public static class ByDateAndTimeComparator implements Comparator<Meal> {
+	public static class ByInstantComparator implements Comparator<Meal> {
 		public int compare(Meal meal1, Meal meal2) {
-			return meal1.getDateAndTime().compareTo(meal2.getDateAndTime());
+			return meal1.getInstant().compareTo(meal2.getInstant());
 		}
 	}
 }

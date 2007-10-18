@@ -19,19 +19,19 @@ import com.gb1.healthcheck.domain.nutrition.PreparedFood;
 public class MealCreationRequest implements MealPropertyProvider {
 	private FoodRepository foodRepo;
 
-	private Date dateAndTime;
+	private Date instant;
 	private List<Long> selectedFoodIds = new LinkedList<Long>();
 	private List<String> prepMethods = new LinkedList<String>();
 
 	public MealCreationRequest() {
 	}
 
-	public Date getDateAndTime() {
-		return dateAndTime;
+	public Date getInstant() {
+		return instant;
 	}
 
-	public void setDateAndTime(Date dateAndTime) {
-		this.dateAndTime = dateAndTime;
+	public void setInstant(Date instant) {
+		this.instant = instant;
 	}
 
 	public Set<PreparedFood> getDishes() {
