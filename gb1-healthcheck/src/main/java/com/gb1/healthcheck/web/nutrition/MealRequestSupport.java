@@ -42,6 +42,16 @@ public class MealRequestSupport implements MealPropertyProvider {
 		return Collections.unmodifiableSet(dishes);
 	}
 
+	protected void setDishes(Set<PreparedFood> dishes) {
+		selectedFoodIds.clear();
+		prepMethods.clear();
+
+		for (PreparedFood dish : dishes) {
+			selectedFoodIds.add(dish.getIngredient().getId());
+			prepMethods.add(dish.getPreparationMethod().name());
+		}
+	}
+
 	public void setSelectedFoodIds(Long[] foodIds) {
 		selectedFoodIds.clear();
 		for (Long foodId : foodIds) {

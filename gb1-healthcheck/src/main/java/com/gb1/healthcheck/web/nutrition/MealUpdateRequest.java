@@ -8,5 +8,6 @@ import com.gb1.healthcheck.domain.nutrition.Meal;
 public class MealUpdateRequest extends MealRequestSupport {
 	public MealUpdateRequest(Meal meal) {
 		setInstant(meal.getInstant());
+		setDishes(meal.getDishes());
 	}
 }
