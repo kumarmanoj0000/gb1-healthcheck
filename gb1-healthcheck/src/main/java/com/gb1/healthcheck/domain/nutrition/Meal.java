@@ -39,7 +39,7 @@ public class Meal implements Identifiable, MealPropertyProvider {
 
 	Meal(Long id, Date instant) {
 		this.id = id;
-		this.instant = instant;
+		setInstant(instant);
 	}
 
 	public Meal(Date instant) {
@@ -61,10 +61,35 @@ public class Meal implements Identifiable, MealPropertyProvider {
 		return new Date(instant.getTime());
 	}
 
+	private void setInstant(Date instant) {
+		this.instant = new Date(instant.getTime());
+	}
+
 	public Meal addDish(PreparedFood dish) {
 		Validate.notNull(dish);
 		dishes.add(dish);
 
+		return this;
+	}
+
+	private Meal addDishes(Set<PreparedFood> dishesToAdd) {
+		for (PreparedFood dish : dishesToAdd) {
+			addDish(dish);
+		}
+		return this;
+	}
+
+	private Meal removeDish(PreparedFood dish) {
+		Validate.notNull(dish);
+		dishes.remove(dish);
+
+		return this;
+	}
+
+	private Meal removeDishes(Set<PreparedFood> dishesToRemove) {
+		for (PreparedFood dish : dishesToRemove) {
+			removeDish(dish);
+		}
 		return this;
 	}
 
@@ -100,6 +125,28 @@ public class Meal implements Identifiable, MealPropertyProvider {
 		}
 
 		return false;
+	}
+
+	public void update(MealMutablePropertyProvider provider) {
+		setInstant(provider.getInstant());
+
+		Set<PreparedFood> dishesToAdd = new HashSet<PreparedFood>();
+		Set<PreparedFood> dishesToRemove = new HashSet<PreparedFood>();
+
+		for (PreparedFood dish : provider.getDishes()) {
+			if (!dishes.contains(dish)) {
+				dishesToAdd.add(dish);
+			}
+		}
+
+		for (PreparedFood dish : dishes) {
+			if (!provider.getDishes().contains(dish)) {
+				dishesToRemove.add(dish);
+			}
+		}
+
+		addDishes(dishesToAdd);
+		removeDishes(dishesToRemove);
 	}
 
 	@Override

@@ -4,6 +4,7 @@ import java.util.Collections;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 
 import junit.framework.TestCase;
 
@@ -14,9 +15,11 @@ import org.springframework.transaction.aspectj.AnnotationTransactionAspect;
 
 import com.gb1.healthcheck.domain.nutrition.Meal;
 import com.gb1.healthcheck.domain.nutrition.MealException;
+import com.gb1.healthcheck.domain.nutrition.MealMutablePropertyProvider;
 import com.gb1.healthcheck.domain.nutrition.MealRepository;
 import com.gb1.healthcheck.domain.nutrition.MealValidator;
 import com.gb1.healthcheck.domain.nutrition.Meals;
+import com.gb1.healthcheck.domain.nutrition.PreparedFood;
 
 public class MealServiceImplTest extends TestCase {
 	@Override
@@ -65,6 +68,44 @@ public class MealServiceImplTest extends TestCase {
 
 		EasyMock.verify(validator);
 		EasyMock.verify(mealRepo);
+	}
+
+	public void testUpdateMeal() throws MealException {
+		final Meal oldMeal = new Meal(new Date()) {
+			@Override
+			public Long getId() {
+				return 1L;
+			}
+		};
+		oldMeal.addDish(Meals.spaghettiDish());
+		oldMeal.addDish(Meals.redWineDrink());
+
+		MealMutablePropertyProvider updateReq = new MealMutablePropertyProvider() {
+			public Set<PreparedFood> getDishes() {
+				return Collections.emptySet();
+			}
+
+			public Date getInstant() {
+				return new Date();
+			}
+		};
+
+		MealValidator validator = EasyMock.createMock(MealValidator.class);
+		validator.validate(oldMeal);
+		EasyMock.expectLastCall();
+		EasyMock.replay(validator);
+
+		MealRepository mealRepo = EasyMock.createMock(MealRepository.class);
+		EasyMock.expect(mealRepo.loadMeal(oldMeal.getId())).andReturn(oldMeal);
+		EasyMock.replay(mealRepo);
+
+		MealServiceImpl svc = new MealServiceImpl();
+		svc.setMealRepository(mealRepo);
+		svc.setMealUpdateValidator(validator);
+
+		svc.updateMeal(oldMeal.getId(), updateReq);
+
+		EasyMock.verify(validator);
 	}
 
 	public void testDeleteMeal() {
