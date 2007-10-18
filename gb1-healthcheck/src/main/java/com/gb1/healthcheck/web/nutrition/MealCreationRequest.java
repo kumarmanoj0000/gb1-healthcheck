@@ -56,7 +56,7 @@ public class MealCreationRequest implements MealPropertyProvider {
 		return selectedFoodIds.toArray(new Long[0]);
 	}
 
-	public void setSelectedPreparationMethods(String[] prepMethodNames) {
+	public void setSelectedPreparationMethodNames(String[] prepMethodNames) {
 		prepMethods.clear();
 		for (String prepMethodName : prepMethodNames) {
 			prepMethods.add(prepMethodName);

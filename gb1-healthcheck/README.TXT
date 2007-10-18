@@ -4,7 +4,7 @@ HealthCheck
 
 . features:
   - meals
-    > create / edit / delete meal 
+    > edit / delete meal 
 
   - drugs
     > list drugs

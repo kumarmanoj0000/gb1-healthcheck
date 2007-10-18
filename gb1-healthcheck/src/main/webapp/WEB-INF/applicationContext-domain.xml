@@ -64,6 +64,9 @@
 	<bean id="complexFoodUpdateValidator" class="com.gb1.healthcheck.domain.nutrition.FullComplexFoodUpdateValidator">
 		<property name="foodRepository" ref="foodRepository" />
 	</bean>
+	<bean id="mealCreationValidator" class="com.gb1.healthcheck.domain.nutrition.FullMealCreationValidator">
+		<property name="mealRepository" ref="mealRepository" />
+	</bean>
 
 	<!-- Repositories -->
 	<bean id="userRepository" class="com.gb1.healthcheck.domain.users.JpaUserRepository" />

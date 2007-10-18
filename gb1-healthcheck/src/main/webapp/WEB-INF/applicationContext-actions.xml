@@ -64,6 +64,7 @@
 
 	<bean id="createMealAction" class="com.gb1.healthcheck.web.nutrition.CreateMealAction" scope="prototype">
 		<property name="foodService" ref="foodService" />
+		<property name="mealService" ref="mealService" />
 	</bean>
 
 	<bean id="mealCreationRequest" class="com.gb1.healthcheck.web.nutrition.MealCreationRequest" scope="prototype">

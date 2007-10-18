@@ -32,6 +32,7 @@
 
 	<bean id="mealService" class="com.gb1.healthcheck.services.nutrition.MealServiceImpl">
 		<property name="mealRepository" ref="mealRepository" />
+		<property name="mealCreationValidator" ref="mealCreationValidator" />
 	</bean>
 
 	<!-- Must be used in place of the tx:annotation-driven tag, which oddly does not work when
