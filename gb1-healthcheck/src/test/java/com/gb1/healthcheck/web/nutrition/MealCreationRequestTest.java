@@ -41,7 +41,7 @@ public class MealCreationRequestTest extends TestCase {
 		}
 		EasyMock.replay(foodRepo);
 
-		MealCreationRequest req = new MealCreationRequest();
+		MealRequestSupport req = new MealCreationRequest();
 		req.setFoodRepository(foodRepo);
 		req.setSelectedFoodIds(foodIds);
 		req.setSelectedPreparationMethodNames(prepMethodNames);

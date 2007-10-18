@@ -13,6 +13,7 @@ import org.easymock.EasyMock;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.aspectj.AnnotationTransactionAspect;
 
+import com.gb1.commons.dataaccess.Hydrater;
 import com.gb1.healthcheck.domain.nutrition.Meal;
 import com.gb1.healthcheck.domain.nutrition.MealException;
 import com.gb1.healthcheck.domain.nutrition.MealMutablePropertyProvider;
@@ -43,6 +44,32 @@ public class MealServiceImplTest extends TestCase {
 		svc.setMealRepository(mealRepo);
 
 		assertTrue(CollectionUtils.isEqualCollection(sortedMealHistory, svc.getMealHistory()));
+	}
+
+	@SuppressWarnings("unchecked")
+	public void testLoadMeal() {
+		final Meal meal = new Meal(new Date()) {
+			@Override
+			public Long getId() {
+				return 1L;
+			}
+		};
+		meal.addDish(Meals.spaghettiDish());
+		meal.addDish(Meals.redWineDrink());
+
+		Hydrater<Meal> hydrater = EasyMock.createMock(Hydrater.class);
+		EasyMock.expect(hydrater.hydrate(meal)).andReturn(meal);
+		EasyMock.replay(hydrater);
+
+		MealRepository mealRepo = EasyMock.createMock(MealRepository.class);
+		EasyMock.expect(mealRepo.loadMeal(meal.getId())).andReturn(meal);
+		EasyMock.replay(mealRepo);
+
+		MealServiceImpl svc = new MealServiceImpl();
+		svc.setMealRepository(mealRepo);
+
+		assertEquals(meal, svc.loadMeal(meal.getId(), hydrater));
+		EasyMock.verify(hydrater);
 	}
 
 	public void testCreateMeal() throws MealException {
