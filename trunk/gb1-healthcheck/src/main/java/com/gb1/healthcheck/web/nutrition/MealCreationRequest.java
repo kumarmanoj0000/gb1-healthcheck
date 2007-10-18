@@ -30,6 +30,10 @@ public class MealCreationRequest implements MealPropertyProvider {
 		return dateAndTime;
 	}
 
+	public void setDateAndTime(Date dateAndTime) {
+		this.dateAndTime = dateAndTime;
+	}
+
 	public Set<PreparedFood> getDishes() {
 		Set<PreparedFood> dishes = new HashSet<PreparedFood>();
 		for (int i = 0; i < selectedFoodIds.size(); i++) {

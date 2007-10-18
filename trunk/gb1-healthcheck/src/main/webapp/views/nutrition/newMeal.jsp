@@ -11,19 +11,34 @@
 		<script type="text/javascript" src="<c:url value='/scripts/jscalendar/lang/calendar-en.js' />"></script>
 
 		<script type="text/javascript">
-			var divSingleDishCounter = 0;
+			var nbSingleDishDivs = 1;
+			var maxSingleDishDivIndex = 0;
 
-			function addDivSingleDish() {
-				var divSingleDish = document.getElementById('dishes.singleDish-0');
+			function addSingleDishDiv() {
+				var dishesDiv = document.getElementById('dishes');
+				var singleDishDiv = dishesDiv.getElementsByTagName('div')[0];
 
-				var newDivSingleDish = divSingleDish.cloneNode(true);
-				newDivSingleDish.id = 'dishes.singleDish-' + (++divSingleDishCounter);
+				maxSingleDishDivIndex++;
+				var newSingleDishDiv = singleDishDiv.cloneNode(true);
+				newSingleDishDiv.id = 'dishes.singleDish-' + maxSingleDishDivIndex;
 
-				var divDishes = document.getElementById('dishes');
-				divDishes.appendChild(newDivSingleDish);
+				var newSingleDishDivRemoveLink = newSingleDishDiv.getElementsByTagName('a')[0];
+				newSingleDishDivRemoveLink.setAttribute('onClick', 'javascript:removeSingleDishDiv(' + maxSingleDishDivIndex + ')');
+
+				dishesDiv.appendChild(newSingleDishDiv);
+				nbSingleDishDivs++;
 			}
 
-			function removeDivSingleDish() {
+			function removeSingleDishDiv(index) {
+				if (nbSingleDishDivs > 1) {
+					var dishesDiv = document.getElementById('dishes');
+					var singleDishDiv = document.getElementById('dishes.singleDish-' + index);
+
+					if (singleDishDiv) {
+						dishesDiv.removeChild(singleDishDiv);
+						nbSingleDishDivs--;
+					}
+				}
 			}
 		</script>
 	</head>
@@ -58,11 +73,11 @@
 						listValue="name()"
 					/>
 
-					<a href="#" onClick="javascript:removeDivSingleDish()"><fmt:message key="nutrition.meals.create.removeDish" /></a>
+					<a href="#" onClick="javascript:removeSingleDishDiv(0)"><fmt:message key="nutrition.meals.create.removeDish" /></a>
 				</div>
 			</div>
 
-			<a href="#" onClick="javascript:addDivSingleDish()"><fmt:message key="nutrition.meals.create.addDish" /></a>
+			<a href="#" onClick="javascript:addSingleDishDiv()"><fmt:message key="nutrition.meals.create.addDish" /></a>
 
 			<s:submit key="nutrition.meals.create.submit" />
 			<s:submit key="nutrition.meals.create.cancel" name="method:cancel" />
