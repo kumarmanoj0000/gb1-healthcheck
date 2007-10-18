@@ -19,7 +19,8 @@ public class LostPasswordAction extends ActionSupport {
 		try {
 			userService.sendLostPassword(email);
 			result = Action.SUCCESS;
-		} catch (UnknownUserException e) {
+		}
+		catch (UnknownUserException e) {
 			addFieldError("email", getText("lostPassword.email.unknown"));
 			result = Action.INPUT;
 		}

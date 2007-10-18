@@ -8,7 +8,7 @@ public interface MealRepository {
 
 	List<Meal> loadMeals();
 
-	List<Meal> findMealsByDateAndTime(Date dateAndTime);
+	List<Meal> findMealsByInstant(Date instant);
 
 	void saveMeal(Meal meal);
 

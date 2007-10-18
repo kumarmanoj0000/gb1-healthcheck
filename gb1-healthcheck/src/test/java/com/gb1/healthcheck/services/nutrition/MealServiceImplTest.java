@@ -30,7 +30,7 @@ public class MealServiceImplTest extends TestCase {
 	public void testGetMealHistory() {
 		final List<Meal> mealHistory = Meals.mealHistory();
 		List<Meal> sortedMealHistory = new LinkedList<Meal>(mealHistory);
-		Collections.sort(sortedMealHistory, new Meal.ByDateAndTimeComparator());
+		Collections.sort(sortedMealHistory, new Meal.ByInstantComparator());
 
 		MealRepository mealRepo = EasyMock.createMock(MealRepository.class);
 		EasyMock.expect(mealRepo.loadMeals()).andReturn(mealHistory);

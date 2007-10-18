@@ -10,12 +10,12 @@ import org.apache.commons.lang.time.DateUtils;
 public class DateConverterTest extends TestCase {
 	public void testConvertFromString() throws ParseException {
 		String text = "2007-10-18 11:00:00";
-		Date expectedDate = parseDateAndTime(text);
+		Date expectedInstant = parseInstant(text);
 
 		DateConverter c = new DateConverter(DateTimeConverter.DEFAULT_DATE_TIME_FORMAT);
 		Date date = c.convertFromString(null, new String[] { text }, null);
 
-		assertEquals(expectedDate, date);
+		assertEquals(expectedInstant, date);
 	}
 
 	public void testConvertFromStringInvalidInputs() {
@@ -28,7 +28,7 @@ public class DateConverterTest extends TestCase {
 
 	public void testConvertToString() throws ParseException {
 		String expectedText = "2007-10-18 11:00:00";
-		Date date = parseDateAndTime(expectedText);
+		Date date = parseInstant(expectedText);
 
 		DateConverter c = new DateConverter(DateTimeConverter.DEFAULT_DATE_TIME_FORMAT);
 		String text = c.convertToString(null, date);
@@ -43,7 +43,7 @@ public class DateConverterTest extends TestCase {
 		assertEquals("", c.convertToString(null, "Not a date"));
 	}
 
-	private Date parseDateAndTime(String text) throws ParseException {
+	private Date parseInstant(String text) throws ParseException {
 		return DateUtils.parseDate(text,
 				new String[] { DateTimeConverter.DEFAULT_DATE_TIME_FORMAT });
 	}

@@ -24,10 +24,9 @@ public class JpaMealRepository implements MealRepository {
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<Meal> findMealsByDateAndTime(Date dateAndTime) {
-		List<Meal> meals = entityManager.createQuery(
-				"select m from Meal m where m.dateAndTime = ?1").setParameter(1, dateAndTime)
-				.getResultList();
+	public List<Meal> findMealsByInstant(Date instant) {
+		List<Meal> meals = entityManager.createQuery("select m from Meal m where m.instant = ?1")
+				.setParameter(1, instant).getResultList();
 		return meals;
 	}
 

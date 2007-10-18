@@ -30,7 +30,8 @@ public class FullSimpleFoodCreationValidatorTest extends TestCase {
 		try {
 			v.validate(food);
 			fail("Food already existed");
-		} catch (FoodAlreadyExistsException expected) {
+		}
+		catch (FoodAlreadyExistsException expected) {
 			assertEquals(food.getName(), expected.getFoodName());
 		}
 	}

@@ -49,7 +49,7 @@ public class CreateMealAction extends ActionSupport implements Preparable {
 			result = Action.SUCCESS;
 		}
 		catch (MealAlreadyExistsException e) {
-			addFieldError("model.dateAndTime", "A meal was already recorded for this hour.");
+			addFieldError("model.instant", "A meal was already recorded for this hour.");
 		}
 		catch (MealException e) {
 			addActionError(e.getMessage());

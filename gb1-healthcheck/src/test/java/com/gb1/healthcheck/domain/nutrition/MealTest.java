@@ -9,7 +9,7 @@ public class MealTest extends TestCase {
 	public void testNewFromPropertyProvider() {
 		final Date today = new Date();
 		MealPropertyProvider pp = new MealPropertyProvider() {
-			public Date getDateAndTime() {
+			public Date getInstant() {
 				return today;
 			}
 
@@ -19,7 +19,7 @@ public class MealTest extends TestCase {
 		};
 
 		Meal dinner = new Meal(pp);
-		assertEquals(today, dinner.getDateAndTime());
+		assertEquals(today, dinner.getInstant());
 		assertTrue(dinner.containsFood(Foods.spaghetti()));
 		assertTrue(dinner.containsFood(Foods.redWine()));
 	}
