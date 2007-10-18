@@ -40,6 +40,7 @@ HealthCheck
   - improve visual design (CSS)
 
 . technical
+  - duplication in test Meal fixtures
   - Action.input() should return INPUT not SUCCESS
   - UI validation for user registration
   - current approach for user pagination not working: replace
