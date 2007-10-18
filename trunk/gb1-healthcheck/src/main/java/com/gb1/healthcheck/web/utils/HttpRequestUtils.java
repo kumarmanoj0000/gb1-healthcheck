@@ -1,4 +1,4 @@
-package com.gb1.healthcheck.web.util;
+package com.gb1.healthcheck.web.utils;
 
 import javax.servlet.http.HttpServletRequest;
 
