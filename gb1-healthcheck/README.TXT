@@ -40,6 +40,8 @@ HealthCheck
   - improve visual design (CSS)
 
 . technical
+  - UI validation for user registration
+  - current approach for user pagination not working: replace
   - use annotations wherever possible
   - migrate unit tests to JUnit 4 (with Spring 2.1)
 
