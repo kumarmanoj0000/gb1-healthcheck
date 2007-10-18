@@ -30,6 +30,11 @@ public class MealServiceImpl implements MealService {
 		mealRepo.saveMeal(meal);
 	}
 
+	@Transactional(rollbackFor = { RuntimeException.class, MealException.class })
+	public void deleteMeal(Long mealId) {
+		mealRepo.deleteMeal(mealId);
+	}
+
 	public void setMealRepository(MealRepository mealRepo) {
 		this.mealRepo = mealRepo;
 	}

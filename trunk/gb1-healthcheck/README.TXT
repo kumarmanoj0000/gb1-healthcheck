@@ -4,7 +4,7 @@ HealthCheck
 
 . features:
   - meals
-    > edit / delete meal 
+    > edit meal 
 
   - drugs
     > list drugs
@@ -38,13 +38,12 @@ HealthCheck
       * practice: how to use FreeMarker to generate template-based content
 
   - improve visual design (CSS)
-  - add Ajax whererever possible
-  
+
 . technical
   - use annotations wherever possible
   - migrate unit tests to JUnit 4 (with Spring 2.1)
 
 . pain points
   - repeating @Transactional on all service methods (especially exception lists)
-  - many web files: AppMessages, struts.xml, appContext-actions, *conversion, *validation
+  - many web files: ApplicationMessages.properties, struts.xml, applicationContext-actions, *conversion.properties, *validation.xml
   - duplication in ApplicationMessages.properties

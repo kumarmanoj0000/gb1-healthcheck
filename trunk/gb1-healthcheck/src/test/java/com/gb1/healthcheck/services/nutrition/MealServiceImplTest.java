@@ -66,4 +66,19 @@ public class MealServiceImplTest extends TestCase {
 		EasyMock.verify(validator);
 		EasyMock.verify(mealRepo);
 	}
+
+	public void testDeleteMeal() {
+		final Long mealId = 1L;
+
+		MealRepository mealRepo = EasyMock.createMock(MealRepository.class);
+		mealRepo.deleteMeal(mealId);
+		EasyMock.expectLastCall().once();
+		EasyMock.replay(mealRepo);
+
+		MealServiceImpl svc = new MealServiceImpl();
+		svc.setMealRepository(mealRepo);
+
+		svc.deleteMeal(mealId);
+		EasyMock.verify(mealRepo);
+	}
 }

@@ -25,6 +25,10 @@ public class PreparedFood implements Identifiable {
 
 	private PreparationMethod preparationMethod;
 
+	PreparedFood() {
+		// for JPA
+	}
+
 	public PreparedFood(Food ingredient, PreparationMethod preparationMethod) {
 		Validate.notNull(ingredient);
 
