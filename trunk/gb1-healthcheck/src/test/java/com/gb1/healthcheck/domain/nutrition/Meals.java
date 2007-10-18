@@ -22,6 +22,10 @@ public class Meals {
 		return new PreparedFood(Foods.redWine(), PreparationMethod.RAW);
 	}
 
+	public static PreparedFood waterDrink() {
+		return new PreparedFood(Foods.water(), PreparationMethod.RAW);
+	}
+
 	public static Set<PreparedFood> allDishes() {
 		final Set<PreparedFood> dishes = new HashSet<PreparedFood>();
 		dishes.add(spaghettiDish());
