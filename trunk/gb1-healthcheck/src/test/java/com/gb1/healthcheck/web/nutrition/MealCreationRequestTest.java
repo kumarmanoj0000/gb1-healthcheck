@@ -44,7 +44,7 @@ public class MealCreationRequestTest extends TestCase {
 		MealCreationRequest req = new MealCreationRequest();
 		req.setFoodRepository(foodRepo);
 		req.setSelectedFoodIds(foodIds);
-		req.setSelectedPreparationMethods(prepMethodNames);
+		req.setSelectedPreparationMethodNames(prepMethodNames);
 
 		assertTrue(Arrays.equals(foodIds, req.getSelectedFoodIds()));
 		assertTrue(Arrays.equals(prepMethodNames, req.getSelectedPreparationMethodNames()));

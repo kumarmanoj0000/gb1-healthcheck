@@ -24,6 +24,11 @@ public class SimpleFood extends Food implements SimpleFoodPropertyProvider {
 		super("");
 	}
 
+	SimpleFood(Long id, String name, FoodGroup foodGroup) {
+		this(name, foodGroup);
+		setId(id);
+	}
+
 	public SimpleFood(String name, FoodGroup foodGroup) {
 		super(name);
 		setFoodGroup(foodGroup);

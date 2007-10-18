@@ -4,6 +4,8 @@ import java.util.Date;
 import java.util.List;
 
 public interface MealRepository {
+	Meal loadMeal(Long mealId);
+
 	List<Meal> loadMeals();
 
 	List<Meal> findMealsByDateAndTime(Date dateAndTime);

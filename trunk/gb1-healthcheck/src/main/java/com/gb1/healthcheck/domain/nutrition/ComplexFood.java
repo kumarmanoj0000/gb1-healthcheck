@@ -19,11 +19,16 @@ public class ComplexFood extends Food implements ComplexFoodPropertyProvider {
 	private Set<Food> ingredients = new HashSet<Food>();
 
 	ComplexFood() {
-		this("");
+		this(null, "");
 	}
 
-	public ComplexFood(String name) {
+	ComplexFood(String name) {
+		this(null, name);
+	}
+
+	ComplexFood(Long id, String name) {
 		super(name);
+		setId(id);
 	}
 
 	public ComplexFood(ComplexFoodPropertyProvider propertyProvider) {

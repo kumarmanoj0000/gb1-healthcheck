@@ -86,7 +86,7 @@
 		<script type="text/javascript">
 			Calendar.setup({
 				inputField  : "f_date_c",
-				ifFormat    : "%Y/%m/%d %H:%M",
+				ifFormat    : "%Y-%m-%d %H:%M:%S",
 				button      : "f_trigger_c",
 				align       : "Tl",
 				singleClick : false,
