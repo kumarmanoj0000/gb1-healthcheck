@@ -2,6 +2,7 @@ package com.gb1.healthcheck.web.nutrition;
 
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Map;
 
 import junit.framework.TestCase;
 
@@ -14,6 +15,8 @@ import com.gb1.healthcheck.services.nutrition.MealService;
 import com.opensymphony.xwork2.Action;
 
 public class UpdateMealActionTest extends TestCase {
+	private static final String MODEL_SESSION_KEY = UpdateMealAction.class.getName() + ".model";
+
 	@SuppressWarnings("unchecked")
 	public void testInput() {
 		final Meal dinner = new Meal(new Date()).addDish(Meals.spaghettiDish());
@@ -37,13 +40,33 @@ public class UpdateMealActionTest extends TestCase {
 		assertEquals(dinner.getInstant(), action.getModel().getInstant());
 	}
 
+	@SuppressWarnings("unchecked")
+	public void testUpdate() throws Exception {
+		Meal meal = Meals.fullItalianDinner();
+		MealUpdateRequest model = new MealUpdateRequest(meal);
+
+		Map session = new HashMap();
+		session.put(MODEL_SESSION_KEY, model);
+
+		MealService mealSvc = EasyMock.createMock(MealService.class);
+		mealSvc.updateMeal(meal.getId(), model);
+		EasyMock.expectLastCall();
+		EasyMock.replay(mealSvc);
+
+		UpdateMealAction action = new UpdateMealAction();
+		action.setMealService(mealSvc);
+
+		action.setSession(session);
+		action.setMealId(meal.getId());
+		String result = action.update();
+
+		assertEquals(Action.SUCCESS, result);
+		assertFalse(session.containsKey(MODEL_SESSION_KEY));
+		EasyMock.verify(mealSvc);
+	}
+
 	public void testCancel() {
 		UpdateMealAction action = new UpdateMealAction();
 		assertEquals(Action.SUCCESS, action.cancel());
-	}
-
-	public void testUpdate() {
-		UpdateMealAction action = new UpdateMealAction();
-		assertEquals(Action.SUCCESS, action.update());
 	}
 }

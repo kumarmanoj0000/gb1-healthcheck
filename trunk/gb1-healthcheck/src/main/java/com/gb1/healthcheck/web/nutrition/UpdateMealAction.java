@@ -6,6 +6,7 @@ import org.apache.struts2.interceptor.SessionAware;
 
 import com.gb1.healthcheck.domain.nutrition.FullMealHydrater;
 import com.gb1.healthcheck.domain.nutrition.Meal;
+import com.gb1.healthcheck.domain.nutrition.MealException;
 import com.opensymphony.xwork2.Action;
 
 public class UpdateMealAction extends MealActionSupport implements SessionAware {
@@ -26,7 +27,19 @@ public class UpdateMealAction extends MealActionSupport implements SessionAware 
 	}
 
 	public String update() {
-		return Action.SUCCESS;
+		String result;
+
+		try {
+			getMealService().updateMeal(mealId, getModel());
+			session.remove(MODEL_SESSION_KEY);
+			result = Action.SUCCESS;
+		}
+		catch (MealException e) {
+			addActionError(e.getMessage());
+			result = Action.INPUT;
+		}
+
+		return result;
 	}
 
 	public Long getMealId() {

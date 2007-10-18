@@ -34,13 +34,19 @@ public class Meals {
 		return Collections.unmodifiableSet(dishes);
 	}
 
+	public static Meal fullItalianDinner() {
+		return new Meal(1L, parseInstant("2007-10-13 18:00")).addDish(Meals.spaghettiDish())
+				.addDish(Meals.redWineDrink());
+	}
+
 	public static List<Meal> mealHistory() {
 		final List<Meal> mealHistory = new LinkedList<Meal>();
 
-		mealHistory.add(new Meal(parseInstant("2007-10-13 16:00")).addDish(Meals.redWineDrink()));
-		mealHistory.add(new Meal(parseInstant("2007-10-13 18:30")).addDish(Meals.spaghettiDish()));
-		mealHistory.add(new Meal(parseInstant("2007-10-14 18:00")).addDish(Meals.spaghettiDish())
+		mealHistory.add(fullItalianDinner());
+		mealHistory.add(new Meal(2L, parseInstant("2007-10-14 16:00"))
 				.addDish(Meals.redWineDrink()));
+		mealHistory.add(new Meal(3L, parseInstant("2007-10-14 18:30")).addDish(Meals
+				.spaghettiDish()));
 
 		return mealHistory;
 	}
