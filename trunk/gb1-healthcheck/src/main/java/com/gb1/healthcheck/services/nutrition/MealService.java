@@ -2,6 +2,7 @@ package com.gb1.healthcheck.services.nutrition;
 
 import java.util.List;
 
+import com.gb1.commons.dataaccess.Hydrater;
 import com.gb1.healthcheck.domain.nutrition.Meal;
 import com.gb1.healthcheck.domain.nutrition.MealException;
 import com.gb1.healthcheck.domain.nutrition.MealMutablePropertyProvider;
@@ -14,6 +15,15 @@ public interface MealService {
 	 * @return All meals sorted chronologically
 	 */
 	List<Meal> getMealHistory();
+
+	/**
+	 * Loads an existing meal identified by a given ID.
+	 * 
+	 * @param mealId The ID of the meal to load
+	 * @param hydrater The callback to hydrate meal associations
+	 * @return The corresponding meal; null if non existent
+	 */
+	Meal loadMeal(Long mealId, Hydrater<Meal> hydrater);
 
 	/**
 	 * Creates a new meal, based on the property provider.

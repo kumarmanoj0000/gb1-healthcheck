@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.transaction.annotation.Transactional;
 
+import com.gb1.commons.dataaccess.Hydrater;
 import com.gb1.healthcheck.domain.nutrition.Meal;
 import com.gb1.healthcheck.domain.nutrition.MealException;
 import com.gb1.healthcheck.domain.nutrition.MealMutablePropertyProvider;
@@ -23,6 +24,14 @@ public class MealServiceImpl implements MealService {
 	public List<Meal> getMealHistory() {
 		List<Meal> mealHistory = mealRepo.loadMeals();
 		return mealHistory;
+	}
+
+	@Transactional(readOnly = true)
+	public Meal loadMeal(Long mealId, Hydrater<Meal> hydrater) {
+		Meal meal = mealRepo.loadMeal(mealId);
+		hydrater.hydrate(meal);
+
+		return meal;
 	}
 
 	@Transactional(rollbackFor = { RuntimeException.class, MealException.class })

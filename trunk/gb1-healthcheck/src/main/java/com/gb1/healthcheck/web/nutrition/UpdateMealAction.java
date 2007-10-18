@@ -1,0 +1,49 @@
+package com.gb1.healthcheck.web.nutrition;
+
+import java.util.Map;
+
+import org.apache.struts2.interceptor.SessionAware;
+
+import com.gb1.healthcheck.domain.nutrition.FullMealHydrater;
+import com.gb1.healthcheck.domain.nutrition.Meal;
+import com.opensymphony.xwork2.Action;
+
+public class UpdateMealAction extends MealActionSupport implements SessionAware {
+	private static final String MODEL_SESSION_KEY = UpdateMealAction.class.getName() + ".model";
+
+	private Map<String, Object> session;
+	private Long mealId;
+
+	public UpdateMealAction() {
+	}
+
+	public String input() {
+		Meal meal = getMealService().loadMeal(mealId, new FullMealHydrater());
+		MealUpdateRequest model = new MealUpdateRequest(meal);
+		session.put(MODEL_SESSION_KEY, model);
+
+		return Action.SUCCESS;
+	}
+
+	public String update() {
+		return Action.SUCCESS;
+	}
+
+	public Long getMealId() {
+		return mealId;
+	}
+
+	public void setMealId(Long mealId) {
+		this.mealId = mealId;
+	}
+
+	public MealUpdateRequest getModel() {
+		MealUpdateRequest model = (MealUpdateRequest) session.get(MODEL_SESSION_KEY);
+		return model;
+	}
+
+	@SuppressWarnings("unchecked")
+	public void setSession(Map session) {
+		this.session = session;
+	}
+}
