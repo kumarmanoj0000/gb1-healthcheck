@@ -4,7 +4,9 @@ HealthCheck
 
 . features:
   - meals
-    > edit meal 
+    > edit meal
+      x wrong dishes and preparation methods shown
+      X removed dishes are not deleted from database 
 
   - drugs
     > list drugs
@@ -42,6 +44,7 @@ HealthCheck
 . technical
   - duplication in test Meal fixtures
   - Action.input() should return INPUT not SUCCESS
+  - Action.input() can be removed if action extends ActionSupport
   - UI validation for user registration
   - current approach for user pagination not working: replace
   - use annotations wherever possible
