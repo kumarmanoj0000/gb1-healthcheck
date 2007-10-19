@@ -3,9 +3,6 @@ package com.gb1.healthcheck.web.users;
 import java.util.HashSet;
 import java.util.Set;
 
-import org.apache.commons.lang.StringUtils;
-
-import com.gb1.healthcheck.domain.users.PasswordMismatchException;
 import com.gb1.healthcheck.domain.users.Role;
 import com.gb1.healthcheck.domain.users.UserPropertyProvider;
 
@@ -71,11 +68,5 @@ public class UserRegistrationRequest implements UserPropertyProvider {
 
 	public Set<Role> getRoles() {
 		return roles;
-	}
-
-	public void validate() throws PasswordMismatchException {
-		if (!StringUtils.equals(password1, password2)) {
-			throw new PasswordMismatchException();
-		}
 	}
 }

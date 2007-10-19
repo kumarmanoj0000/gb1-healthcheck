@@ -1,11 +1,7 @@
 package com.gb1.healthcheck.web.users;
 
 import com.gb1.healthcheck.domain.users.EmailAlreadyExistsException;
-import com.gb1.healthcheck.domain.users.InvalidEmailException;
-import com.gb1.healthcheck.domain.users.InvalidLoginException;
-import com.gb1.healthcheck.domain.users.InvalidPasswordException;
 import com.gb1.healthcheck.domain.users.LoginAlreadyExistsException;
-import com.gb1.healthcheck.domain.users.PasswordMismatchException;
 import com.gb1.healthcheck.domain.users.Role;
 import com.gb1.healthcheck.domain.users.UserException;
 import com.gb1.healthcheck.services.users.UserService;
@@ -20,29 +16,14 @@ public class UserRegistrationAction extends ActionSupport {
 		boolean registered = false;
 
 		try {
-			// validate UI logic (passwords match)
-			userRegRequest.validate();
-
 			userService.registerUser(userRegRequest);
 			registered = true;
 		}
-		catch (PasswordMismatchException e) {
-			addFieldError("password1", getText("register.password.mismatch"));
-		}
-		catch (InvalidLoginException e) {
-			addFieldError("login", getText("register.login.invalid"));
-		}
-		catch (InvalidEmailException e) {
-			addFieldError("email", getText("register.email.invalid"));
-		}
-		catch (InvalidPasswordException e) {
-			addFieldError("password1", getText("register.password.invalid"));
-		}
 		catch (LoginAlreadyExistsException e) {
-			addFieldError("login", getText("register.login.taken"));
+			addFieldError("model.login", getText("register.login.taken"));
 		}
 		catch (EmailAlreadyExistsException e) {
-			addFieldError("email", getText("register.email.taken"));
+			addFieldError("model.email", getText("register.email.taken"));
 		}
 		catch (UserException e) {
 			addActionError(getText("register.error"));
