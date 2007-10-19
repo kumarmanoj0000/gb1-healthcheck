@@ -37,17 +37,4 @@ public class UserRegistrationActionTest extends TestCase {
 		assertEquals(Action.INPUT, result);
 		assertTrue(action.hasFieldErrors());
 	}
-
-	public void testRegisterWithMismatchedPasswords() throws Exception {
-		UserRegistrationRequest userRegRequest = new UserRegistrationRequest();
-		userRegRequest.setPassword1("p1");
-		userRegRequest.setPassword2("p2");
-
-		UserRegistrationAction action = new UserRegistrationAction();
-		action.setModel(userRegRequest);
-		String result = action.register();
-
-		assertEquals(Action.INPUT, result);
-		assertTrue(action.hasFieldErrors());
-	}
 }

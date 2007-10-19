@@ -4,6 +4,7 @@
 
 <html>
 	<body>
+		<s:actionerror/>
 		<s:form action="register" method="post" namespace="/public/register">
 			<s:textfield key="register.login" name="model.login" /><br/>
 			<s:textfield key="register.email" name="model.email" /><br/>

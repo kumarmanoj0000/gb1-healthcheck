@@ -1,7 +1,5 @@
 package com.gb1.healthcheck.domain.users;
 
-import org.apache.commons.lang.StringUtils;
-
 /**
  * A user validator used during initial creation. It executes a full check on the available
  * properties. This includes checking that the provided login name and email address are not already
@@ -22,18 +20,6 @@ public class FullUserCreationValidator implements UserValidator {
 	 * @throws UserException When a property must be refused
 	 */
 	public void validate(User user) throws UserException {
-		if (StringUtils.isEmpty(user.getLogin())) {
-			throw new InvalidLoginException(user.getLogin());
-		}
-
-		if (StringUtils.isEmpty(user.getEmail())) {
-			throw new InvalidEmailException(user.getEmail());
-		}
-
-		if (StringUtils.isEmpty(user.getPassword())) {
-			throw new InvalidPasswordException(user.getPassword());
-		}
-
 		if (isLoginAlreadyTaken(user.getLogin())) {
 			throw new LoginAlreadyExistsException(user.getLogin());
 		}
