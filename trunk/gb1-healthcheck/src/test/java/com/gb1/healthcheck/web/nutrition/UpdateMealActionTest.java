@@ -36,7 +36,7 @@ public class UpdateMealActionTest extends TestCase {
 		action.setMealId(dinner.getId());
 		String result = action.input();
 
-		assertEquals(Action.SUCCESS, result);
+		assertEquals(Action.INPUT, result);
 		assertEquals(dinner.getId(), action.getMealId());
 		assertEquals(dinner.getInstant(), action.getModel().getInstant());
 	}

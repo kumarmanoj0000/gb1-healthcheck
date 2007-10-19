@@ -38,8 +38,6 @@ HealthCheck
 
 . technical
   - duplication in test Meal fixtures
-  - Action.input() should return INPUT not SUCCESS
-  - Action.input() can be removed if action extends ActionSupport
   - UI validation for user registration
   - current approach for user pagination not working: replace
   - use annotations wherever possible

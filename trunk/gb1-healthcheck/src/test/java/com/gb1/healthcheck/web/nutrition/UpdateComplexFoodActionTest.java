@@ -36,7 +36,7 @@ public class UpdateComplexFoodActionTest extends TestCase {
 		action.setFoodId(spag.getId());
 		String result = action.input();
 
-		assertEquals(Action.SUCCESS, result);
+		assertEquals(Action.INPUT, result);
 		assertEquals(spag.getId(), action.getFoodId());
 		assertEquals(spag.getName(), action.getModel().getName());
 		EasyMock.verify(foodSvc);

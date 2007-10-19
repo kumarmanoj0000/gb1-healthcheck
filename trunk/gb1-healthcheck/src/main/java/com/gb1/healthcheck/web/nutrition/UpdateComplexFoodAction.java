@@ -25,7 +25,7 @@ public class UpdateComplexFoodAction extends ComplexFoodActionSupport implements
 		ComplexFoodUpdateRequest model = new ComplexFoodUpdateRequest(food);
 		session.put(MODEL_SESSION_KEY, model);
 
-		return Action.SUCCESS;
+		return Action.INPUT;
 	}
 
 	public String submit() {

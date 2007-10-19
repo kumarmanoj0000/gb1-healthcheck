@@ -19,11 +19,6 @@ import com.gb1.healthcheck.services.nutrition.FoodService;
 import com.opensymphony.xwork2.Action;
 
 public class CreateComplexFoodActionTest extends TestCase {
-	public void testInput() {
-		CreateComplexFoodAction action = new CreateComplexFoodAction();
-		assertEquals(Action.SUCCESS, action.input());
-	}
-
 	@SuppressWarnings("unchecked")
 	public void testPrepare() {
 		final List<Food> availableIngredients = new ArrayList<Food>();

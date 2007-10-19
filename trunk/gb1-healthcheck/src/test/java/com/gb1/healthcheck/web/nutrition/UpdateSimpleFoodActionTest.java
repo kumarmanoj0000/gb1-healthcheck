@@ -34,7 +34,7 @@ public class UpdateSimpleFoodActionTest extends TestCase {
 		action.setFoodId(foodId);
 		String result = action.input();
 
-		assertEquals(Action.SUCCESS, result);
+		assertEquals(Action.INPUT, result);
 		assertEquals(foodId, action.getFoodId());
 		assertEquals(apple.getName(), action.getModel().getName());
 		EasyMock.verify(foodSvc);

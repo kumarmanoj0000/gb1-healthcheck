@@ -11,11 +11,6 @@ import com.gb1.healthcheck.services.users.UserService;
 import com.opensymphony.xwork2.Action;
 
 public class UserActivationActionTest extends TestCase {
-	public void testInput() {
-		UserActivationAction action = new UserActivationAction();
-		assertEquals(Action.SUCCESS, action.input());
-	}
-
 	public void testActivateOk() throws Exception {
 		final String email = "user@gb.com";
 		final String token = "123";
