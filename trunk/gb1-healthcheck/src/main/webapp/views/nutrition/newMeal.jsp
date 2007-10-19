@@ -44,7 +44,7 @@
 	</head>
 
 	<body>
-		<h1><fmt:message key="nutrition.meals.create.title" /></h1>
+		<h2><fmt:message key="nutrition.meals.create.title" /></h2>
 		<s:form action="createSubmit.go" method="post" namespace="/nutrition/meals">
 			<s:textfield key="meal.instant" name="model.instant" id="f_date_c" readonly="1" />
 			<img

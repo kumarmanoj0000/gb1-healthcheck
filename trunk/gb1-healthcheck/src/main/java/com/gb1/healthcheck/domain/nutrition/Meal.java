@@ -18,6 +18,7 @@ import javax.persistence.OneToMany;
 import org.apache.commons.lang.Validate;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
+import org.hibernate.annotations.Cascade;
 
 import com.gb1.commons.Identifiable;
 
@@ -30,6 +31,7 @@ public class Meal implements Identifiable, MealPropertyProvider {
 	private Date instant;
 
 	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@Cascade(org.hibernate.annotations.CascadeType.DELETE_ORPHAN)
 	@JoinTable(name = "MEAL_DISHES", joinColumns = { @JoinColumn(name = "meal_id") }, inverseJoinColumns = { @JoinColumn(name = "dish_id") })
 	private Set<PreparedFood> dishes = new HashSet<PreparedFood>();
 
