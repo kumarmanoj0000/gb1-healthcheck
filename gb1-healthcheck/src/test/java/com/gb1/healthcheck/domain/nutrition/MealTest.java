@@ -29,22 +29,18 @@ public class MealTest extends TestCase {
 	}
 
 	public void testContainsFood() {
-		Meal dinner = new Meal(new Date());
-		dinner.addDish(Meals.spaghettiDish());
-		dinner.addDish(Meals.redWineDrink());
+		Meal meal = Meals.fullItalianDinner();
 
-		assertTrue(dinner.containsFood(Foods.tomato()));
-		assertTrue(dinner.containsFood(Foods.redGrape()));
-		assertTrue(dinner.containsGroup(FoodGroup.MEAT_AND_SUBSTITUTES));
+		assertTrue(meal.containsFood(Foods.tomato()));
+		assertTrue(meal.containsFood(Foods.redGrape()));
+		assertTrue(meal.containsGroup(FoodGroup.MEAT_AND_SUBSTITUTES));
 	}
 
 	public void testIsSourceOfNutrient() {
-		Meal dinner = new Meal(new Date());
-		dinner.addDish(Meals.spaghettiDish());
-		dinner.addDish(Meals.redWineDrink());
+		Meal meal = Meals.fullItalianDinner();
 
-		assertTrue(dinner.isSourceOfNutrient(Nutrient.VITAMIN_C));
-		assertTrue(dinner.isSourceOfNutrient(Nutrient.ALCOHOL));
+		assertTrue(meal.isSourceOfNutrient(Nutrient.VITAMIN_C));
+		assertTrue(meal.isSourceOfNutrient(Nutrient.ALCOHOL));
 	}
 
 	public void testUpdateFromPropertyProvider() throws ParseException {

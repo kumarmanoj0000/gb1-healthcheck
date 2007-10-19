@@ -48,14 +48,7 @@ public class MealServiceImplTest extends TestCase {
 
 	@SuppressWarnings("unchecked")
 	public void testLoadMeal() {
-		final Meal meal = new Meal(new Date()) {
-			@Override
-			public Long getId() {
-				return 1L;
-			}
-		};
-		meal.addDish(Meals.spaghettiDish());
-		meal.addDish(Meals.redWineDrink());
+		Meal meal = Meals.fullItalianDinner();
 
 		Hydrater<Meal> hydrater = EasyMock.createMock(Hydrater.class);
 		EasyMock.expect(hydrater.hydrate(meal)).andReturn(meal);
@@ -73,9 +66,7 @@ public class MealServiceImplTest extends TestCase {
 	}
 
 	public void testCreateMeal() throws MealException {
-		final Meal meal = new Meal(new Date());
-		meal.addDish(Meals.spaghettiDish());
-		meal.addDish(Meals.redWineDrink());
+		Meal meal = Meals.fullItalianDinner();
 
 		MealRepository mealRepo = EasyMock.createMock(MealRepository.class);
 		mealRepo.saveMeal(EasyMock.eq(meal));
@@ -98,14 +89,7 @@ public class MealServiceImplTest extends TestCase {
 	}
 
 	public void testUpdateMeal() throws MealException {
-		final Meal oldMeal = new Meal(new Date()) {
-			@Override
-			public Long getId() {
-				return 1L;
-			}
-		};
-		oldMeal.addDish(Meals.spaghettiDish());
-		oldMeal.addDish(Meals.redWineDrink());
+		Meal oldMeal = Meals.fullItalianDinner();
 
 		MealMutablePropertyProvider updateReq = new MealMutablePropertyProvider() {
 			public Set<PreparedFood> getDishes() {

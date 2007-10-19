@@ -37,7 +37,6 @@ HealthCheck
   - improve visual design (CSS)
 
 . technical
-  - duplication in test Meal fixtures
   - UI validation for user registration
   - use annotations wherever possible
   - migrate unit tests to JUnit 4 (with Spring 2.1)
