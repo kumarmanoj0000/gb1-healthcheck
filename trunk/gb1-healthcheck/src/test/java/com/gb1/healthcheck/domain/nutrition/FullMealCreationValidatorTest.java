@@ -30,9 +30,7 @@ public class FullMealCreationValidatorTest extends TestCase {
 	}
 
 	public void testValidateMealAlreadyExists() throws MealException {
-		Meal meal = new Meal(new Date());
-		meal.addDish(Meals.spaghettiDish());
-
+		Meal meal = Meals.fullItalianDinner();
 		List<Meal> mealsOnSameInstant = Collections.singletonList(meal);
 
 		MealRepository mealRepo = EasyMock.createMock(MealRepository.class);
@@ -52,9 +50,7 @@ public class FullMealCreationValidatorTest extends TestCase {
 	}
 
 	public void testValidateMealOk() throws MealException {
-		Meal meal = new Meal(new Date());
-		meal.addDish(Meals.spaghettiDish());
-
+		Meal meal = Meals.fullItalianDinner();
 		List<Meal> mealsOnSameInstant = Collections.emptyList();
 
 		MealRepository mealRepo = EasyMock.createMock(MealRepository.class);

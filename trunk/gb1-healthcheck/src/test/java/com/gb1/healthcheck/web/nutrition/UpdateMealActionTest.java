@@ -1,6 +1,5 @@
 package com.gb1.healthcheck.web.nutrition;
 
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -20,7 +19,7 @@ public class UpdateMealActionTest extends TestCase {
 
 	@SuppressWarnings("unchecked")
 	public void testInput() {
-		final Meal dinner = new Meal(new Date()).addDish(Meals.spaghettiDish());
+		Meal dinner = Meals.fullItalianDinner();
 
 		MealService mealSvc = EasyMock.createMock(MealService.class);
 		EasyMock
@@ -76,7 +75,8 @@ public class UpdateMealActionTest extends TestCase {
 
 		MealService mealSvc = EasyMock.createMock(MealService.class);
 		mealSvc.updateMeal(meal.getId(), model);
-		EasyMock.expectLastCall().andThrow(new MealException() {});
+		EasyMock.expectLastCall().andThrow(new MealException() {
+		});
 		EasyMock.replay(mealSvc);
 
 		UpdateMealAction action = new UpdateMealAction();
