@@ -1,6 +1,5 @@
 package com.gb1.healthcheck.services.users;
 
-import com.gb1.commons.pagination.ScrollablePaginatedList;
 import com.gb1.commons.tokens.Token;
 import com.gb1.healthcheck.domain.users.UnknownUserException;
 import com.gb1.healthcheck.domain.users.User;
@@ -33,13 +32,6 @@ public interface UserService {
 	 * @return The corresponding user; null if not found
 	 */
 	User findUserByLogin(String login);
-
-	/**
-	 * Lists all registered users using a paginated list.
-	 * 
-	 * @return The paginated list of registered users
-	 */
-	ScrollablePaginatedList<User> listUsersPaginated(int pageSize);
 
 	/**
 	 * Registers a new user based on the given property provider. Following registration, the

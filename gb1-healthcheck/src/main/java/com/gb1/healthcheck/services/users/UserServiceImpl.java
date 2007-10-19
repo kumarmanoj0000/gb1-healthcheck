@@ -1,12 +1,7 @@
 package com.gb1.healthcheck.services.users;
 
-import java.util.List;
-
 import org.springframework.transaction.annotation.Transactional;
 
-import com.gb1.commons.pagination.DelegatingScrollablePaginatedList;
-import com.gb1.commons.pagination.PaginatedListItemProvider;
-import com.gb1.commons.pagination.ScrollablePaginatedList;
 import com.gb1.commons.tokens.Token;
 import com.gb1.healthcheck.domain.users.LostPasswordReminder;
 import com.gb1.healthcheck.domain.users.UnknownUserException;
@@ -127,33 +122,6 @@ public class UserServiceImpl implements UserService {
 	public User loadUser(Long userId) {
 		User user = userRepository.loadUser(userId);
 		return user;
-	}
-
-	/**
-	 * Lists all registered users.
-	 * 
-	 * @return The list of registered users
-	 */
-	@Transactional(readOnly = true)
-	public ScrollablePaginatedList<User> listUsersPaginated(int pageSize) {
-		PaginatedListItemProvider<User> userProvider = new PaginatedListItemProvider<User>() {
-			private int cachedSize = -1;
-
-			public int size() {
-				if (cachedSize == -1) {
-					cachedSize = userRepository.getUserCount();
-				}
-				return cachedSize;
-			}
-
-			public List<User> items(int fromIndex, int toIndex) {
-				return userRepository.findUsers(fromIndex, toIndex);
-			}
-		};
-
-		ScrollablePaginatedList<User> userList = new DelegatingScrollablePaginatedList<User>(
-				userProvider, pageSize);
-		return userList;
 	}
 
 	/**
