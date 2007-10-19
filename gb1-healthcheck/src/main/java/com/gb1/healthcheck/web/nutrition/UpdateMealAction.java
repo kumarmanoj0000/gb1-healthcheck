@@ -23,7 +23,7 @@ public class UpdateMealAction extends MealActionSupport implements SessionAware 
 		MealUpdateRequest model = new MealUpdateRequest(meal);
 		session.put(MODEL_SESSION_KEY, model);
 
-		return Action.SUCCESS;
+		return Action.INPUT;
 	}
 
 	public String update() {

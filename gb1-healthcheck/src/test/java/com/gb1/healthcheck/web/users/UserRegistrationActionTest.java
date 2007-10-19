@@ -10,14 +10,6 @@ import com.gb1.healthcheck.services.users.UserService;
 import com.opensymphony.xwork2.Action;
 
 public class UserRegistrationActionTest extends TestCase {
-	public void testInput() {
-		UserRegistrationAction action = new UserRegistrationAction();
-		String result = action.input();
-
-		assertEquals(Action.SUCCESS, result);
-		assertNotNull(action.getModel());
-	}
-
 	public void testRegister() throws Exception {
 		UserService userSvc = EasyMock.createMock(UserService.class);
 		EasyMock.expect(userSvc.registerUser(EasyMock.isA(UserRegistrationRequest.class)))

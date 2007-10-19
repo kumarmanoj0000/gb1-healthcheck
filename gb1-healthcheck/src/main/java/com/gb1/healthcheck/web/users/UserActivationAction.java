@@ -11,10 +11,6 @@ public class UserActivationAction extends ActionSupport {
 	private String email;
 	private String token;
 
-	public String input() {
-		return Action.SUCCESS;
-	}
-
 	public String activate() {
 		String result;
 

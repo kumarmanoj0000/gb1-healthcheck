@@ -11,10 +11,6 @@ public class CreateComplexFoodAction extends ComplexFoodActionSupport {
 	public CreateComplexFoodAction() {
 	}
 
-	public String input() {
-		return Action.SUCCESS;
-	}
-
 	public String submit() {
 		String result = Action.INPUT;
 

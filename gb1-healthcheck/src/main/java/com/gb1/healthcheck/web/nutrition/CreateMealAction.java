@@ -10,10 +10,6 @@ public class CreateMealAction extends MealActionSupport {
 	public CreateMealAction() {
 	}
 
-	public String input() {
-		return Action.SUCCESS;
-	}
-
 	public String submit() {
 		String result = Action.INPUT;
 

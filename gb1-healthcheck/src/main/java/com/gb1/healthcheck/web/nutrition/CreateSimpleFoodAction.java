@@ -10,10 +10,6 @@ public class CreateSimpleFoodAction extends SimpleFoodActionSupport {
 	public CreateSimpleFoodAction() {
 	}
 
-	public String input() {
-		return Action.SUCCESS;
-	}
-
 	public String submit() throws FoodException {
 		String result;
 

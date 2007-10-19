@@ -17,7 +17,7 @@
 
 	<package name="registration" extends="default" namespace="/public/register">
 		<action name="request" method="input" class="userRegistrationAction">
-			<result>/views/public/security/register/request.jsp</result>
+			<result name="input">/views/public/security/register/request.jsp</result>
 		</action>
 		<action name="register" method="register" class="userRegistrationAction">
 			<result name="input">/views/public/security/register/request.jsp</result>
@@ -25,7 +25,7 @@
 		</action>
 
 		<action name="challenge" method="input" class="userActivationAction">
-			<result>/views/public/security/register/activate.jsp</result>
+			<result name="input">/views/public/security/register/activate.jsp</result>
 		</action>
 		<action name="activate" method="activate" class="userActivationAction">
 			<result name="input">/views/public/security/register/activate.jsp</result>
@@ -39,7 +39,7 @@
 			<result>/</result>
 		</action>
 		<action name="lostPassword" method="input" class="lostPasswordAction">
-			<result>/views/public/security/lostPassword.jsp</result>
+			<result name="input">/views/public/security/lostPassword.jsp</result>
 		</action>
 		<action name="sendPassword" method="sendLostPassword" class="lostPasswordAction">
 			<result name="input">/views/public/security/lostPassword.jsp</result>
@@ -64,7 +64,7 @@
 
 	<package name="simpleFood" extends="default" namespace="/nutrition/simpleFood">
 		<action name="createInput" method="input" class="createSimpleFoodAction">
-			<result>/views/nutrition/newSimpleFood.jsp</result>
+			<result name="input">/views/nutrition/newSimpleFood.jsp</result>
 		</action>
 		<action name="createSubmit" method="submit" class="createSimpleFoodAction">
 			<result name="input">/views/nutrition/newSimpleFood.jsp</result>
@@ -74,7 +74,7 @@
 			</result>
 		</action>
 		<action name="updateInput" method="input" class="updateSimpleFoodAction">
-			<result>/views/nutrition/updateSimpleFood.jsp</result>
+			<result name="input">/views/nutrition/updateSimpleFood.jsp</result>
 		</action>
 		<action name="updateSubmit" method="submit" class="updateSimpleFoodAction">
 			<result name="input">/views/nutrition/updateSimpleFood.jsp</result>
@@ -93,7 +93,7 @@
 
 	<package name="complexFood" extends="default" namespace="/nutrition/complexFood">
 		<action name="createInput" method="input" class="createComplexFoodAction">
-			<result>/views/nutrition/newComplexFood.jsp</result>
+			<result name="input">/views/nutrition/newComplexFood.jsp</result>
 		</action>
 		<action name="createSubmit" method="submit" class="createComplexFoodAction">
 			<result name="input">/views/nutrition/newComplexFood.jsp</result>
@@ -103,7 +103,7 @@
 			</result>
 		</action>
 		<action name="updateInput" method="input" class="updateComplexFoodAction">
-			<result>/views/nutrition/updateComplexFood.jsp</result>
+			<result name="input">/views/nutrition/updateComplexFood.jsp</result>
 		</action>
 		<action name="updateSubmit" method="submit" class="updateComplexFoodAction">
 			<result name="input">/views/nutrition/updateComplexFood.jsp</result>
@@ -122,7 +122,7 @@
 
 	<package name="meals" extends="default" namespace="/nutrition/meals">
 		<action name="createInput" method="input" class="createMealAction">
-			<result>/views/nutrition/newMeal.jsp</result>
+			<result name="input">/views/nutrition/newMeal.jsp</result>
 		</action>
 		<action name="createSubmit" method="submit" class="createMealAction">
 			<result name="input">/views/nutrition/newMeal.jsp</result>
@@ -132,7 +132,7 @@
 			</result>
 		</action>
 		<action name="updateInput" method="input" class="updateMealAction">
-			<result>/views/nutrition/updateMeal.jsp</result>
+			<result name="input">/views/nutrition/updateMeal.jsp</result>
 		</action>
 		<action name="updateSubmit" method="update" class="updateMealAction">
 			<result name="input">/views/nutrition/updateMeal.jsp</result>

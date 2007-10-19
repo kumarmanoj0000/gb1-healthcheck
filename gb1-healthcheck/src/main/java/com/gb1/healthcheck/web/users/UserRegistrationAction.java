@@ -16,10 +16,6 @@ public class UserRegistrationAction extends ActionSupport {
 	private UserService userService;
 	private UserRegistrationRequest userRegRequest = new UserRegistrationRequest(Role.STANDARD);
 
-	public String input() {
-		return Action.SUCCESS;
-	}
-
 	public String register() {
 		boolean registered = false;
 

@@ -21,11 +21,6 @@ import com.gb1.healthcheck.services.nutrition.MealService;
 import com.opensymphony.xwork2.Action;
 
 public class CreateMealActionTest extends TestCase {
-	public void testInput() {
-		CreateMealAction action = new CreateMealAction();
-		assertEquals(Action.SUCCESS, action.input());
-	}
-
 	public void testCancel() {
 		CreateMealAction action = new CreateMealAction();
 		assertEquals(Action.SUCCESS, action.cancel());

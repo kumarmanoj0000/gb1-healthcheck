@@ -29,7 +29,7 @@ public class UpdateSimpleFoodAction extends SimpleFoodActionSupport implements S
 		SimpleFoodUpdateRequest model = new SimpleFoodUpdateRequest(food);
 		session.put(MODEL_SESSION_KEY, model);
 
-		return Action.SUCCESS;
+		return Action.INPUT;
 	}
 
 	public String submit() throws FoodException {

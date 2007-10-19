@@ -10,7 +10,7 @@ public class LostPasswordAction extends ActionSupport {
 	private UserService userService;
 
 	public String input() {
-		return Action.SUCCESS;
+		return Action.INPUT;
 	}
 
 	public String sendLostPassword() {
