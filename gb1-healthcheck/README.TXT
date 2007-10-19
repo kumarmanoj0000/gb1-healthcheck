@@ -3,11 +3,6 @@ HealthCheck
 -----------
 
 . features:
-  - meals
-    > edit meal
-      x wrong dishes and preparation methods shown
-      X removed dishes are not deleted from database 
-
   - drugs
     > list drugs
     > create / edit / delete drugs

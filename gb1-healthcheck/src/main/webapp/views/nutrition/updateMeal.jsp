@@ -44,7 +44,7 @@
 	</head>
 
 	<body>
-		<h1><fmt:message key="nutrition.meals.create.title" /></h1>
+		<h2><fmt:message key="nutrition.meals.update.title" /></h2>
 		<s:form action="updateSubmit.go" method="post" namespace="/nutrition/meals">
 			<s:hidden name="mealId" />
 
@@ -65,6 +65,7 @@
 						<s:select
 							key="meal.dish"
 							name="model.selectedFoodIds"
+							value="model.selectedFoodIds[${it.index}]"
 							list="availableFoods"
 							listKey="id"
 							listValue="name"
@@ -72,20 +73,21 @@
 						<s:select
 							key="meal.preparationMethod"
 							name="model.selectedPreparationMethodNames"
+							value="model.selectedPreparationMethodNames[${it.index}]"
 							list="availablePreparationMethods"
 							listKey="name()"
 							listValue="name()"
 						/>
 
-						<a href="#" onClick="javascript:removeSingleDishDiv(${it.index})"><fmt:message key="nutrition.meals.create.removeDish" /></a>
+						<a href="#" onClick="javascript:removeSingleDishDiv(${it.index})"><fmt:message key="nutrition.meals.update.removeDish" /></a>
 					</div>
 				</s:iterator>
 			</div>
 
-			<a href="#" onClick="javascript:addSingleDishDiv()"><fmt:message key="nutrition.meals.create.addDish" /></a>
+			<a href="#" onClick="javascript:addSingleDishDiv()"><fmt:message key="nutrition.meals.update.addDish" /></a>
 
-			<s:submit key="nutrition.meals.create.submit" />
-			<s:submit key="nutrition.meals.create.cancel" name="method:cancel" />
+			<s:submit key="nutrition.meals.update.submit" />
+			<s:submit key="nutrition.meals.update.cancel" name="method:cancel" />
 		</s:form>
 
 		<script type="text/javascript">

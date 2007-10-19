@@ -4,7 +4,7 @@
 
 <html>
 	<body>
-		<h1><fmt:message key="nutrition.foods.complexFoods.create.title" /></h1>
+		<h2><fmt:message key="nutrition.foods.complexFoods.create.title" /></h2>
 		<s:form action="createSubmit.go" method="post" namespace="/nutrition/complexFood">
 			<s:textfield key="food.name" name="model.name" /><br/>
 			<s:checkboxlist key="food.ingredients" name="model.selectedIngredientIds" list="availableIngredients" listKey="id" listValue="name" />

@@ -4,7 +4,7 @@
 
 <html>
 	<body>
-		<h1><fmt:message key="nutrition.foods.complexFoods.update.title" /></h1>
+		<h2><fmt:message key="nutrition.foods.complexFoods.update.title" /></h2>
 		<s:form action="updateSubmit.go" method="post" namespace="/nutrition/complexFood">
 			<s:hidden name="foodId" />
 			<s:textfield key="food.name" name="model.name" /><br/>

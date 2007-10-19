@@ -4,7 +4,7 @@
 
 <html>
 	<body>
-		<h1><fmt:message key="nutrition.foods.simpleFoods.create.title" /></h1>
+		<h2><fmt:message key="nutrition.foods.simpleFoods.create.title" /></h2>
 		<s:form action="createSubmit.go" method="post" namespace="/nutrition/simpleFood">
 			<s:textfield key="food.name" name="model.name" /><br/>
 			<s:select key="food.foodGroup" name="model.foodGroup" list="availableGroups" />

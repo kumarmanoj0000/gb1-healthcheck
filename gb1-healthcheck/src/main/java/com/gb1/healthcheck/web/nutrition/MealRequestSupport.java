@@ -18,7 +18,7 @@ public class MealRequestSupport implements MealPropertyProvider {
 
 	private Date instant;
 	private List<Long> selectedFoodIds = new LinkedList<Long>();
-	private List<String> prepMethods = new LinkedList<String>();
+	private List<String> selectedPrepMethodNames = new LinkedList<String>();
 
 	public MealRequestSupport() {
 	}
@@ -35,7 +35,8 @@ public class MealRequestSupport implements MealPropertyProvider {
 		Set<PreparedFood> dishes = new HashSet<PreparedFood>();
 		for (int i = 0; i < selectedFoodIds.size(); i++) {
 			Food food = foodRepo.loadFood(selectedFoodIds.get(i));
-			PreparationMethod prepMethod = PreparationMethod.valueOf(prepMethods.get(i));
+			PreparationMethod prepMethod = PreparationMethod
+					.valueOf(selectedPrepMethodNames.get(i));
 			dishes.add(new PreparedFood(food, prepMethod));
 		}
 
@@ -44,11 +45,11 @@ public class MealRequestSupport implements MealPropertyProvider {
 
 	protected void setDishes(Set<PreparedFood> dishes) {
 		selectedFoodIds.clear();
-		prepMethods.clear();
+		selectedPrepMethodNames.clear();
 
 		for (PreparedFood dish : dishes) {
 			selectedFoodIds.add(dish.getIngredient().getId());
-			prepMethods.add(dish.getPreparationMethod().name());
+			selectedPrepMethodNames.add(dish.getPreparationMethod().name());
 		}
 	}
 
@@ -64,14 +65,14 @@ public class MealRequestSupport implements MealPropertyProvider {
 	}
 
 	public void setSelectedPreparationMethodNames(String[] prepMethodNames) {
-		prepMethods.clear();
+		selectedPrepMethodNames.clear();
 		for (String prepMethodName : prepMethodNames) {
-			prepMethods.add(prepMethodName);
+			selectedPrepMethodNames.add(prepMethodName);
 		}
 	}
 
 	public String[] getSelectedPreparationMethodNames() {
-		return prepMethods.toArray(new String[0]);
+		return selectedPrepMethodNames.toArray(new String[0]);
 	}
 
 	public void setFoodRepository(FoodRepository foodRepo) {

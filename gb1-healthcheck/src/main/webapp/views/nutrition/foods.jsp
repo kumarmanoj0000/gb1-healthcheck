@@ -4,9 +4,9 @@
 
 <html>
 	<body>
-		<h1><fmt:message key="nutrition.foods.title" /></h1>
+		<h3><fmt:message key="nutrition.foods.title" /></h3>
 
-		<h2><fmt:message key="nutrition.foods.simpleFoods" /></h2>
+		<h3><fmt:message key="nutrition.foods.simpleFoods" /></h3>
 		<s:if test="simpleFoods.size == 0"><fmt:message key="nutrition.foods.noSimpleFoods" /></s:if>
 		<s:else>
 			<ul>
@@ -23,7 +23,7 @@
 		</s:else>
 		<a href='<c:url value="/nutrition/simpleFood/createInput.go" />'><fmt:message key="nutrition.foods.simpleFoods.create" /></a>
 
-		<h2><fmt:message key="nutrition.foods.complexFoods" /></h2>
+		<h3><fmt:message key="nutrition.foods.complexFoods" /></h3>
 		<s:if test="complexFoods.size == 0"><fmt:message key="nutrition.foods.noComplexFoods" /></s:if>
 		<s:else>
 			<ul>
