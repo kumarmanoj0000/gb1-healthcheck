@@ -5,7 +5,7 @@ import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
-import com.gb1.commons.dataaccess.NullHydrater;
+import com.gb1.commons.dataaccess.IdentityHydrater;
 import com.gb1.healthcheck.domain.nutrition.ComplexFood;
 import com.gb1.healthcheck.domain.nutrition.Food;
 import com.gb1.healthcheck.domain.nutrition.PreparationMethod;
@@ -26,7 +26,7 @@ public class MealActionSupport extends ActionSupport implements Preparable {
 
 	public void prepare() {
 		availableFoods.addAll(getFoodService().getSimpleFoods());
-		availableFoods.addAll(getFoodService().getComplexFoods(new NullHydrater<ComplexFood>()));
+		availableFoods.addAll(getFoodService().getComplexFoods(new IdentityHydrater<ComplexFood>()));
 		Collections.sort(availableFoods, new Food.ByNameComparator());
 	}
 

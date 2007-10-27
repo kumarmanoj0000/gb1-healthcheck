@@ -10,7 +10,7 @@ import junit.framework.TestCase;
 import org.apache.commons.collections.CollectionUtils;
 import org.easymock.EasyMock;
 
-import com.gb1.commons.dataaccess.NullHydrater;
+import com.gb1.commons.dataaccess.IdentityHydrater;
 import com.gb1.healthcheck.domain.nutrition.ComplexFood;
 import com.gb1.healthcheck.domain.nutrition.Food;
 import com.gb1.healthcheck.domain.nutrition.Foods;
@@ -31,7 +31,7 @@ public class ListFoodsActionTest extends TestCase {
 
 		FoodService foodSvc = EasyMock.createMock(FoodService.class);
 		EasyMock.expect(foodSvc.getSimpleFoods()).andReturn(allSimpleFoods);
-		EasyMock.expect(foodSvc.getComplexFoods(EasyMock.isA(NullHydrater.class))).andReturn(
+		EasyMock.expect(foodSvc.getComplexFoods(EasyMock.isA(IdentityHydrater.class))).andReturn(
 				allComplexFoods);
 		EasyMock.replay(foodSvc);
 
