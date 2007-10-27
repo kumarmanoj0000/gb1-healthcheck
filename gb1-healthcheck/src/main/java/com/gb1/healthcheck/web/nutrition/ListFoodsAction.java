@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import com.gb1.commons.dataaccess.NullHydrater;
+import com.gb1.commons.dataaccess.IdentityHydrater;
 import com.gb1.healthcheck.domain.nutrition.ComplexFood;
 import com.gb1.healthcheck.domain.nutrition.Food;
 import com.gb1.healthcheck.domain.nutrition.SimpleFood;
@@ -25,7 +25,7 @@ public class ListFoodsAction {
 		Collections.sort(simpleFoods, new Food.ByNameComparator());
 
 		complexFoods = new ArrayList<ComplexFood>(foodService
-				.getComplexFoods(new NullHydrater<ComplexFood>()));
+				.getComplexFoods(new IdentityHydrater<ComplexFood>()));
 		Collections.sort(complexFoods, new Food.ByNameComparator());
 
 		return Action.SUCCESS;

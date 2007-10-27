@@ -9,7 +9,7 @@ import junit.framework.TestCase;
 import org.apache.commons.collections.CollectionUtils;
 import org.easymock.EasyMock;
 
-import com.gb1.commons.dataaccess.NullHydrater;
+import com.gb1.commons.dataaccess.IdentityHydrater;
 import com.gb1.healthcheck.domain.nutrition.ComplexFoodPropertyProvider;
 import com.gb1.healthcheck.domain.nutrition.Food;
 import com.gb1.healthcheck.domain.nutrition.FoodAlreadyExistsException;
@@ -28,7 +28,7 @@ public class CreateComplexFoodActionTest extends TestCase {
 
 		FoodService foodService = EasyMock.createMock(FoodService.class);
 		EasyMock.expect(foodService.getSimpleFoods()).andReturn(Foods.allSimpleFoods());
-		EasyMock.expect(foodService.getComplexFoods(EasyMock.isA(NullHydrater.class))).andReturn(
+		EasyMock.expect(foodService.getComplexFoods(EasyMock.isA(IdentityHydrater.class))).andReturn(
 				Foods.allComplexFoods());
 		EasyMock.replay(foodService);
 
