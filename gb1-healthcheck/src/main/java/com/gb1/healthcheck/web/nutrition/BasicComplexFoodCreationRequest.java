@@ -1,12 +1,9 @@
 package com.gb1.healthcheck.web.nutrition;
 
-import org.springframework.beans.factory.annotation.Configurable;
+import com.gb1.healthcheck.domain.nutrition.ComplexFoodCreationRequest;
 
-import com.gb1.healthcheck.domain.nutrition.ComplexFoodPropertyProvider;
-
-@Configurable("complexFoodCreationRequest")
 public class BasicComplexFoodCreationRequest extends ComplexFoodRequestSupport implements
-		ComplexFoodPropertyProvider {
+		ComplexFoodCreationRequest {
 	public BasicComplexFoodCreationRequest() {
 	}
 }

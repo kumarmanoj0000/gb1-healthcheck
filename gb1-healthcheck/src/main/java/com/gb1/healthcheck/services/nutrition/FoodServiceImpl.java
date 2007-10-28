@@ -6,8 +6,10 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.gb1.commons.dataaccess.Hydrater;
 import com.gb1.healthcheck.domain.nutrition.ComplexFood;
-import com.gb1.healthcheck.domain.nutrition.ComplexFoodMutablePropertyProvider;
-import com.gb1.healthcheck.domain.nutrition.ComplexFoodPropertyProvider;
+import com.gb1.healthcheck.domain.nutrition.ComplexFoodCreationRequest;
+import com.gb1.healthcheck.domain.nutrition.ComplexFoodMutablePropertyProviderAdapter;
+import com.gb1.healthcheck.domain.nutrition.ComplexFoodPropertyProviderAdapter;
+import com.gb1.healthcheck.domain.nutrition.ComplexFoodUpdateRequest;
 import com.gb1.healthcheck.domain.nutrition.ComplexFoodValidator;
 import com.gb1.healthcheck.domain.nutrition.FoodException;
 import com.gb1.healthcheck.domain.nutrition.FoodRepository;
@@ -58,17 +60,24 @@ public class FoodServiceImpl implements FoodService {
 
 	@Transactional(rollbackFor = { RuntimeException.class, FoodException.class })
 	public void createSimpleFood(SimpleFoodCreationRequest request) throws FoodException {
-		SimpleFood food = new SimpleFood(new SimpleFoodPropertyProviderAdapter(request));
+		SimpleFood food = createSimpleFoodFromRequest(request);
 		simpleFoodCreationValidator.validate(food);
 		foodRepo.saveFood(food);
 	}
 
+	protected SimpleFood createSimpleFoodFromRequest(SimpleFoodCreationRequest request) {
+		return new SimpleFood(new SimpleFoodPropertyProviderAdapter(request));
+	}
+
 	@Transactional(rollbackFor = { RuntimeException.class, FoodException.class })
-	public void createComplexFood(ComplexFoodPropertyProvider propertyProvider)
-			throws FoodException {
-		ComplexFood food = new ComplexFood(propertyProvider);
+	public void createComplexFood(ComplexFoodCreationRequest request) throws FoodException {
+		ComplexFood food = createComplexFoodFromRequest(request);
 		complexFoodCreationValidator.validate(food);
 		foodRepo.saveFood(food);
+	}
+
+	protected ComplexFood createComplexFoodFromRequest(ComplexFoodCreationRequest request) {
+		return new ComplexFood(new ComplexFoodPropertyProviderAdapter(request));
 	}
 
 	@Transactional(rollbackFor = { RuntimeException.class, FoodException.class })
@@ -79,10 +88,10 @@ public class FoodServiceImpl implements FoodService {
 	}
 
 	@Transactional(rollbackFor = { RuntimeException.class, FoodException.class })
-	public void updateComplexFood(Long foodId, ComplexFoodMutablePropertyProvider propertyProvider)
+	public void updateComplexFood(Long foodId, ComplexFoodUpdateRequest request)
 			throws FoodException {
 		ComplexFood food = foodRepo.loadComplexFood(foodId);
-		food.update(propertyProvider);
+		food.update(new ComplexFoodMutablePropertyProviderAdapter(request));
 		complexFoodUpdateValidator.validate(food);
 	}
 
