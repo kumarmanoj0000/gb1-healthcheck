@@ -29,7 +29,7 @@ public class ComplexFoodCreationRequestTest extends TestCase {
 		}
 		EasyMock.replay(foodRepo);
 
-		ComplexFoodCreationRequest req = new ComplexFoodCreationRequest();
+		BasicComplexFoodCreationRequest req = new BasicComplexFoodCreationRequest();
 		req.setFoodRepository(foodRepo);
 		req.setSelectedIngredientIds(ingredientIds);
 

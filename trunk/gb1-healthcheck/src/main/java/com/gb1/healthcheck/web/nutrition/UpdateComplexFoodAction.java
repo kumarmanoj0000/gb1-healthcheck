@@ -22,7 +22,7 @@ public class UpdateComplexFoodAction extends ComplexFoodActionSupport implements
 
 	public String input() {
 		ComplexFood food = getFoodService().loadComplexFood(foodId, new FullComplexFoodHydrater());
-		ComplexFoodUpdateRequest model = new ComplexFoodUpdateRequest(food);
+		BasicComplexFoodUpdateRequest model = new BasicComplexFoodUpdateRequest(food);
 		session.put(MODEL_SESSION_KEY, model);
 
 		return Action.INPUT;
@@ -56,8 +56,8 @@ public class UpdateComplexFoodAction extends ComplexFoodActionSupport implements
 		this.foodId = foodId;
 	}
 
-	public ComplexFoodUpdateRequest getModel() {
-		ComplexFoodUpdateRequest model = (ComplexFoodUpdateRequest) session.get(MODEL_SESSION_KEY);
+	public BasicComplexFoodUpdateRequest getModel() {
+		BasicComplexFoodUpdateRequest model = (BasicComplexFoodUpdateRequest) session.get(MODEL_SESSION_KEY);
 		return model;
 	}
 

@@ -45,7 +45,7 @@ public class UpdateComplexFoodActionTest extends TestCase {
 	@SuppressWarnings("unchecked")
 	public void testSubmit() throws Exception {
 		final Long foodId = 1L;
-		ComplexFoodUpdateRequest model = new ComplexFoodUpdateRequest(Foods.spaghetti());
+		BasicComplexFoodUpdateRequest model = new BasicComplexFoodUpdateRequest(Foods.spaghetti());
 
 		Map session = new HashMap();
 		session.put(MODEL_SESSION_KEY, model);
@@ -70,7 +70,7 @@ public class UpdateComplexFoodActionTest extends TestCase {
 	@SuppressWarnings("unchecked")
 	public void testSubmitWithErrors() throws Exception {
 		final Long foodId = 1L;
-		ComplexFoodUpdateRequest model = new ComplexFoodUpdateRequest(Foods.spaghetti());
+		BasicComplexFoodUpdateRequest model = new BasicComplexFoodUpdateRequest(Foods.spaghetti());
 
 		Map session = new HashMap();
 		session.put(MODEL_SESSION_KEY, model);

@@ -13,7 +13,7 @@ import com.gb1.healthcheck.domain.nutrition.Foods;
 public class ComplexFoodUpdateRequestTest extends TestCase {
 	public void testNewRequestFromFood() {
 		final ComplexFood food = Foods.spaghetti();
-		ComplexFoodUpdateRequest req = new ComplexFoodUpdateRequest(food);
+		BasicComplexFoodUpdateRequest req = new BasicComplexFoodUpdateRequest(food);
 
 		Long[] selectedIngredientIds = new Long[food.getIngredients().size()];
 		int i = 0;
