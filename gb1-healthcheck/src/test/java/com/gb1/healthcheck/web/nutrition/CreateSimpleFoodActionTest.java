@@ -5,14 +5,14 @@ import junit.framework.TestCase;
 import org.easymock.EasyMock;
 
 import com.gb1.healthcheck.domain.nutrition.FoodAlreadyExistsException;
-import com.gb1.healthcheck.domain.nutrition.SimpleFoodPropertyProvider;
+import com.gb1.healthcheck.domain.nutrition.SimpleFoodCreationRequest;
 import com.gb1.healthcheck.services.nutrition.FoodService;
 import com.opensymphony.xwork2.Action;
 
 public class CreateSimpleFoodActionTest extends TestCase {
 	public void testSubmit() throws Exception {
 		FoodService foodSvc = EasyMock.createMock(FoodService.class);
-		foodSvc.createSimpleFood(EasyMock.isA(SimpleFoodPropertyProvider.class));
+		foodSvc.createSimpleFood(EasyMock.isA(SimpleFoodCreationRequest.class));
 		EasyMock.expectLastCall();
 		EasyMock.replay(foodSvc);
 
@@ -25,7 +25,7 @@ public class CreateSimpleFoodActionTest extends TestCase {
 
 	public void testSubmitWithErrors() throws Exception {
 		FoodService foodSvc = EasyMock.createMock(FoodService.class);
-		foodSvc.createSimpleFood(EasyMock.isA(SimpleFoodPropertyProvider.class));
+		foodSvc.createSimpleFood(EasyMock.isA(SimpleFoodCreationRequest.class));
 		EasyMock.expectLastCall().andThrow(new FoodAlreadyExistsException("apple"));
 		EasyMock.replay(foodSvc);
 

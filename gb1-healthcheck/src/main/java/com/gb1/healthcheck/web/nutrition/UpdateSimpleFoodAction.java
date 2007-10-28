@@ -26,7 +26,7 @@ public class UpdateSimpleFoodAction extends SimpleFoodActionSupport implements S
 
 	public String input() {
 		SimpleFood food = getFoodService().loadSimpleFood(foodId);
-		SimpleFoodUpdateRequest model = new SimpleFoodUpdateRequest(food);
+		BasicSimpleFoodUpdateRequest model = new BasicSimpleFoodUpdateRequest(food);
 		session.put(MODEL_SESSION_KEY, model);
 
 		return Action.INPUT;
@@ -56,7 +56,7 @@ public class UpdateSimpleFoodAction extends SimpleFoodActionSupport implements S
 		this.foodId = foodId;
 	}
 
-	public SimpleFoodUpdateRequest getModel() {
-		return (SimpleFoodUpdateRequest) session.get(MODEL_SESSION_KEY);
+	public BasicSimpleFoodUpdateRequest getModel() {
+		return (BasicSimpleFoodUpdateRequest) session.get(MODEL_SESSION_KEY);
 	}
 }

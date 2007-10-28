@@ -10,7 +10,7 @@ import org.easymock.EasyMock;
 import com.gb1.healthcheck.domain.nutrition.FoodAlreadyExistsException;
 import com.gb1.healthcheck.domain.nutrition.Foods;
 import com.gb1.healthcheck.domain.nutrition.SimpleFood;
-import com.gb1.healthcheck.domain.nutrition.SimpleFoodMutablePropertyProvider;
+import com.gb1.healthcheck.domain.nutrition.SimpleFoodUpdateRequest;
 import com.gb1.healthcheck.services.nutrition.FoodService;
 import com.opensymphony.xwork2.Action;
 
@@ -43,7 +43,7 @@ public class UpdateSimpleFoodActionTest extends TestCase {
 	@SuppressWarnings("unchecked")
 	public void testSubmit() throws Exception {
 		final Long foodId = 1L;
-		SimpleFoodUpdateRequest model = new SimpleFoodUpdateRequest(Foods.apple());
+		BasicSimpleFoodUpdateRequest model = new BasicSimpleFoodUpdateRequest(Foods.apple());
 
 		Map session = new HashMap();
 		session.put(MODEL_SESSION_KEY, model);
@@ -68,14 +68,13 @@ public class UpdateSimpleFoodActionTest extends TestCase {
 	@SuppressWarnings("unchecked")
 	public void testSubmitWithErrors() throws Exception {
 		final Long foodId = 1L;
-		SimpleFoodUpdateRequest model = new SimpleFoodUpdateRequest(Foods.apple());
+		BasicSimpleFoodUpdateRequest model = new BasicSimpleFoodUpdateRequest(Foods.apple());
 
 		Map session = new HashMap();
 		session.put(MODEL_SESSION_KEY, model);
 
 		FoodService foodSvc = EasyMock.createMock(FoodService.class);
-		foodSvc.updateSimpleFood(EasyMock.eq(foodId), EasyMock
-				.isA(SimpleFoodMutablePropertyProvider.class));
+		foodSvc.updateSimpleFood(EasyMock.eq(foodId), EasyMock.isA(SimpleFoodUpdateRequest.class));
 		EasyMock.expectLastCall().andThrow(new FoodAlreadyExistsException("apple"));
 		EasyMock.replay(foodSvc);
 

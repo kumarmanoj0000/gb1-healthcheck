@@ -6,9 +6,8 @@ import java.util.Set;
 
 import com.gb1.healthcheck.domain.nutrition.FoodGroup;
 import com.gb1.healthcheck.domain.nutrition.Nutrient;
-import com.gb1.healthcheck.domain.nutrition.SimpleFoodPropertyProvider;
 
-public abstract class SimpleFoodRequestSupport implements SimpleFoodPropertyProvider {
+public abstract class SimpleFoodRequestSupport {
 	private String name;
 	private FoodGroup foodGroup;
 	private Set<Nutrient> nutrients = new HashSet<Nutrient>();
