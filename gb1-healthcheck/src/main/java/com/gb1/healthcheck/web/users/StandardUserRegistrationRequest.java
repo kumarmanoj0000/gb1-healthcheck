@@ -4,30 +4,20 @@ import java.util.HashSet;
 import java.util.Set;
 
 import com.gb1.healthcheck.domain.users.Role;
-import com.gb1.healthcheck.domain.users.UserPropertyProvider;
+import com.gb1.healthcheck.domain.users.UserRegistrationRequest;
 
-/**
- * A user registration request.
- * 
- * @author Guillaume Bilodeau
- */
-public class UserRegistrationRequest implements UserPropertyProvider {
+public class StandardUserRegistrationRequest implements UserRegistrationRequest {
 	private String login;
 	private String email;
 	private String password1;
 	private String password2;
 	private Set<Role> roles = new HashSet<Role>();
 
-	public UserRegistrationRequest() {
+	public StandardUserRegistrationRequest() {
 	}
 
-	public UserRegistrationRequest(Role role) {
+	public StandardUserRegistrationRequest(Role role) {
 		roles.add(role);
-	}
-
-	public Long getId() {
-		// no ID to assign yet
-		return null;
 	}
 
 	public String getLogin() {

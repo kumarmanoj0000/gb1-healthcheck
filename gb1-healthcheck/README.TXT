@@ -37,11 +37,11 @@ HealthCheck
   - improve visual design (CSS)
 
 . technical
-  - property providers should return IDs not full objects
+  - setup request / property provider / adapter paradigm
   - use annotations wherever possible
   - migrate unit tests to JUnit 4 (with Spring 2.5)
 
 . pain points
-  - repeating @Transactional on all service methods (especially exception lists)
+  - repeating @Transactional on all service methods, especially exception lists (solved in Spring 2.5)
   - so many web files: ApplicationMessages.properties, struts.xml, applicationContext-actions, *conversion.properties, *validation.xml
-  - duplication in ApplicationMessages.properties
+  - duplication in ApplicationMessages.properties (use global namespace)

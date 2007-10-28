@@ -18,7 +18,7 @@ import com.gb1.healthcheck.domain.users.UserException;
 import com.gb1.healthcheck.domain.users.UserRepository;
 import com.gb1.healthcheck.domain.users.UserValidator;
 import com.gb1.healthcheck.web.users.ExposedUserUpdateRequest;
-import com.gb1.healthcheck.web.users.UserRegistrationRequest;
+import com.gb1.healthcheck.web.users.StandardUserRegistrationRequest;
 import com.gb1.healthcheck.web.users.UserUpdateRequest;
 
 public class UserServiceImplTest extends TestCase {
@@ -31,7 +31,7 @@ public class UserServiceImplTest extends TestCase {
 	}
 
 	public void testRegisterUser() throws UserException {
-		UserRegistrationRequest regRequest = new UserRegistrationRequest();
+		StandardUserRegistrationRequest regRequest = new StandardUserRegistrationRequest();
 		regRequest.setLogin("login");
 
 		UserValidator validator = EasyMock.createMock(UserValidator.class);

@@ -44,10 +44,6 @@ public class JpaUserRepositoryTest extends BaseRepositoryTestCase {
 
 	public void testSaveUser() {
 		User u = new User(new UserPropertyProvider() {
-			public Long getId() {
-				return null;
-			}
-
 			public String getLogin() {
 				return "login";
 			}
