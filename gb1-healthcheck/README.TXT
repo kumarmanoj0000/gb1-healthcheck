@@ -37,7 +37,7 @@ HealthCheck
   - improve visual design (CSS)
 
 . technical
-  - setup request / property provider / adapter paradigm
+  - setup request / property provider / adapter paradigm (meals)
   - use annotations wherever possible
   - migrate unit tests to JUnit 4 (with Spring 2.5)
 
