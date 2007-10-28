@@ -7,7 +7,7 @@ import com.gb1.healthcheck.domain.users.UserActivationException;
 import com.gb1.healthcheck.domain.users.UserActivationRequest;
 import com.gb1.healthcheck.domain.users.UserException;
 import com.gb1.healthcheck.domain.users.UserMutablePropertyProvider;
-import com.gb1.healthcheck.domain.users.UserPropertyProvider;
+import com.gb1.healthcheck.domain.users.UserRegistrationRequest;
 
 /**
  * A facade for all services related to user management.
@@ -34,15 +34,15 @@ public interface UserService {
 	User findUserByLogin(String login);
 
 	/**
-	 * Registers a new user based on the given property provider. Following registration, the
+	 * Registers a new user based on the given registration request. Following registration, the
 	 * created user is not yet activated. An activation request will be sent to him in order to
 	 * validate his registration and activate his account.
 	 * 
-	 * @param propertyProvider The provider of properties to be used for user creation
+	 * @param req The request for user registration
 	 * @return The user activation request that will be sent to the user
 	 * @throws UserException When registration fails
 	 */
-	UserActivationRequest registerUser(UserPropertyProvider propertyProvider) throws UserException;
+	UserActivationRequest registerUser(UserRegistrationRequest req) throws UserException;
 
 	/**
 	 * Activates a user account. The user will be activated if his account can be retrieved using
