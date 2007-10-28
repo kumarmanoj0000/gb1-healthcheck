@@ -1,16 +1,13 @@
-package com.gb1.healthcheck.services.users;
+package com.gb1.healthcheck.domain.users;
 
 import java.util.Set;
 
-import com.gb1.healthcheck.domain.users.Role;
-import com.gb1.healthcheck.domain.users.UserPropertyProvider;
-import com.gb1.healthcheck.domain.users.UserRegistrationRequest;
 
 public class UserPropertyProviderAdapter implements UserPropertyProvider {
 	private UserRegistrationRequest request;
 
-	public UserPropertyProviderAdapter(UserRegistrationRequest req) {
-		this.request = req;
+	public UserPropertyProviderAdapter(UserRegistrationRequest request) {
+		this.request = request;
 	}
 
 	public String getLogin() {

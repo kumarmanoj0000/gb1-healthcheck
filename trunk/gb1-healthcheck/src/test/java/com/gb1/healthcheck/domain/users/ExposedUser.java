@@ -1,7 +1,6 @@
 package com.gb1.healthcheck.domain.users;
 
 import com.gb1.commons.tokens.Token;
-import com.gb1.healthcheck.services.users.UserPropertyProviderAdapter;
 
 /**
  * An exposed user allows complete access to its internal state. This class is a

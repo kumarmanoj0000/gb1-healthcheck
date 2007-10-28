@@ -10,9 +10,11 @@ import com.gb1.healthcheck.domain.users.UserActivationException;
 import com.gb1.healthcheck.domain.users.UserActivationRequest;
 import com.gb1.healthcheck.domain.users.UserActivationRequester;
 import com.gb1.healthcheck.domain.users.UserException;
-import com.gb1.healthcheck.domain.users.UserMutablePropertyProvider;
+import com.gb1.healthcheck.domain.users.UserMutablePropertyProviderAdapter;
+import com.gb1.healthcheck.domain.users.UserPropertyProviderAdapter;
 import com.gb1.healthcheck.domain.users.UserRegistrationRequest;
 import com.gb1.healthcheck.domain.users.UserRepository;
+import com.gb1.healthcheck.domain.users.UserUpdateRequest;
 import com.gb1.healthcheck.domain.users.UserValidator;
 
 /**
@@ -56,14 +58,14 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Transactional(rollbackFor = { RuntimeException.class, UserException.class })
-	public User updateUser(Long userId, UserMutablePropertyProvider propertyProvider)
+	public User updateUser(Long userId, UserUpdateRequest updateReq)
 			throws UserException {
 		User user = userRepository.loadUser(userId);
 		if (user == null) {
 			throw new UnknownUserException();
 		}
 
-		user.update(propertyProvider);
+		user.update(new UserMutablePropertyProviderAdapter(updateReq));
 		userUpdateValidator.validate(user);
 
 		return user;

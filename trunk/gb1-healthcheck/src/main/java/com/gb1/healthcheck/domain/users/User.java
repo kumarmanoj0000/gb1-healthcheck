@@ -312,7 +312,6 @@ public class User implements Identifiable, UserPropertyProvider, Serializable {
 	 * @throws UserException If the updated user is invalid
 	 */
 	public void update(UserMutablePropertyProvider propertyProvider) throws UserException {
-		// for the moment, only the email can be updated
 		email = propertyProvider.getEmail();
 	}
 
