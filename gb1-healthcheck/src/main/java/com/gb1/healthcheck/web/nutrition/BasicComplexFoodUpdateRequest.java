@@ -5,8 +5,8 @@ import org.springframework.beans.factory.annotation.Configurable;
 import com.gb1.healthcheck.domain.nutrition.ComplexFood;
 
 @Configurable("complexFoodUpdateRequest")
-public class ComplexFoodUpdateRequest extends ComplexFoodRequestSupport {
-	public ComplexFoodUpdateRequest(ComplexFood food) {
+public class BasicComplexFoodUpdateRequest extends ComplexFoodRequestSupport {
+	public BasicComplexFoodUpdateRequest(ComplexFood food) {
 		setName(food.getName());
 		setIngredients(food.getIngredients());
 	}
