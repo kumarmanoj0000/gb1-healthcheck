@@ -4,12 +4,9 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
-import com.gb1.healthcheck.domain.nutrition.ComplexFoodMutablePropertyProvider;
 import com.gb1.healthcheck.domain.nutrition.Food;
-import com.gb1.healthcheck.domain.nutrition.FoodRepository;
 
-public abstract class ComplexFoodRequestSupport implements ComplexFoodMutablePropertyProvider {
-	private FoodRepository foodRepo;
+public abstract class ComplexFoodRequestSupport {
 	private String name;
 	private Set<Long> selectedIngredientIds = new HashSet<Long>();
 
@@ -24,13 +21,8 @@ public abstract class ComplexFoodRequestSupport implements ComplexFoodMutablePro
 		this.name = name;
 	}
 
-	public Set<Food> getIngredients() {
-		Set<Food> ingredients = new HashSet<Food>();
-		for (Long foodId : selectedIngredientIds) {
-			ingredients.add(foodRepo.loadFood(foodId));
-		}
-
-		return Collections.unmodifiableSet(ingredients);
+	public Set<Long> getIngredientIds() {
+		return Collections.unmodifiableSet(selectedIngredientIds);
 	}
 
 	protected void setIngredients(Set<Food> ingredients) {
@@ -49,9 +41,5 @@ public abstract class ComplexFoodRequestSupport implements ComplexFoodMutablePro
 		for (Long id : ids) {
 			selectedIngredientIds.add(id);
 		}
-	}
-
-	public void setFoodRepository(FoodRepository foodRepo) {
-		this.foodRepo = foodRepo;
 	}
 }

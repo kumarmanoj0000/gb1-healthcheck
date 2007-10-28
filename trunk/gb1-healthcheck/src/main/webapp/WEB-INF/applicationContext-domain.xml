@@ -58,12 +58,20 @@
 	<bean id="simpleFoodUpdateValidator" class="com.gb1.healthcheck.domain.nutrition.FullSimpleFoodUpdateValidator">
 		<property name="foodRepository" ref="foodRepository" />
 	</bean>
+
 	<bean id="complexFoodCreationValidator" class="com.gb1.healthcheck.domain.nutrition.FullComplexFoodCreationValidator">
 		<property name="foodRepository" ref="foodRepository" />
 	</bean>
 	<bean id="complexFoodUpdateValidator" class="com.gb1.healthcheck.domain.nutrition.FullComplexFoodUpdateValidator">
 		<property name="foodRepository" ref="foodRepository" />
 	</bean>
+	<bean id="complexFoodPropertyProviderAdapter" class="com.gb1.healthcheck.domain.nutrition.ComplexFoodPropertyProviderAdapter" scope="prototype">
+		<property name="foodRepository" ref="foodRepository" />
+	</bean>
+	<bean id="complexFoodMutablePropertyProviderAdapter" class="com.gb1.healthcheck.domain.nutrition.ComplexFoodMutablePropertyProviderAdapter" scope="prototype">
+		<property name="foodRepository" ref="foodRepository" />
+	</bean>
+
 	<bean id="mealCreationValidator" class="com.gb1.healthcheck.domain.nutrition.FullMealCreationValidator">
 		<property name="mealRepository" ref="mealRepository" />
 	</bean>

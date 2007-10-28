@@ -10,7 +10,7 @@ import org.apache.commons.collections.CollectionUtils;
 import org.easymock.EasyMock;
 
 import com.gb1.commons.dataaccess.IdentityHydrater;
-import com.gb1.healthcheck.domain.nutrition.ComplexFoodPropertyProvider;
+import com.gb1.healthcheck.domain.nutrition.ComplexFoodCreationRequest;
 import com.gb1.healthcheck.domain.nutrition.Food;
 import com.gb1.healthcheck.domain.nutrition.FoodAlreadyExistsException;
 import com.gb1.healthcheck.domain.nutrition.FoodException;
@@ -28,8 +28,8 @@ public class CreateComplexFoodActionTest extends TestCase {
 
 		FoodService foodService = EasyMock.createMock(FoodService.class);
 		EasyMock.expect(foodService.getSimpleFoods()).andReturn(Foods.allSimpleFoods());
-		EasyMock.expect(foodService.getComplexFoods(EasyMock.isA(IdentityHydrater.class))).andReturn(
-				Foods.allComplexFoods());
+		EasyMock.expect(foodService.getComplexFoods(EasyMock.isA(IdentityHydrater.class)))
+				.andReturn(Foods.allComplexFoods());
 		EasyMock.replay(foodService);
 
 		CreateComplexFoodAction action = new CreateComplexFoodAction();
@@ -42,7 +42,7 @@ public class CreateComplexFoodActionTest extends TestCase {
 
 	public void testSubmit() throws FoodException {
 		FoodService foodSvc = EasyMock.createMock(FoodService.class);
-		foodSvc.createComplexFood(EasyMock.isA(ComplexFoodPropertyProvider.class));
+		foodSvc.createComplexFood(EasyMock.isA(ComplexFoodCreationRequest.class));
 		EasyMock.expectLastCall();
 		EasyMock.replay(foodSvc);
 
@@ -55,7 +55,7 @@ public class CreateComplexFoodActionTest extends TestCase {
 
 	public void testSubmitWithError() throws FoodException {
 		FoodService foodSvc = EasyMock.createMock(FoodService.class);
-		foodSvc.createComplexFood(EasyMock.isA(ComplexFoodPropertyProvider.class));
+		foodSvc.createComplexFood(EasyMock.isA(ComplexFoodCreationRequest.class));
 		EasyMock.expectLastCall().andThrow(new FoodAlreadyExistsException(""));
 		EasyMock.replay(foodSvc);
 

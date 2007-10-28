@@ -1,5 +1,6 @@
 package com.gb1.healthcheck.services.nutrition;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import junit.framework.TestCase;
@@ -11,7 +12,8 @@ import org.springframework.transaction.aspectj.AnnotationTransactionAspect;
 
 import com.gb1.commons.dataaccess.Hydrater;
 import com.gb1.healthcheck.domain.nutrition.ComplexFood;
-import com.gb1.healthcheck.domain.nutrition.ComplexFoodMutablePropertyProvider;
+import com.gb1.healthcheck.domain.nutrition.ComplexFoodCreationRequest;
+import com.gb1.healthcheck.domain.nutrition.ComplexFoodUpdateRequest;
 import com.gb1.healthcheck.domain.nutrition.ComplexFoodValidator;
 import com.gb1.healthcheck.domain.nutrition.Food;
 import com.gb1.healthcheck.domain.nutrition.FoodGroup;
@@ -84,7 +86,7 @@ public class FoodServiceImplTest extends TestCase {
 		};
 
 		SimpleFoodValidator validator = EasyMock.createMock(SimpleFoodValidator.class);
-		validator.validate(food);
+		validator.validate(EasyMock.eq(food));
 		EasyMock.expectLastCall();
 		EasyMock.replay(validator);
 
@@ -103,10 +105,24 @@ public class FoodServiceImplTest extends TestCase {
 	}
 
 	public void testCreateComplexFood() throws Exception {
-		ComplexFood food = Foods.spaghetti();
+		final ComplexFood food = Foods.spaghetti();
+
+		ComplexFoodCreationRequest request = new ComplexFoodCreationRequest() {
+			public String getName() {
+				return food.getName();
+			}
+
+			public Set<Long> getIngredientIds() {
+				Set<Long> ids = new HashSet<Long>();
+				for (Food f : food.getIngredients()) {
+					ids.add(f.getId());
+				}
+				return ids;
+			}
+		};
 
 		ComplexFoodValidator validator = EasyMock.createMock(ComplexFoodValidator.class);
-		validator.validate(food);
+		validator.validate(EasyMock.eq(food));
 		EasyMock.expectLastCall();
 		EasyMock.replay(validator);
 
@@ -115,11 +131,16 @@ public class FoodServiceImplTest extends TestCase {
 		EasyMock.expectLastCall();
 		EasyMock.replay(foodRepo);
 
-		FoodServiceImpl svc = new FoodServiceImpl();
+		FoodServiceImpl svc = new FoodServiceImpl() {
+			@Override
+			protected ComplexFood createComplexFoodFromRequest(ComplexFoodCreationRequest request) {
+				return food;
+			}
+		};
 		svc.setComplexFoodCreationValidator(validator);
 		svc.setFoodRepository(foodRepo);
 
-		svc.createComplexFood(food);
+		svc.createComplexFood(request);
 		EasyMock.verify(validator);
 		EasyMock.verify(foodRepo);
 	}
@@ -162,13 +183,17 @@ public class FoodServiceImplTest extends TestCase {
 	public void testUpdateComplexFood() throws Exception {
 		final ComplexFood oldSpag = Foods.spaghetti();
 
-		ComplexFoodMutablePropertyProvider updateReq = new ComplexFoodMutablePropertyProvider() {
-			public Set<Food> getIngredients() {
-				return oldSpag.getIngredients();
-			}
-
+		ComplexFoodUpdateRequest updateReq = new ComplexFoodUpdateRequest() {
 			public String getName() {
 				return "updated spag";
+			}
+
+			public Set<Long> getIngredientIds() {
+				Set<Long> ids = new HashSet<Long>();
+				for (Food f : oldSpag.getIngredients()) {
+					ids.add(f.getId());
+				}
+				return ids;
 			}
 		};
 

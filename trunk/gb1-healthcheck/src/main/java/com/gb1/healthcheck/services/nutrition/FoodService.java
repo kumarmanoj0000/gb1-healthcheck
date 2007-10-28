@@ -4,8 +4,8 @@ import java.util.Set;
 
 import com.gb1.commons.dataaccess.Hydrater;
 import com.gb1.healthcheck.domain.nutrition.ComplexFood;
-import com.gb1.healthcheck.domain.nutrition.ComplexFoodMutablePropertyProvider;
-import com.gb1.healthcheck.domain.nutrition.ComplexFoodPropertyProvider;
+import com.gb1.healthcheck.domain.nutrition.ComplexFoodCreationRequest;
+import com.gb1.healthcheck.domain.nutrition.ComplexFoodUpdateRequest;
 import com.gb1.healthcheck.domain.nutrition.FoodException;
 import com.gb1.healthcheck.domain.nutrition.SimpleFood;
 import com.gb1.healthcheck.domain.nutrition.SimpleFoodCreationRequest;
@@ -22,12 +22,11 @@ public interface FoodService {
 
 	void createSimpleFood(SimpleFoodCreationRequest request) throws FoodException;
 
-	void createComplexFood(ComplexFoodPropertyProvider propertyProvider) throws FoodException;
+	void createComplexFood(ComplexFoodCreationRequest request) throws FoodException;
 
 	void updateSimpleFood(Long foodId, SimpleFoodUpdateRequest request) throws FoodException;
 
-	void updateComplexFood(Long foodId, ComplexFoodMutablePropertyProvider propertyProvider)
-			throws FoodException;
+	void updateComplexFood(Long foodId, ComplexFoodUpdateRequest request) throws FoodException;
 
 	void deleteFood(Long foodId);
 }

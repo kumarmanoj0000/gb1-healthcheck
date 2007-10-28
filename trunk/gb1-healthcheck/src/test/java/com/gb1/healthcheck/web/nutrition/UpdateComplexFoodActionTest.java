@@ -8,7 +8,7 @@ import junit.framework.TestCase;
 import org.easymock.EasyMock;
 
 import com.gb1.healthcheck.domain.nutrition.ComplexFood;
-import com.gb1.healthcheck.domain.nutrition.ComplexFoodMutablePropertyProvider;
+import com.gb1.healthcheck.domain.nutrition.ComplexFoodUpdateRequest;
 import com.gb1.healthcheck.domain.nutrition.FoodAlreadyExistsException;
 import com.gb1.healthcheck.domain.nutrition.Foods;
 import com.gb1.healthcheck.domain.nutrition.FullComplexFoodHydrater;
@@ -76,8 +76,9 @@ public class UpdateComplexFoodActionTest extends TestCase {
 		session.put(MODEL_SESSION_KEY, model);
 
 		FoodService foodSvc = EasyMock.createMock(FoodService.class);
-		foodSvc.updateComplexFood(EasyMock.eq(foodId), EasyMock
-				.isA(ComplexFoodMutablePropertyProvider.class));
+		foodSvc
+				.updateComplexFood(EasyMock.eq(foodId), EasyMock
+						.isA(ComplexFoodUpdateRequest.class));
 		EasyMock.expectLastCall().andThrow(new FoodAlreadyExistsException("spaghetti"));
 		EasyMock.replay(foodSvc);
 
