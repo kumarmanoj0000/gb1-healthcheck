@@ -6,8 +6,8 @@ import com.gb1.healthcheck.domain.users.User;
 import com.gb1.healthcheck.domain.users.UserActivationException;
 import com.gb1.healthcheck.domain.users.UserActivationRequest;
 import com.gb1.healthcheck.domain.users.UserException;
-import com.gb1.healthcheck.domain.users.UserMutablePropertyProvider;
 import com.gb1.healthcheck.domain.users.UserRegistrationRequest;
+import com.gb1.healthcheck.domain.users.UserUpdateRequest;
 
 /**
  * A facade for all services related to user management.
@@ -58,14 +58,14 @@ public interface UserService {
 			UserActivationException;
 
 	/**
-	 * Updates a user based on the given property provider.
+	 * Updates a user based on the given update request.
 	 * 
 	 * @param userId The ID of the user to be updated
-	 * @param propertyProvider The provider of properties to be updated
+	 * @param updateReq The request to update
 	 * @return The updated user
 	 * @throws UserException If the user to update doesn't exist
 	 */
-	User updateUser(Long userId, UserMutablePropertyProvider propertyProvider) throws UserException;
+	User updateUser(Long userId, UserUpdateRequest updateReq) throws UserException;
 
 	/**
 	 * Sends a user's lost password to his email address.

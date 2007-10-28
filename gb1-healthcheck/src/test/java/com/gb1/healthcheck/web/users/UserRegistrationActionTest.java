@@ -12,7 +12,7 @@ import com.opensymphony.xwork2.Action;
 public class UserRegistrationActionTest extends TestCase {
 	public void testRegister() throws Exception {
 		UserService userSvc = EasyMock.createMock(UserService.class);
-		EasyMock.expect(userSvc.registerUser(EasyMock.isA(StandardUserRegistrationRequest.class)))
+		EasyMock.expect(userSvc.registerUser(EasyMock.isA(BasicUserRegistrationRequest.class)))
 				.andReturn(new UserActivationRequest(null, null));
 		EasyMock.replay(userSvc);
 
@@ -26,7 +26,7 @@ public class UserRegistrationActionTest extends TestCase {
 
 	public void testRegisterWithError() throws Exception {
 		UserService userSvc = EasyMock.createMock(UserService.class);
-		EasyMock.expect(userSvc.registerUser(EasyMock.isA(StandardUserRegistrationRequest.class)))
+		EasyMock.expect(userSvc.registerUser(EasyMock.isA(BasicUserRegistrationRequest.class)))
 				.andThrow(new LoginAlreadyExistsException(""));
 		EasyMock.replay(userSvc);
 

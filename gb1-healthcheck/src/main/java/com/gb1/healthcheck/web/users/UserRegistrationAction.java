@@ -10,7 +10,7 @@ import com.opensymphony.xwork2.ActionSupport;
 
 public class UserRegistrationAction extends ActionSupport {
 	private UserService userService;
-	private StandardUserRegistrationRequest userRegRequest = new StandardUserRegistrationRequest(Role.STANDARD);
+	private BasicUserRegistrationRequest userRegRequest = new BasicUserRegistrationRequest(Role.STANDARD);
 
 	public String register() {
 		boolean registered = false;
@@ -36,11 +36,11 @@ public class UserRegistrationAction extends ActionSupport {
 		this.userService = userService;
 	}
 
-	public StandardUserRegistrationRequest getModel() {
+	public BasicUserRegistrationRequest getModel() {
 		return userRegRequest;
 	}
 
-	void setModel(StandardUserRegistrationRequest userRegRequest) {
+	void setModel(BasicUserRegistrationRequest userRegRequest) {
 		this.userRegRequest = userRegRequest;
 	}
 }
