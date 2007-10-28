@@ -19,7 +19,8 @@ import com.gb1.healthcheck.domain.nutrition.FoodRepository;
 import com.gb1.healthcheck.domain.nutrition.Foods;
 import com.gb1.healthcheck.domain.nutrition.Nutrient;
 import com.gb1.healthcheck.domain.nutrition.SimpleFood;
-import com.gb1.healthcheck.domain.nutrition.SimpleFoodMutablePropertyProvider;
+import com.gb1.healthcheck.domain.nutrition.SimpleFoodCreationRequest;
+import com.gb1.healthcheck.domain.nutrition.SimpleFoodUpdateRequest;
 import com.gb1.healthcheck.domain.nutrition.SimpleFoodValidator;
 
 public class FoodServiceImplTest extends TestCase {
@@ -66,7 +67,21 @@ public class FoodServiceImplTest extends TestCase {
 	}
 
 	public void testCreateSimpleFood() throws Exception {
-		SimpleFood food = Foods.apple();
+		final SimpleFood food = Foods.apple();
+
+		SimpleFoodCreationRequest request = new SimpleFoodCreationRequest() {
+			public FoodGroup getFoodGroup() {
+				return food.getFoodGroup();
+			}
+
+			public String getName() {
+				return food.getName();
+			}
+
+			public Set<Nutrient> getNutrients() {
+				return food.getNutrients();
+			}
+		};
 
 		SimpleFoodValidator validator = EasyMock.createMock(SimpleFoodValidator.class);
 		validator.validate(food);
@@ -82,7 +97,7 @@ public class FoodServiceImplTest extends TestCase {
 		svc.setSimpleFoodCreationValidator(validator);
 		svc.setFoodRepository(foodRepo);
 
-		svc.createSimpleFood(food);
+		svc.createSimpleFood(request);
 		EasyMock.verify(validator);
 		EasyMock.verify(foodRepo);
 	}
@@ -111,7 +126,7 @@ public class FoodServiceImplTest extends TestCase {
 
 	public void testUpdateSimpleFood() throws Exception {
 		final SimpleFood oldApple = Foods.apple();
-		SimpleFoodMutablePropertyProvider updateReq = new SimpleFoodMutablePropertyProvider() {
+		SimpleFoodUpdateRequest updateReq = new SimpleFoodUpdateRequest() {
 			public FoodGroup getFoodGroup() {
 				return oldApple.getFoodGroup();
 			}

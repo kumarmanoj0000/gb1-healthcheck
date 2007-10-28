@@ -5,7 +5,7 @@ import com.gb1.healthcheck.domain.nutrition.FoodException;
 import com.opensymphony.xwork2.Action;
 
 public class CreateSimpleFoodAction extends SimpleFoodActionSupport {
-	private SimpleFoodCreationRequest foodCreationRequest = new SimpleFoodCreationRequest();
+	private BasicSimpleFoodCreationRequest foodCreationRequest = new BasicSimpleFoodCreationRequest();
 
 	public CreateSimpleFoodAction() {
 	}
@@ -25,7 +25,7 @@ public class CreateSimpleFoodAction extends SimpleFoodActionSupport {
 		return result;
 	}
 
-	public SimpleFoodCreationRequest getModel() {
+	public BasicSimpleFoodCreationRequest getModel() {
 		return foodCreationRequest;
 	}
 }
