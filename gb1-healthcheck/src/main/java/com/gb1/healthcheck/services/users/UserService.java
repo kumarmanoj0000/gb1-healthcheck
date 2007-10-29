@@ -38,11 +38,11 @@ public interface UserService {
 	 * created user is not yet activated. An activation request will be sent to him in order to
 	 * validate his registration and activate his account.
 	 * 
-	 * @param req The request for user registration
+	 * @param request The request for user registration
 	 * @return The user activation request that will be sent to the user
 	 * @throws UserException When registration fails
 	 */
-	UserActivationRequest registerUser(UserRegistrationRequest req) throws UserException;
+	UserActivationRequest registerUser(UserRegistrationRequest request) throws UserException;
 
 	/**
 	 * Activates a user account. The user will be activated if his account can be retrieved using
@@ -61,11 +61,11 @@ public interface UserService {
 	 * Updates a user based on the given update request.
 	 * 
 	 * @param userId The ID of the user to be updated
-	 * @param updateReq The request to update
+	 * @param request The request to update
 	 * @return The updated user
 	 * @throws UserException If the user to update doesn't exist
 	 */
-	User updateUser(Long userId, UserUpdateRequest updateReq) throws UserException;
+	User updateUser(Long userId, UserUpdateRequest request) throws UserException;
 
 	/**
 	 * Sends a user's lost password to his email address.

@@ -10,8 +10,6 @@ import com.gb1.healthcheck.domain.users.UserActivationException;
 import com.gb1.healthcheck.domain.users.UserActivationRequest;
 import com.gb1.healthcheck.domain.users.UserActivationRequester;
 import com.gb1.healthcheck.domain.users.UserException;
-import com.gb1.healthcheck.domain.users.UserMutablePropertyProviderAdapter;
-import com.gb1.healthcheck.domain.users.UserPropertyProviderAdapter;
 import com.gb1.healthcheck.domain.users.UserRegistrationRequest;
 import com.gb1.healthcheck.domain.users.UserRepository;
 import com.gb1.healthcheck.domain.users.UserUpdateRequest;
@@ -34,9 +32,9 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Transactional(rollbackFor = { RuntimeException.class, UserException.class })
-	public UserActivationRequest registerUser(UserRegistrationRequest req)
+	public UserActivationRequest registerUser(UserRegistrationRequest request)
 			throws UserException {
-		User user = new User(new UserPropertyProviderAdapter(req));
+		User user = new User(request);
 		userCreationValidator.validate(user);
 		UserActivationRequest actRequest = userActivationRequester.requestUserActivation(user);
 		userRepository.saveUser(actRequest.getPendingUser());
@@ -58,14 +56,14 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Transactional(rollbackFor = { RuntimeException.class, UserException.class })
-	public User updateUser(Long userId, UserUpdateRequest updateReq)
+	public User updateUser(Long userId, UserUpdateRequest request)
 			throws UserException {
 		User user = userRepository.loadUser(userId);
 		if (user == null) {
 			throw new UnknownUserException();
 		}
 
-		user.update(new UserMutablePropertyProviderAdapter(updateReq));
+		user.update(request);
 		userUpdateValidator.validate(user);
 
 		return user;
