@@ -6,7 +6,7 @@ import org.apache.commons.collections.CollectionUtils;
 
 import com.gb1.healthcheck.domain.nutrition.Foods;
 
-public class SimpleFoodUpdateRequestTest extends TestCase {
+public class BasicSimpleFoodUpdateRequestTest extends TestCase {
 	public void testNewRequestFromFood() {
 		BasicSimpleFoodUpdateRequest req = new BasicSimpleFoodUpdateRequest(Foods.apple());
 		assertEquals(Foods.apple().getName(), req.getName());

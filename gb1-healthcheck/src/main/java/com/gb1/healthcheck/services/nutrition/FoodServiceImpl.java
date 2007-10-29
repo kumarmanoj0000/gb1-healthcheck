@@ -15,8 +15,6 @@ import com.gb1.healthcheck.domain.nutrition.FoodException;
 import com.gb1.healthcheck.domain.nutrition.FoodRepository;
 import com.gb1.healthcheck.domain.nutrition.SimpleFood;
 import com.gb1.healthcheck.domain.nutrition.SimpleFoodCreationRequest;
-import com.gb1.healthcheck.domain.nutrition.SimpleFoodMutablePropertyProviderAdapter;
-import com.gb1.healthcheck.domain.nutrition.SimpleFoodPropertyProviderAdapter;
 import com.gb1.healthcheck.domain.nutrition.SimpleFoodUpdateRequest;
 import com.gb1.healthcheck.domain.nutrition.SimpleFoodValidator;
 
@@ -66,7 +64,7 @@ public class FoodServiceImpl implements FoodService {
 	}
 
 	protected SimpleFood createSimpleFoodFromRequest(SimpleFoodCreationRequest request) {
-		return new SimpleFood(new SimpleFoodPropertyProviderAdapter(request));
+		return new SimpleFood(request);
 	}
 
 	@Transactional(rollbackFor = { RuntimeException.class, FoodException.class })
@@ -83,7 +81,7 @@ public class FoodServiceImpl implements FoodService {
 	@Transactional(rollbackFor = { RuntimeException.class, FoodException.class })
 	public void updateSimpleFood(Long foodId, SimpleFoodUpdateRequest request) throws FoodException {
 		SimpleFood food = foodRepo.loadSimpleFood(foodId);
-		food.update(new SimpleFoodMutablePropertyProviderAdapter(request));
+		food.update(request);
 		simpleFoodUpdateValidator.validate(food);
 	}
 
