@@ -15,7 +15,6 @@ import com.gb1.healthcheck.domain.users.User;
 public class TrackRecord {
 	private User patient;
 	private List<Meal> meals = new ArrayList<Meal>();
-	private List<EnergyMeasurement> energyMeasurements = new ArrayList<EnergyMeasurement>();
 	private List<IntestinalStateMeasurement> intestinalStateMeasurements = new ArrayList<IntestinalStateMeasurement>();
 
 	public TrackRecord(User patient) {
@@ -38,18 +37,6 @@ public class TrackRecord {
 
 	public List<Meal> getMeals() {
 		return Collections.unmodifiableList(meals);
-	}
-
-	public void addEnergyMeasurement(EnergyLevel level, Date instant) {
-		energyMeasurements.add(new EnergyMeasurement(level, instant));
-	}
-
-	public void removeEnergyMeasurement(EnergyMeasurement em) {
-		energyMeasurements.remove(em);
-	}
-
-	public List<EnergyMeasurement> getEnergyMeasurements() {
-		return Collections.unmodifiableList(energyMeasurements);
 	}
 
 	public void addIntestinalStateMeasurement(IntestinalState state, Date instant) {

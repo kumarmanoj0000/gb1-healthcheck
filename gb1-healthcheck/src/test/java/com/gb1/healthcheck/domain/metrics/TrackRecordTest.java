@@ -28,16 +28,6 @@ public class TrackRecordTest extends TestCase {
 		assertFalse(tr.getMeals().contains(meal));
 	}
 
-	public void testEnergyMeasurements() {
-		Date now = new Date();
-
-		TrackRecord tr = new TrackRecord(Users.gb());
-		tr.addEnergyMeasurement(EnergyLevel.HIGH, now);
-
-		assertTrue(tr.getEnergyMeasurements()
-				.contains(new EnergyMeasurement(EnergyLevel.HIGH, now)));
-	}
-
 	public void testIntestinalStatuses() {
 		Date now = new Date();
 
