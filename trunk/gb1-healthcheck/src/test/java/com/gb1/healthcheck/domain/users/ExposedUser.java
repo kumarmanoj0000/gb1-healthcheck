@@ -13,8 +13,8 @@ public class ExposedUser extends User {
 	public ExposedUser() {
 	}
 
-	public ExposedUser(UserRegistrationRequest regRequest) {
-		super(new UserPropertyProviderAdapter(regRequest));
+	public ExposedUser(UserRegistrationRequest request) {
+		super(request);
 	}
 
 	@Override
