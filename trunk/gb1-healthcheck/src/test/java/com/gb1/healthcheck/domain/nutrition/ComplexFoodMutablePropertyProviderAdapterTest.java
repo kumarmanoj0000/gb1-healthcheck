@@ -11,7 +11,6 @@ import org.easymock.EasyMock;
 
 public class ComplexFoodMutablePropertyProviderAdapterTest extends TestCase {
 	public void testAdapt() {
-		final String name = "name";
 		final Map<Long, Food> foods = new HashMap<Long, Food>();
 		foods.put(Foods.beef().getId(), Foods.beef());
 		foods.put(Foods.apple().getId(), Foods.apple());
@@ -22,7 +21,7 @@ public class ComplexFoodMutablePropertyProviderAdapterTest extends TestCase {
 			}
 
 			public String getName() {
-				return name;
+				return "name";
 			}
 		};
 
@@ -36,7 +35,7 @@ public class ComplexFoodMutablePropertyProviderAdapterTest extends TestCase {
 				request);
 		adapter.setFoodRepository(foodRepo);
 
-		assertEquals(name, adapter.getName());
+		assertEquals(request.getName(), adapter.getName());
 		assertTrue(CollectionUtils.isEqualCollection(foods.values(), adapter.getIngredients()));
 	}
 }
