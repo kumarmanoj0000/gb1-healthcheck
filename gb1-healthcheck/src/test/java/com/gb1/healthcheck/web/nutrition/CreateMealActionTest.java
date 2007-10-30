@@ -14,6 +14,7 @@ import com.gb1.commons.dataaccess.IdentityHydrater;
 import com.gb1.healthcheck.domain.nutrition.Food;
 import com.gb1.healthcheck.domain.nutrition.Foods;
 import com.gb1.healthcheck.domain.nutrition.MealAlreadyExistsException;
+import com.gb1.healthcheck.domain.nutrition.MealCreationRequest;
 import com.gb1.healthcheck.domain.nutrition.MealException;
 import com.gb1.healthcheck.domain.nutrition.PreparationMethod;
 import com.gb1.healthcheck.services.nutrition.FoodService;

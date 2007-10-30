@@ -6,10 +6,12 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.gb1.commons.dataaccess.Hydrater;
 import com.gb1.healthcheck.domain.nutrition.Meal;
+import com.gb1.healthcheck.domain.nutrition.MealCreationRequest;
 import com.gb1.healthcheck.domain.nutrition.MealException;
-import com.gb1.healthcheck.domain.nutrition.MealMutablePropertyProvider;
-import com.gb1.healthcheck.domain.nutrition.MealPropertyProvider;
+import com.gb1.healthcheck.domain.nutrition.MealMutablePropertyProviderAdapter;
+import com.gb1.healthcheck.domain.nutrition.MealPropertyProviderAdapter;
 import com.gb1.healthcheck.domain.nutrition.MealRepository;
+import com.gb1.healthcheck.domain.nutrition.MealUpdateRequest;
 import com.gb1.healthcheck.domain.nutrition.MealValidator;
 
 public class MealServiceImpl implements MealService {
@@ -35,17 +37,16 @@ public class MealServiceImpl implements MealService {
 	}
 
 	@Transactional(rollbackFor = { RuntimeException.class, MealException.class })
-	public void createMeal(MealPropertyProvider propertyProvider) throws MealException {
-		Meal meal = new Meal(propertyProvider);
+	public void createMeal(MealCreationRequest request) throws MealException {
+		Meal meal = new Meal(new MealPropertyProviderAdapter(request));
 		mealCreationValidator.validate(meal);
 		mealRepo.saveMeal(meal);
 	}
 
 	@Transactional(rollbackFor = { RuntimeException.class, MealException.class })
-	public void updateMeal(Long mealId, MealMutablePropertyProvider propertyProvider)
-			throws MealException {
+	public void updateMeal(Long mealId, MealUpdateRequest request) throws MealException {
 		Meal meal = mealRepo.loadMeal(mealId);
-		meal.update(propertyProvider);
+		meal.update(new MealMutablePropertyProviderAdapter(request));
 		mealUpdateValidator.validate(meal);
 	}
 

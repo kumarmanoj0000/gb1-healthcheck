@@ -10,6 +10,7 @@ import org.easymock.EasyMock;
 import com.gb1.healthcheck.domain.nutrition.FullMealHydrater;
 import com.gb1.healthcheck.domain.nutrition.Meal;
 import com.gb1.healthcheck.domain.nutrition.MealException;
+import com.gb1.healthcheck.domain.nutrition.MealUpdateRequest;
 import com.gb1.healthcheck.domain.nutrition.Meals;
 import com.gb1.healthcheck.services.nutrition.MealService;
 import com.opensymphony.xwork2.Action;
@@ -43,7 +44,7 @@ public class UpdateMealActionTest extends TestCase {
 	@SuppressWarnings("unchecked")
 	public void testUpdate() throws Exception {
 		Meal meal = Meals.fullItalianDinner();
-		MealUpdateRequest model = new MealUpdateRequest(meal);
+		MealUpdateRequest model = new BasicMealUpdateRequest(meal);
 
 		Map session = new HashMap();
 		session.put(MODEL_SESSION_KEY, model);
@@ -68,7 +69,7 @@ public class UpdateMealActionTest extends TestCase {
 	@SuppressWarnings("unchecked")
 	public void testUpdateWithErrors() throws MealException {
 		Meal meal = Meals.fullItalianDinner();
-		MealUpdateRequest model = new MealUpdateRequest(meal);
+		MealUpdateRequest model = new BasicMealUpdateRequest(meal);
 
 		Map session = new HashMap();
 		session.put(MODEL_SESSION_KEY, model);

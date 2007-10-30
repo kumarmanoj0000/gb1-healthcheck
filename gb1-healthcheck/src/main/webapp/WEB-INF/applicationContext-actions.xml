@@ -68,14 +68,6 @@
 		<property name="mealService" ref="mealService" />
 	</bean>
 
-	<bean id="mealCreationRequest" class="com.gb1.healthcheck.web.nutrition.MealCreationRequest" scope="prototype">
-		<property name="foodRepository" ref="foodRepository" />
-	</bean>
-
-	<bean id="mealUpdateRequest" class="com.gb1.healthcheck.web.nutrition.MealUpdateRequest" scope="prototype">
-		<property name="foodRepository" ref="foodRepository" />
-	</bean>
-
 	<bean id="signOffAction" class="com.gb1.healthcheck.web.security.SignOffAction" scope="prototype" />
 
 </beans>

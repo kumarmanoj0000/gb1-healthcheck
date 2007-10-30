@@ -4,9 +4,9 @@ import java.util.List;
 
 import com.gb1.commons.dataaccess.Hydrater;
 import com.gb1.healthcheck.domain.nutrition.Meal;
+import com.gb1.healthcheck.domain.nutrition.MealCreationRequest;
 import com.gb1.healthcheck.domain.nutrition.MealException;
-import com.gb1.healthcheck.domain.nutrition.MealMutablePropertyProvider;
-import com.gb1.healthcheck.domain.nutrition.MealPropertyProvider;
+import com.gb1.healthcheck.domain.nutrition.MealUpdateRequest;
 
 public interface MealService {
 	/**
@@ -26,21 +26,21 @@ public interface MealService {
 	Meal loadMeal(Long mealId, Hydrater<Meal> hydrater);
 
 	/**
-	 * Creates a new meal, based on the property provider.
+	 * Creates a new meal, based on a creation request.
 	 * 
-	 * @param propertyProvider The provider of meal properties
+	 * @param request The creation request
 	 * @throws MealException When creation fails
 	 */
-	void createMeal(MealPropertyProvider propertyProvider) throws MealException;
+	void createMeal(MealCreationRequest request) throws MealException;
 
 	/**
-	 * Updates an existing meal, based on the property provider.
+	 * Updates an existing meal, based on an update request.
 	 * 
 	 * @param mealId The ID of the meal to modify
-	 * @param propertyProvider The provider of new meal properties
+	 * @param request The update request
 	 * @throws MealException When update fails
 	 */
-	void updateMeal(Long mealId, MealMutablePropertyProvider propertyProvider) throws MealException;
+	void updateMeal(Long mealId, MealUpdateRequest request) throws MealException;
 
 	/**
 	 * Deletes the meal identified by the given ID.
