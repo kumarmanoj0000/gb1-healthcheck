@@ -78,6 +78,12 @@
 	<bean id="mealUpdateValidator" class="com.gb1.healthcheck.domain.nutrition.FullMealUpdateValidator">
 		<property name="mealRepository" ref="mealRepository" />
 	</bean>
+	<bean id="mealPropertyProviderAdapter" class="com.gb1.healthcheck.domain.nutrition.MealPropertyProviderAdapter" scope="prototype">
+		<property name="foodRepository" ref="foodRepository" />
+	</bean>
+	<bean id="mealMutablePropertyProviderAdapter" class="com.gb1.healthcheck.domain.nutrition.MealMutablePropertyProviderAdapter" scope="prototype">
+		<property name="foodRepository" ref="foodRepository" />
+	</bean>
 
 	<!-- Repositories -->
 	<bean id="userRepository" class="com.gb1.healthcheck.domain.users.JpaUserRepository" />

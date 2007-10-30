@@ -29,6 +29,7 @@ public class PreparedFood implements Identifiable {
 		// for JPA
 	}
 
+	// TODO Visibility to be taken down to package-protected
 	public PreparedFood(Food ingredient, PreparationMethod preparationMethod) {
 		Validate.notNull(ingredient);
 
