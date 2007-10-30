@@ -3,9 +3,6 @@ HealthCheck
 -----------
 
 . features:
-  - meals
-    > migrate to request / property provider / adapter paradigm
-
   - drugs
     > list drugs
     > create / edit / delete drugs

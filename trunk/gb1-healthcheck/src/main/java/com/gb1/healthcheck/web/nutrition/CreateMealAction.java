@@ -1,11 +1,12 @@
 package com.gb1.healthcheck.web.nutrition;
 
 import com.gb1.healthcheck.domain.nutrition.MealAlreadyExistsException;
+import com.gb1.healthcheck.domain.nutrition.MealCreationRequest;
 import com.gb1.healthcheck.domain.nutrition.MealException;
 import com.opensymphony.xwork2.Action;
 
 public class CreateMealAction extends MealActionSupport {
-	private MealCreationRequest model = new MealCreationRequest();
+	private MealCreationRequest model = new BasicMealCreationRequest();
 
 	public CreateMealAction() {
 	}
@@ -27,7 +28,7 @@ public class CreateMealAction extends MealActionSupport {
 		return result;
 	}
 
-	public MealRequestSupport getModel() {
+	public MealCreationRequest getModel() {
 		return model;
 	}
 }

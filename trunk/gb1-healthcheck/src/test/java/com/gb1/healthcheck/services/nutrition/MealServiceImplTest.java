@@ -15,12 +15,14 @@ import org.springframework.transaction.aspectj.AnnotationTransactionAspect;
 
 import com.gb1.commons.dataaccess.Hydrater;
 import com.gb1.healthcheck.domain.nutrition.Meal;
+import com.gb1.healthcheck.domain.nutrition.MealCreationRequest;
 import com.gb1.healthcheck.domain.nutrition.MealException;
-import com.gb1.healthcheck.domain.nutrition.MealMutablePropertyProvider;
 import com.gb1.healthcheck.domain.nutrition.MealRepository;
+import com.gb1.healthcheck.domain.nutrition.MealUpdateRequest;
 import com.gb1.healthcheck.domain.nutrition.MealValidator;
 import com.gb1.healthcheck.domain.nutrition.Meals;
-import com.gb1.healthcheck.domain.nutrition.PreparedFood;
+import com.gb1.healthcheck.domain.nutrition.PreparedFoodCreationRequest;
+import com.gb1.healthcheck.domain.nutrition.PreparedFoodUpdateRequest;
 
 public class MealServiceImplTest extends TestCase {
 	@Override
@@ -66,7 +68,17 @@ public class MealServiceImplTest extends TestCase {
 	}
 
 	public void testCreateMeal() throws MealException {
-		Meal meal = Meals.fullItalianDinner();
+		final Meal meal = Meals.fullItalianDinner();
+
+		MealCreationRequest createReq = new MealCreationRequest() {
+			public Set<PreparedFoodCreationRequest> getDishCreationRequests() {
+				return Collections.emptySet();
+			}
+
+			public Date getInstant() {
+				return meal.getInstant();
+			}
+		};
 
 		MealRepository mealRepo = EasyMock.createMock(MealRepository.class);
 		mealRepo.saveMeal(EasyMock.eq(meal));
@@ -82,7 +94,7 @@ public class MealServiceImplTest extends TestCase {
 		svc.setMealRepository(mealRepo);
 		svc.setMealCreationValidator(validator);
 
-		svc.createMeal(meal);
+		svc.createMeal(createReq);
 
 		EasyMock.verify(validator);
 		EasyMock.verify(mealRepo);
@@ -91,13 +103,13 @@ public class MealServiceImplTest extends TestCase {
 	public void testUpdateMeal() throws MealException {
 		Meal oldMeal = Meals.fullItalianDinner();
 
-		MealMutablePropertyProvider updateReq = new MealMutablePropertyProvider() {
-			public Set<PreparedFood> getDishes() {
-				return Collections.emptySet();
-			}
-
+		MealUpdateRequest updateReq = new MealUpdateRequest() {
 			public Date getInstant() {
 				return new Date();
+			}
+
+			public Set<PreparedFoodUpdateRequest> getDishUpdateRequests() {
+				return Collections.emptySet();
 			}
 		};
 
