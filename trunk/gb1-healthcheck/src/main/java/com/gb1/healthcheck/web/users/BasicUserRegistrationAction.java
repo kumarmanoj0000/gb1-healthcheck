@@ -8,7 +8,7 @@ import com.gb1.healthcheck.services.users.UserService;
 import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionSupport;
 
-public class UserRegistrationAction extends ActionSupport {
+public class BasicUserRegistrationAction extends ActionSupport {
 	private UserService userService;
 	private BasicUserRegistrationRequest userRegRequest = new BasicUserRegistrationRequest(Role.STANDARD);
 
@@ -38,9 +38,5 @@ public class UserRegistrationAction extends ActionSupport {
 
 	public BasicUserRegistrationRequest getModel() {
 		return userRegRequest;
-	}
-
-	void setModel(BasicUserRegistrationRequest userRegRequest) {
-		this.userRegRequest = userRegRequest;
 	}
 }
