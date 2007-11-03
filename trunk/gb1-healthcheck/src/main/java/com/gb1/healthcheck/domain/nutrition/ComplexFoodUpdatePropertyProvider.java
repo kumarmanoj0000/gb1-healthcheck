@@ -2,7 +2,7 @@ package com.gb1.healthcheck.domain.nutrition;
 
 import java.util.Set;
 
-public interface ComplexFoodMutablePropertyProvider {
+public interface ComplexFoodUpdatePropertyProvider {
 	String getName();
 
 	Set<Food> getIngredients();

@@ -13,7 +13,7 @@ import org.hibernate.annotations.CollectionOfElements;
 
 @Entity
 @DiscriminatorValue("S")
-public class SimpleFood extends Food implements SimpleFoodPropertyProvider {
+public class SimpleFood extends Food implements SimpleFoodCreationPropertyProvider {
 	@Column(name = "FOOD_GROUP")
 	private FoodGroup foodGroup;
 
@@ -34,7 +34,7 @@ public class SimpleFood extends Food implements SimpleFoodPropertyProvider {
 		setFoodGroup(foodGroup);
 	}
 
-	public SimpleFood(SimpleFoodPropertyProvider propertyProvider) {
+	public SimpleFood(SimpleFoodCreationPropertyProvider propertyProvider) {
 		this(propertyProvider.getName(), propertyProvider.getFoodGroup());
 		nutrients.addAll(propertyProvider.getNutrients());
 	}
@@ -71,7 +71,7 @@ public class SimpleFood extends Food implements SimpleFoodPropertyProvider {
 		return this;
 	}
 
-	public void update(SimpleFoodMutablePropertyProvider propertyProvider) {
+	public void update(SimpleFoodUpdatePropertyProvider propertyProvider) {
 		setName(propertyProvider.getName());
 		setFoodGroup(propertyProvider.getFoodGroup());
 		setNutrients(propertyProvider.getNutrients());

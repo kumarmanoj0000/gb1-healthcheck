@@ -57,7 +57,8 @@ public class UpdateComplexFoodAction extends ComplexFoodActionSupport implements
 	}
 
 	public BasicComplexFoodUpdateRequest getModel() {
-		BasicComplexFoodUpdateRequest model = (BasicComplexFoodUpdateRequest) session.get(MODEL_SESSION_KEY);
+		BasicComplexFoodUpdateRequest model = (BasicComplexFoodUpdateRequest) session
+				.get(MODEL_SESSION_KEY);
 		return model;
 	}
 

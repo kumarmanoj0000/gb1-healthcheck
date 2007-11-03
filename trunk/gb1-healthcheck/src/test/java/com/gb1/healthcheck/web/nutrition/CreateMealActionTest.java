@@ -36,8 +36,8 @@ public class CreateMealActionTest extends TestCase {
 
 		FoodService foodService = EasyMock.createMock(FoodService.class);
 		EasyMock.expect(foodService.getSimpleFoods()).andReturn(Foods.allSimpleFoods());
-		EasyMock.expect(foodService.getComplexFoods(EasyMock.isA(IdentityHydrater.class))).andReturn(
-				Foods.allComplexFoods());
+		EasyMock.expect(foodService.getComplexFoods(EasyMock.isA(IdentityHydrater.class)))
+				.andReturn(Foods.allComplexFoods());
 		EasyMock.replay(foodService);
 
 		CreateMealAction action = new CreateMealAction();

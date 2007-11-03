@@ -5,12 +5,13 @@ import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Configurable;
 
-@Configurable("complexFoodPropertyProviderAdapter")
-public class ComplexFoodPropertyProviderAdapter implements ComplexFoodPropertyProvider {
+@Configurable("complexFoodCreationPropertyProviderAdapter")
+public class ComplexFoodCreationPropertyProviderAdapter implements
+		ComplexFoodCreationPropertyProvider {
 	private FoodRepository foodRepo;
 	private ComplexFoodCreationRequest request;
 
-	public ComplexFoodPropertyProviderAdapter(ComplexFoodCreationRequest request) {
+	public ComplexFoodCreationPropertyProviderAdapter(ComplexFoodCreationRequest request) {
 		this.request = request;
 	}
 

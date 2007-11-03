@@ -32,8 +32,7 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Transactional(rollbackFor = { RuntimeException.class, UserException.class })
-	public UserActivationRequest registerUser(UserRegistrationRequest request)
-			throws UserException {
+	public UserActivationRequest registerUser(UserRegistrationRequest request) throws UserException {
 		User user = new User(request);
 		userCreationValidator.validate(user);
 		UserActivationRequest actRequest = userActivationRequester.requestUserActivation(user);
@@ -56,8 +55,7 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Transactional(rollbackFor = { RuntimeException.class, UserException.class })
-	public User updateUser(Long userId, UserUpdateRequest request)
-			throws UserException {
+	public User updateUser(Long userId, UserUpdateRequest request) throws UserException {
 		User user = userRepository.loadUser(userId);
 		if (user == null) {
 			throw new UnknownUserException();

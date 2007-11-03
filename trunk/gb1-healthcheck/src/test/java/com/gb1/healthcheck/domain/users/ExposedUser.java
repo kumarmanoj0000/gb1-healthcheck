@@ -3,9 +3,8 @@ package com.gb1.healthcheck.domain.users;
 import com.gb1.commons.tokens.Token;
 
 /**
- * An exposed user allows complete access to its internal state. This class is a
- * convenience for unit tests and is meant to be used only in the context of
- * such tests.
+ * An exposed user allows complete access to its internal state. This class is a convenience for
+ * unit tests and is meant to be used only in the context of such tests.
  * 
  * @author Guillaume Bilodeau
  */

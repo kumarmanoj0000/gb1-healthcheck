@@ -23,7 +23,7 @@ import org.hibernate.annotations.Cascade;
 import com.gb1.commons.Identifiable;
 
 @Entity
-public class Meal implements Identifiable, MealPropertyProvider {
+public class Meal implements Identifiable, MealCreationPropertyProvider {
 	@Id
 	@GeneratedValue
 	private Long id;
@@ -48,7 +48,7 @@ public class Meal implements Identifiable, MealPropertyProvider {
 		this(null, instant);
 	}
 
-	public Meal(MealPropertyProvider propertyProvider) {
+	public Meal(MealCreationPropertyProvider propertyProvider) {
 		this.instant = new Date(propertyProvider.getInstant().getTime());
 		for (PreparedFood dish : propertyProvider.getDishes()) {
 			addDish(dish);
@@ -129,7 +129,7 @@ public class Meal implements Identifiable, MealPropertyProvider {
 		return false;
 	}
 
-	public void update(MealMutablePropertyProvider provider) {
+	public void update(MealUpdatePropertyProvider provider) {
 		setInstant(provider.getInstant());
 
 		Set<PreparedFood> dishesToAdd = new HashSet<PreparedFood>();
