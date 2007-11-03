@@ -48,6 +48,7 @@ public class SimpleFood extends Food implements SimpleFoodCreationPropertyProvid
 		return this;
 	}
 
+	@Override
 	public boolean isPartOfFoodGroup(FoodGroup group) {
 		return foodGroup.equals(group);
 	}
@@ -57,10 +58,12 @@ public class SimpleFood extends Food implements SimpleFoodCreationPropertyProvid
 		return this;
 	}
 
+	@Override
 	public Set<Nutrient> getNutrients() {
 		return Collections.unmodifiableSet(nutrients);
 	}
 
+	@Override
 	public boolean isSourceOfNutrient(Nutrient nutrient) {
 		return nutrients.contains(nutrient);
 	}
