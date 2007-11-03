@@ -7,14 +7,12 @@ HealthCheck
     > create / edit / delete intestinal status
 
   - analysis
-    > energy level graph
     > intestinal status graph
     > correlation food => intestinal status
-    > correlation drug => intestinal status
 
   - administration (visible to administrators on control panel)
     > user management
-      >> view user list
+      >> view user list (paginate, sort)
       >> view user profile
       >> edit user profile (including roles)
 
