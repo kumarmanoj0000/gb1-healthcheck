@@ -7,8 +7,8 @@ import org.springframework.transaction.annotation.Transactional;
 import com.gb1.commons.dataaccess.Hydrater;
 import com.gb1.healthcheck.domain.nutrition.ComplexFood;
 import com.gb1.healthcheck.domain.nutrition.ComplexFoodCreationRequest;
-import com.gb1.healthcheck.domain.nutrition.ComplexFoodMutablePropertyProviderAdapter;
-import com.gb1.healthcheck.domain.nutrition.ComplexFoodPropertyProviderAdapter;
+import com.gb1.healthcheck.domain.nutrition.ComplexFoodUpdatePropertyProviderAdapter;
+import com.gb1.healthcheck.domain.nutrition.ComplexFoodCreationPropertyProviderAdapter;
 import com.gb1.healthcheck.domain.nutrition.ComplexFoodUpdateRequest;
 import com.gb1.healthcheck.domain.nutrition.ComplexFoodValidator;
 import com.gb1.healthcheck.domain.nutrition.FoodException;
@@ -75,7 +75,7 @@ public class FoodServiceImpl implements FoodService {
 	}
 
 	protected ComplexFood createComplexFoodFromRequest(ComplexFoodCreationRequest request) {
-		return new ComplexFood(new ComplexFoodPropertyProviderAdapter(request));
+		return new ComplexFood(new ComplexFoodCreationPropertyProviderAdapter(request));
 	}
 
 	@Transactional(rollbackFor = { RuntimeException.class, FoodException.class })
@@ -89,7 +89,7 @@ public class FoodServiceImpl implements FoodService {
 	public void updateComplexFood(Long foodId, ComplexFoodUpdateRequest request)
 			throws FoodException {
 		ComplexFood food = foodRepo.loadComplexFood(foodId);
-		food.update(new ComplexFoodMutablePropertyProviderAdapter(request));
+		food.update(new ComplexFoodUpdatePropertyProviderAdapter(request));
 		complexFoodUpdateValidator.validate(food);
 	}
 

@@ -10,7 +10,8 @@ import com.opensymphony.xwork2.ActionSupport;
 
 public class BasicUserRegistrationAction extends ActionSupport {
 	private UserService userService;
-	private BasicUserRegistrationRequest userRegRequest = new BasicUserRegistrationRequest(Role.STANDARD);
+	private BasicUserRegistrationRequest userRegRequest = new BasicUserRegistrationRequest(
+			Role.STANDARD);
 
 	public String register() {
 		boolean registered = false;

@@ -19,7 +19,7 @@ public class SimpleFoodTest extends TestCase {
 
 	public void testNewSimpleFoodUsingPropertyProvider() {
 		final SimpleFood oldFood = Foods.apple();
-		SimpleFoodPropertyProvider request = new SimpleFoodPropertyProvider() {
+		SimpleFoodCreationPropertyProvider request = new SimpleFoodCreationPropertyProvider() {
 			public String getName() {
 				return oldFood.getName();
 			}
@@ -41,7 +41,7 @@ public class SimpleFoodTest extends TestCase {
 
 	public void testUpdateUsingPropertyProvider() {
 		final SimpleFood oldFood = Foods.apple();
-		SimpleFoodMutablePropertyProvider request = new SimpleFoodMutablePropertyProvider() {
+		SimpleFoodUpdatePropertyProvider request = new SimpleFoodUpdatePropertyProvider() {
 			public FoodGroup getFoodGroup() {
 				return oldFood.getFoodGroup();
 			}

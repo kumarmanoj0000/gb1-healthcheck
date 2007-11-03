@@ -12,7 +12,7 @@ import org.apache.commons.lang.time.DateUtils;
 public class MealTest extends TestCase {
 	public void testNewFromPropertyProvider() {
 		final Date today = new Date();
-		MealPropertyProvider pp = new MealPropertyProvider() {
+		MealCreationPropertyProvider pp = new MealCreationPropertyProvider() {
 			public Date getInstant() {
 				return today;
 			}
@@ -47,7 +47,7 @@ public class MealTest extends TestCase {
 		final Date oldInstant = parseInstant("2007-10-15 18:00");
 		final Date newInstant = parseInstant("2007-10-15 18:30");
 
-		MealMutablePropertyProvider pp = new MealMutablePropertyProvider() {
+		MealUpdatePropertyProvider pp = new MealUpdatePropertyProvider() {
 			public Set<PreparedFood> getDishes() {
 				Set<PreparedFood> dishes = new HashSet<PreparedFood>();
 				dishes.add(Meals.spaghettiDish());

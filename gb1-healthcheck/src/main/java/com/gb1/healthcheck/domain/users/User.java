@@ -216,9 +216,9 @@ public class User implements Identifiable, UserPropertyProvider, Serializable {
 	 * @param candidateToken The candidate activation token
 	 * @throws UserAlreadyActiveException When the user is already active
 	 * @throws UserActivationNotRequestedException When activation has not yet been requested for
-	 *             this user
+	 *         this user
 	 * @throws InvalidTokenException When the provided token is not equal to the one assigned when
-	 *             activation was requested
+	 *         activation was requested
 	 */
 	public void activate(Token candidateToken) throws UserActivationException {
 		if (isActive()) {

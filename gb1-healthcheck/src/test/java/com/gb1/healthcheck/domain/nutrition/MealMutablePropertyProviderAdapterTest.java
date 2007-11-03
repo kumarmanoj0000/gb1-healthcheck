@@ -47,7 +47,7 @@ public class MealMutablePropertyProviderAdapterTest extends TestCase {
 		}
 		EasyMock.replay(foodRepo);
 
-		MealMutablePropertyProviderAdapter adapter = new MealMutablePropertyProviderAdapter(request);
+		MealUpdatePropertyProviderAdapter adapter = new MealUpdatePropertyProviderAdapter(request);
 		adapter.setFoodRepository(foodRepo);
 
 		assertEquals(request.getInstant(), adapter.getInstant());

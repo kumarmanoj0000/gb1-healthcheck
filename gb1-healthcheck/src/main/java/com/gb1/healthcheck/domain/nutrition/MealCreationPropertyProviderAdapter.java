@@ -6,20 +6,20 @@ import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Configurable;
 
-@Configurable("mealMutablePropertyProviderAdapter")
-public class MealMutablePropertyProviderAdapter implements MealMutablePropertyProvider {
+@Configurable("mealCreationPropertyProviderAdapter")
+public class MealCreationPropertyProviderAdapter implements MealCreationPropertyProvider {
 	private FoodRepository foodRepo;
-	private MealUpdateRequest request;
+	private MealCreationRequest request;
 
-	public MealMutablePropertyProviderAdapter(MealUpdateRequest request) {
+	public MealCreationPropertyProviderAdapter(MealCreationRequest request) {
 		this.request = request;
 	}
 
 	public Set<PreparedFood> getDishes() {
 		Set<PreparedFood> dishes = new HashSet<PreparedFood>();
-		for (PreparedFoodUpdateRequest dur : request.getDishUpdateRequests()) {
-			Food ingredient = foodRepo.loadFood(dur.getIngredientId());
-			dishes.add(new PreparedFood(ingredient, dur.getPreparationMethod()));
+		for (PreparedFoodCreationRequest dcr : request.getDishCreationRequests()) {
+			Food ingredient = foodRepo.loadFood(dcr.getIngredientId());
+			dishes.add(new PreparedFood(ingredient, dcr.getPreparationMethod()));
 		}
 
 		return dishes;

@@ -26,7 +26,8 @@ public class MealActionSupport extends ActionSupport implements Preparable {
 
 	public void prepare() {
 		availableFoods.addAll(getFoodService().getSimpleFoods());
-		availableFoods.addAll(getFoodService().getComplexFoods(new IdentityHydrater<ComplexFood>()));
+		availableFoods
+				.addAll(getFoodService().getComplexFoods(new IdentityHydrater<ComplexFood>()));
 		Collections.sort(availableFoods, new Food.ByNameComparator());
 	}
 

@@ -9,7 +9,7 @@ import org.apache.commons.collections.CollectionUtils;
 
 public class ComplexFoodTest extends TestCase {
 	public void testNewFromProvider() {
-		ComplexFoodPropertyProvider provider = new ComplexFoodPropertyProvider() {
+		ComplexFoodCreationPropertyProvider provider = new ComplexFoodCreationPropertyProvider() {
 			public String getName() {
 				return Foods.spaghetti().getName();
 			}
@@ -45,7 +45,7 @@ public class ComplexFoodTest extends TestCase {
 		updatedIngredients.add(Foods.tomato());
 		updatedIngredients.add(Foods.pasta());
 
-		ComplexFoodMutablePropertyProvider provider = new ComplexFoodMutablePropertyProvider() {
+		ComplexFoodUpdatePropertyProvider provider = new ComplexFoodUpdatePropertyProvider() {
 			public Set<Food> getIngredients() {
 				return updatedIngredients;
 			}

@@ -31,7 +31,8 @@ public class ComplexFoodPropertyProviderAdapterTest extends TestCase {
 		}
 		EasyMock.replay(foodRepo);
 
-		ComplexFoodPropertyProviderAdapter adapter = new ComplexFoodPropertyProviderAdapter(request);
+		ComplexFoodCreationPropertyProviderAdapter adapter = new ComplexFoodCreationPropertyProviderAdapter(
+				request);
 		adapter.setFoodRepository(foodRepo);
 
 		assertEquals(request.getName(), adapter.getName());

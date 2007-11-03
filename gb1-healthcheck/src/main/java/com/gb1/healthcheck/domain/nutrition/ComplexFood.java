@@ -13,7 +13,7 @@ import org.apache.commons.lang.Validate;
 
 @Entity
 @DiscriminatorValue("C")
-public class ComplexFood extends Food implements ComplexFoodPropertyProvider {
+public class ComplexFood extends Food implements ComplexFoodCreationPropertyProvider {
 	@ManyToMany
 	@JoinTable(name = "FOOD_INGREDIENTS")
 	private Set<Food> ingredients = new HashSet<Food>();
@@ -31,7 +31,7 @@ public class ComplexFood extends Food implements ComplexFoodPropertyProvider {
 		setId(id);
 	}
 
-	public ComplexFood(ComplexFoodPropertyProvider propertyProvider) {
+	public ComplexFood(ComplexFoodCreationPropertyProvider propertyProvider) {
 		super(propertyProvider.getName());
 		ingredients.addAll(propertyProvider.getIngredients());
 	}
@@ -92,7 +92,7 @@ public class ComplexFood extends Food implements ComplexFoodPropertyProvider {
 		return false;
 	}
 
-	public void update(ComplexFoodMutablePropertyProvider propertyProvider) {
+	public void update(ComplexFoodUpdatePropertyProvider propertyProvider) {
 		setName(propertyProvider.getName());
 
 		ingredients.clear();

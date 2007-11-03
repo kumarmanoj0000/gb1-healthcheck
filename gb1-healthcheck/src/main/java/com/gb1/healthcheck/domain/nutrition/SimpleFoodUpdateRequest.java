@@ -1,4 +1,4 @@
 package com.gb1.healthcheck.domain.nutrition;
 
-public interface SimpleFoodUpdateRequest extends SimpleFoodMutablePropertyProvider {
+public interface SimpleFoodUpdateRequest extends SimpleFoodUpdatePropertyProvider {
 }
