@@ -9,6 +9,7 @@ public class LostPasswordAction extends ActionSupport {
 	private String email;
 	private UserService userService;
 
+	@Override
 	public String input() {
 		return Action.INPUT;
 	}

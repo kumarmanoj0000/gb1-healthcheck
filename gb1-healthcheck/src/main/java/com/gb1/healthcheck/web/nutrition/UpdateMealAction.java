@@ -19,6 +19,7 @@ public class UpdateMealAction extends MealActionSupport implements SessionAware 
 	public UpdateMealAction() {
 	}
 
+	@Override
 	public String input() {
 		Meal meal = getMealService().loadMeal(mealId, new FullMealHydrater());
 		MealUpdateRequest model = new BasicMealUpdateRequest(meal);

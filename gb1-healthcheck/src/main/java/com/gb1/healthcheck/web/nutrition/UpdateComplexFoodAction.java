@@ -20,6 +20,7 @@ public class UpdateComplexFoodAction extends ComplexFoodActionSupport implements
 	public UpdateComplexFoodAction() {
 	}
 
+	@Override
 	public String input() {
 		ComplexFood food = getFoodService().loadComplexFood(foodId, new FullComplexFoodHydrater());
 		BasicComplexFoodUpdateRequest model = new BasicComplexFoodUpdateRequest(food);

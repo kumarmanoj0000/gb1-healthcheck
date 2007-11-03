@@ -24,6 +24,7 @@ public class UpdateSimpleFoodAction extends SimpleFoodActionSupport implements S
 		this.session = session;
 	}
 
+	@Override
 	public String input() {
 		SimpleFood food = getFoodService().loadSimpleFood(foodId);
 		BasicSimpleFoodUpdateRequest model = new BasicSimpleFoodUpdateRequest(food);

@@ -64,6 +64,7 @@ public class ComplexFood extends Food implements ComplexFoodCreationPropertyProv
 		return Collections.unmodifiableSet(ingredients);
 	}
 
+	@Override
 	public boolean isPartOfFoodGroup(FoodGroup foodGroup) {
 		for (Food ingredient : ingredients) {
 			if (ingredient.isPartOfFoodGroup(foodGroup)) {
@@ -73,6 +74,7 @@ public class ComplexFood extends Food implements ComplexFoodCreationPropertyProv
 		return false;
 	}
 
+	@Override
 	public Set<Nutrient> getNutrients() {
 		Set<Nutrient> allNutrients = new HashSet<Nutrient>();
 		for (Food ingredient : ingredients) {
@@ -82,6 +84,7 @@ public class ComplexFood extends Food implements ComplexFoodCreationPropertyProv
 		return Collections.unmodifiableSet(allNutrients);
 	}
 
+	@Override
 	public boolean isSourceOfNutrient(Nutrient nutrient) {
 		for (Food ingredient : ingredients) {
 			if (ingredient.isSourceOfNutrient(nutrient)) {
