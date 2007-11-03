@@ -1,4 +1,9 @@
 package com.gb1.healthcheck.domain.nutrition;
 
-public interface ComplexFoodPropertyProvider extends ComplexFoodMutablePropertyProvider {
+import java.util.Set;
+
+public interface ComplexFoodPropertyProvider {
+	String getName();
+
+	Set<Food> getIngredients();
 }
