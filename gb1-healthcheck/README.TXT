@@ -3,14 +3,6 @@ HealthCheck
 -----------
 
 . features:
-  - drugs
-    > list drugs
-    > create / edit / delete drugs
-
-  - medication
-    > list medication
-    > create / edit / delete drug input
-
   - physiological measures
     > create / edit / delete intestinal status
 

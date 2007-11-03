@@ -1,4 +1,11 @@
 package com.gb1.healthcheck.domain.nutrition;
 
-public interface SimpleFoodPropertyProvider extends SimpleFoodMutablePropertyProvider {
+import java.util.Set;
+
+public interface SimpleFoodPropertyProvider {
+	String getName();
+
+	FoodGroup getFoodGroup();
+
+	Set<Nutrient> getNutrients();
 }
