@@ -6,11 +6,20 @@
 	<body>
 		<h2><fmt:message key="nutrition.foods.complexFoods.create.title" /></h2>
 		<s:form action="createSubmit.go" method="post" namespace="/nutrition/complexFood">
-			<s:textfield key="food.name" name="model.name" /><br/>
-			<s:checkboxlist key="food.ingredients" name="model.selectedIngredientIds" list="availableIngredients" listKey="id" listValue="name" />
+			<div class="required">
+				<label><fmt:message key="food.name" />:</label>
+				<s:textfield name="model.name" />
+			</div>
 
-			<s:submit key="nutrition.foods.complexFoods.create.submit" />
-			<s:submit key="nutrition.foods.complexFoods.create.cancel" name="method:cancel" />
+			<fieldset id="ingredientsList">
+				<legend><fmt:message key="food.ingredients" />:</legend>
+				<s:checkboxlist name="model.selectedIngredientIds" list="availableIngredients" listKey="id" listValue="name" />
+			</fieldset>
+
+			<div class="actions">
+				<s:submit cssClass="button" key="nutrition.foods.complexFoods.create.submit" />
+				<s:submit cssClass="button" key="nutrition.foods.complexFoods.create.cancel" name="method:cancel" />
+			</div>
 		</s:form>
 	</body>
 </html>
