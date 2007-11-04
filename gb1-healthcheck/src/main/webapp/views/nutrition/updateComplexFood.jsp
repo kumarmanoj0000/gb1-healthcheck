@@ -7,11 +7,21 @@
 		<h2><fmt:message key="nutrition.foods.complexFoods.update.title" /></h2>
 		<s:form action="updateSubmit.go" method="post" namespace="/nutrition/complexFood">
 			<s:hidden name="foodId" />
-			<s:textfield key="food.name" name="model.name" /><br/>
-			<s:checkboxlist key="food.ingredients" name="model.selectedIngredientIds" list="availableIngredients" listKey="id" listValue="name" />
 
-			<s:submit key="nutrition.foods.complexFoods.update.submit" />
-			<s:submit key="nutrition.foods.complexFoods.update.cancel" name="method:cancel" />
+			<div class="required">
+				<label><fmt:message key="food.name" />:</label>
+				<s:textfield name="model.name" />
+			</div>
+
+			<fieldset id="ingredientsList">
+				<legend><fmt:message key="food.ingredients" />:</legend>
+				<s:checkboxlist name="model.selectedIngredientIds" list="availableIngredients" listKey="id" listValue="name" />
+			</fieldset>
+
+			<div class="actions">
+				<s:submit cssClass="button" key="nutrition.foods.complexFoods.update.submit" />
+				<s:submit cssClass="button" key="nutrition.foods.complexFoods.update.cancel" name="method:cancel" />
+			</div>
 		</s:form>
 	</body>
 </html>

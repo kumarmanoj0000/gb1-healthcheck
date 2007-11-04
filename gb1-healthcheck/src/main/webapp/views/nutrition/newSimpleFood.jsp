@@ -6,12 +6,25 @@
 	<body>
 		<h2><fmt:message key="nutrition.foods.simpleFoods.create.title" /></h2>
 		<s:form action="createSubmit.go" method="post" namespace="/nutrition/simpleFood">
-			<s:textfield key="food.name" name="model.name" /><br/>
-			<s:select key="food.foodGroup" name="model.foodGroup" list="availableGroups" />
-			<s:checkboxlist key="food.nutrients" name="model.selectedNutrients" list="availableNutrients" listKey="name()" listValue="name()" />
+			<div class="required">
+				<label><fmt:message key="food.name" />:</label>
+				<s:textfield name="model.name" />
+			</div>
 
-			<s:submit key="nutrition.foods.simpleFoods.create.submit" />
-			<s:submit key="nutrition.foods.simpleFoods.create.cancel" name="method:cancel" />
+			<div class="required">
+				<label><fmt:message key="food.foodGroup" />:</label>
+				<s:select name="model.foodGroup" list="availableGroups" />
+			</div>
+
+			<fieldset id="nutrientsList">
+				<legend><fmt:message key="food.nutrients" />:</legend>
+				<s:checkboxlist name="model.selectedNutrients" list="availableNutrients" listKey="name()" listValue="name()" />
+			</fieldset>
+
+			<div class="actions">
+				<s:submit cssClass="button" key="nutrition.foods.simpleFoods.create.submit" />
+				<s:submit cssClass="button" key="nutrition.foods.simpleFoods.create.cancel" name="method:cancel" />
+			</div>
 		</s:form>
 	</body>
 </html>

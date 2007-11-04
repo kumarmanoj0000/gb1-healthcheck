@@ -8,7 +8,7 @@
 	<constant name="struts.action.extension" value="go" />
 	<constant name="struts.objectFactory" value="spring" />
 	<constant name="struts.custom.i18n.resources" value="ApplicationMessages" />
-	<constant name="struts.ui.theme" value="css_xhtml" />
+	<constant name="struts.ui.theme" value="simple" />
 
 	<include file="struts-default.xml" />
 
