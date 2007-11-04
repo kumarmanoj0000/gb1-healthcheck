@@ -4,7 +4,7 @@
 
 <html>
 	<body>
-		<h3><fmt:message key="nutrition.foods.title" /></h3>
+		<h2><fmt:message key="nutrition.foods.title" /></h2>
 
 		<h3><fmt:message key="nutrition.foods.simpleFoods" /></h3>
 		<s:if test="simpleFoods.size == 0"><fmt:message key="nutrition.foods.noSimpleFoods" /></s:if>

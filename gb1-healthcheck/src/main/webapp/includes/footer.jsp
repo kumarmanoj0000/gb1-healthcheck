@@ -1,5 +1,5 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt" %>
 
-<div>
+<div class="copyright">
 	<fmt:message key="app.copyright" />
 </div>

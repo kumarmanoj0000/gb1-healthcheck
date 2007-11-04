@@ -3,6 +3,9 @@ HealthCheck
 -----------
 
 . features:
+  - meals
+    > meals are eaten by someone! update model to reflect this
+
   - physiological measures
     > create / edit / delete intestinal status
 
