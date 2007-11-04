@@ -7,12 +7,18 @@
 		<h2><fmt:message key="nutrition.foods.simpleFoods.update.title" /></h2>
 		<s:form action="updateSubmit.go" method="post" namespace="/nutrition/simpleFood">
 			<s:hidden name="foodId" />
-			<s:textfield key="food.name" name="model.name" /><br/>
-			<s:select key="food.foodGroup" name="model.foodGroup" list="availableGroups" />
-			<s:checkboxlist key="food.nutrients" name="model.selectedNutrients" list="availableNutrients" listKey="name()" listValue="name()" />
 
-			<s:submit key="nutrition.foods.simpleFoods.update.submit" />
-			<s:submit key="nutrition.foods.simpleFoods.update.cancel" name="method:cancel" />
+			<div><s:textfield key="food.name" name="model.name" /></div>
+			<div><s:select key="food.foodGroup" name="model.foodGroup" list="availableGroups" /></div>
+
+			<div id="nutrientsList">
+				<s:checkboxlist key="food.nutrients" name="model.selectedNutrients" list="availableNutrients" listKey="name()" listValue="name()" />
+			</div>
+
+			<div class="actions">
+				<s:submit cssClass="button" key="nutrition.foods.simpleFoods.update.submit" />
+				<s:submit cssClass="button" key="nutrition.foods.simpleFoods.update.cancel" name="method:cancel" />
+			</div>
 		</s:form>
 	</body>
 </html>

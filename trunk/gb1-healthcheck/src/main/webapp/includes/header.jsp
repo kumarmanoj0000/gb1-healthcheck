@@ -1,13 +1,12 @@
 <%@ taglib prefix="authz" uri="http://acegisecurity.org/authz" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt" %>
 
-<div>
-	<h1><fmt:message key="app.name" /></h1>
-	<authz:authorize ifNotGranted="role_anonymous">
+<h1><fmt:message key="app.name" /></h1>
+<authz:authorize ifNotGranted="role_anonymous">
+	<div>
 		<fmt:message key="header.userlogin" />: <authz:authentication operation="username" />
-		<br />
-		<a href="<c:url value="/users/editProfile.go?id=${user.id}" />"><fmt:message key="header.profile" /></a>
-		<br />
-		<a href="<c:url value="/public/security/signOff.go" />"><fmt:message key="header.logoff" /></a>
-	</authz:authorize>
-</div>
+	</div>
+	<ul>
+		<li><a href="<c:url value="/public/security/signOff.go" />"><fmt:message key="header.logoff" /></a></li>
+	</ul>
+</authz:authorize>

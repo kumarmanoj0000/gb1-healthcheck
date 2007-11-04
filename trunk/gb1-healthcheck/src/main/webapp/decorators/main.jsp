@@ -35,12 +35,12 @@
 		<decorator:head />
 	</head>
 
-	<body bgcolor="#FFFFFF">
+	<body>
 		<a name="top"></a>
 		<div id="container">
-			<p id="header"><%@ include file="/includes/header.jsp"%></p>
-			<p id="content"><decorator:body /></p>
-			<p id="footer"><%@ include file="/includes/footer.jsp"%></p>
+			<div id="header"><%@ include file="/includes/header.jsp"%></div>
+			<div id="content"><decorator:body /></div>
+			<div id="footer"><%@ include file="/includes/footer.jsp"%></div>
 		</div>
 	</body>
 </html>
