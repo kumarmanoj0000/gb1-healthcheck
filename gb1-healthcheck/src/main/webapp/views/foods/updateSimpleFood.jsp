@@ -4,8 +4,10 @@
 
 <html>
 	<body>
-		<h2><fmt:message key="nutrition.foods.simpleFoods.create.title" /></h2>
-		<s:form action="createSubmit.go" method="post" namespace="/nutrition/simpleFood">
+		<h2><fmt:message key="foods.simpleFoods.update.title" /></h2>
+		<s:form action="updateSubmit.go" method="post" namespace="/foods/simpleFood">
+			<s:hidden name="foodId" />
+
 			<div class="required">
 				<label><fmt:message key="food.name" />:</label>
 				<s:textfield name="model.name" />
@@ -22,8 +24,8 @@
 			</fieldset>
 
 			<div class="actions">
-				<s:submit cssClass="button" key="nutrition.foods.simpleFoods.create.submit" />
-				<s:submit cssClass="button" key="nutrition.foods.simpleFoods.create.cancel" name="method:cancel" />
+				<s:submit cssClass="button" key="foods.simpleFoods.update.submit" />
+				<s:submit cssClass="button" key="foods.simpleFoods.update.cancel" name="method:cancel" />
 			</div>
 		</s:form>
 	</body>
