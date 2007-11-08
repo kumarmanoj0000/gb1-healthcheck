@@ -9,7 +9,7 @@ import org.apache.commons.lang.Validate;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 
-import com.gb1.healthcheck.domain.nutrition.Meal;
+import com.gb1.healthcheck.domain.meals.Meal;
 import com.gb1.healthcheck.domain.users.User;
 
 public class TrackRecord {

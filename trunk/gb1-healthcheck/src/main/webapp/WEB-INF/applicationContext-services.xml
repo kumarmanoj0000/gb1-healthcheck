@@ -22,7 +22,7 @@
 		<property name="lostPasswordSender" ref="lostPasswordSender" />
 	</bean>
 
-	<bean id="foodService" class="com.gb1.healthcheck.services.nutrition.FoodServiceImpl">
+	<bean id="foodService" class="com.gb1.healthcheck.services.foods.FoodServiceImpl">
 		<property name="foodRepository" ref="foodRepository" />
 		<property name="simpleFoodCreationValidator" ref="simpleFoodCreationValidator" />
 		<property name="simpleFoodUpdateValidator" ref="simpleFoodUpdateValidator" />
@@ -30,7 +30,7 @@
 		<property name="complexFoodUpdateValidator" ref="complexFoodUpdateValidator" />
 	</bean>
 
-	<bean id="mealService" class="com.gb1.healthcheck.services.nutrition.MealServiceImpl">
+	<bean id="mealService" class="com.gb1.healthcheck.services.meals.MealServiceImpl">
 		<property name="mealRepository" ref="mealRepository" />
 		<property name="mealCreationValidator" ref="mealCreationValidator" />
 		<property name="mealUpdateValidator" ref="mealUpdateValidator" />

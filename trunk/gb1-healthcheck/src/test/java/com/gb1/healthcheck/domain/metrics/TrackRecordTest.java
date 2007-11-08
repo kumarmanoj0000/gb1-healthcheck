@@ -4,8 +4,8 @@ import java.util.Date;
 
 import junit.framework.TestCase;
 
-import com.gb1.healthcheck.domain.nutrition.Meal;
-import com.gb1.healthcheck.domain.nutrition.Meals;
+import com.gb1.healthcheck.domain.meals.Meal;
+import com.gb1.healthcheck.domain.meals.Meals;
 import com.gb1.healthcheck.domain.users.Users;
 
 public class TrackRecordTest extends TestCase {

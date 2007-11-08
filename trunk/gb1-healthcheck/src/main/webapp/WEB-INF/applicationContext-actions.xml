@@ -22,49 +22,49 @@
 
 	<bean id="workbenchAction" class="com.gb1.healthcheck.web.workbench.WorkbenchAction" scope="prototype" />
 
-	<bean id="listFoodsAction" class="com.gb1.healthcheck.web.nutrition.ListFoodsAction" scope="prototype">
+	<bean id="listFoodsAction" class="com.gb1.healthcheck.web.foods.ListFoodsAction" scope="prototype">
 		<property name="foodService" ref="foodService" />
 	</bean>
 
-	<bean id="createSimpleFoodAction" class="com.gb1.healthcheck.web.nutrition.CreateSimpleFoodAction" scope="prototype">
+	<bean id="createSimpleFoodAction" class="com.gb1.healthcheck.web.foods.CreateSimpleFoodAction" scope="prototype">
 		<property name="foodService" ref="foodService" />
 	</bean>
 
-	<bean id="updateSimpleFoodAction" class="com.gb1.healthcheck.web.nutrition.UpdateSimpleFoodAction" scope="prototype">
+	<bean id="updateSimpleFoodAction" class="com.gb1.healthcheck.web.foods.UpdateSimpleFoodAction" scope="prototype">
 		<property name="foodService" ref="foodService" />
 	</bean>
 
-	<bean id="deleteSimpleFoodAction" class="com.gb1.healthcheck.web.nutrition.DeleteSimpleFoodAction" scope="prototype">
+	<bean id="deleteSimpleFoodAction" class="com.gb1.healthcheck.web.foods.DeleteSimpleFoodAction" scope="prototype">
 		<property name="foodService" ref="foodService" />
 	</bean>
 
-	<bean id="createComplexFoodAction" class="com.gb1.healthcheck.web.nutrition.CreateComplexFoodAction" scope="prototype">
+	<bean id="createComplexFoodAction" class="com.gb1.healthcheck.web.foods.CreateComplexFoodAction" scope="prototype">
 		<property name="foodService" ref="foodService" />
 	</bean>
 
-	<bean id="updateComplexFoodAction" class="com.gb1.healthcheck.web.nutrition.UpdateComplexFoodAction" scope="prototype">
+	<bean id="updateComplexFoodAction" class="com.gb1.healthcheck.web.foods.UpdateComplexFoodAction" scope="prototype">
 		<property name="foodService" ref="foodService" />
 	</bean>
 
-	<bean id="deleteComplexFoodAction" class="com.gb1.healthcheck.web.nutrition.DeleteComplexFoodAction" scope="prototype">
+	<bean id="deleteComplexFoodAction" class="com.gb1.healthcheck.web.foods.DeleteComplexFoodAction" scope="prototype">
 		<property name="foodService" ref="foodService" />
 	</bean>
 
-	<bean id="listMealsAction" class="com.gb1.healthcheck.web.nutrition.ListMealsAction" scope="prototype">
+	<bean id="listMealsAction" class="com.gb1.healthcheck.web.meals.ListMealsAction" scope="prototype">
 		<property name="mealService" ref="mealService" />
 	</bean>
 
-	<bean id="createMealAction" class="com.gb1.healthcheck.web.nutrition.CreateMealAction" scope="prototype">
-		<property name="foodService" ref="foodService" />
-		<property name="mealService" ref="mealService" />
-	</bean>
-
-	<bean id="updateMealAction" class="com.gb1.healthcheck.web.nutrition.UpdateMealAction" scope="prototype">
+	<bean id="createMealAction" class="com.gb1.healthcheck.web.meals.CreateMealAction" scope="prototype">
 		<property name="foodService" ref="foodService" />
 		<property name="mealService" ref="mealService" />
 	</bean>
 
-	<bean id="deleteMealAction" class="com.gb1.healthcheck.web.nutrition.DeleteMealAction" scope="prototype">
+	<bean id="updateMealAction" class="com.gb1.healthcheck.web.meals.UpdateMealAction" scope="prototype">
+		<property name="foodService" ref="foodService" />
+		<property name="mealService" ref="mealService" />
+	</bean>
+
+	<bean id="deleteMealAction" class="com.gb1.healthcheck.web.meals.DeleteMealAction" scope="prototype">
 		<property name="mealService" ref="mealService" />
 	</bean>
 

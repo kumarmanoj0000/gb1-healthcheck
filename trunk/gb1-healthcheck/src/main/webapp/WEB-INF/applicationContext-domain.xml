@@ -52,42 +52,42 @@
 
 	<!-- Food management -->
 
-	<bean id="simpleFoodCreationValidator" class="com.gb1.healthcheck.domain.nutrition.FullSimpleFoodCreationValidator">
+	<bean id="simpleFoodCreationValidator" class="com.gb1.healthcheck.domain.foods.FullSimpleFoodCreationValidator">
 		<property name="foodRepository" ref="foodRepository" />
 	</bean>
-	<bean id="simpleFoodUpdateValidator" class="com.gb1.healthcheck.domain.nutrition.FullSimpleFoodUpdateValidator">
-		<property name="foodRepository" ref="foodRepository" />
-	</bean>
-
-	<bean id="complexFoodCreationValidator" class="com.gb1.healthcheck.domain.nutrition.FullComplexFoodCreationValidator">
-		<property name="foodRepository" ref="foodRepository" />
-	</bean>
-	<bean id="complexFoodUpdateValidator" class="com.gb1.healthcheck.domain.nutrition.FullComplexFoodUpdateValidator">
-		<property name="foodRepository" ref="foodRepository" />
-	</bean>
-	<bean id="complexFoodCreationPropertyProviderAdapter" class="com.gb1.healthcheck.domain.nutrition.ComplexFoodCreationPropertyProviderAdapter" scope="prototype">
-		<property name="foodRepository" ref="foodRepository" />
-	</bean>
-	<bean id="complexFoodUpdatePropertyProviderAdapter" class="com.gb1.healthcheck.domain.nutrition.ComplexFoodUpdatePropertyProviderAdapter" scope="prototype">
+	<bean id="simpleFoodUpdateValidator" class="com.gb1.healthcheck.domain.foods.FullSimpleFoodUpdateValidator">
 		<property name="foodRepository" ref="foodRepository" />
 	</bean>
 
-	<bean id="mealCreationValidator" class="com.gb1.healthcheck.domain.nutrition.FullMealCreationValidator">
-		<property name="mealRepository" ref="mealRepository" />
-	</bean>
-	<bean id="mealUpdateValidator" class="com.gb1.healthcheck.domain.nutrition.FullMealUpdateValidator">
-		<property name="mealRepository" ref="mealRepository" />
-	</bean>
-	<bean id="mealCreationPropertyProviderAdapter" class="com.gb1.healthcheck.domain.nutrition.MealCreationPropertyProviderAdapter" scope="prototype">
+	<bean id="complexFoodCreationValidator" class="com.gb1.healthcheck.domain.foods.FullComplexFoodCreationValidator">
 		<property name="foodRepository" ref="foodRepository" />
 	</bean>
-	<bean id="mealUpdatePropertyProviderAdapter" class="com.gb1.healthcheck.domain.nutrition.MealUpdatePropertyProviderAdapter" scope="prototype">
+	<bean id="complexFoodUpdateValidator" class="com.gb1.healthcheck.domain.foods.FullComplexFoodUpdateValidator">
+		<property name="foodRepository" ref="foodRepository" />
+	</bean>
+	<bean id="complexFoodCreationPropertyProviderAdapter" class="com.gb1.healthcheck.domain.foods.ComplexFoodCreationPropertyProviderAdapter" scope="prototype">
+		<property name="foodRepository" ref="foodRepository" />
+	</bean>
+	<bean id="complexFoodUpdatePropertyProviderAdapter" class="com.gb1.healthcheck.domain.foods.ComplexFoodUpdatePropertyProviderAdapter" scope="prototype">
+		<property name="foodRepository" ref="foodRepository" />
+	</bean>
+
+	<bean id="mealCreationValidator" class="com.gb1.healthcheck.domain.meals.FullMealCreationValidator">
+		<property name="mealRepository" ref="mealRepository" />
+	</bean>
+	<bean id="mealUpdateValidator" class="com.gb1.healthcheck.domain.meals.FullMealUpdateValidator">
+		<property name="mealRepository" ref="mealRepository" />
+	</bean>
+	<bean id="mealCreationPropertyProviderAdapter" class="com.gb1.healthcheck.domain.meals.MealCreationPropertyProviderAdapter" scope="prototype">
+		<property name="foodRepository" ref="foodRepository" />
+	</bean>
+	<bean id="mealUpdatePropertyProviderAdapter" class="com.gb1.healthcheck.domain.meals.MealUpdatePropertyProviderAdapter" scope="prototype">
 		<property name="foodRepository" ref="foodRepository" />
 	</bean>
 
 	<!-- Repositories -->
 	<bean id="userRepository" class="com.gb1.healthcheck.domain.users.JpaUserRepository" />
-	<bean id="foodRepository" class="com.gb1.healthcheck.domain.nutrition.JpaFoodRepository" />
-	<bean id="mealRepository" class="com.gb1.healthcheck.domain.nutrition.JpaMealRepository" />
+	<bean id="foodRepository" class="com.gb1.healthcheck.domain.foods.JpaFoodRepository" />
+	<bean id="mealRepository" class="com.gb1.healthcheck.domain.meals.JpaMealRepository" />
 
 </beans>
