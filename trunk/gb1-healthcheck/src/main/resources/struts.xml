@@ -53,97 +53,110 @@
 		</action>
 	</package>
 
-	<package name="nutrition" extends="default" namespace="/nutrition">
+	<package name="foods" extends="default" namespace="/foods">
 		<action name="listFoods" method="listFoods" class="listFoodsAction">
-			<result>/views/nutrition/foods.jsp</result>
-		</action>
-		<action name="listMeals" method="listMeals" class="listMealsAction">
-			<result>/views/nutrition/meals.jsp</result>
+			<result>/views/foods/list.jsp</result>
 		</action>
 	</package>
 
-	<package name="simpleFood" extends="default" namespace="/nutrition/simpleFood">
+	<package name="simpleFood" extends="default" namespace="/foods/simpleFood">
 		<action name="createInput" method="input" class="createSimpleFoodAction">
-			<result name="input">/views/nutrition/newSimpleFood.jsp</result>
+			<result name="input">/views/foods/newSimpleFood.jsp</result>
 		</action>
+
 		<action name="createSubmit" method="submit" class="createSimpleFoodAction">
-			<result name="input">/views/nutrition/newSimpleFood.jsp</result>
+			<result name="input">/views/foods/newSimpleFood.jsp</result>
 			<result name="success" type="redirect-action">
-				<param name="namespace">/nutrition</param>
+				<param name="namespace">/foods</param>
 				<param name="actionName">listFoods</param>
 			</result>
 		</action>
+
 		<action name="updateInput" method="input" class="updateSimpleFoodAction">
-			<result name="input">/views/nutrition/updateSimpleFood.jsp</result>
+			<result name="input">/views/foods/updateSimpleFood.jsp</result>
 		</action>
+
 		<action name="updateSubmit" method="submit" class="updateSimpleFoodAction">
-			<result name="input">/views/nutrition/updateSimpleFood.jsp</result>
+			<result name="input">/views/foods/updateSimpleFood.jsp</result>
 			<result name="success" type="redirect-action">
-				<param name="namespace">/nutrition</param>
+				<param name="namespace">/foods</param>
 				<param name="actionName">listFoods</param>
 			</result>
 		</action>
+
 		<action name="delete" method="submit" class="deleteSimpleFoodAction">
 			<result name="success" type="redirect-action">
-				<param name="namespace">/nutrition</param>
+				<param name="namespace">/foods</param>
 				<param name="actionName">listFoods</param>
 			</result>
 		</action>
 	</package>
 
-	<package name="complexFood" extends="default" namespace="/nutrition/complexFood">
+	<package name="complexFood" extends="default" namespace="/foods/complexFood">
 		<action name="createInput" method="input" class="createComplexFoodAction">
-			<result name="input">/views/nutrition/newComplexFood.jsp</result>
+			<result name="input">/views/foods/newComplexFood.jsp</result>
 		</action>
+
 		<action name="createSubmit" method="submit" class="createComplexFoodAction">
-			<result name="input">/views/nutrition/newComplexFood.jsp</result>
+			<result name="input">/views/foods/newComplexFood.jsp</result>
 			<result name="success" type="redirect-action">
-				<param name="namespace">/nutrition</param>
+				<param name="namespace">/foods</param>
 				<param name="actionName">listFoods</param>
 			</result>
 		</action>
+
 		<action name="updateInput" method="input" class="updateComplexFoodAction">
-			<result name="input">/views/nutrition/updateComplexFood.jsp</result>
+			<result name="input">/views/foods/updateComplexFood.jsp</result>
 		</action>
+
 		<action name="updateSubmit" method="submit" class="updateComplexFoodAction">
-			<result name="input">/views/nutrition/updateComplexFood.jsp</result>
+			<result name="input">/views/foods/updateComplexFood.jsp</result>
 			<result name="success" type="redirect-action">
-				<param name="namespace">/nutrition</param>
+				<param name="namespace">/foods</param>
 				<param name="actionName">listFoods</param>
 			</result>
 		</action>
+
 		<action name="delete" method="submit" class="deleteComplexFoodAction">
 			<result name="success" type="redirect-action">
-				<param name="namespace">/nutrition</param>
+				<param name="namespace">/foods</param>
 				<param name="actionName">listFoods</param>
 			</result>
 		</action>
 	</package>
 
-	<package name="meals" extends="default" namespace="/nutrition/meals">
+	<package name="meals" extends="default" namespace="/meals">
+		<action name="listMeals" method="listMeals" class="listMealsAction">
+			<result>/views/meals/meals.jsp</result>
+		</action>
+
 		<action name="createInput" method="input" class="createMealAction">
-			<result name="input">/views/nutrition/newMeal.jsp</result>
+			<result name="input">/views/meals/newMeal.jsp</result>
 		</action>
+
 		<action name="createSubmit" method="submit" class="createMealAction">
-			<result name="input">/views/nutrition/newMeal.jsp</result>
+			<result name="input">/views/meals/newMeal.jsp</result>
 			<result name="success" type="redirect-action">
-				<param name="namespace">/nutrition</param>
+				<param name="namespace">/meals</param>
 				<param name="actionName">listMeals</param>
 			</result>
 		</action>
+
 		<action name="updateInput" method="input" class="updateMealAction">
-			<result name="input">/views/nutrition/updateMeal.jsp</result>
+			<result name="input">/views/meals/updateMeal.jsp</result>
 		</action>
+
 		<action name="updateSubmit" method="update" class="updateMealAction">
-			<result name="input">/views/nutrition/updateMeal.jsp</result>
+			<result name="input">/views/meals/updateMeal.jsp</result>
 			<result name="success" type="redirect-action">
-				<param name="namespace">/nutrition</param>
+				<param name="namespace">/meals</param>
 				<param name="actionName">listMeals</param>
 			</result>
 		</action>
+
 		<action name="delete" method="delete" class="deleteMealAction">
 			<result name="success" type="redirect-action">
-				<param name="namespace">/nutrition</param>
+				<param name="namespace">/meals</param>
 				<param name="actionName">listMeals</param>
 			</result>
 		</action>

@@ -11,8 +11,8 @@
 		<script type="text/javascript" src="<c:url value='/scripts/jscalendar/lang/calendar-en.js' />"></script>
 
 		<script type="text/javascript">
-			var nbSingleDishDivs = <s:property value="model.dishes.size" />;
-			var maxSingleDishDivIndex = nbSingleDishDivs;
+			var nbSingleDishDivs = 1;
+			var maxSingleDishDivIndex = 0;
 
 			function addSingleDishDiv() {
 				var dishesDiv = document.getElementById('dishes');
@@ -47,10 +47,8 @@
 	</head>
 
 	<body>
-		<h2><fmt:message key="nutrition.meals.update.title" /></h2>
-		<s:form action="updateSubmit.go" method="post" namespace="/nutrition/meals">
-			<s:hidden name="mealId" />
-
+		<h2><fmt:message key="meals.create.title" /></h2>
+		<s:form action="createSubmit.go" method="post" namespace="/meals">
 			<div class="required">
 				<label><fmt:message key="meal.instant" />:</label>
 				<s:date id="instant" name="model.instant" format="yyyy-MM-dd hh:mm:ss" />
@@ -66,46 +64,42 @@
 			</div>
 
 			<fieldset id="dishes">
-				<legend><fmt:message key="nutrition.meals.create.dishes" /></legend>
+				<legend><fmt:message key="meals.create.dishes" /></legend>
 
-				<s:iterator value="model.dishes" status="it">
-					<div id="dishes.singleDish-${it.index}">
-						<div class="required">
-							<label><fmt:message key="meal.dish" />:</label>
-							<s:select
-								name="model.selectedFoodIds"
-								value="model.selectedFoodIds[${it.index}]"
-								list="availableFoods"
-								listKey="id"
-								listValue="name"
-							/>
-						</div>
-
-						<div class="required">
-							<label><fmt:message key="meal.preparationMethod" />:</label>
-							<s:select
-								name="model.selectedPreparationMethodNames"
-								value="model.selectedPreparationMethodNames[${it.index}]"
-								list="availablePreparationMethods"
-								listKey="name()"
-								listValue="name()"
-							/>
-						</div>
-
-						<div>
-							<a href="#" onClick="javascript:removeSingleDishDiv(${it.index})"><fmt:message key="nutrition.meals.update.removeDish" /></a>
-						</div>
+				<div id="dishes.singleDish-0">
+					<div class="required">
+						<label><fmt:message key="meal.dish" />:</label>
+						<s:select
+							name="model.selectedFoodIds"
+							list="availableFoods"
+							listKey="id"
+							listValue="name"
+						/>
 					</div>
-				</s:iterator>
+
+					<div class="required">
+						<label><fmt:message key="meal.preparationMethod" />:</label>
+						<s:select
+							name="model.selectedPreparationMethodNames"
+							list="availablePreparationMethods"
+							listKey="name()"
+							listValue="name()"
+						/>
+					</div>
+
+					<div>
+						<a href="#" onClick="javascript:removeSingleDishDiv(0)"><fmt:message key="meals.create.removeDish" /></a>
+					</div>
+				</div>
 
 				<div id="addSingleDishLinkDiv">
-					<a href="#" onClick="javascript:addSingleDishDiv()"><fmt:message key="nutrition.meals.update.addDish" /></a>
+					<a href="#" onClick="javascript:addSingleDishDiv()"><fmt:message key="meals.create.addDish" /></a>
 				</div>
 			</fieldset>
 
 			<div class="actions">
-				<s:submit cssClass="button" key="nutrition.meals.update.submit" />
-				<s:submit cssClass="button" key="nutrition.meals.update.cancel" name="method:cancel" />
+				<s:submit cssClass="button" key="meals.create.submit" />
+				<s:submit cssClass="button" key="meals.create.cancel" name="method:cancel" />
 			</div>
 		</s:form>
 

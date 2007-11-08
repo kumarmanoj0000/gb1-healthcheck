@@ -16,8 +16,8 @@
 
 		<h2><fmt:message key="workbench.menu.foodManagement.title" /></h2>
 		<ul>
-			<li><a href='<c:url value="/nutrition/listFoods.go" />'><fmt:message key="workbench.menu.foodManagement.listFoods" /></a></li>
-			<li><a href='<c:url value="/nutrition/listMeals.go" />'><fmt:message key="workbench.menu.foodManagement.listMeals" /></a></li>
+			<li><a href='<c:url value="/foods/listFoods.go" />'><fmt:message key="workbench.menu.foodManagement.listFoods" /></a></li>
+			<li><a href='<c:url value="/meals/listMeals.go" />'><fmt:message key="workbench.menu.foodManagement.listMeals" /></a></li>
 		</ul>
 	</body>
 </html>
