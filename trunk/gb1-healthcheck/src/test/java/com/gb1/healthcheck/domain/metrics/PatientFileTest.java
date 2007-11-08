@@ -8,11 +8,11 @@ import com.gb1.healthcheck.domain.meals.Meal;
 import com.gb1.healthcheck.domain.meals.Meals;
 import com.gb1.healthcheck.domain.users.Users;
 
-public class TrackRecordTest extends TestCase {
+public class PatientFileTest extends TestCase {
 	public void testEquals() {
-		TrackRecord tr1 = new TrackRecord(Users.gb());
-		TrackRecord tr2 = new TrackRecord(Users.gb());
-		TrackRecord tr3 = new TrackRecord(Users.lg());
+		PatientFile tr1 = new PatientFile(Users.gb());
+		PatientFile tr2 = new PatientFile(Users.gb());
+		PatientFile tr3 = new PatientFile(Users.lg());
 
 		assertTrue(tr1.equals(tr2));
 		assertFalse(tr1.equals(tr3));
@@ -20,7 +20,7 @@ public class TrackRecordTest extends TestCase {
 
 	public void testMeals() {
 		Meal meal = Meals.fullItalianDinner();
-		TrackRecord tr = new TrackRecord(Users.gb());
+		PatientFile tr = new PatientFile(Users.gb());
 
 		tr.addMeal(meal);
 		assertTrue(tr.getMeals().contains(meal));
@@ -31,7 +31,7 @@ public class TrackRecordTest extends TestCase {
 	public void testIntestinalStatuses() {
 		Date now = new Date();
 
-		TrackRecord tr = new TrackRecord(Users.gb());
+		PatientFile tr = new PatientFile(Users.gb());
 		tr.addIntestinalStateMeasurement(IntestinalState.NORMAL, now);
 
 		assertTrue(tr.getIntestinalStateMeasurements().contains(
