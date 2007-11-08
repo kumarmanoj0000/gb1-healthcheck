@@ -9,11 +9,11 @@
 		<provider>org.hibernate.ejb.HibernatePersistence</provider>
 
 		<!-- Entities must be declared in this context, not sure why. -->
-		<class>com.gb1.healthcheck.domain.nutrition.Food</class>
-		<class>com.gb1.healthcheck.domain.nutrition.SimpleFood</class>
-		<class>com.gb1.healthcheck.domain.nutrition.ComplexFood</class>
-		<class>com.gb1.healthcheck.domain.nutrition.Meal</class>
-		<class>com.gb1.healthcheck.domain.nutrition.PreparedFood</class>
+		<class>com.gb1.healthcheck.domain.foods.Food</class>
+		<class>com.gb1.healthcheck.domain.foods.SimpleFood</class>
+		<class>com.gb1.healthcheck.domain.foods.ComplexFood</class>
+		<class>com.gb1.healthcheck.domain.meals.Meal</class>
+		<class>com.gb1.healthcheck.domain.meals.PreparedFood</class>
 		<class>com.gb1.healthcheck.domain.users.User</class>
 	</persistence-unit>
 

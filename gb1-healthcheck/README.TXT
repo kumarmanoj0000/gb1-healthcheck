@@ -35,3 +35,4 @@ HealthCheck
   - repeating @Transactional on all service methods, especially exception lists (solved in Spring 2.5)
   - so many web files: ApplicationMessages.properties, struts.xml, applicationContext-actions, *conversion.properties, *validation.xml
   - duplication in ApplicationMessages.properties (use global namespace)
+  - so many APIs, so many configuration files
