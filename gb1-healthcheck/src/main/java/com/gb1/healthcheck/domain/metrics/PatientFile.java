@@ -12,12 +12,12 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
 import com.gb1.healthcheck.domain.meals.Meal;
 import com.gb1.healthcheck.domain.users.User;
 
-public class TrackRecord {
+public class PatientFile {
 	private User patient;
 	private List<Meal> meals = new ArrayList<Meal>();
 	private List<IntestinalStateMeasurement> intestinalStateMeasurements = new ArrayList<IntestinalStateMeasurement>();
 
-	public TrackRecord(User patient) {
+	public PatientFile(User patient) {
 		Validate.notNull(patient);
 		this.patient = patient;
 	}
@@ -56,11 +56,11 @@ public class TrackRecord {
 		if (o == this) {
 			return true;
 		}
-		if (!(o instanceof TrackRecord)) {
+		if (!(o instanceof PatientFile)) {
 			return false;
 		}
 
-		TrackRecord that = (TrackRecord) o;
+		PatientFile that = (PatientFile) o;
 		EqualsBuilder builder = new EqualsBuilder().append(this.getPatient(), that.getPatient());
 
 		return builder.isEquals();
