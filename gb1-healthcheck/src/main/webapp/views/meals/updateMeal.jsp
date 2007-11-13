@@ -11,7 +11,7 @@
 		<script type="text/javascript" src="<c:url value='/scripts/jscalendar/lang/calendar-en.js' />"></script>
 
 		<script type="text/javascript">
-			var nbSingleDishDivs = <s:property value="model.dishes.size" />;
+			var nbSingleDishDivs = <s:property value="model.selectedFoodIds.length" />;
 			var maxSingleDishDivIndex = nbSingleDishDivs;
 
 			function addSingleDishDiv() {
@@ -68,7 +68,7 @@
 			<fieldset id="dishes">
 				<legend><fmt:message key="meals.create.dishes" /></legend>
 
-				<s:iterator value="model.dishes" status="it">
+				<s:iterator value="model.selectedFoodIds" status="it">
 					<div id="dishes.singleDish-${it.index}">
 						<div class="required">
 							<label><fmt:message key="meal.dish" />:</label>

@@ -30,6 +30,7 @@ HealthCheck
 . technical
   - use annotations wherever possible
   - migrate unit tests to JUnit 4 (extensive support in Spring 2.5)
+  - upgrade to Spring 2.5 final
 
 . pain points
   - repeating @Transactional on all service methods, especially exception lists (solved in Spring 2.5)

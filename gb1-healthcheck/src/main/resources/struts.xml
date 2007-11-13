@@ -127,7 +127,7 @@
 
 	<package name="meals" extends="default" namespace="/meals">
 		<action name="listMeals" method="listMeals" class="listMealsAction">
-			<result>/views/meals/meals.jsp</result>
+			<result>/views/meals/list.jsp</result>
 		</action>
 
 		<action name="createInput" method="input" class="createMealAction">
