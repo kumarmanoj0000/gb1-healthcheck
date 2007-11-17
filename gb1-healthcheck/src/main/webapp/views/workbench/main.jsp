@@ -9,15 +9,16 @@
 			<div class="notification"><fmt:message key="${notificationMessage}" /></div>
 		</c:if>
 
+		<h2><fmt:message key="workbench.menu" /></h2>
+
 		<authz:authorize ifAllGranted="role_administrator">
-			<h2><fmt:message key="workbench.menu.userManagement.title" /></h2>
-			<fmt:message key="workbench.menu.userManagement.listUsers" />
+			<fmt:message key="workbench.menu.users.list" />
 		</authz:authorize>
 
-		<h2><fmt:message key="workbench.menu.foodManagement.title" /></h2>
 		<ul>
-			<li><a href='<c:url value="/foods/listFoods.go" />'><fmt:message key="workbench.menu.foodManagement.listFoods" /></a></li>
-			<li><a href='<c:url value="/meals/listMeals.go" />'><fmt:message key="workbench.menu.foodManagement.listMeals" /></a></li>
+			<li><a href='<c:url value="/foods/list.go" />'><fmt:message key="workbench.menu.foods.list" /></a></li>
+			<li><a href='<c:url value="/meals/list.go" />'><fmt:message key="workbench.menu.meals.list" /></a></li>
+			<li><a href='<c:url value="/metrics/manage.go" />'><fmt:message key="workbench.menu.metrics.manage" /></a></li>
 		</ul>
 	</body>
 </html>

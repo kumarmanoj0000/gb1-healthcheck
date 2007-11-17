@@ -54,7 +54,7 @@
 	</package>
 
 	<package name="foods" extends="default" namespace="/foods">
-		<action name="listFoods" method="listFoods" class="listFoodsAction">
+		<action name="list" method="list" class="listFoodsAction">
 			<result>/views/foods/list.jsp</result>
 		</action>
 	</package>
@@ -68,7 +68,7 @@
 			<result name="input">/views/foods/newSimpleFood.jsp</result>
 			<result name="success" type="redirect-action">
 				<param name="namespace">/foods</param>
-				<param name="actionName">listFoods</param>
+				<param name="actionName">list</param>
 			</result>
 		</action>
 
@@ -80,14 +80,14 @@
 			<result name="input">/views/foods/updateSimpleFood.jsp</result>
 			<result name="success" type="redirect-action">
 				<param name="namespace">/foods</param>
-				<param name="actionName">listFoods</param>
+				<param name="actionName">list</param>
 			</result>
 		</action>
 
 		<action name="delete" method="submit" class="deleteSimpleFoodAction">
 			<result name="success" type="redirect-action">
 				<param name="namespace">/foods</param>
-				<param name="actionName">listFoods</param>
+				<param name="actionName">list</param>
 			</result>
 		</action>
 	</package>
@@ -101,7 +101,7 @@
 			<result name="input">/views/foods/newComplexFood.jsp</result>
 			<result name="success" type="redirect-action">
 				<param name="namespace">/foods</param>
-				<param name="actionName">listFoods</param>
+				<param name="actionName">list</param>
 			</result>
 		</action>
 
@@ -113,20 +113,20 @@
 			<result name="input">/views/foods/updateComplexFood.jsp</result>
 			<result name="success" type="redirect-action">
 				<param name="namespace">/foods</param>
-				<param name="actionName">listFoods</param>
+				<param name="actionName">list</param>
 			</result>
 		</action>
 
 		<action name="delete" method="submit" class="deleteComplexFoodAction">
 			<result name="success" type="redirect-action">
 				<param name="namespace">/foods</param>
-				<param name="actionName">listFoods</param>
+				<param name="actionName">list</param>
 			</result>
 		</action>
 	</package>
 
 	<package name="meals" extends="default" namespace="/meals">
-		<action name="listMeals" method="listMeals" class="listMealsAction">
+		<action name="list" method="list" class="listMealsAction">
 			<result>/views/meals/list.jsp</result>
 		</action>
 
@@ -138,7 +138,7 @@
 			<result name="input">/views/meals/newMeal.jsp</result>
 			<result name="success" type="redirect-action">
 				<param name="namespace">/meals</param>
-				<param name="actionName">listMeals</param>
+				<param name="actionName">list</param>
 			</result>
 		</action>
 
@@ -150,14 +150,14 @@
 			<result name="input">/views/meals/updateMeal.jsp</result>
 			<result name="success" type="redirect-action">
 				<param name="namespace">/meals</param>
-				<param name="actionName">listMeals</param>
+				<param name="actionName">list</param>
 			</result>
 		</action>
 
 		<action name="delete" method="delete" class="deleteMealAction">
 			<result name="success" type="redirect-action">
 				<param name="namespace">/meals</param>
-				<param name="actionName">listMeals</param>
+				<param name="actionName">list</param>
 			</result>
 		</action>
 	</package>

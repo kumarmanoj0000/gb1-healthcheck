@@ -20,7 +20,7 @@ public class ListFoodsAction {
 	public ListFoodsAction() {
 	}
 
-	public String listFoods() {
+	public String list() {
 		simpleFoods = new ArrayList<SimpleFood>(foodService.getSimpleFoods());
 		Collections.sort(simpleFoods, new Food.ByNameComparator());
 
