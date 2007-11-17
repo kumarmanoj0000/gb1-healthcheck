@@ -16,7 +16,7 @@ public class FullMealCreationValidatorTest extends TestCase {
 		List<Meal> mealsOnSameInstant = Collections.emptyList();
 
 		MealRepository mealRepo = EasyMock.createMock(MealRepository.class);
-		EasyMock.expect(mealRepo.findMealsByInstant(meal.getInstant())).andReturn(
+		EasyMock.expect(mealRepo.findMealsBy(meal.getEater(), meal.getInstant())).andReturn(
 				mealsOnSameInstant);
 		EasyMock.replay(mealRepo);
 
@@ -36,7 +36,7 @@ public class FullMealCreationValidatorTest extends TestCase {
 		List<Meal> mealsOnSameInstant = Collections.singletonList(meal);
 
 		MealRepository mealRepo = EasyMock.createMock(MealRepository.class);
-		EasyMock.expect(mealRepo.findMealsByInstant(meal.getInstant())).andReturn(
+		EasyMock.expect(mealRepo.findMealsBy(meal.getEater(), meal.getInstant())).andReturn(
 				mealsOnSameInstant);
 		EasyMock.replay(mealRepo);
 
@@ -56,7 +56,7 @@ public class FullMealCreationValidatorTest extends TestCase {
 		List<Meal> mealsOnSameInstant = Collections.emptyList();
 
 		MealRepository mealRepo = EasyMock.createMock(MealRepository.class);
-		EasyMock.expect(mealRepo.findMealsByInstant(meal.getInstant())).andReturn(
+		EasyMock.expect(mealRepo.findMealsBy(meal.getEater(), meal.getInstant())).andReturn(
 				mealsOnSameInstant);
 		EasyMock.replay(mealRepo);
 

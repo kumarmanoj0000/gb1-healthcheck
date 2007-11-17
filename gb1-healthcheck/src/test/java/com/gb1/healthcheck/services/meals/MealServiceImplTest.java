@@ -24,7 +24,9 @@ import com.gb1.healthcheck.domain.meals.MealValidator;
 import com.gb1.healthcheck.domain.meals.Meals;
 import com.gb1.healthcheck.domain.meals.PreparedFoodCreationRequest;
 import com.gb1.healthcheck.domain.meals.PreparedFoodUpdateRequest;
+import com.gb1.healthcheck.domain.users.User;
 import com.gb1.healthcheck.domain.users.UserRepository;
+import com.gb1.healthcheck.domain.users.Users;
 
 public class MealServiceImplTest extends TestCase {
 	@Override
@@ -36,18 +38,20 @@ public class MealServiceImplTest extends TestCase {
 	}
 
 	public void testGetMealHistory() {
+		final User eater = Users.gb();
 		final List<Meal> mealHistory = Meals.mealHistory();
+
 		List<Meal> sortedMealHistory = new LinkedList<Meal>(mealHistory);
 		Collections.sort(sortedMealHistory, new Meal.ByInstantComparator());
 
 		MealRepository mealRepo = EasyMock.createMock(MealRepository.class);
-		EasyMock.expect(mealRepo.loadMeals()).andReturn(mealHistory);
+		EasyMock.expect(mealRepo.findMealsBy(eater)).andReturn(mealHistory);
 		EasyMock.replay(mealRepo);
 
 		MealServiceImpl svc = new MealServiceImpl();
 		svc.setMealRepository(mealRepo);
 
-		assertTrue(CollectionUtils.isEqualCollection(sortedMealHistory, svc.getMealHistory()));
+		assertTrue(CollectionUtils.isEqualCollection(sortedMealHistory, svc.getMealHistory(eater)));
 	}
 
 	@SuppressWarnings("unchecked")

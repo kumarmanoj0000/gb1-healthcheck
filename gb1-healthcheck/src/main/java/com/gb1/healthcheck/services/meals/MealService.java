@@ -7,14 +7,15 @@ import com.gb1.healthcheck.domain.meals.Meal;
 import com.gb1.healthcheck.domain.meals.MealCreationRequest;
 import com.gb1.healthcheck.domain.meals.MealException;
 import com.gb1.healthcheck.domain.meals.MealUpdateRequest;
+import com.gb1.healthcheck.domain.users.User;
 
 public interface MealService {
 	/**
-	 * Returns all recorded meals, sorted chronologically.
+	 * Returns all recorded meals eaten by a given user, sorted chronologically.
 	 * 
-	 * @return All meals sorted chronologically
+	 * @return All meals eaten by a user, sorted chronologically
 	 */
-	List<Meal> getMealHistory();
+	List<Meal> getMealHistory(User eater);
 
 	/**
 	 * Loads an existing meal identified by a given ID.

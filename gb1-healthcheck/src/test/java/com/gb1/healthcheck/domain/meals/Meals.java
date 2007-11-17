@@ -48,8 +48,6 @@ public class Meals {
 		mealHistory.add(fullItalianDinner());
 		mealHistory.add(new Meal(2L, Users.gb(), parseInstant("2007-10-14 16:00")).addDish(Meals
 				.redWineDrink()));
-		mealHistory.add(new Meal(3L, Users.gb(), parseInstant("2007-10-14 18:30")).addDish(Meals
-				.spaghettiDish()));
 
 		return mealHistory;
 	}

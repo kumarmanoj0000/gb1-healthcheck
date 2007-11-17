@@ -6,6 +6,8 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+import com.gb1.healthcheck.domain.users.User;
+
 public class JpaMealRepository implements MealRepository {
 	private EntityManager entityManager = null;
 
@@ -18,15 +20,17 @@ public class JpaMealRepository implements MealRepository {
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<Meal> loadMeals() {
-		List<Meal> meals = entityManager.createQuery("select m from Meal m").getResultList();
+	public List<Meal> findMealsBy(User eater) {
+		List<Meal> meals = entityManager.createQuery("select m from Meal m where m.eater = ?1")
+				.setParameter(1, eater).getResultList();
 		return meals;
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<Meal> findMealsByInstant(Date instant) {
-		List<Meal> meals = entityManager.createQuery("select m from Meal m where m.instant = ?1")
-				.setParameter(1, instant).getResultList();
+	public List<Meal> findMealsBy(User eater, Date instant) {
+		List<Meal> meals = entityManager.createQuery(
+				"select m from Meal m where m.eater = ?1 and m.instant = ?2")
+				.setParameter(1, eater).setParameter(2, instant).getResultList();
 		return meals;
 	}
 
