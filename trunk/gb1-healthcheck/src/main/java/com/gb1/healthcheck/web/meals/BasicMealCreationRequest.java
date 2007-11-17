@@ -8,7 +8,17 @@ import com.gb1.healthcheck.domain.meals.PreparationMethod;
 import com.gb1.healthcheck.domain.meals.PreparedFoodCreationRequest;
 
 public class BasicMealCreationRequest extends MealRequestSupport implements MealCreationRequest {
+	private Long eaterId;
+
 	public BasicMealCreationRequest() {
+	}
+
+	public Long getEaterId() {
+		return eaterId;
+	}
+
+	public void setEaterId(Long eaterId) {
+		this.eaterId = eaterId;
 	}
 
 	public Set<PreparedFoodCreationRequest> getDishCreationRequests() {

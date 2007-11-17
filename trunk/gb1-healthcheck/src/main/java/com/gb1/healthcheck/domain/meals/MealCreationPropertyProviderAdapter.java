@@ -8,14 +8,27 @@ import org.springframework.beans.factory.annotation.Configurable;
 
 import com.gb1.healthcheck.domain.foods.Food;
 import com.gb1.healthcheck.domain.foods.FoodRepository;
+import com.gb1.healthcheck.domain.users.User;
+import com.gb1.healthcheck.domain.users.UserRepository;
 
 @Configurable("mealCreationPropertyProviderAdapter")
 public class MealCreationPropertyProviderAdapter implements MealCreationPropertyProvider {
-	private FoodRepository foodRepo;
 	private MealCreationRequest request;
+
+	private FoodRepository foodRepo;
+	private UserRepository userRepo;
 
 	public MealCreationPropertyProviderAdapter(MealCreationRequest request) {
 		this.request = request;
+	}
+
+	public User getEater() {
+		User eater = userRepo.loadUser(request.getEaterId());
+		return eater;
+	}
+
+	public Date getInstant() {
+		return request.getInstant();
 	}
 
 	public Set<PreparedFood> getDishes() {
@@ -28,11 +41,11 @@ public class MealCreationPropertyProviderAdapter implements MealCreationProperty
 		return dishes;
 	}
 
-	public Date getInstant() {
-		return request.getInstant();
-	}
-
 	public void setFoodRepository(FoodRepository foodRepo) {
 		this.foodRepo = foodRepo;
+	}
+
+	public void setUserRepository(UserRepository userRepo) {
+		this.userRepo = userRepo;
 	}
 }

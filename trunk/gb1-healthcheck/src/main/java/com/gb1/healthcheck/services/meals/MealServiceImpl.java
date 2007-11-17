@@ -38,9 +38,14 @@ public class MealServiceImpl implements MealService {
 
 	@Transactional(rollbackFor = { RuntimeException.class, MealException.class })
 	public void createMeal(MealCreationRequest request) throws MealException {
-		Meal meal = new Meal(new MealCreationPropertyProviderAdapter(request));
+		Meal meal = new Meal(createMealCreationPropertyProviderAdapter(request));
 		mealCreationValidator.validate(meal);
 		mealRepo.saveMeal(meal);
+	}
+
+	protected MealCreationPropertyProviderAdapter createMealCreationPropertyProviderAdapter(
+			MealCreationRequest request) {
+		return new MealCreationPropertyProviderAdapter(request);
 	}
 
 	@Transactional(rollbackFor = { RuntimeException.class, MealException.class })

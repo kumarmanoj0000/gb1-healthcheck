@@ -8,9 +8,11 @@ import junit.framework.TestCase;
 
 import org.easymock.EasyMock;
 
+import com.gb1.healthcheck.domain.users.Users;
+
 public class FullMealCreationValidatorTest extends TestCase {
 	public void testValidateNoDishes() throws MealException {
-		Meal meal = new Meal(new Date());
+		Meal meal = new Meal(Users.gb(), new Date());
 		List<Meal> mealsOnSameInstant = Collections.emptyList();
 
 		MealRepository mealRepo = EasyMock.createMock(MealRepository.class);

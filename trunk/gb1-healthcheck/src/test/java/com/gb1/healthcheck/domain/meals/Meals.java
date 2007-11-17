@@ -11,6 +11,7 @@ import java.util.Set;
 import org.apache.commons.lang.time.DateUtils;
 
 import com.gb1.healthcheck.domain.foods.Foods;
+import com.gb1.healthcheck.domain.users.Users;
 
 public class Meals {
 	private Meals() {
@@ -37,17 +38,17 @@ public class Meals {
 	}
 
 	public static Meal fullItalianDinner() {
-		return new Meal(1L, parseInstant("2007-10-13 18:00")).addDish(Meals.spaghettiDish())
-				.addDish(Meals.redWineDrink());
+		return new Meal(1L, Users.gb(), parseInstant("2007-10-13 18:00")).addDish(
+				Meals.spaghettiDish()).addDish(Meals.redWineDrink());
 	}
 
 	public static List<Meal> mealHistory() {
 		final List<Meal> mealHistory = new LinkedList<Meal>();
 
 		mealHistory.add(fullItalianDinner());
-		mealHistory.add(new Meal(2L, parseInstant("2007-10-14 16:00"))
-				.addDish(Meals.redWineDrink()));
-		mealHistory.add(new Meal(3L, parseInstant("2007-10-14 18:30")).addDish(Meals
+		mealHistory.add(new Meal(2L, Users.gb(), parseInstant("2007-10-14 16:00")).addDish(Meals
+				.redWineDrink()));
+		mealHistory.add(new Meal(3L, Users.gb(), parseInstant("2007-10-14 18:30")).addDish(Meals
 				.spaghettiDish()));
 
 		return mealHistory;

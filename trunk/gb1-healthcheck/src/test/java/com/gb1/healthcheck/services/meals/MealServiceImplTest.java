@@ -15,6 +15,7 @@ import org.springframework.transaction.aspectj.AnnotationTransactionAspect;
 
 import com.gb1.commons.dataaccess.Hydrater;
 import com.gb1.healthcheck.domain.meals.Meal;
+import com.gb1.healthcheck.domain.meals.MealCreationPropertyProviderAdapter;
 import com.gb1.healthcheck.domain.meals.MealCreationRequest;
 import com.gb1.healthcheck.domain.meals.MealException;
 import com.gb1.healthcheck.domain.meals.MealRepository;
@@ -23,6 +24,7 @@ import com.gb1.healthcheck.domain.meals.MealValidator;
 import com.gb1.healthcheck.domain.meals.Meals;
 import com.gb1.healthcheck.domain.meals.PreparedFoodCreationRequest;
 import com.gb1.healthcheck.domain.meals.PreparedFoodUpdateRequest;
+import com.gb1.healthcheck.domain.users.UserRepository;
 
 public class MealServiceImplTest extends TestCase {
 	@Override
@@ -71,14 +73,22 @@ public class MealServiceImplTest extends TestCase {
 		final Meal meal = Meals.fullItalianDinner();
 
 		MealCreationRequest createReq = new MealCreationRequest() {
-			public Set<PreparedFoodCreationRequest> getDishCreationRequests() {
-				return Collections.emptySet();
+			public Long getEaterId() {
+				return meal.getEater().getId();
 			}
 
 			public Date getInstant() {
 				return meal.getInstant();
 			}
+
+			public Set<PreparedFoodCreationRequest> getDishCreationRequests() {
+				return Collections.emptySet();
+			}
 		};
+
+		UserRepository userRepo = EasyMock.createMock(UserRepository.class);
+		EasyMock.expect(userRepo.loadUser(meal.getEater().getId())).andReturn(meal.getEater());
+		EasyMock.replay(userRepo);
 
 		MealRepository mealRepo = EasyMock.createMock(MealRepository.class);
 		mealRepo.saveMeal(EasyMock.eq(meal));
@@ -90,7 +100,17 @@ public class MealServiceImplTest extends TestCase {
 		EasyMock.expectLastCall();
 		EasyMock.replay(validator);
 
-		MealServiceImpl svc = new MealServiceImpl();
+		final MealCreationPropertyProviderAdapter adapter = new MealCreationPropertyProviderAdapter(
+				createReq);
+		adapter.setUserRepository(userRepo);
+
+		MealServiceImpl svc = new MealServiceImpl() {
+			@Override
+			protected MealCreationPropertyProviderAdapter createMealCreationPropertyProviderAdapter(
+					MealCreationRequest request) {
+				return adapter;
+			}
+		};
 		svc.setMealRepository(mealRepo);
 		svc.setMealCreationValidator(validator);
 

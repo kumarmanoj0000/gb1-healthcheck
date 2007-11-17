@@ -12,10 +12,11 @@ import com.gb1.healthcheck.domain.meals.Meal;
 import com.gb1.healthcheck.domain.meals.Meals;
 import com.gb1.healthcheck.domain.meals.PreparedFood;
 import com.gb1.healthcheck.domain.meals.PreparedFoodUpdateRequest;
+import com.gb1.healthcheck.domain.users.Users;
 
 public class BasicMealUpdateRequestTest extends TestCase {
 	public void testNewRequestFromMeal() {
-		final Meal meal = new Meal(new Date()).addDish(Meals.spaghettiDish()).addDish(
+		final Meal meal = new Meal(Users.gb(), new Date()).addDish(Meals.spaghettiDish()).addDish(
 				Meals.redWineDrink());
 		BasicMealUpdateRequest req = new BasicMealUpdateRequest(meal);
 
@@ -30,7 +31,6 @@ public class BasicMealUpdateRequestTest extends TestCase {
 		}
 
 		assertEquals(meal.getInstant(), req.getInstant());
-
 		assertTrue(CollectionUtils.isEqualCollection(Arrays.asList(selectedFoodIds), Arrays
 				.asList(req.getSelectedFoodIds())));
 		assertTrue(CollectionUtils.isEqualCollection(Arrays.asList(selectedPrepMethodNames), Arrays
