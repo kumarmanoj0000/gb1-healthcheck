@@ -14,6 +14,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 import org.apache.commons.lang.Validate;
 import org.apache.commons.lang.builder.EqualsBuilder;
@@ -24,12 +25,16 @@ import com.gb1.commons.Identifiable;
 import com.gb1.healthcheck.domain.foods.Food;
 import com.gb1.healthcheck.domain.foods.FoodGroup;
 import com.gb1.healthcheck.domain.foods.Nutrient;
+import com.gb1.healthcheck.domain.users.User;
 
 @Entity
 public class Meal implements Identifiable, MealCreationPropertyProvider {
 	@Id
 	@GeneratedValue
 	private Long id;
+
+	@OneToOne
+	private User eater;
 
 	private Date instant;
 
@@ -42,17 +47,20 @@ public class Meal implements Identifiable, MealCreationPropertyProvider {
 		// for JPA
 	}
 
-	Meal(Long id, Date instant) {
+	Meal(Long id, User eater, Date instant) {
 		this.id = id;
+		this.eater = eater;
 		setInstant(instant);
 	}
 
-	public Meal(Date instant) {
-		this(null, instant);
+	public Meal(User eater, Date instant) {
+		this(null, eater, instant);
 	}
 
 	public Meal(MealCreationPropertyProvider propertyProvider) {
+		this.eater = propertyProvider.getEater();
 		this.instant = new Date(propertyProvider.getInstant().getTime());
+
 		for (PreparedFood dish : propertyProvider.getDishes()) {
 			addDish(dish);
 		}
@@ -60,6 +68,10 @@ public class Meal implements Identifiable, MealCreationPropertyProvider {
 
 	public Long getId() {
 		return id;
+	}
+
+	public User getEater() {
+		return eater;
 	}
 
 	public Date getInstant() {
@@ -164,14 +176,16 @@ public class Meal implements Identifiable, MealCreationPropertyProvider {
 		}
 
 		Meal that = (Meal) o;
-		EqualsBuilder builder = new EqualsBuilder().append(this.getInstant(), that.getInstant());
+		EqualsBuilder builder = new EqualsBuilder().append(this.getEater(), that.getEater())
+				.append(this.getInstant(), that.getInstant());
 
 		return builder.isEquals();
 	}
 
 	@Override
 	public int hashCode() {
-		HashCodeBuilder builder = new HashCodeBuilder().append(this.getInstant());
+		HashCodeBuilder builder = new HashCodeBuilder().append(this.getEater()).append(
+				this.getInstant());
 		return builder.toHashCode();
 	}
 

@@ -12,11 +12,19 @@ import org.apache.commons.lang.time.DateUtils;
 import com.gb1.healthcheck.domain.foods.FoodGroup;
 import com.gb1.healthcheck.domain.foods.Foods;
 import com.gb1.healthcheck.domain.foods.Nutrient;
+import com.gb1.healthcheck.domain.users.User;
+import com.gb1.healthcheck.domain.users.Users;
 
 public class MealTest extends TestCase {
 	public void testNewFromPropertyProvider() {
+		final User eater = Users.gb();
 		final Date today = new Date();
+
 		MealCreationPropertyProvider pp = new MealCreationPropertyProvider() {
+			public User getEater() {
+				return eater;
+			}
+
 			public Date getInstant() {
 				return today;
 			}
@@ -27,6 +35,7 @@ public class MealTest extends TestCase {
 		};
 
 		Meal dinner = new Meal(pp);
+		assertEquals(eater, dinner.getEater());
 		assertEquals(today, dinner.getInstant());
 		assertTrue(dinner.containsFood(Foods.spaghetti()));
 		assertTrue(dinner.containsFood(Foods.redWine()));
@@ -48,6 +57,7 @@ public class MealTest extends TestCase {
 	}
 
 	public void testUpdateFromPropertyProvider() throws ParseException {
+		final User eater = Users.gb();
 		final Date oldInstant = parseInstant("2007-10-15 18:00");
 		final Date newInstant = parseInstant("2007-10-15 18:30");
 
@@ -65,12 +75,13 @@ public class MealTest extends TestCase {
 			}
 		};
 
-		Meal dinner = new Meal(oldInstant);
+		Meal dinner = new Meal(eater, oldInstant);
 		dinner.addDish(Meals.spaghettiDish());
 		dinner.addDish(Meals.redWineDrink());
 
 		dinner.update(pp);
 
+		assertEquals(eater, dinner.getEater());
 		assertEquals(newInstant, dinner.getInstant());
 		assertEquals(2, dinner.getDishes().size());
 		assertTrue(dinner.getDishes().contains(Meals.spaghettiDish()));

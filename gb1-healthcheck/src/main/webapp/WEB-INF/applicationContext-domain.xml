@@ -80,6 +80,7 @@
 	</bean>
 	<bean id="mealCreationPropertyProviderAdapter" class="com.gb1.healthcheck.domain.meals.MealCreationPropertyProviderAdapter" scope="prototype">
 		<property name="foodRepository" ref="foodRepository" />
+		<property name="userRepository" ref="userRepository" />
 	</bean>
 	<bean id="mealUpdatePropertyProviderAdapter" class="com.gb1.healthcheck.domain.meals.MealUpdatePropertyProviderAdapter" scope="prototype">
 		<property name="foodRepository" ref="foodRepository" />
