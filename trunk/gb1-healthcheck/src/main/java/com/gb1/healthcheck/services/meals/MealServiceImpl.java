@@ -13,6 +13,7 @@ import com.gb1.healthcheck.domain.meals.MealRepository;
 import com.gb1.healthcheck.domain.meals.MealUpdatePropertyProviderAdapter;
 import com.gb1.healthcheck.domain.meals.MealUpdateRequest;
 import com.gb1.healthcheck.domain.meals.MealValidator;
+import com.gb1.healthcheck.domain.users.User;
 
 public class MealServiceImpl implements MealService {
 	private MealRepository mealRepo;
@@ -23,8 +24,8 @@ public class MealServiceImpl implements MealService {
 	}
 
 	@Transactional(readOnly = true)
-	public List<Meal> getMealHistory() {
-		List<Meal> mealHistory = mealRepo.loadMeals();
+	public List<Meal> getMealHistory(User eater) {
+		List<Meal> mealHistory = mealRepo.findMealsBy(eater);
 		return mealHistory;
 	}
 

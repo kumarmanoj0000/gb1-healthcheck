@@ -16,7 +16,7 @@ public class FullMealUpdateValidatorTest extends TestCase {
 		Meal meal = Meals.fullItalianDinner();
 
 		MealRepository mealRepo = EasyMock.createMock(MealRepository.class);
-		EasyMock.expect(mealRepo.findMealsByInstant(meal.getInstant())).andReturn(
+		EasyMock.expect(mealRepo.findMealsBy(meal.getEater(), meal.getInstant())).andReturn(
 				Collections.singletonList(meal));
 		EasyMock.replay(mealRepo);
 
@@ -33,7 +33,8 @@ public class FullMealUpdateValidatorTest extends TestCase {
 		mealsForInstant.add(meal);
 
 		MealRepository mealRepo = EasyMock.createMock(MealRepository.class);
-		EasyMock.expect(mealRepo.findMealsByInstant(meal.getInstant())).andReturn(mealsForInstant);
+		EasyMock.expect(mealRepo.findMealsBy(meal.getEater(), meal.getInstant())).andReturn(
+				mealsForInstant);
 		EasyMock.replay(mealRepo);
 
 		FullMealUpdateValidator v = new FullMealUpdateValidator();
@@ -51,7 +52,7 @@ public class FullMealUpdateValidatorTest extends TestCase {
 		Meal meal = new Meal(Users.gb(), new Date());
 
 		MealRepository mealRepo = EasyMock.createMock(MealRepository.class);
-		EasyMock.expect(mealRepo.findMealsByInstant(meal.getInstant())).andReturn(
+		EasyMock.expect(mealRepo.findMealsBy(meal.getEater(), meal.getInstant())).andReturn(
 				Collections.singletonList(meal));
 		EasyMock.replay(mealRepo);
 

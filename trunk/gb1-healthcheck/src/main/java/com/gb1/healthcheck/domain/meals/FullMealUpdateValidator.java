@@ -19,7 +19,8 @@ public class FullMealUpdateValidator implements MealValidator {
 
 	private boolean mealAlreadyExists(Meal meal) {
 		boolean exists;
-		List<Meal> mealsForInstant = mealRepo.findMealsByInstant(meal.getInstant());
+		List<Meal> mealsForInstant = mealRepo
+				.findMealsBy(meal.getEater(), meal.getInstant());
 
 		if (mealsForInstant.isEmpty()) {
 			exists = false;
