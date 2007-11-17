@@ -23,7 +23,7 @@ public class ListMealsAction implements ServletRequestAware {
 	public ListMealsAction() {
 	}
 
-	public String listMeals() {
+	public String list() {
 		mealHistory.addAll(mealService.getMealHistory(getRequester()));
 		return Action.SUCCESS;
 	}

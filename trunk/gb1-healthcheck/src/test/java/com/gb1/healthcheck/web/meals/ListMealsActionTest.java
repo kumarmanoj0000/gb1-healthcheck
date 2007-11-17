@@ -32,7 +32,7 @@ public class ListMealsActionTest extends TestCase {
 		};
 		action.setMealService(mealSvc);
 
-		assertEquals(Action.SUCCESS, action.listMeals());
+		assertEquals(Action.SUCCESS, action.list());
 		assertTrue(CollectionUtils.isEqualCollection(mealHistory, action.getMealHistory()));
 	}
 }

@@ -3,12 +3,12 @@ HealthCheck
 -----------
 
 . features:
-  - physiological measures
-    > create / edit / delete intestinal status
+  - body metrics
+    > list / edit body metrics
 
   - analysis
-    > intestinal status graph
-    > correlation food => intestinal status
+    > body metrics graph
+    > correlation food => body metrics
 
   - administration (visible to administrators on control panel)
     > user management
