@@ -36,9 +36,9 @@
 		<property name="mealUpdateValidator" ref="mealUpdateValidator" />
 	</bean>
 
-	<bean id="metricsService" class="com.gb1.healthcheck.services.metrics.BodyMetricsServiceImpl">
+	<bean id="patientFileService" class="com.gb1.healthcheck.services.metrics.PatientFileServiceImpl">
 		<property name="userRepository" ref="userRepository" />
-		<property name="bodyMetricsRepository" ref="metricsRepository" />
+		<property name="patientFileRepository" ref="patientFileRepository" />
 	</bean>
 
 	<!-- Must be used in place of the tx:annotation-driven tag, which oddly does not work when

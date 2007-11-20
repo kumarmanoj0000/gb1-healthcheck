@@ -5,13 +5,13 @@ import javax.persistence.PersistenceContext;
 
 import com.gb1.healthcheck.domain.users.User;
 
-public class JpaBodyMetricsRepository implements BodyMetricsRepository {
+public class JpaPatientFileRepository implements PatientFileRepository {
 	private EntityManager entityManager;
 
-	public JpaBodyMetricsRepository() {
+	public JpaPatientFileRepository() {
 	}
 
-	public BodyMetrics loadBodyMetricsFor(User patient) {
+	public PatientFile loadPatientFileFor(User patient) {
 		return null;
 	}
 
