@@ -23,8 +23,9 @@ HealthCheck
 
 . technical
   - use annotations wherever possible (leverage Struts2 annotations)
-  - upgrade to Spring 2.5 final
-  - migrate unit tests to JUnit 4 (extensive support in Spring 2.5)
+  - upgrade to Spring 2.5.0
+  - upgrade to Struts 2.0.11
+  - migrate unit tests to JUnit 4 / TestNG
   - improve visual design (CSS)
   - add README.TXT
 
