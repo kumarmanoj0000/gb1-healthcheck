@@ -5,15 +5,25 @@ import java.util.Date;
 import junit.framework.TestCase;
 
 import org.easymock.EasyMock;
+import org.springframework.transaction.PlatformTransactionManager;
+import org.springframework.transaction.aspectj.AnnotationTransactionAspect;
 
+import com.gb1.healthcheck.domain.metrics.GastricState;
 import com.gb1.healthcheck.domain.metrics.PatientFile;
 import com.gb1.healthcheck.domain.metrics.PatientFileRepository;
-import com.gb1.healthcheck.domain.metrics.GastricState;
 import com.gb1.healthcheck.domain.users.User;
 import com.gb1.healthcheck.domain.users.UserRepository;
 import com.gb1.healthcheck.domain.users.Users;
 
-public class BodyMetricsServiceImplTest extends TestCase {
+public class PatientFileServiceImplTest extends TestCase {
+	@Override
+	protected void setUp() throws Exception {
+		PlatformTransactionManager txManager = EasyMock
+				.createNiceMock(PlatformTransactionManager.class);
+		AnnotationTransactionAspect.aspectOf().setTransactionManager(txManager);
+		EasyMock.replay(txManager);
+	}
+
 	public void testSetIntestinalState() {
 		User patient = Users.lg();
 		Date now = new Date();
