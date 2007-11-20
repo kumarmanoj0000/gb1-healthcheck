@@ -1,34 +1,81 @@
 package com.gb1.healthcheck.domain.metrics;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinTable;
+import javax.persistence.OneToOne;
 
 import org.apache.commons.lang.Validate;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
+import org.apache.commons.lang.time.DateUtils;
+import org.hibernate.annotations.CollectionOfElements;
+import org.hibernate.annotations.MapKey;
 
+import com.gb1.commons.Identifiable;
 import com.gb1.healthcheck.domain.users.User;
 
-public class PatientFile {
+@Entity
+public class PatientFile implements Identifiable {
+	@Id
+	@GeneratedValue
+	private Long id;
+
+	@OneToOne
 	private User patient;
-	private Map<Date, IntestinalState> intestinalStates = new HashMap<Date, IntestinalState>();
+
+	@CollectionOfElements(fetch = FetchType.EAGER)
+	@JoinTable(name = "GASTRIC_STATE")
+	@MapKey(columns = @Column(name = "INSTANT"))
+	@Column(name = "STATE")
+	private Map<Date, GastricState> gastricStates = new HashMap<Date, GastricState>();
+
+	PatientFile() {
+	}
 
 	public PatientFile(User patient) {
 		Validate.notNull(patient);
 		this.patient = patient;
 	}
 
+	public Long getId() {
+		return id;
+	}
+
 	public User getPatient() {
 		return patient;
 	}
 
-	public IntestinalState getIntestinalState(Date instant) {
-		return intestinalStates.get(instant);
+	public GastricState getGastricState(Date instant) {
+		return gastricStates.get(instant);
 	}
 
-	public void setIntestinalState(Date instant, IntestinalState state) {
-		intestinalStates.put(instant, state);
+	public void setGastricState(Date instant, GastricState state) {
+		gastricStates.put(instant, state);
+	}
+
+	public List<PunctualGastricState> getGastricStatesOnDay(Date day) {
+		List<PunctualGastricState> states = new ArrayList<PunctualGastricState>();
+
+		for (Date stateInstant : gastricStates.keySet()) {
+			if (DateUtils.isSameDay(stateInstant, day)) {
+				states.add(new PunctualGastricState(stateInstant, gastricStates.get(stateInstant)));
+			}
+		}
+
+		Collections.sort(states, new PunctualGastricState.ByInstantComparator());
+
+		return states;
 	}
 
 	@Override

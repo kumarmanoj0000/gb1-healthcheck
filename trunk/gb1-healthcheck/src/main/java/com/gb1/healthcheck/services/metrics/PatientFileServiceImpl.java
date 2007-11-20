@@ -6,7 +6,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.gb1.healthcheck.domain.metrics.PatientFile;
 import com.gb1.healthcheck.domain.metrics.PatientFileRepository;
-import com.gb1.healthcheck.domain.metrics.IntestinalState;
+import com.gb1.healthcheck.domain.metrics.GastricState;
 import com.gb1.healthcheck.domain.users.User;
 import com.gb1.healthcheck.domain.users.UserRepository;
 
@@ -18,10 +18,10 @@ public class PatientFileServiceImpl implements PatientFileService {
 	}
 
 	@Transactional(rollbackFor = { RuntimeException.class })
-	public void setIntestinalState(Long patientId, Date instant, IntestinalState state) {
+	public void setIntestinalState(Long patientId, Date instant, GastricState state) {
 		User patient = userRepo.loadUser(patientId);
 		PatientFile metrics = patientFileRepo.loadPatientFileFor(patient);
-		metrics.setIntestinalState(instant, state);
+		metrics.setGastricState(instant, state);
 	}
 
 	public void setUserRepository(UserRepository userRepo) {
