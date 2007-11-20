@@ -8,11 +8,11 @@ import org.apache.commons.lang.time.DateUtils;
 
 import com.gb1.healthcheck.domain.users.Users;
 
-public class BodyMetricsTest extends TestCase {
+public class PatientFileTest extends TestCase {
 	public void testEquals() {
-		BodyMetrics tr1 = new BodyMetrics(Users.gb());
-		BodyMetrics tr2 = new BodyMetrics(Users.gb());
-		BodyMetrics tr3 = new BodyMetrics(Users.lg());
+		PatientFile tr1 = new PatientFile(Users.gb());
+		PatientFile tr2 = new PatientFile(Users.gb());
+		PatientFile tr3 = new PatientFile(Users.lg());
 
 		assertTrue(tr1.equals(tr2));
 		assertFalse(tr1.equals(tr3));
@@ -23,7 +23,7 @@ public class BodyMetricsTest extends TestCase {
 		Date tomorrow = DateUtils.addDays(now, 1);
 		Date yesterday = DateUtils.addDays(now, -1);
 
-		BodyMetrics tr = new BodyMetrics(Users.gb());
+		PatientFile tr = new PatientFile(Users.gb());
 		tr.setIntestinalState(now, IntestinalState.NORMAL);
 		tr.setIntestinalState(tomorrow, IntestinalState.SLIGHTLY_BLOATED);
 		tr.setIntestinalState(yesterday, IntestinalState.BLOATED);

@@ -10,11 +10,11 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
 
 import com.gb1.healthcheck.domain.users.User;
 
-public class BodyMetrics {
+public class PatientFile {
 	private User patient;
 	private Map<Date, IntestinalState> intestinalStates = new HashMap<Date, IntestinalState>();
 
-	public BodyMetrics(User patient) {
+	public PatientFile(User patient) {
 		Validate.notNull(patient);
 		this.patient = patient;
 	}
@@ -36,11 +36,11 @@ public class BodyMetrics {
 		if (o == this) {
 			return true;
 		}
-		if (!(o instanceof BodyMetrics)) {
+		if (!(o instanceof PatientFile)) {
 			return false;
 		}
 
-		BodyMetrics that = (BodyMetrics) o;
+		PatientFile that = (PatientFile) o;
 		EqualsBuilder builder = new EqualsBuilder().append(this.getPatient(), that.getPatient());
 
 		return builder.isEquals();

@@ -4,24 +4,24 @@ import com.gb1.healthcheck.domain.support.BaseRepositoryTestCase;
 import com.gb1.healthcheck.domain.users.User;
 import com.gb1.healthcheck.domain.users.Users;
 
-public class JpaBodyMetricsRepositoryTest extends BaseRepositoryTestCase {
-	private BodyMetricsRepository repo;
+public class JpaPatientFileRepositoryTest extends BaseRepositoryTestCase {
+	private PatientFileRepository repo;
 
 	public void testLoadBodyMetricsNewPatient() {
-		// this user doesn't have any metrics in the test database yet
+		// this user doesn't have any patient file in the test database yet
 		User patient = Users.gb();
-		BodyMetrics metrics = repo.loadBodyMetricsFor(patient);
+		PatientFile metrics = repo.loadPatientFileFor(patient);
 		assertEquals(patient, metrics.getPatient());
 	}
 
 	public void testLoadBodyMetricsExistingPatient() {
-		// this user already has some metrics saved in the database
+		// this user already has a patient file saved in the database
 		User patient = Users.lg();
-		BodyMetrics metrics = repo.loadBodyMetricsFor(patient);
+		PatientFile metrics = repo.loadPatientFileFor(patient);
 		assertEquals(patient, metrics.getPatient());
 	}
 
-	public void setMetricsRepository(BodyMetricsRepository repo) {
+	public void setPatientFileRepository(PatientFileRepository repo) {
 		this.repo = repo;
 	}
 }

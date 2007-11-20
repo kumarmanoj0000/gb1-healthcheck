@@ -4,23 +4,23 @@ import java.util.Date;
 
 import org.springframework.transaction.annotation.Transactional;
 
-import com.gb1.healthcheck.domain.metrics.BodyMetrics;
-import com.gb1.healthcheck.domain.metrics.BodyMetricsRepository;
+import com.gb1.healthcheck.domain.metrics.PatientFile;
+import com.gb1.healthcheck.domain.metrics.PatientFileRepository;
 import com.gb1.healthcheck.domain.metrics.IntestinalState;
 import com.gb1.healthcheck.domain.users.User;
 import com.gb1.healthcheck.domain.users.UserRepository;
 
-public class BodyMetricsServiceImpl implements BodyMetricsService {
+public class PatientFileServiceImpl implements PatientFileService {
 	private UserRepository userRepo;
-	private BodyMetricsRepository bodyMetricsRepo;
+	private PatientFileRepository patientFileRepo;
 
-	public BodyMetricsServiceImpl() {
+	public PatientFileServiceImpl() {
 	}
 
 	@Transactional(rollbackFor = { RuntimeException.class })
 	public void setIntestinalState(Long patientId, Date instant, IntestinalState state) {
 		User patient = userRepo.loadUser(patientId);
-		BodyMetrics metrics = bodyMetricsRepo.loadBodyMetricsFor(patient);
+		PatientFile metrics = patientFileRepo.loadPatientFileFor(patient);
 		metrics.setIntestinalState(instant, state);
 	}
 
@@ -28,7 +28,7 @@ public class BodyMetricsServiceImpl implements BodyMetricsService {
 		this.userRepo = userRepo;
 	}
 
-	public void setBodyMetricsRepository(BodyMetricsRepository bodyMetricsRepo) {
-		this.bodyMetricsRepo = bodyMetricsRepo;
+	public void setPatientFileRepository(PatientFileRepository patientFileRepo) {
+		this.patientFileRepo = patientFileRepo;
 	}
 }
