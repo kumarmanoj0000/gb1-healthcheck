@@ -8,7 +8,7 @@ import org.easymock.EasyMock;
 
 import com.gb1.healthcheck.domain.metrics.PatientFile;
 import com.gb1.healthcheck.domain.metrics.PatientFileRepository;
-import com.gb1.healthcheck.domain.metrics.IntestinalState;
+import com.gb1.healthcheck.domain.metrics.GastricState;
 import com.gb1.healthcheck.domain.users.User;
 import com.gb1.healthcheck.domain.users.UserRepository;
 import com.gb1.healthcheck.domain.users.Users;
@@ -30,8 +30,8 @@ public class BodyMetricsServiceImplTest extends TestCase {
 		PatientFileServiceImpl svc = new PatientFileServiceImpl();
 		svc.setUserRepository(userRepo);
 		svc.setPatientFileRepository(metricsRepo);
-		svc.setIntestinalState(patient.getId(), now, IntestinalState.NORMAL);
+		svc.setIntestinalState(patient.getId(), now, GastricState.NORMAL);
 
-		assertEquals(IntestinalState.NORMAL, metrics.getIntestinalState(now));
+		assertEquals(GastricState.NORMAL, metrics.getGastricState(now));
 	}
 }

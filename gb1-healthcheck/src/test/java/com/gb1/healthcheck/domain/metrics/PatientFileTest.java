@@ -1,6 +1,8 @@
 package com.gb1.healthcheck.domain.metrics;
 
+import java.text.ParseException;
 import java.util.Date;
+import java.util.List;
 
 import junit.framework.TestCase;
 
@@ -18,18 +20,37 @@ public class PatientFileTest extends TestCase {
 		assertFalse(tr1.equals(tr3));
 	}
 
-	public void testIntestinalStatuses() {
+	public void testGetGastricState() {
 		Date now = new Date();
 		Date tomorrow = DateUtils.addDays(now, 1);
 		Date yesterday = DateUtils.addDays(now, -1);
 
-		PatientFile tr = new PatientFile(Users.gb());
-		tr.setIntestinalState(now, IntestinalState.NORMAL);
-		tr.setIntestinalState(tomorrow, IntestinalState.SLIGHTLY_BLOATED);
-		tr.setIntestinalState(yesterday, IntestinalState.BLOATED);
+		PatientFile file = new PatientFile(Users.gb());
+		file.setGastricState(now, GastricState.NORMAL);
+		file.setGastricState(tomorrow, GastricState.SLIGHTLY_BLOATED);
+		file.setGastricState(yesterday, GastricState.BLOATED);
 
-		assertEquals(IntestinalState.NORMAL, tr.getIntestinalState(now));
-		assertEquals(IntestinalState.SLIGHTLY_BLOATED, tr.getIntestinalState(tomorrow));
-		assertEquals(IntestinalState.BLOATED, tr.getIntestinalState(yesterday));
+		assertEquals(GastricState.NORMAL, file.getGastricState(now));
+		assertEquals(GastricState.SLIGHTLY_BLOATED, file.getGastricState(tomorrow));
+		assertEquals(GastricState.BLOATED, file.getGastricState(yesterday));
+	}
+
+	public void testGetGastricStatesOnDay() throws ParseException {
+		Date base = DateUtils.parseDate("2007-10-16 20:00:00",
+				new String[] { "yyyy-MM-dd hh:mm:ss" });
+		Date baseMinusOneHour = DateUtils.addHours(base, -1);
+		Date baseMinusOneDay = DateUtils.addDays(base, 1);
+		Date basePlusOneDay = DateUtils.addDays(base, -1);
+
+		PatientFile file = new PatientFile(Users.gb());
+		file.setGastricState(baseMinusOneDay, GastricState.CRISIS);
+		file.setGastricState(baseMinusOneHour, GastricState.SLIGHTLY_BLOATED);
+		file.setGastricState(base, GastricState.NORMAL);
+		file.setGastricState(basePlusOneDay, GastricState.BLOATED);
+
+		List<PunctualGastricState> states = file.getGastricStatesOnDay(base);
+		assertEquals(2, states.size());
+		assertEquals(GastricState.SLIGHTLY_BLOATED, states.get(0).getState());
+		assertEquals(GastricState.NORMAL, states.get(1).getState());
 	}
 }

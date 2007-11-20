@@ -14,6 +14,7 @@
 		<class>com.gb1.healthcheck.domain.foods.ComplexFood</class>
 		<class>com.gb1.healthcheck.domain.meals.Meal</class>
 		<class>com.gb1.healthcheck.domain.meals.PreparedFood</class>
+		<class>com.gb1.healthcheck.domain.metrics.PatientFile</class>
 		<class>com.gb1.healthcheck.domain.users.User</class>
 	</persistence-unit>
 
