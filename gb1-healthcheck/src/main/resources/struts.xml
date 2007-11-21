@@ -162,4 +162,10 @@
 		</action>
 	</package>
 
+	<package name="gastricStates" extends="default" namespace="/metrics">
+		<action name="manage" method="show" class="manageGastricStatesAction">
+			<result>/views/metrics/gastricStates.jsp</result>
+		</action>
+	</package>
+
 </struts>

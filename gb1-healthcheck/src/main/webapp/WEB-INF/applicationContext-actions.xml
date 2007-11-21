@@ -68,6 +68,11 @@
 		<property name="mealService" ref="mealService" />
 	</bean>
 
+	<!-- Gastric state actions -->
+	<bean id="manageGastricStatesAction" class="com.gb1.healthcheck.web.metrics.ManageGastricStatesAction" scope="prototype">
+		<property name="patientFileService" ref="patientFileService" />
+	</bean>
+
 	<bean id="signOffAction" class="com.gb1.healthcheck.web.security.SignOffAction" scope="prototype" />
 
 </beans>
