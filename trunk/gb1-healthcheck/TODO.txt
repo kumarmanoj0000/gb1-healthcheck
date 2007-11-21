@@ -28,6 +28,7 @@ HealthCheck
   - migrate unit tests to JUnit 4 / TestNG
   - improve visual design (CSS)
   - add README.TXT
+  - how to provide completion result to action?
 
 . pain points
   - repeating @Transactional on all service methods, especially exception lists (solved in Spring 2.5)
