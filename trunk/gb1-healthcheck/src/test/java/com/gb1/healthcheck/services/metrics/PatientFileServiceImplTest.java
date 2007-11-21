@@ -44,4 +44,23 @@ public class PatientFileServiceImplTest extends TestCase {
 
 		assertEquals(GastricState.NORMAL, metrics.getGastricState(now));
 	}
+
+	public void testLoadPatientFile() {
+		User patient = Users.lg();
+		PatientFile file = new PatientFile(patient);
+
+		UserRepository userRepo = EasyMock.createMock(UserRepository.class);
+		EasyMock.expect(userRepo.loadUser(patient.getId())).andReturn(patient);
+		EasyMock.replay(userRepo);
+
+		PatientFileRepository repo = EasyMock.createMock(PatientFileRepository.class);
+		EasyMock.expect(repo.loadPatientFileFor(patient)).andReturn(file);
+		EasyMock.replay(repo);
+
+		PatientFileServiceImpl svc = new PatientFileServiceImpl();
+		svc.setPatientFileRepository(repo);
+		svc.setUserRepository(userRepo);
+
+		assertEquals(patient, svc.loadPatientFile(patient.getId()).getPatient());
+	}
 }
