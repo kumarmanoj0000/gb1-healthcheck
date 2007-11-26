@@ -1,9 +1,9 @@
 package com.gb1.healthcheck.domain.meals;
 
+import junit.framework.TestCase;
+
 import com.gb1.healthcheck.domain.foods.FoodGroup;
 import com.gb1.healthcheck.domain.foods.Foods;
-
-import junit.framework.TestCase;
 
 public class PreparedFoodTest extends TestCase {
 	public void testContainsIngredient() {

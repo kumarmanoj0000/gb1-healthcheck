@@ -40,7 +40,7 @@ public class PatientFileServiceImplTest extends TestCase {
 		PatientFileServiceImpl svc = new PatientFileServiceImpl();
 		svc.setUserRepository(userRepo);
 		svc.setPatientFileRepository(metricsRepo);
-		svc.setIntestinalState(patient.getId(), now, GastricState.NORMAL);
+		svc.savePatientGastricState(patient.getId(), now, GastricState.NORMAL);
 
 		assertEquals(GastricState.NORMAL, metrics.getGastricState(now));
 	}

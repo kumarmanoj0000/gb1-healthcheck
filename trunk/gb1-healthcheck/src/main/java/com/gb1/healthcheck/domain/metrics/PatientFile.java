@@ -64,7 +64,7 @@ public class PatientFile implements Identifiable {
 		gastricStates.put(instant, state);
 	}
 
-	public List<PunctualGastricState> getGastricStatesOnDay(Date day) {
+	public List<PunctualGastricState> getGastricStatesFor(Date day) {
 		List<PunctualGastricState> states = new ArrayList<PunctualGastricState>();
 
 		for (Date stateInstant : gastricStates.keySet()) {
