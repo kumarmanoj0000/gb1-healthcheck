@@ -48,7 +48,7 @@ public class PatientFileTest extends TestCase {
 		file.setGastricState(base, GastricState.NORMAL);
 		file.setGastricState(basePlusOneDay, GastricState.BLOATED);
 
-		List<PunctualGastricState> states = file.getGastricStatesOnDay(base);
+		List<PunctualGastricState> states = file.getGastricStatesFor(base);
 		assertEquals(2, states.size());
 		assertEquals(GastricState.SLIGHTLY_BLOATED, states.get(0).getState());
 		assertEquals(GastricState.NORMAL, states.get(1).getState());

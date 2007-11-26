@@ -10,6 +10,10 @@
 		<!-- TODO Load the calendar resource file based on locale -->
 		<script type="text/javascript" src="<c:url value='/scripts/jscalendar/lang/calendar-en.js' />"></script>
 
+		<script type='text/javascript' src='/healthcheck/dwr/interface/ManageGastricStatesAction.js'></script>
+		<script type='text/javascript' src='/healthcheck/dwr/engine.js'></script>
+		<script type='text/javascript' src='/healthcheck/dwr/util.js'></script>
+
 		<script type="text/javascript">
 			function dateChanged(calendar) {
 				if (calendar.dateClicked) {

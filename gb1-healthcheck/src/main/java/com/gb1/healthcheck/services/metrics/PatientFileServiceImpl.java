@@ -18,7 +18,7 @@ public class PatientFileServiceImpl implements PatientFileService {
 	}
 
 	@Transactional(rollbackFor = { RuntimeException.class })
-	public void setIntestinalState(Long patientId, Date instant, GastricState state) {
+	public void savePatientGastricState(Long patientId, Date instant, GastricState state) {
 		User patient = userRepo.loadUser(patientId);
 		PatientFile metrics = patientFileRepo.loadPatientFileFor(patient);
 		metrics.setGastricState(instant, state);

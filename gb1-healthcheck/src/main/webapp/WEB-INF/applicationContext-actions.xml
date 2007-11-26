@@ -4,9 +4,23 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:aop="http://www.springframework.org/schema/aop"
 	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:dwr="http://www.directwebremoting.org/schema/spring-dwr"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.0.xsd
-       http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.0.xsd">
+       http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.0.xsd
+       http://www.directwebremoting.org/schema/spring-dwr
+       http://www.directwebremoting.org/schema/spring-dwr-2.0.xsd">
+
+	<!-- DWR controller -->
+
+	<dwr:controller id="dwrController" debug="true" />
+
+	<dwr:configuration>
+		<dwr:convert type="bean" class="com.gb1.healthcheck.domain.metrics.GastricState" />
+		<dwr:convert type="bean" class="com.gb1.healthcheck.domain.metrics.PunctualGastricState" />
+	</dwr:configuration>
+
+	<!-- Struts2 actions -->
 
 	<bean id="userRegistrationAction" class="com.gb1.healthcheck.web.users.BasicUserRegistrationAction" scope="prototype">
 		<property name="userService" ref="userService" />
@@ -71,6 +85,10 @@
 	<!-- Gastric state actions -->
 	<bean id="manageGastricStatesAction" class="com.gb1.healthcheck.web.metrics.ManageGastricStatesAction" scope="prototype">
 		<property name="patientFileService" ref="patientFileService" />
+		<dwr:remote javascript="ManageGastricStatesAction">
+			<dwr:include method="loadGastricStatesFor"/>
+			<dwr:include method="savePatientGastricState"/>
+		</dwr:remote>
 	</bean>
 
 	<bean id="signOffAction" class="com.gb1.healthcheck.web.security.SignOffAction" scope="prototype" />
