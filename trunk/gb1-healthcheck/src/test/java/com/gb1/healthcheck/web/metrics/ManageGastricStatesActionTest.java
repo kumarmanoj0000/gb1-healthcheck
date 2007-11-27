@@ -3,6 +3,8 @@ package com.gb1.healthcheck.web.metrics;
 import java.text.ParseException;
 import java.util.Date;
 
+import javax.servlet.http.HttpServletRequest;
+
 import junit.framework.TestCase;
 
 import org.apache.commons.collections.CollectionUtils;
@@ -20,8 +22,16 @@ public class ManageGastricStatesActionTest extends TestCase {
 	private static final String[] PARSE_PATTERNS = new String[] { "yyyy-MM-dd hh:mm:ss" };
 
 	public void testShow() {
-		ManageGastricStatesAction action = new ManageGastricStatesAction();
+		final User patient = Users.lg();
+
+		ManageGastricStatesAction action = new ManageGastricStatesAction() {
+			@Override
+			protected User getRequester(HttpServletRequest request) {
+				return patient;
+			}
+		};
 		assertEquals(Action.SUCCESS, action.show());
+		assertEquals(patient, action.getPatient());
 	}
 
 	public void testLoadStatesFor() throws ParseException {
