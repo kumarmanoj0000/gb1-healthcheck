@@ -3,20 +3,33 @@ package com.gb1.healthcheck.web.metrics;
 import java.util.Date;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
+import org.apache.struts2.interceptor.ServletRequestAware;
+
 import com.gb1.healthcheck.domain.metrics.GastricState;
 import com.gb1.healthcheck.domain.metrics.PatientFile;
 import com.gb1.healthcheck.domain.metrics.PunctualGastricState;
+import com.gb1.healthcheck.domain.users.User;
 import com.gb1.healthcheck.services.metrics.PatientFileService;
+import com.gb1.healthcheck.web.utils.HttpRequestUtils;
 import com.opensymphony.xwork2.Action;
 
-public class ManageGastricStatesAction {
+public class ManageGastricStatesAction implements ServletRequestAware {
+	private HttpServletRequest request;
 	private PatientFileService patientFileService;
+	private User patient;
 
 	public ManageGastricStatesAction() {
 	}
 
 	public String show() {
+		patient = getRequester(request);
 		return Action.SUCCESS;
+	}
+
+	protected User getRequester(HttpServletRequest request) {
+		return HttpRequestUtils.getUser(request);
 	}
 
 	public List<PunctualGastricState> loadGastricStatesFor(Long patientId, Date date) {
@@ -28,6 +41,14 @@ public class ManageGastricStatesAction {
 
 	public void savePatientGastricState(Long patientId, Date instant, GastricState state) {
 		patientFileService.savePatientGastricState(patientId, instant, state);
+	}
+
+	public User getPatient() {
+		return patient;
+	}
+
+	public void setServletRequest(HttpServletRequest request) {
+		this.request = request;
 	}
 
 	public void setPatientFileService(PatientFileService svc) {
