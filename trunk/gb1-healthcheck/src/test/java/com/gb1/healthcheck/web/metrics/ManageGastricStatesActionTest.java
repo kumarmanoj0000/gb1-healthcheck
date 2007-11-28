@@ -65,7 +65,7 @@ public class ManageGastricStatesActionTest extends TestCase {
 		ManageGastricStatesAction action = new ManageGastricStatesAction();
 		action.setPatientFileService(svc);
 
-		action.savePatientGastricState(patient.getId(), now, GastricState.NORMAL);
+		action.saveGastricState(patient.getId(), now, GastricState.NORMAL);
 		EasyMock.verify(svc);
 	}
 
