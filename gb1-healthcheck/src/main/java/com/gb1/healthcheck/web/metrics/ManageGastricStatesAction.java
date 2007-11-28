@@ -39,7 +39,7 @@ public class ManageGastricStatesAction implements ServletRequestAware {
 		return states;
 	}
 
-	public void savePatientGastricState(Long patientId, Date instant, GastricState state) {
+	public void saveGastricState(Long patientId, Date instant, GastricState state) {
 		patientFileService.savePatientGastricState(patientId, instant, state);
 	}
 
