@@ -4,20 +4,19 @@
 
 <html>
 	<head>
-		<link rel="stylesheet" type="text/css" href="<c:url value='/scripts/jscalendar/calendar-win2k-1.css' />" title="win2k-1"></link>
-		<script type="text/javascript" src="<c:url value='/scripts/jscalendar/calendar.js' />"></script>
-		<script type="text/javascript" src="<c:url value='/scripts/jscalendar/calendar-setup.js' />"></script>
-		<%-- TODO Load the calendar resource file based on locale --%>
-		<script type="text/javascript" src="<c:url value='/scripts/jscalendar/lang/calendar-en.js' />"></script>
+		<%@ include file="/includes/calendar.jsp" %>
 
 		<script type='text/javascript' src='/healthcheck/dwr/interface/ManageGastricStatesAction.js'></script>
 		<script type='text/javascript' src='/healthcheck/dwr/engine.js'></script>
 		<script type='text/javascript' src='/healthcheck/dwr/util.js'></script>
 
 		<script type="text/javascript">
+			var selectedDate = new Date();
+
 			function dateChanged(calendar) {
 				if (calendar.dateClicked) {
-					loadGastricStatesFor(${patient.id}, calendar.date);
+					selectedDate = calendar.date;
+					loadGastricStatesFor(${patient.id}, selectedDate);
 				}
 			}
 
@@ -35,8 +34,11 @@
 
 				if (states.length == 0) {
 					var newStateDiv = mockStateDiv.cloneNode(true);
+
 					newStateDiv.id = 'gastricState-0';
 					newStateDiv.style.display = 'block';
+					document.getElementById('mockGastricStateInstant').id = 'gastricStateInstant-0';
+					document.getElementById('mockGastricStateLevel').id = 'gastricStateLevel-0';
 
 					var newStateDivSave = newStateDiv.getElementsByTagName('a')[0];
 					newStateDivSave.setAttribute('onClick', 'javascript:saveGastricState(0)');
@@ -48,14 +50,16 @@
 						var newStateDiv = mockStateDiv.cloneNode(true);
 						newStateDiv.id = 'gastricState-' + i;
 
-						var newStateInstantText = newStateDiv.getElementById('gastricStateInstant');
+						var newStateInstantText = document.getElementById('mockGastricStateInstant');
 						newStateInstantText.value = i;
-						var newStateInstantLevel = newStateDiv.getElementById('gastricStateLevel');
+						var newStateInstantLevel = document.getElementById('mockGastricStateLevel');
 						// TODO Select correct level
 						var newStateDivSave = newStateDiv.getElementsByTagName('a')[0];
 						newStateDivSave.setAttribute('onClick', 'javascript:saveGastricState(' + i + ')');
 
 						newStateDiv.style.display = 'block';
+
+						// TODO Add as last
 						statesDiv.appendChild(newStateDiv);
 					}
 				}
@@ -64,8 +68,8 @@
 			function saveGastricState(index) {
 				if (index != -1) {
 					var gastricStateDiv = document.getElementById('gastricState-' + index);
-					var instant = gastricStateDiv.getElementById('gastricStateInstant');
-					var level = gastricStateDiv.getElementById('gastricStateLevel');
+					var instant = gastricStateDiv.getElementById('gastricStateInstant-' + index);
+					var level = gastricStateDiv.getElementById('gastricStateLevel-' + index);
 
 					// TODO Create a complete instant by joining date and time
 					ManageGastricStatesAction.savePatientGastricState(${patient.id}, instant.value, level.value, gastricStateSaved);
@@ -97,11 +101,11 @@
 		<div id="mockGastricState" style="display: none">
 			<div>
 				<label><fmt:message key="gastricState.instant" />:</label>
-				<input type="text" id="gastricStateInstant" />
+				<input type="text" id="mockGastricStateInstant" />
 			</div>
 			<div>
 				<label><fmt:message key="gastricState.level" />:</label>
-				<select id="gastricStateLevel">
+				<select id="mockGastricStateLevel">
 					<option value="1"><fmt:message key="gastricState.level.normal" /></option>
 					<option value="2"><fmt:message key="gastricState.level.slightlyBloated" /></option>
 					<option value="3"><fmt:message key="gastricState.level.bloated" /></option>
@@ -115,7 +119,7 @@
 		</div>
 
 		<script type="text/javascript">
-			loadGastricStatesFor(${patient.id}, new Date());
+			loadGastricStatesFor(${patient.id}, selectedDate);
 		</script>
 	</body>
 </html>

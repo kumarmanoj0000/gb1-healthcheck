@@ -4,11 +4,7 @@
 
 <html>
 	<head>
-		<link rel="stylesheet" type="text/css" href="<c:url value='/scripts/jscalendar/calendar-win2k-1.css' />" title="win2k-1"></link>
-		<script type="text/javascript" src="<c:url value='/scripts/jscalendar/calendar.js' />"></script>
-		<script type="text/javascript" src="<c:url value='/scripts/jscalendar/calendar-setup.js' />"></script>
-		<!-- TODO Load the calendar resource file based on locale -->
-		<script type="text/javascript" src="<c:url value='/scripts/jscalendar/lang/calendar-en.js' />"></script>
+		<%@ include file="/includes/calendar.jsp" %>
 
 		<script type="text/javascript">
 			var nbSingleDishDivs = <s:property value="model.selectedFoodIds.length" />;

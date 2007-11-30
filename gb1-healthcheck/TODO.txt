@@ -22,6 +22,7 @@ HealthCheck
     > lost password
 
 . technical
+  - regroup taglib imports in single JSP
   - upgrade to Spring 2.5.0
   - upgrade to Struts 2.0.11
   - use Struts2 annotations to declare converters and validators
@@ -31,6 +32,7 @@ HealthCheck
   - add README.TXT
   - use HTML 4.01 Strict DTD
   - how to provide completion result to action?
+  - investigate GWT web UI
 
 . pain points
   - repeating @Transactional on all service methods, especially exception lists (solved in Spring 2.5)
