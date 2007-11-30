@@ -51,7 +51,7 @@
 						var newStateInstantText = newStateDiv.getElementById('gastricStateInstant');
 						newStateInstantText.value = i;
 						var newStateInstantLevel = newStateDiv.getElementById('gastricStateLevel');
-						// TODO How to select correct level?!
+						// TODO Select correct level
 						var newStateDivSave = newStateDiv.getElementsByTagName('a')[0];
 						newStateDivSave.setAttribute('onClick', 'javascript:saveGastricState(' + i + ')');
 
@@ -68,7 +68,7 @@
 					var level = gastricStateDiv.getElementById('gastricStateLevel');
 
 					// TODO Create a complete instant by joining date and time
-					ManageGastricStatesAction.savePatientGastricState(${patient.id}, instant, level, gastricStateSaved);
+					ManageGastricStatesAction.savePatientGastricState(${patient.id}, instant.value, level.value, gastricStateSaved);
 				}
 			}
 
@@ -80,7 +80,6 @@
 	<body>
 		<h2><fmt:message key="metrics.gastricStates.manage.title" /></h2>
 
-		<%-- TODO Put styling in CSS --%>
 		<div style="float: left; margin-left: 1em; margin-bottom: 1em;" id="calendar-container"></div>
 		<script type="text/javascript">
 			Calendar.setup({

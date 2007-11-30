@@ -80,6 +80,7 @@
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
 
+	<!-- DWR servlet (for Ajax) -->
 	<servlet>
 		<servlet-name>dwr-servlet</servlet-name>
 		<servlet-class>org.directwebremoting.spring.DwrSpringServlet</servlet-class>
