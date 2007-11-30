@@ -34,11 +34,14 @@
 
 				if (states.length == 0) {
 					var newStateDiv = mockStateDiv.cloneNode(true);
-
 					newStateDiv.id = 'gastricState-0';
 					newStateDiv.style.display = 'block';
-					document.getElementById('mockGastricStateInstant').id = 'gastricStateInstant-0';
-					document.getElementById('mockGastricStateLevel').id = 'gastricStateLevel-0';
+
+					var newStateInstant = newStateDiv.getElementsByTagName('input')[0];
+					newStateInstant.id = 'gastricStateInstant-0';
+
+					var newStateLevel = newStateDiv.getElementsByTagName('select')[0];
+					newStateLevel.id = 'gastricStateLevel-0';
 
 					var newStateDivSave = newStateDiv.getElementsByTagName('a')[0];
 					newStateDivSave.setAttribute('onClick', 'javascript:saveGastricState(0)');
@@ -50,16 +53,19 @@
 						var newStateDiv = mockStateDiv.cloneNode(true);
 						newStateDiv.id = 'gastricState-' + i;
 
-						var newStateInstantText = document.getElementById('mockGastricStateInstant');
-						newStateInstantText.value = i;
-						var newStateInstantLevel = document.getElementById('mockGastricStateLevel');
+						var newStateInstant = newStateDiv.getElementsByTagName('input')[0];
+						newStateInstant.id = 'gastricStateInstant-' + i;
+						// TODO Enter correct time
+						newStateInstant.value = states[i].instant;
+
+						var newStateLevel = newStateDiv.getElementsByTagName('select')[0];
+						newStateLevel.id = 'gastricStateLevel' + i;
 						// TODO Select correct level
+
 						var newStateDivSave = newStateDiv.getElementsByTagName('a')[0];
+						newStateDiv.style.display = 'block';
 						newStateDivSave.setAttribute('onClick', 'javascript:saveGastricState(' + i + ')');
 
-						newStateDiv.style.display = 'block';
-
-						// TODO Add as last
 						statesDiv.appendChild(newStateDiv);
 					}
 				}
@@ -71,7 +77,7 @@
 					var instant = gastricStateDiv.getElementById('gastricStateInstant-' + index);
 					var level = gastricStateDiv.getElementById('gastricStateLevel-' + index);
 
-					// TODO Create a complete instant by joining date and time
+					// TODO Create a complete instant by joining calendar date and input time
 					ManageGastricStatesAction.savePatientGastricState(${patient.id}, instant.value, level.value, gastricStateSaved);
 				}
 			}

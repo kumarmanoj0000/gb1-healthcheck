@@ -4,8 +4,6 @@ HealthCheck
 
 . features:
   - manage gastric states
-    ! load: select correct level
-    ! save: get instant, get selected level
 
   - analysis
     > gastric states graph
@@ -32,6 +30,7 @@ HealthCheck
   - add README.TXT
   - use HTML 4.01 Strict DTD
   - how to provide completion result to action?
+  - streamline struts.xml (CodeBehind plugin?)
   - investigate GWT web UI
 
 . pain points
