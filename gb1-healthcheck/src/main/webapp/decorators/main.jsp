@@ -12,7 +12,7 @@
 <%@ taglib prefix="decorator" uri="http://www.opensymphony.com/sitemesh/decorator"%>
 <%@ taglib prefix="authz" uri="http://acegisecurity.org/authz"%>
 
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<html>
 	<%--
 	 | Define a shortcut to the signed in user once (obtaining it from Acegi is tedious)
 	 --%>
