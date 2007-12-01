@@ -16,7 +16,7 @@
 	<dwr:controller id="dwrController" debug="true" />
 
 	<dwr:configuration>
-		<dwr:convert type="bean" class="com.gb1.healthcheck.domain.metrics.GastricState" />
+		<dwr:convert type="enum" class="com.gb1.healthcheck.domain.metrics.GastricState" />
 		<dwr:convert type="bean" class="com.gb1.healthcheck.domain.metrics.PunctualGastricState" />
 	</dwr:configuration>
 

@@ -4,71 +4,108 @@
 
 <html>
 	<head>
-		<%@ include file="/includes/calendar.jsp" %>
+		<script type='text/javascript' src='<c:url value="/dwr/interface/ManageGastricStatesAction.js" />'></script>
+		<script type='text/javascript' src='<c:url value="/dwr/engine.js" />'></script>
+		<script type='text/javascript' src='<c:url value="/dwr/util.js" />'></script>
 
-		<script type='text/javascript' src='/healthcheck/dwr/interface/ManageGastricStatesAction.js'></script>
-		<script type='text/javascript' src='/healthcheck/dwr/engine.js'></script>
-		<script type='text/javascript' src='/healthcheck/dwr/util.js'></script>
+		<%@ include file="/includes/calendar.jsp" %>
+		<script type="text/javascript" src='<c:url value="/scripts/date.js" />'></script>
 
 		<script type="text/javascript">
+			var patientId = ${patient.id};
 			var selectedDate = new Date();
+			var nbDisplayedGastricStates = 0;
 
 			function dateChanged(calendar) {
 				if (calendar.dateClicked) {
 					selectedDate = calendar.date;
-					loadGastricStatesFor(${patient.id}, selectedDate);
+					loadGastricStatesFor(patientId, selectedDate);
 				}
 			}
 
 			function loadGastricStatesFor(patientId, date) {
-				ManageGastricStatesAction.loadGastricStatesFor(${patient.id}, date, showGastricStates);
+				ManageGastricStatesAction.loadGastricStatesFor(patientId, date, showGastricStates);
+			}
+
+			function initGastricStates() {
+				removeAllDisplayedGastricStates();
+				addSingleGastricState(nbDisplayedGastricStates, null);
+				addNewGastricStateLink();
 			}
 
 			function showGastricStates(states) {
-				var statesDiv = document.getElementById('gastricStates');
-				var mockStateDiv = document.getElementById('mockGastricState');
+				removeAllDisplayedGastricStates();
 
+				if (states.length == 0) {
+					document.getElementById('gastricStates').innerHTML = '<p><fmt:message key="metrics.gastricStates.manage.noStatesOnSelectedDay" /></p>';
+					addInitGastricStatesLink();
+				}
+				else {
+					for (var i = 0; i < states.length; i++) {
+						addSingleGastricState(i, states[i]);
+					}
+					addNewGastricStateLink();
+				}
+			}
+
+			function removeAllDisplayedGastricStates() {
+				var statesDiv = document.getElementById('gastricStates');
 				while (statesDiv.hasChildNodes()) {
 					statesDiv.removeChild(statesDiv.firstChild);
 				}
 
-				if (states.length == 0) {
-					var newStateDiv = mockStateDiv.cloneNode(true);
-					newStateDiv.id = 'gastricState-0';
-					newStateDiv.style.display = 'block';
+				nbDisplayedGastricStates = 0;
+			}
 
-					var newStateInstant = newStateDiv.getElementsByTagName('input')[0];
-					newStateInstant.id = 'gastricStateInstant-0';
+			function addSingleGastricState(index, state) {
+				// TODO Remove "new state" link and add it back at the end 
 
-					var newStateLevel = newStateDiv.getElementsByTagName('select')[0];
-					newStateLevel.id = 'gastricStateLevel-0';
+				var newStateDiv = document.getElementById('mockGastricState').cloneNode(true);
+				newStateDiv.id = 'gastricState-' + index;
+				newStateDiv.style.display = 'block';
 
-					var newStateDivSave = newStateDiv.getElementsByTagName('a')[0];
-					newStateDivSave.setAttribute('onClick', 'javascript:saveGastricState(0)');
+				var newStateInstant = newStateDiv.getElementsByTagName('input')[0];
+				newStateInstant.id = 'gastricStateInstant-' + index;
 
-					statesDiv.appendChild(newStateDiv);
+				var newStateLevel = newStateDiv.getElementsByTagName('select')[0];
+				newStateLevel.id = 'gastricStateLevel-' + index;
+
+				if (state == null) {
+					newStateInstant.value = formatDate(selectedDate, 'HH:mm');
 				}
 				else {
-					for (var i = 0; i < states.length; i++) {
-						var newStateDiv = mockStateDiv.cloneNode(true);
-						newStateDiv.id = 'gastricState-' + i;
+					newStateInstant.value = formatDate(state.instant, 'HH:mm');
 
-						var newStateInstant = newStateDiv.getElementsByTagName('input')[0];
-						newStateInstant.id = 'gastricStateInstant-' + i;
-						// TODO Enter correct time
-						newStateInstant.value = states[i].instant;
-
-						var newStateLevel = newStateDiv.getElementsByTagName('select')[0];
-						newStateLevel.id = 'gastricStateLevel' + i;
-						// TODO Select correct level
-
-						var newStateDivSave = newStateDiv.getElementsByTagName('a')[0];
-						newStateDiv.style.display = 'block';
-						newStateDivSave.setAttribute('onClick', 'javascript:saveGastricState(' + i + ')');
-
-						statesDiv.appendChild(newStateDiv);
+					var levelOptions = newStateDiv.getElementsByTagName('option');
+					for (var i = 0; i < levelOptions.length; i++) {
+						if (levelOptions[i].value == state.state) {
+							levelOptions[i].selected = 'selected';
+						}
 					}
 				}
+
+				var newStateDivSave = newStateDiv.getElementsByTagName('a')[0];
+				newStateDivSave.style.display = 'block';
+				newStateDivSave.setAttribute('onClick', 'javascript:saveGastricState(' + index + ')');
+
+				document.getElementById('gastricStates').appendChild(newStateDiv);
+				nbDisplayedGastricStates++;
+			}
+
+			function addInitGastricStatesLink() {
+				var addStateLink = document.getElementById('addGastricStateLink').cloneNode(true);
+				addStateLink.style.display = 'inline';
+				addStateLink.getElementsByTagName('a')[0].setAttribute('onClick', 'javascript:initGastricStates()');
+
+				document.getElementById('gastricStates').appendChild(addStateLink);
+			}
+
+			function addNewGastricStateLink() {
+				var addStateLink = document.getElementById('addGastricStateLink').cloneNode(true);
+				addStateLink.style.display = 'inline';
+				addStateLink.getElementsByTagName('a')[0].setAttribute('onClick', 'javascript:addSingleGastricState(' + nbDisplayedGastricStates + ', null)');
+
+				document.getElementById('gastricStates').appendChild(addStateLink);
 			}
 
 			function saveGastricState(index) {
@@ -78,7 +115,7 @@
 					var level = gastricStateDiv.getElementById('gastricStateLevel-' + index);
 
 					// TODO Create a complete instant by joining calendar date and input time
-					ManageGastricStatesAction.savePatientGastricState(${patient.id}, instant.value, level.value, gastricStateSaved);
+					ManageGastricStatesAction.savePatientGastricState(patientId, instant.value, level.value, gastricStateSaved);
 				}
 			}
 
@@ -103,7 +140,14 @@
 		<div id="gastricStates">
 		</div>
 
-		<!-- Mock gastric state for cloning (not displayed) -->
+		<%-- Add gastric state link (not displayed)  --%>
+		<p id="addGastricStateLink" style="display: none">
+			<a href="#" onClick="javascript:initGastricStates()">
+				<fmt:message key="metrics.gastricStates.manage.addState" />
+			</a>
+		</p>
+
+		<%-- Mock gastric state for cloning (not displayed) --%>
 		<div id="mockGastricState" style="display: none">
 			<div>
 				<label><fmt:message key="gastricState.instant" />:</label>
@@ -112,11 +156,11 @@
 			<div>
 				<label><fmt:message key="gastricState.level" />:</label>
 				<select id="mockGastricStateLevel">
-					<option value="1"><fmt:message key="gastricState.level.normal" /></option>
-					<option value="2"><fmt:message key="gastricState.level.slightlyBloated" /></option>
-					<option value="3"><fmt:message key="gastricState.level.bloated" /></option>
-					<option value="4"><fmt:message key="gastricState.level.highlyBloated" /></option>
-					<option value="5"><fmt:message key="gastricState.level.crisis" /></option>
+					<option value="NORMAL"><fmt:message key="gastricState.level.normal" /></option>
+					<option value="SLIGHTLY_BLOATED"><fmt:message key="gastricState.level.slightlyBloated" /></option>
+					<option value="BLOATED"><fmt:message key="gastricState.level.bloated" /></option>
+					<option value="HIGHLY_BLOATED"><fmt:message key="gastricState.level.highlyBloated" /></option>
+					<option value="CRISIS"><fmt:message key="gastricState.level.crisis" /></option>
 				</select>
 			</div>
 			<div class="actions">
@@ -125,7 +169,7 @@
 		</div>
 
 		<script type="text/javascript">
-			loadGastricStatesFor(${patient.id}, selectedDate);
+			loadGastricStatesFor(patientId, selectedDate);
 		</script>
 	</body>
 </html>

@@ -148,6 +148,10 @@ form div.actions {
 }
 
 div#gastricStates {
+	margin-left: 260px;
+	padding-left: 10px;
+	border-left: 1px solid;
+	min-height: 160px;
 }
 
 #footer .copyright {

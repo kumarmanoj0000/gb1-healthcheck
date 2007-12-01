@@ -30,7 +30,6 @@
 		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 
 		<link rel="stylesheet" type="text/css" href="<c:url value="/styles/global.css" />"></link>
-		<script type="text/javascript" src="<c:url value="/scripts/core.js" />"></script>
 
 		<decorator:head />
 	</head>
