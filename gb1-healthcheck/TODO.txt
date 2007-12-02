@@ -3,6 +3,10 @@ HealthCheck
 -----------
 
 . features:
+  - gastric states
+    > show action progress
+    > show save status
+
   - analysis
     > gastric states graph
     > correlation food => gastric states
