@@ -4,8 +4,7 @@ HealthCheck
 
 . features:
   - gastric states
-    > show action progress
-    > show save status
+    > improve UI (use Prototype / script.aculo.us effects)
 
   - analysis
     > gastric states graph
@@ -22,7 +21,6 @@ HealthCheck
     > lost password
 
 . technical
-  - regroup taglib imports in single JSP
   - upgrade to Spring 2.5.0
   - upgrade to Struts 2.0.11
   - use Struts2 annotations to declare converters and validators
@@ -39,5 +37,8 @@ HealthCheck
   - repeating @Transactional on all service methods, especially exception lists (solved in Spring 2.5)
   - so many web files: ApplicationMessages.properties, struts.xml, applicationContext-actions, *conversion.properties, *validation.xml
   - duplications in ApplicationMessages.properties (use global namespace)
-  - so many APIs, so many configuration files
-  - long creation time for AJAX-enabled pages (use GWT!)
+  - so many different APIs, so many configuration files
+  - global.css is getting big, should it be split up?
+  - AJAX-enabled pages are long to develop
+  - JavaScript is dynamically typed, cannot use Java libraries
+  - DOM tree is painful to manipulate
