@@ -82,7 +82,7 @@
 					}
 				}
 
-				var newStateDivSave = newStateDiv.getElementsByTagName('a')[0];
+				var newStateDivSave = newStateDiv.getElementsByTagName('input')[1];
 				newStateDivSave.style.display = 'block';
 				newStateDivSave.setAttribute('onClick', 'javascript:saveGastricState(' + index + ')');
 
@@ -102,10 +102,9 @@
 
 			function saveGastricState(index) {
 				if (index != -1) {
-					// specify seconds, otherwise they are inferred and not always equal to 00
-					var time = document.getElementById('gastricStateInstant-' + index).value + ':00';
+					var time = document.getElementById('gastricStateInstant-' + index).value;
 					var instantText = formatDate(selectedDate, 'yyyy-MM-dd') + ' ' + time;
-					var instant = getDateFromFormat(instantText, 'yyyy-MM-dd HH:mm:ss');
+					var instant = getDateFromFormat(instantText, 'yyyy-MM-dd HH:mm');
 
 					var level = document.getElementById('gastricStateLevel-' + index).value;
 
@@ -163,7 +162,7 @@
 				</select>
 			</div>
 			<div class="actions">
-				<a href="#" onClick="javascript:saveGastricState(-1)"><fmt:message key="metrics.gastricStates.save" /></a>
+				<input class="button" type="submit" onClick="javascript:saveGastricState(-1)" value="<fmt:message key='metrics.gastricStates.save' />" />
 			</div>
 		</div>
 
