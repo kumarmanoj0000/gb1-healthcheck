@@ -86,8 +86,8 @@
 	<bean id="manageGastricStatesAction" class="com.gb1.healthcheck.web.metrics.ManageGastricStatesAction" scope="prototype">
 		<property name="patientFileService" ref="patientFileService" />
 		<dwr:remote javascript="ManageGastricStatesAction">
-			<dwr:include method="loadGastricStatesFor"/>
-			<dwr:include method="savePatientGastricState"/>
+			<dwr:include method="loadGastricStates"/>
+			<dwr:include method="saveGastricState"/>
 		</dwr:remote>
 	</bean>
 

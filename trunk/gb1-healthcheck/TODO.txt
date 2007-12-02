@@ -3,8 +3,6 @@ HealthCheck
 -----------
 
 . features:
-  - manage gastric states
-
   - analysis
     > gastric states graph
     > correlation food => gastric states

@@ -19,32 +19,32 @@
 			function dateChanged(calendar) {
 				if (calendar.dateClicked) {
 					selectedDate = calendar.date;
-					loadGastricStatesFor(patientId, selectedDate);
+					loadGastricStates(patientId, selectedDate);
 				}
 			}
 
-			function loadGastricStatesFor(patientId, date) {
-				ManageGastricStatesAction.loadGastricStatesFor(patientId, date, showGastricStates);
+			function loadGastricStates(patientId, date) {
+				ManageGastricStatesAction.loadGastricStates(patientId, date, showGastricStates);
 			}
 
 			function initGastricStates() {
 				removeAllDisplayedGastricStates();
 				addSingleGastricState(nbDisplayedGastricStates, null);
-				addNewGastricStateLink();
+				showNewGastricStateLink();
 			}
 
 			function showGastricStates(states) {
 				removeAllDisplayedGastricStates();
 
 				if (states.length == 0) {
-					document.getElementById('gastricStates').innerHTML = '<p><fmt:message key="metrics.gastricStates.manage.noStatesOnSelectedDay" /></p>';
-					addInitGastricStatesLink();
+					showInitGastricStatesLink();
 				}
 				else {
 					for (var i = 0; i < states.length; i++) {
 						addSingleGastricState(i, states[i]);
 					}
-					addNewGastricStateLink();
+
+					showNewGastricStateLink();
 				}
 			}
 
@@ -58,8 +58,6 @@
 			}
 
 			function addSingleGastricState(index, state) {
-				// TODO Remove "new state" link and add it back at the end 
-
 				var newStateDiv = document.getElementById('mockGastricState').cloneNode(true);
 				newStateDiv.id = 'gastricState-' + index;
 				newStateDiv.style.display = 'block';
@@ -92,30 +90,25 @@
 				nbDisplayedGastricStates++;
 			}
 
-			function addInitGastricStatesLink() {
-				var addStateLink = document.getElementById('addGastricStateLink').cloneNode(true);
-				addStateLink.style.display = 'inline';
-				addStateLink.getElementsByTagName('a')[0].setAttribute('onClick', 'javascript:initGastricStates()');
-
-				document.getElementById('gastricStates').appendChild(addStateLink);
+			function showInitGastricStatesLink() {
+				document.getElementById('noGastricStatesMessage').style.display = 'block';
+				document.getElementById('addGastricStateLink').setAttribute('onClick', 'javascript:initGastricStates()');
 			}
 
-			function addNewGastricStateLink() {
-				var addStateLink = document.getElementById('addGastricStateLink').cloneNode(true);
-				addStateLink.style.display = 'inline';
-				addStateLink.getElementsByTagName('a')[0].setAttribute('onClick', 'javascript:addSingleGastricState(' + nbDisplayedGastricStates + ', null)');
-
-				document.getElementById('gastricStates').appendChild(addStateLink);
+			function showNewGastricStateLink() {
+				document.getElementById('noGastricStatesMessage').style.display = 'none';
+				document.getElementById('addGastricStateLink').setAttribute('onClick', 'javascript:addSingleGastricState(' + nbDisplayedGastricStates + ', null)');
 			}
 
 			function saveGastricState(index) {
 				if (index != -1) {
-					var gastricStateDiv = document.getElementById('gastricState-' + index);
-					var instant = gastricStateDiv.getElementById('gastricStateInstant-' + index);
-					var level = gastricStateDiv.getElementById('gastricStateLevel-' + index);
+					var time = document.getElementById('gastricStateInstant-' + index).value;
+					var instantText = formatDate(selectedDate, 'yyyy-MM-dd') + ' ' + time;
+					var instant = getDateFromFormat(instantText, 'yyyy-MM-dd HH:mm');
+					var level = document.getElementById('gastricStateLevel-' + index).value;
 
-					// TODO Create a complete instant by joining calendar date and input time
-					ManageGastricStatesAction.savePatientGastricState(patientId, instant.value, level.value, gastricStateSaved);
+					// TODO Save gastric state
+					ManageGastricStatesAction.saveGastricState(patientId, instant, level, gastricStateSaved);
 				}
 			}
 
@@ -137,15 +130,20 @@
 			});
 		</script>
 
-		<div id="gastricStates">
-		</div>
+		<div id="gastricStatesWorkArea">
+			<div id="noGastricStatesMessage">
+				<fmt:message key="metrics.gastricStates.manage.noStatesOnSelectedDay" />
+			</div>
 
-		<%-- Add gastric state link (not displayed)  --%>
-		<p id="addGastricStateLink" style="display: none">
-			<a href="#" onClick="javascript:initGastricStates()">
-				<fmt:message key="metrics.gastricStates.manage.addState" />
-			</a>
-		</p>
+			<div id="gastricStates">
+			</div>
+
+			<div>
+				<a id="addGastricStateLink" href="#" onClick="javascript:initGastricStates()">
+					<fmt:message key="metrics.gastricStates.manage.addState" />
+				</a>
+			</div>
+		</div>
 
 		<%-- Mock gastric state for cloning (not displayed) --%>
 		<div id="mockGastricState" style="display: none">
@@ -169,7 +167,7 @@
 		</div>
 
 		<script type="text/javascript">
-			loadGastricStatesFor(patientId, selectedDate);
+			loadGastricStates(patientId, selectedDate);
 		</script>
 	</body>
 </html>
