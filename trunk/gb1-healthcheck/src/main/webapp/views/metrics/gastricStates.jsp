@@ -102,12 +102,13 @@
 
 			function saveGastricState(index) {
 				if (index != -1) {
-					var time = document.getElementById('gastricStateInstant-' + index).value;
+					// specify seconds, otherwise they are inferred and not always equal to 00
+					var time = document.getElementById('gastricStateInstant-' + index).value + ':00';
 					var instantText = formatDate(selectedDate, 'yyyy-MM-dd') + ' ' + time;
-					var instant = getDateFromFormat(instantText, 'yyyy-MM-dd HH:mm');
+					var instant = getDateFromFormat(instantText, 'yyyy-MM-dd HH:mm:ss');
+
 					var level = document.getElementById('gastricStateLevel-' + index).value;
 
-					// TODO Save gastric state
 					ManageGastricStatesAction.saveGastricState(patientId, instant, level, gastricStateSaved);
 				}
 			}
