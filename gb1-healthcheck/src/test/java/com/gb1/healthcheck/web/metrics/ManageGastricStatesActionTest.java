@@ -50,7 +50,7 @@ public class ManageGastricStatesActionTest extends TestCase {
 		ManageGastricStatesAction action = new ManageGastricStatesAction();
 		action.setPatientFileService(svc);
 		assertTrue(CollectionUtils.isEqualCollection(file.getGastricStatesFor(today), action
-				.loadGastricStatesFor(patient.getId(), today)));
+				.loadGastricStates(patient.getId(), today)));
 	}
 
 	public void testSetState() {

@@ -32,7 +32,7 @@ public class ManageGastricStatesAction implements ServletRequestAware {
 		return HttpRequestUtils.getUser(request);
 	}
 
-	public List<PunctualGastricState> loadGastricStatesFor(Long patientId, Date date) {
+	public List<PunctualGastricState> loadGastricStates(Long patientId, Date date) {
 		PatientFile file = patientFileService.loadPatientFile(patientId);
 		List<PunctualGastricState> states = file.getGastricStatesFor(date);
 
