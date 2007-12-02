@@ -34,6 +34,7 @@
 			}
 
 			function showGastricStates(states) {
+				hideMessages();
 				removeAllDisplayedGastricStates();
 
 				if (states.length == 0) {
@@ -108,17 +109,41 @@
 
 					var level = document.getElementById('gastricStateLevel-' + index).value;
 
+					showGastricStateSaving();
 					ManageGastricStatesAction.saveGastricState(patientId, instant, level, gastricStateSaved);
 				}
 			}
 
 			function gastricStateSaved() {
+				showGastricStateSaved();
+			}
+
+			function showGastricStateSaving() {
+				hideMessages();
+				document.getElementById('gastricStateSaving').style.display = 'block';
+			}
+
+			function showGastricStateSaved() {
+				hideMessages();
+				document.getElementById('gastricStateSaved').style.display = 'block';
+			}
+
+			function hideMessages() {
+				document.getElementById('gastricStateSaving').style.display = 'none';
+				document.getElementById('gastricStateSaved').style.display = 'none';
 			}
 		</script>
 	</head>
 
 	<body>
 		<h2><fmt:message key="metrics.gastricStates.manage.title" /></h2>
+
+		<div id="gastricStateSaving" style="display: none">
+			<fmt:message key="metrics.gastricStates.saving" />
+		</div>
+		<div id="gastricStateSaved" style="display: none">
+			<fmt:message key="metrics.gastricStates.saved" />
+		</div>
 
 		<div style="float: left; margin-left: 1em; margin-bottom: 1em;" id="calendar-container"></div>
 		<script type="text/javascript">

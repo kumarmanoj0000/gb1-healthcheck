@@ -147,6 +147,18 @@ form div.actions {
 	width: auto;
 }
 
+div#gastricStateSaving {
+	text-align: center;
+	margin: 10px;
+	color: DarkBlue;
+}
+
+div#gastricStateSaved {
+	text-align: center;
+	margin: 10px;
+	color: green;
+}
+
 div#gastricStatesWorkArea {
 	margin-left: 260px;
 	padding-left: 10px;
