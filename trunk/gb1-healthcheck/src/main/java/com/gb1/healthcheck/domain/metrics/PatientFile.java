@@ -1,6 +1,7 @@
 package com.gb1.healthcheck.domain.metrics;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
@@ -57,11 +58,14 @@ public class PatientFile implements Identifiable {
 	}
 
 	public GastricState getGastricState(Date instant) {
-		return gastricStates.get(instant);
+		// all instants are truncated to the minute
+		GastricState state = gastricStates.get(DateUtils.truncate(instant, Calendar.MINUTE));
+		return state;
 	}
 
 	public void setGastricState(Date instant, GastricState state) {
-		gastricStates.put(instant, state);
+		// all instants are truncated to the minute
+		gastricStates.put(DateUtils.truncate(instant, Calendar.MINUTE), state);
 	}
 
 	public List<PunctualGastricState> getGastricStatesFor(Date day) {

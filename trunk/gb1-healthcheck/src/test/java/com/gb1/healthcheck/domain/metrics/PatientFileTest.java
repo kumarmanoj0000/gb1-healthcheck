@@ -1,6 +1,7 @@
 package com.gb1.healthcheck.domain.metrics;
 
 import java.text.ParseException;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -52,5 +53,16 @@ public class PatientFileTest extends TestCase {
 		assertEquals(2, states.size());
 		assertEquals(GastricState.SLIGHTLY_BLOATED, states.get(0).getState());
 		assertEquals(GastricState.NORMAL, states.get(1).getState());
+	}
+
+	public void testSetGastricState() {
+		Date now = new Date();
+		Date truncatedNow = DateUtils.truncate(now, Calendar.MINUTE);
+
+		PatientFile file = new PatientFile(Users.gb());
+		file.setGastricState(now, GastricState.NORMAL);
+
+		assertEquals(GastricState.NORMAL, file.getGastricState(now));
+		assertEquals(GastricState.NORMAL, file.getGastricState(truncatedNow));
 	}
 }

@@ -53,7 +53,7 @@ public class ManageGastricStatesActionTest extends TestCase {
 				.loadGastricStates(patient.getId(), today)));
 	}
 
-	public void testSetState() {
+	public void testSaveGastricState() {
 		final Date now = new Date();
 		final User patient = Users.lg();
 
