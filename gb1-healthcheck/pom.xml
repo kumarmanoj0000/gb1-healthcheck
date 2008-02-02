@@ -65,7 +65,7 @@
 	</scm>
 
 	<properties>
-		<spring.version>2.0.7</spring.version>
+		<spring.version>2.5.1</spring.version>
 		<struts.version>2.0.9</struts.version>
 	</properties>
 
@@ -143,6 +143,7 @@
 			<version>1.0-SNAPSHOT</version>
 		</dependency>
 
+		<!-- Java EE -->
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>servlet-api</artifactId>
@@ -161,7 +162,6 @@
 			<version>1.1.2</version>
 			<scope>provided</scope>
 		</dependency>
-
 		<dependency>
 			<groupId>javax.mail</groupId>
 			<artifactId>mail</artifactId>
@@ -178,16 +178,23 @@
 			<version>1.0.1B</version>
 		</dependency>
 
-		<dependency>
-			<groupId>aspectj</groupId>
-			<artifactId>aspectjrt</artifactId>
-			<version>1.5.3</version>
-		</dependency>
-
+		<!-- Spring -->
 		<dependency>
 			<groupId>org.springframework</groupId>
-			<artifactId>spring-jpa</artifactId>
+			<artifactId>spring-context-support</artifactId>
 			<version>${spring.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-orm</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+
+		<!-- AOP libraries -->
+		<dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjrt</artifactId>
+			<version>1.5.4</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -200,12 +207,7 @@
 			<version>${spring.version}</version>
 		</dependency>
 
-		<!-- Web framework (Spring MVC or Struts 2) -->
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-webmvc</artifactId>
-			<version>${spring.version}</version>
-		</dependency>
+		<!-- Web layer -->
 		<dependency>
 			<groupId>org.apache.struts</groupId>
 			<artifactId>struts2-core</artifactId>
@@ -221,25 +223,42 @@
 			<artifactId>struts2-sitemesh-plugin</artifactId>
 			<version>${struts.version}</version>
 		</dependency>
-
-		<!-- Force Acegi dependencies to latest Spring version -->
-		<dependency>
-			<groupId>org.acegisecurity</groupId>
-			<artifactId>acegi-security</artifactId>
-			<version>1.0.4</version>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-remoting</artifactId>
-			<version>${spring.version}</version>
-		</dependency>
-
 		<dependency>
 			<groupId>opensymphony</groupId>
 			<artifactId>sitemesh</artifactId>
 			<version>2.2.1</version>
 		</dependency>
 
+		<!-- Security -->
+
+		<!-- Acegi depends on an older version of Spring, so force use of current version -->
+		<dependency>
+			<groupId>org.acegisecurity</groupId>
+			<artifactId>acegi-security</artifactId>
+			<version>1.0.6</version>
+
+			<exclusions>
+				<exclusion>
+					<groupId>org.springframework</groupId>
+					<artifactId>spring-jdbc</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.springframework</groupId>
+					<artifactId>spring-remoting</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.springframework</groupId>
+					<artifactId>spring-support</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-jdbc</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+
+		<!-- Persistence -->
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate</artifactId>
@@ -256,10 +275,11 @@
 			<version>3.2.1.ga</version>
 		</dependency>
 
+		<!-- Jakarta libraries -->
 		<dependency>
 			<groupId>log4j</groupId>
 			<artifactId>log4j</artifactId>
-			<version>1.2.13</version>
+			<version>1.2.14</version>
 		</dependency>
 		<dependency>
 			<groupId>commons-collections</groupId>
@@ -286,6 +306,7 @@
 			<version>5.0.5</version>
 		</dependency>
 
+		<!-- Unit testing -->
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
@@ -300,7 +321,7 @@
 		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
-			<artifactId>spring-mock</artifactId>
+			<artifactId>spring-test</artifactId>
 			<version>${spring.version}</version>
 			<scope>test</scope>
 		</dependency>

@@ -91,7 +91,7 @@
 			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="var" path="M2_REPO/log4j/log4j/1.2.13/log4j-1.2.13.jar">
+	<classpathentry kind="var" path="M2_REPO/log4j/log4j/1.2.14/log4j-1.2.14.jar">
 		<attributes>
 			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
 		</attributes>
@@ -116,7 +116,7 @@
 			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="var" path="M2_REPO/org/acegisecurity/acegi-security/1.0.4/acegi-security-1.0.4.jar">
+	<classpathentry kind="var" path="M2_REPO/org/acegisecurity/acegi-security/1.0.6/acegi-security-1.0.6.jar">
 		<attributes>
 			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
 		</attributes>
@@ -137,64 +137,54 @@
 			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="var" path="M2_REPO/org/springframework/spring-aop/2.0.7/spring-aop-2.0.7.jar" sourcepath="/DEV_HOME/spring-framework-2.0.7/src">
+	<classpathentry kind="var" path="M2_REPO/org/springframework/spring-aop/2.5.1/spring-aop-2.5.1.jar">
 		<attributes>
 			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="var" path="M2_REPO/org/springframework/spring-aspects/2.0.7/spring-aspects-2.0.7.jar" sourcepath="/DEV_HOME/spring-framework-2.0.7/src">
+	<classpathentry kind="var" path="M2_REPO/org/springframework/spring-aspects/2.5.1/spring-aspects-2.5.1.jar">
 		<attributes>
 			<attribute name="org.eclipse.ajdt.aspectpath" value="true"/>
 			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="var" path="M2_REPO/org/springframework/spring-beans/2.0.7/spring-beans-2.0.7.jar" sourcepath="/DEV_HOME/spring-framework-2.0.7/src">
+	<classpathentry kind="var" path="M2_REPO/org/springframework/spring-beans/2.5.1/spring-beans-2.5.1.jar">
 		<attributes>
 			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="var" path="M2_REPO/org/springframework/spring-context/2.0.7/spring-context-2.0.7.jar" sourcepath="/DEV_HOME/spring-framework-2.0.7/src">
+	<classpathentry kind="var" path="M2_REPO/org/springframework/spring-context/2.5.1/spring-context-2.5.1.jar">
 		<attributes>
 			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="var" path="M2_REPO/org/springframework/spring-core/2.0.7/spring-core-2.0.7.jar" sourcepath="/DEV_HOME/spring-framework-2.0.7/src">
+	<classpathentry kind="var" path="M2_REPO/org/springframework/spring-core/2.5.1/spring-core-2.5.1.jar">
 		<attributes>
 			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="var" path="M2_REPO/org/springframework/spring-dao/2.0.7/spring-dao-2.0.7.jar" sourcepath="/DEV_HOME/spring-framework-2.0.7/src">
+	<classpathentry kind="var" path="M2_REPO/org/springframework/spring-tx/2.5.1/spring-tx-2.5.1.jar">
 		<attributes>
 			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="var" path="M2_REPO/org/springframework/spring-jdbc/2.0.7/spring-jdbc-2.0.7.jar" sourcepath="/DEV_HOME/spring-framework-2.0.7/src">
+	<classpathentry kind="var" path="M2_REPO/org/springframework/spring-jdbc/2.5.1/spring-jdbc-2.5.1.jar">
 		<attributes>
 			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="var" path="M2_REPO/org/springframework/spring-jpa/2.0.7/spring-jpa-2.0.7.jar" sourcepath="/DEV_HOME/spring-framework-2.0.7/tiger/src">
+	<classpathentry kind="var" path="M2_REPO/org/springframework/spring-orm/2.5.1/spring-orm-2.5.1.jar">
 		<attributes>
 			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="var" path="M2_REPO/org/springframework/spring-mock/2.0.7/spring-mock-2.0.7.jar" sourcepath="/DEV_HOME/spring-framework-2.0.7/src"/>
-	<classpathentry kind="var" path="M2_REPO/org/springframework/spring-remoting/2.0.7/spring-remoting-2.0.7.jar" sourcepath="/DEV_HOME/spring-framework-2.0.7/src">
+	<classpathentry kind="var" path="M2_REPO/org/springframework/spring-test/2.5.1/spring-test-2.5.1.jar"/>
+	<classpathentry kind="var" path="M2_REPO/org/springframework/spring-context-support/2.5.1/spring-context-support-2.5.1.jar">
 		<attributes>
 			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="var" path="M2_REPO/org/springframework/spring-support/2.0.7/spring-support-2.0.7.jar" sourcepath="/DEV_HOME/spring-framework-2.0.7/src">
-		<attributes>
-			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry kind="var" path="M2_REPO/org/springframework/spring-web/2.0.7/spring-web-2.0.7.jar" sourcepath="/DEV_HOME/spring-framework-2.0.7/src">
-		<attributes>
-			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry kind="var" path="M2_REPO/org/springframework/spring-webmvc/2.0.7/spring-webmvc-2.0.7.jar" sourcepath="/DEV_HOME/spring-framework-2.0.7/src">
+	<classpathentry kind="var" path="M2_REPO/org/springframework/spring-web/2.5.1/spring-web-2.5.1.jar">
 		<attributes>
 			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
 		</attributes>
