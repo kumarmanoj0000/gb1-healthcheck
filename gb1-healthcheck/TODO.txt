@@ -16,29 +16,26 @@ HealthCheck
       >> view user profile
       >> edit user profile
 
-  - localized template-based message builder (using Freemarker)
+  - localized template-based message builder (using Freemarker / Velocity)
     > registration confirmation
     > lost password
 
 . technical
+  - fix @Transactional references on service methods
   - upgrade to Struts 2.0.11 (2.1?)
   - use Struts2 annotations to declare converters and validators
-  - fix @Transactional references on service methods
-  - remove dependency to Spring MVC in POM file
-  - migrate unit tests to JUnit 4 / TestNG
-  - add README.TXT
-  - use HTML 4.01 Strict DTD (or XHTML?)
-  - how to provide completion redirect to action?
   - streamline struts.xml (CodeBehind plugin?)
-  - investigate GWT web UI
-  - add JDepend report
+  - migrate unit tests to JUnit 4 / TestNG
+  - use HTML 4.01 Strict DTD (or XHTML?)
+  - add README.TXT
+  - how to provide completion redirect to action?
 
 . pain points
   - repeating @Transactional on all service methods, especially exception lists (solved in Spring 2.5)
-  - so many web files: ApplicationMessages.properties, struts.xml, applicationContext-actions, *conversion.properties, *validation.xml
+  - so many web files: ApplicationMessages.properties, struts.xml, applicationContext-actions, *conversion.properties, *validation.xml (use annotations)
   - duplications in ApplicationMessages.properties (use global namespace)
-  - so many different APIs, so many configuration files
+  - so many different APIs, so many configuration files (this is Java!)
   - global.css is getting big (split it up?)
   - AJAX-enabled pages take longer to develop and are harder to debug
-  - JavaScript is dynamically typed, cannot use Java libraries
-  - DOM tree is painful to manipulate
+  - JavaScript is dynamically typed, cannot use Java libraries (use jQuery?)
+  - DOM tree is painful to manipulate (use jQuery?)
