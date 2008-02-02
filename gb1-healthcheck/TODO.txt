@@ -4,7 +4,7 @@ HealthCheck
 
 . features:
   - gastric states
-    > improve UI (use Prototype / script.aculo.us effects)
+    > improve UI (use Prototype / script.aculo.us / jQuery effects)
 
   - analysis
     > gastric states graph
@@ -28,8 +28,8 @@ HealthCheck
   - remove dependency to Spring MVC in POM file
   - migrate unit tests to JUnit 4 / TestNG
   - add README.TXT
-  - use HTML 4.01 Strict DTD
-  - how to provide completion result to action?
+  - use HTML 4.01 Strict DTD (or XHTML?)
+  - how to provide completion redirect to action?
   - streamline struts.xml (CodeBehind plugin?)
   - investigate GWT web UI
   - add JDepend report
@@ -39,7 +39,7 @@ HealthCheck
   - so many web files: ApplicationMessages.properties, struts.xml, applicationContext-actions, *conversion.properties, *validation.xml
   - duplications in ApplicationMessages.properties (use global namespace)
   - so many different APIs, so many configuration files
-  - global.css is getting big, should it be split up?
-  - AJAX-enabled pages are long to develop
+  - global.css is getting big (split it up?)
+  - AJAX-enabled pages take longer to develop and are harder to debug
   - JavaScript is dynamically typed, cannot use Java libraries
   - DOM tree is painful to manipulate
