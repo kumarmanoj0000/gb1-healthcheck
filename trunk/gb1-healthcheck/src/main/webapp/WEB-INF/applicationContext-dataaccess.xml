@@ -32,4 +32,11 @@
 		<property name="entityManagerFactory" ref="entityManagerFactory" />
 	</bean>
 
+	<!-- Must be used in place of the tx:annotation-driven tag, which oddly does not work when
+		application uses aop:spring-configured -->
+	<bean class="org.springframework.transaction.aspectj.AnnotationTransactionAspect"
+		factory-method="aspectOf">
+		<property name="transactionManager" ref="transactionManager" />
+	</bean>
+
 </beans>
