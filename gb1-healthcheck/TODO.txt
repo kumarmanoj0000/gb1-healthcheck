@@ -3,6 +3,9 @@ HealthCheck
 -----------
 
 . features:
+  - user registration
+    > labels don't show up anymore
+
   - gastric states
     > improve UI (use Prototype / script.aculo.us / jQuery effects)
 
