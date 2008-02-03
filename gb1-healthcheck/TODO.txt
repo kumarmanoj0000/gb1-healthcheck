@@ -28,6 +28,7 @@ HealthCheck
   - use HTML 4.01 Strict DTD (or XHTML?)
   - add README.TXT
   - how to provide completion redirect to action?
+  - reduce number of classes per package?
 
 . pain points
   - so many web files: ApplicationMessages.properties, struts.xml, applicationContext-actions, *conversion.properties, *validation.xml (use annotations)
