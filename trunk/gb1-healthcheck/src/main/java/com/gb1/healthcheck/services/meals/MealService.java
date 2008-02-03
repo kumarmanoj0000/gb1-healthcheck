@@ -4,9 +4,7 @@ import java.util.List;
 
 import com.gb1.commons.dataaccess.Hydrater;
 import com.gb1.healthcheck.domain.meals.Meal;
-import com.gb1.healthcheck.domain.meals.MealCreationRequest;
 import com.gb1.healthcheck.domain.meals.MealException;
-import com.gb1.healthcheck.domain.meals.MealUpdateRequest;
 import com.gb1.healthcheck.domain.users.User;
 
 public interface MealService {

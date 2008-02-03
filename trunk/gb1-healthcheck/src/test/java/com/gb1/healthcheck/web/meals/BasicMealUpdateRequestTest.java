@@ -11,8 +11,8 @@ import org.apache.commons.lang.ArrayUtils;
 import com.gb1.healthcheck.domain.meals.Meal;
 import com.gb1.healthcheck.domain.meals.Meals;
 import com.gb1.healthcheck.domain.meals.PreparedFood;
-import com.gb1.healthcheck.domain.meals.PreparedFoodUpdateRequest;
 import com.gb1.healthcheck.domain.users.Users;
+import com.gb1.healthcheck.services.meals.PreparedFoodUpdateRequest;
 
 public class BasicMealUpdateRequestTest extends TestCase {
 	public void testNewRequestFromMeal() {

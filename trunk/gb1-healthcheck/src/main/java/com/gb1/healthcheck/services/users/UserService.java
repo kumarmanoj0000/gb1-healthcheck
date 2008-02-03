@@ -6,8 +6,6 @@ import com.gb1.healthcheck.domain.users.User;
 import com.gb1.healthcheck.domain.users.UserActivationException;
 import com.gb1.healthcheck.domain.users.UserActivationRequest;
 import com.gb1.healthcheck.domain.users.UserException;
-import com.gb1.healthcheck.domain.users.UserRegistrationRequest;
-import com.gb1.healthcheck.domain.users.UserUpdateRequest;
 
 /**
  * A facade for all services related to user management.

@@ -29,11 +29,11 @@ public class PreparedFood implements Identifiable {
 
 	private PreparationMethod preparationMethod;
 
-	PreparedFood() {
+	protected PreparedFood() {
 		// for JPA
 	}
 
-	PreparedFood(Food ingredient, PreparationMethod preparationMethod) {
+	protected PreparedFood(Food ingredient, PreparationMethod preparationMethod) {
 		Validate.notNull(ingredient);
 
 		this.ingredient = ingredient;

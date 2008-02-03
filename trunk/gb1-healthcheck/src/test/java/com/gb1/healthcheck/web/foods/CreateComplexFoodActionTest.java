@@ -10,11 +10,11 @@ import org.apache.commons.collections.CollectionUtils;
 import org.easymock.EasyMock;
 
 import com.gb1.commons.dataaccess.IdentityHydrater;
-import com.gb1.healthcheck.domain.foods.ComplexFoodCreationRequest;
 import com.gb1.healthcheck.domain.foods.Food;
 import com.gb1.healthcheck.domain.foods.FoodAlreadyExistsException;
 import com.gb1.healthcheck.domain.foods.FoodException;
 import com.gb1.healthcheck.domain.foods.Foods;
+import com.gb1.healthcheck.services.foods.ComplexFoodCreationRequest;
 import com.gb1.healthcheck.services.foods.FoodService;
 import com.opensymphony.xwork2.Action;
 

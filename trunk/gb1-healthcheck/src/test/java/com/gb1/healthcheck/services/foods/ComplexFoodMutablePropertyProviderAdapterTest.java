@@ -1,4 +1,4 @@
-package com.gb1.healthcheck.domain.foods;
+package com.gb1.healthcheck.services.foods;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -9,13 +9,17 @@ import junit.framework.TestCase;
 import org.apache.commons.collections.CollectionUtils;
 import org.easymock.EasyMock;
 
-public class ComplexFoodPropertyProviderAdapterTest extends TestCase {
+import com.gb1.healthcheck.domain.foods.Food;
+import com.gb1.healthcheck.domain.foods.FoodRepository;
+import com.gb1.healthcheck.domain.foods.Foods;
+
+public class ComplexFoodMutablePropertyProviderAdapterTest extends TestCase {
 	public void testAdapt() {
 		final Map<Long, Food> foods = new HashMap<Long, Food>();
 		foods.put(Foods.beef().getId(), Foods.beef());
 		foods.put(Foods.apple().getId(), Foods.apple());
 
-		ComplexFoodCreationRequest request = new ComplexFoodCreationRequest() {
+		ComplexFoodUpdateRequest request = new ComplexFoodUpdateRequest() {
 			public Set<Long> getIngredientIds() {
 				return foods.keySet();
 			}
@@ -31,7 +35,7 @@ public class ComplexFoodPropertyProviderAdapterTest extends TestCase {
 		}
 		EasyMock.replay(foodRepo);
 
-		ComplexFoodCreationPropertyProviderAdapter adapter = new ComplexFoodCreationPropertyProviderAdapter(
+		ComplexFoodUpdatePropertyProviderAdapter adapter = new ComplexFoodUpdatePropertyProviderAdapter(
 				request);
 		adapter.setFoodRepository(foodRepo);
 

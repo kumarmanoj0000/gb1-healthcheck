@@ -7,7 +7,7 @@ import org.apache.commons.lang.Validate;
 
 import com.gb1.healthcheck.domain.users.Role;
 import com.gb1.healthcheck.domain.users.User;
-import com.gb1.healthcheck.domain.users.UserUpdateRequest;
+import com.gb1.healthcheck.services.users.UserUpdateRequest;
 
 public class BasicUserUpdateRequest implements UserUpdateRequest {
 	private String login;

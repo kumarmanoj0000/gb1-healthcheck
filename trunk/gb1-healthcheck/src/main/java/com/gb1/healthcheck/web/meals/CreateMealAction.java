@@ -1,8 +1,8 @@
 package com.gb1.healthcheck.web.meals;
 
 import com.gb1.healthcheck.domain.meals.MealAlreadyExistsException;
-import com.gb1.healthcheck.domain.meals.MealCreationRequest;
 import com.gb1.healthcheck.domain.meals.MealException;
+import com.gb1.healthcheck.services.meals.MealCreationRequest;
 import com.opensymphony.xwork2.Action;
 
 public class CreateMealAction extends MealActionSupport {

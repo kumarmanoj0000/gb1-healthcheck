@@ -10,9 +10,7 @@ import com.gb1.healthcheck.domain.users.UserActivationException;
 import com.gb1.healthcheck.domain.users.UserActivationRequest;
 import com.gb1.healthcheck.domain.users.UserActivationRequester;
 import com.gb1.healthcheck.domain.users.UserException;
-import com.gb1.healthcheck.domain.users.UserRegistrationRequest;
 import com.gb1.healthcheck.domain.users.UserRepository;
-import com.gb1.healthcheck.domain.users.UserUpdateRequest;
 import com.gb1.healthcheck.domain.users.UserValidator;
 
 /**

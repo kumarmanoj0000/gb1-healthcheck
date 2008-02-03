@@ -7,12 +7,12 @@ import junit.framework.TestCase;
 
 import org.easymock.EasyMock;
 
-import com.gb1.healthcheck.domain.meals.FullMealHydrater;
 import com.gb1.healthcheck.domain.meals.Meal;
 import com.gb1.healthcheck.domain.meals.MealException;
-import com.gb1.healthcheck.domain.meals.MealUpdateRequest;
 import com.gb1.healthcheck.domain.meals.Meals;
+import com.gb1.healthcheck.services.meals.FullMealHydrater;
 import com.gb1.healthcheck.services.meals.MealService;
+import com.gb1.healthcheck.services.meals.MealUpdateRequest;
 import com.opensymphony.xwork2.Action;
 
 public class UpdateMealActionTest extends TestCase {

@@ -5,8 +5,8 @@ import junit.framework.TestCase;
 import org.easymock.EasyMock;
 
 import com.gb1.healthcheck.domain.foods.FoodAlreadyExistsException;
-import com.gb1.healthcheck.domain.foods.SimpleFoodCreationRequest;
 import com.gb1.healthcheck.services.foods.FoodService;
+import com.gb1.healthcheck.services.foods.SimpleFoodCreationRequest;
 import com.opensymphony.xwork2.Action;
 
 public class CreateSimpleFoodActionTest extends TestCase {

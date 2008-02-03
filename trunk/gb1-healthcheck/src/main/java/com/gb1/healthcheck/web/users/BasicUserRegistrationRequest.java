@@ -4,7 +4,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import com.gb1.healthcheck.domain.users.Role;
-import com.gb1.healthcheck.domain.users.UserRegistrationRequest;
+import com.gb1.healthcheck.services.users.UserRegistrationRequest;
 
 public class BasicUserRegistrationRequest implements UserRegistrationRequest {
 	private String login;

@@ -18,15 +18,15 @@ public class ComplexFood extends Food implements ComplexFoodCreationPropertyProv
 	@JoinTable(name = "FOOD_INGREDIENTS")
 	private Set<Food> ingredients = new HashSet<Food>();
 
-	ComplexFood() {
+	protected ComplexFood() {
 		this(null, "");
 	}
 
-	ComplexFood(String name) {
+	protected ComplexFood(String name) {
 		this(null, name);
 	}
 
-	ComplexFood(Long id, String name) {
+	protected ComplexFood(Long id, String name) {
 		super(name);
 		setId(id);
 	}
