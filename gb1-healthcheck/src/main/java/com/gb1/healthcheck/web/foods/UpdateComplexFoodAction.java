@@ -7,7 +7,7 @@ import org.apache.struts2.interceptor.SessionAware;
 import com.gb1.healthcheck.domain.foods.ComplexFood;
 import com.gb1.healthcheck.domain.foods.FoodAlreadyExistsException;
 import com.gb1.healthcheck.domain.foods.FoodException;
-import com.gb1.healthcheck.domain.foods.FullComplexFoodHydrater;
+import com.gb1.healthcheck.services.foods.FullComplexFoodHydrater;
 import com.opensymphony.xwork2.Action;
 
 public class UpdateComplexFoodAction extends ComplexFoodActionSupport implements SessionAware {

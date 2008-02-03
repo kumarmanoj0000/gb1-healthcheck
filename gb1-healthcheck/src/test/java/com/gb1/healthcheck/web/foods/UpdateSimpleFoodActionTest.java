@@ -10,8 +10,8 @@ import org.easymock.EasyMock;
 import com.gb1.healthcheck.domain.foods.FoodAlreadyExistsException;
 import com.gb1.healthcheck.domain.foods.Foods;
 import com.gb1.healthcheck.domain.foods.SimpleFood;
-import com.gb1.healthcheck.domain.foods.SimpleFoodUpdateRequest;
 import com.gb1.healthcheck.services.foods.FoodService;
+import com.gb1.healthcheck.services.foods.SimpleFoodUpdateRequest;
 import com.opensymphony.xwork2.Action;
 
 public class UpdateSimpleFoodActionTest extends TestCase {

@@ -14,10 +14,10 @@ import com.gb1.commons.dataaccess.IdentityHydrater;
 import com.gb1.healthcheck.domain.foods.Food;
 import com.gb1.healthcheck.domain.foods.Foods;
 import com.gb1.healthcheck.domain.meals.MealAlreadyExistsException;
-import com.gb1.healthcheck.domain.meals.MealCreationRequest;
 import com.gb1.healthcheck.domain.meals.MealException;
 import com.gb1.healthcheck.domain.meals.PreparationMethod;
 import com.gb1.healthcheck.services.foods.FoodService;
+import com.gb1.healthcheck.services.meals.MealCreationRequest;
 import com.gb1.healthcheck.services.meals.MealService;
 import com.opensymphony.xwork2.Action;
 

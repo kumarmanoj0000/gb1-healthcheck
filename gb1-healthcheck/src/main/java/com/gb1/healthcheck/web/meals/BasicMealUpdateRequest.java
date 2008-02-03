@@ -4,9 +4,9 @@ import java.util.HashSet;
 import java.util.Set;
 
 import com.gb1.healthcheck.domain.meals.Meal;
-import com.gb1.healthcheck.domain.meals.MealUpdateRequest;
 import com.gb1.healthcheck.domain.meals.PreparationMethod;
-import com.gb1.healthcheck.domain.meals.PreparedFoodUpdateRequest;
+import com.gb1.healthcheck.services.meals.MealUpdateRequest;
+import com.gb1.healthcheck.services.meals.PreparedFoodUpdateRequest;
 
 public class BasicMealUpdateRequest extends MealRequestSupport implements MealUpdateRequest {
 	public BasicMealUpdateRequest(Meal meal) {

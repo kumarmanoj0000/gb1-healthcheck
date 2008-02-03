@@ -1,4 +1,4 @@
-package com.gb1.healthcheck.domain.meals;
+package com.gb1.healthcheck.services.meals;
 
 import java.util.Date;
 import java.util.Set;

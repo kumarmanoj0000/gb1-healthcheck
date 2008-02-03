@@ -32,7 +32,6 @@ HealthCheck
   - use HTML 4.01 Strict DTD (or XHTML?)
   - add README.TXT
   - how to provide completion redirect to action?
-  - reduce number of classes per package?
 
 . pain points
   - Struts2 actions and results split in 2 files (struts.xml, applicationContext-actions)

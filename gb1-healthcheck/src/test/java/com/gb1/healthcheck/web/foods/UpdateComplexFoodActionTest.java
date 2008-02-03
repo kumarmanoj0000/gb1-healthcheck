@@ -8,11 +8,11 @@ import junit.framework.TestCase;
 import org.easymock.EasyMock;
 
 import com.gb1.healthcheck.domain.foods.ComplexFood;
-import com.gb1.healthcheck.domain.foods.ComplexFoodUpdateRequest;
 import com.gb1.healthcheck.domain.foods.FoodAlreadyExistsException;
 import com.gb1.healthcheck.domain.foods.Foods;
-import com.gb1.healthcheck.domain.foods.FullComplexFoodHydrater;
+import com.gb1.healthcheck.services.foods.ComplexFoodUpdateRequest;
 import com.gb1.healthcheck.services.foods.FoodService;
+import com.gb1.healthcheck.services.foods.FullComplexFoodHydrater;
 import com.opensymphony.xwork2.Action;
 
 public class UpdateComplexFoodActionTest extends TestCase {

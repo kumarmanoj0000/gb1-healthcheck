@@ -15,7 +15,7 @@ import com.gb1.healthcheck.domain.foods.Foods;
 import com.gb1.healthcheck.domain.meals.Meals;
 import com.gb1.healthcheck.domain.meals.PreparationMethod;
 import com.gb1.healthcheck.domain.meals.PreparedFood;
-import com.gb1.healthcheck.domain.meals.PreparedFoodCreationRequest;
+import com.gb1.healthcheck.services.meals.PreparedFoodCreationRequest;
 
 public class BasicMealCreationRequestTest extends TestCase {
 	public void testGetCreationRequests() {

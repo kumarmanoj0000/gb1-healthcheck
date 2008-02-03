@@ -3,6 +3,8 @@ package com.gb1.healthcheck.domain.meals;
 import java.util.Set;
 import java.util.concurrent.atomic.AtomicBoolean;
 
+import com.gb1.healthcheck.services.meals.FullMealHydrater;
+
 import junit.framework.TestCase;
 
 public class FullMealHydraterTest extends TestCase {

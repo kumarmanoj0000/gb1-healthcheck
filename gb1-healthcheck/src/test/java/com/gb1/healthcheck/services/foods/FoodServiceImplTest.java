@@ -10,8 +10,6 @@ import org.easymock.EasyMock;
 
 import com.gb1.commons.dataaccess.Hydrater;
 import com.gb1.healthcheck.domain.foods.ComplexFood;
-import com.gb1.healthcheck.domain.foods.ComplexFoodCreationRequest;
-import com.gb1.healthcheck.domain.foods.ComplexFoodUpdateRequest;
 import com.gb1.healthcheck.domain.foods.ComplexFoodValidator;
 import com.gb1.healthcheck.domain.foods.Food;
 import com.gb1.healthcheck.domain.foods.FoodGroup;
@@ -19,8 +17,6 @@ import com.gb1.healthcheck.domain.foods.FoodRepository;
 import com.gb1.healthcheck.domain.foods.Foods;
 import com.gb1.healthcheck.domain.foods.Nutrient;
 import com.gb1.healthcheck.domain.foods.SimpleFood;
-import com.gb1.healthcheck.domain.foods.SimpleFoodCreationRequest;
-import com.gb1.healthcheck.domain.foods.SimpleFoodUpdateRequest;
 import com.gb1.healthcheck.domain.foods.SimpleFoodValidator;
 
 public class FoodServiceImplTest extends TestCase {

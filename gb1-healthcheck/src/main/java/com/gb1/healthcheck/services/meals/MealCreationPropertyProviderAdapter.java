@@ -1,4 +1,4 @@
-package com.gb1.healthcheck.domain.meals;
+package com.gb1.healthcheck.services.meals;
 
 import java.util.Date;
 import java.util.HashSet;
@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Configurable;
 
 import com.gb1.healthcheck.domain.foods.Food;
 import com.gb1.healthcheck.domain.foods.FoodRepository;
+import com.gb1.healthcheck.domain.meals.MealCreationPropertyProvider;
+import com.gb1.healthcheck.domain.meals.PreparedFood;
 import com.gb1.healthcheck.domain.users.User;
 import com.gb1.healthcheck.domain.users.UserRepository;
 
@@ -35,7 +37,8 @@ public class MealCreationPropertyProviderAdapter implements MealCreationProperty
 		Set<PreparedFood> dishes = new HashSet<PreparedFood>();
 		for (PreparedFoodCreationRequest dcr : request.getDishCreationRequests()) {
 			Food ingredient = foodRepo.loadFood(dcr.getIngredientId());
-			dishes.add(new PreparedFood(ingredient, dcr.getPreparationMethod()));
+			dishes.add(new PreparedFood(ingredient, dcr.getPreparationMethod()) {
+			});
 		}
 
 		return dishes;

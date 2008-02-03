@@ -3,9 +3,9 @@ package com.gb1.healthcheck.web.meals;
 import java.util.HashSet;
 import java.util.Set;
 
-import com.gb1.healthcheck.domain.meals.MealCreationRequest;
 import com.gb1.healthcheck.domain.meals.PreparationMethod;
-import com.gb1.healthcheck.domain.meals.PreparedFoodCreationRequest;
+import com.gb1.healthcheck.services.meals.MealCreationRequest;
+import com.gb1.healthcheck.services.meals.PreparedFoodCreationRequest;
 
 public class BasicMealCreationRequest extends MealRequestSupport implements MealCreationRequest {
 	private Long eaterId;

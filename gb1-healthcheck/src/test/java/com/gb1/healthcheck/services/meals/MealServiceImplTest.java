@@ -13,15 +13,10 @@ import org.easymock.EasyMock;
 
 import com.gb1.commons.dataaccess.Hydrater;
 import com.gb1.healthcheck.domain.meals.Meal;
-import com.gb1.healthcheck.domain.meals.MealCreationPropertyProviderAdapter;
-import com.gb1.healthcheck.domain.meals.MealCreationRequest;
 import com.gb1.healthcheck.domain.meals.MealException;
 import com.gb1.healthcheck.domain.meals.MealRepository;
-import com.gb1.healthcheck.domain.meals.MealUpdateRequest;
 import com.gb1.healthcheck.domain.meals.MealValidator;
 import com.gb1.healthcheck.domain.meals.Meals;
-import com.gb1.healthcheck.domain.meals.PreparedFoodCreationRequest;
-import com.gb1.healthcheck.domain.meals.PreparedFoodUpdateRequest;
 import com.gb1.healthcheck.domain.users.User;
 import com.gb1.healthcheck.domain.users.UserRepository;
 import com.gb1.healthcheck.domain.users.Users;
