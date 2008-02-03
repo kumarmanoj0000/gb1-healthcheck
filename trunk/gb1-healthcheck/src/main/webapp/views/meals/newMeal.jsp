@@ -48,7 +48,7 @@
 			<div class="required">
 				<label><fmt:message key="meal.instant" />:</label>
 				<s:date id="instant" name="model.instant" format="yyyy-MM-dd hh:mm:ss" />
-				<s:textfield id="f_date_c" key="meal.instant" name="model.instant" value="${instant}" readonly="1" />
+				<s:textfield id="f_date_c" key="meal.instant" name="model.instant" readonly="1" />
 				<img
 					id="f_trigger_c"
 					src="<c:url value='/scripts/jscalendar/img.gif' />"
