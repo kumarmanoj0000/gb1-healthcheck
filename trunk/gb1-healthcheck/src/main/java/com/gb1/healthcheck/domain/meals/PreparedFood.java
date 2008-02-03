@@ -55,10 +55,10 @@ public class PreparedFood implements Identifiable {
 	public boolean containsIngredient(Food food) {
 		boolean contains;
 
-		// TODO Ugly instanceof - polymorphism possible?
 		if (ingredient.equals(food)) {
 			contains = true;
 		}
+		// TODO Ugly instanceof - polymorphism possible?
 		else if (ingredient instanceof ComplexFood) {
 			contains = ((ComplexFood) ingredient).containsIngredient(food);
 		}
