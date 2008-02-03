@@ -4,7 +4,7 @@ HealthCheck
 
 . features:
   - user registration
-    > labels don't show up anymore
+    > retest
 
   - gastric states
     > improve UI (use Prototype / script.aculo.us / jQuery effects)
@@ -27,14 +27,15 @@ HealthCheck
   - use Struts2 annotations to declare validators
   - streamline struts.xml (CodeBehind plugin?)
   - migrate unit tests to JUnit 4 / TestNG
+  - improve use of HTML <label> tag
+  - refactor duplicated messages in ApplicationMessages.properties
   - use HTML 4.01 Strict DTD (or XHTML?)
   - add README.TXT
   - how to provide completion redirect to action?
   - reduce number of classes per package?
 
 . pain points
-  - so many web files: ApplicationMessages.properties, struts.xml, applicationContext-actions, *validation.xml (use annotations)
-  - duplications in ApplicationMessages.properties (use global namespace)
+  - Struts2 actions and results split in 2 files (struts.xml, applicationContext-actions)
   - so many different APIs, so many configuration files (this is Java!)
   - global.css is getting big (split it up?)
   - AJAX-enabled pages take longer to develop and are harder to debug

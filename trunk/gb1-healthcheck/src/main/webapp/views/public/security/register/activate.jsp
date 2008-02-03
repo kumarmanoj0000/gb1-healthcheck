@@ -5,8 +5,16 @@
 <html>
 	<body>
 		<s:form action="activate" method="post" namespace="/public/register">
-			<s:textfield key="register.activate.email" name="principal" /><br/>
-			<s:textfield key="register.activate.activationToken" name="credentials" /><br/>
+			<div class="required">
+				<label><fmt:message key="register.activate.email" /></label>
+				<s:textfield name="principal" />
+			</div>
+
+			<div class="required">
+				<label><fmt:message key="register.activate.activationToken" /></label>
+				<s:textfield name="credentials" />
+			</div>
+
 			<s:submit key="register.activate.submit" />
 		</s:form>
 	</body>
