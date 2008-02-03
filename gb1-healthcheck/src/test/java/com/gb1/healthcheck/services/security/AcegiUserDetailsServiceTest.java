@@ -5,21 +5,12 @@ import junit.framework.TestCase;
 import org.acegisecurity.userdetails.UserDetails;
 import org.acegisecurity.userdetails.UsernameNotFoundException;
 import org.easymock.EasyMock;
-import org.springframework.transaction.PlatformTransactionManager;
-import org.springframework.transaction.aspectj.AnnotationTransactionAspect;
 
 import com.gb1.healthcheck.domain.users.ExposedUser;
 import com.gb1.healthcheck.domain.users.Role;
 import com.gb1.healthcheck.domain.users.UserRepository;
 
 public class AcegiUserDetailsServiceTest extends TestCase {
-	@Override
-	protected void setUp() throws Exception {
-		PlatformTransactionManager txManager = EasyMock
-				.createMock(PlatformTransactionManager.class);
-		AnnotationTransactionAspect.aspectOf().setTransactionManager(txManager);
-	}
-
 	public void testLoadUserByUsernameUnknown() {
 		final String login = "user";
 

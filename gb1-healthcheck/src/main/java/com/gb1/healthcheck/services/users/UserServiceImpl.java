@@ -20,6 +20,7 @@ import com.gb1.healthcheck.domain.users.UserValidator;
  * 
  * @author Guillaume Bilodeau
  */
+@Transactional(rollbackFor = { RuntimeException.class, UserException.class })
 public class UserServiceImpl implements UserService {
 	private UserRepository userRepository;
 	private UserValidator userCreationValidator;
@@ -31,7 +32,6 @@ public class UserServiceImpl implements UserService {
 	public UserServiceImpl() {
 	}
 
-	@Transactional(rollbackFor = { RuntimeException.class, UserException.class })
 	public UserActivationRequest registerUser(UserRegistrationRequest request) throws UserException {
 		User user = new User(request);
 		userCreationValidator.validate(user);
@@ -41,7 +41,6 @@ public class UserServiceImpl implements UserService {
 		return actRequest;
 	}
 
-	@Transactional(rollbackFor = { RuntimeException.class, UserException.class })
 	public User activateUser(String email, Token candidateActivationToken)
 			throws UnknownUserException, UserActivationException {
 		User user = userRepository.findUserByEmail(email);
@@ -54,7 +53,6 @@ public class UserServiceImpl implements UserService {
 		return user;
 	}
 
-	@Transactional(rollbackFor = { RuntimeException.class, UserException.class })
 	public User updateUser(Long userId, UserUpdateRequest request) throws UserException {
 		User user = userRepository.loadUser(userId);
 		if (user == null) {

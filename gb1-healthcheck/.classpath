@@ -121,7 +121,7 @@
 			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="var" path="M2_REPO/org/easymock/easymock/2.3/easymock-2.3.jar"/>
+	<classpathentry kind="var" path="M2_REPO/org/easymock/easymock/2.3/easymock-2.3.jar" sourcepath="/DEV_HOME/easymock-2.3/src"/>
 	<classpathentry kind="var" path="M2_REPO/org/hibernate/hibernate/3.2.5.ga/hibernate-3.2.5.ga.jar">
 		<attributes>
 			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
@@ -142,7 +142,7 @@
 			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="var" path="M2_REPO/org/springframework/spring-aspects/2.5.1/spring-aspects-2.5.1.jar">
+	<classpathentry kind="var" path="M2_REPO/org/springframework/spring-aspects/2.5.1/spring-aspects-2.5.1.jar" sourcepath="/DEV_HOME/spring-framework-2.5.1/src">
 		<attributes>
 			<attribute name="org.eclipse.ajdt.aspectpath" value="true"/>
 			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
@@ -163,7 +163,7 @@
 			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="var" path="M2_REPO/org/springframework/spring-tx/2.5.1/spring-tx-2.5.1.jar">
+	<classpathentry kind="var" path="M2_REPO/org/springframework/spring-tx/2.5.1/spring-tx-2.5.1.jar" sourcepath="/DEV_HOME/spring-framework-2.5.1/src">
 		<attributes>
 			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
 		</attributes>

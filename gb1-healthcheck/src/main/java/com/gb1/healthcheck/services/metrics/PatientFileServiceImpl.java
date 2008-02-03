@@ -10,6 +10,7 @@ import com.gb1.healthcheck.domain.metrics.PatientFileRepository;
 import com.gb1.healthcheck.domain.users.User;
 import com.gb1.healthcheck.domain.users.UserRepository;
 
+@Transactional(rollbackFor = { RuntimeException.class })
 public class PatientFileServiceImpl implements PatientFileService {
 	private UserRepository userRepo;
 	private PatientFileRepository patientFileRepo;
@@ -17,7 +18,6 @@ public class PatientFileServiceImpl implements PatientFileService {
 	public PatientFileServiceImpl() {
 	}
 
-	@Transactional(rollbackFor = { RuntimeException.class })
 	public void savePatientGastricState(Long patientId, Date instant, GastricState state) {
 		User patient = userRepo.loadUser(patientId);
 		PatientFile metrics = patientFileRepo.loadPatientFileFor(patient);

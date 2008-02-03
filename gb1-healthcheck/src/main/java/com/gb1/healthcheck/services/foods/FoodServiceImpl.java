@@ -17,7 +17,9 @@ import com.gb1.healthcheck.domain.foods.SimpleFood;
 import com.gb1.healthcheck.domain.foods.SimpleFoodCreationRequest;
 import com.gb1.healthcheck.domain.foods.SimpleFoodUpdateRequest;
 import com.gb1.healthcheck.domain.foods.SimpleFoodValidator;
+import com.gb1.healthcheck.domain.meals.MealException;
 
+@Transactional(rollbackFor = { RuntimeException.class, MealException.class })
 public class FoodServiceImpl implements FoodService {
 	private FoodRepository foodRepo;
 	private SimpleFoodValidator simpleFoodCreationValidator;
@@ -56,7 +58,6 @@ public class FoodServiceImpl implements FoodService {
 		return foods;
 	}
 
-	@Transactional(rollbackFor = { RuntimeException.class, FoodException.class })
 	public void createSimpleFood(SimpleFoodCreationRequest request) throws FoodException {
 		SimpleFood food = createSimpleFoodFromRequest(request);
 		simpleFoodCreationValidator.validate(food);
@@ -67,7 +68,6 @@ public class FoodServiceImpl implements FoodService {
 		return new SimpleFood(request);
 	}
 
-	@Transactional(rollbackFor = { RuntimeException.class, FoodException.class })
 	public void createComplexFood(ComplexFoodCreationRequest request) throws FoodException {
 		ComplexFood food = createComplexFoodFromRequest(request);
 		complexFoodCreationValidator.validate(food);
@@ -78,14 +78,12 @@ public class FoodServiceImpl implements FoodService {
 		return new ComplexFood(new ComplexFoodCreationPropertyProviderAdapter(request));
 	}
 
-	@Transactional(rollbackFor = { RuntimeException.class, FoodException.class })
 	public void updateSimpleFood(Long foodId, SimpleFoodUpdateRequest request) throws FoodException {
 		SimpleFood food = foodRepo.loadSimpleFood(foodId);
 		food.update(request);
 		simpleFoodUpdateValidator.validate(food);
 	}
 
-	@Transactional(rollbackFor = { RuntimeException.class, FoodException.class })
 	public void updateComplexFood(Long foodId, ComplexFoodUpdateRequest request)
 			throws FoodException {
 		ComplexFood food = foodRepo.loadComplexFood(foodId);
@@ -93,7 +91,6 @@ public class FoodServiceImpl implements FoodService {
 		complexFoodUpdateValidator.validate(food);
 	}
 
-	@Transactional(rollbackFor = { RuntimeException.class })
 	public void deleteFood(Long foodId) {
 		foodRepo.deleteFood(foodId);
 	}

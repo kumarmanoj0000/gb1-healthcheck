@@ -21,7 +21,6 @@ HealthCheck
     > lost password
 
 . technical
-  - fix @Transactional references on service methods
   - upgrade to Struts 2.0.11 (2.1?)
   - use Struts2 annotations to declare converters and validators
   - streamline struts.xml (CodeBehind plugin?)
@@ -31,7 +30,6 @@ HealthCheck
   - how to provide completion redirect to action?
 
 . pain points
-  - repeating @Transactional on all service methods, especially exception lists (solved in Spring 2.5)
   - so many web files: ApplicationMessages.properties, struts.xml, applicationContext-actions, *conversion.properties, *validation.xml (use annotations)
   - duplications in ApplicationMessages.properties (use global namespace)
   - so many different APIs, so many configuration files (this is Java!)
