@@ -15,6 +15,7 @@ import com.gb1.healthcheck.domain.users.UserRepository;
  * 
  * @author Guillaume Bilodeau
  */
+@Transactional(readOnly = true)
 public class AcegiUserDetailsService implements UserDetailsService {
 	private UserRepository userRepo;
 
@@ -28,7 +29,6 @@ public class AcegiUserDetailsService implements UserDetailsService {
 	 * @return The user's details
 	 * @throws UsernameNotFoundException When no user is found
 	 */
-	@Transactional(readOnly = true)
 	public UserDetails loadUserByUsername(String username) {
 		UserDetails userDetails = null;
 		User user = userRepo.findUserByLogin(username);

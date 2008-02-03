@@ -7,8 +7,6 @@ import junit.framework.TestCase;
 
 import org.apache.commons.collections.CollectionUtils;
 import org.easymock.EasyMock;
-import org.springframework.transaction.PlatformTransactionManager;
-import org.springframework.transaction.aspectj.AnnotationTransactionAspect;
 
 import com.gb1.commons.dataaccess.Hydrater;
 import com.gb1.healthcheck.domain.foods.ComplexFood;
@@ -26,14 +24,6 @@ import com.gb1.healthcheck.domain.foods.SimpleFoodUpdateRequest;
 import com.gb1.healthcheck.domain.foods.SimpleFoodValidator;
 
 public class FoodServiceImplTest extends TestCase {
-	@Override
-	protected void setUp() throws Exception {
-		PlatformTransactionManager txManager = EasyMock
-				.createNiceMock(PlatformTransactionManager.class);
-		AnnotationTransactionAspect.aspectOf().setTransactionManager(txManager);
-		EasyMock.replay(txManager);
-	}
-
 	public void testGetSimpleFoods() {
 		Set<SimpleFood> allSimpleFoods = Foods.allSimpleFoods();
 

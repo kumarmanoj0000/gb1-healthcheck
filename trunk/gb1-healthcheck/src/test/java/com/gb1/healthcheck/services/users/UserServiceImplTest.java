@@ -3,8 +3,6 @@ package com.gb1.healthcheck.services.users;
 import junit.framework.TestCase;
 
 import org.easymock.EasyMock;
-import org.springframework.transaction.PlatformTransactionManager;
-import org.springframework.transaction.aspectj.AnnotationTransactionAspect;
 
 import com.gb1.commons.tokens.Token;
 import com.gb1.healthcheck.domain.users.ExposedUser;
@@ -22,14 +20,6 @@ import com.gb1.healthcheck.web.users.BasicUserRegistrationRequest;
 import com.gb1.healthcheck.web.users.BasicUserUpdateRequest;
 
 public class UserServiceImplTest extends TestCase {
-	@Override
-	protected void setUp() throws Exception {
-		PlatformTransactionManager txManager = EasyMock
-				.createNiceMock(PlatformTransactionManager.class);
-		AnnotationTransactionAspect.aspectOf().setTransactionManager(txManager);
-		EasyMock.replay(txManager);
-	}
-
 	public void testRegisterUser() throws UserException {
 		BasicUserRegistrationRequest regRequest = new BasicUserRegistrationRequest();
 		regRequest.setLogin("login");

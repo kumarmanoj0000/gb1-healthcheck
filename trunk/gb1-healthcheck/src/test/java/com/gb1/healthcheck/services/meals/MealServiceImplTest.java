@@ -10,8 +10,6 @@ import junit.framework.TestCase;
 
 import org.apache.commons.collections.CollectionUtils;
 import org.easymock.EasyMock;
-import org.springframework.transaction.PlatformTransactionManager;
-import org.springframework.transaction.aspectj.AnnotationTransactionAspect;
 
 import com.gb1.commons.dataaccess.Hydrater;
 import com.gb1.healthcheck.domain.meals.Meal;
@@ -29,14 +27,6 @@ import com.gb1.healthcheck.domain.users.UserRepository;
 import com.gb1.healthcheck.domain.users.Users;
 
 public class MealServiceImplTest extends TestCase {
-	@Override
-	protected void setUp() throws Exception {
-		PlatformTransactionManager txManager = EasyMock
-				.createNiceMock(PlatformTransactionManager.class);
-		AnnotationTransactionAspect.aspectOf().setTransactionManager(txManager);
-		EasyMock.replay(txManager);
-	}
-
 	public void testGetMealHistory() {
 		final User eater = Users.gb();
 		final List<Meal> mealHistory = Meals.mealHistory();

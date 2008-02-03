@@ -15,6 +15,7 @@ import com.gb1.healthcheck.domain.meals.MealUpdateRequest;
 import com.gb1.healthcheck.domain.meals.MealValidator;
 import com.gb1.healthcheck.domain.users.User;
 
+@Transactional(rollbackFor = { RuntimeException.class, MealException.class })
 public class MealServiceImpl implements MealService {
 	private MealRepository mealRepo;
 	private MealValidator mealCreationValidator;
@@ -37,7 +38,6 @@ public class MealServiceImpl implements MealService {
 		return meal;
 	}
 
-	@Transactional(rollbackFor = { RuntimeException.class, MealException.class })
 	public void createMeal(MealCreationRequest request) throws MealException {
 		Meal meal = new Meal(createMealCreationPropertyProviderAdapter(request));
 		mealCreationValidator.validate(meal);
@@ -49,14 +49,12 @@ public class MealServiceImpl implements MealService {
 		return new MealCreationPropertyProviderAdapter(request);
 	}
 
-	@Transactional(rollbackFor = { RuntimeException.class, MealException.class })
 	public void updateMeal(Long mealId, MealUpdateRequest request) throws MealException {
 		Meal meal = mealRepo.loadMeal(mealId);
 		meal.update(new MealUpdatePropertyProviderAdapter(request));
 		mealUpdateValidator.validate(meal);
 	}
 
-	@Transactional(rollbackFor = { RuntimeException.class, MealException.class })
 	public void deleteMeal(Long mealId) {
 		mealRepo.deleteMeal(mealId);
 	}
