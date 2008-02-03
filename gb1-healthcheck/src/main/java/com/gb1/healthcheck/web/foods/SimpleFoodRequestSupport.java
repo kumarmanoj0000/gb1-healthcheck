@@ -6,6 +6,7 @@ import java.util.Set;
 
 import com.gb1.healthcheck.domain.foods.FoodGroup;
 import com.gb1.healthcheck.domain.foods.Nutrient;
+import com.opensymphony.xwork2.conversion.annotations.TypeConversion;
 
 public abstract class SimpleFoodRequestSupport {
 	private String name;
@@ -27,7 +28,8 @@ public abstract class SimpleFoodRequestSupport {
 		return foodGroup;
 	}
 
-	public void setGroup(FoodGroup foodGroup) {
+	@TypeConversion(converter = "com.opensymphony.xwork2.util.EnumTypeConverter")
+	public void setFoodGroup(FoodGroup foodGroup) {
 		this.foodGroup = foodGroup;
 	}
 

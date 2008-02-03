@@ -7,7 +7,7 @@ public class BasicSimpleFoodUpdateRequest extends SimpleFoodRequestSupport imple
 		SimpleFoodUpdateRequest {
 	public BasicSimpleFoodUpdateRequest(SimpleFood food) {
 		setName(food.getName());
-		setGroup(food.getFoodGroup());
+		setFoodGroup(food.getFoodGroup());
 		setNutrients(food.getNutrients());
 	}
 }

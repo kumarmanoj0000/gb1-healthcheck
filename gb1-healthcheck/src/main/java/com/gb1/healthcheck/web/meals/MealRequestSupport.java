@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Set;
 
 import com.gb1.healthcheck.domain.meals.PreparedFood;
+import com.opensymphony.xwork2.conversion.annotations.TypeConversion;
 
 public abstract class MealRequestSupport {
 	private Date instant;
@@ -19,6 +20,7 @@ public abstract class MealRequestSupport {
 		return instant;
 	}
 
+	@TypeConversion(converter = "com.gb1.healthcheck.web.meals.MealInstantConverter")
 	public void setInstant(Date instant) {
 		this.instant = instant;
 	}

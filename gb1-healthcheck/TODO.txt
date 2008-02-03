@@ -21,7 +21,7 @@ HealthCheck
     > lost password
 
 . technical
-  - use Struts2 annotations to declare converters and validators
+  - use Struts2 annotations to declare validators
   - streamline struts.xml (CodeBehind plugin?)
   - migrate unit tests to JUnit 4 / TestNG
   - use HTML 4.01 Strict DTD (or XHTML?)
@@ -30,7 +30,7 @@ HealthCheck
   - reduce number of classes per package?
 
 . pain points
-  - so many web files: ApplicationMessages.properties, struts.xml, applicationContext-actions, *conversion.properties, *validation.xml (use annotations)
+  - so many web files: ApplicationMessages.properties, struts.xml, applicationContext-actions, *validation.xml (use annotations)
   - duplications in ApplicationMessages.properties (use global namespace)
   - so many different APIs, so many configuration files (this is Java!)
   - global.css is getting big (split it up?)
