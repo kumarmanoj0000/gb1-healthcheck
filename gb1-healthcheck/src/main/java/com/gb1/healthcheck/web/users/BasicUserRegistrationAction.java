@@ -7,12 +7,24 @@ import com.gb1.healthcheck.domain.users.UserException;
 import com.gb1.healthcheck.services.users.UserService;
 import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionSupport;
+import com.opensymphony.xwork2.validator.annotations.EmailValidator;
+import com.opensymphony.xwork2.validator.annotations.ExpressionValidator;
+import com.opensymphony.xwork2.validator.annotations.RequiredStringValidator;
+import com.opensymphony.xwork2.validator.annotations.Validation;
+import com.opensymphony.xwork2.validator.annotations.Validations;
+import com.opensymphony.xwork2.validator.annotations.VisitorFieldValidator;
 
+@Validation
 public class BasicUserRegistrationAction extends ActionSupport {
 	private UserService userService;
 	private BasicUserRegistrationRequest userRegRequest = new BasicUserRegistrationRequest(
 			Role.STANDARD);
 
+	@Validations(requiredStrings = {
+			@RequiredStringValidator(fieldName = "model.login", message = "Login is required."),
+			@RequiredStringValidator(fieldName = "model.email", message = "Valid email is required."),
+			@RequiredStringValidator(fieldName = "model.password1", message = "Password is required."),
+			@RequiredStringValidator(fieldName = "model.password2", message = "Confirmation password is required.") }, emails = { @EmailValidator(fieldName = "model.email", message = "Valid email is required") }, expressions = { @ExpressionValidator(expression = "model.password1.equals(model.password2)", message = "Both passwords must match.") })
 	public String register() {
 		boolean registered = false;
 
@@ -33,11 +45,12 @@ public class BasicUserRegistrationAction extends ActionSupport {
 		return (registered ? Action.SUCCESS : Action.INPUT);
 	}
 
-	public void setUserService(UserService userService) {
-		this.userService = userService;
-	}
-
+	@VisitorFieldValidator(message = "")
 	public BasicUserRegistrationRequest getModel() {
 		return userRegRequest;
+	}
+
+	public void setUserService(UserService userService) {
+		this.userService = userService;
 	}
 }

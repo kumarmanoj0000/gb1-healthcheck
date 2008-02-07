@@ -3,9 +3,6 @@ HealthCheck
 -----------
 
 . features:
-  - user registration
-    > retest
-
   - gastric states
     > improve UI (use Prototype / script.aculo.us / jQuery effects)
 
@@ -23,11 +20,14 @@ HealthCheck
     > registration confirmation
     > lost password
 
+  - improve presentation
+    > form buttons not well located
+    > error messages not well located, not obvious
+    > labels do not refer to input fields
+
 . technical
-  - use Struts2 annotations to declare validators
-  - streamline struts.xml (CodeBehind plugin?)
+  - streamline struts.xml (CodeBehind plugin? annotations?)
   - migrate unit tests to JUnit 4 / TestNG
-  - improve use of HTML <label> tag
   - refactor duplicated messages in ApplicationMessages.properties
   - use HTML 4.01 Strict DTD (or XHTML?)
   - add README.TXT
