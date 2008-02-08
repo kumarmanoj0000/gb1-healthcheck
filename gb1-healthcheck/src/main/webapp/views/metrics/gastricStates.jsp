@@ -13,6 +13,10 @@
 		<script type="text/javascript" src='<c:url value="/scripts/jquery/jquery.js" />'></script>
 
 		<script type="text/javascript">
+			var datePattern = 'yyyy-MM-dd';
+			var timePattern = 'HH:mm';
+			var dateTimePattern = datePattern + ' ' + timePattern;
+
 			var patientId = ${patient.id};
 			var selectedDate = new Date();
 			var nbDisplayedGastricStates = 0;
@@ -25,6 +29,7 @@
 			}
 
 			function loadGastricStates(patientId, date) {
+				showStatus('Loading gastric states...');
 				ManageGastricStatesAction.loadGastricStates(patientId, date, showGastricStates);
 			}
 
@@ -35,7 +40,8 @@
 			}
 
 			function showGastricStates(states) {
-				hideMessages();
+				showStatus('Gastric states loaded');
+
 				removeAllDisplayedGastricStates();
 
 				if (states.length == 0) {
@@ -56,6 +62,8 @@
 			}
 
 			function addSingleGastricState(index, state) {
+				// TODO There has to be a way to streamline this...
+
 				var newStateDiv = document.getElementById('mockGastricState').cloneNode(true);
 				newStateDiv.id = 'gastricState-' + index;
 				newStateDiv.style.display = 'block';
@@ -67,10 +75,10 @@
 				newStateLevel.id = 'gastricStateLevel-' + index;
 
 				if (state == null) {
-					newStateInstant.value = formatDate(selectedDate, 'HH:mm');
+					newStateInstant.value = formatDate(selectedDate, timePattern);
 				}
 				else {
-					newStateInstant.value = formatDate(state.instant, 'HH:mm');
+					newStateInstant.value = formatDate(state.instant, timePattern);
 
 					var levelOptions = newStateDiv.getElementsByTagName('option');
 					for (var i = 0; i < levelOptions.length; i++) {
@@ -89,45 +97,37 @@
 			}
 
 			function showInitGastricStatesLink() {
-				$('#noGastricStatesMessage').show();
-				document.getElementById('addGastricStateLink').setAttribute('onClick', 'javascript:initGastricStates()');
+				showStatus('No gastric states for this day');
+				$('#addGastricStateLink').unbind('click').click(function() {
+					initGastricStates();
+				});
 			}
 
 			function showNewGastricStateLink() {
-				$('#noGastricStatesMessage').hide();
-				document.getElementById('addGastricStateLink').setAttribute('onClick', 'javascript:addSingleGastricState(' + nbDisplayedGastricStates + ', null)');
+				showStatus('&nbsp;');
+				$('#addGastricStateLink').unbind('click').click(function() {
+					addSingleGastricState(nbDisplayedGastricStates, null);
+				});
 			}
 
 			function saveGastricState(index) {
 				if (index != -1) {
 					var time = document.getElementById('gastricStateInstant-' + index).value;
-					var instantText = formatDate(selectedDate, 'yyyy-MM-dd') + ' ' + time;
-					var instant = getDateFromFormat(instantText, 'yyyy-MM-dd HH:mm');
-
+					var instantText = formatDate(selectedDate, datePattern) + ' ' + time;
+					var instant = getDateFromFormat(instantText, dateTimePattern);
 					var level = document.getElementById('gastricStateLevel-' + index).value;
 
-					showGastricStateSaving();
+					showStatus('Saving...');
 					ManageGastricStatesAction.saveGastricState(patientId, instant, level, gastricStateSaved);
 				}
 			}
 
 			function gastricStateSaved() {
-				showGastricStateSaved();
+				showStatus('Saved');
 			}
 
-			function showGastricStateSaving() {
-				hideMessages();
-				$('#gastricStateSaving').show();
-			}
-
-			function showGastricStateSaved() {
-				hideMessages();
-				$('#gastricStateSaved').show();
-			}
-
-			function hideMessages() {
-				$('#gastricStateSaving').hide();
-				$('#gastricStateSaved').hide();
+			function showStatus(msg) {
+				$('#status').html(msg);
 			}
 		</script>
 	</head>
@@ -135,11 +135,7 @@
 	<body>
 		<h2><fmt:message key="metrics.gastricStates.manage.title" /></h2>
 
-		<div id="gastricStateSaving" style="display: none">
-			<fmt:message key="metrics.gastricStates.saving" />
-		</div>
-		<div id="gastricStateSaved" style="display: none">
-			<fmt:message key="metrics.gastricStates.saved" />
+		<div id="status">
 		</div>
 
 		<div style="float: left; margin-left: 1em; margin-bottom: 1em;" id="calendar-container"></div>
@@ -153,15 +149,11 @@
 		</script>
 
 		<div id="gastricStatesWorkArea">
-			<div id="noGastricStatesMessage">
-				<fmt:message key="metrics.gastricStates.manage.noStatesOnSelectedDay" />
-			</div>
-
 			<div id="gastricStates">
 			</div>
 
 			<div>
-				<a id="addGastricStateLink" href="#" onClick="javascript:initGastricStates()">
+				<a id="addGastricStateLink" href="#">
 					<fmt:message key="metrics.gastricStates.manage.addState" />
 				</a>
 			</div>
@@ -190,6 +182,9 @@
 
 		<script type="text/javascript">
 			$(document).ready(function() {
+				$('#addGastricStateLink').click(function() {
+					initGastricStates();
+				});
 				loadGastricStates(patientId, selectedDate);
 			});
 		</script>
