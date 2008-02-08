@@ -26,6 +26,7 @@ HealthCheck
     > labels do not refer to input fields
 
 . technical
+  - replace JSCalendar by jQuery date picker
   - streamline struts.xml (CodeBehind plugin? annotations?)
   - migrate unit tests to JUnit 4 / TestNG
   - refactor duplicated messages in ApplicationMessages.properties
