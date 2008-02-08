@@ -10,6 +10,7 @@
 
 		<%@ include file="/includes/calendar.jsp" %>
 		<script type="text/javascript" src='<c:url value="/scripts/date.js" />'></script>
+		<script type="text/javascript" src='<c:url value="/scripts/jquery/jquery.js" />'></script>
 
 		<script type="text/javascript">
 			var patientId = ${patient.id};
@@ -50,11 +51,7 @@
 			}
 
 			function removeAllDisplayedGastricStates() {
-				var statesDiv = document.getElementById('gastricStates');
-				while (statesDiv.hasChildNodes()) {
-					statesDiv.removeChild(statesDiv.firstChild);
-				}
-
+				$('#gastricStates').empty();
 				nbDisplayedGastricStates = 0;
 			}
 
@@ -92,12 +89,12 @@
 			}
 
 			function showInitGastricStatesLink() {
-				document.getElementById('noGastricStatesMessage').style.display = 'block';
+				$('#noGastricStatesMessage').show();
 				document.getElementById('addGastricStateLink').setAttribute('onClick', 'javascript:initGastricStates()');
 			}
 
 			function showNewGastricStateLink() {
-				document.getElementById('noGastricStatesMessage').style.display = 'none';
+				$('#noGastricStatesMessage').hide();
 				document.getElementById('addGastricStateLink').setAttribute('onClick', 'javascript:addSingleGastricState(' + nbDisplayedGastricStates + ', null)');
 			}
 
@@ -120,17 +117,17 @@
 
 			function showGastricStateSaving() {
 				hideMessages();
-				document.getElementById('gastricStateSaving').style.display = 'block';
+				$('#gastricStateSaving').show();
 			}
 
 			function showGastricStateSaved() {
 				hideMessages();
-				document.getElementById('gastricStateSaved').style.display = 'block';
+				$('#gastricStateSaved').show();
 			}
 
 			function hideMessages() {
-				document.getElementById('gastricStateSaving').style.display = 'none';
-				document.getElementById('gastricStateSaved').style.display = 'none';
+				$('#gastricStateSaving').hide();
+				$('#gastricStateSaved').hide();
 			}
 		</script>
 	</head>
@@ -192,7 +189,9 @@
 		</div>
 
 		<script type="text/javascript">
-			loadGastricStates(patientId, selectedDate);
+			$(document).ready(function() {
+				loadGastricStates(patientId, selectedDate);
+			});
 		</script>
 	</body>
 </html>
