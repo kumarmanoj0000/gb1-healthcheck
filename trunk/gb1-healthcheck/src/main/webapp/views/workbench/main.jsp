@@ -4,7 +4,6 @@
 
 <html>
 	<body>
-
 		<c:if test="${not empty notificationMessage}">
 			<div class="notification"><fmt:message key="${notificationMessage}" /></div>
 		</c:if>
