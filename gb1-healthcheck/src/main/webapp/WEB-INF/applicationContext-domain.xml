@@ -21,7 +21,7 @@
 	</bean>
 
 	<bean id="userActivationEmailBuilder"
-		class="com.gb1.healthcheck.domain.users.StaticUserActivationRequestEmailBuilder">
+		class="com.gb1.healthcheck.domain.users.VelocityUserActivationRequestEmailBuilder">
 		<property name="subject" value="[HealthCheck] Account activation" />
 		<property name="fromAddress" value="gbilodeau@yahoo.com" />
 		<property name="activationFormUrl"
