@@ -24,7 +24,6 @@ HealthCheck
 
 . technical
   - replace JSCalendar by jQuery date picker
-  - investigate <s:label>
   - streamline struts.xml (use annotations)
   - migrate unit tests to JUnit 4 / TestNG
   - use HTML 4.01 Strict DTD (or XHTML?)
