@@ -6,14 +6,13 @@ import org.springframework.mail.SimpleMailMessage;
 
 public class StaticLostPasswordEmailBuilderTest extends TestCase {
 	public void testCreateReminderMessageOk() {
-		final String password = "123";
 		User u = new User();
 		u.setEmail("user@gb.com");
-		u.setPassword(password);
+		u.setPassword("123");
 
 		StaticLostPasswordEmailBuilder builder = new StaticLostPasswordEmailBuilder();
 		SimpleMailMessage mail = builder.createReminderMessage(u);
 
-		assertTrue(mail.getText().contains(password));
+		assertTrue(mail.getText().contains(u.getPassword()));
 	}
 }

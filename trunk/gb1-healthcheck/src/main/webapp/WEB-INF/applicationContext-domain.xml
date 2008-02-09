@@ -42,10 +42,20 @@
 		<property name="mailSender" ref="mailSender" />
 	</bean>
 
-	<bean id="lostPasswordEmailBuilder"
-		class="com.gb1.healthcheck.domain.users.StaticLostPasswordEmailBuilder">
-		<property name="subject" value="[HealthCheck] Password" />
+	<bean id="lostPasswordEmailBuilder" class="com.gb1.healthcheck.domain.users.VelocityLostPasswordEmailBuilder">
 		<property name="fromAddress" value="gbilodeau@yahoo.com" />
+		<property name="subject" value="[HealthCheck] Password" />
+		<property name="velocityEngine" ref="velocityEngine" />
+		<property name="templateLocation" value="com/gb1/healthcheck/domain/users/lostPasswordEmail.vm" />
+	</bean>
+
+	<bean id="velocityEngine" class="org.springframework.ui.velocity.VelocityEngineFactoryBean">
+		<property name="velocityProperties">
+			<value>
+				resource.loader=class
+				class.resource.loader.class=org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader
+			</value>
+		</property>
 	</bean>
 
 	<bean id="tokenFactory" class="com.gb1.commons.tokens.UuidTokenFactory" />
