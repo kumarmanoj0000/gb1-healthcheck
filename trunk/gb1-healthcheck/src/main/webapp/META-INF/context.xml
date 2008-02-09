@@ -4,4 +4,6 @@
 	<Resource name="jdbc/MainDataSource" auth="Container" type="javax.sql.DataSource"
 		driverClassName="com.mysql.jdbc.Driver" url="jdbc:mysql://localhost:3306/healthcheck"
 		username="healthcheck" password="healthcheck" maxActive="20" maxIdle="10" maxWait="-1" />
+	<Resource name="mail/MainSession" auth="Container" type="javax.mail.Session"
+		mail.smtp.host="localhost" />
 </Context>

@@ -43,7 +43,7 @@
 	</bean>
 
 	<bean id="lostPasswordEmailBuilder" class="com.gb1.healthcheck.domain.users.VelocityLostPasswordEmailBuilder">
-		<property name="fromAddress" value="gbilodeau@yahoo.com" />
+		<property name="fromAddress" value="admin@gb1.com" />
 		<property name="subject" value="[HealthCheck] Password" />
 		<property name="velocityEngine" ref="velocityEngine" />
 		<property name="templateLocation" value="com/gb1/healthcheck/domain/users/lostPasswordEmail.vm" />
