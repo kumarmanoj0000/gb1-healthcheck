@@ -4,14 +4,14 @@
 
 <html>
 	<body>
-		<s:form action="activate" method="post" namespace="/public/register">
+		<s:form action="activate" namespace="/public/register">
 			<div class="required">
-				<label><fmt:message key="register.activate.email" /></label>
+				<label><fmt:message key="register.activate.email" />:</label>
 				<s:textfield name="principal" />
 			</div>
 
 			<div class="required">
-				<label><fmt:message key="register.activate.activationToken" /></label>
+				<label><fmt:message key="register.activate.activationToken" />:</label>
 				<s:textfield name="credentials" />
 			</div>
 
