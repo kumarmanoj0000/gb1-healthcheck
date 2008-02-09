@@ -86,10 +86,10 @@
 
 				var newStateDivSave = newStateDiv.getElementsByTagName('input')[1];
 				newStateDivSave.setAttribute('onClick', 'javascript:saveGastricState(' + index + ')');
-				newStateDivSave.style.display = 'block';
 
 				$('#gastricStates').append(newStateDiv);
 				newStateDiv.style.display = 'block';
+
 				nbDisplayedGastricStates++;
 			}
 
@@ -158,23 +158,19 @@
 
 		<%-- Mock gastric state for cloning (not displayed) --%>
 		<div id="mockGastricState" style="display: none">
-			<div>
-				<label><fmt:message key="gastricState.instant" />:</label>
-				<input type="text" id="mockGastricStateInstant" />
-			</div>
-			<div>
-				<label><fmt:message key="gastricState.level" />:</label>
-				<select id="mockGastricStateLevel">
-					<option value="NORMAL"><fmt:message key="gastricState.level.normal" /></option>
-					<option value="SLIGHTLY_BLOATED"><fmt:message key="gastricState.level.slightlyBloated" /></option>
-					<option value="BLOATED"><fmt:message key="gastricState.level.bloated" /></option>
-					<option value="HIGHLY_BLOATED"><fmt:message key="gastricState.level.highlyBloated" /></option>
-					<option value="CRISIS"><fmt:message key="gastricState.level.crisis" /></option>
-				</select>
-			</div>
-			<div class="actions">
-				<input id="submit" class="button" type="submit" value="<fmt:message key='metrics.gastricStates.save' />" />
-			</div>
+			<label><fmt:message key="gastricState.instant" />:</label>
+			<input type="text" id="mockGastricStateInstant" />
+
+			<label><fmt:message key="gastricState.level" />:</label>
+			<select id="mockGastricStateLevel">
+				<option value="NORMAL"><fmt:message key="gastricState.level.normal" /></option>
+				<option value="SLIGHTLY_BLOATED"><fmt:message key="gastricState.level.slightlyBloated" /></option>
+				<option value="BLOATED"><fmt:message key="gastricState.level.bloated" /></option>
+				<option value="HIGHLY_BLOATED"><fmt:message key="gastricState.level.highlyBloated" /></option>
+				<option value="CRISIS"><fmt:message key="gastricState.level.crisis" /></option>
+			</select>
+
+			<input id="submit" class="button" type="submit" value="<fmt:message key='metrics.gastricStates.save' />" />
 		</div>
 
 		<script type="text/javascript">
