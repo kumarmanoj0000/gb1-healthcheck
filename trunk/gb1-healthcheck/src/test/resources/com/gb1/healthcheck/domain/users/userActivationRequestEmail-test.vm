@@ -1,0 +1,10 @@
+<html>
+<body>
+	<p>Hi ${request.pendingUser.login},</p>
+	<p>Please activate your account at the following URL: ${activationUrl}</p>
+	<hr/>
+	<p>Email: ${request.pendingUser.email}</p>
+	<p>Activation token: ${request.activationToken.value}</p>
+	<p>Cheers, HealthCheck</p>
+</body>
+</html>

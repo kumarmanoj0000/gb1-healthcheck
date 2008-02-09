@@ -6,8 +6,8 @@ HealthCheck
   - retest everything due to Struts2 theme change
 
   - localized template-based message builder (using Velocity)
-    * lost password
-    * registration confirmation
+    * lost password (review received email)
+    * registration confirmation (review received email)
 
   - analysis
     * gastric states graph

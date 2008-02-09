@@ -7,6 +7,11 @@ import org.apache.velocity.app.VelocityEngine;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.ui.velocity.VelocityEngineUtils;
 
+/**
+ * A builder for lost password reminder email messages using a Velocity template.
+ * 
+ * @author Guillaume Bilodeau
+ */
 public class VelocityLostPasswordEmailBuilder implements LostPasswordEmailBuilder {
 	private VelocityEngine engine;
 	private String templateLocation;
