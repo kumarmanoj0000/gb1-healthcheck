@@ -7,6 +7,9 @@ HealthCheck
     > gastric states graph
     > correlation food => gastric states
 
+  - user
+    > edit self profile
+
   - administration (visible to administrators on control panel)
     > user management
       >> view user list (paginate, sort)
@@ -17,25 +20,18 @@ HealthCheck
     > registration confirmation
     > lost password
 
-  - improve presentation
-    > form buttons not well located
-    > error messages not well located, not obvious
-    > labels do not refer to input fields
-
 . technical
   - replace JSCalendar by jQuery date picker
-  - streamline struts.xml (CodeBehind plugin? annotations?)
+  - streamline struts.xml (use annotations)
   - migrate unit tests to JUnit 4 / TestNG
-  - refactor duplicated messages in ApplicationMessages.properties
   - use HTML 4.01 Strict DTD (or XHTML?)
   - add README.TXT
   - how to provide completion redirect to action?
-  - improve Eclise/Maven integration
+  - improve Eclipse/Maven integration
 
 . pain points
-  - Struts2 actions and results split in 2 files (struts.xml, applicationContext-actions)
   - so many different APIs, so many configuration files (this is Java!)
+  - Struts2 actions and results split in 2 files (struts.xml, applicationContext-actions)
   - global.css is getting big (split it up?)
   - AJAX-enabled pages take longer to develop and are harder to debug
-  - JavaScript is dynamically typed, cannot use Java libraries (use jQuery?)
-  - DOM tree is painful to manipulate (use jQuery?)
+  - JavaScript is dynamically typed, cannot use Java libraries
