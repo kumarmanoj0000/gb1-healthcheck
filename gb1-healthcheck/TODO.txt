@@ -3,30 +3,31 @@ HealthCheck
 -----------
 
 . features:
+  - retest everything due to Struts2 theme change
+
+  - localized template-based message builder (using Velocity)
+    * lost password
+    * registration confirmation
+
   - analysis
-    > gastric states graph
-    > correlation food => gastric states
+    * gastric states graph
+    * correlation food => gastric states
 
   - user
-    > edit self profile
+    * edit own profile
 
   - administration (visible to administrators on control panel)
-    > user management
-      >> view user list (paginate, sort)
-      >> view user profile
-      >> edit user profile
-
-  - localized template-based message builder (using Freemarker / Velocity)
-    > registration confirmation
-    > lost password
+    * user management
+      * view user list (paginate, sort)
+      * view user profile
+      * edit user profile
 
 . technical
   - replace JSCalendar by jQuery date picker
-  - use container mail session
+  - investigate <s:label>
   - streamline struts.xml (use annotations)
   - migrate unit tests to JUnit 4 / TestNG
   - use HTML 4.01 Strict DTD (or XHTML?)
-  - add README.TXT
   - how to provide completion redirect to action?
   - improve Eclipse/Maven integration
 
@@ -35,4 +36,3 @@ HealthCheck
   - Struts2 actions and results split in 2 files (struts.xml, applicationContext-actions)
   - global.css is getting big (split it up?)
   - AJAX-enabled pages take longer to develop and are harder to debug
-  - JavaScript is dynamically typed, cannot use Java libraries
