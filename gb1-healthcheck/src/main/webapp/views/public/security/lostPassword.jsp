@@ -5,8 +5,14 @@
 <html>
 	<body>
 		<s:form action="sendPassword" method="post" namespace="/public/security">
-			<s:textfield key="register.email" name="email" /><br/>
-			<s:submit key="lostPassword.submit" />
+			<div class="required">
+				<label><fmt:message key="register.email" /></label>
+				<s:textfield name="email" />
+			</div>
+
+			<div class="actions">
+				<s:submit key="lostPassword.submit" />
+			</div>
 		</s:form>
 	</body>
 </html>

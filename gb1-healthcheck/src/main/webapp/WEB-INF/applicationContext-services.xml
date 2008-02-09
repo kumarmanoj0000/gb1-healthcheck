@@ -42,7 +42,7 @@
 	</bean>
 
 	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
-		<property name="host" value="mail.cgi.com" />
+		<property name="host" value="localhost" />
 	</bean>
 
 </beans>
