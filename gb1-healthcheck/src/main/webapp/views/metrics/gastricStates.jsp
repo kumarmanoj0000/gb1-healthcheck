@@ -1,6 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt" %>
-<%@ taglib prefix="s" uri="/struts-tags" %>
 
 <html>
 	<head>
@@ -9,6 +8,7 @@
 		<script type='text/javascript' src='<c:url value="/dwr/util.js" />'></script>
 
 		<%@ include file="/includes/calendar.jsp" %>
+		<script type="text/javascript" src='<c:url value="/scripts/core.js" />'></script>
 		<script type="text/javascript" src='<c:url value="/scripts/date.js" />'></script>
 		<script type="text/javascript" src='<c:url value="/scripts/jquery/jquery.js" />'></script>
 
@@ -29,7 +29,7 @@
 			}
 
 			function loadGastricStates(patientId, date) {
-				showStatus('Loading gastric states...');
+				showStatus('<fmt:message key="metrics.gastricStates.loading" />');
 				ManageGastricStatesAction.loadGastricStates(patientId, date, showGastricStates);
 			}
 
@@ -40,7 +40,7 @@
 			}
 
 			function showGastricStates(states) {
-				showStatus('Gastric states loaded');
+				showStatus('<fmt:message key="metrics.gastricStates.loaded" />');
 
 				removeAllDisplayedGastricStates();
 
@@ -62,16 +62,12 @@
 			}
 
 			function addSingleGastricState(index, state) {
-				// TODO There has to be a way to streamline this...
-
 				var newStateDiv = document.getElementById('mockGastricState').cloneNode(true);
-				newStateDiv.id = 'gastricState-' + index;
-				newStateDiv.style.display = 'block';
-
 				var newStateInstant = newStateDiv.getElementsByTagName('input')[0];
-				newStateInstant.id = 'gastricStateInstant-' + index;
-
 				var newStateLevel = newStateDiv.getElementsByTagName('select')[0];
+
+				newStateDiv.id = 'gastricState-' + index;
+				newStateInstant.id = 'gastricStateInstant-' + index;
 				newStateLevel.id = 'gastricStateLevel-' + index;
 
 				if (state == null) {
@@ -89,41 +85,42 @@
 				}
 
 				var newStateDivSave = newStateDiv.getElementsByTagName('input')[1];
-				newStateDivSave.style.display = 'block';
 				newStateDivSave.setAttribute('onClick', 'javascript:saveGastricState(' + index + ')');
+				newStateDivSave.style.display = 'block';
 
-				document.getElementById('gastricStates').appendChild(newStateDiv);
+				$('#gastricStates').append(newStateDiv);
+				newStateDiv.style.display = 'block';
 				nbDisplayedGastricStates++;
 			}
 
 			function showInitGastricStatesLink() {
-				showStatus('No gastric states for this day');
-				$('#addGastricStateLink').unbind('click').click(function() {
+				showStatus('<fmt:message key="metrics.gastricStates.manage.noStatesOnSelectedDay" />');
+				$('#addGastricStateLink').unbind(clickEventName).bind(clickEventName, function() {
 					initGastricStates();
 				});
 			}
 
 			function showNewGastricStateLink() {
 				showStatus('&nbsp;');
-				$('#addGastricStateLink').unbind('click').click(function() {
+				$('#addGastricStateLink').unbind(clickEventName).bind(clickEventName, function() {
 					addSingleGastricState(nbDisplayedGastricStates, null);
 				});
 			}
 
 			function saveGastricState(index) {
 				if (index != -1) {
-					var time = document.getElementById('gastricStateInstant-' + index).value;
+					var level = $('#gastricStateLevel-' + index).val();
+					var time = $('#gastricStateInstant-' + index).val();
 					var instantText = formatDate(selectedDate, datePattern) + ' ' + time;
 					var instant = getDateFromFormat(instantText, dateTimePattern);
-					var level = document.getElementById('gastricStateLevel-' + index).value;
 
-					showStatus('Saving...');
+					showStatus('<fmt:message key="metrics.gastricStates.saving" />');
 					ManageGastricStatesAction.saveGastricState(patientId, instant, level, gastricStateSaved);
 				}
 			}
 
 			function gastricStateSaved() {
-				showStatus('Saved');
+				showStatus('<fmt:message key="metrics.gastricStates.saved" />');
 			}
 
 			function showStatus(msg) {
@@ -176,14 +173,17 @@
 				</select>
 			</div>
 			<div class="actions">
-				<input class="button" type="submit" onClick="javascript:saveGastricState(-1)" value="<fmt:message key='metrics.gastricStates.save' />" />
+				<input id="submit" class="button" type="submit" value="<fmt:message key='metrics.gastricStates.save' />" />
 			</div>
 		</div>
 
 		<script type="text/javascript">
 			$(document).ready(function() {
-				$('#addGastricStateLink').click(function() {
+				$('#addGastricStateLink').bind(clickEventName, function() {
 					initGastricStates();
+				});
+				$('#submit').bind(clickEventName, function() {
+					saveGastricState(-1);
 				});
 				loadGastricStates(patientId, selectedDate);
 			});

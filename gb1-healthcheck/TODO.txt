@@ -3,9 +3,6 @@ HealthCheck
 -----------
 
 . features:
-  - gastric states
-    > improve UI (use Prototype / script.aculo.us / jQuery effects)
-
   - analysis
     > gastric states graph
     > correlation food => gastric states
