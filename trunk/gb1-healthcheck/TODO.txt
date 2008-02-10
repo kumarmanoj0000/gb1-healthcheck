@@ -3,8 +3,6 @@ HealthCheck
 -----------
 
 . features:
-  - retest everything due to Struts2 theme change
-
   - localized template-based message builder (using Velocity)
     * lost password (review received email)
     * registration confirmation (review received email)
@@ -24,10 +22,8 @@ HealthCheck
 
 . technical
   - replace JSCalendar by jQuery date picker
-  - streamline struts.xml (use annotations)
   - migrate unit tests to JUnit 4 / TestNG
   - use HTML 4.01 Strict DTD (or XHTML?)
-  - how to provide completion redirect to action?
   - improve Eclipse/Maven integration
 
 . pain points
