@@ -1,6 +1,6 @@
 package com.gb1.healthcheck.domain.users;
 
-import org.springframework.mail.SimpleMailMessage;
+import javax.mail.internet.MimeMessage;
 
 /**
  * A builder for lost password email messages.
@@ -15,5 +15,5 @@ public interface LostPasswordEmailBuilder {
 	 * @param user The user who lost his password
 	 * @return The complete email message
 	 */
-	SimpleMailMessage createReminderMessage(User user);
+	MimeMessage createReminderMessage(User user);
 }

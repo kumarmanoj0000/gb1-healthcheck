@@ -1,6 +1,6 @@
 package com.gb1.healthcheck.domain.users;
 
-import org.springframework.mail.SimpleMailMessage;
+import javax.mail.internet.MimeMessage;
 
 /**
  * A builder for user activation request email messages.
@@ -15,5 +15,5 @@ public interface UserActivationRequestEmailBuilder {
 	 * @param request The activation request
 	 * @return The complete email message
 	 */
-	SimpleMailMessage createUserActivationRequestEmail(UserActivationRequest request);
+	MimeMessage createUserActivationRequestEmail(UserActivationRequest request);
 }

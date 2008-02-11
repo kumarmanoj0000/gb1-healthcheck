@@ -171,7 +171,7 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="var" path="M2_REPO/org/springframework/spring-test/2.5.1/spring-test-2.5.1.jar"/>
-	<classpathentry kind="var" path="M2_REPO/org/springframework/spring-context-support/2.5.1/spring-context-support-2.5.1.jar">
+	<classpathentry kind="var" path="M2_REPO/org/springframework/spring-context-support/2.5.1/spring-context-support-2.5.1.jar" sourcepath="/DEV_HOME/spring-framework-2.5.1/src">
 		<attributes>
 			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
 		</attributes>

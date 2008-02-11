@@ -5,8 +5,13 @@ import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.mail.MessagingException;
+import javax.mail.internet.MimeMessage;
+
+import org.apache.log4j.Logger;
 import org.apache.velocity.app.VelocityEngine;
-import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.ui.velocity.VelocityEngineUtils;
 
 /**
@@ -15,6 +20,10 @@ import org.springframework.ui.velocity.VelocityEngineUtils;
  * @author Guillaume Bilodeau
  */
 public class VelocityUserActivationRequestEmailBuilder implements UserActivationRequestEmailBuilder {
+	private static final Logger logger = Logger
+			.getLogger(VelocityUserActivationRequestEmailBuilder.class);
+
+	private JavaMailSender mailSender;
 	private VelocityEngine engine;
 	private String templateLocation;
 	private String fromAddress;
@@ -24,15 +33,21 @@ public class VelocityUserActivationRequestEmailBuilder implements UserActivation
 	public VelocityUserActivationRequestEmailBuilder() {
 	}
 
-	public SimpleMailMessage createUserActivationRequestEmail(UserActivationRequest request) {
-		SimpleMailMessage msg = new SimpleMailMessage();
+	public MimeMessage createUserActivationRequestEmail(UserActivationRequest request) {
+		MimeMessage mimeMsg = mailSender.createMimeMessage();
 
-		msg.setSubject(subject);
-		msg.setFrom(fromAddress);
-		msg.setTo(request.getPendingUser().getEmail());
-		msg.setText(createEmailBody(request));
+		try {
+			MimeMessageHelper helper = new MimeMessageHelper(mimeMsg);
+			helper.setSubject(subject);
+			helper.setFrom(fromAddress);
+			helper.setTo(request.getPendingUser().getEmail());
+			helper.setText(createEmailBody(request), true);
+		}
+		catch (MessagingException e) {
+			logger.error("Error creating lost password email", e);
+		}
 
-		return msg;
+		return mimeMsg;
 	}
 
 	private String createEmailBody(UserActivationRequest request) {
@@ -56,6 +71,10 @@ public class VelocityUserActivationRequestEmailBuilder implements UserActivation
 		String activationUrl = activationFormUrl + "?principal=" + httpEncodedEmail;
 
 		return activationUrl;
+	}
+
+	public void setMailSender(JavaMailSender mailSender) {
+		this.mailSender = mailSender;
 	}
 
 	public void setVelocityEngine(VelocityEngine engine) {
