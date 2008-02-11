@@ -17,6 +17,7 @@ HealthCheck
       * edit user profile
 
 . technical
+  - adjust applicationContext*.xml headers to use Spring 2.5 XSDs
   - replace JSCalendar by jQuery date picker
   - migrate unit tests to JUnit 4 / TestNG
   - use HTML 4.01 Strict DTD (or XHTML?)
