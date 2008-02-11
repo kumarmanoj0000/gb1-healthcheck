@@ -1,7 +1,8 @@
 package com.gb1.healthcheck.domain.users;
 
-import org.springframework.mail.MailSender;
-import org.springframework.mail.SimpleMailMessage;
+import javax.mail.internet.MimeMessage;
+
+import org.springframework.mail.javamail.JavaMailSender;
 
 /**
  * A lost password reminder that sends the user's password to its email address.
@@ -10,7 +11,7 @@ import org.springframework.mail.SimpleMailMessage;
  */
 public class EmailLostPasswordReminder implements LostPasswordReminder {
 	private LostPasswordEmailBuilder lostPasswordEmailBuilder;
-	private MailSender mailSender;
+	private JavaMailSender mailSender;
 
 	public EmailLostPasswordReminder() {
 	}
@@ -21,7 +22,7 @@ public class EmailLostPasswordReminder implements LostPasswordReminder {
 	 * @param user The user who lost his password
 	 */
 	public void remindLostPassword(User user) {
-		SimpleMailMessage email = lostPasswordEmailBuilder.createReminderMessage(user);
+		MimeMessage email = lostPasswordEmailBuilder.createReminderMessage(user);
 		mailSender.send(email);
 	}
 
@@ -29,7 +30,7 @@ public class EmailLostPasswordReminder implements LostPasswordReminder {
 		this.lostPasswordEmailBuilder = lostPasswordEmailBuilder;
 	}
 
-	public void setMailSender(MailSender mailSender) {
+	public void setMailSender(JavaMailSender mailSender) {
 		this.mailSender = mailSender;
 	}
 }

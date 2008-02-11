@@ -3,8 +3,13 @@ package com.gb1.healthcheck.domain.users;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.mail.MessagingException;
+import javax.mail.internet.MimeMessage;
+
+import org.apache.log4j.Logger;
 import org.apache.velocity.app.VelocityEngine;
-import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.ui.velocity.VelocityEngineUtils;
 
 /**
@@ -13,6 +18,9 @@ import org.springframework.ui.velocity.VelocityEngineUtils;
  * @author Guillaume Bilodeau
  */
 public class VelocityLostPasswordEmailBuilder implements LostPasswordEmailBuilder {
+	private static final Logger logger = Logger.getLogger(VelocityLostPasswordEmailBuilder.class);
+
+	private JavaMailSender mailSender;
 	private VelocityEngine engine;
 	private String templateLocation;
 	private String fromAddress;
@@ -21,15 +29,21 @@ public class VelocityLostPasswordEmailBuilder implements LostPasswordEmailBuilde
 	public VelocityLostPasswordEmailBuilder() {
 	}
 
-	public SimpleMailMessage createReminderMessage(User user) {
-		SimpleMailMessage msg = new SimpleMailMessage();
+	public MimeMessage createReminderMessage(User user) {
+		MimeMessage mimeMsg = mailSender.createMimeMessage();
 
-		msg.setSubject(subject);
-		msg.setFrom(fromAddress);
-		msg.setTo(user.getEmail());
-		msg.setText(createMessageBody(user));
+		try {
+			MimeMessageHelper helper = new MimeMessageHelper(mimeMsg);
+			helper.setSubject(subject);
+			helper.setFrom(fromAddress);
+			helper.setTo(user.getEmail());
+			helper.setText(createMessageBody(user), true);
+		}
+		catch (MessagingException e) {
+			logger.error("Error creating lost password email", e);
+		}
 
-		return msg;
+		return mimeMsg;
 	}
 
 	private String createMessageBody(User user) {
@@ -38,6 +52,10 @@ public class VelocityLostPasswordEmailBuilder implements LostPasswordEmailBuilde
 		String text = VelocityEngineUtils.mergeTemplateIntoString(engine, templateLocation, model);
 
 		return text;
+	}
+
+	public void setMailSender(JavaMailSender mailSender) {
+		this.mailSender = mailSender;
 	}
 
 	public void setVelocityEngine(VelocityEngine engine) {

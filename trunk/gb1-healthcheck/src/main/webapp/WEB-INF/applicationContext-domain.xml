@@ -23,9 +23,12 @@
 	<bean id="userActivationEmailBuilder"
 		class="com.gb1.healthcheck.domain.users.VelocityUserActivationRequestEmailBuilder">
 		<property name="subject" value="[HealthCheck] Account activation" />
-		<property name="fromAddress" value="gbilodeau@yahoo.com" />
+		<property name="fromAddress" value="admin@gb1.com" />
 		<property name="activationFormUrl"
 			value="http://localhost:8080/healthcheck/public/register/challenge.go" />
+		<property name="mailSender" ref="mailSender" />
+		<property name="velocityEngine" ref="velocityEngine" />
+		<property name="templateLocation" value="com/gb1/healthcheck/domain/users/lostPasswordEmail.vm" />
 	</bean>
 
 	<bean id="userCreationValidator"
@@ -45,6 +48,7 @@
 	<bean id="lostPasswordEmailBuilder" class="com.gb1.healthcheck.domain.users.VelocityLostPasswordEmailBuilder">
 		<property name="fromAddress" value="admin@gb1.com" />
 		<property name="subject" value="[HealthCheck] Password" />
+		<property name="mailSender" ref="mailSender" />
 		<property name="velocityEngine" ref="velocityEngine" />
 		<property name="templateLocation" value="com/gb1/healthcheck/domain/users/lostPasswordEmail.vm" />
 	</bean>

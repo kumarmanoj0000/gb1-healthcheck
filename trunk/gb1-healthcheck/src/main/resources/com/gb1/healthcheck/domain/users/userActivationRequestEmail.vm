@@ -3,8 +3,10 @@
 	<p>Hi ${user.login},</p>
 	<p>Please activate your account at the following URL: ${activationUrl}</p>
 	<hr/>
-	<p>Email: ${request.pendingUser.email}</p>
-	<p>Activation token: ${request.activationToken.value}</p>
+	<p>
+		<div>Email: ${request.pendingUser.email}</div>
+		<div>Activation token: ${request.activationToken.value}</div>
+	</p>
 	<p>Cheers, HealthCheck</p>
 </body>
 </html>

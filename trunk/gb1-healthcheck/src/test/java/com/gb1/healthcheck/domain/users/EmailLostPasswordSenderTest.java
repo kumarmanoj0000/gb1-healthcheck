@@ -1,10 +1,12 @@
 package com.gb1.healthcheck.domain.users;
 
+import javax.mail.Session;
+import javax.mail.internet.MimeMessage;
+
 import junit.framework.TestCase;
 
 import org.easymock.EasyMock;
-import org.springframework.mail.MailSender;
-import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 
 public class EmailLostPasswordSenderTest extends TestCase {
 	public void testSendLostPassword() {
@@ -14,11 +16,11 @@ public class EmailLostPasswordSenderTest extends TestCase {
 
 		LostPasswordEmailBuilder builder = EasyMock.createMock(LostPasswordEmailBuilder.class);
 		EasyMock.expect(builder.createReminderMessage(EasyMock.isA(User.class))).andReturn(
-				new SimpleMailMessage());
+				new MimeMessage((Session) null));
 		EasyMock.replay(builder);
 
-		MailSender mailSender = EasyMock.createMock(MailSender.class);
-		mailSender.send(EasyMock.isA(SimpleMailMessage.class));
+		JavaMailSender mailSender = EasyMock.createMock(JavaMailSender.class);
+		mailSender.send(EasyMock.isA(MimeMessage.class));
 		EasyMock.expectLastCall();
 		EasyMock.replay(mailSender);
 

@@ -3,10 +3,6 @@ HealthCheck
 -----------
 
 . features:
-  - localized template-based message builder (using Velocity)
-    * lost password (review received email)
-    * registration confirmation (review received email)
-
   - analysis
     * gastric states graph
     * correlation food => gastric states
