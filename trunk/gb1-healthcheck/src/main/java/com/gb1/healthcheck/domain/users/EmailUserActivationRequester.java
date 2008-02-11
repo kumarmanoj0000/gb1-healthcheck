@@ -1,7 +1,8 @@
 package com.gb1.healthcheck.domain.users;
 
-import org.springframework.mail.MailSender;
-import org.springframework.mail.SimpleMailMessage;
+import javax.mail.internet.MimeMessage;
+
+import org.springframework.mail.javamail.JavaMailSender;
 
 import com.gb1.commons.tokens.Token;
 import com.gb1.commons.tokens.TokenFactory;
@@ -16,7 +17,7 @@ import com.gb1.commons.tokens.TokenFactory;
 public class EmailUserActivationRequester implements UserActivationRequester {
 	private TokenFactory tokenFactory;
 	private UserActivationRequestEmailBuilder emailBuilder;
-	private MailSender emailSender;
+	private JavaMailSender emailSender;
 
 	public EmailUserActivationRequester() {
 	}
@@ -33,7 +34,7 @@ public class EmailUserActivationRequester implements UserActivationRequester {
 		UserActivationRequest request = new UserActivationRequest(user, activationToken);
 		user.activationRequested(request);
 
-		SimpleMailMessage email = emailBuilder.createUserActivationRequestEmail(request);
+		MimeMessage email = emailBuilder.createUserActivationRequestEmail(request);
 		emailSender.send(email);
 
 		return request;
@@ -49,7 +50,7 @@ public class EmailUserActivationRequester implements UserActivationRequester {
 		this.emailBuilder = emailBuilder;
 	}
 
-	public void setEmailSender(MailSender emailSender) {
+	public void setEmailSender(JavaMailSender emailSender) {
 		this.emailSender = emailSender;
 	}
 }
