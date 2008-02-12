@@ -17,14 +17,15 @@ HealthCheck
       * edit user profile
 
 . technical
-  - adjust applicationContext*.xml headers to use Spring 2.5 XSDs
   - replace JSCalendar by jQuery date picker
-  - migrate unit tests to JUnit 4 / TestNG
   - use HTML 4.01 Strict DTD (or XHTML?)
   - improve Eclipse/Maven integration
+  - split up global.css
+  - migrate unit tests to JUnit 4 + Spring TestContext
 
 . pain points
   - so many different APIs, so many configuration files (this is Java!)
-  - Struts2 actions and results split in 2 files (struts.xml, applicationContext-actions)
+  - AJAX-enabled pages take longer to develop and are harder to debug (this is Ajax!)
+  - bad integration between Eclipse and Maven
   - global.css is getting big (split it up?)
-  - AJAX-enabled pages take longer to develop and are harder to debug
+  
