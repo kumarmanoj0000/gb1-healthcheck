@@ -7,14 +7,16 @@ HealthCheck
     * gastric states graph
     * correlation food => gastric states
 
-  - user
+  - user administration
     * edit own profile
-
-  - administration (visible to administrators on control panel)
-    * user management
+    * administration
       * view user list (paginate, sort)
       * view user profile
       * edit user profile
+
+  - gastric states
+    * use better time picker
+    * replace "Save" button by link 
 
 . technical
   - replace JSCalendar by jQuery date picker
