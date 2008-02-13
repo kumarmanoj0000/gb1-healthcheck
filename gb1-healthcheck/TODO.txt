@@ -20,7 +20,6 @@ HealthCheck
 
 . technical
   - replace JSCalendar by jQuery date picker
-  - use HTML 4.01 Strict DTD (or XHTML?)
   - improve Eclipse/Maven integration
   - split up global.css
   - migrate unit tests to JUnit 4 + Spring TestContext
