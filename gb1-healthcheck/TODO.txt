@@ -19,6 +19,7 @@ HealthCheck
     * replace "Save" button by link 
 
 . technical
+  - upgrade to jQuery 1.2.3
   - replace JSCalendar by jQuery date picker
   - improve Eclipse/Maven integration
   - split up global.css
