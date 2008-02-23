@@ -15,11 +15,10 @@ HealthCheck
       * edit user profile
 
   - gastric states
+    * replace JSCalendar by jQuery date picker
     * use better time picker
-    * replace "Save" button by link 
 
 . technical
-  - replace JSCalendar by jQuery date picker
   - improve Eclipse/Maven integration
   - split up global.css
   - migrate unit tests to JUnit 4 + Spring TestContext
