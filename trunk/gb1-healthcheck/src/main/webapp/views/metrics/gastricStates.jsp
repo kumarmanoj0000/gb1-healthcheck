@@ -63,20 +63,26 @@
 
 			function addSingleGastricState(index, state) {
 				var newStateDiv = document.getElementById('mockGastricState').cloneNode(true);
-				var newStateInstant = newStateDiv.getElementsByTagName('input')[0];
-				var newStateLevel = newStateDiv.getElementsByTagName('select')[0];
+				var newStateTime = newStateDiv.getElementsByTagName('select')[0];
+				var newStateLevel = newStateDiv.getElementsByTagName('select')[1];
 
 				newStateDiv.id = 'gastricState-' + index;
-				newStateInstant.id = 'gastricStateInstant-' + index;
+				newStateTime.id = 'gastricStateTime-' + index;
 				newStateLevel.id = 'gastricStateLevel-' + index;
 
 				if (state == null) {
-					newStateInstant.value = formatDate(selectedDate, timePattern);
+					newStateTime.value = formatDate(selectedDate, timePattern);
 				}
 				else {
-					newStateInstant.value = formatDate(state.instant, timePattern);
+					var stateTime = formatDate(state.instant, timePattern);
+					var timeOptions = newStateTime.getElementsByTagName('option');
+					for (var i = 0; i < timeOptions.length; i++) {
+						if (timeOptions[i].value == stateTime) {
+							timeOptions[i].selected = 'selected';
+						}
+					}
 
-					var levelOptions = newStateDiv.getElementsByTagName('option');
+					var levelOptions = newStateLevel.getElementsByTagName('option');
 					for (var i = 0; i < levelOptions.length; i++) {
 						if (levelOptions[i].value == state.state) {
 							levelOptions[i].selected = 'selected';
@@ -84,7 +90,7 @@
 					}
 				}
 
-				var newStateDivSave = newStateDiv.getElementsByTagName('input')[1];
+				var newStateDivSave = newStateDiv.getElementsByTagName('input')[0];
 				newStateDivSave.setAttribute('onClick', 'javascript:saveGastricState(' + index + ')');
 
 				$('#gastricStates').append(newStateDiv);
@@ -110,7 +116,7 @@
 			function saveGastricState(index) {
 				if (index != -1) {
 					var level = $('#gastricStateLevel-' + index).val();
-					var time = $('#gastricStateInstant-' + index).val();
+					var time = $('#gastricStateTime-' + index).val();
 					var instantText = formatDate(selectedDate, datePattern) + ' ' + time;
 					var instant = getDateFromFormat(instantText, dateTimePattern);
 
@@ -159,7 +165,15 @@
 		<%-- Mock gastric state for cloning (not displayed) --%>
 		<div id="mockGastricState" style="display: none">
 			<label><fmt:message key="gastricState.instant" />:</label>
-			<input type="text" id="mockGastricStateInstant" />
+			<select id="mockGastricStateTime">
+				<c:forEach begin="0" end="23" var="hour">
+					<fmt:formatNumber var="strHour" minIntegerDigits="2" value="${hour}" />
+					<option value="${strHour}:00">${strHour}:00</option>
+					<option value="${strHour}:15">${strHour}:15</option>
+					<option value="${strHour}:30">${strHour}:30</option>
+					<option value="${strHour}:45">${strHour}:45</option>
+				</c:forEach>
+			</select>
 
 			<label><fmt:message key="gastricState.level" />:</label>
 			<select id="mockGastricStateLevel">
