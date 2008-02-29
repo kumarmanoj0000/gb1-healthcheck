@@ -14,9 +14,6 @@ HealthCheck
       * view user profile
       * edit user profile
 
-  - gastric states
-    * replace JSCalendar by jQuery date picker (when time picker is included)
-
 . technical
   - improve Eclipse/Maven integration
   - split up global.css

@@ -90,7 +90,7 @@
 					}
 				}
 
-				var newStateDivSave = newStateDiv.getElementsByTagName('input')[0];
+				var newStateDivSave = newStateDiv.getElementsByTagName('a')[0];
 				newStateDivSave.setAttribute('onClick', 'javascript:saveGastricState(' + index + ')');
 
 				$('#gastricStates').append(newStateDiv);
@@ -169,9 +169,6 @@
 				<c:forEach begin="0" end="23" var="hour">
 					<fmt:formatNumber var="strHour" minIntegerDigits="2" value="${hour}" />
 					<option value="${strHour}:00">${strHour}:00</option>
-					<option value="${strHour}:15">${strHour}:15</option>
-					<option value="${strHour}:30">${strHour}:30</option>
-					<option value="${strHour}:45">${strHour}:45</option>
 				</c:forEach>
 			</select>
 
@@ -184,16 +181,13 @@
 				<option value="CRISIS"><fmt:message key="gastricState.level.crisis" /></option>
 			</select>
 
-			<input id="submit" class="button" type="submit" value="<fmt:message key='metrics.gastricStates.save' />" />
+			<a id="submitLink" href="#" onclick="javascript:saveGastricState(-1);"><fmt:message key='metrics.gastricStates.save' /></a>
 		</div>
 
 		<script type="text/javascript">
 			$(document).ready(function() {
 				$('#addGastricStateLink').bind(clickEventName, function() {
 					initGastricStates();
-				});
-				$('#submit').bind(clickEventName, function() {
-					saveGastricState(-1);
 				});
 				loadGastricStates(patientId, selectedDate);
 			});
