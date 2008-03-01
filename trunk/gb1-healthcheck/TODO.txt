@@ -24,4 +24,3 @@ HealthCheck
   - AJAX-enabled pages take longer to develop and are harder to debug (this is Ajax!)
   - bad integration between Eclipse and Maven (dependent vs WEB-INF/lib JARs)
   - global.css is getting big (split it up?)
-  
