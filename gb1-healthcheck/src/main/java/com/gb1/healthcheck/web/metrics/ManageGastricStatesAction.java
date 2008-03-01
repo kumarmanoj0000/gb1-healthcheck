@@ -18,13 +18,11 @@ import com.opensymphony.xwork2.Action;
 public class ManageGastricStatesAction implements ServletRequestAware {
 	private HttpServletRequest request;
 	private PatientFileService patientFileService;
-	private User patient;
 
 	public ManageGastricStatesAction() {
 	}
 
 	public String show() {
-		patient = getRequester(request);
 		return Action.SUCCESS;
 	}
 
@@ -44,7 +42,7 @@ public class ManageGastricStatesAction implements ServletRequestAware {
 	}
 
 	public User getPatient() {
-		return patient;
+		return getRequester(request);
 	}
 
 	public void setServletRequest(HttpServletRequest request) {
