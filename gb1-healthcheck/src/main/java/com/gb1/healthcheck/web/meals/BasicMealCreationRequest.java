@@ -12,11 +12,15 @@ public class BasicMealCreationRequest extends MealRequestSupport implements Meal
 	private Long eaterId;
 
 	public BasicMealCreationRequest(User eater) {
-		this.eaterId = eater.getId();
+		eaterId = eater.getId();
 	}
 
 	public Long getEaterId() {
 		return eaterId;
+	}
+
+	public void setEaterId(Long eaterId) {
+		this.eaterId = eaterId;
 	}
 
 	public Set<PreparedFoodCreationRequest> getDishCreationRequests() {

@@ -5,6 +5,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 
+import com.gb1.healthcheck.domain.meals.Meal;
 import com.gb1.healthcheck.domain.meals.PreparedFood;
 import com.opensymphony.xwork2.conversion.annotations.TypeConversion;
 
@@ -14,6 +15,11 @@ public abstract class MealRequestSupport {
 	private List<String> selectedPrepMethodNames = new LinkedList<String>();
 
 	public MealRequestSupport() {
+	}
+
+	public MealRequestSupport(Meal meal) {
+		instant = meal.getInstant();
+		setDishes(meal.getDishes());
 	}
 
 	public Date getInstant() {

@@ -71,6 +71,7 @@
 							<label><fmt:message key="meal.dish" />:</label>
 							<s:select
 								name="model.selectedFoodIds"
+								value="model.selectedFoodIds[#it.index]"
 								list="availableFoods"
 								listKey="id"
 								listValue="name"
@@ -81,6 +82,7 @@
 							<label><fmt:message key="meal.preparationMethod" />:</label>
 							<s:select
 								name="model.selectedPreparationMethodNames"
+								value="model.selectedPreparationMethodNames[#it.index]"
 								list="availablePreparationMethods"
 								listKey="name()"
 								listValue="name()"

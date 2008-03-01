@@ -16,7 +16,7 @@ public class CreateMealAction extends MealActionSupport implements Preparable {
 	}
 
 	public void prepare() {
-		prepareSupport();
+		loadAvailableFoods();
 		model = new BasicMealCreationRequest(getRequester(request));
 	}
 

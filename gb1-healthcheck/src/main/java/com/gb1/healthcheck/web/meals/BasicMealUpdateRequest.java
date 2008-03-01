@@ -10,8 +10,7 @@ import com.gb1.healthcheck.services.meals.PreparedFoodUpdateRequest;
 
 public class BasicMealUpdateRequest extends MealRequestSupport implements MealUpdateRequest {
 	public BasicMealUpdateRequest(Meal meal) {
-		setInstant(meal.getInstant());
-		setDishes(meal.getDishes());
+		super(meal);
 	}
 
 	public Set<PreparedFoodUpdateRequest> getDishUpdateRequests() {
