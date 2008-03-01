@@ -15,7 +15,6 @@ HealthCheck
       * edit user profile
 
 . technical
-  - migrate AJAX pages to jQuery
   - improve Eclipse/Maven integration
   - split up global.css
   - migrate unit tests to JUnit 4 + Spring TestContext
