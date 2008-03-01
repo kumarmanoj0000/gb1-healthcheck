@@ -8,7 +8,10 @@
 	<persistence-unit name="mainPersistenceUnit" transaction-type="RESOURCE_LOCAL">
 		<provider>org.hibernate.ejb.HibernatePersistence</provider>
 
-		<!-- Entities must be declared in this context, not sure why. -->
+		<!--
+		  | Entities must be declared in this context;
+		  | not sure why they're not automatically detected.
+		  -->
 		<class>com.gb1.healthcheck.domain.foods.Food</class>
 		<class>com.gb1.healthcheck.domain.foods.SimpleFood</class>
 		<class>com.gb1.healthcheck.domain.foods.ComplexFood</class>
