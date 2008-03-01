@@ -4,7 +4,6 @@ import java.util.HashSet;
 import java.util.Set;
 
 import com.gb1.healthcheck.domain.meals.Meal;
-import com.gb1.healthcheck.domain.meals.PreparationMethod;
 import com.gb1.healthcheck.services.meals.MealUpdateRequest;
 import com.gb1.healthcheck.services.meals.PreparedFoodUpdateRequest;
 
@@ -20,15 +19,8 @@ public class BasicMealUpdateRequest extends MealRequestSupport implements MealUp
 
 		for (int i = 0; i < selectedFoodIds.length; i++) {
 			final int idx = i;
-			requests.add(new PreparedFoodUpdateRequest() {
-				public Long getIngredientId() {
-					return selectedFoodIds[idx];
-				}
-
-				public PreparationMethod getPreparationMethod() {
-					return PreparationMethod.valueOf(selectedPrepMethodNames[idx]);
-				}
-			});
+			requests.add(new PreparedFoodCreationAndUpdateRequest(selectedFoodIds[idx],
+					selectedPrepMethodNames[idx]));
 		}
 
 		return requests;
