@@ -6,7 +6,10 @@ import java.util.List;
 import java.util.Set;
 
 import com.gb1.healthcheck.domain.meals.Meal;
+import com.gb1.healthcheck.domain.meals.PreparationMethod;
 import com.gb1.healthcheck.domain.meals.PreparedFood;
+import com.gb1.healthcheck.services.meals.PreparedFoodCreationRequest;
+import com.gb1.healthcheck.services.meals.PreparedFoodUpdateRequest;
 import com.opensymphony.xwork2.conversion.annotations.TypeConversion;
 
 public abstract class MealRequestSupport {
@@ -61,5 +64,24 @@ public abstract class MealRequestSupport {
 
 	public String[] getSelectedPreparationMethodNames() {
 		return selectedPrepMethodNames.toArray(new String[0]);
+	}
+
+	protected static class PreparedFoodCreationAndUpdateRequest implements
+			PreparedFoodCreationRequest, PreparedFoodUpdateRequest {
+		private Long ingredientId;
+		private String prepMethodName;
+
+		public PreparedFoodCreationAndUpdateRequest(Long ingredientId, String prepMethodName) {
+			this.ingredientId = ingredientId;
+			this.prepMethodName = prepMethodName;
+		}
+
+		public Long getIngredientId() {
+			return ingredientId;
+		}
+
+		public PreparationMethod getPreparationMethod() {
+			return PreparationMethod.valueOf(prepMethodName);
+		}
 	}
 }
