@@ -1,4 +1,4 @@
-package com.gb1.healthcheck.services.foods;
+package com.gb1.healthcheck.services.foods.support;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Configurable;
 import com.gb1.healthcheck.domain.foods.ComplexFoodUpdatePropertyProvider;
 import com.gb1.healthcheck.domain.foods.Food;
 import com.gb1.healthcheck.domain.foods.FoodRepository;
+import com.gb1.healthcheck.services.foods.ComplexFoodUpdateRequest;
 
 @Configurable("complexFoodUpdatePropertyProviderAdapter")
 public class ComplexFoodUpdatePropertyProviderAdapter implements ComplexFoodUpdatePropertyProvider {

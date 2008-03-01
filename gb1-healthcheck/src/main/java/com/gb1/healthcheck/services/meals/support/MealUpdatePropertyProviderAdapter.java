@@ -1,4 +1,4 @@
-package com.gb1.healthcheck.services.meals;
+package com.gb1.healthcheck.services.meals.support;
 
 import java.util.Date;
 import java.util.HashSet;
@@ -10,6 +10,8 @@ import com.gb1.healthcheck.domain.foods.Food;
 import com.gb1.healthcheck.domain.foods.FoodRepository;
 import com.gb1.healthcheck.domain.meals.MealUpdatePropertyProvider;
 import com.gb1.healthcheck.domain.meals.PreparedFood;
+import com.gb1.healthcheck.services.meals.MealUpdateRequest;
+import com.gb1.healthcheck.services.meals.PreparedFoodUpdateRequest;
 
 @Configurable("mealUpdatePropertyProviderAdapter")
 public class MealUpdatePropertyProviderAdapter implements MealUpdatePropertyProvider {

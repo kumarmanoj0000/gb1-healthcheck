@@ -10,6 +10,8 @@ import com.gb1.healthcheck.domain.meals.MealException;
 import com.gb1.healthcheck.domain.meals.MealRepository;
 import com.gb1.healthcheck.domain.meals.MealValidator;
 import com.gb1.healthcheck.domain.users.User;
+import com.gb1.healthcheck.services.meals.support.MealCreationPropertyProviderAdapter;
+import com.gb1.healthcheck.services.meals.support.MealUpdatePropertyProviderAdapter;
 
 @Transactional(rollbackFor = { RuntimeException.class, MealException.class })
 public class MealServiceImpl implements MealService {
