@@ -5,17 +5,20 @@ import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import com.gb1.commons.dataaccess.IdentityHydrater;
 import com.gb1.healthcheck.domain.foods.ComplexFood;
 import com.gb1.healthcheck.domain.foods.Food;
 import com.gb1.healthcheck.domain.meals.PreparationMethod;
+import com.gb1.healthcheck.domain.users.User;
 import com.gb1.healthcheck.services.foods.FoodService;
 import com.gb1.healthcheck.services.meals.MealService;
+import com.gb1.healthcheck.web.utils.HttpRequestUtils;
 import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionSupport;
-import com.opensymphony.xwork2.Preparable;
 
-public class MealActionSupport extends ActionSupport implements Preparable {
+public abstract class MealActionSupport extends ActionSupport {
 	private FoodService foodService;
 	private MealService mealService;
 
@@ -24,7 +27,7 @@ public class MealActionSupport extends ActionSupport implements Preparable {
 	protected MealActionSupport() {
 	}
 
-	public void prepare() {
+	protected void prepareSupport() {
 		availableFoods.addAll(getFoodService().getSimpleFoods());
 		availableFoods
 				.addAll(getFoodService().getComplexFoods(new IdentityHydrater<ComplexFood>()));
@@ -42,6 +45,10 @@ public class MealActionSupport extends ActionSupport implements Preparable {
 
 	public List<Food> getAvailableFoods() {
 		return Collections.unmodifiableList(availableFoods);
+	}
+
+	protected User getRequester(HttpServletRequest request) {
+		return HttpRequestUtils.getUser(request);
 	}
 
 	protected FoodService getFoodService() {

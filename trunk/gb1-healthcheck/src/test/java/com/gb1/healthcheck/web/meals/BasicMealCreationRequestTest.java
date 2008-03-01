@@ -15,6 +15,7 @@ import com.gb1.healthcheck.domain.foods.Foods;
 import com.gb1.healthcheck.domain.meals.Meals;
 import com.gb1.healthcheck.domain.meals.PreparationMethod;
 import com.gb1.healthcheck.domain.meals.PreparedFood;
+import com.gb1.healthcheck.domain.users.Users;
 import com.gb1.healthcheck.services.meals.PreparedFoodCreationRequest;
 
 public class BasicMealCreationRequestTest extends TestCase {
@@ -31,7 +32,7 @@ public class BasicMealCreationRequestTest extends TestCase {
 		dishes.add(Meals.spaghettiDish());
 		dishes.add(Meals.redWineDrink());
 
-		BasicMealCreationRequest req = new BasicMealCreationRequest();
+		BasicMealCreationRequest req = new BasicMealCreationRequest(Users.lg());
 		req.setDishes(dishes);
 
 		assertTrue(CollectionUtils.isEqualCollection(foods.keySet(), Arrays.asList(req
