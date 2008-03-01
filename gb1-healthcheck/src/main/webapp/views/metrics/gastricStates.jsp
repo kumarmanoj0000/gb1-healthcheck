@@ -14,8 +14,7 @@
 
 		<script type="text/javascript">
 			var datePattern = 'yyyy-MM-dd';
-			var timePattern = 'HH:mm';
-			var dateTimePattern = datePattern + ' ' + timePattern;
+			var dateTimePattern = datePattern + ' ' + 'HH:mm';
 
 			var patientId = ${patient.id};
 			var selectedDate = new Date();
@@ -62,39 +61,24 @@
 			}
 
 			function addSingleGastricState(index, state) {
-				var newStateDiv = document.getElementById('mockGastricState').cloneNode(true);
-				var newStateTime = newStateDiv.getElementsByTagName('select')[0];
-				var newStateLevel = newStateDiv.getElementsByTagName('select')[1];
+				var newStateDiv = $('#mockGastricState').clone().attr('id', 'gastricState-' + index).get();
 
-				newStateDiv.id = 'gastricState-' + index;
-				newStateTime.id = 'gastricStateTime-' + index;
-				newStateLevel.id = 'gastricStateLevel-' + index;
+				var newStateTimeSelect = $('select:eq(0)', newStateDiv).attr('id', 'gastricStateTime-' + index).get();
+				var stateTime = formatDate((state == null ? selectedDate : state.instant), 'HH:00');
 
-				if (state == null) {
-					newStateTime.value = formatDate(selectedDate, timePattern);
-				}
-				else {
-					var stateTime = formatDate(state.instant, timePattern);
-					var timeOptions = newStateTime.getElementsByTagName('option');
-					for (var i = 0; i < timeOptions.length; i++) {
-						if (timeOptions[i].value == stateTime) {
-							timeOptions[i].selected = 'selected';
-						}
-					}
+				$('option', newStateTimeSelect).each(function(idx, option) {
+					option.selected = (option.value == stateTime ? 'selected' : '');
+				});
 
-					var levelOptions = newStateLevel.getElementsByTagName('option');
-					for (var i = 0; i < levelOptions.length; i++) {
-						if (levelOptions[i].value == state.state) {
-							levelOptions[i].selected = 'selected';
-						}
-					}
-				}
+				var newStateLevel = $('select:eq(1)', newStateDiv).attr('id', 'gastricStateLevel-' + index).get();
+				var stateLevel = (state == null ? 0 : state.state);
 
-				var newStateDivSave = newStateDiv.getElementsByTagName('a')[0];
-				newStateDivSave.setAttribute('onClick', 'javascript:saveGastricState(' + index + ')');
+				$('option', newStateLevel).each(function(idx, option) {
+					option.selected = (option.value == stateLevel ? 'selected' : '');
+				});
 
-				$('#gastricStates').append(newStateDiv);
-				newStateDiv.style.display = 'block';
+				$('a', newStateDiv).attr('onClick', 'javascript:saveGastricState(' + index + ')');
+				$(newStateDiv).appendTo("#gastricStates").show();
 
 				nbDisplayedGastricStates++;
 			}
@@ -138,8 +122,7 @@
 	<body>
 		<h2><fmt:message key="metrics.gastricStates.manage.title" /></h2>
 
-		<div id="status">
-		</div>
+		<div id="status"></div>
 
 		<div style="float: left; margin-left: 1em; margin-bottom: 1em;" id="calendar-container"></div>
 		<script type="text/javascript">
