@@ -45,6 +45,8 @@
 	<body>
 		<h2><fmt:message key="meals.create.title" /></h2>
 		<s:form action="createSubmit.go" method="post" namespace="/meals">
+			<s:hidden name="model.eaterId" />
+
 			<div class="required">
 				<label><fmt:message key="meal.instant" />:</label>
 				<s:date id="instant" name="model.instant" format="yyyy-MM-dd hh:mm:ss" />

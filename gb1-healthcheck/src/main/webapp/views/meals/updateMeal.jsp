@@ -46,11 +46,12 @@
 		<h2><fmt:message key="meals.update.title" /></h2>
 		<s:form action="updateSubmit.go" method="post" namespace="/meals">
 			<s:hidden name="mealId" />
+			<s:hidden name="eaterId" />
 
 			<div class="required">
 				<label><fmt:message key="meal.instant" />:</label>
 				<s:date id="instant" name="model.instant" format="yyyy-MM-dd hh:mm:ss" />
-				<s:textfield id="f_date_c" key="meal.instant" name="model.instant" value="${instant}" readonly="1" />
+				<s:textfield id="f_date_c" key="meal.instant" name="model.instant" readonly="1" />
 				<img
 					id="f_trigger_c"
 					src="<c:url value='/scripts/jscalendar/img.gif' />"
@@ -70,7 +71,6 @@
 							<label><fmt:message key="meal.dish" />:</label>
 							<s:select
 								name="model.selectedFoodIds"
-								value="model.selectedFoodIds[${it.index}]"
 								list="availableFoods"
 								listKey="id"
 								listValue="name"
@@ -81,7 +81,6 @@
 							<label><fmt:message key="meal.preparationMethod" />:</label>
 							<s:select
 								name="model.selectedPreparationMethodNames"
-								value="model.selectedPreparationMethodNames[${it.index}]"
 								list="availablePreparationMethods"
 								listKey="name()"
 								listValue="name()"
