@@ -1,4 +1,4 @@
-package com.gb1.healthcheck.services.meals;
+package com.gb1.healthcheck.services.meals.support;
 
 import java.util.Date;
 import java.util.HashMap;
@@ -15,6 +15,8 @@ import com.gb1.healthcheck.domain.foods.FoodRepository;
 import com.gb1.healthcheck.domain.meals.Meals;
 import com.gb1.healthcheck.domain.meals.PreparationMethod;
 import com.gb1.healthcheck.domain.meals.PreparedFood;
+import com.gb1.healthcheck.services.meals.MealUpdateRequest;
+import com.gb1.healthcheck.services.meals.PreparedFoodUpdateRequest;
 
 public class MealMutablePropertyProviderAdapterTest extends TestCase {
 	public void testAdapt() {

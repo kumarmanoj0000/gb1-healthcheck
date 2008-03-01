@@ -79,10 +79,10 @@
 	<bean id="complexFoodUpdateValidator" class="com.gb1.healthcheck.domain.foods.FullComplexFoodUpdateValidator">
 		<property name="foodRepository" ref="foodRepository" />
 	</bean>
-	<bean id="complexFoodCreationPropertyProviderAdapter" class="com.gb1.healthcheck.services.foods.ComplexFoodCreationPropertyProviderAdapter" scope="prototype">
+	<bean id="complexFoodCreationPropertyProviderAdapter" class="com.gb1.healthcheck.services.foods.support.ComplexFoodCreationPropertyProviderAdapter" scope="prototype">
 		<property name="foodRepository" ref="foodRepository" />
 	</bean>
-	<bean id="complexFoodUpdatePropertyProviderAdapter" class="com.gb1.healthcheck.services.foods.ComplexFoodUpdatePropertyProviderAdapter" scope="prototype">
+	<bean id="complexFoodUpdatePropertyProviderAdapter" class="com.gb1.healthcheck.services.foods.support.ComplexFoodUpdatePropertyProviderAdapter" scope="prototype">
 		<property name="foodRepository" ref="foodRepository" />
 	</bean>
 
@@ -92,11 +92,11 @@
 	<bean id="mealUpdateValidator" class="com.gb1.healthcheck.domain.meals.FullMealUpdateValidator">
 		<property name="mealRepository" ref="mealRepository" />
 	</bean>
-	<bean id="mealCreationPropertyProviderAdapter" class="com.gb1.healthcheck.services.meals.MealCreationPropertyProviderAdapter" scope="prototype">
+	<bean id="mealCreationPropertyProviderAdapter" class="com.gb1.healthcheck.services.meals.support.MealCreationPropertyProviderAdapter" scope="prototype">
 		<property name="foodRepository" ref="foodRepository" />
 		<property name="userRepository" ref="userRepository" />
 	</bean>
-	<bean id="mealUpdatePropertyProviderAdapter" class="com.gb1.healthcheck.services.meals.MealUpdatePropertyProviderAdapter" scope="prototype">
+	<bean id="mealUpdatePropertyProviderAdapter" class="com.gb1.healthcheck.services.meals.support.MealUpdatePropertyProviderAdapter" scope="prototype">
 		<property name="foodRepository" ref="foodRepository" />
 	</bean>
 
