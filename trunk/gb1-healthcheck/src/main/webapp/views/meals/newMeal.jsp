@@ -5,38 +5,26 @@
 <html>
 	<head>
 		<%@ include file="/includes/calendar.jsp" %>
+		<script type="text/javascript" src='<c:url value="/scripts/jquery/jquery.js" />'></script>
 
 		<script type="text/javascript">
 			var nbSingleDishDivs = 1;
 			var maxSingleDishDivIndex = 0;
 
 			function addSingleDishDiv() {
-				var dishesDiv = document.getElementById('dishes');
-				var singleDishDiv = dishesDiv.getElementsByTagName('div')[0];
-				var linkDiv = document.getElementById('addSingleDishLinkDiv');
-
 				maxSingleDishDivIndex++;
-				var newSingleDishDiv = singleDishDiv.cloneNode(true);
-				newSingleDishDiv.id = 'dishes.singleDish-' + maxSingleDishDivIndex;
-
-				var newSingleDishDivRemoveLink = newSingleDishDiv.getElementsByTagName('a')[0];
-				newSingleDishDivRemoveLink.setAttribute('onClick', 'javascript:removeSingleDishDiv(' + maxSingleDishDivIndex + ')');
-
-				dishesDiv.removeChild(linkDiv);
-				dishesDiv.appendChild(newSingleDishDiv);
-				dishesDiv.appendChild(linkDiv);
 				nbSingleDishDivs++;
+
+				var newSingleDishDiv = $('#dishes div:first').clone()
+					.attr('id', 'singleDish-' + maxSingleDishDivIndex).get();
+				$('a:first', newSingleDishDiv).attr('onClick', 'javascript:removeSingleDishDiv(' + maxSingleDishDivIndex + ')');
+				$(newSingleDishDiv).insertBefore('#addSingleDishLinkDiv');
 			}
 
 			function removeSingleDishDiv(index) {
 				if (nbSingleDishDivs > 1) {
-					var dishesDiv = document.getElementById('dishes');
-					var singleDishDiv = document.getElementById('dishes.singleDish-' + index);
-
-					if (singleDishDiv) {
-						dishesDiv.removeChild(singleDishDiv);
-						nbSingleDishDivs--;
-					}
+					$('#singleDish-' + index).remove();
+					nbSingleDishDivs--;
 				}
 			}
 		</script>
@@ -64,7 +52,7 @@
 			<fieldset id="dishes">
 				<legend><fmt:message key="meals.create.dishes" /></legend>
 
-				<div id="dishes.singleDish-0">
+				<div id="singleDish-0">
 					<div class="required">
 						<label><fmt:message key="meal.dish" />:</label>
 						<s:select
