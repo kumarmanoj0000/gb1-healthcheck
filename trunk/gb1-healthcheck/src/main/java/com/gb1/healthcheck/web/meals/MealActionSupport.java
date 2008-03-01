@@ -27,7 +27,7 @@ public abstract class MealActionSupport extends ActionSupport {
 	protected MealActionSupport() {
 	}
 
-	protected void prepareSupport() {
+	protected void loadAvailableFoods() {
 		availableFoods.addAll(getFoodService().getSimpleFoods());
 		availableFoods
 				.addAll(getFoodService().getComplexFoods(new IdentityHydrater<ComplexFood>()));

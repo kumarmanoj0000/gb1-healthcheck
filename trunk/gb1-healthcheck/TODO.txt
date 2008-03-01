@@ -15,6 +15,7 @@ HealthCheck
       * edit user profile
 
 . technical
+  - migrate AJAX pages to jQuery
   - improve Eclipse/Maven integration
   - split up global.css
   - migrate unit tests to JUnit 4 + Spring TestContext
@@ -22,6 +23,6 @@ HealthCheck
 . pain points
   - so many different APIs, so many configuration files (this is Java!)
   - AJAX-enabled pages take longer to develop and are harder to debug (this is Ajax!)
-  - bad integration between Eclipse and Maven
+  - bad integration between Eclipse and Maven (dependent vs WEB-INF/lib JARs)
   - global.css is getting big (split it up?)
   
