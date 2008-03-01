@@ -102,33 +102,27 @@
 				</configuration>
 			</plugin>
 
-			<!-- Explicitly use version 2.0 of the plugin.  The latest 2.1 plugin somehow generates reports
-				with either 0 or 100% coverage for all classes. -->
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>cobertura-maven-plugin</artifactId>
-				<version>2.0</version>
 
-				<dependencies>
-					<dependency>
-						<groupId>cobertura</groupId>
-						<artifactId>cobertura-runtime</artifactId>
-						<version>1.8</version>
-						<type>pom</type>
-						<scope>test</scope>
-					</dependency>
-					<dependency>
-						<groupId>cobertura</groupId>
-						<artifactId>cobertura</artifactId>
-						<version>[1.8,)</version>
-						<type>jar</type>
-					</dependency>
-				</dependencies>
+				<configuration>
+					<check>
+						<haltOnFailure>true</haltOnFailure>
+						<branchRate>0</branchRate>
+						<lineRate>0</lineRate>
+						<packageBranchRate>0</packageBranchRate>
+						<packageLineRate>0</packageLineRate>
+						<totalBranchRate>75</totalBranchRate>
+						<totalLineRate>75</totalLineRate>
+					</check>
+				</configuration>
 
 				<executions>
 					<execution>
 						<goals>
 							<goal>clean</goal>
+							<goal>check</goal>
 						</goals>
 					</execution>
 				</executions>
