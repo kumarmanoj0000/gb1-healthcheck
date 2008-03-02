@@ -5,10 +5,6 @@ body {
 	font-family: tahoma,verdana,arial,sans-serif;
 }
 
-h1, h2, h3, h4, h5, h6 {
-	font-family: tahoma,verdana,arial,sans-serif;
-}
-
 h1 { font-size: 24px; }
 h2 { font-size: 18px; }
 h3 { font-size: 16px; }
@@ -43,7 +39,6 @@ form div {
 
 form div label {
 	width: 100px;
-	float: left;
 	text-align: right;
 	margin: 0pt 0pt 5px;
 	padding-right: 5px;
@@ -61,7 +56,6 @@ form div input, form div select {
 }
 
 form div label.checkboxLabel {
-	float: none;
 	margin-left: 105px;
 	text-align: left;
 }
@@ -94,10 +88,23 @@ form div.actions {
 	padding-bottom: 10px;
 }
 
-#header ul {
+#headerActions {
 	float: right;
 	margin-top: -20px;
 	list-style-type: none;
+}
+
+#headerActions li {
+	display: inline;
+	border-right: 1px dotted;
+	padding: 0px 10px 0px 5px;
+}
+
+#headerActions .first {
+}
+
+#headerActions .last {
+	border-right: 0px solid;
 }
 
 #content {

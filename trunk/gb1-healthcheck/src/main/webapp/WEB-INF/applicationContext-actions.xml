@@ -29,9 +29,15 @@
 		<property name="userService" ref="userService" />
 	</bean>
 
+	<bean id="editActiveUserAction" class="com.gb1.healthcheck.web.users.EditActiveUserAction" scope="prototype">
+		<property name="userService" ref="userService" />
+	</bean>
+
 	<bean id="lostPasswordAction" class="com.gb1.healthcheck.web.security.LostPasswordAction" scope="prototype">
 		<property name="userService" ref="userService" />
 	</bean>
+
+	<bean id="signOffAction" class="com.gb1.healthcheck.web.security.SignOffAction" scope="prototype" />
 
 	<bean id="workbenchAction" class="com.gb1.healthcheck.web.workbench.WorkbenchAction" scope="prototype" />
 
@@ -89,7 +95,5 @@
 			<dwr:include method="saveGastricState"/>
 		</dwr:remote>
 	</bean>
-
-	<bean id="signOffAction" class="com.gb1.healthcheck.web.security.SignOffAction" scope="prototype" />
 
 </beans>

@@ -47,6 +47,19 @@
 		</action>
 	</package>
 
+	<package name="users" extends="default" namespace="/users">
+		<action name="editInput" method="input" class="editActiveUserAction">
+			<result name="input">/views/users/edit.jsp</result>
+		</action>
+		<action name="editSubmit" method="submit" class="editActiveUserAction">
+			<result name="input">/views/users/edit.jsp</result>
+			<result name="success" type="redirect-action">
+				<param name="namespace">/workbench</param>
+				<param name="actionName">show</param>
+			</result>
+		</action>
+	</package>
+
 	<package name="workbench" extends="default" namespace="/workbench">
 		<action name="show" method="execute" class="workbenchAction">
 			<result>/views/workbench/main.jsp</result>

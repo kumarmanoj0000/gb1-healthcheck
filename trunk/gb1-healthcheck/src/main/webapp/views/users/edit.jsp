@@ -1,18 +1,24 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt" %>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="s" uri="/struts-tags" %>
 
 <html>
 	<body>
-		<h1><fmt:message key="users.edit.title" /></h1>
+		<h2><fmt:message key="users.edit.title" /></h2>
 		
-		<c:url var="actionUrl" value="/users/editProfile.go" />
-		<form:form id="form" method="post" action="${actionUrl}" >
-			<form:hidden path="id" />
-			<fmt:message key="users.edit.login" />: <c:out value="${command.login}" /><br />
-			<fmt:message key="users.edit.email" />: <form:input path="email" /> <form:errors path="email" /> <br />
-			<input type="submit" value='<fmt:message key="users.edit.submit" />' />
-			<input type="submit" name="_cancel" value='<fmt:message key="users.edit.cancel" />' />
-		</form:form>
+		<s:form action="editSubmit.go" namespace="/users">
+			<s:hidden name="user.id" />
+
+			<div class="required">
+				<label><fmt:message key="users.edit.email" />:</label>
+				<s:textfield name="model.email" />
+				<s:fielderror><s:param>model.email</s:param></s:fielderror>
+			</div>
+
+			<div class="actions">
+				<s:submit cssClass="button" key="users.edit.submit" />
+				<s:submit cssClass="button" key="users.edit.cancel" name="method:cancel" />
+			</div>
+		</s:form>
 	</body>
 </html>
