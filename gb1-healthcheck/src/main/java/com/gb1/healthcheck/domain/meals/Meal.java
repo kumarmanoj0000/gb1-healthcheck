@@ -17,6 +17,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 import org.apache.commons.lang.Validate;
+import org.apache.commons.lang.builder.CompareToBuilder;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.hibernate.annotations.Cascade;
@@ -191,7 +192,9 @@ public class Meal implements Identifiable, MealCreationPropertyProvider {
 
 	public static class ByInstantComparator implements Comparator<Meal> {
 		public int compare(Meal meal1, Meal meal2) {
-			return meal1.getInstant().compareTo(meal2.getInstant());
+			CompareToBuilder builder = new CompareToBuilder().append(meal1.getInstant(), meal2
+					.getInstant());
+			return builder.toComparison();
 		}
 	}
 }

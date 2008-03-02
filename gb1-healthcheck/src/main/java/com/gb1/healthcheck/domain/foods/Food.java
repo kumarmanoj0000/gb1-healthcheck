@@ -13,6 +13,7 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 
 import org.apache.commons.lang.Validate;
+import org.apache.commons.lang.builder.CompareToBuilder;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 
@@ -79,7 +80,8 @@ public abstract class Food implements Identifiable, Serializable {
 
 	public static class ByNameComparator implements Comparator<Food> {
 		public int compare(Food f1, Food f2) {
-			return f1.getName().compareTo(f2.getName());
+			CompareToBuilder builder = new CompareToBuilder().append(f1.getName(), f2.getName());
+			return builder.toComparison();
 		}
 	}
 }
