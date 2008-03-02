@@ -16,7 +16,7 @@ public class UserRegistrationActionTest extends TestCase {
 				.andReturn(new UserActivationRequest(null, null));
 		EasyMock.replay(userSvc);
 
-		BasicUserRegistrationAction action = new BasicUserRegistrationAction();
+		UserRegistrationAction action = new UserRegistrationAction();
 		action.setUserService(userSvc);
 		String result = action.register();
 
@@ -30,7 +30,7 @@ public class UserRegistrationActionTest extends TestCase {
 				.andThrow(new LoginAlreadyExistsException(""));
 		EasyMock.replay(userSvc);
 
-		BasicUserRegistrationAction action = new BasicUserRegistrationAction();
+		UserRegistrationAction action = new UserRegistrationAction();
 		action.setUserService(userSvc);
 		String result = action.register();
 
