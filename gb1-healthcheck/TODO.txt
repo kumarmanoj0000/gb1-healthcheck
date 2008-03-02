@@ -21,7 +21,6 @@ HealthCheck
     * default exception page
 
 . technical
-  - harmonize service methods with Request parameter
   - migrate to Struts2 annotations (XML is verbose and far from code)
   - improve Eclipse/Maven integration
   - split up global.css

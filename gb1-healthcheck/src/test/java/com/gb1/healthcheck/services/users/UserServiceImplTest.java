@@ -19,6 +19,9 @@ import com.gb1.healthcheck.domain.users.Users;
 import com.gb1.healthcheck.web.users.BasicUserRegistrationRequest;
 import com.gb1.healthcheck.web.users.BasicUserUpdateRequest;
 
+/**
+ * TODO Remove dependencies to web packages!
+ */
 public class UserServiceImplTest extends TestCase {
 	public void testRegisterUser() throws UserException {
 		BasicUserRegistrationRequest regRequest = new BasicUserRegistrationRequest();
@@ -66,7 +69,7 @@ public class UserServiceImplTest extends TestCase {
 		svc.setUserRepository(userRepo);
 
 		try {
-			svc.updateUser(user.getId(), modifReq);
+			svc.updateUser(modifReq);
 			fail("User was unknown");
 		}
 		catch (UnknownUserException e) {
@@ -95,7 +98,7 @@ public class UserServiceImplTest extends TestCase {
 		svc.setUserRepository(userRepo);
 		svc.setUserUpdateValidator(validator);
 
-		User modifiedUser = svc.updateUser(originalUser.getId(), updateRequest);
+		User modifiedUser = svc.updateUser(updateRequest);
 
 		assertNotNull(modifiedUser);
 		assertEquals(modifiedUser, originalUser);

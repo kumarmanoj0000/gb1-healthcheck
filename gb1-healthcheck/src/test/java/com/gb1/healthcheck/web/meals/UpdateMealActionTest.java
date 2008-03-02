@@ -50,7 +50,7 @@ public class UpdateMealActionTest extends TestCase {
 		session.put(MODEL_SESSION_KEY, model);
 
 		MealService mealSvc = EasyMock.createMock(MealService.class);
-		mealSvc.updateMeal(meal.getId(), model);
+		mealSvc.updateMeal(model);
 		EasyMock.expectLastCall();
 		EasyMock.replay(mealSvc);
 
@@ -75,7 +75,7 @@ public class UpdateMealActionTest extends TestCase {
 		session.put(MODEL_SESSION_KEY, model);
 
 		MealService mealSvc = EasyMock.createMock(MealService.class);
-		mealSvc.updateMeal(meal.getId(), model);
+		mealSvc.updateMeal(model);
 		EasyMock.expectLastCall().andThrow(new MealException() {
 		});
 		EasyMock.replay(mealSvc);

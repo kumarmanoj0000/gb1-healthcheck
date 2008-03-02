@@ -40,7 +40,7 @@ public class UpdateSimpleFoodAction extends SimpleFoodActionSupport implements S
 		String result;
 
 		try {
-			getFoodService().updateSimpleFood(foodId, getModel());
+			getFoodService().updateSimpleFood(getModel());
 			session.remove(MODEL_SESSION_KEY);
 			result = Action.SUCCESS;
 		}

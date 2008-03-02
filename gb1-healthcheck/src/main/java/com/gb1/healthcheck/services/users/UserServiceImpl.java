@@ -51,8 +51,8 @@ public class UserServiceImpl implements UserService {
 		return user;
 	}
 
-	public User updateUser(Long userId, UserUpdateRequest request) throws UserException {
-		User user = userRepository.loadUser(userId);
+	public User updateUser(UserUpdateRequest request) throws UserException {
+		User user = userRepository.loadUser(request.getUserId());
 		if (user == null) {
 			throw new UnknownUserException();
 		}

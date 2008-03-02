@@ -134,6 +134,10 @@ public class FoodServiceImplTest extends TestCase {
 	public void testUpdateSimpleFood() throws Exception {
 		final SimpleFood oldApple = Foods.apple();
 		SimpleFoodUpdateRequest updateReq = new SimpleFoodUpdateRequest() {
+			public Long getFoodId() {
+				return oldApple.getId();
+			}
+
 			public FoodGroup getFoodGroup() {
 				return oldApple.getFoodGroup();
 			}
@@ -159,7 +163,7 @@ public class FoodServiceImplTest extends TestCase {
 		FoodServiceImpl svc = new FoodServiceImpl();
 		svc.setSimpleFoodUpdateValidator(validator);
 		svc.setFoodRepository(foodRepo);
-		svc.updateSimpleFood(oldApple.getId(), updateReq);
+		svc.updateSimpleFood(updateReq);
 
 		assertEquals(updateReq.getName(), oldApple.getName());
 		EasyMock.verify(validator);
@@ -170,6 +174,10 @@ public class FoodServiceImplTest extends TestCase {
 		final ComplexFood oldSpag = Foods.spaghetti();
 
 		ComplexFoodUpdateRequest updateReq = new ComplexFoodUpdateRequest() {
+			public Long getFoodId() {
+				return oldSpag.getId();
+			}
+
 			public String getName() {
 				return "updated spag";
 			}
@@ -195,7 +203,7 @@ public class FoodServiceImplTest extends TestCase {
 		FoodServiceImpl svc = new FoodServiceImpl();
 		svc.setComplexFoodUpdateValidator(validator);
 		svc.setFoodRepository(foodRepo);
-		svc.updateComplexFood(oldSpag.getId(), updateReq);
+		svc.updateComplexFood(updateReq);
 
 		EasyMock.verify(validator);
 		EasyMock.verify(foodRepo);

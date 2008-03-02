@@ -21,6 +21,10 @@ public class ComplexFoodMutablePropertyProviderAdapterTest extends TestCase {
 		foods.put(Foods.apple().getId(), Foods.apple());
 
 		ComplexFoodUpdateRequest request = new ComplexFoodUpdateRequest() {
+			public Long getFoodId() {
+				return 1L;
+			}
+
 			public Set<Long> getIngredientIds() {
 				return foods.keySet();
 			}

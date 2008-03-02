@@ -42,14 +42,13 @@ public class UpdateSimpleFoodActionTest extends TestCase {
 
 	@SuppressWarnings("unchecked")
 	public void testSubmit() throws Exception {
-		final Long foodId = 1L;
 		BasicSimpleFoodUpdateRequest model = new BasicSimpleFoodUpdateRequest(Foods.apple());
 
 		Map session = new HashMap();
 		session.put(MODEL_SESSION_KEY, model);
 
 		FoodService foodSvc = EasyMock.createMock(FoodService.class);
-		foodSvc.updateSimpleFood(foodId, model);
+		foodSvc.updateSimpleFood(model);
 		EasyMock.expectLastCall();
 		EasyMock.replay(foodSvc);
 
@@ -57,7 +56,7 @@ public class UpdateSimpleFoodActionTest extends TestCase {
 		action.setFoodService(foodSvc);
 
 		action.setSession(session);
-		action.setFoodId(foodId);
+		action.setFoodId(model.getFoodId());
 		String result = action.submit();
 
 		assertEquals(Action.SUCCESS, result);
@@ -67,14 +66,13 @@ public class UpdateSimpleFoodActionTest extends TestCase {
 
 	@SuppressWarnings("unchecked")
 	public void testSubmitWithErrors() throws Exception {
-		final Long foodId = 1L;
 		BasicSimpleFoodUpdateRequest model = new BasicSimpleFoodUpdateRequest(Foods.apple());
 
 		Map session = new HashMap();
 		session.put(MODEL_SESSION_KEY, model);
 
 		FoodService foodSvc = EasyMock.createMock(FoodService.class);
-		foodSvc.updateSimpleFood(EasyMock.eq(foodId), EasyMock.isA(SimpleFoodUpdateRequest.class));
+		foodSvc.updateSimpleFood(EasyMock.isA(SimpleFoodUpdateRequest.class));
 		EasyMock.expectLastCall().andThrow(new FoodAlreadyExistsException("apple"));
 		EasyMock.replay(foodSvc);
 
@@ -82,7 +80,7 @@ public class UpdateSimpleFoodActionTest extends TestCase {
 		action.setFoodService(foodSvc);
 
 		action.setSession(session);
-		action.setFoodId(foodId);
+		action.setFoodId(model.getFoodId());
 		String result = action.submit();
 
 		assertEquals(Action.INPUT, result);

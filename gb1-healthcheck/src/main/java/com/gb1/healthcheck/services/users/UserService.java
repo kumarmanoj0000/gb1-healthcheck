@@ -58,12 +58,11 @@ public interface UserService {
 	/**
 	 * Updates a user based on the given update request.
 	 * 
-	 * @param userId The ID of the user to be updated
 	 * @param request The request to update
 	 * @return The updated user
 	 * @throws UserException If the user to update doesn't exist
 	 */
-	User updateUser(Long userId, UserUpdateRequest request) throws UserException;
+	User updateUser(UserUpdateRequest request) throws UserException;
 
 	/**
 	 * Sends a user's lost password to his email address.

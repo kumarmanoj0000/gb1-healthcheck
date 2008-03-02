@@ -32,7 +32,7 @@ public class EditActiveUserActionTest extends TestCase {
 		sessionMap.put(EditActiveUserAction.MODEL_SESSION_KEY, request);
 
 		UserService userSvc = EasyMock.createMock(UserService.class);
-		EasyMock.expect(userSvc.updateUser(user.getId(), request)).andReturn(user);
+		EasyMock.expect(userSvc.updateUser(request)).andReturn(user);
 		EasyMock.replay(userSvc);
 
 		EditActiveUserAction action = createAction(user);
@@ -57,7 +57,7 @@ public class EditActiveUserActionTest extends TestCase {
 		sessionMap.put(EditActiveUserAction.MODEL_SESSION_KEY, request);
 
 		UserService userSvc = EasyMock.createMock(UserService.class);
-		EasyMock.expect(userSvc.updateUser(user.getId(), request)).andThrow(
+		EasyMock.expect(userSvc.updateUser(request)).andThrow(
 				new EmailAlreadyExistsException(user.getEmail()));
 		EasyMock.replay(userSvc);
 

@@ -25,6 +25,10 @@ public class MealMutablePropertyProviderAdapterTest extends TestCase {
 		dishes.put(Meals.spaghettiDish().getId(), Meals.spaghettiDish());
 
 		MealUpdateRequest request = new MealUpdateRequest() {
+			public Long getMealId() {
+				return 1L;
+			}
+
 			public Set<PreparedFoodUpdateRequest> getDishUpdateRequests() {
 				Set<PreparedFoodUpdateRequest> reqs = new HashSet<PreparedFoodUpdateRequest>();
 				for (final PreparedFood dish : dishes.values()) {

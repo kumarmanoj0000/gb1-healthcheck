@@ -47,8 +47,8 @@ public class MealServiceImpl implements MealService {
 		return new MealCreationPropertyProviderAdapter(request);
 	}
 
-	public void updateMeal(Long mealId, MealUpdateRequest request) throws MealException {
-		Meal meal = mealRepo.loadMeal(mealId);
+	public void updateMeal(MealUpdateRequest request) throws MealException {
+		Meal meal = mealRepo.loadMeal(request.getMealId());
 		meal.update(new MealUpdatePropertyProviderAdapter(request));
 		mealUpdateValidator.validate(meal);
 	}
