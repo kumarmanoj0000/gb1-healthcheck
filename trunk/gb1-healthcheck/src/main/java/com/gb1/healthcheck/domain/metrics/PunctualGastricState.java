@@ -3,6 +3,7 @@ package com.gb1.healthcheck.domain.metrics;
 import java.util.Comparator;
 import java.util.Date;
 
+import org.apache.commons.lang.builder.CompareToBuilder;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 
@@ -25,7 +26,9 @@ public class PunctualGastricState {
 
 	public static class ByInstantComparator implements Comparator<PunctualGastricState> {
 		public int compare(PunctualGastricState state1, PunctualGastricState state2) {
-			return state1.getInstant().compareTo(state2.getInstant());
+			CompareToBuilder builder = new CompareToBuilder().append(state1.getInstant(), state2
+					.getInstant());
+			return builder.toComparison();
 		}
 	}
 
