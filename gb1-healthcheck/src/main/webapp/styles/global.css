@@ -45,7 +45,7 @@ form div label {
 	padding-top: 5px;
 }
 
-form div.required label {
+form .required {
 	font-weight: bold;
 }
 
@@ -116,7 +116,7 @@ form div.actions {
 }
 
 #signinForm {
-	width: 261px;
+	width: 240px;
 }
 
 #signinActions {
