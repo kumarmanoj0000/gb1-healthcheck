@@ -21,7 +21,7 @@
 
 	<!-- Struts2 actions -->
 
-	<bean id="userRegistrationAction" class="com.gb1.healthcheck.web.users.BasicUserRegistrationAction" scope="prototype">
+	<bean id="userRegistrationAction" class="com.gb1.healthcheck.web.users.UserRegistrationAction" scope="prototype">
 		<property name="userService" ref="userService" />
 	</bean>
 
