@@ -20,9 +20,9 @@ public interface FoodService {
 
 	void createComplexFood(ComplexFoodCreationRequest request) throws FoodException;
 
-	void updateSimpleFood(Long foodId, SimpleFoodUpdateRequest request) throws FoodException;
+	void updateSimpleFood(SimpleFoodUpdateRequest request) throws FoodException;
 
-	void updateComplexFood(Long foodId, ComplexFoodUpdateRequest request) throws FoodException;
+	void updateComplexFood(ComplexFoodUpdateRequest request) throws FoodException;
 
 	void deleteFood(Long foodId);
 }

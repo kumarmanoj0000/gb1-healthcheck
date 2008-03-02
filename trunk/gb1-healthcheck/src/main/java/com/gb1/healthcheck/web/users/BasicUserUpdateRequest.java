@@ -10,13 +10,19 @@ import com.gb1.healthcheck.domain.users.User;
 import com.gb1.healthcheck.services.users.UserUpdateRequest;
 
 public class BasicUserUpdateRequest implements UserUpdateRequest {
+	private Long userId;
 	private String email;
 	private Set<Role> roles = new HashSet<Role>();
 
 	public BasicUserUpdateRequest(User user) {
 		Validate.notNull(user);
+		userId = user.getId();
 		email = user.getEmail();
 		roles.addAll(user.getRoles());
+	}
+
+	public Long getUserId() {
+		return userId;
 	}
 
 	public String getEmail() {

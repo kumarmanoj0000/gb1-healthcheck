@@ -49,7 +49,7 @@ public class EditActiveUserAction extends ActionSupport implements ServletReques
 			BasicUserUpdateRequest updateReq = getModel();
 
 			// on top of the usual update, the Acegi authenticated user must also be updated
-			userService.updateUser(activeUser.getId(), updateReq);
+			userService.updateUser(updateReq);
 			activeUser.update(updateReq);
 
 			sessionMap.remove(MODEL_SESSION_KEY);

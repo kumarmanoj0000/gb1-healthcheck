@@ -74,15 +74,14 @@ public class FoodServiceImpl implements FoodService {
 		return new ComplexFood(new ComplexFoodCreationPropertyProviderAdapter(request));
 	}
 
-	public void updateSimpleFood(Long foodId, SimpleFoodUpdateRequest request) throws FoodException {
-		SimpleFood food = foodRepo.loadSimpleFood(foodId);
+	public void updateSimpleFood(SimpleFoodUpdateRequest request) throws FoodException {
+		SimpleFood food = foodRepo.loadSimpleFood(request.getFoodId());
 		food.update(request);
 		simpleFoodUpdateValidator.validate(food);
 	}
 
-	public void updateComplexFood(Long foodId, ComplexFoodUpdateRequest request)
-			throws FoodException {
-		ComplexFood food = foodRepo.loadComplexFood(foodId);
+	public void updateComplexFood(ComplexFoodUpdateRequest request) throws FoodException {
+		ComplexFood food = foodRepo.loadComplexFood(request.getFoodId());
 		food.update(new ComplexFoodUpdatePropertyProviderAdapter(request));
 		complexFoodUpdateValidator.validate(food);
 	}

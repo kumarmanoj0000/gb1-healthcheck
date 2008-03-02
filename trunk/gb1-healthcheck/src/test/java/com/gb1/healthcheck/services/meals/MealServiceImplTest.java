@@ -111,9 +111,13 @@ public class MealServiceImplTest extends TestCase {
 	}
 
 	public void testUpdateMeal() throws MealException {
-		Meal oldMeal = Meals.fullItalianDinner();
+		final Meal oldMeal = Meals.fullItalianDinner();
 
 		MealUpdateRequest updateReq = new MealUpdateRequest() {
+			public Long getMealId() {
+				return oldMeal.getId();
+			}
+
 			public Date getInstant() {
 				return new Date();
 			}
@@ -136,7 +140,7 @@ public class MealServiceImplTest extends TestCase {
 		svc.setMealRepository(mealRepo);
 		svc.setMealUpdateValidator(validator);
 
-		svc.updateMeal(oldMeal.getId(), updateReq);
+		svc.updateMeal(updateReq);
 
 		EasyMock.verify(validator);
 	}

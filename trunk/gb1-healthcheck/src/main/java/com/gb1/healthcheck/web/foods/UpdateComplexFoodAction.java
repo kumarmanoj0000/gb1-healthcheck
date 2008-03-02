@@ -36,7 +36,7 @@ public class UpdateComplexFoodAction extends ComplexFoodActionSupport implements
 		String result;
 
 		try {
-			getFoodService().updateComplexFood(foodId, getModel());
+			getFoodService().updateComplexFood(getModel());
 			session.remove(MODEL_SESSION_KEY);
 			result = Action.SUCCESS;
 		}

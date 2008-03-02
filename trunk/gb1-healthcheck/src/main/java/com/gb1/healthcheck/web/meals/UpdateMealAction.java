@@ -41,7 +41,7 @@ public class UpdateMealAction extends MealActionSupport implements Preparable, S
 		String result;
 
 		try {
-			getMealService().updateMeal(mealId, getModel());
+			getMealService().updateMeal(getModel());
 			session.remove(MODEL_SESSION_KEY);
 			result = Action.SUCCESS;
 		}

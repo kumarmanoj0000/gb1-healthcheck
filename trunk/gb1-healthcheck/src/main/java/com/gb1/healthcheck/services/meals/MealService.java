@@ -35,11 +35,10 @@ public interface MealService {
 	/**
 	 * Updates an existing meal, based on an update request.
 	 * 
-	 * @param mealId The ID of the meal to modify
 	 * @param request The update request
 	 * @throws MealException When update fails
 	 */
-	void updateMeal(Long mealId, MealUpdateRequest request) throws MealException;
+	void updateMeal(MealUpdateRequest request) throws MealException;
 
 	/**
 	 * Deletes the meal identified by the given ID.
