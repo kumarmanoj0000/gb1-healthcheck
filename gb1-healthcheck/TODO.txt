@@ -8,13 +8,18 @@ HealthCheck
     * correlation food => gastric states
 
   - user administration
-    * edit own profile
     * administration
       * view user list (paginate, sort)
       * view user profile
       * edit user profile
 
+  - overall
+    * localize error messages
+    * add confirmation messages
+
 . technical
+  - harmonize service methods with Request parameter
+  - migrate to Struts2 annotations (XML is verbose and far from code)
   - improve Eclipse/Maven integration
   - split up global.css
   - migrate unit tests to JUnit 4 + Spring TestContext

@@ -14,6 +14,9 @@ import com.opensymphony.xwork2.validator.annotations.Validation;
 import com.opensymphony.xwork2.validator.annotations.Validations;
 import com.opensymphony.xwork2.validator.annotations.VisitorFieldValidator;
 
+/**
+ * TODO Rename to UserRegistrationAction
+ */
 @Validation
 public class BasicUserRegistrationAction extends ActionSupport {
 	private UserService userService;
