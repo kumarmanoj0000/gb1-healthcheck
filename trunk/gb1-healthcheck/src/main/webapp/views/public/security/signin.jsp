@@ -13,26 +13,29 @@
 
 		<c:url var="actionUrl" value="/j_acegi_security_check" />
 		<form id="signinForm" method="post" action="${actionUrl}">
-			<div class="required">
-				<label><fmt:message key="signin.login" />:</label>
-				<input type="text" name="j_username"
-					<c:if test="${not empty param.login_error}">
-						value="<%= session.getAttribute(AuthenticationProcessingFilter.ACEGI_SECURITY_LAST_USERNAME_KEY) %>"
-					</c:if>
-				/>
-			</div>
-
-			<div class="required">
-				<label><fmt:message key="signin.password" />:</label>
-				<input type="password" name="j_password" />
-			</div>
-
-			<div class="optional">
-				<label class="checkboxLabel">
-					<input class="checkboxInput" type="checkbox" name="rememberMe" />
-					<fmt:message key="signin.rememberMe" />
-				</label>
-			</div>
+			<table>
+				<tr>
+					<td><label class="required"><fmt:message key="signin.login" />:</label></td>
+					<td>
+						<input type="text" name="j_username"
+							<c:if test="${not empty param.login_error}">
+								value="<%= session.getAttribute(AuthenticationProcessingFilter.ACEGI_SECURITY_LAST_USERNAME_KEY) %>"
+							</c:if>
+						/>
+					</td>
+				</tr>
+				<tr>
+					<td><label class="required"><fmt:message key="signin.password" />:</label></td>
+					<td><input type="password" name="j_password" /></td>
+				</tr>
+				<tr>
+					<td>&nbsp;</td>
+					<td>
+						<input class="checkboxInput" type="checkbox" name="rememberMe" />
+						<fmt:message key="signin.rememberMe" />
+					</td>
+				</tr>
+			</table>
 
 			<div class="actions">
 				<input class="button" type="submit" value='<fmt:message key="signin.submit" />' />

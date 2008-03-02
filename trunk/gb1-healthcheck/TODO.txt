@@ -13,9 +13,12 @@ HealthCheck
       * view user profile
       * edit user profile
 
+  - allow user to change locale
+
   - overall
     * localize error messages
     * add confirmation messages
+    * default exception page
 
 . technical
   - harmonize service methods with Request parameter
