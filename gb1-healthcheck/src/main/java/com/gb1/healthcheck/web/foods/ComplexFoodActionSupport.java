@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import javax.annotation.Resource;
+
 import com.gb1.commons.dataaccess.IdentityHydrater;
 import com.gb1.healthcheck.domain.foods.ComplexFood;
 import com.gb1.healthcheck.domain.foods.Food;
@@ -36,6 +38,7 @@ public abstract class ComplexFoodActionSupport extends ActionSupport implements 
 		return foodService;
 	}
 
+	@Resource
 	public void setFoodService(FoodService foodSvc) {
 		this.foodService = foodSvc;
 	}

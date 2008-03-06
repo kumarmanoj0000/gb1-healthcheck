@@ -2,6 +2,9 @@ package com.gb1.healthcheck.services.metrics;
 
 import java.util.Date;
 
+import javax.annotation.Resource;
+
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.gb1.healthcheck.domain.metrics.GastricState;
@@ -10,6 +13,7 @@ import com.gb1.healthcheck.domain.metrics.PatientFileRepository;
 import com.gb1.healthcheck.domain.users.User;
 import com.gb1.healthcheck.domain.users.UserRepository;
 
+@Service("patientFileService")
 @Transactional(rollbackFor = { RuntimeException.class })
 public class PatientFileServiceImpl implements PatientFileService {
 	private UserRepository userRepo;
@@ -32,10 +36,12 @@ public class PatientFileServiceImpl implements PatientFileService {
 		return file;
 	}
 
+	@Resource
 	public void setUserRepository(UserRepository userRepo) {
 		this.userRepo = userRepo;
 	}
 
+	@Resource
 	public void setPatientFileRepository(PatientFileRepository patientFileRepo) {
 		this.patientFileRepo = patientFileRepo;
 	}

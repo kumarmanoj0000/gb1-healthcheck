@@ -1,10 +1,17 @@
 package com.gb1.healthcheck.web.security;
 
+import javax.annotation.Resource;
+
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Controller;
+
 import com.gb1.healthcheck.domain.users.UnknownUserException;
 import com.gb1.healthcheck.services.users.UserService;
 import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionSupport;
 
+@Controller("lostPasswordAction")
+@Scope("prototype")
 public class LostPasswordAction extends ActionSupport {
 	private String email;
 	private UserService userService;
@@ -37,6 +44,7 @@ public class LostPasswordAction extends ActionSupport {
 		return email;
 	}
 
+	@Resource
 	public void setUserService(UserService userService) {
 		this.userService = userService;
 	}

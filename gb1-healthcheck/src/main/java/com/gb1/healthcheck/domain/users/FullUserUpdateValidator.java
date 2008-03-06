@@ -2,12 +2,17 @@ package com.gb1.healthcheck.domain.users;
 
 import java.util.List;
 
+import javax.annotation.Resource;
+
+import org.springframework.stereotype.Component;
+
 /**
  * A user validator used for user updates. It executes a full check on the available properties.
  * This includes checking that the provided email address is not already owned by existing users.
  * 
  * @author Guillaume Bilodeau
  */
+@Component("userUpdateValidator")
 public class FullUserUpdateValidator implements UserValidator {
 	private UserRepository userRepo;
 
@@ -46,6 +51,7 @@ public class FullUserUpdateValidator implements UserValidator {
 		return owned;
 	}
 
+	@Resource
 	public void setUserRepository(UserRepository userRepo) {
 		this.userRepo = userRepo;
 	}

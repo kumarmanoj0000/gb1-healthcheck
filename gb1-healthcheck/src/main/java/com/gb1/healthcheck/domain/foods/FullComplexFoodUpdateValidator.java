@@ -2,6 +2,11 @@ package com.gb1.healthcheck.domain.foods;
 
 import java.util.List;
 
+import javax.annotation.Resource;
+
+import org.springframework.stereotype.Component;
+
+@Component("complexFoodUpdateValidator")
 public class FullComplexFoodUpdateValidator implements ComplexFoodValidator {
 	private FoodRepository foodRepo;
 
@@ -38,6 +43,7 @@ public class FullComplexFoodUpdateValidator implements ComplexFoodValidator {
 		return food.getIngredients().isEmpty();
 	}
 
+	@Resource
 	public void setFoodRepository(FoodRepository foodRepo) {
 		this.foodRepo = foodRepo;
 	}

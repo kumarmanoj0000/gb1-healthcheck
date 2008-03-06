@@ -2,6 +2,11 @@ package com.gb1.healthcheck.domain.meals;
 
 import java.util.List;
 
+import javax.annotation.Resource;
+
+import org.springframework.stereotype.Component;
+
+@Component("mealUpdateValidator")
 public class FullMealUpdateValidator implements MealValidator {
 	private MealRepository mealRepo;
 
@@ -38,6 +43,7 @@ public class FullMealUpdateValidator implements MealValidator {
 		return meal.getDishes().isEmpty();
 	}
 
+	@Resource
 	public void setMealRepository(MealRepository mealRepo) {
 		this.mealRepo = mealRepo;
 	}

@@ -5,11 +5,14 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+import org.springframework.stereotype.Repository;
+
 /**
  * A JPA-based repository for users.
  * 
  * @author Guillaume Bilodeau
  */
+@Repository("userRepository")
 public class JpaUserRepository implements UserRepository {
 	private EntityManager entityManager = null;
 

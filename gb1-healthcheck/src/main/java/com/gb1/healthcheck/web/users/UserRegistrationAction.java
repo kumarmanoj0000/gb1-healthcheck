@@ -1,5 +1,10 @@
 package com.gb1.healthcheck.web.users;
 
+import javax.annotation.Resource;
+
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Controller;
+
 import com.gb1.healthcheck.domain.users.EmailAlreadyExistsException;
 import com.gb1.healthcheck.domain.users.LoginAlreadyExistsException;
 import com.gb1.healthcheck.domain.users.Role;
@@ -14,6 +19,8 @@ import com.opensymphony.xwork2.validator.annotations.Validation;
 import com.opensymphony.xwork2.validator.annotations.Validations;
 import com.opensymphony.xwork2.validator.annotations.VisitorFieldValidator;
 
+@Controller("userRegistrationAction")
+@Scope("prototype")
 @Validation
 public class UserRegistrationAction extends ActionSupport {
 	private UserService userService;
@@ -50,6 +57,7 @@ public class UserRegistrationAction extends ActionSupport {
 		return userRegRequest;
 	}
 
+	@Resource
 	public void setUserService(UserService userService) {
 		this.userService = userService;
 	}

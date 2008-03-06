@@ -5,6 +5,7 @@ import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.annotation.Resource;
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 
@@ -12,6 +13,7 @@ import org.apache.log4j.Logger;
 import org.apache.velocity.app.VelocityEngine;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
+import org.springframework.stereotype.Component;
 import org.springframework.ui.velocity.VelocityEngineUtils;
 
 /**
@@ -19,6 +21,7 @@ import org.springframework.ui.velocity.VelocityEngineUtils;
  * 
  * @author Guillaume Bilodeau
  */
+@Component("userActivationRequestEmailBuilder")
 public class VelocityUserActivationRequestEmailBuilder implements UserActivationRequestEmailBuilder {
 	private static final Logger logger = Logger
 			.getLogger(VelocityUserActivationRequestEmailBuilder.class);
@@ -73,26 +76,34 @@ public class VelocityUserActivationRequestEmailBuilder implements UserActivation
 		return activationUrl;
 	}
 
+	// external dependencies
+
+	@Resource
 	public void setMailSender(JavaMailSender mailSender) {
 		this.mailSender = mailSender;
 	}
 
+	@Resource
 	public void setVelocityEngine(VelocityEngine engine) {
 		this.engine = engine;
 	}
 
-	public void setTemplateLocation(String templateLocation) {
+	@Resource
+	public void setActivationTemplateLocation(String templateLocation) {
 		this.templateLocation = templateLocation;
 	}
 
-	public void setSubject(String subject) {
-		this.subject = subject;
-	}
-
+	@Resource
 	public void setFromAddress(String fromAddress) {
 		this.fromAddress = fromAddress;
 	}
 
+	@Resource
+	public void setActivationSubject(String subject) {
+		this.subject = subject;
+	}
+
+	@Resource
 	public void setActivationFormUrl(String activationFormUrl) {
 		this.activationFormUrl = activationFormUrl;
 	}

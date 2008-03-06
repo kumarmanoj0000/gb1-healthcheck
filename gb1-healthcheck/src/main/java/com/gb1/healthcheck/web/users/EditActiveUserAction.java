@@ -2,10 +2,13 @@ package com.gb1.healthcheck.web.users;
 
 import java.util.Map;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.struts2.interceptor.ServletRequestAware;
 import org.apache.struts2.interceptor.SessionAware;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Controller;
 
 import com.gb1.healthcheck.domain.users.EmailAlreadyExistsException;
 import com.gb1.healthcheck.domain.users.User;
@@ -19,6 +22,8 @@ import com.opensymphony.xwork2.validator.annotations.RequiredStringValidator;
 import com.opensymphony.xwork2.validator.annotations.Validation;
 import com.opensymphony.xwork2.validator.annotations.Validations;
 
+@Controller("editActiveUserAction")
+@Scope("prototype")
 @Validation
 public class EditActiveUserAction extends ActionSupport implements ServletRequestAware,
 		SessionAware {
@@ -89,6 +94,7 @@ public class EditActiveUserAction extends ActionSupport implements ServletReques
 		this.sessionMap = sessionMap;
 	}
 
+	@Resource
 	public void setUserService(UserService userSvc) {
 		this.userService = userSvc;
 	}

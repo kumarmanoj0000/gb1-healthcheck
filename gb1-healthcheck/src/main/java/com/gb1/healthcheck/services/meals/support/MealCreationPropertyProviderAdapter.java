@@ -4,7 +4,11 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.annotation.Resource;
+
 import org.springframework.beans.factory.annotation.Configurable;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
 
 import com.gb1.healthcheck.domain.foods.Food;
 import com.gb1.healthcheck.domain.foods.FoodRepository;
@@ -15,7 +19,9 @@ import com.gb1.healthcheck.domain.users.UserRepository;
 import com.gb1.healthcheck.services.meals.MealCreationRequest;
 import com.gb1.healthcheck.services.meals.PreparedFoodCreationRequest;
 
-@Configurable("mealCreationPropertyProviderAdapter")
+@Component("mealCreationPropertyProviderAdapter")
+@Scope("prototype")
+@Configurable
 public class MealCreationPropertyProviderAdapter implements MealCreationPropertyProvider {
 	private MealCreationRequest request;
 
@@ -46,10 +52,12 @@ public class MealCreationPropertyProviderAdapter implements MealCreationProperty
 		return dishes;
 	}
 
+	@Resource
 	public void setFoodRepository(FoodRepository foodRepo) {
 		this.foodRepo = foodRepo;
 	}
 
+	@Resource
 	public void setUserRepository(UserRepository userRepo) {
 		this.userRepo = userRepo;
 	}

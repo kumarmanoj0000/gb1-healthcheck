@@ -159,7 +159,7 @@ public class UserServiceImplTest extends TestCase {
 
 		UserServiceImpl svc = new UserServiceImpl();
 		svc.setUserRepository(userRepo);
-		svc.setLostPasswordSender(sender);
+		svc.setLostPasswordReminder(sender);
 
 		svc.sendLostPassword(email);
 

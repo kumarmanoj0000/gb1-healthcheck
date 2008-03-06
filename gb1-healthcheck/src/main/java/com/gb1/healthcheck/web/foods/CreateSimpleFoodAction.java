@@ -1,11 +1,16 @@
 package com.gb1.healthcheck.web.foods;
 
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Controller;
+
 import com.gb1.healthcheck.domain.foods.FoodAlreadyExistsException;
 import com.gb1.healthcheck.domain.foods.FoodException;
 import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.validator.annotations.RequiredStringValidator;
 import com.opensymphony.xwork2.validator.annotations.Validations;
 
+@Controller("createSimpleFoodAction")
+@Scope("prototype")
 public class CreateSimpleFoodAction extends SimpleFoodActionSupport {
 	private BasicSimpleFoodCreationRequest foodCreationRequest = new BasicSimpleFoodCreationRequest();
 

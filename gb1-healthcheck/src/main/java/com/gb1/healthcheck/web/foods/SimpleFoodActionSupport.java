@@ -3,6 +3,8 @@ package com.gb1.healthcheck.web.foods;
 import java.util.Arrays;
 import java.util.List;
 
+import javax.annotation.Resource;
+
 import com.gb1.healthcheck.domain.foods.FoodGroup;
 import com.gb1.healthcheck.domain.foods.Nutrient;
 import com.gb1.healthcheck.services.foods.FoodService;
@@ -27,6 +29,7 @@ public abstract class SimpleFoodActionSupport extends ActionSupport {
 		return Arrays.asList(Nutrient.values());
 	}
 
+	@Resource
 	public void setFoodService(FoodService foodService) {
 		this.foodService = foodService;
 	}

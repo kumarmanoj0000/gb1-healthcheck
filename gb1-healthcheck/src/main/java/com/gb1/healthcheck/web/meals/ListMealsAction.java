@@ -4,9 +4,12 @@ import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.struts2.interceptor.ServletRequestAware;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Controller;
 
 import com.gb1.healthcheck.domain.meals.Meal;
 import com.gb1.healthcheck.domain.users.User;
@@ -14,6 +17,8 @@ import com.gb1.healthcheck.services.meals.MealService;
 import com.gb1.healthcheck.web.utils.HttpRequestUtils;
 import com.opensymphony.xwork2.Action;
 
+@Controller("listMealsAction")
+@Scope("prototype")
 public class ListMealsAction implements ServletRequestAware {
 	private HttpServletRequest request;
 	private MealService mealService;
@@ -40,6 +45,7 @@ public class ListMealsAction implements ServletRequestAware {
 		this.request = request;
 	}
 
+	@Resource
 	public void setMealService(MealService mealService) {
 		this.mealService = mealService;
 	}

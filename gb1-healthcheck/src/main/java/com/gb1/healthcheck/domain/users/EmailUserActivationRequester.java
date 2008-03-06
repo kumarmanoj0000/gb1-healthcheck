@@ -1,8 +1,10 @@
 package com.gb1.healthcheck.domain.users;
 
+import javax.annotation.Resource;
 import javax.mail.internet.MimeMessage;
 
 import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.stereotype.Component;
 
 import com.gb1.commons.tokens.Token;
 import com.gb1.commons.tokens.TokenFactory;
@@ -14,6 +16,7 @@ import com.gb1.commons.tokens.TokenFactory;
  * 
  * @author Guillaume Bilodeau
  */
+@Component("userActivationRequester")
 public class EmailUserActivationRequester implements UserActivationRequester {
 	private TokenFactory tokenFactory;
 	private UserActivationRequestEmailBuilder emailBuilder;
@@ -42,14 +45,17 @@ public class EmailUserActivationRequester implements UserActivationRequester {
 
 	// external dependencies
 
+	@Resource
 	public void setTokenFactory(TokenFactory tokenFactory) {
 		this.tokenFactory = tokenFactory;
 	}
 
+	@Resource
 	public void setEmailBuilder(UserActivationRequestEmailBuilder emailBuilder) {
 		this.emailBuilder = emailBuilder;
 	}
 
+	@Resource
 	public void setEmailSender(JavaMailSender emailSender) {
 		this.emailSender = emailSender;
 	}
