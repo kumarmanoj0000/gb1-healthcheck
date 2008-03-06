@@ -3,14 +3,20 @@ package com.gb1.healthcheck.services.foods.support;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.annotation.Resource;
+
 import org.springframework.beans.factory.annotation.Configurable;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
 
 import com.gb1.healthcheck.domain.foods.ComplexFoodUpdatePropertyProvider;
 import com.gb1.healthcheck.domain.foods.Food;
 import com.gb1.healthcheck.domain.foods.FoodRepository;
 import com.gb1.healthcheck.services.foods.ComplexFoodUpdateRequest;
 
-@Configurable("complexFoodUpdatePropertyProviderAdapter")
+@Component("complexFoodUpdatePropertyProviderAdapter")
+@Scope("prototype")
+@Configurable
 public class ComplexFoodUpdatePropertyProviderAdapter implements ComplexFoodUpdatePropertyProvider {
 	private FoodRepository foodRepo;
 	private ComplexFoodUpdateRequest request;
@@ -32,6 +38,7 @@ public class ComplexFoodUpdatePropertyProviderAdapter implements ComplexFoodUpda
 		return request.getName();
 	}
 
+	@Resource
 	public void setFoodRepository(FoodRepository foodRepo) {
 		this.foodRepo = foodRepo;
 	}

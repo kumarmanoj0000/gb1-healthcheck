@@ -4,6 +4,11 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import javax.annotation.Resource;
+
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Controller;
+
 import com.gb1.commons.dataaccess.IdentityHydrater;
 import com.gb1.healthcheck.domain.foods.ComplexFood;
 import com.gb1.healthcheck.domain.foods.Food;
@@ -11,6 +16,8 @@ import com.gb1.healthcheck.domain.foods.SimpleFood;
 import com.gb1.healthcheck.services.foods.FoodService;
 import com.opensymphony.xwork2.Action;
 
+@Controller("listFoodsAction")
+@Scope("prototype")
 public class ListFoodsAction {
 	private FoodService foodService;
 
@@ -39,6 +46,7 @@ public class ListFoodsAction {
 		return complexFoods;
 	}
 
+	@Resource
 	public void setFoodService(FoodService foodService) {
 		this.foodService = foodService;
 	}

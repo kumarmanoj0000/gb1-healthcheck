@@ -1,8 +1,11 @@
 package com.gb1.healthcheck.services.security;
 
+import javax.annotation.Resource;
+
 import org.acegisecurity.userdetails.UserDetails;
 import org.acegisecurity.userdetails.UserDetailsService;
 import org.acegisecurity.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.gb1.healthcheck.domain.users.AcegiUserDetailsAdapter;
@@ -15,6 +18,7 @@ import com.gb1.healthcheck.domain.users.UserRepository;
  * 
  * @author Guillaume Bilodeau
  */
+@Service("userDetailsService")
 @Transactional(readOnly = true)
 public class AcegiUserDetailsService implements UserDetailsService {
 	private UserRepository userRepo;
@@ -46,8 +50,7 @@ public class AcegiUserDetailsService implements UserDetailsService {
 		return userDetails;
 	}
 
-	// external dependencies
-
+	@Resource
 	public void setUserRepository(UserRepository userRepo) {
 		this.userRepo = userRepo;
 	}

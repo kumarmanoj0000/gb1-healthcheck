@@ -1,5 +1,9 @@
 package com.gb1.healthcheck.domain.users;
 
+import javax.annotation.Resource;
+
+import org.springframework.stereotype.Component;
+
 /**
  * A user validator used during initial creation. It executes a full check on the available
  * properties. This includes checking that the provided login name and email address are not already
@@ -7,6 +11,7 @@ package com.gb1.healthcheck.domain.users;
  * 
  * @author Guillaume Bilodeau
  */
+@Component("userCreationValidator")
 public class FullUserCreationValidator implements UserValidator {
 	private UserRepository userRepository;
 
@@ -47,6 +52,7 @@ public class FullUserCreationValidator implements UserValidator {
 		return taken;
 	}
 
+	@Resource
 	public void setUserRepository(UserRepository userRepo) {
 		this.userRepository = userRepo;
 	}

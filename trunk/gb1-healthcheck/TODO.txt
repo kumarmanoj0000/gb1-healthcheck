@@ -13,16 +13,16 @@ HealthCheck
       * view user profile
       * edit user profile
 
-  3- allow user to change locale
+  - allow user to change locale
 
   - overall
-    2* localize error messages
+    * localize error messages
     * add confirmation messages
     * default exception page
 
 . technical
-  1- migrate to Struts2 annotations (XML is verbose and far from code)
-  - migrate to Spring annotations
+  - migrate to Struts2 annotations
+  - migrate to DWR annotations
   - improve Eclipse/Maven integration
   - split up global.css
   - migrate unit tests to JUnit 4 + Spring TestContext

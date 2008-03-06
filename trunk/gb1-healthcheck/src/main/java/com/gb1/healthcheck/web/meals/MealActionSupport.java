@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
 import com.gb1.commons.dataaccess.IdentityHydrater;
@@ -55,6 +56,7 @@ public abstract class MealActionSupport extends ActionSupport {
 		return foodService;
 	}
 
+	@Resource
 	public void setFoodService(FoodService foodSvc) {
 		this.foodService = foodSvc;
 	}
@@ -63,6 +65,7 @@ public abstract class MealActionSupport extends ActionSupport {
 		return mealService;
 	}
 
+	@Resource
 	public void setMealService(MealService mealSvc) {
 		this.mealService = mealSvc;
 	}

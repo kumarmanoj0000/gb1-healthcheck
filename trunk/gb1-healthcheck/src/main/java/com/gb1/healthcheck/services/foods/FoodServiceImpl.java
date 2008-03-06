@@ -2,6 +2,9 @@ package com.gb1.healthcheck.services.foods;
 
 import java.util.Set;
 
+import javax.annotation.Resource;
+
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.gb1.commons.dataaccess.Hydrater;
@@ -15,6 +18,7 @@ import com.gb1.healthcheck.domain.meals.MealException;
 import com.gb1.healthcheck.services.foods.support.ComplexFoodCreationPropertyProviderAdapter;
 import com.gb1.healthcheck.services.foods.support.ComplexFoodUpdatePropertyProviderAdapter;
 
+@Service("foodService")
 @Transactional(rollbackFor = { RuntimeException.class, MealException.class })
 public class FoodServiceImpl implements FoodService {
 	private FoodRepository foodRepo;
@@ -90,22 +94,27 @@ public class FoodServiceImpl implements FoodService {
 		foodRepo.deleteFood(foodId);
 	}
 
+	@Resource
 	public void setFoodRepository(FoodRepository foodRepo) {
 		this.foodRepo = foodRepo;
 	}
 
+	@Resource
 	public void setSimpleFoodCreationValidator(SimpleFoodValidator validator) {
 		this.simpleFoodCreationValidator = validator;
 	}
 
+	@Resource
 	public void setSimpleFoodUpdateValidator(SimpleFoodValidator validator) {
 		this.simpleFoodUpdateValidator = validator;
 	}
 
+	@Resource
 	public void setComplexFoodCreationValidator(ComplexFoodValidator validator) {
 		this.complexFoodCreationValidator = validator;
 	}
 
+	@Resource
 	public void setComplexFoodUpdateValidator(ComplexFoodValidator validator) {
 		this.complexFoodUpdateValidator = validator;
 	}

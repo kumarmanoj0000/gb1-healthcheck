@@ -99,6 +99,11 @@
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
 
+	<!-- For Spring scoped beans -->
+	<listener>
+		<listener-class>org.springframework.web.context.request.RequestContextListener</listener-class>
+	</listener>
+
 	<!-- Log4J automatic refresher -->
 	<listener>
 		<listener-class>org.springframework.web.util.Log4jConfigListener</listener-class>

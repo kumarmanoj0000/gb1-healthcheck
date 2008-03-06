@@ -7,9 +7,13 @@ import javax.servlet.http.HttpServletResponse;
 import org.acegisecurity.ui.rememberme.TokenBasedRememberMeServices;
 import org.apache.struts2.interceptor.ServletRequestAware;
 import org.apache.struts2.interceptor.ServletResponseAware;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Controller;
 
 import com.opensymphony.xwork2.Action;
 
+@Controller("signOffAction")
+@Scope("prototype")
 public class SignOffAction implements ServletRequestAware, ServletResponseAware {
 	private HttpServletRequest request;
 	private HttpServletResponse response;

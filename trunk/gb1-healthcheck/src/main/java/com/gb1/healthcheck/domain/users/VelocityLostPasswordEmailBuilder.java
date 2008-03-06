@@ -3,6 +3,7 @@ package com.gb1.healthcheck.domain.users;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.annotation.Resource;
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 
@@ -10,6 +11,7 @@ import org.apache.log4j.Logger;
 import org.apache.velocity.app.VelocityEngine;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
+import org.springframework.stereotype.Component;
 import org.springframework.ui.velocity.VelocityEngineUtils;
 
 /**
@@ -17,6 +19,7 @@ import org.springframework.ui.velocity.VelocityEngineUtils;
  * 
  * @author Guillaume Bilodeau
  */
+@Component("lostPasswordEmailBuilder")
 public class VelocityLostPasswordEmailBuilder implements LostPasswordEmailBuilder {
 	private static final Logger logger = Logger.getLogger(VelocityLostPasswordEmailBuilder.class);
 
@@ -54,23 +57,30 @@ public class VelocityLostPasswordEmailBuilder implements LostPasswordEmailBuilde
 		return text;
 	}
 
+	// external dependencies
+
+	@Resource
 	public void setMailSender(JavaMailSender mailSender) {
 		this.mailSender = mailSender;
 	}
 
+	@Resource
 	public void setVelocityEngine(VelocityEngine engine) {
 		this.engine = engine;
 	}
 
-	public void setTemplateLocation(String templateLocation) {
+	@Resource
+	public void setLostPasswordTemplateLocation(String templateLocation) {
 		this.templateLocation = templateLocation;
 	}
 
+	@Resource
 	public void setFromAddress(String fromAddress) {
 		this.fromAddress = fromAddress;
 	}
 
-	public void setSubject(String subject) {
+	@Resource
+	public void setLostPasswordSubject(String subject) {
 		this.subject = subject;
 	}
 }

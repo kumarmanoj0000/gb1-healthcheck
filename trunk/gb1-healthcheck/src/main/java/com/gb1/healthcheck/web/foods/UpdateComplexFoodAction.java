@@ -3,6 +3,8 @@ package com.gb1.healthcheck.web.foods;
 import java.util.Map;
 
 import org.apache.struts2.interceptor.SessionAware;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Controller;
 
 import com.gb1.healthcheck.domain.foods.ComplexFood;
 import com.gb1.healthcheck.domain.foods.FoodAlreadyExistsException;
@@ -12,6 +14,8 @@ import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.validator.annotations.RequiredStringValidator;
 import com.opensymphony.xwork2.validator.annotations.Validations;
 
+@Controller("updateComplexFoodAction")
+@Scope("prototype")
 public class UpdateComplexFoodAction extends ComplexFoodActionSupport implements SessionAware {
 	private static final String MODEL_SESSION_KEY = UpdateComplexFoodAction.class.getName()
 			+ ".model";

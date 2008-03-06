@@ -5,8 +5,11 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+import org.springframework.stereotype.Repository;
+
 import com.gb1.healthcheck.domain.users.User;
 
+@Repository("patientFileRepository")
 public class JpaPatientFileRepository implements PatientFileRepository {
 	private EntityManager entityManager;
 

@@ -2,6 +2,9 @@ package com.gb1.healthcheck.services.meals;
 
 import java.util.List;
 
+import javax.annotation.Resource;
+
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.gb1.commons.dataaccess.Hydrater;
@@ -13,6 +16,7 @@ import com.gb1.healthcheck.domain.users.User;
 import com.gb1.healthcheck.services.meals.support.MealCreationPropertyProviderAdapter;
 import com.gb1.healthcheck.services.meals.support.MealUpdatePropertyProviderAdapter;
 
+@Service("mealService")
 @Transactional(rollbackFor = { RuntimeException.class, MealException.class })
 public class MealServiceImpl implements MealService {
 	private MealRepository mealRepo;
@@ -57,14 +61,17 @@ public class MealServiceImpl implements MealService {
 		mealRepo.deleteMeal(mealId);
 	}
 
+	@Resource
 	public void setMealRepository(MealRepository mealRepo) {
 		this.mealRepo = mealRepo;
 	}
 
+	@Resource
 	public void setMealCreationValidator(MealValidator validator) {
 		this.mealCreationValidator = validator;
 	}
 
+	@Resource
 	public void setMealUpdateValidator(MealValidator validator) {
 		this.mealUpdateValidator = validator;
 	}

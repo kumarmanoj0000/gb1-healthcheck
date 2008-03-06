@@ -1,5 +1,8 @@
 package com.gb1.healthcheck.web.foods;
 
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Controller;
+
 import com.gb1.healthcheck.domain.foods.ComplexFoodHasNoIngredientsException;
 import com.gb1.healthcheck.domain.foods.FoodAlreadyExistsException;
 import com.gb1.healthcheck.domain.foods.FoodException;
@@ -7,6 +10,8 @@ import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.validator.annotations.RequiredStringValidator;
 import com.opensymphony.xwork2.validator.annotations.Validations;
 
+@Controller("createComplexFoodAction")
+@Scope("prototype")
 public class CreateComplexFoodAction extends ComplexFoodActionSupport {
 	private BasicComplexFoodCreationRequest foodCreationRequest = new BasicComplexFoodCreationRequest();
 

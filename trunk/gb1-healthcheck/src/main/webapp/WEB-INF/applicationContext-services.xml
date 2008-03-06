@@ -2,51 +2,7 @@
 
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns:aop="http://www.springframework.org/schema/aop"
-	xmlns:jee="http://www.springframework.org/schema/jee"
-	xmlns:tx="http://www.springframework.org/schema/tx"
 	xsi:schemaLocation="
-	   http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
-       http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd
-       http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-2.5.xsd
-       http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
-
-	<bean id="userDetailsService"
-		class="com.gb1.healthcheck.services.security.AcegiUserDetailsService">
-		<property name="userRepository" ref="userRepository" />
-	</bean>
-
-	<bean id="userService" class="com.gb1.healthcheck.services.users.UserServiceImpl">
-		<property name="userRepository" ref="userRepository" />
-		<property name="userCreationValidator" ref="userCreationValidator" />
-		<property name="userUpdateValidator" ref="userUpdateValidator" />
-		<property name="userActivationRequester" ref="userActivationRequester" />
-		<property name="lostPasswordSender" ref="lostPasswordSender" />
-	</bean>
-
-	<bean id="foodService" class="com.gb1.healthcheck.services.foods.FoodServiceImpl">
-		<property name="foodRepository" ref="foodRepository" />
-		<property name="simpleFoodCreationValidator" ref="simpleFoodCreationValidator" />
-		<property name="simpleFoodUpdateValidator" ref="simpleFoodUpdateValidator" />
-		<property name="complexFoodCreationValidator" ref="complexFoodCreationValidator" />
-		<property name="complexFoodUpdateValidator" ref="complexFoodUpdateValidator" />
-	</bean>
-
-	<bean id="mealService" class="com.gb1.healthcheck.services.meals.MealServiceImpl">
-		<property name="mealRepository" ref="mealRepository" />
-		<property name="mealCreationValidator" ref="mealCreationValidator" />
-		<property name="mealUpdateValidator" ref="mealUpdateValidator" />
-	</bean>
-
-	<bean id="patientFileService" class="com.gb1.healthcheck.services.metrics.PatientFileServiceImpl">
-		<property name="userRepository" ref="userRepository" />
-		<property name="patientFileRepository" ref="patientFileRepository" />
-	</bean>
-
-	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
-		<property name="session">
-			<jee:jndi-lookup jndi-name="java:comp/env/mail/MainSession" />
-		</property>
-	</bean>
+	   http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
 
 </beans>

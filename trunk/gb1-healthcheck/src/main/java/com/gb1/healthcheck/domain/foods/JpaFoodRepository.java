@@ -7,6 +7,9 @@ import java.util.Set;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+import org.springframework.stereotype.Repository;
+
+@Repository("foodRepository")
 public class JpaFoodRepository implements FoodRepository {
 	private EntityManager entityManager = null;
 

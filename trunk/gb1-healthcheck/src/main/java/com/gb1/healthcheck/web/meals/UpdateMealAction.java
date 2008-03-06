@@ -6,6 +6,8 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.apache.struts2.interceptor.ServletRequestAware;
 import org.apache.struts2.interceptor.SessionAware;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Controller;
 
 import com.gb1.healthcheck.domain.meals.Meal;
 import com.gb1.healthcheck.domain.meals.MealException;
@@ -14,6 +16,8 @@ import com.gb1.healthcheck.services.meals.MealUpdateRequest;
 import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.Preparable;
 
+@Controller("updateMealAction")
+@Scope("prototype")
 public class UpdateMealAction extends MealActionSupport implements Preparable, ServletRequestAware,
 		SessionAware {
 	private static final String MODEL_SESSION_KEY = UpdateMealAction.class.getName() + ".model";
