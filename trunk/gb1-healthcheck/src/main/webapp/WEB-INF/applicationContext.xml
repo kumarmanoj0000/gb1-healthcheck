@@ -5,17 +5,21 @@
 	xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:dwr="http://www.directwebremoting.org/schema/spring-dwr"
 	xmlns:jee="http://www.springframework.org/schema/jee"
+	xmlns:tx="http://www.springframework.org/schema/tx"
 	xsi:schemaLocation="
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd
 		http://www.directwebremoting.org/schema/spring-dwr http://www.directwebremoting.org/schema/spring-dwr-2.0.xsd
-		http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-2.5.xsd">
+		http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-2.5.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
 
 	<context:annotation-config />
 	<context:spring-configured />
 	<context:component-scan base-package="com.gb1.healthcheck" />
 
-	<!-- Data access -->
+	<!--
+	  | Data access
+	  -->
 
 	<jee:jndi-lookup id="mainDataSource" jndi-name="java:comp/env/jdbc/MainDataSource"
 		proxy-interface="javax.sql.DataSource" lookup-on-startup="false" />
@@ -37,14 +41,11 @@
 		<property name="entityManagerFactory" ref="entityManagerFactory" />
 	</bean>
 
-	<!-- Must be used in place of the tx:annotation-driven tag, which oddly does not work when
-		application uses context:spring-configured -->
-	<bean class="org.springframework.transaction.aspectj.AnnotationTransactionAspect"
-		factory-method="aspectOf">
-		<property name="transactionManager" ref="transactionManager" />
-	</bean>
+	<tx:annotation-driven />
 
-	<!-- Global properties (before finding a better approach) -->
+	<!--
+	  | Global properties (before finding a better approach)
+	  -->
 
 	<bean id="fromAddress" class="java.lang.String">
 		<constructor-arg index="0" value="admin@gb1.com" />
@@ -67,7 +68,9 @@
 		<constructor-arg index="0" value="com/gb1/healthcheck/domain/users/lostPasswordEmail.vm" />
 	</bean>
 
-	<!-- Services -->
+	<!--
+	  | Services
+	  -->
 
 	<bean id="tokenFactory" class="com.gb1.commons.tokens.UuidTokenFactory" />
 
@@ -86,7 +89,9 @@
 		</property>
 	</bean>
 
-	<!-- DWR controller and reachable actions -->
+	<!--
+	  | DWR controller and reachable actions
+	  -->
 
 	<dwr:controller id="dwrController" debug="true" />
 
@@ -103,7 +108,9 @@
 		</dwr:remote>
 	</bean>
 
-	<!-- Acegi security -->
+	<!--
+	  | Acegi security
+	  -->
 
 	<import resource="applicationContext-security.xml" />
 
