@@ -70,17 +70,9 @@ public class VelocityLostPasswordEmailBuilder implements LostPasswordEmailBuilde
 	}
 
 	@Resource
-	public void setLostPasswordTemplateLocation(String templateLocation) {
-		this.templateLocation = templateLocation;
-	}
-
-	@Resource
-	public void setFromAddress(String fromAddress) {
-		this.fromAddress = fromAddress;
-	}
-
-	@Resource
-	public void setLostPasswordSubject(String subject) {
-		this.subject = subject;
+	public void setGlobalConstants(Map<String, String> constants) {
+		fromAddress = constants.get("fromAddress");
+		subject = constants.get("lostPassword.subject");
+		templateLocation = constants.get("lostPassword.templateLocation");
 	}
 }

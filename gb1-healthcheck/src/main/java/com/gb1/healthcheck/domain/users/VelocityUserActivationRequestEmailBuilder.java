@@ -89,22 +89,10 @@ public class VelocityUserActivationRequestEmailBuilder implements UserActivation
 	}
 
 	@Resource
-	public void setActivationTemplateLocation(String templateLocation) {
-		this.templateLocation = templateLocation;
-	}
-
-	@Resource
-	public void setFromAddress(String fromAddress) {
-		this.fromAddress = fromAddress;
-	}
-
-	@Resource
-	public void setActivationSubject(String subject) {
-		this.subject = subject;
-	}
-
-	@Resource
-	public void setActivationFormUrl(String activationFormUrl) {
-		this.activationFormUrl = activationFormUrl;
+	public void setGlobalConstants(Map<String, String> constants) {
+		fromAddress = constants.get("fromAddress");
+		subject = constants.get("activation.subject");
+		templateLocation = constants.get("activation.templateLocation");
+		activationFormUrl = constants.get("activation.formUrl");
 	}
 }

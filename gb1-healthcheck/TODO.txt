@@ -22,7 +22,7 @@ HealthCheck
 
 . technical
   - migrate to Struts2 annotations
-  - migrate to DWR annotations
+  - migrate to DWR annotations (DWR 3.0?)
   - improve Eclipse/Maven integration
   - split up global.css
   - migrate unit tests to JUnit 4 + Spring TestContext
