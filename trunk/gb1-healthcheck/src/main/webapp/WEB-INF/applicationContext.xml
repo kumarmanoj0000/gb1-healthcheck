@@ -6,16 +6,31 @@
 	xmlns:dwr="http://www.directwebremoting.org/schema/spring-dwr"
 	xmlns:jee="http://www.springframework.org/schema/jee"
 	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:util="http://www.springframework.org/schema/util"
 	xsi:schemaLocation="
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd
 		http://www.directwebremoting.org/schema/spring-dwr http://www.directwebremoting.org/schema/spring-dwr-2.0.xsd
 		http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-2.5.xsd
-		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-2.5.xsd">
 
 	<context:annotation-config />
 	<context:spring-configured />
 	<context:component-scan base-package="com.gb1.healthcheck" />
+
+	<!--
+	  | Global constants
+	  -->
+
+	<util:map id="globalConstants">
+		<entry key="fromAddress" value="admin@gb1.com" />
+		<entry key="activation.subject" value="[HealthCheck] Account activation" />
+		<entry key="activation.formUrl" value="http://localhost:8080/healthcheck/public/register/challenge.go" />
+		<entry key="activation.templateLocation" value="com/gb1/healthcheck/domain/users/userActivationRequestEmail.vm" />
+		<entry key="lostPassword.subject" value="[HealthCheck] Password" />
+		<entry key="lostPassword.templateLocation" value="com/gb1/healthcheck/domain/users/lostPasswordEmail.vm" />
+	</util:map>
 
 	<!--
 	  | Data access
@@ -42,31 +57,6 @@
 	</bean>
 
 	<tx:annotation-driven />
-
-	<!--
-	  | Global properties (before finding a better approach)
-	  -->
-
-	<bean id="fromAddress" class="java.lang.String">
-		<constructor-arg index="0" value="admin@gb1.com" />
-	</bean>
-
-	<bean id="activationSubject" class="java.lang.String">
-		<constructor-arg index="0" value="[HealthCheck] Account activation" />
-	</bean>
-	<bean id="activationFormUrl" class="java.lang.String">
-		<constructor-arg index="0" value="http://localhost:8080/healthcheck/public/register/challenge.go" />
-	</bean>
-	<bean id="activationTemplateLocation" class="java.lang.String">
-		<constructor-arg index="0" value="com/gb1/healthcheck/domain/users/userActivationRequestEmail.vm" />
-	</bean>
-
-	<bean id="lostPasswordSubject" class="java.lang.String">
-		<constructor-arg index="0" value="[HealthCheck] Password" />
-	</bean>
-	<bean id="lostPasswordTemplateLocation" class="java.lang.String">
-		<constructor-arg index="0" value="com/gb1/healthcheck/domain/users/lostPasswordEmail.vm" />
-	</bean>
 
 	<!--
 	  | Services
