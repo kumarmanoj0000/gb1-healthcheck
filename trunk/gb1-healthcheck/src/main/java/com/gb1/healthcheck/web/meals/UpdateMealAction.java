@@ -42,7 +42,7 @@ public class UpdateMealAction extends MealActionSupport implements Preparable, S
 	}
 
 	public String update() {
-		String result;
+		String result = Action.INPUT;
 
 		try {
 			getMealService().updateMeal(getModel());
@@ -50,8 +50,7 @@ public class UpdateMealAction extends MealActionSupport implements Preparable, S
 			result = Action.SUCCESS;
 		}
 		catch (MealException e) {
-			addActionError(e.getMessage());
-			result = Action.INPUT;
+			addActionError(getText("meals.update.error", new String[] { e.getMessage() }));
 		}
 
 		return result;

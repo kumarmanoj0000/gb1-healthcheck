@@ -47,7 +47,7 @@ public class EditActiveUserAction extends ActionSupport implements ServletReques
 
 	@Validations(requiredStrings = { @RequiredStringValidator(fieldName = "model.email", message = "Valid email is required.") }, emails = { @EmailValidator(fieldName = "model.email", message = "Valid email is required.") })
 	public String submit() {
-		String result;
+		String result = Action.INPUT;
 
 		try {
 			User activeUser = getUser();
@@ -61,12 +61,10 @@ public class EditActiveUserAction extends ActionSupport implements ServletReques
 			result = Action.SUCCESS;
 		}
 		catch (EmailAlreadyExistsException e) {
-			addFieldError("model.email", "This email is already taken.");
-			result = Action.INPUT;
+			addFieldError("model.email", getText("users.edit.email.taken"));
 		}
 		catch (UserException e) {
-			addActionError(e.getMessage());
-			result = Action.INPUT;
+			addActionError(getText("users.edit.error", new String[] { e.getMessage() }));
 		}
 
 		return result;

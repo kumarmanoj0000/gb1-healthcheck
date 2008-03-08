@@ -19,7 +19,7 @@ public class UserActivationAction extends ActionSupport {
 	private String token;
 
 	public String activate() {
-		String result;
+		String result = Action.INPUT;
 
 		try {
 			userService.activateUser(email, new Token(token));
@@ -27,7 +27,6 @@ public class UserActivationAction extends ActionSupport {
 		}
 		catch (UserException e) {
 			addFieldError("credentials", getText("register.activate.activationToken.invalid"));
-			result = Action.INPUT;
 		}
 
 		return result;

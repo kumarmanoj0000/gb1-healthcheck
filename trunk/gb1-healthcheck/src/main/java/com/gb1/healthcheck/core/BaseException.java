@@ -6,6 +6,4 @@ package com.gb1.healthcheck.core;
  * @author Guillaume Bilodeau
  */
 public abstract class BaseException extends Exception {
-	public BaseException() {
-	}
 }
