@@ -32,6 +32,9 @@
 
 	<body>
 		<h2><fmt:message key="meals.update.title" /></h2>
+
+		<s:actionerror />
+
 		<s:form action="updateSubmit.go" method="post" namespace="/meals">
 			<s:hidden name="mealId" />
 			<s:hidden name="eaterId" />

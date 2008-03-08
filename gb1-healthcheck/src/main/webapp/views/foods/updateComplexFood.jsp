@@ -5,12 +5,16 @@
 <html>
 	<body>
 		<h2><fmt:message key="foods.complexFoods.update.title" /></h2>
+
+		<s:actionerror />
+
 		<s:form action="updateSubmit.go" method="post" namespace="/foods/complexFood">
 			<s:hidden name="foodId" />
 
 			<div class="required">
 				<label><fmt:message key="food.name" />:</label>
 				<s:textfield name="model.name" />
+				<s:fielderror><s:param>model.name</s:param></s:fielderror>
 			</div>
 
 			<fieldset id="ingredientsList">

@@ -4,7 +4,7 @@
 
 <html>
 	<body>
-		<s:actionerror/>
+		<s:actionerror />
 
 		<s:form action="register" namespace="/public/register">
 			<div class="required">

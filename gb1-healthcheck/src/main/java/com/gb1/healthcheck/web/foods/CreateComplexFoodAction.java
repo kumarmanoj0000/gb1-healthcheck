@@ -8,17 +8,19 @@ import com.gb1.healthcheck.domain.foods.FoodAlreadyExistsException;
 import com.gb1.healthcheck.domain.foods.FoodException;
 import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.validator.annotations.RequiredStringValidator;
+import com.opensymphony.xwork2.validator.annotations.Validation;
 import com.opensymphony.xwork2.validator.annotations.Validations;
 
 @Controller("createComplexFoodAction")
 @Scope("prototype")
+@Validation
 public class CreateComplexFoodAction extends ComplexFoodActionSupport {
 	private BasicComplexFoodCreationRequest foodCreationRequest = new BasicComplexFoodCreationRequest();
 
 	public CreateComplexFoodAction() {
 	}
 
-	@Validations(requiredStrings = { @RequiredStringValidator(fieldName = "model.name", message = "Name is required.") })
+	@Validations(requiredStrings = { @RequiredStringValidator(fieldName = "model.name", message = "", key = "foods.complexFoods.create.error.nameRequired") })
 	public String submit() {
 		String result = Action.INPUT;
 
@@ -30,7 +32,7 @@ public class CreateComplexFoodAction extends ComplexFoodActionSupport {
 			addFieldError("model.name", getText("food.exception.alreadyExists"));
 		}
 		catch (ComplexFoodHasNoIngredientsException e) {
-			addFieldError("model.name", "food.exception.selectAtLeastOneIngredient");
+			addFieldError("model.name", getText("food.exception.selectAtLeastOneIngredient"));
 		}
 		catch (FoodException e) {
 			addActionError(getText("foods.complexFoods.create.error",

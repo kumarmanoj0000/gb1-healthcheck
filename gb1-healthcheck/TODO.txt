@@ -4,7 +4,7 @@ HealthCheck
 
 . features:
   - analysis
-    * gastric states graph
+    * gastric states graph (generate image? Flex component?)
     * correlation food => gastric states
 
   - user administration
@@ -16,7 +16,6 @@ HealthCheck
   - allow user to change locale
 
   - overall
-    * localize error messages
     * add confirmation messages
     * default exception page
 

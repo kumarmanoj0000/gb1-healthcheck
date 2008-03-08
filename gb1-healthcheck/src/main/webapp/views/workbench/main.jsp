@@ -4,10 +4,6 @@
 
 <html>
 	<body>
-		<c:if test="${not empty notificationMessage}">
-			<div class="notification"><fmt:message key="${notificationMessage}" /></div>
-		</c:if>
-
 		<h2><fmt:message key="workbench.menu" /></h2>
 
 		<authz:authorize ifAllGranted="role_administrator">
