@@ -61,7 +61,7 @@
 
 	<package name="workbench" extends="default" namespace="/workbench">
 		<action name="show" method="execute" class="workbenchAction">
-			<result>/views/workbench/main.jsp</result>
+			<result>/views/workbench/show.jsp</result>
 		</action>
 	</package>
 
