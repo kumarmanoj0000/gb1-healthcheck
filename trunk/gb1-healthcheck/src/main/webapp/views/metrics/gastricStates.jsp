@@ -7,7 +7,7 @@
 		<script type='text/javascript' src='<c:url value="/dwr/engine.js" />'></script>
 		<script type='text/javascript' src='<c:url value="/dwr/util.js" />'></script>
 
-		<%@ include file="/includes/calendar.jsp" %>
+		<%@ include file="/views/fragments/calendar.jsp" %>
 		<script type="text/javascript" src='<c:url value="/scripts/core.js" />'></script>
 		<script type="text/javascript" src='<c:url value="/scripts/date.js" />'></script>
 		<script type="text/javascript" src='<c:url value="/scripts/jquery/jquery.js" />'></script>

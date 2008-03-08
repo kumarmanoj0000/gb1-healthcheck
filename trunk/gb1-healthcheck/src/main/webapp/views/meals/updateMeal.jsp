@@ -4,7 +4,7 @@
 
 <html>
 	<head>
-		<%@ include file="/includes/calendar.jsp" %>
+		<%@ include file="/views/fragments/calendar.jsp" %>
 		<script type="text/javascript" src='<c:url value="/scripts/jquery/jquery.js" />'></script>
 
 		<script type="text/javascript">
