@@ -27,13 +27,14 @@ public class CreateComplexFoodAction extends ComplexFoodActionSupport {
 			result = Action.SUCCESS;
 		}
 		catch (FoodAlreadyExistsException e) {
-			addFieldError("model.name", "A food with this name already exists.");
+			addFieldError("model.name", getText("food.exception.alreadyExists"));
 		}
 		catch (ComplexFoodHasNoIngredientsException e) {
-			addFieldError("model.name", "You must select at least one ingredient.");
+			addFieldError("model.name", "food.exception.selectAtLeastOneIngredient");
 		}
 		catch (FoodException e) {
-			addActionError(e.getMessage());
+			addActionError(getText("foods.complexFoods.create.error",
+					new String[] { e.getMessage() }));
 		}
 
 		return result;

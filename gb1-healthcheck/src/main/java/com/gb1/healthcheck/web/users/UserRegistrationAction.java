@@ -33,11 +33,11 @@ public class UserRegistrationAction extends ActionSupport {
 			@RequiredStringValidator(fieldName = "model.password1", message = "Password is required."),
 			@RequiredStringValidator(fieldName = "model.password2", message = "Confirmation password is required.") }, emails = { @EmailValidator(fieldName = "model.email", message = "Valid email is required") }, expressions = { @ExpressionValidator(expression = "model.password1.equals(model.password2)", message = "Both passwords must match.") })
 	public String register() {
-		boolean registered = false;
+		String result = Action.INPUT;
 
 		try {
 			userService.registerUser(userRegRequest);
-			registered = true;
+			result = Action.SUCCESS;
 		}
 		catch (LoginAlreadyExistsException e) {
 			addFieldError("model.login", getText("register.login.taken"));
@@ -49,7 +49,7 @@ public class UserRegistrationAction extends ActionSupport {
 			addActionError(getText("register.error"));
 		}
 
-		return (registered ? Action.SUCCESS : Action.INPUT);
+		return result;
 	}
 
 	@VisitorFieldValidator(message = "")

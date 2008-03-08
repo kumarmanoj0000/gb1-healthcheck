@@ -13,8 +13,8 @@ import com.opensymphony.xwork2.ActionSupport;
 @Controller("lostPasswordAction")
 @Scope("prototype")
 public class LostPasswordAction extends ActionSupport {
-	private String email;
 	private UserService userService;
+	private String email;
 
 	@Override
 	public String input() {
@@ -22,7 +22,7 @@ public class LostPasswordAction extends ActionSupport {
 	}
 
 	public String sendLostPassword() {
-		String result;
+		String result = Action.INPUT;
 
 		try {
 			userService.sendLostPassword(email);
@@ -30,7 +30,6 @@ public class LostPasswordAction extends ActionSupport {
 		}
 		catch (UnknownUserException e) {
 			addFieldError("email", getText("lostPassword.email.unknown"));
-			result = Action.INPUT;
 		}
 
 		return result;

@@ -40,8 +40,8 @@ public class UpdateSimpleFoodAction extends SimpleFoodActionSupport implements S
 	}
 
 	@Validations(requiredStrings = { @RequiredStringValidator(fieldName = "model.name", message = "Name is required.") })
-	public String submit() throws FoodException {
-		String result;
+	public String submit() {
+		String result = Action.INPUT;
 
 		try {
 			getFoodService().updateSimpleFood(getModel());
@@ -49,8 +49,11 @@ public class UpdateSimpleFoodAction extends SimpleFoodActionSupport implements S
 			result = Action.SUCCESS;
 		}
 		catch (FoodAlreadyExistsException e) {
-			addFieldError("model.name", "A food with this name already exists.");
-			result = Action.INPUT;
+			addFieldError("model.name", getText("food.exception.alreadyExists"));
+		}
+		catch (FoodException e) {
+			addActionError(getText("foods.complexFoods.create.error",
+					new String[] { e.getMessage() }));
 		}
 
 		return result;
