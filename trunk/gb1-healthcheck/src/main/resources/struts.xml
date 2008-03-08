@@ -20,7 +20,7 @@
 		</action>
 		<action name="register" method="register" class="userRegistrationAction">
 			<result name="input">/views/public/security/register/request.jsp</result>
-			<result>/views/public/security/register/requestReceived.jsp</result>
+			<result>/views/public/security/register/request-success.jsp</result>
 		</action>
 
 		<action name="challenge" method="input" class="userActivationAction">
@@ -28,7 +28,7 @@
 		</action>
 		<action name="activate" method="activate" class="userActivationAction">
 			<result name="input">/views/public/security/register/activate.jsp</result>
-			<result>/views/public/security/register/activated.jsp</result>
+			<result>/views/public/security/register/activate-success.jsp</result>
 		</action>
 	</package>
 
@@ -42,16 +42,16 @@
 		</action>
 		<action name="sendPassword" method="sendLostPassword" class="lostPasswordAction">
 			<result name="input">/views/public/security/lostPassword.jsp</result>
-			<result>/views/public/security/passwordSent.jsp</result>
+			<result>/views/public/security/lostPassword-success.jsp</result>
 		</action>
 	</package>
 
 	<package name="users" extends="default" namespace="/users">
 		<action name="editInput" method="input" class="editActiveUserAction">
-			<result name="input">/views/users/edit.jsp</result>
+			<result name="input">/views/users/editActiveUser.jsp</result>
 		</action>
 		<action name="editSubmit" method="submit" class="editActiveUserAction">
-			<result name="input">/views/users/edit.jsp</result>
+			<result name="input">/views/users/editActiveUser.jsp</result>
 			<result name="success" type="redirect-action">
 				<param name="namespace">/workbench</param>
 				<param name="actionName">show</param>
@@ -67,17 +67,17 @@
 
 	<package name="foods" extends="default" namespace="/foods">
 		<action name="list" method="list" class="listFoodsAction">
-			<result>/views/foods/list.jsp</result>
+			<result>/views/foods/listFoods.jsp</result>
 		</action>
 	</package>
 
 	<package name="simpleFood" extends="default" namespace="/foods/simpleFood">
 		<action name="createInput" method="input" class="createSimpleFoodAction">
-			<result name="input">/views/foods/newSimpleFood.jsp</result>
+			<result name="input">/views/foods/createSimpleFood.jsp</result>
 		</action>
 
 		<action name="createSubmit" method="submit" class="createSimpleFoodAction">
-			<result name="input">/views/foods/newSimpleFood.jsp</result>
+			<result name="input">/views/foods/createSimpleFood.jsp</result>
 			<result name="success" type="redirect-action">
 				<param name="namespace">/foods</param>
 				<param name="actionName">list</param>
@@ -106,11 +106,11 @@
 
 	<package name="complexFood" extends="default" namespace="/foods/complexFood">
 		<action name="createInput" method="input" class="createComplexFoodAction">
-			<result name="input">/views/foods/newComplexFood.jsp</result>
+			<result name="input">/views/foods/createComplexFood.jsp</result>
 		</action>
 
 		<action name="createSubmit" method="submit" class="createComplexFoodAction">
-			<result name="input">/views/foods/newComplexFood.jsp</result>
+			<result name="input">/views/foods/createComplexFood.jsp</result>
 			<result name="success" type="redirect-action">
 				<param name="namespace">/foods</param>
 				<param name="actionName">list</param>
@@ -139,15 +139,15 @@
 
 	<package name="meals" extends="default" namespace="/meals">
 		<action name="list" method="list" class="listMealsAction">
-			<result>/views/meals/list.jsp</result>
+			<result>/views/meals/listMeals.jsp</result>
 		</action>
 
 		<action name="createInput" method="input" class="createMealAction">
-			<result name="input">/views/meals/newMeal.jsp</result>
+			<result name="input">/views/meals/createMeal.jsp</result>
 		</action>
 
 		<action name="createSubmit" method="submit" class="createMealAction">
-			<result name="input">/views/meals/newMeal.jsp</result>
+			<result name="input">/views/meals/createMeal.jsp</result>
 			<result name="success" type="redirect-action">
 				<param name="namespace">/meals</param>
 				<param name="actionName">list</param>
