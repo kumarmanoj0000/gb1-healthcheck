@@ -6,6 +6,8 @@
 	<body>
 		<h2><fmt:message key="foods.title" /></h2>
 
+		<s:actionerror />
+
 		<h3><fmt:message key="foods.simpleFoods" /></h3>
 		<s:if test="simpleFoods.size == 0"><fmt:message key="foods.noSimpleFoods" /></s:if>
 		<s:else>

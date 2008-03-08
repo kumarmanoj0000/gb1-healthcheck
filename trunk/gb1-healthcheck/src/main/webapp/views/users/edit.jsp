@@ -6,6 +6,8 @@
 	<body>
 		<h2><fmt:message key="users.edit.title" /></h2>
 		
+		<s:actionerror />
+
 		<s:form action="editSubmit.go" namespace="/users">
 			<s:hidden name="user.id" />
 

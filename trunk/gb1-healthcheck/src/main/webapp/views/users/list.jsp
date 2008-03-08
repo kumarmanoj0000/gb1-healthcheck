@@ -4,5 +4,6 @@
 <html>
 <body>
 	<h1><fmt:message key="users.list.title" /></h1>
+	<div>TODO</div>
 </body>
 </html>

@@ -6,6 +6,8 @@
 	<body>
 		<h2><fmt:message key="meals.title" /></h2>
 
+		<s:actionerror />
+
 		<div>
 			<s:if test="mealHistory.size == 0">
 				<fmt:message key="meals.noMealHistory" />

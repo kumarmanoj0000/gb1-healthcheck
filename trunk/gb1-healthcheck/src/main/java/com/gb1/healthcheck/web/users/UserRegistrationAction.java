@@ -28,10 +28,10 @@ public class UserRegistrationAction extends ActionSupport {
 			Role.STANDARD);
 
 	@Validations(requiredStrings = {
-			@RequiredStringValidator(fieldName = "model.login", message = "Login is required."),
-			@RequiredStringValidator(fieldName = "model.email", message = "Valid email is required."),
-			@RequiredStringValidator(fieldName = "model.password1", message = "Password is required."),
-			@RequiredStringValidator(fieldName = "model.password2", message = "Confirmation password is required.") }, emails = { @EmailValidator(fieldName = "model.email", message = "Valid email is required") }, expressions = { @ExpressionValidator(expression = "model.password1.equals(model.password2)", message = "Both passwords must match.") })
+			@RequiredStringValidator(fieldName = "model.login", message = "", key = "register.login.invalid"),
+			@RequiredStringValidator(fieldName = "model.email", message = "", key = "register.email.invalid"),
+			@RequiredStringValidator(fieldName = "model.password1", message = "", key = "register.password.invalid"),
+			@RequiredStringValidator(fieldName = "model.password2", message = "", key = "register.password.invalid") }, emails = { @EmailValidator(fieldName = "model.email", message = "", key = "register.email.invalid") }, expressions = { @ExpressionValidator(expression = "model.password1.equals(model.password2)", message = "", key = "register.password.mismatch") })
 	public String register() {
 		String result = Action.INPUT;
 

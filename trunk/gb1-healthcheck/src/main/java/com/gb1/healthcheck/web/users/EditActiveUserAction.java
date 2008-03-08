@@ -45,7 +45,7 @@ public class EditActiveUserAction extends ActionSupport implements ServletReques
 		return Action.INPUT;
 	}
 
-	@Validations(requiredStrings = { @RequiredStringValidator(fieldName = "model.email", message = "Valid email is required.") }, emails = { @EmailValidator(fieldName = "model.email", message = "Valid email is required.") })
+	@Validations(requiredStrings = { @RequiredStringValidator(fieldName = "model.email", message = "", key = "users.edit.email.invalid") }, emails = { @EmailValidator(fieldName = "model.email", message = "", key = "users.edit.email.invalid") })
 	public String submit() {
 		String result = Action.INPUT;
 

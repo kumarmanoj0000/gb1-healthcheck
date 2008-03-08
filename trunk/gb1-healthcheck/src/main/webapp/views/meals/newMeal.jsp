@@ -32,6 +32,9 @@
 
 	<body>
 		<h2><fmt:message key="meals.create.title" /></h2>
+
+		<s:actionerror />
+
 		<s:form action="createSubmit.go" method="post" namespace="/meals">
 			<s:hidden name="model.eaterId" />
 

@@ -7,17 +7,19 @@ import com.gb1.healthcheck.domain.foods.FoodAlreadyExistsException;
 import com.gb1.healthcheck.domain.foods.FoodException;
 import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.validator.annotations.RequiredStringValidator;
+import com.opensymphony.xwork2.validator.annotations.Validation;
 import com.opensymphony.xwork2.validator.annotations.Validations;
 
 @Controller("createSimpleFoodAction")
 @Scope("prototype")
+@Validation
 public class CreateSimpleFoodAction extends SimpleFoodActionSupport {
 	private BasicSimpleFoodCreationRequest foodCreationRequest = new BasicSimpleFoodCreationRequest();
 
 	public CreateSimpleFoodAction() {
 	}
 
-	@Validations(requiredStrings = { @RequiredStringValidator(fieldName = "model.name", message = "Name is required.") })
+	@Validations(requiredStrings = { @RequiredStringValidator(fieldName = "model.name", message = "", key = "foods.simpleFoods.create.error.nameRequired") })
 	public String submit() {
 		String result = Action.INPUT;
 

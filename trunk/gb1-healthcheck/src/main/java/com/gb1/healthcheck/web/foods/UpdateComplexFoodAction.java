@@ -12,10 +12,12 @@ import com.gb1.healthcheck.domain.foods.FoodException;
 import com.gb1.healthcheck.services.foods.FullComplexFoodHydrater;
 import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.validator.annotations.RequiredStringValidator;
+import com.opensymphony.xwork2.validator.annotations.Validation;
 import com.opensymphony.xwork2.validator.annotations.Validations;
 
 @Controller("updateComplexFoodAction")
 @Scope("prototype")
+@Validation
 public class UpdateComplexFoodAction extends ComplexFoodActionSupport implements SessionAware {
 	private static final String MODEL_SESSION_KEY = UpdateComplexFoodAction.class.getName()
 			+ ".model";
@@ -35,7 +37,7 @@ public class UpdateComplexFoodAction extends ComplexFoodActionSupport implements
 		return Action.INPUT;
 	}
 
-	@Validations(requiredStrings = { @RequiredStringValidator(fieldName = "model.name", message = "Name is required.") })
+	@Validations(requiredStrings = { @RequiredStringValidator(fieldName = "model.name", message = "", key = "foods.complexFoods.update.error.nameRequired") })
 	public String submit() {
 		String result = Action.INPUT;
 

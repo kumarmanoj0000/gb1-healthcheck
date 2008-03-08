@@ -4,10 +4,13 @@
 
 <html>
 	<body>
+		<s:actionerror />
+
 		<s:form action="sendPassword" method="post" namespace="/public/security">
 			<div class="required">
 				<label><fmt:message key="register.email" />:</label>
 				<s:textfield name="email" />
+				<s:fielderror><s:param>email</s:param></s:fielderror>
 			</div>
 
 			<div class="actions">

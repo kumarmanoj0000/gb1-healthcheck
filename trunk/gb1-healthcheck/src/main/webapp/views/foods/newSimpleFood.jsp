@@ -5,10 +5,14 @@
 <html>
 	<body>
 		<h2><fmt:message key="foods.simpleFoods.create.title" /></h2>
+
+		<s:actionerror />
+
 		<s:form action="createSubmit.go" method="post" namespace="/foods/simpleFood">
 			<div class="required">
 				<label><fmt:message key="food.name" />:</label>
 				<s:textfield name="model.name" />
+				<s:fielderror><s:param>model.name</s:param></s:fielderror>
 			</div>
 
 			<div class="required">
