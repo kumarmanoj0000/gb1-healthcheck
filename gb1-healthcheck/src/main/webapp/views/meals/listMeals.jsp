@@ -4,6 +4,8 @@
 
 <html>
 	<body>
+		<div class="actionMessages"><s:actionmessage /></div>
+
 		<h2><s:text name="meals.title" /></h2>
 
 		<s:actionerror />

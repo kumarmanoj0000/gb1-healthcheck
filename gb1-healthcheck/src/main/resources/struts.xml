@@ -55,6 +55,8 @@
 			<result name="success" type="redirect-action">
 				<param name="namespace">/workbench</param>
 				<param name="actionName">show</param>
+				<param name="parse">true</param>
+				<param name="confirmationMessage">${confirmationMessage}</param>
 			</result>
 		</action>
 	</package>
@@ -81,6 +83,8 @@
 			<result name="success" type="redirect-action">
 				<param name="namespace">/foods</param>
 				<param name="actionName">list</param>
+				<param name="parse">true</param>
+				<param name="confirmationMessage">${confirmationMessage}</param>
 			</result>
 		</action>
 
@@ -93,6 +97,8 @@
 			<result name="success" type="redirect-action">
 				<param name="namespace">/foods</param>
 				<param name="actionName">list</param>
+				<param name="parse">true</param>
+				<param name="confirmationMessage">${confirmationMessage}</param>
 			</result>
 		</action>
 
@@ -100,6 +106,8 @@
 			<result name="success" type="redirect-action">
 				<param name="namespace">/foods</param>
 				<param name="actionName">list</param>
+				<param name="parse">true</param>
+				<param name="confirmationMessage">${confirmationMessage}</param>
 			</result>
 		</action>
 	</package>
@@ -114,6 +122,8 @@
 			<result name="success" type="redirect-action">
 				<param name="namespace">/foods</param>
 				<param name="actionName">list</param>
+				<param name="parse">true</param>
+				<param name="confirmationMessage">${confirmationMessage}</param>
 			</result>
 		</action>
 
@@ -126,6 +136,8 @@
 			<result name="success" type="redirect-action">
 				<param name="namespace">/foods</param>
 				<param name="actionName">list</param>
+				<param name="parse">true</param>
+				<param name="confirmationMessage">${confirmationMessage}</param>
 			</result>
 		</action>
 
@@ -133,6 +145,8 @@
 			<result name="success" type="redirect-action">
 				<param name="namespace">/foods</param>
 				<param name="actionName">list</param>
+				<param name="parse">true</param>
+				<param name="confirmationMessage">${confirmationMessage}</param>
 			</result>
 		</action>
 	</package>
@@ -151,6 +165,8 @@
 			<result name="success" type="redirect-action">
 				<param name="namespace">/meals</param>
 				<param name="actionName">list</param>
+				<param name="parse">true</param>
+				<param name="confirmationMessage">${confirmationMessage}</param>
 			</result>
 		</action>
 
@@ -163,6 +179,8 @@
 			<result name="success" type="redirect-action">
 				<param name="namespace">/meals</param>
 				<param name="actionName">list</param>
+				<param name="parse">true</param>
+				<param name="confirmationMessage">${confirmationMessage}</param>
 			</result>
 		</action>
 
@@ -170,6 +188,8 @@
 			<result name="success" type="redirect-action">
 				<param name="namespace">/meals</param>
 				<param name="actionName">list</param>
+				<param name="parse">true</param>
+				<param name="confirmationMessage">${confirmationMessage}</param>
 			</result>
 		</action>
 	</package>
