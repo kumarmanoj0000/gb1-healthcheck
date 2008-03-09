@@ -8,7 +8,7 @@
 
 		<s:actionerror />
 
-		<s:form action="updateSubmit.go" method="post" namespace="/foods/complexFood">
+		<s:form namespace="/foods/complexFood" action="updateSubmit">
 			<s:hidden name="foodId" />
 
 			<div class="required">

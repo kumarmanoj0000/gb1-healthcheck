@@ -6,7 +6,7 @@
 	<body>
 		<s:actionerror />
 
-		<s:form action="sendPassword" method="post" namespace="/public/security">
+		<s:form namespace="/public/security" action="sendPassword">
 			<div class="required">
 				<label><fmt:message key="register.email" />:</label>
 				<s:textfield name="email" />

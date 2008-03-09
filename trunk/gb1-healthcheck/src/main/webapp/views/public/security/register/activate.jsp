@@ -6,7 +6,7 @@
 	<body>
 		<s:actionerror />
 
-		<s:form action="activate" namespace="/public/register">
+		<s:form namespace="/public/register" action="activate">
 			<div class="required">
 				<label><fmt:message key="register.activate.email" />:</label>
 				<s:textfield name="principal" />

@@ -1,5 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt" %>
+<%@ taglib prefix="s" uri="/struts-tags" %>
 
 <%@ page import="org.acegisecurity.ui.webapp.AuthenticationProcessingFilter" %>
 
@@ -12,7 +13,7 @@
 		</c:if>
 
 		<c:url var="actionUrl" value="/j_acegi_security_check" />
-		<form id="signinForm" method="post" action="${actionUrl}">
+		<form id="signinForm" action="${actionUrl}">
 			<table>
 				<tr>
 					<td><label class="required"><fmt:message key="signin.login" />:</label></td>
@@ -43,8 +44,8 @@
 		</form>
 
 		<ul id="signinActions">
-			<li class="first"><a href='<c:url value="/public/register/request.go" />'><fmt:message key="signin.noAccountYet" /></a></li>
-			<li class="last"><a href='<c:url value="/public/security/lostPassword.go" />'><fmt:message key="signin.lostPassword" /></a></li>
+			<li class="first"><a href='<s:url namespace="/public/register" action="request" />'><fmt:message key="signin.noAccountYet" /></a></li>
+			<li class="last"><a href='<s:url namespace="/public/security" action="lostPassword" />'><fmt:message key="signin.lostPassword" /></a></li>
 		</ul>
 	</body>
 </html>
