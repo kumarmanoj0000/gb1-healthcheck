@@ -15,10 +15,11 @@ import com.gb1.healthcheck.domain.foods.Food;
 import com.gb1.healthcheck.domain.foods.SimpleFood;
 import com.gb1.healthcheck.services.foods.FoodService;
 import com.opensymphony.xwork2.Action;
+import com.opensymphony.xwork2.ActionSupport;
 
 @Controller("listFoodsAction")
 @Scope("prototype")
-public class ListFoodsAction {
+public class ListFoodsAction extends ActionSupport {
 	private FoodService foodService;
 
 	private List<SimpleFood> simpleFoods;
@@ -44,6 +45,10 @@ public class ListFoodsAction {
 
 	public List<ComplexFood> getComplexFoods() {
 		return complexFoods;
+	}
+
+	public void setConfirmationMessage(String msg) {
+		addActionMessage(msg);
 	}
 
 	@Resource

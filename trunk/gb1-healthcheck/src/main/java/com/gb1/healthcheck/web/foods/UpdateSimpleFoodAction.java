@@ -23,6 +23,7 @@ public class UpdateSimpleFoodAction extends SimpleFoodActionSupport implements S
 
 	private Map<String, Object> session;
 	private Long foodId = null;
+	private String confirmationMessage;
 
 	public UpdateSimpleFoodAction() {
 	}
@@ -41,20 +42,22 @@ public class UpdateSimpleFoodAction extends SimpleFoodActionSupport implements S
 		return Action.INPUT;
 	}
 
-	@Validations(requiredStrings = { @RequiredStringValidator(fieldName = "model.name", message = "", key = "foods.complexFoods.update.error.nameRequired") })
+	@Validations(requiredStrings = { @RequiredStringValidator(fieldName = "model.name", message = "", key = "foods.simpleFoods.update.error.nameRequired") })
 	public String submit() {
 		String result = Action.INPUT;
 
 		try {
 			getFoodService().updateSimpleFood(getModel());
 			session.remove(MODEL_SESSION_KEY);
+
+			confirmationMessage = getText("foods.simpleFoods.update.success");
 			result = Action.SUCCESS;
 		}
 		catch (FoodAlreadyExistsException e) {
 			addFieldError("model.name", getText("food.exception.alreadyExists"));
 		}
 		catch (FoodException e) {
-			addActionError(getText("foods.complexFoods.create.error",
+			addActionError(getText("foods.simpleFoods.create.error",
 					new String[] { e.getMessage() }));
 		}
 
@@ -71,5 +74,9 @@ public class UpdateSimpleFoodAction extends SimpleFoodActionSupport implements S
 
 	public BasicSimpleFoodUpdateRequest getModel() {
 		return (BasicSimpleFoodUpdateRequest) session.get(MODEL_SESSION_KEY);
+	}
+
+	public String getConfirmationMessage() {
+		return confirmationMessage;
 	}
 }

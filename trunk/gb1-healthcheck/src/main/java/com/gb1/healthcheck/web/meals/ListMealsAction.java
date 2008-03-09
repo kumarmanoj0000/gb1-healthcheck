@@ -16,10 +16,11 @@ import com.gb1.healthcheck.domain.users.User;
 import com.gb1.healthcheck.services.meals.MealService;
 import com.gb1.healthcheck.web.utils.HttpRequestUtils;
 import com.opensymphony.xwork2.Action;
+import com.opensymphony.xwork2.ActionSupport;
 
 @Controller("listMealsAction")
 @Scope("prototype")
-public class ListMealsAction implements ServletRequestAware {
+public class ListMealsAction extends ActionSupport implements ServletRequestAware {
 	private HttpServletRequest request;
 	private MealService mealService;
 
@@ -39,6 +40,10 @@ public class ListMealsAction implements ServletRequestAware {
 
 	public List<Meal> getMealHistory() {
 		return Collections.unmodifiableList(mealHistory);
+	}
+
+	public void setConfirmationMessage(String msg) {
+		addActionMessage(msg);
 	}
 
 	public void setServletRequest(HttpServletRequest request) {

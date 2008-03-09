@@ -16,6 +16,7 @@ import com.opensymphony.xwork2.Preparable;
 public class CreateMealAction extends MealActionSupport implements Preparable {
 	private HttpServletRequest request;
 	private MealCreationRequest model;
+	private String confirmationMessage;
 
 	public CreateMealAction() {
 	}
@@ -30,6 +31,7 @@ public class CreateMealAction extends MealActionSupport implements Preparable {
 
 		try {
 			getMealService().createMeal(model);
+			confirmationMessage = getText("meals.create.success");
 			result = Action.SUCCESS;
 		}
 		catch (MealAlreadyExistsException e) {
@@ -46,6 +48,10 @@ public class CreateMealAction extends MealActionSupport implements Preparable {
 		return model;
 	}
 
+	public String getConfirmationMessage() {
+		return confirmationMessage;
+	}
+	
 	public void setServletRequest(HttpServletRequest request) {
 		this.request = request;
 	}

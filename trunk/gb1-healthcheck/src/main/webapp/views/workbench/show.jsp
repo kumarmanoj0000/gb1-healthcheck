@@ -5,6 +5,8 @@
 
 <html>
 	<body>
+		<div class="actionMessages"><s:actionmessage /></div>
+
 		<h2><s:text name="workbench.menu" /></h2>
 
 		<authz:authorize ifAllGranted="role_administrator">
