@@ -4,15 +4,15 @@
 
 <html>
 	<body>
-		<h2><fmt:message key="foods.title" /></h2>
+		<h2><s:text name="foods.title" /></h2>
 
 		<s:actionerror />
 
-		<h3><fmt:message key="foods.simpleFoods" /></h3>
-		<s:if test="simpleFoods.size == 0"><fmt:message key="foods.noSimpleFoods" /></s:if>
+		<h3><s:text name="foods.simpleFoods" /></h3>
+		<s:if test="simpleFoods.size == 0"><s:text name="foods.noSimpleFoods" /></s:if>
 		<s:else>
 			<ul>
-				<fmt:message key="foods.simpleFoods.confirmDelete" var="deleteConfirmMsg" />
+				<s:text name="foods.simpleFoods.confirmDelete" var="deleteConfirmMsg" />
 				<s:iterator value="simpleFoods">
 					<li>
 						<s:url id="updateUrl" namespace="/foods/simpleFood" action="updateInput">
@@ -22,19 +22,19 @@
 							<s:param name="foodId" value="%{id}" />
 						</s:url>
 						<a href="${updateUrl}">${name}</a> |
-						<a href="${deleteUrl}" onclick="return confirm('${deleteConfirmMsg}')"><fmt:message key="foods.simpleFoods.delete" /></a>
+						<a href="${deleteUrl}" onclick="return confirm('${deleteConfirmMsg}')"><s:text name="foods.simpleFoods.delete" /></a>
 					</li>
 				</s:iterator>
 			</ul>
 		</s:else>
 
-		<a href='<s:url namespace="/foods/simpleFood" action="createInput" />'><fmt:message key="foods.simpleFoods.create" /></a>
+		<a href='<s:url namespace="/foods/simpleFood" action="createInput" />'><s:text name="foods.simpleFoods.create" /></a>
 
-		<h3><fmt:message key="foods.complexFoods" /></h3>
-		<s:if test="complexFoods.size == 0"><fmt:message key="foods.noComplexFoods" /></s:if>
+		<h3><s:text name="foods.complexFoods" /></h3>
+		<s:if test="complexFoods.size == 0"><s:text name="foods.noComplexFoods" /></s:if>
 		<s:else>
 			<ul>
-				<fmt:message key="foods.complexFoods.confirmDelete" var="deleteConfirmMsg" />
+				<s:text name="foods.complexFoods.confirmDelete" var="deleteConfirmMsg" />
 				<s:iterator value="complexFoods">
 					<li>
 						<s:url id="updateUrl" namespace="/foods/complexFood" action="updateInput">
@@ -44,11 +44,11 @@
 							<s:param name="foodId" value="%{id}" />
 						</s:url>
 						<a href="${updateUrl}">${name}</a> |
-						<a href="${deleteUrl}" onclick="return confirm('${deleteConfirmMsg}')"><fmt:message key="foods.complexFoods.delete" /></a>
+						<a href="${deleteUrl}" onclick="return confirm('${deleteConfirmMsg}')"><s:text name="foods.complexFoods.delete" /></a>
 					</li>
 				</s:iterator>
 			</ul>
 		</s:else>
-		<a href='<s:url namespace="/foods/complexFood" action="createInput" />'><fmt:message key="foods.complexFoods.create" /></a>
+		<a href='<s:url namespace="/foods/complexFood" action="createInput" />'><s:text name="foods.complexFoods.create" /></a>
 	</body>
 </html>

@@ -4,19 +4,19 @@
 
 <html>
 	<body>
-		<h2><fmt:message key="foods.complexFoods.create.title" /></h2>
+		<h2><s:text name="foods.complexFoods.create.title" /></h2>
 
 		<s:actionerror />
 
 		<s:form namespace="/foods/complexFood" action="createSubmit">
 			<div class="required">
-				<label><fmt:message key="food.name" />:</label>
+				<label><s:text name="food.name" />:</label>
 				<s:textfield name="model.name" />
 				<s:fielderror><s:param>model.name</s:param></s:fielderror>
 			</div>
 
 			<fieldset id="ingredientsList">
-				<legend><fmt:message key="food.ingredients" />:</legend>
+				<legend><s:text name="food.ingredients" />:</legend>
 				<s:checkboxlist name="model.selectedIngredientIds" list="availableIngredients" listKey="id" listValue="name" />
 			</fieldset>
 

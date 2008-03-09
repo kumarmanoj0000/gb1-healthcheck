@@ -8,7 +8,7 @@
 
 		<s:form namespace="/public/security" action="sendPassword">
 			<div class="required">
-				<label><fmt:message key="register.email" />:</label>
+				<label><s:text name="register.email" />:</label>
 				<s:textfield name="email" />
 				<s:fielderror><s:param>email</s:param></s:fielderror>
 			</div>

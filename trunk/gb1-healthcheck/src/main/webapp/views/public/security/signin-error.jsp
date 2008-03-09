@@ -1,3 +1,2 @@
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt" %>
-
-<fmt:message key="signin.failed" />
+<%@ taglib prefix="s" uri="/struts-tags" %>
+<s:text name="signin.failed" />

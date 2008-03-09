@@ -1,7 +1,7 @@
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt" %>
+<%@ taglib prefix="s" uri="/struts-tags" %>
 
 <html>
 	<body>
-		<fmt:message key="lostPassword.sent" />
+		<s:text name="lostPassword.sent" />
 	</body>
 </html>

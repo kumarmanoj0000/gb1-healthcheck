@@ -1,4 +1,2 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt" %>
-
-<fmt:message key="register.activate.activated" />
+<%@ taglib prefix="s" uri="/struts-tags" %>
+<s:text name="register.activate.activated" />

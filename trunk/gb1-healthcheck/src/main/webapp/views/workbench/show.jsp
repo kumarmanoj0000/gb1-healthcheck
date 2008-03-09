@@ -5,16 +5,16 @@
 
 <html>
 	<body>
-		<h2><fmt:message key="workbench.menu" /></h2>
+		<h2><s:text name="workbench.menu" /></h2>
 
 		<authz:authorize ifAllGranted="role_administrator">
-			<fmt:message key="workbench.menu.users.list" />
+			<s:text name="workbench.menu.users.list" />
 		</authz:authorize>
 
 		<ul>
-			<li><a href='<s:url namespace="/foods" action="list" />'><fmt:message key="workbench.menu.foods.list" /></a></li>
-			<li><a href='<s:url namespace="/meals" action="list" />'><fmt:message key="workbench.menu.meals.list" /></a></li>
-			<li><a href='<s:url namespace="/metrics" action="manage" />'><fmt:message key="workbench.menu.metrics.manage" /></a></li>
+			<li><a href='<s:url namespace="/foods" action="list" />'><s:text name="workbench.menu.foods.list" /></a></li>
+			<li><a href='<s:url namespace="/meals" action="list" />'><s:text name="workbench.menu.meals.list" /></a></li>
+			<li><a href='<s:url namespace="/metrics" action="manage" />'><s:text name="workbench.menu.metrics.manage" /></a></li>
 		</ul>
 	</body>
 </html>
