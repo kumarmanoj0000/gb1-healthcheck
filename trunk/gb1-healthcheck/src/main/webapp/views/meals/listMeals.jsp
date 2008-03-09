@@ -13,7 +13,7 @@
 				<s:text name="meals.noMealHistory" />
 			</s:if>
 			<s:else>
-				<s:text name="meals.confirmDelete" var="deleteConfirmMsg" />
+				<s:text name="meals.confirmDelete" id="deleteConfirmMsg" />
 				<ul>
 					<s:iterator value="mealHistory">
 						<li>

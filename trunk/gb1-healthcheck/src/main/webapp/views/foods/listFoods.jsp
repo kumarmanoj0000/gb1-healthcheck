@@ -12,7 +12,7 @@
 		<s:if test="simpleFoods.size == 0"><s:text name="foods.noSimpleFoods" /></s:if>
 		<s:else>
 			<ul>
-				<s:text name="foods.simpleFoods.confirmDelete" var="deleteConfirmMsg" />
+				<s:text name="foods.simpleFoods.confirmDelete" id="deleteConfirmMsg" />
 				<s:iterator value="simpleFoods">
 					<li>
 						<s:url id="updateUrl" namespace="/foods/simpleFood" action="updateInput">
@@ -34,7 +34,7 @@
 		<s:if test="complexFoods.size == 0"><s:text name="foods.noComplexFoods" /></s:if>
 		<s:else>
 			<ul>
-				<s:text name="foods.complexFoods.confirmDelete" var="deleteConfirmMsg" />
+				<s:text name="foods.complexFoods.confirmDelete" id="deleteConfirmMsg" />
 				<s:iterator value="complexFoods">
 					<li>
 						<s:url id="updateUrl" namespace="/foods/complexFood" action="updateInput">
