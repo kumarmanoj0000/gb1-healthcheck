@@ -48,17 +48,7 @@
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
 
-	<!-- SiteMesh templating filter -->
-	<filter>
-		<filter-name>sitemeshFilter</filter-name>
-		<filter-class>com.opensymphony.module.sitemesh.filter.PageFilter</filter-class>
-	</filter>
-	<filter-mapping>
-		<filter-name>sitemeshFilter</filter-name>
-		<url-pattern>/*</url-pattern>
-	</filter-mapping>
-
-	<!-- Necessary if using Struts2 -->
+	<!-- Struts2 cleanup filter, necessary when using SiteMesh (must be placed before SiteMesh filter! -->
 	<filter>
 		<filter-name>struts-cleanup</filter-name>
 		<filter-class>org.apache.struts2.dispatcher.ActionContextCleanUp</filter-class>
@@ -68,6 +58,16 @@
 		<url-pattern>/*</url-pattern>
 		<dispatcher>REQUEST</dispatcher>
 		<dispatcher>FORWARD</dispatcher>
+	</filter-mapping>
+
+	<!-- SiteMesh templating filter -->
+	<filter>
+		<filter-name>sitemeshFilter</filter-name>
+		<filter-class>com.opensymphony.module.sitemesh.filter.PageFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>sitemeshFilter</filter-name>
+		<url-pattern>/*</url-pattern>
 	</filter-mapping>
 
 	<!-- Struts2 front controller -->
