@@ -46,10 +46,6 @@
 		</action>
 	</package>
 
-	<package name="ui" extends="default" namespace="/ui">
-		<action name="changeLanguage" method="changeLanguage" class="changeLanguageAction" />
-	</package>
-
 	<package name="users" extends="default" namespace="/users">
 		<action name="editInput" method="input" class="editActiveUserAction">
 			<result name="input">/views/users/editActiveUser.jsp</result>

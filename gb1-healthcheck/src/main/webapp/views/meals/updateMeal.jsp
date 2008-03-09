@@ -31,7 +31,7 @@
 	</head>
 
 	<body>
-		<h2><fmt:message key="meals.update.title" /></h2>
+		<h2><s:text name="meals.update.title" /></h2>
 
 		<s:actionerror />
 
@@ -40,7 +40,7 @@
 			<s:hidden name="eaterId" />
 
 			<div class="required">
-				<label><fmt:message key="meal.instant" />:</label>
+				<label><s:text name="meal.instant" />:</label>
 				<s:date id="instant" name="model.instant" format="yyyy-MM-dd hh:mm:ss" />
 				<s:textfield id="f_date_c" key="meal.instant" name="model.instant" readonly="1" />
 				<img
@@ -54,12 +54,12 @@
 			</div>
 
 			<fieldset id="dishes">
-				<legend><fmt:message key="meals.create.dishes" /></legend>
+				<legend><s:text name="meals.create.dishes" /></legend>
 
 				<s:iterator value="model.selectedFoodIds" status="it">
 					<div id="singleDish-${it.index}">
 						<div class="required">
-							<label><fmt:message key="meal.dish" />:</label>
+							<label><s:text name="meal.dish" />:</label>
 							<s:select
 								name="model.selectedFoodIds"
 								value="model.selectedFoodIds[#it.index]"
@@ -70,7 +70,7 @@
 						</div>
 
 						<div class="required">
-							<label><fmt:message key="meal.preparationMethod" />:</label>
+							<label><s:text name="meal.preparationMethod" />:</label>
 							<s:select
 								name="model.selectedPreparationMethodNames"
 								value="model.selectedPreparationMethodNames[#it.index]"
@@ -81,13 +81,13 @@
 						</div>
 
 						<div>
-							<a href="#" onClick="javascript:removeSingleDishDiv(${it.index})"><fmt:message key="meals.update.removeDish" /></a>
+							<a href="#" onClick="javascript:removeSingleDishDiv(${it.index})"><s:text name="meals.update.removeDish" /></a>
 						</div>
 					</div>
 				</s:iterator>
 
 				<div id="addSingleDishLinkDiv">
-					<a href="#" onClick="javascript:addSingleDishDiv()"><fmt:message key="meals.update.addDish" /></a>
+					<a href="#" onClick="javascript:addSingleDishDiv()"><s:text name="meals.update.addDish" /></a>
 				</div>
 			</fieldset>
 

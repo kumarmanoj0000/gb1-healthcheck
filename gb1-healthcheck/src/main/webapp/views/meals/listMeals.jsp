@@ -4,16 +4,16 @@
 
 <html>
 	<body>
-		<h2><fmt:message key="meals.title" /></h2>
+		<h2><s:text name="meals.title" /></h2>
 
 		<s:actionerror />
 
 		<div>
 			<s:if test="mealHistory.size == 0">
-				<fmt:message key="meals.noMealHistory" />
+				<s:text name="meals.noMealHistory" />
 			</s:if>
 			<s:else>
-				<fmt:message key="meals.confirmDelete" var="deleteConfirmMsg" />
+				<s:text name="meals.confirmDelete" var="deleteConfirmMsg" />
 				<ul>
 					<s:iterator value="mealHistory">
 						<li>
@@ -28,7 +28,7 @@
 								<s:param name="mealId" value="%{id}" />
 							</s:url>
 							<a href="${deleteUrl}" onclick="return confirm('${deleteConfirmMsg}')">
-								<fmt:message key="meals.delete" />
+								<s:text name="meals.delete" />
 							</a>
 						</li>
 					</s:iterator>
@@ -37,7 +37,7 @@
 		</div>
 
 		<div>
-			<a href='<s:url namespace="/meals" action="createInput" />'><fmt:message key="meals.create" /></a>
+			<a href='<s:url namespace="/meals" action="createInput" />'><s:text name="meals.create" /></a>
 		</div>
 	</body>
 </html>

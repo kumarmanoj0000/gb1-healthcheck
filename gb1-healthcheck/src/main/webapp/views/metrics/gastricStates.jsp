@@ -1,5 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt" %>
+<%@ taglib prefix="s" uri="/struts-tags" %>
 
 <html>
 	<head>
@@ -28,7 +29,7 @@
 			}
 
 			function loadGastricStates(patientId, date) {
-				showStatus('<fmt:message key="metrics.gastricStates.loading" />');
+				showStatus('<s:text name="metrics.gastricStates.loading" />');
 				ManageGastricStatesAction.loadGastricStates(patientId, date, showGastricStates);
 			}
 
@@ -39,7 +40,7 @@
 			}
 
 			function showGastricStates(states) {
-				showStatus('<fmt:message key="metrics.gastricStates.loaded" />');
+				showStatus('<s:text name="metrics.gastricStates.loaded" />');
 
 				removeAllDisplayedGastricStates();
 
@@ -84,7 +85,7 @@
 			}
 
 			function showInitGastricStatesLink() {
-				showStatus('<fmt:message key="metrics.gastricStates.manage.noStatesOnSelectedDay" />');
+				showStatus('<s:text name="metrics.gastricStates.manage.noStatesOnSelectedDay" />');
 				$('#addGastricStateLink').unbind(clickEventName).bind(clickEventName, function() {
 					initGastricStates();
 				});
@@ -104,13 +105,13 @@
 					var instantText = formatDate(selectedDate, datePattern) + ' ' + time;
 					var instant = getDateFromFormat(instantText, dateTimePattern);
 
-					showStatus('<fmt:message key="metrics.gastricStates.saving" />');
+					showStatus('<s:text name="metrics.gastricStates.saving" />');
 					ManageGastricStatesAction.saveGastricState(patientId, instant, level, gastricStateSaved);
 				}
 			}
 
 			function gastricStateSaved() {
-				showStatus('<fmt:message key="metrics.gastricStates.saved" />');
+				showStatus('<s:text name="metrics.gastricStates.saved" />');
 			}
 
 			function showStatus(msg) {
@@ -120,7 +121,7 @@
 	</head>
 
 	<body>
-		<h2><fmt:message key="metrics.gastricStates.manage.title" /></h2>
+		<h2><s:text name="metrics.gastricStates.manage.title" /></h2>
 
 		<div id="status"></div>
 
@@ -140,14 +141,14 @@
 
 			<div>
 				<a id="addGastricStateLink" href="#">
-					<fmt:message key="metrics.gastricStates.manage.addState" />
+					<s:text name="metrics.gastricStates.manage.addState" />
 				</a>
 			</div>
 		</div>
 
 		<%-- Mock gastric state for cloning (not displayed) --%>
 		<div id="mockGastricState" style="display: none">
-			<label><fmt:message key="gastricState.instant" />:</label>
+			<label><s:text name="gastricState.instant" />:</label>
 			<select id="mockGastricStateTime">
 				<c:forEach begin="0" end="23" var="hour">
 					<fmt:formatNumber var="strHour" minIntegerDigits="2" value="${hour}" />
@@ -155,16 +156,16 @@
 				</c:forEach>
 			</select>
 
-			<label><fmt:message key="gastricState.level" />:</label>
+			<label><s:text name="gastricState.level" />:</label>
 			<select id="mockGastricStateLevel">
-				<option value="NORMAL"><fmt:message key="gastricState.level.normal" /></option>
-				<option value="SLIGHTLY_BLOATED"><fmt:message key="gastricState.level.slightlyBloated" /></option>
-				<option value="BLOATED"><fmt:message key="gastricState.level.bloated" /></option>
-				<option value="HIGHLY_BLOATED"><fmt:message key="gastricState.level.highlyBloated" /></option>
-				<option value="CRISIS"><fmt:message key="gastricState.level.crisis" /></option>
+				<option value="NORMAL"><s:text name="gastricState.level.normal" /></option>
+				<option value="SLIGHTLY_BLOATED"><s:text name="gastricState.level.slightlyBloated" /></option>
+				<option value="BLOATED"><s:text name="gastricState.level.bloated" /></option>
+				<option value="HIGHLY_BLOATED"><s:text name="gastricState.level.highlyBloated" /></option>
+				<option value="CRISIS"><s:text name="gastricState.level.crisis" /></option>
 			</select>
 
-			<a id="submitLink" href="#" onclick="javascript:saveGastricState(-1);"><fmt:message key='metrics.gastricStates.save' /></a>
+			<a id="submitLink" href="#" onclick="javascript:saveGastricState(-1);"><s:text name='metrics.gastricStates.save' /></a>
 		</div>
 
 		<script type="text/javascript">

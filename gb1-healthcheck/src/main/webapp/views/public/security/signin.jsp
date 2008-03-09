@@ -8,7 +8,7 @@
 	<body>
 		<c:if test="${not empty param.login_error}">
 			<p id="loginError">
-				<fmt:message key="errors.signin.badcredentials" />
+				<s:text name="errors.signin.badcredentials" />
 			</p>
 		</c:if>
 
@@ -16,7 +16,7 @@
 		<form id="signinForm" action="${actionUrl}">
 			<table>
 				<tr>
-					<td><label class="required"><fmt:message key="signin.login" />:</label></td>
+					<td><label class="required"><s:text name="signin.login" />:</label></td>
 					<td>
 						<input type="text" name="j_username"
 							<c:if test="${not empty param.login_error}">
@@ -26,26 +26,26 @@
 					</td>
 				</tr>
 				<tr>
-					<td><label class="required"><fmt:message key="signin.password" />:</label></td>
+					<td><label class="required"><s:text name="signin.password" />:</label></td>
 					<td><input type="password" name="j_password" /></td>
 				</tr>
 				<tr>
 					<td>&nbsp;</td>
 					<td>
 						<input class="checkboxInput" type="checkbox" name="rememberMe" />
-						<fmt:message key="signin.rememberMe" />
+						<s:text name="signin.rememberMe" />
 					</td>
 				</tr>
 			</table>
 
 			<div class="actions">
-				<input class="button" type="submit" value='<fmt:message key="signin.submit" />' />
+				<input class="button" type="submit" value='<s:text name="signin.submit" />' />
 			</div>
 		</form>
 
 		<ul id="signinActions">
-			<li class="first"><a href='<s:url namespace="/public/register" action="request" />'><fmt:message key="signin.noAccountYet" /></a></li>
-			<li class="last"><a href='<s:url namespace="/public/security" action="lostPassword" />'><fmt:message key="signin.lostPassword" /></a></li>
+			<li class="first"><a href='<s:url namespace="/public/register" action="request" />'><s:text name="signin.noAccountYet" /></a></li>
+			<li class="last"><a href='<s:url namespace="/public/security" action="lostPassword" />'><s:text name="signin.lostPassword" /></a></li>
 		</ul>
 	</body>
 </html>

@@ -4,7 +4,7 @@
 
 <html>
 	<body>
-		<h2><fmt:message key="users.edit.title" /></h2>
+		<h2><s:text name="users.edit.title" /></h2>
 		
 		<s:actionerror />
 
@@ -12,7 +12,7 @@
 			<s:hidden name="user.id" />
 
 			<div class="required">
-				<label><fmt:message key="users.edit.email" />:</label>
+				<label><s:text name="users.edit.email" />:</label>
 				<s:textfield name="model.email" />
 				<s:fielderror><s:param>model.email</s:param></s:fielderror>
 			</div>
