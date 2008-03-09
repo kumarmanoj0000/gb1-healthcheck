@@ -17,11 +17,17 @@
 				<ul>
 					<s:iterator value="mealHistory">
 						<li>
-							<a href='<c:url value="/meals/updateInput.go?mealId=${id}" />'>
+							<s:url id="updateUrl" namespace="/meals" action="updateInput">
+								<s:param name="mealId" value="%{id}" />
+							</s:url>
+							<a href="${updateUrl}">
 								<fmt:formatDate value="${instant}" type="both" pattern="yyyy-MM-dd HH:mm" />
 							</a>
 							|
-							<a href='<c:url value="/meals/delete.go?mealId=${id}" />' onclick="return confirm('${deleteConfirmMsg}')">
+							<s:url id="deleteUrl" namespace="/meals" action="delete">
+								<s:param name="mealId" value="%{id}" />
+							</s:url>
+							<a href="${deleteUrl}" onclick="return confirm('${deleteConfirmMsg}')">
 								<fmt:message key="meals.delete" />
 							</a>
 						</li>
@@ -31,7 +37,7 @@
 		</div>
 
 		<div>
-			<a href='<c:url value="/meals/createInput.go" />'><fmt:message key="meals.create" /></a>
+			<a href='<s:url namespace="/meals" action="createInput" />'><fmt:message key="meals.create" /></a>
 		</div>
 	</body>
 </html>

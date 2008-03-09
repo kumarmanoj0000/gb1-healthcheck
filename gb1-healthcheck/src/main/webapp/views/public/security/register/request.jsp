@@ -6,7 +6,7 @@
 	<body>
 		<s:actionerror />
 
-		<s:form action="register" namespace="/public/register">
+		<s:form namespace="/public/register" action="register">
 			<div class="required">
 				<label><fmt:message key="register.login" />:</label>
 				<s:textfield name="model.login" />

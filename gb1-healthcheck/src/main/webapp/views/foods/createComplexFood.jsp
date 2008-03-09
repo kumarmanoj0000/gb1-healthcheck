@@ -8,7 +8,7 @@
 
 		<s:actionerror />
 
-		<s:form action="createSubmit.go" method="post" namespace="/foods/complexFood">
+		<s:form namespace="/foods/complexFood" action="createSubmit">
 			<div class="required">
 				<label><fmt:message key="food.name" />:</label>
 				<s:textfield name="model.name" />

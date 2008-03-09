@@ -8,7 +8,7 @@
 		
 		<s:actionerror />
 
-		<s:form action="editSubmit.go" namespace="/users">
+		<s:form namespace="/users" action="editSubmit">
 			<s:hidden name="user.id" />
 
 			<div class="required">

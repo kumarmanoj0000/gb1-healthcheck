@@ -35,7 +35,7 @@
 
 		<s:actionerror />
 
-		<s:form action="createSubmit.go" method="post" namespace="/meals">
+		<s:form namespace="/meals" action="createSubmit">
 			<s:hidden name="model.eaterId" />
 
 			<div class="required">

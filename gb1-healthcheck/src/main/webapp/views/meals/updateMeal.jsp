@@ -35,7 +35,7 @@
 
 		<s:actionerror />
 
-		<s:form action="updateSubmit.go" method="post" namespace="/meals">
+		<s:form namespace="/meals" action="updateSubmit">
 			<s:hidden name="mealId" />
 			<s:hidden name="eaterId" />
 
