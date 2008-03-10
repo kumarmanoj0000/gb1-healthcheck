@@ -2,7 +2,8 @@
 
 <html>
 <body>
-	<h1><s:text name="users.list.title" /></h1>
+	<%@ include file="/views/fragments/actionMessages.jsp"%>
+	<h2><s:text name="users.list.title" /></h2>
 	<div>TODO</div>
 </body>
 </html>

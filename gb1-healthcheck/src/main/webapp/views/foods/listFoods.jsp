@@ -4,7 +4,7 @@
 
 <html>
 	<body>
-		<div class="actionMessages"><s:actionmessage /></div>
+		<%@ include file="/views/fragments/actionMessages.jsp"%>
 
 		<h2><s:text name="foods.title" /></h2>
 

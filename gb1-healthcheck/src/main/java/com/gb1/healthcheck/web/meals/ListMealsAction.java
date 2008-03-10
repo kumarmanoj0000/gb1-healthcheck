@@ -7,6 +7,7 @@ import java.util.List;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.commons.lang.StringUtils;
 import org.apache.struts2.interceptor.ServletRequestAware;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
@@ -43,7 +44,9 @@ public class ListMealsAction extends ActionSupport implements ServletRequestAwar
 	}
 
 	public void setConfirmationMessage(String msg) {
-		addActionMessage(msg);
+		if (StringUtils.isNotBlank(msg)) {
+			addActionMessage(msg);
+		}
 	}
 
 	public void setServletRequest(HttpServletRequest request) {
