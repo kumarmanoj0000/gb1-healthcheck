@@ -8,6 +8,7 @@
 	<constant name="struts.locale" value="en_CA" />
 	<constant name="struts.custom.i18n.resources" value="ApplicationMessages" />
 	<constant name="struts.ui.theme" value="simple" />
+	<constant name="struts.url.includeParams" value="none" />
 
 	<include file="struts-default.xml" />
 
