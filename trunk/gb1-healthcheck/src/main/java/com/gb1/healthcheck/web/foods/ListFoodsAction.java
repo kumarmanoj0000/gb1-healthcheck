@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.apache.commons.lang.StringUtils;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
@@ -48,7 +49,9 @@ public class ListFoodsAction extends ActionSupport {
 	}
 
 	public void setConfirmationMessage(String msg) {
-		addActionMessage(msg);
+		if (StringUtils.isNotBlank(msg)) {
+			addActionMessage(msg);
+		}
 	}
 
 	@Resource
