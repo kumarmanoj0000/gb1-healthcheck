@@ -33,7 +33,7 @@ public class EditActiveUserAction extends ActionSupport implements ServletReques
 	private HttpServletRequest request;
 	private Map<String, Object> sessionMap;
 	private UserService userService;
-	private String confirmationMessage;
+	private String confirmationMessageKey;
 
 	public EditActiveUserAction() {
 	}
@@ -59,7 +59,7 @@ public class EditActiveUserAction extends ActionSupport implements ServletReques
 			activeUser.update(updateReq);
 
 			sessionMap.remove(MODEL_SESSION_KEY);
-			confirmationMessage = getText("users.edit.success");
+			confirmationMessageKey = "users.edit.success";
 			result = Action.SUCCESS;
 		}
 		catch (EmailAlreadyExistsException e) {
@@ -85,8 +85,8 @@ public class EditActiveUserAction extends ActionSupport implements ServletReques
 		return model;
 	}
 
-	public String getConfirmationMessage() {
-		return confirmationMessage;
+	public String getConfirmationMessageKey() {
+		return confirmationMessageKey;
 	}
 
 	public void setServletRequest(HttpServletRequest request) {
