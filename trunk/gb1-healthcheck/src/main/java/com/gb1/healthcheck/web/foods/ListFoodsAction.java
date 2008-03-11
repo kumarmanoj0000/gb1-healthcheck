@@ -48,9 +48,9 @@ public class ListFoodsAction extends ActionSupport {
 		return complexFoods;
 	}
 
-	public void setConfirmationMessage(String msg) {
+	public void setConfirmationMessageKey(String msg) {
 		if (StringUtils.isNotBlank(msg)) {
-			addActionMessage(msg);
+			addActionMessage(getText(msg));
 		}
 	}
 

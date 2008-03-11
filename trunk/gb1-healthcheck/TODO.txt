@@ -18,8 +18,10 @@ HealthCheck
 
 . technical
   - improve Struts2 actions code
+  - reduce HTML tags, favor Struts2 tags (use theme?)
   - improve Eclipse/Maven integration
   - investigate Spring TestContext
+  - investigate writing JUnit integration tests
   - migrate to Struts2 annotations (multiple action methods not supported in 2.0; what about 2.1?)
   - migrate to DWR annotations (no integration with Spring annotations in 2.0; what about 3.0?)
 
@@ -29,3 +31,4 @@ HealthCheck
   - bad integration between Eclipse and Maven (dependent vs WEB-INF/lib JARs)
   - Struts2 tags confusion: EL vs OGNL expressions
   - Struts2 i18n forcing use of <s:text>, <fmt:message> not working
+  - lots of HTML tags to code

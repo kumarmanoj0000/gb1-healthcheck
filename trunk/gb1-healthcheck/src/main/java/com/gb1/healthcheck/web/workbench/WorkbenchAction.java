@@ -13,13 +13,14 @@ public class WorkbenchAction extends ActionSupport {
 	public WorkbenchAction() {
 	}
 
+	@Override
 	public String execute() {
 		return Action.SUCCESS;
 	}
 
-	public void setConfirmationMessage(String msg) {
+	public void setConfirmationMessageKey(String msg) {
 		if (StringUtils.isNotBlank(msg)) {
-			addActionMessage(msg);
+			addActionMessage(getText(msg));
 		}
 	}
 }

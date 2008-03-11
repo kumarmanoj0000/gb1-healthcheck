@@ -43,9 +43,9 @@ public class ListMealsAction extends ActionSupport implements ServletRequestAwar
 		return Collections.unmodifiableList(mealHistory);
 	}
 
-	public void setConfirmationMessage(String msg) {
+	public void setConfirmationMessageKey(String msg) {
 		if (StringUtils.isNotBlank(msg)) {
-			addActionMessage(msg);
+			addActionMessage(getText(msg));
 		}
 	}
 

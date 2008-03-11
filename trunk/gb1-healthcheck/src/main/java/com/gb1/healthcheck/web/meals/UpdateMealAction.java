@@ -25,7 +25,7 @@ public class UpdateMealAction extends MealActionSupport implements Preparable, S
 	private HttpServletRequest request;
 	private Map<String, Object> session;
 	private Long mealId;
-	private String confirmationMessage;
+	private String confirmationMessageKey;
 
 	public UpdateMealAction() {
 	}
@@ -49,7 +49,7 @@ public class UpdateMealAction extends MealActionSupport implements Preparable, S
 			getMealService().updateMeal(getModel());
 			session.remove(MODEL_SESSION_KEY);
 
-			confirmationMessage = getText("meals.update.success");
+			confirmationMessageKey = "meals.update.success";
 			result = Action.SUCCESS;
 		}
 		catch (MealException e) {
@@ -76,8 +76,8 @@ public class UpdateMealAction extends MealActionSupport implements Preparable, S
 		return model;
 	}
 
-	public String getConfirmationMessage() {
-		return confirmationMessage;
+	public String getConfirmationMessageKey() {
+		return confirmationMessageKey;
 	}
 
 	public void setServletRequest(HttpServletRequest request) {

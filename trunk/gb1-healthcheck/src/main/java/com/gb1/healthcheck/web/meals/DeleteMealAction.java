@@ -14,14 +14,14 @@ import com.opensymphony.xwork2.ActionSupport;
 public class DeleteMealAction extends ActionSupport {
 	private MealService mealSvc;
 	private Long mealId;
-	private String confirmationMessage;
+	private String confirmationMessageKey;
 
 	public DeleteMealAction() {
 	}
 
 	public String delete() {
 		mealSvc.deleteMeal(mealId);
-		confirmationMessage = getText("meals.delete.success");
+		confirmationMessageKey = "meals.delete.success";
 		return Action.SUCCESS;
 	}
 
@@ -29,8 +29,8 @@ public class DeleteMealAction extends ActionSupport {
 		this.mealId = mealId;
 	}
 
-	public String getConfirmationMessage() {
-		return confirmationMessage;
+	public String getConfirmationMessageKey() {
+		return confirmationMessageKey;
 	}
 
 	@Resource
