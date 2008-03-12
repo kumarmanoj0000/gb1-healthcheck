@@ -14,7 +14,6 @@ HealthCheck
       * edit user profile
 
   - overall
-    * default exception page
     * use flash interceptor to show confirmation messages
     * improve presentation of FoodGroup labels
     * add side navigation
