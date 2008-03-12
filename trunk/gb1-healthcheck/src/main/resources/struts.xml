@@ -13,6 +13,23 @@
 	<include file="struts-default.xml" />
 
 	<package name="default" extends="struts-default">
+		<interceptors>
+			<interceptor-stack name="loggingDefaultStack">
+				<interceptor-ref name="exception">
+					<param name="logEnabled">true</param>
+					<param name="logLevel">ERROR</param>
+					<param name="logCategory">com.gb1</param>
+				</interceptor-ref>
+			</interceptor-stack>
+		</interceptors>
+		<default-interceptor-ref name="loggingDefaultStack" />
+
+		<global-results>
+			<result name="exception">/views/public/error.jsp</result>
+		</global-results>
+		<global-exception-mappings>
+			<exception-mapping result="exception" exception="java.lang.Exception" />
+		</global-exception-mappings>
 	</package>
 
 	<package name="registration" extends="default" namespace="/public/register">
