@@ -24,7 +24,7 @@ public class UpdateComplexFoodAction extends ComplexFoodActionSupport implements
 
 	private Map<String, Object> session;
 	private Long foodId;
-	private String confirmationMessageKey;
+	private String actionMessageKey;
 
 	public UpdateComplexFoodAction() {
 	}
@@ -46,7 +46,7 @@ public class UpdateComplexFoodAction extends ComplexFoodActionSupport implements
 			getFoodService().updateComplexFood(getModel());
 			session.remove(MODEL_SESSION_KEY);
 
-			confirmationMessageKey = "foods.complexFoods.update.success";
+			actionMessageKey = "foods.complexFoods.update.success";
 			result = Action.SUCCESS;
 		}
 		catch (FoodAlreadyExistsException e) {
@@ -74,8 +74,8 @@ public class UpdateComplexFoodAction extends ComplexFoodActionSupport implements
 		return model;
 	}
 
-	public String getConfirmationMessageKey() {
-		return confirmationMessageKey;
+	public String getActionMessageKey() {
+		return actionMessageKey;
 	}
 
 	@SuppressWarnings("unchecked")

@@ -15,6 +15,9 @@ HealthCheck
 
   - overall
     * default exception page
+    * use flash interceptor to show confirmation messages
+    * improve presentation of FoodGroup labels
+    * add side navigation
 
 . technical
   - improve Struts2 actions code
@@ -22,8 +25,6 @@ HealthCheck
   - improve Eclipse/Maven integration
   - investigate Spring TestContext
   - investigate writing JUnit integration tests
-  - migrate to Struts2 annotations (multiple action methods not supported in 2.0; what about 2.1?)
-  - migrate to DWR annotations (no integration with Spring annotations in 2.0; what about 3.0?)
 
 . pain points
   - so many different APIs, so many configuration files (this is Java!)
