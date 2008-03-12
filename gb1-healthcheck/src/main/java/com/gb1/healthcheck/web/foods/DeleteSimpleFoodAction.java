@@ -9,14 +9,14 @@ import com.opensymphony.xwork2.Action;
 @Scope("prototype")
 public class DeleteSimpleFoodAction extends SimpleFoodActionSupport {
 	private Long foodId;
-	private String confirmationMessageKey;
+	private String actionMessageKey;
 
 	public DeleteSimpleFoodAction() {
 	}
 
 	public String submit() {
 		getFoodService().deleteFood(foodId);
-		confirmationMessageKey = "foods.simpleFoods.delete.success";
+		actionMessageKey = "foods.simpleFoods.delete.success";
 
 		return Action.SUCCESS;
 	}
@@ -25,7 +25,7 @@ public class DeleteSimpleFoodAction extends SimpleFoodActionSupport {
 		this.foodId = foodId;
 	}
 
-	public String getConfirmationMessageKey() {
-		return confirmationMessageKey;
+	public String getActionMessageKey() {
+		return actionMessageKey;
 	}
 }

@@ -18,9 +18,9 @@ public class WorkbenchAction extends ActionSupport {
 		return Action.SUCCESS;
 	}
 
-	public void setConfirmationMessageKey(String msg) {
-		if (StringUtils.isNotBlank(msg)) {
-			addActionMessage(getText(msg));
+	public void setActionMessageKey(String key) {
+		if (StringUtils.isNotBlank(key)) {
+			addActionMessage(getText(key));
 		}
 	}
 }

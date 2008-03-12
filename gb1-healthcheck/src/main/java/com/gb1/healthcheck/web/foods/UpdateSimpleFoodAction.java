@@ -23,7 +23,7 @@ public class UpdateSimpleFoodAction extends SimpleFoodActionSupport implements S
 
 	private Map<String, Object> session;
 	private Long foodId = null;
-	private String confirmationMessageKey;
+	private String actionMessageKey;
 
 	public UpdateSimpleFoodAction() {
 	}
@@ -50,7 +50,7 @@ public class UpdateSimpleFoodAction extends SimpleFoodActionSupport implements S
 			getFoodService().updateSimpleFood(getModel());
 			session.remove(MODEL_SESSION_KEY);
 
-			confirmationMessageKey = "foods.simpleFoods.update.success";
+			actionMessageKey = "foods.simpleFoods.update.success";
 			result = Action.SUCCESS;
 		}
 		catch (FoodAlreadyExistsException e) {
@@ -76,7 +76,7 @@ public class UpdateSimpleFoodAction extends SimpleFoodActionSupport implements S
 		return (BasicSimpleFoodUpdateRequest) session.get(MODEL_SESSION_KEY);
 	}
 
-	public String getConfirmationMessageKey() {
-		return confirmationMessageKey;
+	public String getActionMessageKey() {
+		return actionMessageKey;
 	}
 }

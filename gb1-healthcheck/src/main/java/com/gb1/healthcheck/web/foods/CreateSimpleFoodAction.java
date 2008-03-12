@@ -15,7 +15,7 @@ import com.opensymphony.xwork2.validator.annotations.Validations;
 @Validation
 public class CreateSimpleFoodAction extends SimpleFoodActionSupport {
 	private BasicSimpleFoodCreationRequest foodCreationRequest = new BasicSimpleFoodCreationRequest();
-	private String confirmationMessageKey;
+	private String actionMessageKey;
 
 	public CreateSimpleFoodAction() {
 	}
@@ -26,7 +26,7 @@ public class CreateSimpleFoodAction extends SimpleFoodActionSupport {
 
 		try {
 			getFoodService().createSimpleFood(foodCreationRequest);
-			confirmationMessageKey = "foods.simpleFoods.create.success";
+			actionMessageKey = "foods.simpleFoods.create.success";
 			result = Action.SUCCESS;
 		}
 		catch (FoodAlreadyExistsException e) {
@@ -44,7 +44,7 @@ public class CreateSimpleFoodAction extends SimpleFoodActionSupport {
 		return foodCreationRequest;
 	}
 
-	public String getConfirmationMessageKey() {
-		return confirmationMessageKey;
+	public String getActionMessageKey() {
+		return actionMessageKey;
 	}
 }
