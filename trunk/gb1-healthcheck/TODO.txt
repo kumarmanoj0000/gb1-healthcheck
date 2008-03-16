@@ -16,7 +16,6 @@ HealthCheck
   - overall
     * use flash interceptor to show confirmation messages
     * improve presentation of FoodGroup labels
-    * add side navigation
 
 . technical
   - improve Struts2 actions code
