@@ -36,9 +36,24 @@
 
 	<body>
 		<a name="top"></a>
+
 		<div id="container">
 			<div id="header"><%@ include file="/views/fragments/header.jsp"%></div>
-			<div id="content"><decorator:body /></div>
+
+			<table width="100%">
+				<tr>
+					<authz:authorize ifNotGranted="role_anonymous">
+						<td width="20%" valign="top">
+							<div id="navigation"><%@ include file="/views/fragments/navigation.jsp" %></div>
+						</td>
+					</authz:authorize>
+
+					<td valign="top">
+						<div id="content"><decorator:body /></div>
+					</td>
+				</tr>
+			</table>
+
 			<div id="footer"><%@ include file="/views/fragments/footer.jsp"%></div>
 		</div>
 	</body>

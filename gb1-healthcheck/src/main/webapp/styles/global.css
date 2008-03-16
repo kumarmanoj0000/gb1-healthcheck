@@ -116,6 +116,17 @@ form div.actions {
 	border-right: 0px solid;
 }
 
+#navigation {
+	margin: 25px;
+	border-right: 1px solid;
+}
+
+#navigation .navAction {
+	list-style-type: none;
+	position: relative;
+	left: -30px;
+}
+
 #content {
 	margin: 25px;
 }
