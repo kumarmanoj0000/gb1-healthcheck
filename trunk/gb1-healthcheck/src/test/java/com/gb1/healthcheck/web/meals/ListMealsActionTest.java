@@ -1,6 +1,5 @@
 package com.gb1.healthcheck.web.meals;
 
-import java.text.ParseException;
 import java.util.List;
 
 import junit.framework.TestCase;
@@ -16,7 +15,7 @@ import com.gb1.healthcheck.services.meals.MealService;
 import com.opensymphony.xwork2.Action;
 
 public class ListMealsActionTest extends TestCase {
-	public void testListMeals() throws ParseException {
+	public void testListMeals() {
 		final User requester = Users.gb();
 		final List<Meal> mealHistory = Meals.mealHistory();
 

@@ -3,9 +3,7 @@ package com.gb1.healthcheck.web.users;
 import java.util.Map;
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
 
-import org.apache.struts2.interceptor.ServletRequestAware;
 import org.apache.struts2.interceptor.SessionAware;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
@@ -25,12 +23,10 @@ import com.opensymphony.xwork2.validator.annotations.Validations;
 @Controller("editActiveUserAction")
 @Scope("prototype")
 @Validation
-public class EditActiveUserAction extends ActionSupport implements ServletRequestAware,
-		SessionAware {
+public class EditActiveUserAction extends ActionSupport implements SessionAware {
 	protected static final String MODEL_SESSION_KEY = EditActiveUserAction.class.getName()
 			+ ".model";
 
-	private HttpServletRequest request;
 	private Map<String, Object> sessionMap;
 	private UserService userService;
 	private String actionMessageKey;
@@ -77,7 +73,7 @@ public class EditActiveUserAction extends ActionSupport implements ServletReques
 	}
 
 	public User getUser() {
-		return HttpRequestUtils.getUser(request);
+		return HttpRequestUtils.getUser();
 	}
 
 	public BasicUserUpdateRequest getModel() {
@@ -87,10 +83,6 @@ public class EditActiveUserAction extends ActionSupport implements ServletReques
 
 	public String getActionMessageKey() {
 		return actionMessageKey;
-	}
-
-	public void setServletRequest(HttpServletRequest request) {
-		this.request = request;
 	}
 
 	@SuppressWarnings("unchecked")

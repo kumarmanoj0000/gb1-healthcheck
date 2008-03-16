@@ -3,10 +3,6 @@ package com.gb1.healthcheck.web.metrics;
 import java.util.Date;
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
-
-import org.apache.struts2.interceptor.ServletRequestAware;
-
 import com.gb1.healthcheck.domain.metrics.GastricState;
 import com.gb1.healthcheck.domain.metrics.PatientFile;
 import com.gb1.healthcheck.domain.metrics.PunctualGastricState;
@@ -15,8 +11,7 @@ import com.gb1.healthcheck.services.metrics.PatientFileService;
 import com.gb1.healthcheck.web.utils.HttpRequestUtils;
 import com.opensymphony.xwork2.Action;
 
-public class ManageGastricStatesAction implements ServletRequestAware {
-	private HttpServletRequest request;
+public class ManageGastricStatesAction {
 	private PatientFileService patientFileService;
 
 	public ManageGastricStatesAction() {
@@ -26,8 +21,8 @@ public class ManageGastricStatesAction implements ServletRequestAware {
 		return Action.SUCCESS;
 	}
 
-	protected User getRequester(HttpServletRequest request) {
-		return HttpRequestUtils.getUser(request);
+	protected User getRequester() {
+		return HttpRequestUtils.getUser();
 	}
 
 	public List<PunctualGastricState> loadGastricStates(Long patientId, Date date) {
@@ -42,11 +37,7 @@ public class ManageGastricStatesAction implements ServletRequestAware {
 	}
 
 	public User getPatient() {
-		return getRequester(request);
-	}
-
-	public void setServletRequest(HttpServletRequest request) {
-		this.request = request;
+		return getRequester();
 	}
 
 	public void setPatientFileService(PatientFileService svc) {

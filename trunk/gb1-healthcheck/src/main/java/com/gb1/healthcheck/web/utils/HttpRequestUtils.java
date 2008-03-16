@@ -1,7 +1,5 @@
 package com.gb1.healthcheck.web.utils;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.acegisecurity.context.SecurityContextHolder;
 
 import com.gb1.healthcheck.domain.users.AcegiUserDetailsAdapter;
@@ -19,10 +17,9 @@ public class HttpRequestUtils {
 	/**
 	 * Returns the connected user. If no user is found, returns null.
 	 * 
-	 * @param request The HTTP request
 	 * @return The connected user; null if not found
 	 */
-	public static User getUser(HttpServletRequest request) {
+	public static User getUser() {
 		User user = null;
 		AcegiUserDetailsAdapter acegiUser = (AcegiUserDetailsAdapter) SecurityContextHolder
 				.getContext().getAuthentication().getPrincipal();

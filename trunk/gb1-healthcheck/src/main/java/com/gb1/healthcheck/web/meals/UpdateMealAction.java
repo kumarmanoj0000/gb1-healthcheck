@@ -2,9 +2,6 @@ package com.gb1.healthcheck.web.meals;
 
 import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
-
-import org.apache.struts2.interceptor.ServletRequestAware;
 import org.apache.struts2.interceptor.SessionAware;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
@@ -18,11 +15,9 @@ import com.opensymphony.xwork2.Preparable;
 
 @Controller("updateMealAction")
 @Scope("prototype")
-public class UpdateMealAction extends MealActionSupport implements Preparable, ServletRequestAware,
-		SessionAware {
+public class UpdateMealAction extends MealActionSupport implements Preparable, SessionAware {
 	private static final String MODEL_SESSION_KEY = UpdateMealAction.class.getName() + ".model";
 
-	private HttpServletRequest request;
 	private Map<String, Object> session;
 	private Long mealId;
 	private String actionMessageKey;
@@ -68,7 +63,7 @@ public class UpdateMealAction extends MealActionSupport implements Preparable, S
 	}
 
 	public Long getEaterId() {
-		return getRequester(request).getId();
+		return getRequester().getId();
 	}
 
 	public MealUpdateRequest getModel() {
@@ -78,10 +73,6 @@ public class UpdateMealAction extends MealActionSupport implements Preparable, S
 
 	public String getActionMessageKey() {
 		return actionMessageKey;
-	}
-
-	public void setServletRequest(HttpServletRequest request) {
-		this.request = request;
 	}
 
 	@SuppressWarnings("unchecked")

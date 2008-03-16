@@ -6,7 +6,6 @@ import java.util.LinkedList;
 import java.util.List;
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
 
 import com.gb1.commons.dataaccess.IdentityHydrater;
 import com.gb1.healthcheck.domain.foods.ComplexFood;
@@ -48,8 +47,8 @@ public abstract class MealActionSupport extends ActionSupport {
 		return Collections.unmodifiableList(availableFoods);
 	}
 
-	protected User getRequester(HttpServletRequest request) {
-		return HttpRequestUtils.getUser(request);
+	protected User getRequester() {
+		return HttpRequestUtils.getUser();
 	}
 
 	protected FoodService getFoodService() {
