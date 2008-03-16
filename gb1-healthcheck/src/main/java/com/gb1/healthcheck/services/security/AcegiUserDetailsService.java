@@ -40,12 +40,10 @@ public class AcegiUserDetailsService implements UserDetailsService {
 		if (user == null) {
 			throw new UsernameNotFoundException(username);
 		}
-		else {
-			userDetails = new AcegiUserDetailsAdapter(user);
 
-			// authorities should be eagerly fetched
-			userDetails.getAuthorities();
-		}
+		// authorities should be eagerly fetched
+		userDetails = new AcegiUserDetailsAdapter(user);
+		userDetails.getAuthorities();
 
 		return userDetails;
 	}

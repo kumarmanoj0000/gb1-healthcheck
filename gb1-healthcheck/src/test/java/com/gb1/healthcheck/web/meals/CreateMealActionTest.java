@@ -5,8 +5,6 @@ import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
-
 import junit.framework.TestCase;
 
 import org.apache.commons.collections.CollectionUtils;
@@ -91,7 +89,7 @@ public class CreateMealActionTest extends TestCase {
 	private CreateMealAction createMealAction() {
 		CreateMealAction action = new CreateMealAction() {
 			@Override
-			protected User getRequester(HttpServletRequest request) {
+			protected User getRequester() {
 				return Users.lg();
 			}
 		};

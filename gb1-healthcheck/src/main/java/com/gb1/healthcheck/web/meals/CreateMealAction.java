@@ -1,7 +1,5 @@
 package com.gb1.healthcheck.web.meals;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
@@ -14,7 +12,6 @@ import com.opensymphony.xwork2.Preparable;
 @Controller("createMealAction")
 @Scope("prototype")
 public class CreateMealAction extends MealActionSupport implements Preparable {
-	private HttpServletRequest request;
 	private MealCreationRequest model;
 	private String actionMessageKey;
 
@@ -23,7 +20,7 @@ public class CreateMealAction extends MealActionSupport implements Preparable {
 
 	public void prepare() {
 		loadAvailableFoods();
-		model = new BasicMealCreationRequest(getRequester(request));
+		model = new BasicMealCreationRequest(getRequester());
 	}
 
 	public String submit() {
@@ -50,9 +47,5 @@ public class CreateMealAction extends MealActionSupport implements Preparable {
 
 	public String getActionMessageKey() {
 		return actionMessageKey;
-	}
-
-	public void setServletRequest(HttpServletRequest request) {
-		this.request = request;
 	}
 }
