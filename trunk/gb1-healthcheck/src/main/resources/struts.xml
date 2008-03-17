@@ -15,10 +15,10 @@
 	<package name="default" extends="struts-default">
 		<interceptors>
 			<interceptor-stack name="loggingDefaultStack">
-				<interceptor-ref name="exception">
-					<param name="logEnabled">true</param>
-					<param name="logLevel">ERROR</param>
-					<param name="logCategory">com.gb1</param>
+				<interceptor-ref name="defaultStack">
+					<param name="exception.logEnabled">true</param>
+					<param name="exception.logLevel">ERROR</param>
+					<param name="exception.logCategory">com.gb1</param>
 				</interceptor-ref>
 			</interceptor-stack>
 		</interceptors>
