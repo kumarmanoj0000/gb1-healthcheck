@@ -72,7 +72,7 @@
 							name="model.selectedPreparationMethodNames"
 							list="availablePreparationMethods"
 							listKey="name()"
-							listValue="name()"
+							listValue="%{getText('preparationMethod.' + name())}"
 						/>
 					</div>
 
