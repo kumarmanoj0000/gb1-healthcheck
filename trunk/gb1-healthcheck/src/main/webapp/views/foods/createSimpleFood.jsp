@@ -22,7 +22,7 @@
 
 			<fieldset id="nutrientsList">
 				<legend><s:text name="food.nutrients" />:</legend>
-				<s:checkboxlist name="model.selectedNutrients" list="availableNutrients" listKey="name()" listValue="%{getText('nutrient.' + name())}" />
+				<s:checkboxlist theme="gb1" name="model.selectedNutrients" list="availableNutrients" listKey="name()" listValue="%{getText('nutrient.' + name())}" />
 			</fieldset>
 
 			<div class="actions">
