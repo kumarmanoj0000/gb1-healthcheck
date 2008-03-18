@@ -4,7 +4,7 @@ HealthCheck
 
 . features:
   - analysis
-    * gastric states graph (generate image? Flex component?)
+    * gastric states graph (generate image? applet?)
     * correlation food => gastric states
 
   - user administration
@@ -16,6 +16,7 @@ HealthCheck
   - overall
     * use flash interceptor to show confirmation messages
     * improve presentation of FoodGroup labels
+    * use Acegi logoff action
 
 . technical
   - improve Struts2 actions code

@@ -19,12 +19,12 @@
 
 			<div class="required">
 				<label><s:text name="food.foodGroup" />:</label>
-				<s:select name="model.foodGroup" list="availableGroups" />
+				<s:select name="model.foodGroup" list="availableGroups" listKey="name()" listValue="%{getText('foodGroup.' + name())}" />
 			</div>
 
 			<fieldset id="nutrientsList">
 				<legend><s:text name="food.nutrients" />:</legend>
-				<s:checkboxlist name="model.selectedNutrients" list="availableNutrients" listKey="name()" listValue="name()" />
+				<s:checkboxlist name="model.selectedNutrients" list="availableNutrients" listKey="name()" listValue="%{getText('nutrient.' + name())}" />
 			</fieldset>
 
 			<div class="actions">

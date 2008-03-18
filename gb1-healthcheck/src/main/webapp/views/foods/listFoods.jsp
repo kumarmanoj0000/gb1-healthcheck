@@ -11,7 +11,10 @@
 		<s:actionerror />
 
 		<h3><s:text name="foods.simpleFoods" /></h3>
-		<s:if test="simpleFoods.size == 0"><s:text name="foods.noSimpleFoods" /></s:if>
+
+		<s:if test="simpleFoods.size == 0">
+			<div><s:text name="foods.noSimpleFoods" /></div>
+		</s:if>
 		<s:else>
 			<ul>
 				<s:text name="foods.simpleFoods.confirmDelete" id="deleteConfirmMsg" />
@@ -30,10 +33,15 @@
 			</ul>
 		</s:else>
 
-		<a href='<s:url namespace="/foods/simpleFood" action="createInput" />'><s:text name="foods.simpleFoods.create" /></a>
+		<p>
+			<a href='<s:url namespace="/foods/simpleFood" action="createInput" />'><s:text name="foods.simpleFoods.create" /></a>
+		</p>
 
 		<h3><s:text name="foods.complexFoods" /></h3>
-		<s:if test="complexFoods.size == 0"><s:text name="foods.noComplexFoods" /></s:if>
+
+		<s:if test="complexFoods.size == 0">
+			<div><s:text name="foods.noComplexFoods" /></div>
+		</s:if>
 		<s:else>
 			<ul>
 				<s:text name="foods.complexFoods.confirmDelete" id="deleteConfirmMsg" />
@@ -51,6 +59,9 @@
 				</s:iterator>
 			</ul>
 		</s:else>
-		<a href='<s:url namespace="/foods/complexFood" action="createInput" />'><s:text name="foods.complexFoods.create" /></a>
+
+		<p>
+			<a href='<s:url namespace="/foods/complexFood" action="createInput" />'><s:text name="foods.complexFoods.create" /></a>
+		</p>
 	</body>
 </html>
