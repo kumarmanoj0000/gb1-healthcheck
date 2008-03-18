@@ -38,9 +38,6 @@ form {
 	width: 600px;
 }
 
-form fieldset {
-}
-
 form div {
 	padding: 1px 3px;
 	margin: 5px 0pt 0pt;
@@ -80,7 +77,6 @@ form div input.button {
 }
 
 form div.actions {
-	text-align: right;
 }
 
 #container {
@@ -139,6 +135,10 @@ form div.actions {
 	width: 240px;
 }
 
+#signinForm div.actions {
+	text-align: right;
+}
+
 #signinActions {
 	padding-left: 0px;
 }
@@ -158,20 +158,12 @@ form div.actions {
 	border-right: 0px solid;
 }
 
-#nutrientsList label.checkboxLabel {
-	margin-left: 0px;
+#nutrientsList {
+	width: 100px;
 }
 
-#nutrientsList input {
-	width: auto;
-}
-
-#ingredientsList label.checkboxLabel {
-	margin-left: 0px;
-}
-
-#ingredientsList input {
-	width: auto;
+#ingredientsList {
+	width: 100px;
 }
 
 div#gastricStateSaving {

@@ -15,7 +15,6 @@ HealthCheck
 
   - overall
     * use flash interceptor to show confirmation messages
-    * create vertical checkbox component
 
 . technical
   - improve Struts2 actions code
