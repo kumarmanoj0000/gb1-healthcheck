@@ -1,33 +1,20 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt" %>
 <%@ taglib prefix="s" uri="/struts-tags" %>
-
-<%@ page import="org.acegisecurity.ui.webapp.AuthenticationProcessingFilter" %>
 
 <html>
 	<body>
-		<c:if test="${not empty param.login_error}">
-			<p id="loginError">
-				<s:text name="errors.signin.badcredentials" />
-			</p>
-		</c:if>
+		<s:if test="#parameters['login_error'] != null">
+			<p id="loginError"><s:text name="errors.signin.badcredentials" /></p>
+		</s:if>
 
-		<c:url var="actionUrl" value="/j_acegi_security_check" />
-		<form id="signinForm" action="${actionUrl}">
+		<form id="signinForm" action="<%= request.getContextPath() %>/j_acegi_security_check">
 			<table>
 				<tr>
 					<td><label class="required"><s:text name="signin.login" />:</label></td>
-					<td>
-						<input type="text" name="j_username"
-							<c:if test="${not empty param.login_error}">
-								value="<%= session.getAttribute(AuthenticationProcessingFilter.ACEGI_SECURITY_LAST_USERNAME_KEY) %>"
-							</c:if>
-						/>
-					</td>
+					<td><s:textfield name="j_username" value="%{#session['ACEGI_SECURITY_LAST_USERNAME']}" /></td>
 				</tr>
 				<tr>
 					<td><label class="required"><s:text name="signin.password" />:</label></td>
-					<td><input type="password" name="j_password" /></td>
+					<td><s:password name="j_password" /></td>
 				</tr>
 				<tr>
 					<td>&nbsp;</td>
@@ -39,7 +26,7 @@
 			</table>
 
 			<div class="actions">
-				<input class="button" type="submit" value='<s:text name="signin.submit" />' />
+				<s:submit cssClass="button" key="signin.submit" />
 			</div>
 		</form>
 

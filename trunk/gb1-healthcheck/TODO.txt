@@ -15,11 +15,11 @@ HealthCheck
 
   - overall
     * use flash interceptor to show confirmation messages
-    * improve presentation of FoodGroup labels
-    * use Acegi logoff action
+    * create vertical checkbox component
 
 . technical
   - improve Struts2 actions code
+  - reduce JSPs (merge createX and updateX)
   - reduce HTML tags, favor Struts2 tags (use theme?)
   - improve Eclipse/Maven integration
   - investigate Spring TestContext
