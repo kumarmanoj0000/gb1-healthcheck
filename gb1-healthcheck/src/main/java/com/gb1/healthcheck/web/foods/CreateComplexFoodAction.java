@@ -16,18 +16,17 @@ import com.opensymphony.xwork2.validator.annotations.Validations;
 @Validation
 public class CreateComplexFoodAction extends ComplexFoodActionSupport {
 	private BasicComplexFoodCreationRequest foodCreationRequest = new BasicComplexFoodCreationRequest();
-	private String actionMessageKey;
 
 	public CreateComplexFoodAction() {
 	}
 
-	@Validations(requiredStrings = { @RequiredStringValidator(fieldName = "model.name", message = "", key = "foods.complexFoods.create.error.nameRequired") })
+	@Validations(requiredStrings = { @RequiredStringValidator(fieldName = "model.name", message = "", key = "foods.complexFoods.edit.error.nameRequired") })
 	public String submit() {
 		String result = Action.INPUT;
 
 		try {
 			getFoodService().createComplexFood(foodCreationRequest);
-			actionMessageKey = "foods.complexFoods.create.success";
+			setActionMessageKey("foods.complexFoods.edit.success");
 			result = Action.SUCCESS;
 		}
 		catch (FoodAlreadyExistsException e) {
@@ -37,8 +36,7 @@ public class CreateComplexFoodAction extends ComplexFoodActionSupport {
 			addFieldError("model.name", getText("food.exception.selectAtLeastOneIngredient"));
 		}
 		catch (FoodException e) {
-			addActionError(getText("foods.complexFoods.create.error",
-					new String[] { e.getMessage() }));
+			addActionError(getText("foods.complexFoods.edit.error", new String[] { e.getMessage() }));
 		}
 
 		return result;
@@ -46,9 +44,5 @@ public class CreateComplexFoodAction extends ComplexFoodActionSupport {
 
 	public BasicComplexFoodCreationRequest getModel() {
 		return foodCreationRequest;
-	}
-
-	public String getActionMessageKey() {
-		return actionMessageKey;
 	}
 }

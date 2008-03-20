@@ -15,26 +15,24 @@ import com.opensymphony.xwork2.validator.annotations.Validations;
 @Validation
 public class CreateSimpleFoodAction extends SimpleFoodActionSupport {
 	private BasicSimpleFoodCreationRequest foodCreationRequest = new BasicSimpleFoodCreationRequest();
-	private String actionMessageKey;
 
 	public CreateSimpleFoodAction() {
 	}
 
-	@Validations(requiredStrings = { @RequiredStringValidator(fieldName = "model.name", message = "", key = "foods.simpleFoods.create.error.nameRequired") })
+	@Validations(requiredStrings = { @RequiredStringValidator(fieldName = "model.name", message = "", key = "foods.simpleFoods.edit.error.nameRequired") })
 	public String submit() {
 		String result = Action.INPUT;
 
 		try {
-			getFoodService().createSimpleFood(foodCreationRequest);
-			actionMessageKey = "foods.simpleFoods.create.success";
+			getFoodService().createSimpleFood(getModel());
+			setActionMessageKey("foods.simpleFoods.edit.success");
 			result = Action.SUCCESS;
 		}
 		catch (FoodAlreadyExistsException e) {
 			addFieldError("model.name", getText("food.exception.alreadyExists"));
 		}
 		catch (FoodException e) {
-			addActionError(getText("foods.simpleFoods.create.error",
-					new String[] { e.getMessage() }));
+			addActionError(getText("foods.simpleFoods.edit.error", new String[] { e.getMessage() }));
 		}
 
 		return result;
@@ -42,9 +40,5 @@ public class CreateSimpleFoodAction extends SimpleFoodActionSupport {
 
 	public BasicSimpleFoodCreationRequest getModel() {
 		return foodCreationRequest;
-	}
-
-	public String getActionMessageKey() {
-		return actionMessageKey;
 	}
 }

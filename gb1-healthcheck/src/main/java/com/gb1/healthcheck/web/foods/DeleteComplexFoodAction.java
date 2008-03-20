@@ -8,23 +8,13 @@ import com.opensymphony.xwork2.Action;
 @Controller("deleteComplexFoodAction")
 @Scope("prototype")
 public class DeleteComplexFoodAction extends ComplexFoodActionSupport {
-	private Long foodId;
-	private String actionMessageKey;
-
 	public DeleteComplexFoodAction() {
 	}
 
 	public String submit() {
-		getFoodService().deleteFood(foodId);
-		actionMessageKey = "foods.complexFoods.delete.success";
+		getFoodService().deleteFood(getFoodId());
+		setActionMessageKey("foods.complexFoods.delete.success");
+
 		return Action.SUCCESS;
-	}
-
-	public void setFoodId(Long foodId) {
-		this.foodId = foodId;
-	}
-
-	public String getActionMessageKey() {
-		return actionMessageKey;
 	}
 }

@@ -93,11 +93,11 @@
 
 	<package name="simpleFood" extends="default" namespace="/foods/simpleFood">
 		<action name="createInput" method="input" class="createSimpleFoodAction">
-			<result name="input">/views/foods/createSimpleFood.jsp</result>
+			<result name="input">/views/foods/editSimpleFood.jsp</result>
 		</action>
 
 		<action name="createSubmit" method="submit" class="createSimpleFoodAction">
-			<result name="input">/views/foods/createSimpleFood.jsp</result>
+			<result name="input">/views/foods/editSimpleFood.jsp</result>
 			<result name="success" type="redirect-action">
 				<param name="namespace">/foods</param>
 				<param name="actionName">list</param>
@@ -107,11 +107,11 @@
 		</action>
 
 		<action name="updateInput" method="input" class="updateSimpleFoodAction">
-			<result name="input">/views/foods/updateSimpleFood.jsp</result>
+			<result name="input">/views/foods/editSimpleFood.jsp</result>
 		</action>
 
 		<action name="updateSubmit" method="submit" class="updateSimpleFoodAction">
-			<result name="input">/views/foods/updateSimpleFood.jsp</result>
+			<result name="input">/views/foods/editSimpleFood.jsp</result>
 			<result name="success" type="redirect-action">
 				<param name="namespace">/foods</param>
 				<param name="actionName">list</param>
@@ -132,11 +132,11 @@
 
 	<package name="complexFood" extends="default" namespace="/foods/complexFood">
 		<action name="createInput" method="input" class="createComplexFoodAction">
-			<result name="input">/views/foods/createComplexFood.jsp</result>
+			<result name="input">/views/foods/editComplexFood.jsp</result>
 		</action>
 
 		<action name="createSubmit" method="submit" class="createComplexFoodAction">
-			<result name="input">/views/foods/createComplexFood.jsp</result>
+			<result name="input">/views/foods/editComplexFood.jsp</result>
 			<result name="success" type="redirect-action">
 				<param name="namespace">/foods</param>
 				<param name="actionName">list</param>
@@ -146,11 +146,11 @@
 		</action>
 
 		<action name="updateInput" method="input" class="updateComplexFoodAction">
-			<result name="input">/views/foods/updateComplexFood.jsp</result>
+			<result name="input">/views/foods/editComplexFood.jsp</result>
 		</action>
 
 		<action name="updateSubmit" method="submit" class="updateComplexFoodAction">
-			<result name="input">/views/foods/updateComplexFood.jsp</result>
+			<result name="input">/views/foods/editComplexFood.jsp</result>
 			<result name="success" type="redirect-action">
 				<param name="namespace">/foods</param>
 				<param name="actionName">list</param>

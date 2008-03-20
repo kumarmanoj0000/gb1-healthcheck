@@ -13,12 +13,10 @@ HealthCheck
       * view user profile
       * edit user profile
 
-  - overall
-    * use flash interceptor to show confirmation messages
-
 . technical
-  - improve Struts2 actions code
-  - reduce JSPs (merge createX and updateX)
+  - merge createMeal.jsp and updateMeal.jsp
+  - rename single action methods to "execute"
+  - use flash interceptor to show confirmation messages
   - reduce HTML tags, favor Struts2 tags (use theme?)
   - improve Eclipse/Maven integration
   - investigate Spring TestContext

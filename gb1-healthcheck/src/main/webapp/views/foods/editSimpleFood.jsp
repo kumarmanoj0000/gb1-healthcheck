@@ -2,11 +2,11 @@
 
 <html>
 	<body>
-		<h2><s:text name="foods.simpleFoods.update.title" /></h2>
+		<h2><s:text name="foods.simpleFoods.edit.title" /></h2>
 
 		<s:actionerror />
 
-		<s:form namespace="/foods/simpleFood" action="updateSubmit">
+		<s:form namespace="/foods/simpleFood" action="%{foodId == null ? 'createSubmit' : 'updateSubmit'}">
 			<s:hidden name="foodId" />
 
 			<div class="required">

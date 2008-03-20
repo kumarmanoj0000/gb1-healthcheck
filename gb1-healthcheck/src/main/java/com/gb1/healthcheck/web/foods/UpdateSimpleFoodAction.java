@@ -20,10 +20,7 @@ import com.opensymphony.xwork2.validator.annotations.Validations;
 public class UpdateSimpleFoodAction extends SimpleFoodActionSupport implements SessionAware {
 	private static final String MODEL_SESSION_KEY = UpdateSimpleFoodAction.class.getName()
 			+ ".model";
-
 	private Map<String, Object> session;
-	private Long foodId = null;
-	private String actionMessageKey;
 
 	public UpdateSimpleFoodAction() {
 	}
@@ -35,14 +32,14 @@ public class UpdateSimpleFoodAction extends SimpleFoodActionSupport implements S
 
 	@Override
 	public String input() {
-		SimpleFood food = getFoodService().loadSimpleFood(foodId);
+		SimpleFood food = getFoodService().loadSimpleFood(getFoodId());
 		BasicSimpleFoodUpdateRequest model = new BasicSimpleFoodUpdateRequest(food);
 		session.put(MODEL_SESSION_KEY, model);
 
 		return Action.INPUT;
 	}
 
-	@Validations(requiredStrings = { @RequiredStringValidator(fieldName = "model.name", message = "", key = "foods.simpleFoods.update.error.nameRequired") })
+	@Validations(requiredStrings = { @RequiredStringValidator(fieldName = "model.name", message = "", key = "foods.simpleFoods.edit.error.nameRequired") })
 	public String submit() {
 		String result = Action.INPUT;
 
@@ -50,33 +47,20 @@ public class UpdateSimpleFoodAction extends SimpleFoodActionSupport implements S
 			getFoodService().updateSimpleFood(getModel());
 			session.remove(MODEL_SESSION_KEY);
 
-			actionMessageKey = "foods.simpleFoods.update.success";
+			setActionMessageKey("foods.simpleFoods.edit.success");
 			result = Action.SUCCESS;
 		}
 		catch (FoodAlreadyExistsException e) {
 			addFieldError("model.name", getText("food.exception.alreadyExists"));
 		}
 		catch (FoodException e) {
-			addActionError(getText("foods.simpleFoods.create.error",
-					new String[] { e.getMessage() }));
+			addActionError(getText("foods.simpleFoods.edit.error", new String[] { e.getMessage() }));
 		}
 
 		return result;
 	}
 
-	public Long getFoodId() {
-		return foodId;
-	}
-
-	public void setFoodId(Long foodId) {
-		this.foodId = foodId;
-	}
-
 	public BasicSimpleFoodUpdateRequest getModel() {
 		return (BasicSimpleFoodUpdateRequest) session.get(MODEL_SESSION_KEY);
-	}
-
-	public String getActionMessageKey() {
-		return actionMessageKey;
 	}
 }
