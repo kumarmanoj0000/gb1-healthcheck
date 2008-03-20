@@ -53,7 +53,7 @@
 			</div>
 
 			<fieldset id="dishes">
-				<legend><s:text name="meals.create.dishes" /></legend>
+				<legend><s:text name="meal.dishes" /></legend>
 
 				<div id="singleDish-0">
 					<div class="required">
@@ -67,7 +67,7 @@
 					</div>
 
 					<div class="required">
-						<label><s:text name="meal.preparationMethod" />:</label>
+						<label><s:text name="preparationMethod" />:</label>
 						<s:select
 							name="model.selectedPreparationMethodNames"
 							list="availablePreparationMethods"
@@ -87,8 +87,8 @@
 			</fieldset>
 
 			<div class="actions">
-				<s:submit cssClass="button" key="meals.create.submit" />
-				<s:submit cssClass="button" key="meals.create.cancel" name="method:cancel" />
+				<s:submit cssClass="button" key="general.submit" />
+				<s:submit cssClass="button" key="general.cancel" name="method:cancel" />
 			</div>
 		</s:form>
 

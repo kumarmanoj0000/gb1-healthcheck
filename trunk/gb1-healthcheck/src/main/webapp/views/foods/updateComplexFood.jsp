@@ -23,8 +23,8 @@
 			</fieldset>
 
 			<div class="actions">
-				<s:submit cssClass="button" key="foods.complexFoods.update.submit" />
-				<s:submit cssClass="button" key="foods.complexFoods.update.cancel" name="method:cancel" />
+				<s:submit cssClass="button" key="general.submit" />
+				<s:submit cssClass="button" key="general.cancel" name="method:cancel" />
 			</div>
 		</s:form>
 	</body>

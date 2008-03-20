@@ -32,7 +32,7 @@ public class CreateMealAction extends MealActionSupport implements Preparable {
 			result = Action.SUCCESS;
 		}
 		catch (MealAlreadyExistsException e) {
-			addFieldError("model.instant", getText("meal.exception.alreadyExists"));
+			addFieldError("model.instant", getText("meal.error.alreadyExists"));
 		}
 		catch (MealException e) {
 			addActionError(getText("meals.create.error", new String[] { e.getMessage() }));

@@ -27,7 +27,7 @@
 							<s:param name="foodId" value="%{id}" />
 						</s:url>
 						<a href="${updateUrl}">${name}</a> |
-						<a href="${deleteUrl}" onclick="return confirm('${deleteConfirmMsg}')"><s:text name="foods.simpleFoods.delete" /></a>
+						<a href="${deleteUrl}" onclick="return confirm('${deleteConfirmMsg}')"><s:text name="general.delete" /></a>
 					</li>
 				</s:iterator>
 			</ul>
@@ -54,7 +54,7 @@
 							<s:param name="foodId" value="%{id}" />
 						</s:url>
 						<a href="${updateUrl}">${name}</a> |
-						<a href="${deleteUrl}" onclick="return confirm('${deleteConfirmMsg}')"><s:text name="foods.complexFoods.delete" /></a>
+						<a href="${deleteUrl}" onclick="return confirm('${deleteConfirmMsg}')"><s:text name="general.delete" /></a>
 					</li>
 				</s:iterator>
 			</ul>

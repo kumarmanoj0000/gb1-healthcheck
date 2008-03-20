@@ -54,7 +54,7 @@
 			</div>
 
 			<fieldset id="dishes">
-				<legend><s:text name="meals.create.dishes" /></legend>
+				<legend><s:text name="meal.dishes" /></legend>
 
 				<s:iterator value="model.selectedFoodIds" status="it">
 					<div id="singleDish-${it.index}">
@@ -70,7 +70,7 @@
 						</div>
 
 						<div class="required">
-							<label><s:text name="meal.preparationMethod" />:</label>
+							<label><s:text name="preparationMethod" />:</label>
 							<s:select
 								name="model.selectedPreparationMethodNames"
 								value="model.selectedPreparationMethodNames[#it.index]"
@@ -92,8 +92,8 @@
 			</fieldset>
 
 			<div class="actions">
-				<s:submit cssClass="button" key="meals.update.submit" />
-				<s:submit cssClass="button" key="meals.update.cancel" name="method:cancel" />
+				<s:submit cssClass="button" key="general.submit" />
+				<s:submit cssClass="button" key="general.cancel" name="method:cancel" />
 			</div>
 		</s:form>
 
