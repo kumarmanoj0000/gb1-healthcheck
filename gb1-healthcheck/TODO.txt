@@ -29,5 +29,4 @@ HealthCheck
   - AJAX-enabled pages take longer to develop and are harder to debug (this is Ajax!)
   - bad integration between Eclipse and Maven (dependent vs WEB-INF/lib JARs)
   - Struts2 tags confusion: EL vs OGNL expressions
-  - Struts2 i18n forcing use of <s:text>, <fmt:message> not working
   - lots of HTML tags to code

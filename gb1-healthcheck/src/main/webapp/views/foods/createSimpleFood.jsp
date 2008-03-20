@@ -1,5 +1,3 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt" %>
 <%@ taglib prefix="s" uri="/struts-tags" %>
 
 <html>
@@ -26,8 +24,8 @@
 			</fieldset>
 
 			<div class="actions">
-				<s:submit cssClass="button" key="foods.simpleFoods.create.submit" />
-				<s:submit cssClass="button" key="foods.simpleFoods.create.cancel" name="method:cancel" />
+				<s:submit cssClass="button" key="general.submit" />
+				<s:submit cssClass="button" key="general.cancel" name="method:cancel" />
 			</div>
 		</s:form>
 	</body>

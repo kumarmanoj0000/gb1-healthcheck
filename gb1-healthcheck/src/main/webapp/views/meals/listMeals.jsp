@@ -29,7 +29,7 @@
 							<s:param name="mealId" value="%{id}" />
 						</s:url>
 						<a href="${deleteUrl}" onclick="return confirm('${deleteConfirmMsg}')">
-							<s:text name="meals.delete" />
+							<s:text name="general.delete" />
 						</a>
 					</li>
 				</s:iterator>
