@@ -12,6 +12,8 @@ import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionSupport;
 
 public abstract class SimpleFoodActionSupport extends ActionSupport {
+	private Long foodId = null;
+	private String actionMessageKey;
 	private FoodService foodService;
 
 	public SimpleFoodActionSupport() {
@@ -19,6 +21,22 @@ public abstract class SimpleFoodActionSupport extends ActionSupport {
 
 	public String cancel() {
 		return Action.SUCCESS;
+	}
+
+	public Long getFoodId() {
+		return foodId;
+	}
+
+	public void setFoodId(Long foodId) {
+		this.foodId = foodId;
+	}
+
+	public String getActionMessageKey() {
+		return actionMessageKey;
+	}
+
+	protected void setActionMessageKey(String actionMessageKey) {
+		this.actionMessageKey = actionMessageKey;
 	}
 
 	public List<FoodGroup> getAvailableGroups() {

@@ -21,24 +21,22 @@ import com.opensymphony.xwork2.validator.annotations.Validations;
 public class UpdateComplexFoodAction extends ComplexFoodActionSupport implements SessionAware {
 	private static final String MODEL_SESSION_KEY = UpdateComplexFoodAction.class.getName()
 			+ ".model";
-
 	private Map<String, Object> session;
-	private Long foodId;
-	private String actionMessageKey;
 
 	public UpdateComplexFoodAction() {
 	}
 
 	@Override
 	public String input() {
-		ComplexFood food = getFoodService().loadComplexFood(foodId, new FullComplexFoodHydrater());
+		ComplexFood food = getFoodService().loadComplexFood(getFoodId(),
+				new FullComplexFoodHydrater());
 		BasicComplexFoodUpdateRequest model = new BasicComplexFoodUpdateRequest(food);
 		session.put(MODEL_SESSION_KEY, model);
 
 		return Action.INPUT;
 	}
 
-	@Validations(requiredStrings = { @RequiredStringValidator(fieldName = "model.name", message = "", key = "foods.complexFoods.update.error.nameRequired") })
+	@Validations(requiredStrings = { @RequiredStringValidator(fieldName = "model.name", message = "", key = "foods.complexFoods.edit.error.nameRequired") })
 	public String submit() {
 		String result = Action.INPUT;
 
@@ -46,36 +44,23 @@ public class UpdateComplexFoodAction extends ComplexFoodActionSupport implements
 			getFoodService().updateComplexFood(getModel());
 			session.remove(MODEL_SESSION_KEY);
 
-			actionMessageKey = "foods.complexFoods.update.success";
+			setActionMessageKey("foods.complexFoods.edit.success");
 			result = Action.SUCCESS;
 		}
 		catch (FoodAlreadyExistsException e) {
 			addFieldError("model.name", getText("food.exception.alreadyExists"));
 		}
 		catch (FoodException e) {
-			addActionError(getText("foods.complexFoods.update.error",
-					new String[] { e.getMessage() }));
+			addActionError(getText("foods.complexFoods.edit.error", new String[] { e.getMessage() }));
 		}
 
 		return result;
-	}
-
-	public Long getFoodId() {
-		return foodId;
-	}
-
-	public void setFoodId(Long foodId) {
-		this.foodId = foodId;
 	}
 
 	public BasicComplexFoodUpdateRequest getModel() {
 		BasicComplexFoodUpdateRequest model = (BasicComplexFoodUpdateRequest) session
 				.get(MODEL_SESSION_KEY);
 		return model;
-	}
-
-	public String getActionMessageKey() {
-		return actionMessageKey;
 	}
 
 	@SuppressWarnings("unchecked")

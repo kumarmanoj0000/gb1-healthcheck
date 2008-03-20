@@ -1,14 +1,12 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt" %>
 <%@ taglib prefix="s" uri="/struts-tags" %>
 
 <html>
 	<body>
-		<h2><s:text name="foods.complexFoods.update.title" /></h2>
+		<h2><s:text name="foods.complexFoods.edit.title" /></h2>
 
 		<s:actionerror />
 
-		<s:form namespace="/foods/complexFood" action="updateSubmit">
+		<s:form namespace="/foods/complexFood" action="%{foodId == null ? 'createSubmit' : 'updateSubmit'}">
 			<s:hidden name="foodId" />
 
 			<div class="required">

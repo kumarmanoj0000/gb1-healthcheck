@@ -1,11 +1,9 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt" %>
 <%@ taglib prefix="s" uri="/struts-tags" %>
 
 <html>
 	<head>
 		<%@ include file="/views/fragments/calendar.jsp" %>
-		<script type="text/javascript" src='<c:url value="/scripts/jquery/jquery.js" />'></script>
+		<script type="text/javascript" src='<s:url value="/scripts/jquery/jquery.js" />'></script>
 
 		<script type="text/javascript">
 			var nbSingleDishDivs = <s:property value="model.selectedFoodIds.length" />;
@@ -45,7 +43,7 @@
 				<s:textfield id="f_date_c" key="meal.instant" name="model.instant" readonly="1" />
 				<img
 					id="f_trigger_c"
-					src="<c:url value='/scripts/jscalendar/img.gif' />"
+					src="<s:url value='/scripts/jscalendar/img.gif' />"
 					style="cursor: pointer; border: 1px solid red;"
 					title="Date selector"
 					onmouseover="this.style.background='red';"
