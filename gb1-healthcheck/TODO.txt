@@ -15,12 +15,8 @@ HealthCheck
 
 . technical
   - create Struts2 theme to reduce HTML tags
-  - use flash interceptor to show confirmation messages
-  - improve Eclipse/Maven integration
   - investigate Spring TestContext
   - investigate writing JUnit integration tests
 
 . pain points
-  - bad integration between Eclipse and Maven (dependent vs WEB-INF/lib JARs)
-  - lots of HTML tags to code (=> create Struts2 theme)
-  - @ParentPackage duplication (=> use Struts2 CodeBehind plugin)
+  - @ParentPackage duplication
