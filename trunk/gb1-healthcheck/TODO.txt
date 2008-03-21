@@ -22,4 +22,5 @@ HealthCheck
 
 . pain points
   - ServiceRequest / Adapter / PropertyProvider: lots of code, is it really useful?
+  - bad Eclipse/Maven integration (duplicated JAR dependencies; m2eclipse 0.9 not ready)
   - @ParentPackage duplication
