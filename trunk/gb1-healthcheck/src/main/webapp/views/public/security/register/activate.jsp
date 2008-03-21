@@ -2,7 +2,7 @@
 
 <s:actionerror />
 
-<s:form namespace="/public/register" action="activate">
+<s:form namespace="/public/register" action="userActivation">
 	<div class="required">
 		<label><s:text name="register.activate.email" />:</label>
 		<s:textfield name="principal" />

@@ -1,6 +1,4 @@
 <%@ taglib prefix="authz" uri="http://acegisecurity.org/authz" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt" %>
 <%@ taglib prefix="s" uri="/struts-tags" %>
 
 <script type="text/javascript">
@@ -24,7 +22,7 @@
 			/>
 		</li>
 		<li>
-			<a href="<s:url namespace='/users' action='editInput' />"><s:text name="header.profile" /></a>
+			<a href="<s:url namespace='/users' action='editActiveUser' method='input' />"><s:text name="header.profile" /></a>
 		</li>
 		<li class="last">
 			<a href="<s:url namespace='/public/security' action='signOff' />"><s:text name="header.logoff" /></a>

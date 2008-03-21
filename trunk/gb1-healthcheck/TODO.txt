@@ -14,7 +14,6 @@ HealthCheck
       * edit user profile
 
 . technical
-  - migrate to Struts2 CodeBehind plugin
   - reduce HTML tags, favor Struts2 tags (use css_xhtml theme?)
   - use flash interceptor to show confirmation messages
   - improve Eclipse/Maven integration
@@ -24,4 +23,4 @@ HealthCheck
 . pain points
   - bad integration between Eclipse and Maven (dependent vs WEB-INF/lib JARs)
   - lots of HTML tags to code (=> use Struts2 themes)
-  - struts.xml metadata duplication (=> use CodeBehind plugin)
+  - @ParentPackage duplication (=> use Struts2 CodeBehind plugin)

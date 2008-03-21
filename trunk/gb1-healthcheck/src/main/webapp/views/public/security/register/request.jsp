@@ -2,7 +2,7 @@
 
 <s:actionerror />
 
-<s:form namespace="/public/register" action="register">
+<s:form namespace="/public/register" action="userRegistration">
 	<div class="required">
 		<label><s:text name="register.login" />:</label>
 		<s:textfield name="model.login" />
