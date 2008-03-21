@@ -29,15 +29,15 @@ import com.opensymphony.xwork2.validator.annotations.VisitorFieldValidator;
 @Namespace("/public/register")
 @ParentPackage("default")
 @Results( {
-		@Result(name = "input", type = ServletDispatcherResult.class, value = "/views/public/security/register/request.jsp"),
-		@Result(type = ServletDispatcherResult.class, value = "/views/public/security/register/request-success.jsp") })
+		@Result(name = "input", type = ServletDispatcherResult.class, value = "/views/public/security/register/registerUser.jsp"),
+		@Result(type = ServletDispatcherResult.class, value = "/views/public/security/register/registerUser-success.jsp") })
 @Validation
-public class UserRegistrationAction extends ActionSupport {
+public class RegisterUserAction extends ActionSupport {
 	private UserService userService;
 	private BasicUserRegistrationRequest userRegRequest = new BasicUserRegistrationRequest(
 			Role.STANDARD);
 
-	public UserRegistrationAction() {
+	public RegisterUserAction() {
 	}
 
 	@Validations(requiredStrings = {

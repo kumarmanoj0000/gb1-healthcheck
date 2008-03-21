@@ -13,7 +13,7 @@ import com.opensymphony.xwork2.ActionSupport;
 @Controller("workbenchAction")
 @Scope("prototype")
 @ParentPackage("default")
-@Result(type = ServletDispatcherResult.class, value = "/views/workbench/show.jsp")
+@Result(type = ServletDispatcherResult.class, value = "/views/workbench/workbench.jsp")
 public class WorkbenchAction extends ActionSupport {
 	public WorkbenchAction() {
 	}
