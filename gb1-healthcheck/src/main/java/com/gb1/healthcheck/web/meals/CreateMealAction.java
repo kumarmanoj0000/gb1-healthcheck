@@ -22,7 +22,8 @@ public class CreateMealAction extends MealActionSupport implements Preparable {
 		model = new BasicMealCreationRequest(getRequester());
 	}
 
-	public String submit() {
+	@Override
+	public String execute() {
 		String result = Action.INPUT;
 
 		try {

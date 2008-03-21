@@ -17,7 +17,7 @@ public class ManageGastricStatesAction {
 	public ManageGastricStatesAction() {
 	}
 
-	public String show() {
+	public String execute() {
 		return Action.SUCCESS;
 	}
 

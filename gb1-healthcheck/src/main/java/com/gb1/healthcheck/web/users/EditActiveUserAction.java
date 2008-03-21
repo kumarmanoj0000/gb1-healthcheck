@@ -43,7 +43,8 @@ public class EditActiveUserAction extends ActionSupport implements SessionAware 
 	}
 
 	@Validations(requiredStrings = { @RequiredStringValidator(fieldName = "model.email", message = "", key = "users.edit.email.invalid") }, emails = { @EmailValidator(fieldName = "model.email", message = "", key = "users.edit.email.invalid") })
-	public String submit() {
+	@Override
+	public String execute() {
 		String result = Action.INPUT;
 
 		try {

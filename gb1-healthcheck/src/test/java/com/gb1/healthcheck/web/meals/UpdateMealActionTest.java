@@ -59,7 +59,7 @@ public class UpdateMealActionTest extends TestCase {
 
 		action.setSession(session);
 		action.setMealId(meal.getId());
-		String result = action.update();
+		String result = action.execute();
 
 		assertEquals(Action.SUCCESS, result);
 		assertFalse(session.containsKey(MODEL_SESSION_KEY));
@@ -85,7 +85,7 @@ public class UpdateMealActionTest extends TestCase {
 
 		action.setSession(session);
 		action.setMealId(meal.getId());
-		String result = action.update();
+		String result = action.execute();
 
 		assertEquals(Action.INPUT, result);
 		assertTrue(action.hasActionErrors());

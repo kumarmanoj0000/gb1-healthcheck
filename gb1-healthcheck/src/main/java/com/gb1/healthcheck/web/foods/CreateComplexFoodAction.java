@@ -21,7 +21,8 @@ public class CreateComplexFoodAction extends ComplexFoodActionSupport {
 	}
 
 	@Validations(requiredStrings = { @RequiredStringValidator(fieldName = "model.name", message = "", key = "foods.complexFoods.edit.error.nameRequired") })
-	public String submit() {
+	@Override
+	public String execute() {
 		String result = Action.INPUT;
 
 		try {

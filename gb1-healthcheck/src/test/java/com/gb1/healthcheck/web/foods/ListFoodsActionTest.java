@@ -38,7 +38,7 @@ public class ListFoodsActionTest extends TestCase {
 		ListFoodsAction action = new ListFoodsAction();
 		action.setFoodService(foodSvc);
 
-		assertEquals(Action.SUCCESS, action.list());
+		assertEquals(Action.SUCCESS, action.execute());
 		assertTrue(CollectionUtils.isEqualCollection(sortedSimpleFoods, action.getSimpleFoods()));
 		assertTrue(CollectionUtils.isEqualCollection(sortedComplexFoods, action.getComplexFoods()));
 	}

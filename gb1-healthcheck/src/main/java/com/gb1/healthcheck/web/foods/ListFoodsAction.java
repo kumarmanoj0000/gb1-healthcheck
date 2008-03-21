@@ -29,7 +29,8 @@ public class ListFoodsAction extends ActionSupport {
 	public ListFoodsAction() {
 	}
 
-	public String list() {
+	@Override
+	public String execute() {
 		simpleFoods = new ArrayList<SimpleFood>(foodService.getSimpleFoods());
 		Collections.sort(simpleFoods, new Food.ByNameComparator());
 

@@ -18,7 +18,8 @@ public class UserActivationAction extends ActionSupport {
 	private String email;
 	private String token;
 
-	public String activate() {
+	@Override
+	public String execute() {
 		String result = Action.INPUT;
 
 		try {

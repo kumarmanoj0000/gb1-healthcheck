@@ -24,7 +24,7 @@ public class UserActivationActionTest extends TestCase {
 		action.setCredentials(token);
 		action.setUserService(userSvc);
 
-		assertEquals(Action.SUCCESS, action.activate());
+		assertEquals(Action.SUCCESS, action.execute());
 	}
 
 	public void testActivateError() throws Exception {
@@ -41,6 +41,6 @@ public class UserActivationActionTest extends TestCase {
 		action.setCredentials(token);
 		action.setUserService(userSvc);
 
-		assertEquals(Action.INPUT, action.activate());
+		assertEquals(Action.INPUT, action.execute());
 	}
 }

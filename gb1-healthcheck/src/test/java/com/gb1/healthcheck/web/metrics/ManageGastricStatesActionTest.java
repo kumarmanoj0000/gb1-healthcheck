@@ -28,7 +28,7 @@ public class ManageGastricStatesActionTest extends TestCase {
 				return patient;
 			}
 		};
-		assertEquals(Action.SUCCESS, action.show());
+		assertEquals(Action.SUCCESS, action.execute());
 		assertEquals(patient, action.getPatient());
 	}
 

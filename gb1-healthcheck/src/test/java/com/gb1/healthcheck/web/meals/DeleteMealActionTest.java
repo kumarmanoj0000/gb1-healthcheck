@@ -20,7 +20,7 @@ public class DeleteMealActionTest extends TestCase {
 		action.setMealService(mealSvc);
 		action.setMealId(mealId);
 
-		assertEquals(Action.SUCCESS, action.delete());
+		assertEquals(Action.SUCCESS, action.execute());
 		EasyMock.verify(mealSvc);
 	}
 }

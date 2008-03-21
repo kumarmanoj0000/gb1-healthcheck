@@ -68,7 +68,7 @@ public class CreateMealActionTest extends TestCase {
 		action.setMealService(mealSvc);
 		action.prepare();
 
-		assertEquals(Action.SUCCESS, action.submit());
+		assertEquals(Action.SUCCESS, action.execute());
 	}
 
 	public void testSubmitWithErrors() throws MealException {
@@ -82,7 +82,7 @@ public class CreateMealActionTest extends TestCase {
 		action.setMealService(mealSvc);
 		action.prepare();
 
-		assertEquals(Action.INPUT, action.submit());
+		assertEquals(Action.INPUT, action.execute());
 		assertTrue(action.hasFieldErrors());
 	}
 

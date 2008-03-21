@@ -57,7 +57,7 @@ public class UpdateSimpleFoodActionTest extends TestCase {
 
 		action.setSession(session);
 		action.setFoodId(model.getFoodId());
-		String result = action.submit();
+		String result = action.execute();
 
 		assertEquals(Action.SUCCESS, result);
 		assertFalse(session.containsKey(MODEL_SESSION_KEY));
@@ -81,7 +81,7 @@ public class UpdateSimpleFoodActionTest extends TestCase {
 
 		action.setSession(session);
 		action.setFoodId(model.getFoodId());
-		String result = action.submit();
+		String result = action.execute();
 
 		assertEquals(Action.INPUT, result);
 		assertTrue(action.hasFieldErrors());

@@ -49,7 +49,7 @@ public class CreateComplexFoodActionTest extends TestCase {
 		CreateComplexFoodAction action = new CreateComplexFoodAction();
 		action.setFoodService(foodSvc);
 
-		assertEquals(Action.SUCCESS, action.submit());
+		assertEquals(Action.SUCCESS, action.execute());
 		EasyMock.verify(foodSvc);
 	}
 
@@ -62,7 +62,7 @@ public class CreateComplexFoodActionTest extends TestCase {
 		CreateComplexFoodAction action = new CreateComplexFoodAction();
 		action.setFoodService(foodSvc);
 
-		assertEquals(Action.INPUT, action.submit());
+		assertEquals(Action.INPUT, action.execute());
 		assertTrue(action.hasFieldErrors());
 		EasyMock.verify(foodSvc);
 	}
