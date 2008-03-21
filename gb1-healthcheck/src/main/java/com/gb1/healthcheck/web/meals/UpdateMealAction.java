@@ -19,8 +19,6 @@ public class UpdateMealAction extends MealActionSupport implements Preparable, S
 	private static final String MODEL_SESSION_KEY = UpdateMealAction.class.getName() + ".model";
 
 	private Map<String, Object> session;
-	private Long mealId;
-	private String actionMessageKey;
 
 	public UpdateMealAction() {
 	}
@@ -31,7 +29,7 @@ public class UpdateMealAction extends MealActionSupport implements Preparable, S
 
 	@Override
 	public String input() {
-		Meal meal = getMealService().loadMeal(mealId, new FullMealHydrater());
+		Meal meal = getMealService().loadMeal(getMealId(), new FullMealHydrater());
 		session.put(MODEL_SESSION_KEY, new BasicMealUpdateRequest(meal));
 
 		return Action.INPUT;
@@ -44,22 +42,14 @@ public class UpdateMealAction extends MealActionSupport implements Preparable, S
 			getMealService().updateMeal(getModel());
 			session.remove(MODEL_SESSION_KEY);
 
-			actionMessageKey = "meals.update.success";
+			setActionMessageKey("meals.edit.success");
 			result = Action.SUCCESS;
 		}
 		catch (MealException e) {
-			addActionError(getText("meals.update.error", new String[] { e.getMessage() }));
+			addActionError(getText("meals.edit.error", new String[] { e.getMessage() }));
 		}
 
 		return result;
-	}
-
-	public Long getMealId() {
-		return mealId;
-	}
-
-	public void setMealId(Long mealId) {
-		this.mealId = mealId;
 	}
 
 	public Long getEaterId() {
@@ -69,10 +59,6 @@ public class UpdateMealAction extends MealActionSupport implements Preparable, S
 	public MealUpdateRequest getModel() {
 		MealUpdateRequest model = (MealUpdateRequest) session.get(MODEL_SESSION_KEY);
 		return model;
-	}
-
-	public String getActionMessageKey() {
-		return actionMessageKey;
 	}
 
 	@SuppressWarnings("unchecked")

@@ -8,27 +8,17 @@ import com.gb1.healthcheck.services.meals.MealCreationRequest;
 import com.gb1.healthcheck.services.meals.PreparedFoodCreationRequest;
 
 public class BasicMealCreationRequest extends MealRequestSupport implements MealCreationRequest {
-	private Long eaterId;
-
 	public BasicMealCreationRequest(User eater) {
-		eaterId = eater.getId();
-	}
-
-	public Long getEaterId() {
-		return eaterId;
-	}
-
-	public void setEaterId(Long eaterId) {
-		this.eaterId = eaterId;
+		super(eater);
 	}
 
 	public Set<PreparedFoodCreationRequest> getDishCreationRequests() {
-		final Set<PreparedFoodCreationRequest> requests = new HashSet<PreparedFoodCreationRequest>();
-		final Long[] selectedFoodIds = getSelectedFoodIds();
-		final String[] selectedPrepMethodNames = getSelectedPreparationMethodNames();
+		Set<PreparedFoodCreationRequest> requests = new HashSet<PreparedFoodCreationRequest>();
+		Long[] selectedFoodIds = getSelectedFoodIds();
+		String[] selectedPrepMethodNames = getSelectedPreparationMethodNames();
 
 		for (int i = 0; i < selectedFoodIds.length; i++) {
-			final int idx = i;
+			int idx = i;
 			requests.add(new PreparedFoodCreationAndUpdateRequest(selectedFoodIds[idx],
 					selectedPrepMethodNames[idx]));
 		}

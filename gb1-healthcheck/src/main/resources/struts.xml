@@ -175,11 +175,11 @@
 		</action>
 
 		<action name="createInput" method="input" class="createMealAction">
-			<result name="input">/views/meals/createMeal.jsp</result>
+			<result name="input">/views/meals/editMeal.jsp</result>
 		</action>
 
 		<action name="createSubmit" method="submit" class="createMealAction">
-			<result name="input">/views/meals/createMeal.jsp</result>
+			<result name="input">/views/meals/editMeal.jsp</result>
 			<result name="success" type="redirect-action">
 				<param name="namespace">/meals</param>
 				<param name="actionName">list</param>
@@ -189,11 +189,11 @@
 		</action>
 
 		<action name="updateInput" method="input" class="updateMealAction">
-			<result name="input">/views/meals/updateMeal.jsp</result>
+			<result name="input">/views/meals/editMeal.jsp</result>
 		</action>
 
 		<action name="updateSubmit" method="update" class="updateMealAction">
-			<result name="input">/views/meals/updateMeal.jsp</result>
+			<result name="input">/views/meals/editMeal.jsp</result>
 			<result name="success" type="redirect-action">
 				<param name="namespace">/meals</param>
 				<param name="actionName">list</param>
