@@ -5,6 +5,7 @@ import java.util.Set;
 
 import junit.framework.TestCase;
 
+import org.apache.commons.collections.CollectionUtils;
 import org.easymock.EasyMock;
 
 import com.gb1.commons.tokens.Token;
@@ -222,5 +223,18 @@ public class UserServiceImplTest extends TestCase {
 		catch (UnknownUserException e) {
 			// ok
 		}
+	}
+
+	public void testGetAllUsers() {
+		Set<User> allUsers = Users.all();
+
+		UserRepository userRepo = EasyMock.createMock(UserRepository.class);
+		EasyMock.expect(userRepo.findUsers()).andReturn(allUsers);
+		EasyMock.replay(userRepo);
+
+		UserServiceImpl svc = new UserServiceImpl();
+		svc.setUserRepository(userRepo);
+
+		assertTrue(CollectionUtils.isEqualCollection(allUsers, svc.getAllUsers()));
 	}
 }

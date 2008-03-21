@@ -1,5 +1,7 @@
 package com.gb1.healthcheck.services.users;
 
+import java.util.Set;
+
 import com.gb1.commons.tokens.Token;
 import com.gb1.healthcheck.domain.users.UnknownUserException;
 import com.gb1.healthcheck.domain.users.User;
@@ -71,4 +73,11 @@ public interface UserService {
 	 * @throws UnknownUserException When no registered user owns this address
 	 */
 	void sendLostPassword(String email) throws UnknownUserException;
+
+	/**
+	 * Returns all registered users in the system, regardless of their status.
+	 * 
+	 * @return All registered system users
+	 */
+	Set<User> getAllUsers();
 }

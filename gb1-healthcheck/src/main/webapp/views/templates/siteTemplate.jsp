@@ -40,7 +40,7 @@
 		<div id="container">
 			<div id="header"><%@ include file="/views/fragments/header.jsp"%></div>
 
-			<table width="100%">
+			<table id="contentTable" width="100%">
 				<tr>
 					<authz:authorize ifNotGranted="role_anonymous">
 						<td width="20%" valign="top">

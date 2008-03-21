@@ -1,12 +1,7 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt" %>
 <%@ taglib prefix="s" uri="/struts-tags" %>
 
 <%@ include file="/views/fragments/actionMessages.jsp"%>
-
 <h2><s:text name="foods.title" /></h2>
-
-<s:actionerror />
 
 <h3><s:text name="foods.simpleFoods" /></h3>
 
