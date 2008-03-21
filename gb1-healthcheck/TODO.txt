@@ -9,7 +9,6 @@ HealthCheck
 
   - user administration
     * administration
-      * user list: enable sorting
       * user list: paginate results
       * view / edit user profile
       * delete user profile

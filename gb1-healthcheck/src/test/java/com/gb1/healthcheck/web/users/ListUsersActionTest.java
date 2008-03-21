@@ -18,7 +18,6 @@ import com.opensymphony.xwork2.Action;
 public class ListUsersActionTest extends TestCase {
 	public void testExecute() {
 		Set<User> allUsers = Users.all();
-
 		List<User> allSortedUsers = new ArrayList<User>(allUsers);
 		Collections.sort(allSortedUsers, new User.ByLoginComparator());
 
@@ -31,5 +30,25 @@ public class ListUsersActionTest extends TestCase {
 
 		assertEquals(Action.SUCCESS, action.execute());
 		assertTrue(CollectionUtils.isEqualCollection(allSortedUsers, action.getUsers()));
+	}
+
+	public void testSortBy() {
+		Set<User> allUsers = Users.all();
+		List<User> allUsersSortedByEmail = new ArrayList<User>(allUsers);
+		Collections.sort(allUsersSortedByEmail, new User.ByEmailComparator());
+		Collections.reverse(allUsersSortedByEmail);
+
+		UserService userSvc = EasyMock.createMock(UserService.class);
+		EasyMock.expect(userSvc.getAllUsers()).andReturn(allUsers);
+		EasyMock.replay(userSvc);
+
+		ListUsersAction action = new ListUsersAction();
+		action.setUserService(userSvc);
+		action.setSortBy("email");
+		action.setSortAscending(false);
+
+		assertEquals(Action.SUCCESS, action.sort());
+		assertEquals(allUsersSortedByEmail, action.getUsers());
+		assertFalse(action.getSortAscending());
 	}
 }

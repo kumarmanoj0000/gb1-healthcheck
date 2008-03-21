@@ -350,4 +350,11 @@ public class User implements Identifiable, UserPropertyProvider, Serializable {
 			return builder.toComparison();
 		}
 	}
+
+	public static class ByEmailComparator implements Comparator<User> {
+		public int compare(User u1, User u2) {
+			CompareToBuilder builder = new CompareToBuilder().append(u1.getEmail(), u2.getEmail());
+			return builder.toComparison();
+		}
+	}
 }
