@@ -21,14 +21,14 @@ import com.opensymphony.xwork2.ActionSupport;
 @Namespace("/public/register")
 @ParentPackage("default")
 @Results( {
-		@Result(name = "input", type = ServletDispatcherResult.class, value = "/views/public/security/register/activate.jsp"),
-		@Result(type = ServletDispatcherResult.class, value = "/views/public/security/register/activate-success.jsp") })
-public class UserActivationAction extends ActionSupport {
+		@Result(name = "input", type = ServletDispatcherResult.class, value = "/views/public/security/register/activateUser.jsp"),
+		@Result(type = ServletDispatcherResult.class, value = "/views/public/security/register/activateUser-success.jsp") })
+public class ActivateUserAction extends ActionSupport {
 	private UserService userService;
 	private String email;
 	private String token;
 
-	public UserActivationAction() {
+	public ActivateUserAction() {
 	}
 
 	@Override

@@ -10,7 +10,7 @@ import com.gb1.healthcheck.domain.users.InvalidTokenException;
 import com.gb1.healthcheck.services.users.UserService;
 import com.opensymphony.xwork2.Action;
 
-public class UserActivationActionTest extends TestCase {
+public class ActivateUserActionTest extends TestCase {
 	public void testActivateOk() throws Exception {
 		final String email = "user@gb.com";
 		final String token = "123";
@@ -19,7 +19,7 @@ public class UserActivationActionTest extends TestCase {
 		EasyMock.expect(userSvc.activateUser(email, new Token(token))).andReturn(new ExposedUser());
 		EasyMock.replay(userSvc);
 
-		UserActivationAction action = new UserActivationAction();
+		ActivateUserAction action = new ActivateUserAction();
 		action.setPrincipal(email);
 		action.setCredentials(token);
 		action.setUserService(userSvc);
@@ -36,7 +36,7 @@ public class UserActivationActionTest extends TestCase {
 		EasyMock.expectLastCall().andThrow(new InvalidTokenException());
 		EasyMock.replay(userSvc);
 
-		UserActivationAction action = new UserActivationAction();
+		ActivateUserAction action = new ActivateUserAction();
 		action.setPrincipal(email);
 		action.setCredentials(token);
 		action.setUserService(userSvc);

@@ -26,7 +26,7 @@
 	<util:map id="globalConstants">
 		<entry key="fromAddress" value="admin@gb1.com" />
 		<entry key="activation.subject" value="[HealthCheck] Account activation" />
-		<entry key="activation.formUrl" value="http://localhost:8080/healthcheck/public/register/userActivation!input.go" />
+		<entry key="activation.formUrl" value="http://localhost:8080/healthcheck/public/register/activateUser!input.go" />
 		<entry key="activation.templateLocation" value="com/gb1/healthcheck/domain/users/userActivationRequestEmail.vm" />
 		<entry key="lostPassword.subject" value="[HealthCheck] Password" />
 		<entry key="lostPassword.templateLocation" value="com/gb1/healthcheck/domain/users/lostPasswordEmail.vm" />
