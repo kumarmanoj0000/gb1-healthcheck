@@ -6,7 +6,6 @@ import org.apache.struts2.config.ParentPackage;
 import org.apache.struts2.config.Result;
 import org.apache.struts2.config.Results;
 import org.apache.struts2.dispatcher.ServletActionRedirectResult;
-import org.apache.struts2.dispatcher.ServletDispatcherResult;
 import org.apache.struts2.interceptor.SessionAware;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
@@ -22,7 +21,7 @@ import com.opensymphony.xwork2.Preparable;
 @Scope("prototype")
 @ParentPackage("default")
 @Results( {
-		@Result(name = "input", type = ServletDispatcherResult.class, value = "/views/meals/editMeal.jsp"),
+		@Result(name = "input", value = "/views/meals/editMeal.jsp"),
 		@Result(type = ServletActionRedirectResult.class, value = "listMeals", params = {
 				"namespace", "/meals", "parse", "true", "actionMessageKey", "${actionMessageKey}" }) })
 public class UpdateMealAction extends MealActionSupport implements Preparable, SessionAware {

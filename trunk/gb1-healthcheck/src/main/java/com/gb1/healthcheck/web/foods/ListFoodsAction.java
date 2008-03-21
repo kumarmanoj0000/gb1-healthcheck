@@ -9,7 +9,6 @@ import javax.annotation.Resource;
 import org.apache.commons.lang.StringUtils;
 import org.apache.struts2.config.ParentPackage;
 import org.apache.struts2.config.Result;
-import org.apache.struts2.dispatcher.ServletDispatcherResult;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
@@ -24,7 +23,7 @@ import com.opensymphony.xwork2.ActionSupport;
 @Controller("listFoodsAction")
 @Scope("prototype")
 @ParentPackage("default")
-@Result(type = ServletDispatcherResult.class, value = "/views/foods/listFoods.jsp")
+@Result(value = "/views/foods/listFoods.jsp")
 public class ListFoodsAction extends ActionSupport {
 	private FoodService foodService;
 
