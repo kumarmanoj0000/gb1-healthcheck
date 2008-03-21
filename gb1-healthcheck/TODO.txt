@@ -14,15 +14,14 @@ HealthCheck
       * edit user profile
 
 . technical
+  - migrate to Struts2 CodeBehind plugin
+  - reduce HTML tags, favor Struts2 tags (use css_xhtml theme?)
   - use flash interceptor to show confirmation messages
-  - reduce HTML tags, favor Struts2 tags (use theme?)
   - improve Eclipse/Maven integration
   - investigate Spring TestContext
   - investigate writing JUnit integration tests
 
 . pain points
-  - so many different APIs, so many configuration files (this is Java!)
-  - AJAX-enabled pages take longer to develop and are harder to debug (this is Ajax!)
   - bad integration between Eclipse and Maven (dependent vs WEB-INF/lib JARs)
-  - Struts2 tags confusion: EL vs OGNL expressions
-  - lots of HTML tags to code
+  - lots of HTML tags to code (=> use Struts2 themes)
+  - struts.xml metadata duplication (=> use CodeBehind plugin)

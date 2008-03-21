@@ -22,18 +22,6 @@
 		<param-value>5000</param-value>
 	</context-param>
 
-	<!-- Base name for localization resource bundles -->
-	<context-param>
-		<param-name>javax.servlet.jsp.jstl.fmt.localizationContext</param-name>
-		<param-value>ApplicationMessages</param-value>
-	</context-param>
-
-	<!-- Fallback locale if no bundles found for browser's preferred locale -->
-	<context-param>
-		<param-name>javax.servlet.jsp.jstl.fmt.fallbackLocale</param-name>
-		<param-value>en</param-value>
-	</context-param>
-
 	<!-- Acegi security filter -->
 	<filter>
 		<filter-name>securityFilter</filter-name>
