@@ -11,13 +11,9 @@ import org.apache.struts2.config.Result;
 import org.apache.struts2.dispatcher.ServletRedirectResult;
 import org.apache.struts2.interceptor.ServletRequestAware;
 import org.apache.struts2.interceptor.ServletResponseAware;
-import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Controller;
 
 import com.opensymphony.xwork2.Action;
 
-@Controller("signOffAction")
-@Scope("prototype")
 @Namespace("/public/security")
 @ParentPackage("default")
 @Result(type = ServletRedirectResult.class, value = "/")

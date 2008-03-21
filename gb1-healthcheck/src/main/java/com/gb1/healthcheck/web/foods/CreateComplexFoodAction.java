@@ -4,8 +4,6 @@ import org.apache.struts2.config.ParentPackage;
 import org.apache.struts2.config.Result;
 import org.apache.struts2.config.Results;
 import org.apache.struts2.dispatcher.ServletActionRedirectResult;
-import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Controller;
 
 import com.gb1.healthcheck.domain.foods.ComplexFoodHasNoIngredientsException;
 import com.gb1.healthcheck.domain.foods.FoodAlreadyExistsException;
@@ -15,8 +13,6 @@ import com.opensymphony.xwork2.validator.annotations.RequiredStringValidator;
 import com.opensymphony.xwork2.validator.annotations.Validation;
 import com.opensymphony.xwork2.validator.annotations.Validations;
 
-@Controller("createComplexFoodAction")
-@Scope("prototype")
 @ParentPackage("default")
 @Results( {
 		@Result(name = "input", value = "/views/foods/editComplexFood.jsp"),

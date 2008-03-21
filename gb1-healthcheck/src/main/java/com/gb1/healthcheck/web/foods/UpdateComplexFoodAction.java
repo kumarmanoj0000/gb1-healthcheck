@@ -6,8 +6,6 @@ import org.apache.struts2.config.Result;
 import org.apache.struts2.config.Results;
 import org.apache.struts2.dispatcher.ServletActionRedirectResult;
 import org.apache.struts2.interceptor.SessionAware;
-import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Controller;
 
 import com.gb1.healthcheck.domain.foods.ComplexFood;
 import com.gb1.healthcheck.domain.foods.FoodAlreadyExistsException;
@@ -18,8 +16,6 @@ import com.opensymphony.xwork2.validator.annotations.RequiredStringValidator;
 import com.opensymphony.xwork2.validator.annotations.Validation;
 import com.opensymphony.xwork2.validator.annotations.Validations;
 
-@Controller("updateComplexFoodAction")
-@Scope("prototype")
 @Results( {
 		@Result(name = "input", value = "/views/foods/editComplexFood.jsp"),
 		@Result(type = ServletActionRedirectResult.class, value = "listFoods", params = {

@@ -113,8 +113,8 @@
 						<lineRate>0</lineRate>
 						<packageBranchRate>0</packageBranchRate>
 						<packageLineRate>0</packageLineRate>
-						<totalBranchRate>75</totalBranchRate>
-						<totalLineRate>75</totalLineRate>
+						<totalBranchRate>70</totalBranchRate>
+						<totalLineRate>70</totalLineRate>
 					</check>
 				</configuration>
 
@@ -225,6 +225,11 @@
 		<dependency>
 			<groupId>org.apache.struts</groupId>
 			<artifactId>struts2-spring-plugin</artifactId>
+			<version>${struts.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.struts</groupId>
+			<artifactId>struts2-codebehind-plugin</artifactId>
 			<version>${struts.version}</version>
 		</dependency>
 		<dependency>
