@@ -6,7 +6,6 @@ import org.apache.struts2.config.Namespace;
 import org.apache.struts2.config.ParentPackage;
 import org.apache.struts2.config.Result;
 import org.apache.struts2.config.Results;
-import org.apache.struts2.dispatcher.ServletDispatcherResult;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
@@ -29,8 +28,8 @@ import com.opensymphony.xwork2.validator.annotations.VisitorFieldValidator;
 @Namespace("/public/register")
 @ParentPackage("default")
 @Results( {
-		@Result(name = "input", type = ServletDispatcherResult.class, value = "/views/public/security/register/registerUser.jsp"),
-		@Result(type = ServletDispatcherResult.class, value = "/views/public/security/register/registerUser-success.jsp") })
+		@Result(name = "input", value = "/views/public/security/register/registerUser.jsp"),
+		@Result(value = "/views/public/security/register/registerUser-success.jsp") })
 @Validation
 public class RegisterUserAction extends ActionSupport {
 	private UserService userService;
