@@ -25,6 +25,22 @@ a:hover {
 	text-decoration: underline overline;
 }
 
+table {
+}
+
+table tr {
+}
+
+table tr th {
+	text-align: left;
+}
+
+table tr td {
+}
+
+#contentTable {
+}
+
 div .actionMessages {
 	border: 1px solid;
 	background-color: rgb(0, 250, 175);

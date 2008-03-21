@@ -2,6 +2,7 @@ package com.gb1.healthcheck.domain.users;
 
 import java.io.Serializable;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -13,6 +14,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 import org.apache.commons.lang.Validate;
+import org.apache.commons.lang.builder.CompareToBuilder;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.commons.lang.builder.ToStringBuilder;
@@ -216,9 +218,9 @@ public class User implements Identifiable, UserPropertyProvider, Serializable {
 	 * @param candidateToken The candidate activation token
 	 * @throws UserAlreadyActiveException When the user is already active
 	 * @throws UserActivationNotRequestedException When activation has not yet been requested for
-	 *         this user
+	 *             this user
 	 * @throws InvalidTokenException When the provided token is not equal to the one assigned when
-	 *         activation was requested
+	 *             activation was requested
 	 */
 	public void activate(Token candidateToken) throws UserActivationException {
 		if (isActive()) {
@@ -340,5 +342,12 @@ public class User implements Identifiable, UserPropertyProvider, Serializable {
 		ToStringBuilder builder = new ToStringBuilder(this).append(id).append(login).append(email)
 				.append(password).append(status).append(activationToken).append(roles);
 		return builder.toString();
+	}
+
+	public static class ByLoginComparator implements Comparator<User> {
+		public int compare(User u1, User u2) {
+			CompareToBuilder builder = new CompareToBuilder().append(u1.getLogin(), u2.getLogin());
+			return builder.toComparison();
+		}
 	}
 }

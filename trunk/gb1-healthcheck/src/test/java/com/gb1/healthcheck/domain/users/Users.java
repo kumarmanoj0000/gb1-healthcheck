@@ -1,5 +1,8 @@
 package com.gb1.healthcheck.domain.users;
 
+import java.util.HashSet;
+import java.util.Set;
+
 public class Users {
 	private Users() {
 	}
@@ -22,5 +25,13 @@ public class Users {
 		lg.setEmail("lgolovina@yahoo.fr");
 
 		return lg;
+	}
+
+	public static Set<User> all() {
+		Set<User> all = new HashSet<User>();
+		all.add(Users.gb());
+		all.add(Users.lg());
+
+		return all;
 	}
 }

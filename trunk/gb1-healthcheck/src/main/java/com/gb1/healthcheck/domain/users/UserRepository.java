@@ -1,6 +1,7 @@
 package com.gb1.healthcheck.domain.users;
 
 import java.util.List;
+import java.util.Set;
 
 /**
  * A repository for users.
@@ -29,7 +30,7 @@ public interface UserRepository {
 	 * 
 	 * @return The list of registered users
 	 */
-	List<User> findUsers();
+	Set<User> findUsers();
 
 	/**
 	 * Finds a subset of matching registered users, based on inclusive indexes.

@@ -1,5 +1,7 @@
 package com.gb1.healthcheck.services.users;
 
+import java.util.Set;
+
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
@@ -87,6 +89,11 @@ public class UserServiceImpl implements UserService {
 	public User findUserByLogin(String login) {
 		User user = userRepository.findUserByLogin(login);
 		return user;
+	}
+
+	@Transactional(readOnly = true)
+	public Set<User> getAllUsers() {
+		return userRepository.findUsers();
 	}
 
 	// external dependencies
