@@ -29,6 +29,6 @@
 </form>
 
 <ul id="signinActions">
-	<li class="first"><a href='<s:url namespace="/public/register" action="request" />'><s:text name="signin.noAccountYet" /></a></li>
-	<li class="last"><a href='<s:url namespace="/public/security" action="lostPassword" />'><s:text name="signin.lostPassword" /></a></li>
+	<li class="first"><a href='<s:url namespace="/public/register" action="userRegistration" method="input" />'><s:text name="signin.noAccountYet" /></a></li>
+	<li class="last"><a href='<s:url namespace="/public/security" action="lostPassword" method="input" />'><s:text name="signin.lostPassword" /></a></li>
 </ul>

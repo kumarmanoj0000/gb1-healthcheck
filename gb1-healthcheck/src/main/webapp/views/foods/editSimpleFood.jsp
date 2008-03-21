@@ -4,7 +4,7 @@
 
 <s:actionerror />
 
-<s:form namespace="/foods/simpleFood" action="%{foodId == null ? 'createSubmit' : 'updateSubmit'}">
+<s:form namespace="/foods" action="%{foodId == null ? 'createSimpleFood' : 'updateSimpleFood'}">
 	<s:hidden name="foodId" />
 
 	<div class="required">

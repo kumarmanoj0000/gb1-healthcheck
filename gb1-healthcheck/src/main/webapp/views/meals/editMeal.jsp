@@ -33,7 +33,7 @@
 
 		<s:actionerror />
 
-		<s:form namespace="/meals" action="%{model.mealId == null ? 'createSubmit' : 'updateSubmit'}">
+		<s:form namespace="/meals" action="%{model.mealId == null ? 'createMeal' : 'updateMeal'}">
 			<s:hidden name="model.mealId" />
 			<s:hidden name="model.eaterId" />
 

@@ -52,6 +52,10 @@
 	<filter>
 		<filter-name>struts2Filter</filter-name>
 		<filter-class>org.apache.struts2.dispatcher.FilterDispatcher</filter-class>
+		<init-param>
+			<param-name>actionPackages</param-name>
+			<param-value>com.gb1.healthcheck.web</param-value>
+		</init-param>
 	</filter>
 	<filter-mapping>
 		<filter-name>struts2Filter</filter-name>

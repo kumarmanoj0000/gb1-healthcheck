@@ -1,42 +1,27 @@
 package com.gb1.healthcheck.web.meals;
 
-import javax.annotation.Resource;
-
+import org.apache.struts2.config.ParentPackage;
+import org.apache.struts2.config.Result;
+import org.apache.struts2.dispatcher.ServletActionRedirectResult;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
-import com.gb1.healthcheck.services.meals.MealService;
 import com.opensymphony.xwork2.Action;
-import com.opensymphony.xwork2.ActionSupport;
 
 @Controller("deleteMealAction")
 @Scope("prototype")
-public class DeleteMealAction extends ActionSupport {
-	private MealService mealSvc;
-	private Long mealId;
-	private String actionMessageKey;
-
+@ParentPackage("default")
+@Result(type = ServletActionRedirectResult.class, value = "listMeals", params = { "namespace",
+		"/meals", "parse", "true", "actionMessageKey", "${actionMessageKey}" })
+public class DeleteMealAction extends MealActionSupport {
 	public DeleteMealAction() {
 	}
 
 	@Override
 	public String execute() {
-		mealSvc.deleteMeal(mealId);
-		actionMessageKey = "meals.delete.success";
+		getMealService().deleteMeal(getMealId());
+		setActionMessageKey("meals.delete.success");
 
 		return Action.SUCCESS;
-	}
-
-	public void setMealId(Long mealId) {
-		this.mealId = mealId;
-	}
-
-	public String getActionMessageKey() {
-		return actionMessageKey;
-	}
-
-	@Resource
-	public void setMealService(MealService mealSvc) {
-		this.mealSvc = mealSvc;
 	}
 }

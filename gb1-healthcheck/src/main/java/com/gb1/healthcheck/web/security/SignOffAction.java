@@ -5,6 +5,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.acegisecurity.ui.rememberme.TokenBasedRememberMeServices;
+import org.apache.struts2.config.Namespace;
+import org.apache.struts2.config.ParentPackage;
+import org.apache.struts2.config.Result;
+import org.apache.struts2.dispatcher.ServletRedirectResult;
 import org.apache.struts2.interceptor.ServletRequestAware;
 import org.apache.struts2.interceptor.ServletResponseAware;
 import org.springframework.context.annotation.Scope;
@@ -14,6 +18,9 @@ import com.opensymphony.xwork2.Action;
 
 @Controller("signOffAction")
 @Scope("prototype")
+@Namespace("/public/security")
+@ParentPackage("default")
+@Result(type = ServletRedirectResult.class, value = "/")
 public class SignOffAction implements ServletRequestAware, ServletResponseAware {
 	private HttpServletRequest request;
 	private HttpServletResponse response;

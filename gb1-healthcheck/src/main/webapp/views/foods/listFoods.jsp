@@ -18,10 +18,10 @@
 		<s:text name="foods.simpleFoods.confirmDelete" id="deleteConfirmMsg" />
 		<s:iterator value="simpleFoods">
 			<li>
-				<s:url id="updateUrl" namespace="/foods/simpleFood" action="updateInput">
+				<s:url id="updateUrl" namespace="/foods" action="updateSimpleFood" method="input">
 					<s:param name="foodId" value="%{id}" />
 				</s:url>
-				<s:url id="deleteUrl" namespace="/foods/simpleFood" action="delete">
+				<s:url id="deleteUrl" namespace="/foods" action="deleteSimpleFood">
 					<s:param name="foodId" value="%{id}" />
 				</s:url>
 				<a href="${updateUrl}">${name}</a> |
@@ -32,7 +32,7 @@
 </s:else>
 
 <p>
-	<a href='<s:url namespace="/foods/simpleFood" action="createInput" />'><s:text name="foods.simpleFoods.create" /></a>
+	<a href='<s:url namespace="/foods" action="createSimpleFood" method="input" />'><s:text name="foods.simpleFoods.create" /></a>
 </p>
 
 <h3><s:text name="foods.complexFoods" /></h3>
@@ -45,10 +45,10 @@
 		<s:text name="foods.complexFoods.confirmDelete" id="deleteConfirmMsg" />
 		<s:iterator value="complexFoods">
 			<li>
-				<s:url id="updateUrl" namespace="/foods/complexFood" action="updateInput">
+				<s:url id="updateUrl" namespace="/foods" action="updateComplexFood" method="input">
 					<s:param name="foodId" value="%{id}" />
 				</s:url>
-				<s:url id="deleteUrl" namespace="/foods/complexFood" action="delete">
+				<s:url id="deleteUrl" namespace="/foods" action="deleteComplexFood">
 					<s:param name="foodId" value="%{id}" />
 				</s:url>
 				<a href="${updateUrl}">${name}</a> |
@@ -59,5 +59,5 @@
 </s:else>
 
 <p>
-	<a href='<s:url namespace="/foods/complexFood" action="createInput" />'><s:text name="foods.complexFoods.create" /></a>
+	<a href='<s:url namespace="/foods" action="createComplexFood" method="input" />'><s:text name="foods.complexFoods.create" /></a>
 </p>

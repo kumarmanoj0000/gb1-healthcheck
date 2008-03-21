@@ -2,7 +2,7 @@
 
 <s:actionerror />
 
-<s:form namespace="/public/security" action="sendPassword">
+<s:form namespace="/public/security" action="lostPassword">
 	<div class="required">
 		<label><s:text name="register.email" />:</label>
 		<s:textfield name="email" />

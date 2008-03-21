@@ -3,6 +3,10 @@ package com.gb1.healthcheck.web.metrics;
 import java.util.Date;
 import java.util.List;
 
+import org.apache.struts2.config.ParentPackage;
+import org.apache.struts2.config.Result;
+import org.apache.struts2.dispatcher.ServletDispatcherResult;
+
 import com.gb1.healthcheck.domain.metrics.GastricState;
 import com.gb1.healthcheck.domain.metrics.PatientFile;
 import com.gb1.healthcheck.domain.metrics.PunctualGastricState;
@@ -11,6 +15,8 @@ import com.gb1.healthcheck.services.metrics.PatientFileService;
 import com.gb1.healthcheck.web.utils.HttpRequestUtils;
 import com.opensymphony.xwork2.Action;
 
+@ParentPackage("default")
+@Result(type = ServletDispatcherResult.class, value = "/views/metrics/gastricStates.jsp")
 public class ManageGastricStatesAction {
 	private PatientFileService patientFileService;
 

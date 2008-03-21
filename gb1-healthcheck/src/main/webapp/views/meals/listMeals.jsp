@@ -15,14 +15,14 @@
 	<ul>
 		<s:iterator value="mealHistory">
 			<li>
-				<s:url id="updateUrl" namespace="/meals" action="updateInput">
+				<s:url id="updateUrl" namespace="/meals" action="updateMeal" method="input">
 					<s:param name="mealId" value="%{id}" />
 				</s:url>
 				<a href="${updateUrl}">
 					<fmt:formatDate value="${instant}" type="both" pattern="yyyy-MM-dd HH:mm" />
 				</a>
 				|
-				<s:url id="deleteUrl" namespace="/meals" action="delete">
+				<s:url id="deleteUrl" namespace="/meals" action="deleteMeal">
 					<s:param name="mealId" value="%{id}" />
 				</s:url>
 				<a href="${deleteUrl}" onclick="return confirm('${deleteConfirmMsg}')">
@@ -34,5 +34,5 @@
 </s:else>
 
 <p>
-	<a href='<s:url namespace="/meals" action="createInput" />'><s:text name="meals.create" /></a>
+	<a href='<s:url namespace="/meals" action="createMeal" method="input" />'><s:text name="meals.create" /></a>
 </p>

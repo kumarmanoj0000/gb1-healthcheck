@@ -4,6 +4,11 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 
+import org.apache.struts2.config.ParentPackage;
+import org.apache.struts2.config.Result;
+import org.apache.struts2.config.Results;
+import org.apache.struts2.dispatcher.ServletActionRedirectResult;
+import org.apache.struts2.dispatcher.ServletDispatcherResult;
 import org.apache.struts2.interceptor.SessionAware;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
@@ -22,6 +27,12 @@ import com.opensymphony.xwork2.validator.annotations.Validations;
 
 @Controller("editActiveUserAction")
 @Scope("prototype")
+@ParentPackage("default")
+@Results( {
+		@Result(name = "input", type = ServletDispatcherResult.class, value = "/views/users/editActiveUser.jsp"),
+		@Result(type = ServletActionRedirectResult.class, value = "workbench", params = {
+				"namespace", "/workbench", "parse", "true", "actionMessageKey",
+				"${actionMessageKey}" }) })
 @Validation
 public class EditActiveUserAction extends ActionSupport implements SessionAware {
 	protected static final String MODEL_SESSION_KEY = EditActiveUserAction.class.getName()
