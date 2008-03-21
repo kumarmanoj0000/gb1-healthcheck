@@ -6,8 +6,6 @@ import org.apache.struts2.config.Namespace;
 import org.apache.struts2.config.ParentPackage;
 import org.apache.struts2.config.Result;
 import org.apache.struts2.config.Results;
-import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Controller;
 
 import com.gb1.commons.tokens.Token;
 import com.gb1.healthcheck.domain.users.UserException;
@@ -15,12 +13,9 @@ import com.gb1.healthcheck.services.users.UserService;
 import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionSupport;
 
-@Controller("userActivationAction")
-@Scope("prototype")
 @Namespace("/public/register")
 @ParentPackage("default")
-@Results( {
-		@Result(name = "input", value = "/views/public/security/register/activateUser.jsp"),
+@Results( { @Result(name = "input", value = "/views/public/security/register/activateUser.jsp"),
 		@Result(value = "/views/public/security/register/activateUser-success.jsp") })
 public class ActivateUserAction extends ActionSupport {
 	private UserService userService;

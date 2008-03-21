@@ -7,8 +7,6 @@ import org.apache.struts2.config.Result;
 import org.apache.struts2.config.Results;
 import org.apache.struts2.dispatcher.ServletActionRedirectResult;
 import org.apache.struts2.interceptor.SessionAware;
-import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Controller;
 
 import com.gb1.healthcheck.domain.meals.Meal;
 import com.gb1.healthcheck.domain.meals.MealException;
@@ -17,8 +15,6 @@ import com.gb1.healthcheck.services.meals.MealUpdateRequest;
 import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.Preparable;
 
-@Controller("updateMealAction")
-@Scope("prototype")
 @ParentPackage("default")
 @Results( {
 		@Result(name = "input", value = "/views/meals/editMeal.jsp"),

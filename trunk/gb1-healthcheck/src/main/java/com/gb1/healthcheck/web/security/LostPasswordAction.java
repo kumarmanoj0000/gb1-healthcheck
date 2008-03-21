@@ -6,20 +6,15 @@ import org.apache.struts2.config.Namespace;
 import org.apache.struts2.config.ParentPackage;
 import org.apache.struts2.config.Result;
 import org.apache.struts2.config.Results;
-import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Controller;
 
 import com.gb1.healthcheck.domain.users.UnknownUserException;
 import com.gb1.healthcheck.services.users.UserService;
 import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionSupport;
 
-@Controller("lostPasswordAction")
-@Scope("prototype")
 @Namespace("/public/security")
 @ParentPackage("default")
-@Results( {
-		@Result(name = "input", value = "/views/public/security/lostPassword.jsp"),
+@Results( { @Result(name = "input", value = "/views/public/security/lostPassword.jsp"),
 		@Result(value = "/views/public/security/lostPassword-success.jsp") })
 public class LostPasswordAction extends ActionSupport {
 	private UserService userService;

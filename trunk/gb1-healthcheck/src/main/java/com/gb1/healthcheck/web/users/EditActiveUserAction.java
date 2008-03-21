@@ -9,8 +9,6 @@ import org.apache.struts2.config.Result;
 import org.apache.struts2.config.Results;
 import org.apache.struts2.dispatcher.ServletActionRedirectResult;
 import org.apache.struts2.interceptor.SessionAware;
-import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Controller;
 
 import com.gb1.healthcheck.domain.users.EmailAlreadyExistsException;
 import com.gb1.healthcheck.domain.users.User;
@@ -24,8 +22,6 @@ import com.opensymphony.xwork2.validator.annotations.RequiredStringValidator;
 import com.opensymphony.xwork2.validator.annotations.Validation;
 import com.opensymphony.xwork2.validator.annotations.Validations;
 
-@Controller("editActiveUserAction")
-@Scope("prototype")
 @ParentPackage("default")
 @Results( {
 		@Result(name = "input", value = "/views/users/editActiveUser.jsp"),
