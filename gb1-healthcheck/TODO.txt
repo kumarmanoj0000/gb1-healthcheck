@@ -4,19 +4,22 @@ HealthCheck
 
 . features:
   - analysis
-    * gastric states graph (generate image? applet?)
-    * correlation food => gastric states
+    * correlation food <=> gastric states
+    * gastric states evolution (Flex graph)
 
   - user administration
     * administration
       * view user list (paginate, sort)
-      * view user profile
-      * edit user profile
+      * view / edit user profile
+      * delete user profile
+
+  - reminders
+    * send email when no meal saved in last 7 days
 
 . technical
   - create Struts2 theme to reduce HTML tags
-  - investigate Spring TestContext
-  - investigate writing JUnit integration tests
+  - write integration tests (Spring TestContext?)
 
 . pain points
+  - ServiceRequest / Adapter / PropertyProvider: lots of code, is it really useful?
   - @ParentPackage duplication
