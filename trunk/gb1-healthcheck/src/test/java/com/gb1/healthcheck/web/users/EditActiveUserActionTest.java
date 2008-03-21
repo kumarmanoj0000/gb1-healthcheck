@@ -39,7 +39,7 @@ public class EditActiveUserActionTest extends TestCase {
 		action.setUserService(userSvc);
 		action.setSession(sessionMap);
 
-		assertEquals(Action.SUCCESS, action.submit());
+		assertEquals(Action.SUCCESS, action.execute());
 		assertTrue(sessionMap.isEmpty());
 
 		// make sure the update was sent to the service layer
@@ -65,7 +65,7 @@ public class EditActiveUserActionTest extends TestCase {
 		action.setUserService(userSvc);
 		action.setSession(sessionMap);
 
-		assertEquals(Action.INPUT, action.submit());
+		assertEquals(Action.INPUT, action.execute());
 		assertNotNull(action.getFieldErrors().get("model.email"));
 		assertTrue(sessionMap.containsKey(EditActiveUserAction.MODEL_SESSION_KEY));
 	}

@@ -36,7 +36,7 @@
 		<action name="request" method="input" class="userRegistrationAction">
 			<result name="input">/views/public/security/register/request.jsp</result>
 		</action>
-		<action name="register" method="register" class="userRegistrationAction">
+		<action name="register" method="execute" class="userRegistrationAction">
 			<result name="input">/views/public/security/register/request.jsp</result>
 			<result>/views/public/security/register/request-success.jsp</result>
 		</action>
@@ -44,7 +44,7 @@
 		<action name="challenge" method="input" class="userActivationAction">
 			<result name="input">/views/public/security/register/activate.jsp</result>
 		</action>
-		<action name="activate" method="activate" class="userActivationAction">
+		<action name="activate" method="execute" class="userActivationAction">
 			<result name="input">/views/public/security/register/activate.jsp</result>
 			<result>/views/public/security/register/activate-success.jsp</result>
 		</action>
@@ -58,7 +58,7 @@
 		<action name="lostPassword" method="input" class="lostPasswordAction">
 			<result name="input">/views/public/security/lostPassword.jsp</result>
 		</action>
-		<action name="sendPassword" method="sendLostPassword" class="lostPasswordAction">
+		<action name="sendPassword" method="execute" class="lostPasswordAction">
 			<result name="input">/views/public/security/lostPassword.jsp</result>
 			<result>/views/public/security/lostPassword-success.jsp</result>
 		</action>
@@ -68,7 +68,7 @@
 		<action name="editInput" method="input" class="editActiveUserAction">
 			<result name="input">/views/users/editActiveUser.jsp</result>
 		</action>
-		<action name="editSubmit" method="submit" class="editActiveUserAction">
+		<action name="editSubmit" method="execute" class="editActiveUserAction">
 			<result name="input">/views/users/editActiveUser.jsp</result>
 			<result name="success" type="redirect-action">
 				<param name="namespace">/workbench</param>
@@ -86,7 +86,7 @@
 	</package>
 
 	<package name="foods" extends="default" namespace="/foods">
-		<action name="list" method="list" class="listFoodsAction">
+		<action name="list" method="execute" class="listFoodsAction">
 			<result>/views/foods/listFoods.jsp</result>
 		</action>
 	</package>
@@ -96,7 +96,7 @@
 			<result name="input">/views/foods/editSimpleFood.jsp</result>
 		</action>
 
-		<action name="createSubmit" method="submit" class="createSimpleFoodAction">
+		<action name="createSubmit" method="execute" class="createSimpleFoodAction">
 			<result name="input">/views/foods/editSimpleFood.jsp</result>
 			<result name="success" type="redirect-action">
 				<param name="namespace">/foods</param>
@@ -110,7 +110,7 @@
 			<result name="input">/views/foods/editSimpleFood.jsp</result>
 		</action>
 
-		<action name="updateSubmit" method="submit" class="updateSimpleFoodAction">
+		<action name="updateSubmit" method="execute" class="updateSimpleFoodAction">
 			<result name="input">/views/foods/editSimpleFood.jsp</result>
 			<result name="success" type="redirect-action">
 				<param name="namespace">/foods</param>
@@ -120,7 +120,7 @@
 			</result>
 		</action>
 
-		<action name="delete" method="submit" class="deleteSimpleFoodAction">
+		<action name="delete" method="execute" class="deleteSimpleFoodAction">
 			<result name="success" type="redirect-action">
 				<param name="namespace">/foods</param>
 				<param name="actionName">list</param>
@@ -135,7 +135,7 @@
 			<result name="input">/views/foods/editComplexFood.jsp</result>
 		</action>
 
-		<action name="createSubmit" method="submit" class="createComplexFoodAction">
+		<action name="createSubmit" method="execute" class="createComplexFoodAction">
 			<result name="input">/views/foods/editComplexFood.jsp</result>
 			<result name="success" type="redirect-action">
 				<param name="namespace">/foods</param>
@@ -149,7 +149,7 @@
 			<result name="input">/views/foods/editComplexFood.jsp</result>
 		</action>
 
-		<action name="updateSubmit" method="submit" class="updateComplexFoodAction">
+		<action name="updateSubmit" method="execute" class="updateComplexFoodAction">
 			<result name="input">/views/foods/editComplexFood.jsp</result>
 			<result name="success" type="redirect-action">
 				<param name="namespace">/foods</param>
@@ -159,7 +159,7 @@
 			</result>
 		</action>
 
-		<action name="delete" method="submit" class="deleteComplexFoodAction">
+		<action name="delete" method="execute" class="deleteComplexFoodAction">
 			<result name="success" type="redirect-action">
 				<param name="namespace">/foods</param>
 				<param name="actionName">list</param>
@@ -170,7 +170,7 @@
 	</package>
 
 	<package name="meals" extends="default" namespace="/meals">
-		<action name="list" method="list" class="listMealsAction">
+		<action name="list" method="execute" class="listMealsAction">
 			<result>/views/meals/listMeals.jsp</result>
 		</action>
 
@@ -178,7 +178,7 @@
 			<result name="input">/views/meals/editMeal.jsp</result>
 		</action>
 
-		<action name="createSubmit" method="submit" class="createMealAction">
+		<action name="createSubmit" method="execute" class="createMealAction">
 			<result name="input">/views/meals/editMeal.jsp</result>
 			<result name="success" type="redirect-action">
 				<param name="namespace">/meals</param>
@@ -192,7 +192,7 @@
 			<result name="input">/views/meals/editMeal.jsp</result>
 		</action>
 
-		<action name="updateSubmit" method="update" class="updateMealAction">
+		<action name="updateSubmit" method="execute" class="updateMealAction">
 			<result name="input">/views/meals/editMeal.jsp</result>
 			<result name="success" type="redirect-action">
 				<param name="namespace">/meals</param>
@@ -202,7 +202,7 @@
 			</result>
 		</action>
 
-		<action name="delete" method="delete" class="deleteMealAction">
+		<action name="delete" method="execute" class="deleteMealAction">
 			<result name="success" type="redirect-action">
 				<param name="namespace">/meals</param>
 				<param name="actionName">list</param>
@@ -213,7 +213,7 @@
 	</package>
 
 	<package name="gastricStates" extends="default" namespace="/metrics">
-		<action name="manage" method="show" class="manageGastricStatesAction">
+		<action name="manage" method="execute" class="manageGastricStatesAction">
 			<result>/views/metrics/gastricStates.jsp</result>
 		</action>
 	</package>

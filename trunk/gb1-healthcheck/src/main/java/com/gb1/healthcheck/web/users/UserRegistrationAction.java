@@ -32,7 +32,8 @@ public class UserRegistrationAction extends ActionSupport {
 			@RequiredStringValidator(fieldName = "model.email", message = "", key = "register.email.invalid"),
 			@RequiredStringValidator(fieldName = "model.password1", message = "", key = "register.password.invalid"),
 			@RequiredStringValidator(fieldName = "model.password2", message = "", key = "register.password.invalid") }, emails = { @EmailValidator(fieldName = "model.email", message = "", key = "register.email.invalid") }, expressions = { @ExpressionValidator(expression = "model.password1.equals(model.password2)", message = "", key = "register.password.mismatch") })
-	public String register() {
+	@Override
+	public String execute() {
 		String result = Action.INPUT;
 
 		try {

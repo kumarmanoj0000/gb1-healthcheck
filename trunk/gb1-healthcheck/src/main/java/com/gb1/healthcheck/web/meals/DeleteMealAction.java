@@ -19,9 +19,11 @@ public class DeleteMealAction extends ActionSupport {
 	public DeleteMealAction() {
 	}
 
-	public String delete() {
+	@Override
+	public String execute() {
 		mealSvc.deleteMeal(mealId);
 		actionMessageKey = "meals.delete.success";
+
 		return Action.SUCCESS;
 	}
 

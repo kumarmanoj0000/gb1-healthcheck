@@ -35,7 +35,8 @@ public class UpdateMealAction extends MealActionSupport implements Preparable, S
 		return Action.INPUT;
 	}
 
-	public String update() {
+	@Override
+	public String execute() {
 		String result = Action.INPUT;
 
 		try {

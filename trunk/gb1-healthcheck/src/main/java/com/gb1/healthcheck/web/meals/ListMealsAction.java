@@ -27,7 +27,8 @@ public class ListMealsAction extends ActionSupport {
 	public ListMealsAction() {
 	}
 
-	public String list() {
+	@Override
+	public String execute() {
 		mealHistory.addAll(mealService.getMealHistory(getRequester()));
 		return Action.SUCCESS;
 	}

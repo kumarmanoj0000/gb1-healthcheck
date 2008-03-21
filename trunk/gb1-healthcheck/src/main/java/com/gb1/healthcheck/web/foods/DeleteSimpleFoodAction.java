@@ -11,7 +11,8 @@ public class DeleteSimpleFoodAction extends SimpleFoodActionSupport {
 	public DeleteSimpleFoodAction() {
 	}
 
-	public String submit() {
+	@Override
+	public String execute() {
 		getFoodService().deleteFood(getFoodId());
 		setActionMessageKey("foods.simpleFoods.delete.success");
 

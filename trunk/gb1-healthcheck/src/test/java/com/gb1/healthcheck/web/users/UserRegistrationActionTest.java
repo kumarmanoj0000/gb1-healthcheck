@@ -18,7 +18,7 @@ public class UserRegistrationActionTest extends TestCase {
 
 		UserRegistrationAction action = new UserRegistrationAction();
 		action.setUserService(userSvc);
-		String result = action.register();
+		String result = action.execute();
 
 		assertEquals(Action.SUCCESS, result);
 		EasyMock.verify(userSvc);
@@ -32,7 +32,7 @@ public class UserRegistrationActionTest extends TestCase {
 
 		UserRegistrationAction action = new UserRegistrationAction();
 		action.setUserService(userSvc);
-		String result = action.register();
+		String result = action.execute();
 
 		assertEquals(Action.INPUT, result);
 		assertTrue(action.hasFieldErrors());

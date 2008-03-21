@@ -20,7 +20,7 @@ public class LostPasswordActionTest extends TestCase {
 		action.setEmail(email);
 		action.setUserService(userSvc);
 
-		assertEquals(Action.SUCCESS, action.sendLostPassword());
+		assertEquals(Action.SUCCESS, action.execute());
 		EasyMock.verify(userSvc);
 	}
 
@@ -36,7 +36,7 @@ public class LostPasswordActionTest extends TestCase {
 		action.setEmail(email);
 		action.setUserService(userSvc);
 
-		assertEquals(Action.INPUT, action.sendLostPassword());
+		assertEquals(Action.INPUT, action.execute());
 		assertTrue(action.hasFieldErrors());
 	}
 }

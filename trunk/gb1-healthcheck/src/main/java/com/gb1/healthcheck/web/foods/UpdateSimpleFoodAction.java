@@ -40,7 +40,8 @@ public class UpdateSimpleFoodAction extends SimpleFoodActionSupport implements S
 	}
 
 	@Validations(requiredStrings = { @RequiredStringValidator(fieldName = "model.name", message = "", key = "foods.simpleFoods.edit.error.nameRequired") })
-	public String submit() {
+	@Override
+	public String execute() {
 		String result = Action.INPUT;
 
 		try {

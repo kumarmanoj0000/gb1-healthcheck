@@ -11,7 +11,8 @@ public class DeleteComplexFoodAction extends ComplexFoodActionSupport {
 	public DeleteComplexFoodAction() {
 	}
 
-	public String submit() {
+	@Override
+	public String execute() {
 		getFoodService().deleteFood(getFoodId());
 		setActionMessageKey("foods.complexFoods.delete.success");
 

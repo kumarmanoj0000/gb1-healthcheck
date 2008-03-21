@@ -19,7 +19,7 @@ public class CreateSimpleFoodActionTest extends TestCase {
 		CreateSimpleFoodAction action = new CreateSimpleFoodAction();
 		action.setFoodService(foodSvc);
 
-		assertEquals(Action.SUCCESS, action.submit());
+		assertEquals(Action.SUCCESS, action.execute());
 		EasyMock.verify(foodSvc);
 	}
 
@@ -32,7 +32,7 @@ public class CreateSimpleFoodActionTest extends TestCase {
 		CreateSimpleFoodAction action = new CreateSimpleFoodAction();
 		action.setFoodService(foodSvc);
 
-		assertEquals(Action.INPUT, action.submit());
+		assertEquals(Action.INPUT, action.execute());
 		assertTrue(action.hasFieldErrors());
 		EasyMock.verify(foodSvc);
 	}

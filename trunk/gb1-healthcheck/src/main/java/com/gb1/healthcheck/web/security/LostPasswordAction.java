@@ -17,11 +17,7 @@ public class LostPasswordAction extends ActionSupport {
 	private String email;
 
 	@Override
-	public String input() {
-		return Action.INPUT;
-	}
-
-	public String sendLostPassword() {
+	public String execute() {
 		String result = Action.INPUT;
 
 		try {
