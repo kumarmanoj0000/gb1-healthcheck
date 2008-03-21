@@ -7,16 +7,16 @@
 
 		<script type="text/javascript">
 			var nbSingleDishDivs = <s:property value="model.selectedFoodIds.length" />;
-			var maxSingleDishDivIndex = nbSingleDishDivs;
+			var maxSingleDishDivIndex = nbSingleDishDivs - 1;
 
 			function addSingleDishDiv() {
 				maxSingleDishDivIndex++;
 				nbSingleDishDivs++;
 
-				var newSingleDishDiv = $('#dishes div:first').clone()
+				var newSingleDishDiv = $('#mockSingleDishDiv').clone()
 					.attr('id', 'singleDish-' + maxSingleDishDivIndex).get();
 				$('a:first', newSingleDishDiv).attr('onClick', 'javascript:removeSingleDishDiv(' + maxSingleDishDivIndex + ')');
-				$(newSingleDishDiv).insertBefore('#addSingleDishLinkDiv');
+				$(newSingleDishDiv).insertBefore('#addSingleDishLinkDiv').show();
 			}
 
 			function removeSingleDishDiv(index) {
@@ -29,13 +29,13 @@
 	</head>
 
 	<body>
-		<h2><s:text name="meals.update.title" /></h2>
+		<h2><s:text name="meals.edit.title" /></h2>
 
 		<s:actionerror />
 
-		<s:form namespace="/meals" action="updateSubmit">
-			<s:hidden name="mealId" />
-			<s:hidden name="eaterId" />
+		<s:form namespace="/meals" action="%{model.mealId == null ? 'createSubmit' : 'updateSubmit'}">
+			<s:hidden name="model.mealId" />
+			<s:hidden name="model.eaterId" />
 
 			<div class="required">
 				<label><s:text name="meal.instant" />:</label>
@@ -56,7 +56,7 @@
 
 				<s:iterator value="model.selectedFoodIds" status="it">
 					<div id="singleDish-${it.index}">
-						<div class="required">
+						<div>
 							<label><s:text name="meal.dish" />:</label>
 							<s:select
 								name="model.selectedFoodIds"
@@ -67,7 +67,7 @@
 							/>
 						</div>
 
-						<div class="required">
+						<div>
 							<label><s:text name="preparationMethod" />:</label>
 							<s:select
 								name="model.selectedPreparationMethodNames"
@@ -79,13 +79,13 @@
 						</div>
 
 						<div>
-							<a href="#" onClick="javascript:removeSingleDishDiv(${it.index})"><s:text name="meals.update.removeDish" /></a>
+							<a href="#" onClick="javascript:removeSingleDishDiv(${it.index})"><s:text name="meals.edit.removeDish" /></a>
 						</div>
 					</div>
 				</s:iterator>
 
 				<div id="addSingleDishLinkDiv">
-					<a href="#" onClick="javascript:addSingleDishDiv()"><s:text name="meals.update.addDish" /></a>
+					<a href="#" onClick="javascript:addSingleDishDiv()"><s:text name="meals.edit.addDish" /></a>
 				</div>
 			</fieldset>
 
@@ -95,16 +95,49 @@
 			</div>
 		</s:form>
 
+		<%-- Mock dish div for cloning (not displayed) --%>
+		<div id="mockSingleDishDiv" style="display: none">
+			<div>
+				<label><s:text name="meal.dish" />:</label>
+				<s:select
+					name="model.selectedFoodIds"
+					list="availableFoods"
+					listKey="id"
+					listValue="name"
+				/>
+			</div>
+
+			<div>
+				<label><s:text name="preparationMethod" />:</label>
+				<s:select
+					name="model.selectedPreparationMethodNames"
+					list="availablePreparationMethods"
+					listKey="name()"
+					listValue="%{getText('preparationMethod.' + name())}"
+				/>
+			</div>
+
+			<div>
+				<a href="#" onClick="javascript:removeSingleDishDiv(-1)"><s:text name="meals.edit.removeDish" /></a>
+			</div>
+		</div>
+
 		<script type="text/javascript">
-			Calendar.setup({
-				inputField  : "f_date_c",
-				ifFormat    : "%Y-%m-%d %H:%M:%S",
-				button      : "f_trigger_c",
-				align       : "Tl",
-				singleClick : false,
-				showsTime   : true,
-				timeFormat  : 24,
-				step        : 1
+			$(document).ready(function() {
+				Calendar.setup({
+					inputField  : "f_date_c",
+					ifFormat    : "%Y-%m-%d %H:%M:%S",
+					button      : "f_trigger_c",
+					align       : "Tl",
+					singleClick : false,
+					showsTime   : true,
+					timeFormat  : 24,
+					step        : 1
+				});
+
+				if (nbSingleDishDivs <= 0) {
+					addSingleDishDiv();
+				}
 			});
 		</script>
 	</body>

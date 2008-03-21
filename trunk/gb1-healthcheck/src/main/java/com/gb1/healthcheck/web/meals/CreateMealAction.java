@@ -13,7 +13,6 @@ import com.opensymphony.xwork2.Preparable;
 @Scope("prototype")
 public class CreateMealAction extends MealActionSupport implements Preparable {
 	private MealCreationRequest model;
-	private String actionMessageKey;
 
 	public CreateMealAction() {
 	}
@@ -28,14 +27,14 @@ public class CreateMealAction extends MealActionSupport implements Preparable {
 
 		try {
 			getMealService().createMeal(model);
-			actionMessageKey = "meals.create.success";
+			setActionMessageKey("meals.edit.success");
 			result = Action.SUCCESS;
 		}
 		catch (MealAlreadyExistsException e) {
 			addFieldError("model.instant", getText("meal.error.alreadyExists"));
 		}
 		catch (MealException e) {
-			addActionError(getText("meals.create.error", new String[] { e.getMessage() }));
+			addActionError(getText("meals.edit.error", new String[] { e.getMessage() }));
 		}
 
 		return result;
@@ -43,9 +42,5 @@ public class CreateMealAction extends MealActionSupport implements Preparable {
 
 	public MealCreationRequest getModel() {
 		return model;
-	}
-
-	public String getActionMessageKey() {
-		return actionMessageKey;
 	}
 }

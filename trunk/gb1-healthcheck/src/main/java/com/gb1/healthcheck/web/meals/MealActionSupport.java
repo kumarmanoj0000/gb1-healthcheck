@@ -19,9 +19,11 @@ import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionSupport;
 
 public abstract class MealActionSupport extends ActionSupport {
+	private String actionMessageKey;
 	private FoodService foodService;
 	private MealService mealService;
 
+	private Long mealId;
 	private List<Food> availableFoods = new LinkedList<Food>();
 
 	protected MealActionSupport() {
@@ -51,6 +53,14 @@ public abstract class MealActionSupport extends ActionSupport {
 		return HttpRequestUtils.getUser();
 	}
 
+	public String getActionMessageKey() {
+		return actionMessageKey;
+	}
+
+	protected void setActionMessageKey(String actionMessageKey) {
+		this.actionMessageKey = actionMessageKey;
+	}
+
 	protected FoodService getFoodService() {
 		return foodService;
 	}
@@ -67,5 +77,13 @@ public abstract class MealActionSupport extends ActionSupport {
 	@Resource
 	public void setMealService(MealService mealSvc) {
 		this.mealService = mealSvc;
+	}
+
+	public Long getMealId() {
+		return mealId;
+	}
+
+	public void setMealId(Long mealId) {
+		this.mealId = mealId;
 	}
 }

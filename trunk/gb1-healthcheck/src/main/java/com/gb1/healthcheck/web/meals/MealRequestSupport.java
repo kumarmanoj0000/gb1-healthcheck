@@ -8,21 +8,35 @@ import java.util.Set;
 import com.gb1.healthcheck.domain.meals.Meal;
 import com.gb1.healthcheck.domain.meals.PreparationMethod;
 import com.gb1.healthcheck.domain.meals.PreparedFood;
+import com.gb1.healthcheck.domain.users.User;
 import com.gb1.healthcheck.services.meals.PreparedFoodCreationRequest;
 import com.gb1.healthcheck.services.meals.PreparedFoodUpdateRequest;
 import com.opensymphony.xwork2.conversion.annotations.TypeConversion;
 
 public abstract class MealRequestSupport {
+	private Long mealId;
+	private Long eaterId;
 	private Date instant;
 	private List<Long> selectedFoodIds = new LinkedList<Long>();
 	private List<String> selectedPrepMethodNames = new LinkedList<String>();
 
-	public MealRequestSupport() {
+	public MealRequestSupport(User eater) {
+		eaterId = eater.getId();
 	}
 
 	public MealRequestSupport(Meal meal) {
+		mealId = meal.getId();
+		eaterId = meal.getEater().getId();
 		instant = meal.getInstant();
 		setDishes(meal.getDishes());
+	}
+
+	public Long getMealId() {
+		return mealId;
+	}
+
+	public Long getEaterId() {
+		return eaterId;
 	}
 
 	public Date getInstant() {

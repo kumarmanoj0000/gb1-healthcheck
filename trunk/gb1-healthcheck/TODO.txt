@@ -14,8 +14,8 @@ HealthCheck
       * edit user profile
 
 . technical
-  - merge createMeal.jsp and updateMeal.jsp
   - rename single action methods to "execute"
+  - remove all <html> and <body> tags from JSPs
   - use flash interceptor to show confirmation messages
   - reduce HTML tags, favor Struts2 tags (use theme?)
   - improve Eclipse/Maven integration
