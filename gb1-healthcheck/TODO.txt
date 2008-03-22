@@ -19,6 +19,8 @@ HealthCheck
 . technical
   - create Struts2 theme to reduce HTML tags
   - write integration tests (Spring TestContext?)
+  - upgrade to Spring 2.5.2
+  - upgrade to Hibernate Core 3.2.6, Annotations 3.3.1 and EntityManager 3.3.2
 
 . pain points
   - ServiceRequest / Adapter / PropertyProvider: lots of code, is it really useful?
