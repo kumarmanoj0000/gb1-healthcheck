@@ -16,6 +16,10 @@ p {
 	width: 80%;
 }
 
+table {
+	width: 100%;
+}
+
 a:link, a:visited, a:active {
 	text-decoration: none;
 }
@@ -25,20 +29,45 @@ a:hover {
 	text-decoration: underline overline;
 }
 
-table {
+span.pagebanner {
+	display: block;
+	width: 100%;
+	background-color: #EEEEEE;
+	border-style: dotted dotted none;
+	border-width: 1px 1px medium;
 }
 
-table tr {
+span.pagelinks {
+	display: block;
+	width: 100%;
+	background-color: #EEEEEE;
+	border-style: none dotted dotted;
+	border-width: medium 1px 1px;
 }
 
-table tr th {
+table.listTable {
+	border: 1px solid #CCCCCC;
+	border-collapse: collapse;
+	margin: 20px 0pt;
+}
+
+table.listTable thead tr th {
+	background-color: #EEEEEE;
 	text-align: left;
 }
 
-table tr td {
+table.listTable tr.odd {
+}
+
+table.listTable tr.even {
+}
+
+table.listTable td, table th {
+	border: 1px solid #CCCCCC;
 }
 
 #contentTable {
+	border: none;
 }
 
 div .actionMessages {
