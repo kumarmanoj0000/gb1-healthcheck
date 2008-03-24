@@ -9,9 +9,18 @@ HealthCheck
 
   - user administration
     * administration
-      * user list: paginate results
+      * user list:
+        . cache result list
+        . localize messages
+        . sort the entire list
+        . investigate external paging
+        . show arrows when sorted
+        . emphasize sorted column
       * view / edit user profile
       * delete user profile
+
+  - global layout:
+    . replace table by divs
 
   - reminders
     * send email when no meal saved in last 7 days
