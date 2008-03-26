@@ -16,10 +16,11 @@ import org.apache.struts2.config.Result;
 import com.gb1.healthcheck.domain.users.User;
 import com.gb1.healthcheck.services.users.UserService;
 import com.opensymphony.xwork2.Action;
+import com.opensymphony.xwork2.ActionSupport;
 
 @ParentPackage("default")
 @Result(value = "/views/users/listUsers.jsp")
-public class ListUsersAction {
+public class ListUsersAction extends ActionSupport {
 	private static Map<String, Comparator<User>> comparators = new HashMap<String, Comparator<User>>();
 
 	private UserService userService;

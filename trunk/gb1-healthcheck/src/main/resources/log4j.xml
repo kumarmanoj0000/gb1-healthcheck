@@ -15,6 +15,7 @@
 	<logger name="org.springframework"><level value="WARN"/></logger>
 	<logger name="org.apache.struts2"><level value="WARN"/></logger>
 	<logger name="com.opensymphony.xwork2"><level value="WARN"/></logger>
+	<logger name="org.displaytag"><level value="WARN"/></logger>
 
     <root>
         <level value="WARN"/>
