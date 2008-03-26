@@ -14,8 +14,6 @@ HealthCheck
         . localize messages
         . sort the entire list
         . investigate external paging
-        . show arrows when sorted
-        . emphasize sorted column
       * view / edit user profile
       * delete user profile
 
@@ -33,5 +31,5 @@ HealthCheck
 
 . pain points
   - ServiceRequest / Adapter / PropertyProvider: lots of code, is it really useful?
-  - bad Eclipse/Maven integration (duplicated JAR dependencies; m2eclipse 0.9 not ready)
+  - bad Eclipse/Maven integration (duplicated JAR dependencies; m2eclipse 0.9 and q4e 0.6 not ready)
   - @ParentPackage duplication
