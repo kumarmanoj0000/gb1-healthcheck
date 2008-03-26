@@ -3,7 +3,7 @@ HealthCheck
 -----------
 
 . features:
-  - analysis
+  - metrics analysis
     * correlation food <=> gastric states
     * gastric states evolution (Flex graph)
 
@@ -11,14 +11,16 @@ HealthCheck
     * administration
       * user list:
         . cache result list
-        . sort the entire list
+        . investigate external sorting
         . investigate external paging
       * view / edit user profile
       * delete user profile
 
-  - global layout:
+  - foods and meals
     . use DisplayTag to display lists
-    . replace table by divs
+
+  - global layout:
+    . replace content table by divs
 
   - reminders
     * send email when no meal saved in last 7 days
