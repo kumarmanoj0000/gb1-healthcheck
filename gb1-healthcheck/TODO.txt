@@ -11,13 +11,13 @@ HealthCheck
     * administration
       * user list:
         . cache result list
-        . localize messages
         . sort the entire list
         . investigate external paging
       * view / edit user profile
       * delete user profile
 
   - global layout:
+    . use DisplayTag to display lists
     . replace table by divs
 
   - reminders
