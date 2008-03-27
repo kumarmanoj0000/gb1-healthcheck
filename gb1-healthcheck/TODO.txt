@@ -17,7 +17,7 @@ HealthCheck
       * delete user profile
 
   - foods and meals
-    . use DisplayTag to display lists
+    . improve list display
 
   - global layout:
     . replace content table by divs
