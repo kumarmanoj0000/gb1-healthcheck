@@ -9,10 +9,6 @@ HealthCheck
 
   - user administration
     * administration
-      * user list:
-        . display
-        . sort
-        . page
       * view / edit user profile
       * delete user profile
 
