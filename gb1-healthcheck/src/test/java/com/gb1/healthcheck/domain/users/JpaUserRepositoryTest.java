@@ -20,8 +20,7 @@ public class JpaUserRepositoryTest extends BaseRepositoryTestCase {
 	}
 
 	public void testFindUsers() {
-		assertEquals(2, userRepo.findUsers().size());
-		assertEquals(2, userRepo.getUserCount());
+		assertEquals(52, userRepo.findUsers().size());
 	}
 
 	public void testFindUserByLogin() {

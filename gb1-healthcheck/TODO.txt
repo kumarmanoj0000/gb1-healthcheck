@@ -10,9 +10,9 @@ HealthCheck
   - user administration
     * administration
       * user list:
-        . cache result list
-        . investigate external sorting
-        . investigate external paging
+        . display
+        . sort
+        . page
       * view / edit user profile
       * delete user profile
 

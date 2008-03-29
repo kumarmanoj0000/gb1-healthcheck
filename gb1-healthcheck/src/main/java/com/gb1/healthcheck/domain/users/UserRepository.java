@@ -33,15 +33,6 @@ public interface UserRepository {
 	Set<User> findUsers();
 
 	/**
-	 * Finds a subset of matching registered users, based on inclusive indexes.
-	 * 
-	 * @param fromIndex The index of the first user to return
-	 * @param toIndex The index of the last user to return
-	 * @return The matching registered users
-	 */
-	List<User> findUsers(int fromIndex, int toIndex);
-
-	/**
 	 * Finds a user identified by the given login name. If no user corresponds to this login name,
 	 * null is returned.
 	 * 
@@ -68,11 +59,4 @@ public interface UserRepository {
 	 * @return The corresponding users; empty if not found
 	 */
 	List<User> findUsersByEmail(String email);
-
-	/**
-	 * Retrieves the number of registered users, whatever their status.
-	 * 
-	 * @return The number of registered users
-	 */
-	int getUserCount();
 }

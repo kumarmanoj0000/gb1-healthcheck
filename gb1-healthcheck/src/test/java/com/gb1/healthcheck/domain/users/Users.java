@@ -4,6 +4,8 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class Users {
+	private static final int NB_TEST_USERS = 50;
+
 	private Users() {
 	}
 
@@ -31,6 +33,14 @@ public class Users {
 		Set<User> all = new HashSet<User>();
 		all.add(Users.gb());
 		all.add(Users.lg());
+
+		for (int i = 1; i <= NB_TEST_USERS; i++) {
+			User u = new User();
+			u.setId(new Long(100 + i));
+			u.setLogin("user" + i);
+			u.setPassword("1");
+			u.setEmail("user" + i + "@gb1.com");
+		}
 
 		return all;
 	}
