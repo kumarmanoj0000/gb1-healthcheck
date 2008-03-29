@@ -47,22 +47,6 @@ public class JpaUserRepository implements UserRepository {
 	}
 
 	/**
-	 * Finds a subset of matching registered users, based on inclusive indexes.
-	 * 
-	 * @param fromIndex The index of the first user to return
-	 * @param toIndex The index of the last user to return
-	 * @return The matching registered users
-	 */
-	@SuppressWarnings("unchecked")
-	public List<User> findUsers(final int fromIndex, final int toIndex) {
-		final int maxResults = toIndex - fromIndex + 1;
-
-		List<User> users = entityManager.createQuery("select u from User u").setFirstResult(
-				fromIndex).setMaxResults(maxResults).getResultList();
-		return users;
-	}
-
-	/**
 	 * Finds a user identified by the given login name. If no user corresponds to this login name,
 	 * null is returned.
 	 * 
@@ -122,17 +106,6 @@ public class JpaUserRepository implements UserRepository {
 	 */
 	public void saveUser(User user) {
 		entityManager.persist(user);
-	}
-
-	/**
-	 * Retrieves the number of registered users, whatever their status.
-	 * 
-	 * @return The number of registered users
-	 */
-	public int getUserCount() {
-		Long count = (Long) entityManager.createQuery("select count(id) from User u")
-				.getSingleResult();
-		return count.intValue();
 	}
 
 	@PersistenceContext
