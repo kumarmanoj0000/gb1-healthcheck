@@ -4,12 +4,20 @@
 <%@ include file="/views/fragments/actionMessages.jsp"%>
 <h2><s:text name="users.list.title" /></h2>
 
-<s:set name="userListPageSize" value="@com.gb1.healthcheck.web.WebConstants@DEFAULT_PAGE_SIZE" />
 <s:url id="listUsersUrl" namespace="/users" action="listUsers" />
 
-<display:table
-		name="users" pagesize="${userListPageSize}" requestURI="${listUsersUrl}" class="listTable"
-		sort="list" defaultsort="1">
-	<display:column property="login" sortable="true" />
-	<display:column property="email" sortable="true" />
-</display:table>
+<s:form namespace="/users" action="deleteUsers">
+	<display:table name="users" id="user"
+			requestURI="${listUsersUrl}" excludedParams="*"
+			pagesize="${userListPageSize}" class="listTable"
+			sort="list" defaultsort="2">
+		<display:column style="width: 4%; text-align: center">
+			<%-- bug WW-2339 prevents us from using the s:checkbox tag --%>
+			<input type="checkbox" name="userIds" value="${user.id}" />
+		</display:column>
+		<display:column property="login" sortable="true" />
+		<display:column property="email" sortable="true" />
+	</display:table>
+
+	<s:submit cssClass="button" key="general.delete" />
+</s:form>

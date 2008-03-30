@@ -1,6 +1,7 @@
 package com.gb1.healthcheck.domain.users;
 
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.Set;
 
 import com.gb1.healthcheck.domain.support.BaseRepositoryTestCase;
@@ -62,6 +63,17 @@ public class JpaUserRepositoryTest extends BaseRepositoryTestCase {
 
 		userRepo.saveUser(u);
 		assertEquals(u, userRepo.loadUser(u.getId()));
+	}
+
+	public void testDeleteUsers() {
+		Set<Long> userIds = new HashSet<Long>();
+		userIds.add(Users.gb().getId());
+		userIds.add(Users.lg().getId());
+
+		userRepo.deleteUsers(userIds);
+
+		assertNull(userRepo.loadUser(Users.gb().getId()));
+		assertNull(userRepo.loadUser(Users.lg().getId()));
 	}
 
 	public void setUserRepository(UserRepository userRepo) {

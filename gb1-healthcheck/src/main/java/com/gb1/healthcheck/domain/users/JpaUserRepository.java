@@ -108,6 +108,12 @@ public class JpaUserRepository implements UserRepository {
 		entityManager.persist(user);
 	}
 
+	public void deleteUsers(Set<Long> userIds) {
+		for (Long userId : userIds) {
+			entityManager.remove(loadUser(userId));
+		}
+	}
+
 	@PersistenceContext
 	public void setEntityManager(EntityManager em) {
 		this.entityManager = em;

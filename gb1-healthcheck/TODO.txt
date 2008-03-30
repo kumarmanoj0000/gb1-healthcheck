@@ -3,23 +3,22 @@ HealthCheck
 -----------
 
 . features:
-  - metrics analysis
-    * correlation food <=> gastric states
-    * gastric states evolution (Flex graph)
-
-  - user administration
-    * administration
-      * view / edit user profile
-      * delete user profile
+  - user management
+    * view / edit user profile
+    * change own password
 
   - foods and meals
-    . improve list display
+    * improve list display
 
-  - global layout:
-    . replace content table by divs
+  - metrics analysis
+    * correlation food <=> gastric states (generated image? Flex component?)
+    * gastric states evolution (generated image? Flex component?)
 
   - reminders
     * send email when no meal saved in last 7 days
+
+  - global layout:
+    * replace content table by divs
 
 . technical
   - create Struts2 theme to reduce HTML tags
@@ -29,5 +28,7 @@ HealthCheck
 
 . pain points
   - ServiceRequest / Adapter / PropertyProvider: lots of code, is it really useful?
-  - bad Eclipse/Maven integration (duplicated JAR dependencies; m2eclipse 0.9 and q4e 0.6 not ready)
-  - @ParentPackage duplication
+  - bad Eclipse/Maven integration (duplicated JAR dependencies; m2eclipse 0.9 and q4e 0.6 not ready; is it really useful?)
+  - Struts2:
+    . @ParentPackage duplication in actions
+    . confusing use of literals and OGNL/EL expressions in tags
