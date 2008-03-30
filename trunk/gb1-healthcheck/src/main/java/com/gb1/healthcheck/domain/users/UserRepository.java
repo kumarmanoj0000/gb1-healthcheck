@@ -59,4 +59,12 @@ public interface UserRepository {
 	 * @return The corresponding users; empty if not found
 	 */
 	List<User> findUsersByEmail(String email);
+
+	/**
+	 * Deletes all users identified by the given IDs. If no user corresponds to a given ID, this ID
+	 * is ignored.
+	 * 
+	 * @param userIds The IDs of the users to delete
+	 */
+	void deleteUsers(Set<Long> userIds);
 }

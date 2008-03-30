@@ -1,6 +1,7 @@
 package com.gb1.healthcheck.services.users;
 
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.Set;
 
 import junit.framework.TestCase;
@@ -236,5 +237,22 @@ public class UserServiceImplTest extends TestCase {
 		svc.setUserRepository(userRepo);
 
 		assertTrue(CollectionUtils.isEqualCollection(allUsers, svc.getAllUsers()));
+	}
+
+	public void testDeleteUsers() {
+		Set<Long> userIds = new HashSet<Long>();
+		userIds.add(Users.gb().getId());
+		userIds.add(Users.lg().getId());
+
+		UserRepository userRepo = EasyMock.createMock(UserRepository.class);
+		userRepo.deleteUsers(userIds);
+		EasyMock.expectLastCall();
+		EasyMock.replay(userRepo);
+
+		UserServiceImpl svc = new UserServiceImpl();
+		svc.setUserRepository(userRepo);
+		svc.deleteUsers(userIds);
+
+		EasyMock.verify(userRepo);
 	}
 }

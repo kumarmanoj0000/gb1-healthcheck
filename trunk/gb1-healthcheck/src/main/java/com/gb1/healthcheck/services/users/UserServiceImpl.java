@@ -96,6 +96,10 @@ public class UserServiceImpl implements UserService {
 		return userRepository.findUsers();
 	}
 
+	public void deleteUsers(Set<Long> userIds) {
+		userRepository.deleteUsers(userIds);
+	}
+
 	// external dependencies
 
 	@Resource
