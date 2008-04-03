@@ -2,7 +2,9 @@ package com.gb1.healthcheck.domain.meals;
 
 import java.text.ParseException;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.apache.commons.lang.time.DateUtils;
 
@@ -47,9 +49,11 @@ public class JpaMealRepositoryTest extends BaseRepositoryTestCase {
 	}
 
 	public void testDeleteMeal() {
-		final Long mealId = 1L;
-		mealRepo.deleteMeal(mealId);
-		assertNull(mealRepo.loadMeal(mealId));
+		Set<Long> mealIds = new HashSet<Long>();
+		mealIds.add(Meals.fullItalianDinner().getId());
+
+		mealRepo.deleteMeals(mealIds);
+		assertNull(mealRepo.loadMeal(Meals.fullItalianDinner().getId()));
 	}
 
 	private Date parseInstant(String text) throws ParseException {

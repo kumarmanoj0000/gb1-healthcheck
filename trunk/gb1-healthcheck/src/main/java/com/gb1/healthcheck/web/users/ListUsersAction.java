@@ -23,9 +23,10 @@ import com.opensymphony.xwork2.ActionSupport;
 public class ListUsersAction extends ActionSupport implements SessionAware {
 	public static final String USER_LIST_SESSION_KEY = ListUsersAction.class.getName()
 			+ ".cachedUserList";
+
 	private Map<String, Object> sessionMap;
-	private UserService userService;
 	private boolean refreshList;
+	private UserService userService;
 
 	public ListUsersAction() {
 	}

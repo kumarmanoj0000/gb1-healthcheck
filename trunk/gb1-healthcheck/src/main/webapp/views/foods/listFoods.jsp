@@ -1,58 +1,49 @@
 <%@ taglib prefix="s" uri="/struts-tags" %>
+<%@ taglib uri="http://displaytag.sf.net" prefix="display" %>
 
 <%@ include file="/views/fragments/actionMessages.jsp"%>
 <h2><s:text name="foods.title" /></h2>
 
 <h3><s:text name="foods.simpleFoods" /></h3>
 
-<s:if test="simpleFoods.size == 0">
-	<div><s:text name="foods.noSimpleFoods" /></div>
-</s:if>
-<s:else>
-	<ul>
-		<s:text name="foods.simpleFoods.confirmDelete" id="deleteConfirmMsg" />
-		<s:iterator value="simpleFoods">
-			<li>
-				<s:url id="updateUrl" namespace="/foods" action="updateSimpleFood" method="input">
-					<s:param name="foodId" value="%{id}" />
-				</s:url>
-				<s:url id="deleteUrl" namespace="/foods" action="deleteSimpleFood">
-					<s:param name="foodId" value="%{id}" />
-				</s:url>
-				<a href="${updateUrl}">${name}</a> |
-				<a href="${deleteUrl}" onclick="return confirm('${deleteConfirmMsg}')"><s:text name="general.delete" /></a>
-			</li>
-		</s:iterator>
-	</ul>
-</s:else>
+<s:url id="listFoodsUrl" namespace="/foods" action="listFoods" />
+<s:url id="editSimpleFoodUrl" namespace="/foods" action="updateSimpleFood" method="input" />
+<s:url id="editComplexFoodUrl" namespace="/foods" action="updateComplexFood" method="input" />
 
-<p>
-	<a href='<s:url namespace="/foods" action="createSimpleFood" method="input" />'><s:text name="foods.simpleFoods.create" /></a>
-</p>
+<s:form namespace="/foods" action="deleteSimpleFoods">
+	<display:table name="simpleFoods" id="food"
+			requestURI="${listFoodsUrl}" excludedParams="*"
+			pagesize="${foodListPageSize}" class="listTable"
+			sort="list" defaultsort="2">
+		<display:column style="width: 4%; text-align: center">
+			<%-- bug WW-2339 prevents us from using the s:checkbox tag --%>
+			<input type="checkbox" name="foodIds" value="${food.id}" />
+		</display:column>
+		<display:column property="name" sortable="true" href="${editSimpleFoodUrl}" paramId="foodId" paramProperty="id" />
+	</display:table>
+
+	<p>
+		<a href='<s:url namespace="/foods" action="createSimpleFood" method="input" />'><s:text name="foods.simpleFoods.create" /></a>
+		<s:submit cssClass="button" key="general.delete" />
+	</p>
+</s:form>
 
 <h3><s:text name="foods.complexFoods" /></h3>
 
-<s:if test="complexFoods.size == 0">
-	<div><s:text name="foods.noComplexFoods" /></div>
-</s:if>
-<s:else>
-	<ul>
-		<s:text name="foods.complexFoods.confirmDelete" id="deleteConfirmMsg" />
-		<s:iterator value="complexFoods">
-			<li>
-				<s:url id="updateUrl" namespace="/foods" action="updateComplexFood" method="input">
-					<s:param name="foodId" value="%{id}" />
-				</s:url>
-				<s:url id="deleteUrl" namespace="/foods" action="deleteComplexFood">
-					<s:param name="foodId" value="%{id}" />
-				</s:url>
-				<a href="${updateUrl}">${name}</a> |
-				<a href="${deleteUrl}" onclick="return confirm('${deleteConfirmMsg}')"><s:text name="general.delete" /></a>
-			</li>
-		</s:iterator>
-	</ul>
-</s:else>
+<s:form namespace="/foods" action="deleteComplexFoods">
+	<display:table name="complexFoods" id="food"
+			requestURI="${listFoodsUrl}" excludedParams="*"
+			pagesize="${foodListPageSize}" class="listTable"
+			sort="list" defaultsort="2">
+		<display:column style="width: 4%; text-align: center">
+			<%-- bug WW-2339 prevents us from using the s:checkbox tag --%>
+			<input type="checkbox" name="foodIds" value="${food.id}" />
+		</display:column>
+		<display:column property="name" sortable="true" href="${editComplexFoodUrl}" paramId="foodId" paramProperty="id" />
+	</display:table>
 
-<p>
-	<a href='<s:url namespace="/foods" action="createComplexFood" method="input" />'><s:text name="foods.complexFoods.create" /></a>
-</p>
+	<p>
+		<a href='<s:url namespace="/foods" action="createComplexFood" method="input" />'><s:text name="foods.complexFoods.create" /></a>
+		<s:submit cssClass="button" key="general.delete" />
+	</p>
+</s:form>

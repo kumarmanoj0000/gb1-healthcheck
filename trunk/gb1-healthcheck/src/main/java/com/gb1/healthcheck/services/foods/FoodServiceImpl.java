@@ -90,8 +90,8 @@ public class FoodServiceImpl implements FoodService {
 		complexFoodUpdateValidator.validate(food);
 	}
 
-	public void deleteFood(Long foodId) {
-		foodRepo.deleteFood(foodId);
+	public void deleteFoods(Set<Long> foodIds) {
+		foodRepo.deleteFoods(foodIds);
 	}
 
 	@Resource

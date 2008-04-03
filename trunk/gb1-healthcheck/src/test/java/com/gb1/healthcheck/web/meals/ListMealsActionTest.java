@@ -1,6 +1,8 @@
 package com.gb1.healthcheck.web.meals;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import junit.framework.TestCase;
 
@@ -23,15 +25,25 @@ public class ListMealsActionTest extends TestCase {
 		EasyMock.expect(mealSvc.getMealHistory(requester)).andReturn(mealHistory);
 		EasyMock.replay(mealSvc);
 
+		Map<String, Object> sessionMap = new HashMap<String, Object>();
+
 		ListMealsAction action = new ListMealsAction() {
 			@Override
 			protected User getRequester() {
 				return requester;
 			}
 		};
+		action.setSession(sessionMap);
 		action.setMealService(mealSvc);
 
 		assertEquals(Action.SUCCESS, action.execute());
-		assertTrue(CollectionUtils.isEqualCollection(mealHistory, action.getMealHistory()));
+		assertTrue(CollectionUtils.isEqualCollection(mealHistory, action.getMeals()));
+		assertTrue(sessionMap.containsValue(mealHistory));
+
+		assertEquals(Action.SUCCESS, action.execute());
+		assertTrue(CollectionUtils.isEqualCollection(mealHistory, action.getMeals()));
+		assertTrue(sessionMap.containsValue(mealHistory));
+
+		EasyMock.verify(mealSvc);
 	}
 }

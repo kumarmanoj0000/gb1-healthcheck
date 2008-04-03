@@ -70,8 +70,10 @@ public class JpaFoodRepository implements FoodRepository {
 		return foodSet;
 	}
 
-	public void deleteFood(Long foodId) {
-		entityManager.remove(loadFood(foodId));
+	public void deleteFoods(Set<Long> foodIds) {
+		for (Long foodId : foodIds) {
+			entityManager.remove(loadFood(foodId));
+		}
 	}
 
 	@PersistenceContext

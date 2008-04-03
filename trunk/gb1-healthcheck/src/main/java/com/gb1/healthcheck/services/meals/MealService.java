@@ -1,6 +1,7 @@
 package com.gb1.healthcheck.services.meals;
 
 import java.util.List;
+import java.util.Set;
 
 import com.gb1.commons.dataaccess.Hydrater;
 import com.gb1.healthcheck.domain.meals.Meal;
@@ -41,9 +42,9 @@ public interface MealService {
 	void updateMeal(MealUpdateRequest request) throws MealException;
 
 	/**
-	 * Deletes the meal identified by the given ID.
+	 * Deletes the meals identified by the given IDs.
 	 * 
-	 * @param mealId The ID of the meal to delete
+	 * @param mealIds The IDs of the meals to delete
 	 */
-	void deleteMeal(Long mealId);
+	void deleteMeals(Set<Long> mealIds);
 }

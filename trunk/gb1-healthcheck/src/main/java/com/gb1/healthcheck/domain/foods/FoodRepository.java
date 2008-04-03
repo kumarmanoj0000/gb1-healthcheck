@@ -20,5 +20,5 @@ public interface FoodRepository {
 
 	void saveFood(Food food);
 
-	void deleteFood(Long foodId);
+	void deleteFoods(Set<Long> foodIds);
 }

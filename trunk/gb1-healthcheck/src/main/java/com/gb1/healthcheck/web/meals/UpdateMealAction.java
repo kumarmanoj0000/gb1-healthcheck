@@ -19,7 +19,8 @@ import com.opensymphony.xwork2.Preparable;
 @Results( {
 		@Result(name = "input", value = "/views/meals/editMeal.jsp"),
 		@Result(type = ServletActionRedirectResult.class, value = "listMeals", params = {
-				"namespace", "/meals", "parse", "true", "actionMessageKey", "${actionMessageKey}" }) })
+				"namespace", "/meals", "parse", "true", "actionMessageKey", "${actionMessageKey}",
+				"refreshList", "true" }) })
 public class UpdateMealAction extends MealActionSupport implements Preparable, SessionAware {
 	private static final String MODEL_SESSION_KEY = UpdateMealAction.class.getName() + ".model";
 

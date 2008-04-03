@@ -20,7 +20,8 @@ import com.opensymphony.xwork2.validator.annotations.Validations;
 @Results( {
 		@Result(name = "input", value = "/views/foods/editSimpleFood.jsp"),
 		@Result(type = ServletActionRedirectResult.class, value = "listFoods", params = {
-				"namespace", "/foods", "parse", "true", "actionMessageKey", "${actionMessageKey}" }) })
+				"namespace", "/foods", "parse", "true", "actionMessageKey", "${actionMessageKey}",
+				"refreshList", "true" }) })
 @Validation
 public class UpdateSimpleFoodAction extends SimpleFoodActionSupport implements SessionAware {
 	private static final String MODEL_SESSION_KEY = UpdateSimpleFoodAction.class.getName()
