@@ -105,6 +105,10 @@
 			<taglib-uri>http://acegisecurity.org/authz</taglib-uri>
 			<taglib-location>/taglibs/acegi/authz.tld</taglib-location>
 		</taglib>
+		<taglib>
+			<taglib-uri>http://displaytag.sf.net</taglib-uri>
+			<taglib-location>/taglibs/displaytag/displaytag.tld</taglib-location>
+		</taglib>
 	</jsp-config>
 
 	<welcome-file-list>

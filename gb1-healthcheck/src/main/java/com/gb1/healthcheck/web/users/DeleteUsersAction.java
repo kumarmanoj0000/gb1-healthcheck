@@ -25,6 +25,7 @@ public class DeleteUsersAction extends ActionSupport {
 	public DeleteUsersAction() {
 	}
 
+	@Override
 	public String execute() {
 		if (userIds != null) {
 			Set<Long> idsToDelete = new HashSet<Long>();

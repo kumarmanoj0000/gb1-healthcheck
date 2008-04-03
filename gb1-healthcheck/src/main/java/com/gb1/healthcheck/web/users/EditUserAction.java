@@ -24,25 +24,34 @@ import com.opensymphony.xwork2.validator.annotations.Validations;
 
 @ParentPackage("default")
 @Results( {
-		@Result(name = "input", value = "/views/users/editActiveUser.jsp"),
+		@Result(name = "input", value = "/views/users/editUser.jsp"),
 		@Result(type = ServletActionRedirectResult.class, value = "workbench", params = {
 				"namespace", "/workbench", "parse", "true", "actionMessageKey",
 				"${actionMessageKey}" }) })
 @Validation
-public class EditActiveUserAction extends ActionSupport implements SessionAware {
-	protected static final String MODEL_SESSION_KEY = EditActiveUserAction.class.getName()
-			+ ".model";
+public class EditUserAction extends ActionSupport implements SessionAware {
+	protected static final String MODEL_SESSION_KEY = EditUserAction.class.getName() + ".model";
 
 	private Map<String, Object> sessionMap;
 	private UserService userService;
+
+	private Long userId;
 	private String actionMessageKey;
 
-	public EditActiveUserAction() {
+	public EditUserAction() {
 	}
 
 	@Override
 	public String input() throws Exception {
-		BasicUserUpdateRequest model = new BasicUserUpdateRequest(getUser());
+		User userToEdit;
+		if (userId == null) {
+			userToEdit = getUser();
+		}
+		else {
+			userToEdit = userService.loadUser(userId);
+		}
+
+		BasicUserUpdateRequest model = new BasicUserUpdateRequest(userToEdit);
 		sessionMap.put(MODEL_SESSION_KEY, model);
 
 		return Action.INPUT;
@@ -86,6 +95,10 @@ public class EditActiveUserAction extends ActionSupport implements SessionAware 
 	public BasicUserUpdateRequest getModel() {
 		BasicUserUpdateRequest model = (BasicUserUpdateRequest) sessionMap.get(MODEL_SESSION_KEY);
 		return model;
+	}
+
+	public void setUserId(Long userId) {
+		this.userId = userId;
 	}
 
 	public String getActionMessageKey() {
