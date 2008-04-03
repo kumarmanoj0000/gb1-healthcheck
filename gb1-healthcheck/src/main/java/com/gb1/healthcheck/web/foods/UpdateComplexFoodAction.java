@@ -19,7 +19,8 @@ import com.opensymphony.xwork2.validator.annotations.Validations;
 @Results( {
 		@Result(name = "input", value = "/views/foods/editComplexFood.jsp"),
 		@Result(type = ServletActionRedirectResult.class, value = "listFoods", params = {
-				"namespace", "/foods", "parse", "true", "actionMessageKey", "${actionMessageKey}" }) })
+				"namespace", "/foods", "parse", "true", "actionMessageKey", "${actionMessageKey}",
+				"refreshList", "true" }) })
 @Validation
 public class UpdateComplexFoodAction extends ComplexFoodActionSupport implements SessionAware {
 	private static final String MODEL_SESSION_KEY = UpdateComplexFoodAction.class.getName()

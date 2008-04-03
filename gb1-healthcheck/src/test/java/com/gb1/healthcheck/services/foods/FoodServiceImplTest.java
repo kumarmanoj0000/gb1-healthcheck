@@ -223,16 +223,17 @@ public class FoodServiceImplTest extends TestCase {
 	}
 
 	public void testDeleteSimpleFood() {
-		final Long foodId = 1L;
+		Set<Long> foodIds = new HashSet<Long>();
+		foodIds.add(Foods.apple().getId());
 
 		FoodRepository foodRepo = EasyMock.createMock(FoodRepository.class);
-		foodRepo.deleteFood(foodId);
+		foodRepo.deleteFoods(foodIds);
 		EasyMock.expectLastCall();
 		EasyMock.replay(foodRepo);
 
 		FoodServiceImpl svc = new FoodServiceImpl();
 		svc.setFoodRepository(foodRepo);
-		svc.deleteFood(foodId);
+		svc.deleteFoods(foodIds);
 
 		EasyMock.verify(foodRepo);
 	}

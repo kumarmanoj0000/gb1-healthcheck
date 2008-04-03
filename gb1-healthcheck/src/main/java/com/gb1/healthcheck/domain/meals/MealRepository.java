@@ -2,6 +2,7 @@ package com.gb1.healthcheck.domain.meals;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 import com.gb1.healthcheck.domain.users.User;
 
@@ -14,5 +15,5 @@ public interface MealRepository {
 
 	void saveMeal(Meal meal);
 
-	void deleteMeal(Long mealId);
+	void deleteMeals(Set<Long> mealIds);
 }

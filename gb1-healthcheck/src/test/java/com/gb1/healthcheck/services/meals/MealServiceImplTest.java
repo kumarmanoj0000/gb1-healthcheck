@@ -2,6 +2,7 @@ package com.gb1.healthcheck.services.meals;
 
 import java.util.Collections;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
@@ -145,18 +146,19 @@ public class MealServiceImplTest extends TestCase {
 		EasyMock.verify(validator);
 	}
 
-	public void testDeleteMeal() {
-		final Long mealId = 1L;
+	public void testDeleteMeals() {
+		Set<Long> mealIds = new HashSet<Long>();
+		mealIds.add(Meals.fullItalianDinner().getId());
 
 		MealRepository mealRepo = EasyMock.createMock(MealRepository.class);
-		mealRepo.deleteMeal(mealId);
+		mealRepo.deleteMeals(mealIds);
 		EasyMock.expectLastCall().once();
 		EasyMock.replay(mealRepo);
 
 		MealServiceImpl svc = new MealServiceImpl();
 		svc.setMealRepository(mealRepo);
 
-		svc.deleteMeal(mealId);
+		svc.deleteMeals(mealIds);
 		EasyMock.verify(mealRepo);
 	}
 }

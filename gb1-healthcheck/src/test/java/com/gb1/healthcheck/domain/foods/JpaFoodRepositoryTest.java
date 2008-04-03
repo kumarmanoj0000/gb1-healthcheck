@@ -1,5 +1,6 @@
 package com.gb1.healthcheck.domain.foods;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import org.apache.commons.collections.CollectionUtils;
@@ -41,9 +42,11 @@ public class JpaFoodRepositoryTest extends BaseRepositoryTestCase {
 	}
 
 	public void testDeleteFood() {
-		final long foodId = 1L;
-		foodRepo.deleteFood(foodId);
-		assertNull(foodRepo.loadFood(foodId));
+		Set<Long> foodIds = new HashSet<Long>();
+		foodIds.add(Foods.apple().getId());
+
+		foodRepo.deleteFoods(foodIds);
+		assertNull(foodRepo.loadFood(Foods.apple().getId()));
 	}
 
 	public void setFoodRepository(FoodRepository foodRepo) {

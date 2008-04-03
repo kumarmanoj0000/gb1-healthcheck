@@ -1,6 +1,7 @@
 package com.gb1.healthcheck.services.meals;
 
 import java.util.List;
+import java.util.Set;
 
 import javax.annotation.Resource;
 
@@ -57,8 +58,8 @@ public class MealServiceImpl implements MealService {
 		mealUpdateValidator.validate(meal);
 	}
 
-	public void deleteMeal(Long mealId) {
-		mealRepo.deleteMeal(mealId);
+	public void deleteMeals(Set<Long> mealIds) {
+		mealRepo.deleteMeals(mealIds);
 	}
 
 	@Resource

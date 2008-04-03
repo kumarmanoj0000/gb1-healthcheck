@@ -24,5 +24,5 @@ public interface FoodService {
 
 	void updateComplexFood(ComplexFoodUpdateRequest request) throws FoodException;
 
-	void deleteFood(Long foodId);
+	void deleteFoods(Set<Long> foodIds);
 }
