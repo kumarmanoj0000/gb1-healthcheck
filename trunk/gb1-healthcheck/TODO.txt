@@ -4,8 +4,8 @@ HealthCheck
 
 . features:
   - user management
-    * view / edit user profile
     * change own password
+    * EditUserAction should return to previous action, not necessarily workbench
 
   - foods and meals
     * improve list display
@@ -29,7 +29,7 @@ HealthCheck
 . pain points
   - ServiceRequest / Adapter / PropertyProvider: lots of code, is it really useful?
   - bad Eclipse/Maven integration (duplicated JAR dependencies; m2eclipse 0.9 and q4e 0.6 not ready; is it really useful?)
-  - Tomcat restarts on every code change, even JSPs
+  - Tomcat restarts on every code change, even JSPs (try Jetty => debug?)
   - Struts2:
     . @ParentPackage duplication in actions
     . confusing use of literals and OGNL/EL expressions in tags

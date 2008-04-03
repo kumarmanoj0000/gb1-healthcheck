@@ -30,6 +30,7 @@ public class ListUsersAction extends ActionSupport implements SessionAware {
 	public ListUsersAction() {
 	}
 
+	@Override
 	public String execute() {
 		List<User> userList = getUsers();
 

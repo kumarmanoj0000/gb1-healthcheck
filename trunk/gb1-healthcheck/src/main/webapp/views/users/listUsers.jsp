@@ -5,6 +5,7 @@
 <h2><s:text name="users.list.title" /></h2>
 
 <s:url id="listUsersUrl" namespace="/users" action="listUsers" />
+<s:url id="editUserUrl" namespace="/users" action="editUser" method="input" />
 
 <s:form namespace="/users" action="deleteUsers">
 	<display:table name="users" id="user"
@@ -15,7 +16,7 @@
 			<%-- bug WW-2339 prevents us from using the s:checkbox tag --%>
 			<input type="checkbox" name="userIds" value="${user.id}" />
 		</display:column>
-		<display:column property="login" sortable="true" />
+		<display:column property="login" sortable="true" href="${editUserUrl}" paramId="userId" paramProperty="id" />
 		<display:column property="email" sortable="true" />
 	</display:table>
 
