@@ -15,7 +15,15 @@ import com.gb1.healthcheck.services.users.UserUpdateRequest;
 import com.opensymphony.xwork2.Action;
 
 public class EditUserActionTest extends TestCase {
-	public void testInput() throws Exception {
+	public void testInputNoUserId() throws Exception {
+		final User user = Users.gb();
+		EditUserAction action = createAction(user);
+		action.setSession(new HashMap<String, Object>());
+
+		assertEquals(Action.INPUT, action.input());
+	}
+
+	public void testInputWithUserId() throws Exception {
 		User user = Users.lg();
 
 		UserService userSvc = EasyMock.createMock(UserService.class);
