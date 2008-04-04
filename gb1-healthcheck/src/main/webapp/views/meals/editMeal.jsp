@@ -39,8 +39,8 @@
 
 			<div class="required">
 				<label><s:text name="meal.instant" />:</label>
-				<s:date id="instant" name="model.instant" format="yyyy-MM-dd hh:mm:ss" />
-				<s:textfield id="f_date_c" key="meal.instant" name="model.instant" readonly="1" />
+				<s:date id="instant" name="model.instant" format="yyyy-MM-dd HH:mm" />
+				<s:textfield id="f_date_c" name="model.instant" value="%{#instant}" readonly="1" />
 				<img
 					id="f_trigger_c"
 					src="<s:url value='/scripts/jscalendar/img.gif' />"
@@ -126,7 +126,7 @@
 			$(document).ready(function() {
 				Calendar.setup({
 					inputField  : "f_date_c",
-					ifFormat    : "%Y-%m-%d %H:%M:%S",
+					ifFormat    : "%Y-%m-%d %H:%M",
 					button      : "f_trigger_c",
 					align       : "Tl",
 					singleClick : false,
