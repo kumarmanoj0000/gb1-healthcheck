@@ -43,7 +43,14 @@ public class EditUserAction extends ActionSupport implements SessionAware {
 
 	@Override
 	public String input() throws Exception {
-		User userToEdit = userService.loadUser(userId);
+		User userToEdit;
+		if (userId == null) {
+			userToEdit = getUser();
+		}
+		else {
+			userToEdit = userService.loadUser(userId);
+		}
+
 		BasicUserUpdateRequest model = new BasicUserUpdateRequest(userToEdit);
 		sessionMap.put(MODEL_SESSION_KEY, model);
 
@@ -56,12 +63,14 @@ public class EditUserAction extends ActionSupport implements SessionAware {
 		String result = Action.INPUT;
 
 		try {
-			User activeUser = getUser();
 			BasicUserUpdateRequest updateReq = getModel();
-
-			// on top of the usual update, the Acegi authenticated user must also be updated
 			userService.updateUser(updateReq);
-			activeUser.update(updateReq);
+
+			// the Acegi authenticated user may also need to be updated
+			User activeUser = getUser();
+			if (activeUser.getId().equals(updateReq.getUserId())) {
+				activeUser.update(updateReq);
+			}
 
 			sessionMap.remove(MODEL_SESSION_KEY);
 			actionMessageKey = "users.edit.success";
