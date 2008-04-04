@@ -4,7 +4,7 @@ HealthCheck
 
 . features:
   - user management
-    > change own password
+    * change own password
 
   - metrics analysis
     * correlation food <=> gastric states (generated image? Flex component?)
@@ -13,12 +13,15 @@ HealthCheck
   - reminders
     * send email when no meal saved in last 7 days
 
-  - global layout:
+  - meals
+    * use better time picker
+
+  - global layout
     * replace content table by divs
 
 . bugs:
-  - create / update meal calendar popup takes whole screen
   - edit user action should return to previous action, not necessarily workbench
+  - delete button is shown even if no results are presented (users, foods, meals)
 
 . technical
   - create Struts2 theme to reduce HTML tags
