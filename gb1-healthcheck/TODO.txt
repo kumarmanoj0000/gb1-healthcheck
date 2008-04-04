@@ -4,7 +4,7 @@ HealthCheck
 
 . features:
   - user management
-    * change own password
+    > change own password
 
   - metrics analysis
     * correlation food <=> gastric states (generated image? Flex component?)

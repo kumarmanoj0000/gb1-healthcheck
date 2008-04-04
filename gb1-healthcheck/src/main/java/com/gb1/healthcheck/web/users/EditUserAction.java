@@ -43,14 +43,7 @@ public class EditUserAction extends ActionSupport implements SessionAware {
 
 	@Override
 	public String input() throws Exception {
-		User userToEdit;
-		if (userId == null) {
-			userToEdit = getUser();
-		}
-		else {
-			userToEdit = userService.loadUser(userId);
-		}
-
+		User userToEdit = userService.loadUser(userId);
 		BasicUserUpdateRequest model = new BasicUserUpdateRequest(userToEdit);
 		sessionMap.put(MODEL_SESSION_KEY, model);
 
