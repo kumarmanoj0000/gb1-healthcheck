@@ -21,18 +21,18 @@ import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionSupport;
 
 @ParentPackage("default")
-@Result(value = "/views/foods/listFoods.jsp")
-public class ListFoodsAction extends ActionSupport implements SessionAware {
-	public static final String SIMPLE_FOODS_LIST_SESSION_KEY = ListFoodsAction.class.getName()
+@Result(value = "/views/foods/manageFoods.jsp")
+public class ManageFoodsAction extends ActionSupport implements SessionAware {
+	public static final String SIMPLE_FOODS_LIST_SESSION_KEY = ManageFoodsAction.class.getName()
 			+ ".cachedSimpleFoodsList";
-	public static final String COMPLEX_FOODS_LIST_SESSION_KEY = ListFoodsAction.class.getName()
+	public static final String COMPLEX_FOODS_LIST_SESSION_KEY = ManageFoodsAction.class.getName()
 			+ ".cachedComplexFoodsList";
 
 	private FoodService foodService;
 	private Map<String, Object> sessionMap;
 	private boolean refreshList;
 
-	public ListFoodsAction() {
+	public ManageFoodsAction() {
 	}
 
 	@Override

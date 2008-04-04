@@ -6,7 +6,7 @@
 
 <h3><s:text name="foods.simpleFoods" /></h3>
 
-<s:url id="listFoodsUrl" namespace="/foods" action="listFoods" />
+<s:url id="listFoodsUrl" namespace="/foods" action="manageFoods" />
 <s:url id="editSimpleFoodUrl" namespace="/foods" action="updateSimpleFood" method="input" />
 <s:url id="editComplexFoodUrl" namespace="/foods" action="updateComplexFood" method="input" />
 

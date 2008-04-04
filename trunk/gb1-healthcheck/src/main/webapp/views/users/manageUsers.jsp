@@ -4,7 +4,7 @@
 <%@ include file="/views/fragments/actionMessages.jsp"%>
 <h2><s:text name="users.list.title" /></h2>
 
-<s:url id="listUsersUrl" namespace="/users" action="listUsers" />
+<s:url id="listUsersUrl" namespace="/users" action="manageUsers" />
 <s:url id="editUserUrl" namespace="/users" action="editUser" method="input" />
 
 <s:form namespace="/users" action="deleteUsers">

@@ -17,7 +17,7 @@ import com.gb1.healthcheck.domain.foods.SimpleFood;
 import com.gb1.healthcheck.services.foods.FoodService;
 import com.opensymphony.xwork2.Action;
 
-public class ListFoodsActionTest extends TestCase {
+public class ManageFoodsActionTest extends TestCase {
 	@SuppressWarnings("unchecked")
 	public void testListFoods() {
 		List<SimpleFood> allSimpleFoods = new ArrayList<SimpleFood>(Foods.allSimpleFoods());
@@ -31,7 +31,7 @@ public class ListFoodsActionTest extends TestCase {
 
 		Map<String, Object> sessionMap = new HashMap<String, Object>();
 
-		ListFoodsAction action = new ListFoodsAction();
+		ManageFoodsAction action = new ManageFoodsAction();
 		action.setSession(sessionMap);
 		action.setFoodService(foodSvc);
 

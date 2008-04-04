@@ -18,7 +18,7 @@ import com.opensymphony.xwork2.Preparable;
 @ParentPackage("default")
 @Results( {
 		@Result(name = "input", value = "/views/meals/editMeal.jsp"),
-		@Result(type = ServletActionRedirectResult.class, value = "listMeals", params = {
+		@Result(type = ServletActionRedirectResult.class, value = "manageMeals", params = {
 				"namespace", "/meals", "parse", "true", "actionMessageKey", "${actionMessageKey}",
 				"refreshList", "true" }) })
 public class UpdateMealAction extends MealActionSupport implements Preparable, SessionAware {

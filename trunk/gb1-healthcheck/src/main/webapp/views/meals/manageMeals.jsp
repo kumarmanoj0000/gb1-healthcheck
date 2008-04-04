@@ -7,7 +7,7 @@
 
 <s:actionerror />
 
-<s:url id="listMealsUrl" namespace="/meals" action="listMeals" />
+<s:url id="listMealsUrl" namespace="/meals" action="manageMeals" />
 <s:url id="editMealUrl" namespace="/meals" action="updateMeal" method="input" />
 
 <s:form namespace="/meals" action="deleteMeals">

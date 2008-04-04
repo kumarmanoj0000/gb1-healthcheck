@@ -6,14 +6,14 @@
 <ul>
 	<authz:authorize ifAllGranted="role_administrator">
 		<li class="navAction">
-			<a href='<s:url namespace="/users" action="listUsers" />'><s:text name="navigation.actions.listUsers" /></a>
+			<a href='<s:url namespace="/users" action="manageUsers" />'><s:text name="navigation.actions.manageUsers" /></a>
 		</li>
 	</authz:authorize>
 	<li class="navAction">
-		<a href='<s:url namespace="/foods" action="listFoods" />'><s:text name="navigation.actions.listFoods" /></a>
+		<a href='<s:url namespace="/foods" action="manageFoods" />'><s:text name="navigation.actions.manageFoods" /></a>
 	</li>
 	<li class="navAction">
-		<a href='<s:url namespace="/meals" action="listMeals" />'><s:text name="navigation.actions.listMeals" /></a>
+		<a href='<s:url namespace="/meals" action="manageMeals" />'><s:text name="navigation.actions.manageMeals" /></a>
 	</li>
 	<li class="navAction">
 		<a href='<s:url namespace="/metrics" action="manageGastricStates" />'><s:text name="navigation.actions.manageMetrics" /></a>

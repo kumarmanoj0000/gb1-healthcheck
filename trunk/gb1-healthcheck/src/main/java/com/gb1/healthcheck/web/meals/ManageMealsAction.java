@@ -19,16 +19,16 @@ import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionSupport;
 
 @ParentPackage("default")
-@Result(value = "/views/meals/listMeals.jsp")
-public class ListMealsAction extends ActionSupport implements SessionAware {
-	public static final String MEAL_LIST_SESSION_KEY = ListMealsAction.class.getName()
+@Result(value = "/views/meals/manageMeals.jsp")
+public class ManageMealsAction extends ActionSupport implements SessionAware {
+	public static final String MEAL_LIST_SESSION_KEY = ManageMealsAction.class.getName()
 			+ ".cachedMealList";
 
 	private MealService mealService;
 	private Map<String, Object> sessionMap;
 	private boolean refreshList;
 
-	public ListMealsAction() {
+	public ManageMealsAction() {
 	}
 
 	@Override

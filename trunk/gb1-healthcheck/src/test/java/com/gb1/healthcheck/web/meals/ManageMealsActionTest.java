@@ -16,7 +16,7 @@ import com.gb1.healthcheck.domain.users.Users;
 import com.gb1.healthcheck.services.meals.MealService;
 import com.opensymphony.xwork2.Action;
 
-public class ListMealsActionTest extends TestCase {
+public class ManageMealsActionTest extends TestCase {
 	public void testListMeals() {
 		final User requester = Users.gb();
 		final List<Meal> mealHistory = Meals.mealHistory();
@@ -27,7 +27,7 @@ public class ListMealsActionTest extends TestCase {
 
 		Map<String, Object> sessionMap = new HashMap<String, Object>();
 
-		ListMealsAction action = new ListMealsAction() {
+		ManageMealsAction action = new ManageMealsAction() {
 			@Override
 			protected User getRequester() {
 				return requester;
