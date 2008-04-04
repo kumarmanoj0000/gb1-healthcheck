@@ -16,7 +16,7 @@ import com.opensymphony.xwork2.validator.annotations.Validations;
 @ParentPackage("default")
 @Results( {
 		@Result(name = "input", value = "/views/foods/editComplexFood.jsp"),
-		@Result(type = ServletActionRedirectResult.class, value = "listFoods", params = {
+		@Result(type = ServletActionRedirectResult.class, value = "manageFoods", params = {
 				"namespace", "/foods", "parse", "true", "actionMessageKey", "${actionMessageKey}",
 				"refreshList", "true" }) })
 @Validation

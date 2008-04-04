@@ -15,7 +15,7 @@ import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionSupport;
 
 @ParentPackage("default")
-@Result(type = ServletActionRedirectResult.class, value = "listUsers", params = { "namespace",
+@Result(type = ServletActionRedirectResult.class, value = "manageUsers", params = { "namespace",
 		"/users", "parse", "true", "actionMessageKey", "${actionMessageKey}", "refreshList", "true" })
 public class DeleteUsersAction extends ActionSupport {
 	private UserService userService;

@@ -14,7 +14,7 @@ import com.gb1.healthcheck.domain.users.Users;
 import com.gb1.healthcheck.services.users.UserService;
 import com.opensymphony.xwork2.Action;
 
-public class ListUsersActionTest extends TestCase {
+public class ManageUsersActionTest extends TestCase {
 	public void testExecute() {
 		List<User> allUsers = new ArrayList<User>(Users.all());
 
@@ -24,7 +24,7 @@ public class ListUsersActionTest extends TestCase {
 
 		Map<String, Object> sessionMap = new HashMap<String, Object>();
 
-		ListUsersAction action = new ListUsersAction();
+		ManageUsersAction action = new ManageUsersAction();
 		action.setSession(sessionMap);
 		action.setUserService(userSvc);
 
