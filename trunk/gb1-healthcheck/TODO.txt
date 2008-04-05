@@ -21,17 +21,17 @@ HealthCheck
 
 . bugs:
   - edit user action should return to previous action, not necessarily workbench
+    (if using ServletActionRedirectResult, WW-2170/2297 is blocking => use flash interceptor?)
 
 . technical
   - create Struts2 theme to reduce HTML tags
   - write integration tests (Spring TestContext?)
-  - upgrade to Spring 2.5.2
-  - upgrade to Hibernate Core 3.2.6, Annotations 3.3.1 and EntityManager 3.3.2
 
 . pain points
-  - ServiceRequest / Adapter / PropertyProvider: lots of code, is it really useful?
-  - bad Eclipse/Maven integration (duplicated JAR dependencies; m2eclipse 0.9 and q4e 0.6 not ready; is it really useful?)
+  - ServiceRequest / Adapter / PropertyProvider: more code, is it really useful?
+  - Eclipse / Maven dependencies duplication (integration not ready; is it really useful?)
   - Tomcat restarts on every code change, even JSPs (Jetty? => debug?)
   - Struts2:
     . @ParentPackage duplication in actions
     . confusing use of literals and OGNL/EL expressions in tags
+    . passing parameters with redirect result is not working: WW-2170/2297)
