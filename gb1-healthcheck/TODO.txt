@@ -21,7 +21,6 @@ HealthCheck
 
 . bugs:
   - edit user action should return to previous action, not necessarily workbench
-  - delete button is shown even if no results are presented (users, foods, meals)
 
 . technical
   - create Struts2 theme to reduce HTML tags

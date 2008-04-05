@@ -20,5 +20,7 @@
 		<display:column property="email" sortable="true" />
 	</display:table>
 
-	<s:submit cssClass="button" key="general.delete" />
+	<s:if test="users.size() > 0">
+		<s:submit cssClass="button" key="general.delete" />
+	</s:if>
 </s:form>

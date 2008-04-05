@@ -15,7 +15,7 @@ import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionSupport;
 
 @ParentPackage("default")
-@Result(type = ServletActionRedirectResult.class, value = "listFoods", params = { "namespace",
+@Result(type = ServletActionRedirectResult.class, value = "manageFoods", params = { "namespace",
 		"/foods", "parse", "true", "actionMessageKey", "${actionMessageKey}", "refreshList", "true" })
 public class DeleteComplexFoodsAction extends ActionSupport {
 	private FoodService foodService;

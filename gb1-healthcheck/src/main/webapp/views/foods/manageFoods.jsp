@@ -6,13 +6,13 @@
 
 <h3><s:text name="foods.simpleFoods" /></h3>
 
-<s:url id="listFoodsUrl" namespace="/foods" action="manageFoods" />
+<s:url id="manageFoodsUrl" namespace="/foods" action="manageFoods" />
 <s:url id="editSimpleFoodUrl" namespace="/foods" action="updateSimpleFood" method="input" />
 <s:url id="editComplexFoodUrl" namespace="/foods" action="updateComplexFood" method="input" />
 
 <s:form namespace="/foods" action="deleteSimpleFoods">
 	<display:table name="simpleFoods" id="food"
-			requestURI="${listFoodsUrl}" excludedParams="*"
+			requestURI="${manageFoodsUrl}" excludedParams="*"
 			pagesize="${foodListPageSize}" class="listTable"
 			sort="list" defaultsort="2">
 		<display:column style="width: 4%; text-align: center">
@@ -24,7 +24,9 @@
 
 	<p>
 		<a href='<s:url namespace="/foods" action="createSimpleFood" method="input" />'><s:text name="foods.simpleFoods.create" /></a>
-		<s:submit cssClass="button" key="general.delete" />
+		<s:if test="simpleFoods.size() > 0">
+			<s:submit cssClass="button" key="general.delete" />
+		</s:if>
 	</p>
 </s:form>
 
@@ -32,7 +34,7 @@
 
 <s:form namespace="/foods" action="deleteComplexFoods">
 	<display:table name="complexFoods" id="food"
-			requestURI="${listFoodsUrl}" excludedParams="*"
+			requestURI="${manageFoodsUrl}" excludedParams="*"
 			pagesize="${foodListPageSize}" class="listTable"
 			sort="list" defaultsort="2">
 		<display:column style="width: 4%; text-align: center">
@@ -44,6 +46,8 @@
 
 	<p>
 		<a href='<s:url namespace="/foods" action="createComplexFood" method="input" />'><s:text name="foods.complexFoods.create" /></a>
-		<s:submit cssClass="button" key="general.delete" />
+		<s:if test="complexFoods.size() > 0">
+			<s:submit cssClass="button" key="general.delete" />
+		</s:if>
 	</p>
 </s:form>
