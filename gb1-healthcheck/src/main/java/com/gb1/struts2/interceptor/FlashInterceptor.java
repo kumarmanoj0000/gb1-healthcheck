@@ -2,14 +2,14 @@
  * Copyright (c) 2002-2006 by OpenSymphony
  * All rights reserved.
  */
-package com.gb1.healthcheck.web.struts2.interceptor;
+package com.gb1.struts2.interceptor;
 
 import java.util.Map;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-import com.gb1.healthcheck.web.struts2.dispatcher.FlashResult;
+import com.gb1.struts2.dispatcher.FlashResult;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionInvocation;
 import com.opensymphony.xwork2.interceptor.AbstractInterceptor;

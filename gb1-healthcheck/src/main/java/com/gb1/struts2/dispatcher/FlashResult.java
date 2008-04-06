@@ -2,13 +2,13 @@
  * Copyright (c) 2002-2006 by OpenSymphony
  * All rights reserved.
  */
-package com.gb1.healthcheck.web.struts2.dispatcher;
+package com.gb1.struts2.dispatcher;
 
 import java.util.Map;
 
 import org.apache.struts2.dispatcher.ServletRedirectResult;
 
-import com.gb1.healthcheck.web.struts2.interceptor.FlashInterceptor;
+import com.gb1.struts2.interceptor.FlashInterceptor;
 import com.opensymphony.xwork2.ActionInvocation;
 
 /**
