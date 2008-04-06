@@ -24,6 +24,7 @@ HealthCheck
     (if using ServletActionRedirectResult, WW-2170/2297 is blocking => use flash interceptor?)
 
 . technical
+  - use <s:token> to prevent double submit
   - create Struts2 theme to reduce HTML tags
   - write integration tests (Spring TestContext?)
 
@@ -34,4 +35,4 @@ HealthCheck
   - Struts2:
     . @ParentPackage duplication in actions
     . confusing use of literals and OGNL/EL expressions in tags
-    . passing parameters with redirect result is not working: WW-2170/2297)
+    . passing parameters with redirect result is not working: WW-2170/2297
