@@ -30,12 +30,12 @@ public class UserServiceImplTest extends TestCase {
 				return Collections.emptySet();
 			}
 
-			public String getPassword() {
-				return null;
-			}
-
 			public String getLogin() {
 				return "login";
+			}
+
+			public String getPassword() {
+				return "1";
 			}
 
 			public String getEmail() {

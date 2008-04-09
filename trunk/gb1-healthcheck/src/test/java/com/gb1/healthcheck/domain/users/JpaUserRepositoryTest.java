@@ -43,13 +43,13 @@ public class JpaUserRepositoryTest extends BaseRepositoryTestCase {
 	}
 
 	public void testSaveUser() {
-		User u = new User(new UserPropertyProvider() {
+		User u = new User(new UserCreationPropertyProvider() {
 			public String getLogin() {
 				return "login";
 			}
 
 			public String getPassword() {
-				return "pwd";
+				return "1";
 			}
 
 			public String getEmail() {

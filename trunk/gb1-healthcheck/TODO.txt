@@ -3,21 +3,12 @@ HealthCheck
 -----------
 
 . features:
-  - user management
-    * change own password
-
-  - metrics analysis
-    * correlation food <=> gastric states (generated image? Flex component?)
-    * gastric states evolution (generated image? Flex component?)
-
-  - reminders
-    * send email when no meal saved in last 7 days
-
-  - meals
-    * use better time picker
-
-  - global layout
-    * replace content table by divs
+  - change own password
+  - correlation food <=> gastric states (generated image? Flex component?)
+  - gastric states evolution (generated image? Flex component?)
+  - send email when no meal saved in last 7 days
+  - use better time picker
+  - replace content table by divs
 
 . bugs:
   - edit user action should return to previous action, not necessarily workbench

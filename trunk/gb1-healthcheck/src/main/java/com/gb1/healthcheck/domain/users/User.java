@@ -34,7 +34,7 @@ import com.gb1.commons.tokens.Token;
  * @author Guillaume Bilodeau
  */
 @Entity
-public class User implements Identifiable, UserPropertyProvider, Serializable {
+public class User implements Identifiable, UserUpdatePropertyProvider, Serializable {
 	/**
 	 * The user's identifier
 	 */
@@ -82,13 +82,11 @@ public class User implements Identifiable, UserPropertyProvider, Serializable {
 	}
 
 	/**
-	 * Creates a new user based on the properties provided by the provider. <p/> Since
-	 * <code>User</code> implements the <UserCreationPropertyProvider> interface, this constructor
-	 * can act as a typical copy constructor.
+	 * Creates a new user based on the properties provided by the property provider.
 	 * 
 	 * @param propertyProvider The user property provider
 	 */
-	public User(UserPropertyProvider propertyProvider) {
+	public User(UserCreationPropertyProvider propertyProvider) {
 		login = propertyProvider.getLogin();
 		email = propertyProvider.getEmail();
 		password = propertyProvider.getPassword();
@@ -135,18 +133,9 @@ public class User implements Identifiable, UserPropertyProvider, Serializable {
 	}
 
 	/**
-	 * Returns the user's password.
-	 * 
-	 * @return The user's password
-	 */
-	public String getPassword() {
-		return password;
-	}
-
-	/**
-	 * Sets the user's new password. Normally the password should be changed through the
+	 * Sets the user's new password. <p/> Normally the password should be changed through the
 	 * <code>changePassword(String, String)</code> method that provides additional security
-	 * checks.
+	 * checks. This method is meant to be overriden by unit tests.
 	 * 
 	 * @param password The user's new password
 	 */
