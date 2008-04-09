@@ -33,11 +33,6 @@ public class ExposedUser extends User {
 	}
 
 	@Override
-	public String getPassword() {
-		return super.getPassword();
-	}
-
-	@Override
 	public void setPassword(String password) {
 		super.setPassword(password);
 	}
