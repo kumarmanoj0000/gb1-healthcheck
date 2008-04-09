@@ -40,7 +40,7 @@ public class AcegiUserDetailsAdapter implements UserDetails, Serializable {
 	}
 
 	public String getPassword() {
-		return "[PROTECTED]";
+		return target.getPassword();
 	}
 
 	public String getUsername() {

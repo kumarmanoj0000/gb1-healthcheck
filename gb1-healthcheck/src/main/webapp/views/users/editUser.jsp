@@ -13,6 +13,12 @@
 		<s:fielderror><s:param>model.email</s:param></s:fielderror>
 	</div>
 
+	<s:if test="editSelf">
+		<div>
+			<a href='<s:url namespace="/users" action="changePassword" method="input" />'><s:text name="users.changePassword" /></a>
+		</div>
+	</s:if>
+
 	<div class="actions">
 		<s:submit cssClass="button" key="general.submit" />
 		<s:submit cssClass="button" key="general.cancel" name="method:cancel" />

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.gb1.commons.tokens.Token;
+import com.gb1.healthcheck.domain.users.InvalidPasswordException;
 import com.gb1.healthcheck.domain.users.LostPasswordReminder;
 import com.gb1.healthcheck.domain.users.UnknownUserException;
 import com.gb1.healthcheck.domain.users.User;
@@ -98,6 +99,12 @@ public class UserServiceImpl implements UserService {
 
 	public void deleteUsers(Set<Long> userIds) {
 		userRepository.deleteUsers(userIds);
+	}
+
+	public void changeUserPassword(Long userId, String currentPassword, String newPassword)
+			throws InvalidPasswordException {
+		User user = userRepository.loadUser(userId);
+		user.changePassword(currentPassword, newPassword);
 	}
 
 	// external dependencies

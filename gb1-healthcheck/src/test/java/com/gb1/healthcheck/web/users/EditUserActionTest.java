@@ -30,7 +30,7 @@ public class EditUserActionTest extends TestCase {
 		EasyMock.expect(userSvc.loadUser(user.getId())).andReturn(user);
 		EasyMock.replay(userSvc);
 
-		EditUserAction action = new EditUserAction();
+		EditUserAction action = createAction(user);
 		action.setSession(new HashMap<String, Object>());
 		action.setUserService(userSvc);
 		action.setUserId(user.getId());
@@ -90,6 +90,19 @@ public class EditUserActionTest extends TestCase {
 		User user = Users.gb();
 		EditUserAction action = createAction(user);
 		assertEquals(Action.SUCCESS, action.cancel());
+	}
+
+	public void testIsEditSelf() {
+		User user = Users.gb();
+
+		EditUserAction action = createAction(user);
+		assertTrue(action.isEditSelf());
+
+		action.setUserId(user.getId());
+		assertTrue(action.isEditSelf());
+
+		action.setUserId(Users.lg().getId());
+		assertFalse(action.isEditSelf());
 	}
 
 	private EditUserAction createAction(final User user) {
