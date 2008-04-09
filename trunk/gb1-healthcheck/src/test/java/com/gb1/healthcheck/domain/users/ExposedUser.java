@@ -1,7 +1,6 @@
 package com.gb1.healthcheck.domain.users;
 
 import com.gb1.commons.tokens.Token;
-import com.gb1.healthcheck.services.users.UserRegistrationRequest;
 
 /**
  * An exposed user allows complete access to its internal state. This class is a convenience for
@@ -13,8 +12,8 @@ public class ExposedUser extends User {
 	public ExposedUser() {
 	}
 
-	public ExposedUser(UserRegistrationRequest request) {
-		super(request);
+	public ExposedUser(UserCreationPropertyProvider pp) {
+		super(pp);
 	}
 
 	@Override
@@ -30,6 +29,11 @@ public class ExposedUser extends User {
 	@Override
 	public void setLogin(String login) {
 		super.setLogin(login);
+	}
+
+	@Override
+	public String getPassword() {
+		return super.getPassword();
 	}
 
 	@Override

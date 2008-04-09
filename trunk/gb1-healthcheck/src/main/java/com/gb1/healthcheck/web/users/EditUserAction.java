@@ -44,7 +44,7 @@ public class EditUserAction extends ActionSupport implements SessionAware {
 	@Override
 	public String input() throws Exception {
 		User userToEdit;
-		if (userId == null) {
+		if (isEditSelf()) {
 			userToEdit = getUser();
 		}
 		else {
@@ -57,8 +57,8 @@ public class EditUserAction extends ActionSupport implements SessionAware {
 		return Action.INPUT;
 	}
 
-	@Validations(requiredStrings = { @RequiredStringValidator(fieldName = "model.email", message = "", key = "users.edit.email.invalid") }, emails = { @EmailValidator(fieldName = "model.email", message = "", key = "users.edit.email.invalid") })
 	@Override
+	@Validations(requiredStrings = { @RequiredStringValidator(fieldName = "model.email", message = "", key = "users.edit.email.invalid") }, emails = { @EmailValidator(fieldName = "model.email", message = "", key = "users.edit.email.invalid") })
 	public String execute() {
 		String result = Action.INPUT;
 
@@ -92,6 +92,11 @@ public class EditUserAction extends ActionSupport implements SessionAware {
 
 	public User getUser() {
 		return HttpRequestUtils.getUser();
+	}
+
+	public boolean isEditSelf() {
+		boolean editSelf = (userId == null || userId == getUser().getId());
+		return editSelf;
 	}
 
 	public BasicUserUpdateRequest getModel() {

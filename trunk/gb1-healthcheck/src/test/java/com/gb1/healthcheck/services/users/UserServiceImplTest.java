@@ -255,4 +255,20 @@ public class UserServiceImplTest extends TestCase {
 
 		EasyMock.verify(userRepo);
 	}
+
+	public void testChangeUserPassword() throws Exception {
+		ExposedUser user = new ExposedUser();
+		user.setId(42L);
+		user.setPassword("1");
+
+		UserRepository userRepo = EasyMock.createMock(UserRepository.class);
+		EasyMock.expect(userRepo.loadUser(user.getId())).andReturn(user);
+		EasyMock.replay(userRepo);
+
+		UserServiceImpl svc = new UserServiceImpl();
+		svc.setUserRepository(userRepo);
+		svc.changeUserPassword(user.getId(), "1", "2");
+
+		assertEquals("2", user.getPassword());
+	}
 }

@@ -133,6 +133,16 @@ public class User implements Identifiable, UserUpdatePropertyProvider, Serializa
 	}
 
 	/**
+	 * Returns the user's password. <p/> This method is meant to be overriden by unit tests and
+	 * should not be used anywhere else.
+	 * 
+	 * @return The user's unencrypted password
+	 */
+	String getPassword() {
+		return password;
+	}
+
+	/**
 	 * Sets the user's new password. <p/> Normally the password should be changed through the
 	 * <code>changePassword(String, String)</code> method that provides additional security
 	 * checks. This method is meant to be overriden by unit tests.
@@ -155,7 +165,7 @@ public class User implements Identifiable, UserUpdatePropertyProvider, Serializa
 	public void changePassword(String currentPassword, String newPassword)
 			throws InvalidPasswordException {
 		if (!password.equals(currentPassword)) {
-			throw new InvalidPasswordException(currentPassword);
+			throw new InvalidPasswordException();
 		}
 
 		password = newPassword;

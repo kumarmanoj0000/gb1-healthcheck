@@ -3,7 +3,7 @@ HealthCheck
 -----------
 
 . features:
-  - change own password
+  - reset user password by administrator
   - correlation food <=> gastric states (generated image? Flex component?)
   - gastric states evolution (generated image? Flex component?)
   - send email when no meal saved in last 7 days
@@ -11,6 +11,7 @@ HealthCheck
   - replace content table by divs
 
 . bugs:
+  - validation error redirects to URL with previous parameters in clear text (bad when dealing with passwords!)
   - edit user action should return to previous action, not necessarily workbench
     (if using ServletActionRedirectResult, WW-2170/2297 is blocking => use flash interceptor?)
 
