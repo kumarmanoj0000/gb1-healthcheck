@@ -11,13 +11,14 @@
 	<display:table name="users" id="user"
 			requestURI="${listUsersUrl}" excludedParams="*"
 			pagesize="${userListPageSize}" class="listTable"
-			sort="list" defaultsort="2">
+			sort="list" defaultsort="2" decorator="com.gb1.healthcheck.web.users.UserListTableDecorator">
 		<display:column style="width: 4%; text-align: center">
 			<%-- bug WW-2339 prevents us from using the s:checkbox tag --%>
 			<input type="checkbox" name="userIds" value="${user.id}" />
 		</display:column>
-		<display:column property="login" sortable="true" href="${editUserUrl}" paramId="userId" paramProperty="id" />
-		<display:column property="email" sortable="true" />
+		<display:column titleKey="user.login" property="login" sortable="true" href="${editUserUrl}" paramId="userId" paramProperty="id" />
+		<display:column titleKey="user.email" property="email" sortable="true" />
+		<display:column title="" property="resetPasswordLink" />
 	</display:table>
 
 	<s:if test="users.size() > 0">

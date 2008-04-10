@@ -1,6 +1,11 @@
 package com.gb1.healthcheck.domain.users;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import junit.framework.TestCase;
+
+import org.easymock.EasyMock;
 
 import com.gb1.commons.tokens.Token;
 
@@ -118,5 +123,23 @@ public class UserTest extends TestCase {
 
 		u.relieveFromRole(Role.STANDARD);
 		assertTrue(!u.hasRole(Role.STANDARD));
+	}
+
+	public void testResetPassword() {
+		String newPwd = "12345678";
+		int length = 8;
+
+		PasswordGenerator pwdGenerator = EasyMock.createMock(PasswordGenerator.class);
+		EasyMock.expect(pwdGenerator.generatePassword(length)).andReturn(newPwd);
+		EasyMock.replay(pwdGenerator);
+
+		Map<String, String> constants = new HashMap<String, String>();
+		constants.put("user.generatedPasswordLength", "8");
+
+		User u = Users.gb();
+		u.setGlobalConstants(constants);
+		u.setPasswordGenerator(pwdGenerator);
+		u.resetPassword();
+		assertEquals(newPwd, u.getPassword());
 	}
 }

@@ -107,6 +107,11 @@ public class UserServiceImpl implements UserService {
 		user.changePassword(currentPassword, newPassword);
 	}
 
+	public void resetUserPassword(Long userId) {
+		User user = userRepository.loadUser(userId);
+		user.resetPassword();
+	}
+
 	// external dependencies
 
 	@Resource
