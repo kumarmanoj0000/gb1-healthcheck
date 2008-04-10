@@ -24,6 +24,7 @@
 	  -->
 
 	<util:map id="globalConstants">
+		<entry key="user.generatedPasswordLength" value="8" />
 		<entry key="fromAddress" value="admin@gb1.com" />
 		<entry key="activation.subject" value="[HealthCheck] Account activation" />
 		<entry key="activation.formUrl" value="http://localhost:8080/healthcheck/public/register/activateUser!input.go" />

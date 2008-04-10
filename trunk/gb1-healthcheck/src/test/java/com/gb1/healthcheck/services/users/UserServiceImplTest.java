@@ -1,7 +1,9 @@
 package com.gb1.healthcheck.services.users;
 
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
 import junit.framework.TestCase;
@@ -12,6 +14,7 @@ import org.easymock.EasyMock;
 import com.gb1.commons.tokens.Token;
 import com.gb1.healthcheck.domain.users.ExposedUser;
 import com.gb1.healthcheck.domain.users.LostPasswordReminder;
+import com.gb1.healthcheck.domain.users.PasswordGenerator;
 import com.gb1.healthcheck.domain.users.Role;
 import com.gb1.healthcheck.domain.users.UnknownUserException;
 import com.gb1.healthcheck.domain.users.User;
@@ -270,5 +273,33 @@ public class UserServiceImplTest extends TestCase {
 		svc.changeUserPassword(user.getId(), "1", "2");
 
 		assertEquals("2", user.getPassword());
+	}
+
+	public void testResetUserPassword() {
+		String newPwd = "12345678";
+		int length = 8;
+
+		PasswordGenerator pwdGenerator = EasyMock.createMock(PasswordGenerator.class);
+		EasyMock.expect(pwdGenerator.generatePassword(length)).andReturn(newPwd);
+		EasyMock.replay(pwdGenerator);
+
+		Map<String, String> constants = new HashMap<String, String>();
+		constants.put("user.generatedPasswordLength", "8");
+
+		ExposedUser user = new ExposedUser();
+		user.setId(42L);
+		user.setPassword("old");
+		user.setGlobalConstants(constants);
+		user.setPasswordGenerator(pwdGenerator);
+
+		UserRepository userRepo = EasyMock.createMock(UserRepository.class);
+		EasyMock.expect(userRepo.loadUser(user.getId())).andReturn(user);
+		EasyMock.replay(userRepo);
+
+		UserServiceImpl svc = new UserServiceImpl();
+		svc.setUserRepository(userRepo);
+		svc.resetUserPassword(user.getId());
+
+		assertEquals(newPwd, user.getPassword());
 	}
 }

@@ -4,8 +4,10 @@ import java.io.Serializable;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
+import javax.annotation.Resource;
 import javax.persistence.AttributeOverride;
 import javax.persistence.Column;
 import javax.persistence.Embedded;
@@ -13,6 +15,7 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Transient;
 
 import org.apache.commons.lang.Validate;
 import org.apache.commons.lang.builder.CompareToBuilder;
@@ -20,6 +23,7 @@ import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.commons.lang.builder.ToStringBuilder;
 import org.hibernate.annotations.CollectionOfElements;
+import org.springframework.beans.factory.annotation.Configurable;
 
 import com.gb1.commons.Identifiable;
 import com.gb1.commons.tokens.Token;
@@ -34,6 +38,7 @@ import com.gb1.commons.tokens.Token;
  * @author Guillaume Bilodeau
  */
 @Entity
+@Configurable
 public class User implements Identifiable, UserUpdatePropertyProvider, Serializable {
 	/**
 	 * The user's identifier
@@ -74,6 +79,12 @@ public class User implements Identifiable, UserUpdatePropertyProvider, Serializa
 	 */
 	@CollectionOfElements(fetch = FetchType.EAGER)
 	private Set<Role> roles = new HashSet<Role>();
+
+	@Transient
+	private PasswordGenerator passwordGenerator;
+
+	@Transient
+	private int generatedPasswordLength;
 
 	/**
 	 * Creates a new user.
@@ -169,6 +180,13 @@ public class User implements Identifiable, UserUpdatePropertyProvider, Serializa
 		}
 
 		password = newPassword;
+	}
+
+	/**
+	 * Resets the user's password. A new password will be generated and assigned to the user.
+	 */
+	public void resetPassword() {
+		password = passwordGenerator.generatePassword(generatedPasswordLength);
 	}
 
 	/**
@@ -314,6 +332,16 @@ public class User implements Identifiable, UserUpdatePropertyProvider, Serializa
 	 */
 	public void update(UserUpdatePropertyProvider propertyProvider) {
 		email = propertyProvider.getEmail();
+	}
+
+	@Resource
+	public void setPasswordGenerator(PasswordGenerator pwdGen) {
+		this.passwordGenerator = pwdGen;
+	}
+
+	@Resource
+	public void setGlobalConstants(Map<String, String> constants) {
+		generatedPasswordLength = Integer.parseInt(constants.get("user.generatedPasswordLength"));
 	}
 
 	@Override

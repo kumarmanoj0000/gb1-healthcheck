@@ -100,4 +100,11 @@ public interface UserService {
 	 */
 	void changeUserPassword(Long userId, String currentPassword, String newPassword)
 			throws InvalidPasswordException;
+
+	/**
+	 * Resets a user's password.
+	 * 
+	 * @param userId The ID of the user whose password will be reset
+	 */
+	void resetUserPassword(Long userId);
 }
