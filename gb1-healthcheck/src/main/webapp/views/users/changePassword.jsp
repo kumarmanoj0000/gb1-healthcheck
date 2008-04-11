@@ -4,7 +4,7 @@
 
 <s:actionerror />
 
-<s:form namespace="/users" action="changePassword" method="execute">
+<s:form namespace="/users" action="changePassword">
 	<div class="required">
 		<label><s:text name="users.changePassword.currentPassword" />:</label>
 		<s:password name="currentPassword" />

@@ -6,6 +6,7 @@ import org.apache.struts2.config.ParentPackage;
 import org.apache.struts2.config.Result;
 import org.apache.struts2.config.Results;
 import org.apache.struts2.dispatcher.ServletActionRedirectResult;
+import org.apache.struts2.dispatcher.ServletDispatcherResult;
 
 import com.gb1.healthcheck.domain.users.InvalidPasswordException;
 import com.gb1.healthcheck.domain.users.User;
@@ -20,7 +21,7 @@ import com.opensymphony.xwork2.validator.annotations.Validations;
 
 @ParentPackage("default")
 @Results( {
-		@Result(name = "input", value = "/views/users/changePassword.jsp"),
+		@Result(name = "input", type = ServletDispatcherResult.class, value = "/views/users/changePassword.jsp"),
 		@Result(type = ServletActionRedirectResult.class, value = "workbench", params = {
 				"namespace", "/workbench", "parse", "true", "actionMessageKey",
 				"${actionMessageKey}" }) })

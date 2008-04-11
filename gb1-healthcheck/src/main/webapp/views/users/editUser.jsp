@@ -4,7 +4,7 @@
 
 <s:actionerror />
 
-<s:form namespace="/users" action="editUser" method="execute">
+<s:form namespace="/users" action="editUser">
 	<s:hidden name="user.id" />
 
 	<div class="required">
