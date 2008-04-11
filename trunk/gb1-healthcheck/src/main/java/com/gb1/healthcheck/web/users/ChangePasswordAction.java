@@ -6,7 +6,6 @@ import org.apache.struts2.config.ParentPackage;
 import org.apache.struts2.config.Result;
 import org.apache.struts2.config.Results;
 import org.apache.struts2.dispatcher.ServletActionRedirectResult;
-import org.apache.struts2.dispatcher.ServletDispatcherResult;
 
 import com.gb1.healthcheck.domain.users.InvalidPasswordException;
 import com.gb1.healthcheck.domain.users.User;
@@ -21,7 +20,7 @@ import com.opensymphony.xwork2.validator.annotations.Validations;
 
 @ParentPackage("default")
 @Results( {
-		@Result(name = "input", type = ServletDispatcherResult.class, value = "/views/users/changePassword.jsp"),
+		@Result(name = "input", value = "/views/users/changePassword.jsp"),
 		@Result(type = ServletActionRedirectResult.class, value = "workbench", params = {
 				"namespace", "/workbench", "parse", "true", "actionMessageKey",
 				"${actionMessageKey}" }) })
@@ -31,6 +30,7 @@ public class ChangePasswordAction extends ActionSupport {
 	private String currentPassword;
 	private String newPassword1;
 	private String newPassword2;
+	private String actionMessageKey;
 
 	public ChangePasswordAction() {
 	}
@@ -45,6 +45,7 @@ public class ChangePasswordAction extends ActionSupport {
 
 		try {
 			userService.changeUserPassword(getUser().getId(), currentPassword, newPassword1);
+			actionMessageKey = "users.changePassword.success";
 			result = Action.SUCCESS;
 		}
 		catch (InvalidPasswordException e) {
@@ -84,6 +85,10 @@ public class ChangePasswordAction extends ActionSupport {
 
 	public void setNewPassword2(String newPwd) {
 		this.newPassword2 = newPwd;
+	}
+
+	public String getActionMessageKey() {
+		return actionMessageKey;
 	}
 
 	protected User getRequester() {
