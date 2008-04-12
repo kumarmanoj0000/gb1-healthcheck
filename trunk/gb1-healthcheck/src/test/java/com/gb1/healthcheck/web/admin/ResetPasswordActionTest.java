@@ -1,4 +1,4 @@
-package com.gb1.healthcheck.web.users;
+package com.gb1.healthcheck.web.admin;
 
 import junit.framework.TestCase;
 

@@ -1,4 +1,4 @@
-package com.gb1.healthcheck.web.users;
+package com.gb1.healthcheck.web.admin;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,7 +19,7 @@ import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionSupport;
 
 @ParentPackage("default")
-@Result(value = "/views/users/manageUsers.jsp")
+@Result(value = "/views/admin/manageUsers.jsp")
 public class ManageUsersAction extends ActionSupport implements SessionAware {
 	public static final String USER_LIST_SESSION_KEY = ManageUsersAction.class.getName()
 			+ ".cachedUserList";

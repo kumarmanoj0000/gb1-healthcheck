@@ -1,4 +1,4 @@
-package com.gb1.healthcheck.web.users;
+package com.gb1.healthcheck.web.admin;
 
 import javax.annotation.Resource;
 
@@ -11,7 +11,7 @@ import com.opensymphony.xwork2.Action;
 
 @ParentPackage("default")
 @Result(type = ServletActionRedirectResult.class, value = "manageUsers", params = { "namespace",
-		"/users", "actionName", "manageUsers", "actionMessageKey", "${actionMessageKey}" })
+		"/admin", "actionName", "manageUsers", "actionMessageKey", "${actionMessageKey}" })
 public class ResetPasswordAction {
 	private UserService userService;
 	private Long userId;

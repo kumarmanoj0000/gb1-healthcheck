@@ -11,16 +11,6 @@ import com.gb1.healthcheck.services.users.UserService;
 import com.opensymphony.xwork2.Action;
 
 public class ChangePasswordActionTest extends TestCase {
-	public void testInput() throws Exception {
-		User user = Users.gb();
-
-		ChangePasswordAction action = new ChangePasswordAction();
-		action.setRequester(user);
-
-		assertEquals(Action.INPUT, action.input());
-		assertSame(user, action.getUser());
-	}
-
 	public void testExecute() throws Exception {
 		User user = Users.gb();
 		String currentPwd = "1";

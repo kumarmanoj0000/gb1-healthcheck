@@ -22,7 +22,7 @@
 			/>
 		</li>
 		<li>
-			<a href="<s:url namespace='/users' action='editUser' method='input' />"><s:text name="header.profile" /></a>
+			<a href="<s:url namespace='/users' action='editOwnUser' method='input' />"><s:text name="header.profile" /></a>
 		</li>
 		<li class="last">
 			<a href="<s:url namespace='/public/security' action='signOff' />"><s:text name="header.logoff" /></a>
