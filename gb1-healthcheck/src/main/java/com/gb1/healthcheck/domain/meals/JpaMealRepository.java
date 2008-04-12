@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Set;
 
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 
 import org.springframework.stereotype.Repository;
@@ -46,6 +47,21 @@ public class JpaMealRepository implements MealRepository {
 		for (Long mealId : mealIds) {
 			entityManager.remove(loadMeal(mealId));
 		}
+	}
+
+	public Meal getLastMealBy(User eater) {
+		Meal lastMeal = null;
+
+		try {
+			lastMeal = (Meal) entityManager.createQuery(
+					"select m from Meal m where m.eater = ?1 order by m.instant desc")
+					.setParameter(1, eater).setMaxResults(1).getSingleResult();
+		}
+		catch (NoResultException e) {
+			// user never ate
+		}
+
+		return lastMeal;
 	}
 
 	@PersistenceContext

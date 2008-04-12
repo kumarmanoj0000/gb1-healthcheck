@@ -1,0 +1,7 @@
+<html>
+<body>
+	<p>Hi ${user.login},</p>
+	<p>You haven't entered any meals since ${lastMealDate}. Have you forgotten about us?</p>
+	<p>Cheers, HealthCheck</p>
+</body>
+</html>

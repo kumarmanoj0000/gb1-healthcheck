@@ -316,6 +316,12 @@
 			<version>1.5</version>
 		</dependency>
 
+		<dependency>
+			<groupId>opensymphony</groupId>
+			<artifactId>quartz</artifactId>
+			<version>1.6.0</version>
+		</dependency>
+
 		<!-- Necessary to support jetty:run so that Jetty has access to the JDBC DataSource implementation;
 			not necessary for final deployment. -->
 		<dependency>

@@ -16,4 +16,6 @@ public interface MealRepository {
 	void saveMeal(Meal meal);
 
 	void deleteMeals(Set<Long> mealIds);
+
+	Meal getLastMealBy(User eater);
 }

@@ -80,7 +80,7 @@ public class Meal implements Identifiable, MealCreationPropertyProvider, Seriali
 		return new Date(instant.getTime());
 	}
 
-	private void setInstant(Date instant) {
+	public void setInstant(Date instant) {
 		this.instant = new Date(instant.getTime());
 	}
 
