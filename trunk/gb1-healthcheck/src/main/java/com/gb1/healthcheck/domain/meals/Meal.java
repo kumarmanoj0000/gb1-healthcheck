@@ -1,5 +1,6 @@
 package com.gb1.healthcheck.domain.meals;
 
+import java.io.Serializable;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
@@ -29,7 +30,7 @@ import com.gb1.healthcheck.domain.foods.Nutrient;
 import com.gb1.healthcheck.domain.users.User;
 
 @Entity
-public class Meal implements Identifiable, MealCreationPropertyProvider {
+public class Meal implements Identifiable, MealCreationPropertyProvider, Serializable {
 	@Id
 	@GeneratedValue
 	private Long id;
