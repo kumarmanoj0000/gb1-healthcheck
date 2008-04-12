@@ -47,4 +47,6 @@ public interface MealService {
 	 * @param mealIds The IDs of the meals to delete
 	 */
 	void deleteMeals(Set<Long> mealIds);
+
+	void notifyInactiveUsers();
 }

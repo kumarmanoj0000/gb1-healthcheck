@@ -13,6 +13,7 @@ import com.gb1.healthcheck.domain.meals.Meal;
 import com.gb1.healthcheck.domain.meals.MealException;
 import com.gb1.healthcheck.domain.meals.MealRepository;
 import com.gb1.healthcheck.domain.meals.MealValidator;
+import com.gb1.healthcheck.domain.meals.UserInactivityNotifier;
 import com.gb1.healthcheck.domain.users.User;
 import com.gb1.healthcheck.services.meals.support.MealCreationPropertyProviderAdapter;
 import com.gb1.healthcheck.services.meals.support.MealUpdatePropertyProviderAdapter;
@@ -23,6 +24,7 @@ public class MealServiceImpl implements MealService {
 	private MealRepository mealRepo;
 	private MealValidator mealCreationValidator;
 	private MealValidator mealUpdateValidator;
+	private UserInactivityNotifier userInactivityNotifier;
 
 	public MealServiceImpl() {
 	}
@@ -62,6 +64,10 @@ public class MealServiceImpl implements MealService {
 		mealRepo.deleteMeals(mealIds);
 	}
 
+	public void notifyInactiveUsers() {
+		userInactivityNotifier.notifyInactiveUsers();
+	}
+
 	@Resource
 	public void setMealRepository(MealRepository mealRepo) {
 		this.mealRepo = mealRepo;
@@ -75,5 +81,10 @@ public class MealServiceImpl implements MealService {
 	@Resource
 	public void setMealUpdateValidator(MealValidator validator) {
 		this.mealUpdateValidator = validator;
+	}
+
+	@Resource
+	public void setUserInactivityNotifier(UserInactivityNotifier notifier) {
+		this.userInactivityNotifier = notifier;
 	}
 }
