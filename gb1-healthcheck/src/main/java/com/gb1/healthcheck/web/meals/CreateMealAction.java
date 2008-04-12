@@ -10,6 +10,9 @@ import com.gb1.healthcheck.domain.meals.MealException;
 import com.gb1.healthcheck.services.meals.MealCreationRequest;
 import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.Preparable;
+import com.opensymphony.xwork2.validator.annotations.RequiredFieldValidator;
+import com.opensymphony.xwork2.validator.annotations.Validation;
+import com.opensymphony.xwork2.validator.annotations.Validations;
 
 @ParentPackage("default")
 @Results( {
@@ -17,6 +20,7 @@ import com.opensymphony.xwork2.Preparable;
 		@Result(type = ServletActionRedirectResult.class, value = "manageMeals", params = {
 				"namespace", "/meals", "parse", "true", "actionMessageKey", "${actionMessageKey}",
 				"refreshList", "true" }) })
+@Validation
 public class CreateMealAction extends MealActionSupport implements Preparable {
 	private MealCreationRequest model;
 
@@ -29,6 +33,7 @@ public class CreateMealAction extends MealActionSupport implements Preparable {
 	}
 
 	@Override
+	@Validations(requiredFields = { @RequiredFieldValidator(fieldName = "model.instant", message = "", key = "meals.edit.error.instantRequired") })
 	public String execute() {
 		String result = Action.INPUT;
 
