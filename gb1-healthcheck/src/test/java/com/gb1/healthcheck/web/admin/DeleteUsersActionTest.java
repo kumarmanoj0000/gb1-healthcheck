@@ -1,4 +1,4 @@
-package com.gb1.healthcheck.web.users;
+package com.gb1.healthcheck.web.admin;
 
 import java.util.ArrayList;
 import java.util.HashSet;

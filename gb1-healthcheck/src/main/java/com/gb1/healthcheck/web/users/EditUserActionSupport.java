@@ -4,59 +4,39 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 
-import org.apache.struts2.config.ParentPackage;
-import org.apache.struts2.config.Result;
-import org.apache.struts2.config.Results;
-import org.apache.struts2.dispatcher.ServletActionRedirectResult;
 import org.apache.struts2.interceptor.SessionAware;
 
 import com.gb1.healthcheck.domain.users.EmailAlreadyExistsException;
 import com.gb1.healthcheck.domain.users.User;
 import com.gb1.healthcheck.domain.users.UserException;
+import com.gb1.healthcheck.domain.users.UserUpdatePropertyProvider;
 import com.gb1.healthcheck.services.users.UserService;
-import com.gb1.struts2.security.AuthenticatedUser;
 import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.validator.annotations.EmailValidator;
 import com.opensymphony.xwork2.validator.annotations.RequiredStringValidator;
-import com.opensymphony.xwork2.validator.annotations.Validation;
 import com.opensymphony.xwork2.validator.annotations.Validations;
 
-@ParentPackage("default")
-@Results( {
-		@Result(name = "input", value = "/views/users/editUser.jsp"),
-		@Result(type = ServletActionRedirectResult.class, value = "workbench", params = {
-				"namespace", "/workbench", "parse", "true", "actionMessageKey",
-				"${actionMessageKey}" }) })
-@Validation
-public class EditUserAction extends ActionSupport implements SessionAware {
-	protected static final String MODEL_SESSION_KEY = EditUserAction.class.getName() + ".model";
+public abstract class EditUserActionSupport extends ActionSupport implements SessionAware {
+	protected static final String MODEL_SESSION_KEY = EditUserActionSupport.class.getName()
+			+ ".model";
 
 	private Map<String, Object> sessionMap;
 	private UserService userService;
-
-	private User requester;
-	private Long userId;
 	private String actionMessageKey;
 
-	public EditUserAction() {
+	public EditUserActionSupport() {
 	}
 
 	@Override
 	public String input() throws Exception {
-		User userToEdit;
-		if (isEditSelf()) {
-			userToEdit = requester;
-		}
-		else {
-			userToEdit = userService.loadUser(userId);
-		}
-
-		BasicUserUpdateRequest model = new BasicUserUpdateRequest(userToEdit);
+		BasicUserUpdateRequest model = new BasicUserUpdateRequest(getUserToEdit());
 		sessionMap.put(MODEL_SESSION_KEY, model);
 
 		return Action.INPUT;
 	}
+
+	protected abstract User getUserToEdit();
 
 	@Override
 	@Validations(requiredStrings = { @RequiredStringValidator(fieldName = "model.email", message = "", key = "users.edit.email.invalid") }, emails = { @EmailValidator(fieldName = "model.email", message = "", key = "users.edit.email.invalid") })
@@ -67,10 +47,7 @@ public class EditUserAction extends ActionSupport implements SessionAware {
 			BasicUserUpdateRequest updateReq = getModel();
 			userService.updateUser(updateReq);
 
-			// the Acegi authenticated user may also need to be updated
-			if (requester.getId().equals(updateReq.getUserId())) {
-				requester.update(updateReq);
-			}
+			updateActiveUserIfNecessary(updateReq);
 
 			sessionMap.remove(MODEL_SESSION_KEY);
 			actionMessageKey = "users.edit.success";
@@ -86,31 +63,17 @@ public class EditUserAction extends ActionSupport implements SessionAware {
 		return result;
 	}
 
+	@SuppressWarnings("unused")
+	protected void updateActiveUserIfNecessary(UserUpdatePropertyProvider updateReq) {
+	}
+
 	public String cancel() {
 		return Action.SUCCESS;
-	}
-
-	@AuthenticatedUser
-	public void setRequester(User requester) {
-		this.requester = requester;
-	}
-
-	public boolean isEditSelf() {
-		boolean editSelf = (userId == null || userId == requester.getId());
-		return editSelf;
 	}
 
 	public BasicUserUpdateRequest getModel() {
 		BasicUserUpdateRequest model = (BasicUserUpdateRequest) sessionMap.get(MODEL_SESSION_KEY);
 		return model;
-	}
-
-	public Long getUserId() {
-		return userId;
-	}
-
-	public void setUserId(Long userId) {
-		this.userId = userId;
 	}
 
 	public String getActionMessageKey() {
@@ -120,6 +83,10 @@ public class EditUserAction extends ActionSupport implements SessionAware {
 	@SuppressWarnings("unchecked")
 	public void setSession(Map sessionMap) {
 		this.sessionMap = sessionMap;
+	}
+
+	protected UserService getUserService() {
+		return userService;
 	}
 
 	@Resource

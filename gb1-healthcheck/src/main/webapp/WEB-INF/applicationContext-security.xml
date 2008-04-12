@@ -53,7 +53,7 @@
 				/views/index.jsp=role_anonymous,role_standard,role_administrator
 				/views/public/**=role_anonymous,role_standard,role_administrator
 				/public/**=role_anonymous,role_standard,role_administrator
-				/users/**=role_administrator
+				/admin/**=role_administrator
 				/**=role_standard,role_administrator
 			</value>
 		</property>

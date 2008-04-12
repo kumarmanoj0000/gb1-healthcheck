@@ -1,4 +1,4 @@
-package com.gb1.healthcheck.web.users;
+package com.gb1.healthcheck.web.admin;
 
 import java.util.Arrays;
 import java.util.HashSet;
@@ -16,7 +16,7 @@ import com.opensymphony.xwork2.ActionSupport;
 
 @ParentPackage("default")
 @Result(type = ServletActionRedirectResult.class, value = "manageUsers", params = { "namespace",
-		"/users", "parse", "true", "actionMessageKey", "${actionMessageKey}", "refreshList", "true" })
+		"/admin", "parse", "true", "actionMessageKey", "${actionMessageKey}", "refreshList", "true" })
 public class DeleteUsersAction extends ActionSupport {
 	private UserService userService;
 	private Long[] userIds;

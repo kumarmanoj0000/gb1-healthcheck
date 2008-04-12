@@ -45,7 +45,7 @@ public class ChangePasswordAction extends ActionSupport {
 		String result = Action.INPUT;
 
 		try {
-			userService.changeUserPassword(getUser().getId(), currentPassword, newPassword1);
+			userService.changeUserPassword(requester.getId(), currentPassword, newPassword1);
 			actionMessageKey = "users.changePassword.success";
 			result = Action.SUCCESS;
 		}
@@ -58,10 +58,6 @@ public class ChangePasswordAction extends ActionSupport {
 
 	public String cancel() {
 		return Action.SUCCESS;
-	}
-
-	public User getUser() {
-		return requester;
 	}
 
 	@AuthenticatedUser

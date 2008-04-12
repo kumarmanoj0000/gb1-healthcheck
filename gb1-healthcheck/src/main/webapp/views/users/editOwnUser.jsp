@@ -3,7 +3,7 @@
 <h2><s:text name="users.edit.title" /></h2>
 <s:actionerror />
 
-<s:form namespace="/users" action="editUser">
+<s:form namespace="/users" action="editOwnUser">
 	<s:hidden name="model.userId" />
 
 	<div class="required">
@@ -12,11 +12,9 @@
 		<s:fielderror><s:param>model.email</s:param></s:fielderror>
 	</div>
 
-	<s:if test="editSelf">
-		<div>
-			<a href='<s:url namespace="/users" action="changePassword" method="input" />'><s:text name="users.changePassword" /></a>
-		</div>
-	</s:if>
+	<div>
+		<a href='<s:url namespace="/users" action="changePassword" method="input" />'><s:text name="users.changePassword" /></a>
+	</div>
 
 	<div class="actions">
 		<s:submit cssClass="button" key="general.submit" />
