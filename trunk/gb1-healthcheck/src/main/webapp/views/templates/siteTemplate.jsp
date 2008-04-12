@@ -40,19 +40,13 @@
 		<div id="container">
 			<div id="header"><%@ include file="/views/fragments/header.jsp"%></div>
 
-			<table id="contentTable" width="100%">
-				<tr>
-					<authz:authorize ifNotGranted="role_anonymous">
-						<td width="20%" valign="top">
-							<div id="navigation"><%@ include file="/views/fragments/navigation.jsp" %></div>
-						</td>
-					</authz:authorize>
-
-					<td valign="top">
-						<div id="content"><decorator:body /></div>
-					</td>
-				</tr>
-			</table>
+			<authz:authorize ifNotGranted="role_anonymous">
+				<div id="navigation"><%@ include file="/views/fragments/navigation.jsp" %></div>
+				<div id="content"><decorator:body /></div>
+			</authz:authorize>
+			<authz:authorize ifAnyGranted="role_anonymous">
+				<div id="signin"><decorator:body /></div>
+			</authz:authorize>
 
 			<div id="footer"><%@ include file="/views/fragments/footer.jsp"%></div>
 		</div>

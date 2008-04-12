@@ -1,5 +1,7 @@
 <%@ taglib prefix="s" uri="/struts-tags" %>
 
+<h2><s:text name="signin.welcome" /></h2>
+
 <s:if test="#parameters['login_error'] != null">
 	<p id="loginError"><s:text name="errors.signin.badcredentials" /></p>
 </s:if>
