@@ -27,12 +27,8 @@ public class ManageMealsActionTest extends TestCase {
 
 		Map<String, Object> sessionMap = new HashMap<String, Object>();
 
-		ManageMealsAction action = new ManageMealsAction() {
-			@Override
-			protected User getRequester() {
-				return requester;
-			}
-		};
+		ManageMealsAction action = new ManageMealsAction();
+		action.setRequester(requester);
 		action.setSession(sessionMap);
 		action.setMealService(mealSvc);
 

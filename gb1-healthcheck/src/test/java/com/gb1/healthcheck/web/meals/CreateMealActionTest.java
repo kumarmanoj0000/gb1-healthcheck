@@ -16,7 +16,6 @@ import com.gb1.healthcheck.domain.foods.Foods;
 import com.gb1.healthcheck.domain.meals.MealAlreadyExistsException;
 import com.gb1.healthcheck.domain.meals.MealException;
 import com.gb1.healthcheck.domain.meals.PreparationMethod;
-import com.gb1.healthcheck.domain.users.User;
 import com.gb1.healthcheck.domain.users.Users;
 import com.gb1.healthcheck.services.foods.FoodService;
 import com.gb1.healthcheck.services.meals.MealCreationRequest;
@@ -48,7 +47,8 @@ public class CreateMealActionTest extends TestCase {
 
 	@SuppressWarnings("unchecked")
 	public void testPrepare() {
-		CreateMealAction action = createMealAction();
+		CreateMealAction action = new CreateMealAction();
+		action.setRequester(Users.lg());
 		action.setFoodService(foodService);
 		action.prepare();
 
@@ -63,7 +63,8 @@ public class CreateMealActionTest extends TestCase {
 		EasyMock.expectLastCall();
 		EasyMock.replay(mealSvc);
 
-		CreateMealAction action = createMealAction();
+		CreateMealAction action = new CreateMealAction();
+		action.setRequester(Users.lg());
 		action.setFoodService(foodService);
 		action.setMealService(mealSvc);
 		action.prepare();
@@ -77,22 +78,13 @@ public class CreateMealActionTest extends TestCase {
 		EasyMock.expectLastCall().andThrow(new MealAlreadyExistsException());
 		EasyMock.replay(mealSvc);
 
-		CreateMealAction action = createMealAction();
+		CreateMealAction action = new CreateMealAction();
+		action.setRequester(Users.lg());
 		action.setFoodService(foodService);
 		action.setMealService(mealSvc);
 		action.prepare();
 
 		assertEquals(Action.INPUT, action.execute());
 		assertTrue(action.hasFieldErrors());
-	}
-
-	private CreateMealAction createMealAction() {
-		CreateMealAction action = new CreateMealAction() {
-			@Override
-			protected User getRequester() {
-				return Users.lg();
-			}
-		};
-		return action;
 	}
 }

@@ -14,7 +14,7 @@ import com.gb1.healthcheck.domain.meals.Meal;
 import com.gb1.healthcheck.domain.users.User;
 import com.gb1.healthcheck.services.meals.MealService;
 import com.gb1.healthcheck.web.WebConstants;
-import com.gb1.healthcheck.web.utils.HttpRequestUtils;
+import com.gb1.struts2.security.AuthenticatedUser;
 import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionSupport;
 
@@ -26,6 +26,7 @@ public class ManageMealsAction extends ActionSupport implements SessionAware {
 
 	private MealService mealService;
 	private Map<String, Object> sessionMap;
+	private User requester;
 	private boolean refreshList;
 
 	public ManageMealsAction() {
@@ -36,15 +37,11 @@ public class ManageMealsAction extends ActionSupport implements SessionAware {
 		List<Meal> mealList = getMeals();
 
 		if (mealList == null || refreshList) {
-			mealList = mealService.getMealHistory(getRequester());
+			mealList = mealService.getMealHistory(requester);
 			sessionMap.put(MEAL_LIST_SESSION_KEY, mealList);
 		}
 
 		return Action.SUCCESS;
-	}
-
-	protected User getRequester() {
-		return HttpRequestUtils.getUser();
 	}
 
 	@SuppressWarnings("unchecked")
@@ -57,11 +54,17 @@ public class ManageMealsAction extends ActionSupport implements SessionAware {
 		return WebConstants.DEFAULT_PAGE_SIZE;
 	}
 
+	@AuthenticatedUser
+	public void setRequester(User requester) {
+		this.requester = requester;
+	}
+
 	public void setRefreshList(boolean refreshList) {
 		this.refreshList = refreshList;
 	}
 
 	public void setActionMessageKey(String key) {
+		clearErrorsAndMessages();
 		if (StringUtils.isNotBlank(key)) {
 			addActionMessage(getText(key));
 		}

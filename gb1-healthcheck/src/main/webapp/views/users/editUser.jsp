@@ -1,11 +1,10 @@
 <%@ taglib prefix="s" uri="/struts-tags" %>
 
 <h2><s:text name="users.edit.title" /></h2>
-
 <s:actionerror />
 
 <s:form namespace="/users" action="editUser">
-	<s:hidden name="user.id" />
+	<s:hidden name="model.userId" />
 
 	<div class="required">
 		<label><s:text name="users.edit.email" />:</label>

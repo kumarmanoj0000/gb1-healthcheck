@@ -11,23 +11,20 @@ import com.gb1.healthcheck.domain.metrics.PatientFile;
 import com.gb1.healthcheck.domain.metrics.PunctualGastricState;
 import com.gb1.healthcheck.domain.users.User;
 import com.gb1.healthcheck.services.metrics.PatientFileService;
-import com.gb1.healthcheck.web.utils.HttpRequestUtils;
+import com.gb1.struts2.security.AuthenticatedUser;
 import com.opensymphony.xwork2.Action;
 
 @ParentPackage("default")
 @Result(value = "/views/metrics/gastricStates.jsp")
 public class ManageGastricStatesAction {
 	private PatientFileService patientFileService;
+	private User requester;
 
 	public ManageGastricStatesAction() {
 	}
 
 	public String execute() {
 		return Action.SUCCESS;
-	}
-
-	protected User getRequester() {
-		return HttpRequestUtils.getUser();
 	}
 
 	public List<PunctualGastricState> loadGastricStates(Long patientId, Date date) {
@@ -42,7 +39,12 @@ public class ManageGastricStatesAction {
 	}
 
 	public User getPatient() {
-		return getRequester();
+		return requester;
+	}
+
+	@AuthenticatedUser
+	public void setRequester(User requester) {
+		this.requester = requester;
 	}
 
 	public void setPatientFileService(PatientFileService svc) {

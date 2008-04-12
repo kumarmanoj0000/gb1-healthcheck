@@ -10,7 +10,7 @@ import org.apache.struts2.dispatcher.ServletActionRedirectResult;
 import com.gb1.healthcheck.domain.users.InvalidPasswordException;
 import com.gb1.healthcheck.domain.users.User;
 import com.gb1.healthcheck.services.users.UserService;
-import com.gb1.healthcheck.web.utils.HttpRequestUtils;
+import com.gb1.struts2.security.AuthenticatedUser;
 import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.validator.annotations.ExpressionValidator;
@@ -27,6 +27,7 @@ import com.opensymphony.xwork2.validator.annotations.Validations;
 @Validation
 public class ChangePasswordAction extends ActionSupport {
 	private UserService userService;
+	private User requester;
 	private String currentPassword;
 	private String newPassword1;
 	private String newPassword2;
@@ -60,7 +61,12 @@ public class ChangePasswordAction extends ActionSupport {
 	}
 
 	public User getUser() {
-		return getRequester();
+		return requester;
+	}
+
+	@AuthenticatedUser
+	public void setRequester(User requester) {
+		this.requester = requester;
 	}
 
 	public String getCurrentPassword() {
@@ -89,10 +95,6 @@ public class ChangePasswordAction extends ActionSupport {
 
 	public String getActionMessageKey() {
 		return actionMessageKey;
-	}
-
-	protected User getRequester() {
-		return HttpRequestUtils.getUser();
 	}
 
 	@Resource
