@@ -18,7 +18,7 @@ import com.gb1.healthcheck.domain.meals.MealException;
 import com.gb1.healthcheck.domain.meals.MealRepository;
 import com.gb1.healthcheck.domain.meals.MealValidator;
 import com.gb1.healthcheck.domain.meals.Meals;
-import com.gb1.healthcheck.domain.meals.UserInactivityNotifier;
+import com.gb1.healthcheck.domain.meals.MealInactivityNotifier;
 import com.gb1.healthcheck.domain.users.User;
 import com.gb1.healthcheck.domain.users.UserRepository;
 import com.gb1.healthcheck.domain.users.Users;
@@ -164,14 +164,14 @@ public class MealServiceImplTest extends TestCase {
 	}
 
 	public void testNotifyInactiveUsers() {
-		UserInactivityNotifier notifier = EasyMock.createMock(UserInactivityNotifier.class);
-		notifier.notifyInactiveUsers();
+		MealInactivityNotifier notifier = EasyMock.createMock(MealInactivityNotifier.class);
+		notifier.notifyUsersOfMealInactivity();
 		EasyMock.expectLastCall().once();
 		EasyMock.replay(notifier);
 
 		MealServiceImpl svc = new MealServiceImpl();
-		svc.setUserInactivityNotifier(notifier);
-		svc.notifyInactiveUsers();
+		svc.setMealInactivityNotifier(notifier);
+		svc.notifyUsersOfMealInactivity();
 
 		EasyMock.verify(notifier);
 	}

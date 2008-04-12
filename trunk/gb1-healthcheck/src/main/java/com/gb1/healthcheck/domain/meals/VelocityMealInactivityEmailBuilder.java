@@ -17,9 +17,9 @@ import org.springframework.ui.velocity.VelocityEngineUtils;
 
 import com.gb1.healthcheck.domain.users.User;
 
-@Component("userInactivityEmailBuilder")
-public class VelocityUserInactivityEmailBuilder implements UserInactivityEmailBuilder {
-	private static final Logger logger = Logger.getLogger(VelocityUserInactivityEmailBuilder.class);
+@Component("mealInactivityEmailBuilder")
+public class VelocityMealInactivityEmailBuilder implements MealInactivityEmailBuilder {
+	private static final Logger logger = Logger.getLogger(VelocityMealInactivityEmailBuilder.class);
 	private static final String DATE_PATTERN = "yyyy-MM-dd";
 
 	private JavaMailSender mailSender;
@@ -28,7 +28,7 @@ public class VelocityUserInactivityEmailBuilder implements UserInactivityEmailBu
 	private String fromAddress;
 	private String subject;
 
-	public VelocityUserInactivityEmailBuilder() {
+	public VelocityMealInactivityEmailBuilder() {
 	}
 
 	public MimeMessage createMessage(User user, Meal lastMeal) {
@@ -75,7 +75,7 @@ public class VelocityUserInactivityEmailBuilder implements UserInactivityEmailBu
 	@Resource
 	public void setGlobalConstants(Map<String, String> constants) {
 		fromAddress = constants.get("fromAddress");
-		subject = constants.get("userInactivity.subject");
-		templateLocation = constants.get("userInactivity.templateLocation");
+		subject = constants.get("mealInactivity.subject");
+		templateLocation = constants.get("mealInactivity.templateLocation");
 	}
 }

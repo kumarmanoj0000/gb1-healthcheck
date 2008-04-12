@@ -16,18 +16,18 @@ import org.springframework.stereotype.Component;
 import com.gb1.healthcheck.domain.users.User;
 import com.gb1.healthcheck.domain.users.UserRepository;
 
-@Component("userInactivityNotifier")
-public class EmailUserInactivityNotifier implements UserInactivityNotifier {
+@Component("emailInactivityNotifier")
+public class EmailMealInactivityNotifier implements MealInactivityNotifier {
 	private UserRepository userRepository;
 	private MealRepository mealRepository;
 	private JavaMailSender mailSender;
-	private UserInactivityEmailBuilder emailBuilder;
+	private MealInactivityEmailBuilder emailBuilder;
 	private int inactiveDaysThreshold;
 
-	public EmailUserInactivityNotifier() {
+	public EmailMealInactivityNotifier() {
 	}
 
-	public void notifyInactiveUsers() {
+	public void notifyUsersOfMealInactivity() {
 		Date cutDate = DateUtils.addDays(new Date(), -inactiveDaysThreshold);
 		Set<User> users = userRepository.findUsers();
 		List<MimeMessage> toSend = new ArrayList<MimeMessage>();
@@ -61,12 +61,12 @@ public class EmailUserInactivityNotifier implements UserInactivityNotifier {
 	}
 
 	@Resource
-	public void setUserInactivityEmailBuilder(UserInactivityEmailBuilder builder) {
+	public void setUserInactivityEmailBuilder(MealInactivityEmailBuilder builder) {
 		this.emailBuilder = builder;
 	}
 
 	@Resource
 	public void setGlobalConstants(Map<String, String> constants) {
-		inactiveDaysThreshold = Integer.parseInt(constants.get("user.inactiveDaysThreshold"));
+		inactiveDaysThreshold = Integer.parseInt(constants.get("mealInactivity.daysThreshold"));
 	}
 }

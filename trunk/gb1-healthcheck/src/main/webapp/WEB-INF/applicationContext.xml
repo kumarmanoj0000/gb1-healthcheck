@@ -25,7 +25,6 @@
 
 	<util:map id="globalConstants">
 		<entry key="user.generatedPasswordLength" value="8" />
-		<entry key="user.inactiveDaysThreshold" value="7" />
 		<entry key="fromAddress" value="admin@gb1.com" />
 		<entry key="activation.subject" value="[HealthCheck] Account activation" />
 		<entry key="activation.formUrl" value="http://localhost:8080/healthcheck/public/register/activateUser!input.go" />
@@ -34,8 +33,9 @@
 		<entry key="lostPassword.templateLocation" value="com/gb1/healthcheck/domain/users/lostPasswordEmail.vm" />
 		<entry key="passwordReset.subject" value="[HealthCheck] Password reset" />
 		<entry key="passwordReset.templateLocation" value="com/gb1/healthcheck/domain/users/passwordResetEmail.vm" />
-		<entry key="userInactivity.subject" value="[HealthCheck] Inactive account" />
-		<entry key="userInactivity.templateLocation" value="com/gb1/healthcheck/domain/meals/userInactivityEmail.vm" />
+		<entry key="mealInactivity.daysThreshold" value="7" />
+		<entry key="mealInactivity.subject" value="[HealthCheck] Inactive account" />
+		<entry key="mealInactivity.templateLocation" value="com/gb1/healthcheck/domain/meals/mealInactivityEmail.vm" />
 	</util:map>
 
 	<!--
@@ -117,19 +117,19 @@
 	<bean id="scheduler" class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
 		<property name="triggers">
 			<list>
-				<ref bean="userInactivityTrigger" />
+				<ref bean="mealInactivityTrigger" />
 			</list>
 		</property>
 	</bean>
 
-	<bean id="userInactivityTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
-		<property name="jobDetail" ref="userInactivityJob" />
-		<property name="cronExpression" value="0 22 12 * * ?" />
+	<bean id="mealInactivityTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<property name="jobDetail" ref="mealInactivityJob" />
+		<property name="cronExpression" value="0 32 12 * * ?" />
 	</bean>
 
-	<bean id="userInactivityJob" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+	<bean id="mealInactivityJob" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
 		<property name="targetObject" ref="mealService" />
-		<property name="targetMethod" value="notifyInactiveUsers" />
+		<property name="targetMethod" value="notifyUsersOfMealInactivity" />
 	</bean>
 
 </beans>

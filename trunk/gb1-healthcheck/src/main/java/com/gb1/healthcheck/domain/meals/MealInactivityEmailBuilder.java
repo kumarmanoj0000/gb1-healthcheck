@@ -4,6 +4,6 @@ import javax.mail.internet.MimeMessage;
 
 import com.gb1.healthcheck.domain.users.User;
 
-public interface UserInactivityEmailBuilder {
+public interface MealInactivityEmailBuilder {
 	MimeMessage createMessage(User user, Meal lastMeal);
 }

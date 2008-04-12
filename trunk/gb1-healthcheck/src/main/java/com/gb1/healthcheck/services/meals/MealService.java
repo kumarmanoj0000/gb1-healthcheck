@@ -48,5 +48,5 @@ public interface MealService {
 	 */
 	void deleteMeals(Set<Long> mealIds);
 
-	void notifyInactiveUsers();
+	void notifyUsersOfMealInactivity();
 }
