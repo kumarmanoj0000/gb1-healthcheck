@@ -5,13 +5,14 @@ HealthCheck
 . features:
   - correlation food <=> gastric states (generated image? Flex component?)
   - gastric states evolution (generated image? Flex component?)
-  - use better time picker
 
 . bugs:
   - edit user action should return to previous action, not necessarily workbench
-    (if using ServletActionRedirectResult, WW-2170/2297 is blocking => use flash interceptor?)
+    (if using ServletActionRedirectResult, WW-2170/2297 is blocking => use flash interceptor)
 
 . technical
+  - develop flash interceptor
+  - use better time picker
   - use <s:token> to prevent double submit
   - create Struts2 theme to reduce HTML tags
   - write integration tests (Spring TestContext?)
