@@ -18,11 +18,14 @@ public class ComplexFood extends Food implements ComplexFoodCreationPropertyProv
 	@JoinTable(name = "FOOD_INGREDIENTS")
 	private Set<Food> ingredients = new HashSet<Food>();
 
-	protected ComplexFood() {
+	/**
+	 * Package-protected constructor for JPA.
+	 */
+	ComplexFood() {
 		this(null, "");
 	}
 
-	protected ComplexFood(String name) {
+	public ComplexFood(String name) {
 		this(null, name);
 	}
 
@@ -33,7 +36,7 @@ public class ComplexFood extends Food implements ComplexFoodCreationPropertyProv
 
 	public ComplexFood(ComplexFoodCreationPropertyProvider propertyProvider) {
 		super(propertyProvider.getName());
-		ingredients.addAll(propertyProvider.getIngredients());
+		setIngredients(propertyProvider.getIngredients());
 	}
 
 	public ComplexFood addIngredient(Food ingredient) {
@@ -62,6 +65,11 @@ public class ComplexFood extends Food implements ComplexFoodCreationPropertyProv
 
 	public Set<Food> getIngredients() {
 		return Collections.unmodifiableSet(ingredients);
+	}
+
+	private void setIngredients(Set<Food> ingredients) {
+		this.ingredients.clear();
+		this.ingredients.addAll(ingredients);
 	}
 
 	@Override
@@ -97,8 +105,6 @@ public class ComplexFood extends Food implements ComplexFoodCreationPropertyProv
 
 	public void update(ComplexFoodUpdatePropertyProvider propertyProvider) {
 		setName(propertyProvider.getName());
-
-		ingredients.clear();
-		ingredients.addAll(propertyProvider.getIngredients());
+		setIngredients(propertyProvider.getIngredients());
 	}
 }

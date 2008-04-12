@@ -12,7 +12,7 @@ public class FullComplexFoodHydraterTest extends TestCase {
 	public void testHydrate() {
 		final AtomicBoolean ingredientsWereLoaded = new AtomicBoolean(false);
 
-		ComplexFood food = new ComplexFood() {
+		ComplexFood food = new ComplexFood("test") {
 			@Override
 			public Set<Food> getIngredients() {
 				ingredientsWereLoaded.set(true);

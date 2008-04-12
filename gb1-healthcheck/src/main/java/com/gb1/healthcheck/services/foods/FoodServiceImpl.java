@@ -59,23 +59,21 @@ public class FoodServiceImpl implements FoodService {
 	}
 
 	public void createSimpleFood(SimpleFoodCreationRequest request) throws FoodException {
-		SimpleFood food = createSimpleFoodFromRequest(request);
+		SimpleFood food = new SimpleFood(request);
 		simpleFoodCreationValidator.validate(food);
 		foodRepo.saveFood(food);
 	}
 
-	protected SimpleFood createSimpleFoodFromRequest(SimpleFoodCreationRequest request) {
-		return new SimpleFood(request);
-	}
-
 	public void createComplexFood(ComplexFoodCreationRequest request) throws FoodException {
-		ComplexFood food = createComplexFoodFromRequest(request);
+		ComplexFood food = new ComplexFood(
+				createComplexFoodCreationPropertyProviderAdapter(request));
 		complexFoodCreationValidator.validate(food);
 		foodRepo.saveFood(food);
 	}
 
-	protected ComplexFood createComplexFoodFromRequest(ComplexFoodCreationRequest request) {
-		return new ComplexFood(new ComplexFoodCreationPropertyProviderAdapter(request));
+	protected ComplexFoodCreationPropertyProviderAdapter createComplexFoodCreationPropertyProviderAdapter(
+			ComplexFoodCreationRequest request) {
+		return new ComplexFoodCreationPropertyProviderAdapter(request);
 	}
 
 	public void updateSimpleFood(SimpleFoodUpdateRequest request) throws FoodException {
@@ -86,8 +84,13 @@ public class FoodServiceImpl implements FoodService {
 
 	public void updateComplexFood(ComplexFoodUpdateRequest request) throws FoodException {
 		ComplexFood food = foodRepo.loadComplexFood(request.getFoodId());
-		food.update(new ComplexFoodUpdatePropertyProviderAdapter(request));
+		food.update(createComplexFoodUpdatePropertyProviderAdapter(request));
 		complexFoodUpdateValidator.validate(food);
+	}
+
+	protected ComplexFoodUpdatePropertyProviderAdapter createComplexFoodUpdatePropertyProviderAdapter(
+			ComplexFoodUpdateRequest request) {
+		return new ComplexFoodUpdatePropertyProviderAdapter(request);
 	}
 
 	public void deleteFoods(Set<Long> foodIds) {
