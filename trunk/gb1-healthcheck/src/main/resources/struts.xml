@@ -14,7 +14,7 @@
 
 	<package name="default" extends="struts-default">
 		<interceptors>
-			<interceptor name="acegi" class="com.gb1.struts2.security.AcegiInterceptor" />
+			<interceptor name="acegi" class="com.gb1.struts2.security.AcegiUserInterceptor" />
 
 			<interceptor-stack name="baseStack">
 				<interceptor-ref name="exception">
