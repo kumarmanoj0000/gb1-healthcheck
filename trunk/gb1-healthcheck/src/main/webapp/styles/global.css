@@ -32,24 +32,24 @@ a:hover {
 
 span.pagebanner {
 	display: block;
-	width: 100%;
+	padding: 5px 5px 0px 5px;
 	background-color: #EEEEEE;
-	border-style: dotted dotted none;
-	border-width: 1px 1px medium;
+	border-style: dotted dotted none dotted;
+	border-width: 1px 1px medium 1px;
 }
 
 span.pagelinks {
 	display: block;
-	width: 100%;
+	padding: 0px 5px 5px 5px;
 	background-color: #EEEEEE;
-	border-style: none dotted dotted;
-	border-width: medium 1px 1px;
+	border-style: none dotted dotted dotted;
+	border-width: medium 1px 1px 1px;
 }
 
 table.listTable {
-	border: 1px solid #CCCCCC;
 	border-collapse: collapse;
-	margin: 20px 0pt;
+	margin-top: 10px;
+	width: 100%;
 }
 
 table.listTable thead th {
@@ -65,6 +65,7 @@ table.listTable tr.odd {
 }
 
 table.listTable tr.even {
+	background-color: WhiteSmoke;
 }
 
 table.listTable td, table.listTable th {

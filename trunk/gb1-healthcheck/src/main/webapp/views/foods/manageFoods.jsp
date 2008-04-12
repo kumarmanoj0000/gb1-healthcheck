@@ -19,7 +19,7 @@
 			<%-- bug WW-2339 prevents us from using the s:checkbox tag --%>
 			<input type="checkbox" name="foodIds" value="${food.id}" />
 		</display:column>
-		<display:column property="name" sortable="true" href="${editSimpleFoodUrl}" paramId="foodId" paramProperty="id" />
+		<display:column titleKey="food.name" property="name" sortable="true" href="${editSimpleFoodUrl}" paramId="foodId" paramProperty="id" />
 	</display:table>
 
 	<p>
@@ -41,7 +41,7 @@
 			<%-- bug WW-2339 prevents us from using the s:checkbox tag --%>
 			<input type="checkbox" name="foodIds" value="${food.id}" />
 		</display:column>
-		<display:column property="name" sortable="true" href="${editComplexFoodUrl}" paramId="foodId" paramProperty="id" />
+		<display:column titleKey="food.name" property="name" sortable="true" href="${editComplexFoodUrl}" paramId="foodId" paramProperty="id" />
 	</display:table>
 
 	<p>

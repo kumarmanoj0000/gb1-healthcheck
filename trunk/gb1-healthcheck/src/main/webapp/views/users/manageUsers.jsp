@@ -22,6 +22,6 @@
 	</display:table>
 
 	<s:if test="users.size() > 0">
-		<s:submit cssClass="button" key="general.delete" />
+		<p><s:submit cssClass="button" key="general.delete" /></p>
 	</s:if>
 </s:form>
