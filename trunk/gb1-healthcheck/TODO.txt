@@ -3,8 +3,6 @@ HealthCheck
 -----------
 
 . features:
-  > reset user password by administrator
-    * protect access using Acegi
   - correlation food <=> gastric states (generated image? Flex component?)
   - gastric states evolution (generated image? Flex component?)
   - send email when no meal saved in last 7 days

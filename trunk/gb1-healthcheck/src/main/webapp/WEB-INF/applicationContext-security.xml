@@ -25,7 +25,7 @@
 		<property name="authenticationManager" ref="authenticationManager" />
 		<property name="authenticationFailureUrl"
 			value="/views/public/security/signin.jsp?login_error=1" />
-		<property name="defaultTargetUrl" value="/controlPanel.go" />
+		<property name="defaultTargetUrl" value="/workbench/workbench.go" />
 		<property name="filterProcessesUrl" value="/j_acegi_security_check" />
 		<property name="rememberMeServices" ref="rememberMeServices" />
 	</bean>
@@ -53,6 +53,7 @@
 				/views/index.jsp=role_anonymous,role_standard,role_administrator
 				/views/public/**=role_anonymous,role_standard,role_administrator
 				/public/**=role_anonymous,role_standard,role_administrator
+				/users/**=role_administrator
 				/**=role_standard,role_administrator
 			</value>
 		</property>
