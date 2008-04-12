@@ -49,6 +49,7 @@
 					onmouseover="this.style.background='red';"
 					onmouseout="this.style.background=''"
 				/>
+				<s:fielderror><s:param>model.instant</s:param></s:fielderror>
 			</div>
 
 			<fieldset id="dishes">
