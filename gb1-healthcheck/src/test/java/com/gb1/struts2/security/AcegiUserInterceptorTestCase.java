@@ -14,7 +14,7 @@ import com.gb1.healthcheck.domain.users.Users;
 import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.mock.MockActionInvocation;
 
-public class AcegiInterceptorTestCase extends TestCase {
+public class AcegiUserInterceptorTestCase extends TestCase {
 	public void testIntercept() throws Exception {
 		User user = Users.gb();
 
@@ -30,7 +30,7 @@ public class AcegiInterceptorTestCase extends TestCase {
 
 		assertNull(action.getUser());
 
-		AcegiInterceptor interceptor = new AcegiInterceptor();
+		AcegiUserInterceptor interceptor = new AcegiUserInterceptor();
 		interceptor.intercept(ai);
 
 		assertNotNull(action.getUser());

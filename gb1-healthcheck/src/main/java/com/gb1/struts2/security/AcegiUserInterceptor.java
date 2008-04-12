@@ -9,8 +9,15 @@ import com.gb1.healthcheck.domain.users.AcegiUserDetailsAdapter;
 import com.opensymphony.xwork2.ActionInvocation;
 import com.opensymphony.xwork2.interceptor.AbstractInterceptor;
 
-public class AcegiInterceptor extends AbstractInterceptor {
-	public AcegiInterceptor() {
+/**
+ * Interceptor that injects the authenticated user to all action methods that are marked with the
+ * AuthenticatedUser annotation. Inspired by Practical Apache Struts2 Web 2.0 Projects by Ian
+ * Roughley.
+ * 
+ * @author Guillaume Bilodeau
+ */
+public class AcegiUserInterceptor extends AbstractInterceptor {
+	public AcegiUserInterceptor() {
 	}
 
 	@Override
