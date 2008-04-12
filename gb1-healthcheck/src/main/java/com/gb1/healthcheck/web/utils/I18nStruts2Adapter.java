@@ -11,11 +11,11 @@ import org.displaytag.localization.LocaleResolver;
 
 public class I18nStruts2Adapter implements LocaleResolver, I18nResourceProvider {
 	public Locale resolveLocale(HttpServletRequest request) {
-		return HttpRequestUtils.resolveRequestLocale();
+		return I18nUtils.resolveRequestLocale();
 	}
 
 	public String getResource(String resourceKey, String defaultValue, Tag tag,
 			PageContext pageContext) {
-		return HttpRequestUtils.resolveResourceKey(resourceKey, defaultValue, pageContext);
+		return I18nUtils.resolveResourceKey(resourceKey, defaultValue, pageContext);
 	}
 }

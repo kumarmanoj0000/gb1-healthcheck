@@ -6,7 +6,7 @@ import org.displaytag.decorator.TableDecorator;
 import org.displaytag.model.TableModel;
 
 import com.gb1.commons.Identifiable;
-import com.gb1.healthcheck.web.utils.HttpRequestUtils;
+import com.gb1.healthcheck.web.utils.I18nUtils;
 
 public class UserListTableDecorator extends TableDecorator {
 	private static final String RESET_PASSWORD_BASE_URL = "resetPassword.go?userId=";
@@ -17,7 +17,7 @@ public class UserListTableDecorator extends TableDecorator {
 
 	@Override
 	public void init(PageContext pageContext, Object decorated, TableModel tableModel) {
-		resetPasswordLabel = HttpRequestUtils.resolveResourceKey("users.resetPassword", "Reset",
+		resetPasswordLabel = I18nUtils.resolveResourceKey("users.resetPassword", "Reset",
 				pageContext);
 	}
 

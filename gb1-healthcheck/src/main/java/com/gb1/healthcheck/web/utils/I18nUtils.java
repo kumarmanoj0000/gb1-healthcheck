@@ -15,15 +15,14 @@ import com.opensymphony.xwork2.util.OgnlValueStack;
 import com.opensymphony.xwork2.util.ValueStack;
 
 /**
- * A set of convenience methods for querying and updating the HTTP request.
+ * A set of convenience methods for internationalization.
  * 
  * @author Guillaume Bilodeau
  */
-public class HttpRequestUtils {
-	private HttpRequestUtils() {
+public class I18nUtils {
+	private I18nUtils() {
 	}
 
-	// TODO Move to more appropriate utility class
 	public static Locale resolveRequestLocale() {
 		Locale result = null;
 		ValueStack stack = ActionContext.getContext().getValueStack();
@@ -45,7 +44,6 @@ public class HttpRequestUtils {
 		return result;
 	}
 
-	// TODO Move to more appropriate utility class
 	public static String resolveResourceKey(String resourceKey, String defaultValue,
 			PageContext pageContext) {
 		String message = null;
