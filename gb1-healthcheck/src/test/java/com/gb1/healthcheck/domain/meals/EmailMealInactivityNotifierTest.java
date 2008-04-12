@@ -19,7 +19,7 @@ import com.gb1.healthcheck.domain.users.User;
 import com.gb1.healthcheck.domain.users.UserRepository;
 import com.gb1.healthcheck.domain.users.Users;
 
-public class EmailUserInactivityNotifierTest extends TestCase {
+public class EmailMealInactivityNotifierTest extends TestCase {
 	public void testNotify() {
 		Date today = new Date();
 
@@ -33,7 +33,7 @@ public class EmailUserInactivityNotifierTest extends TestCase {
 		lastMealLg.setInstant(DateUtils.addDays(today, -9));
 
 		Map<String, String> constants = new HashMap<String, String>();
-		constants.put("user.inactiveDaysThreshold", "7");
+		constants.put("mealInactivity.daysThreshold", "7");
 
 		UserRepository userRepo = EasyMock.createMock(UserRepository.class);
 		EasyMock.expect(userRepo.findUsers()).andReturn(users);
@@ -44,7 +44,7 @@ public class EmailUserInactivityNotifierTest extends TestCase {
 		EasyMock.expect(mealRepo.getLastMealBy(Users.lg())).andReturn(lastMealLg);
 		EasyMock.replay(mealRepo);
 
-		UserInactivityEmailBuilder builder = EasyMock.createMock(UserInactivityEmailBuilder.class);
+		MealInactivityEmailBuilder builder = EasyMock.createMock(MealInactivityEmailBuilder.class);
 		EasyMock.expect(builder.createMessage(Users.lg(), lastMealLg)).andReturn(
 				new MimeMessage((Session) null));
 		EasyMock.replay(builder);
@@ -54,13 +54,13 @@ public class EmailUserInactivityNotifierTest extends TestCase {
 		EasyMock.expectLastCall().once();
 		EasyMock.replay(mailSender);
 
-		EmailUserInactivityNotifier notifier = new EmailUserInactivityNotifier();
+		EmailMealInactivityNotifier notifier = new EmailMealInactivityNotifier();
 		notifier.setGlobalConstants(constants);
 		notifier.setUserRepository(userRepo);
 		notifier.setMealRepository(mealRepo);
 		notifier.setUserInactivityEmailBuilder(builder);
 		notifier.setJavaMailSender(mailSender);
-		notifier.notifyInactiveUsers();
+		notifier.notifyUsersOfMealInactivity();
 
 		EasyMock.verify(mailSender);
 	}
