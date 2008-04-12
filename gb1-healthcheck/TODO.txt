@@ -6,7 +6,6 @@ HealthCheck
   - correlation food <=> gastric states (generated image? Flex component?)
   - gastric states evolution (generated image? Flex component?)
   - use better time picker
-  - replace content table by divs
 
 . bugs:
   - edit user action should return to previous action, not necessarily workbench

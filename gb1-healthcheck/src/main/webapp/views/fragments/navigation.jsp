@@ -1,7 +1,7 @@
 <%@ taglib prefix="authz" uri="http://acegisecurity.org/authz"%>
 <%@ taglib prefix="s" uri="/struts-tags" %>
 
-<h3><s:text name="navigation.actions.title" /></h3>
+<h2><s:text name="navigation.actions.title" /></h2>
 
 <ul>
 	<authz:authorize ifAllGranted="role_administrator">

@@ -88,10 +88,6 @@ table.listTable th.order2 a {
 	background-image: url(../images/arrow_up.png);
 }
 
-#contentTable {
-	border: none;
-}
-
 div .actionMessages {
 	border: 1px solid;
 	background-color: rgb(0, 250, 175);
@@ -180,8 +176,7 @@ form div.actions {
 }
 
 #navigation {
-	margin: 25px;
-	border-right: 1px solid;
+	float: left;
 }
 
 #navigation .navAction {
@@ -191,11 +186,19 @@ form div.actions {
 }
 
 #content {
-	margin: 25px;
+	border-left: 1px solid;
+	margin-left: 180px;
+	min-height: 150px;
+	padding-left: 25px;
 }
 
 #footer {
 	border-top: 1px solid;
+}
+
+#signin {
+	border: none;
+	margin-left: 20px;
 }
 
 #signinForm {
@@ -247,9 +250,7 @@ div#gastricStateSaved {
 
 div#gastricStatesWorkArea {
 	margin-left: 260px;
-	padding-left: 10px;
-	border-left: 1px solid;
-	min-height: 178px;
+	min-height: 180px;
 }
 
 #footer .copyright {
