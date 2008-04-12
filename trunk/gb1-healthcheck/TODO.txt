@@ -4,7 +4,6 @@ HealthCheck
 
 . features:
   > reset user password by administrator
-    * send email after reset
     * protect access using Acegi
   - correlation food <=> gastric states (generated image? Flex component?)
   - gastric states evolution (generated image? Flex component?)
@@ -30,3 +29,4 @@ HealthCheck
     . confusing use of literals and OGNL/EL expressions in tags
     . passing primitive with redirect result is not always working (WW-2170/2297)
     . flash scope not supported
+  - cannot test Velocity-based email builders

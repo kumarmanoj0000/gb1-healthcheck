@@ -31,6 +31,8 @@
 		<entry key="activation.templateLocation" value="com/gb1/healthcheck/domain/users/userActivationRequestEmail.vm" />
 		<entry key="lostPassword.subject" value="[HealthCheck] Password" />
 		<entry key="lostPassword.templateLocation" value="com/gb1/healthcheck/domain/users/lostPasswordEmail.vm" />
+		<entry key="passwordReset.subject" value="[HealthCheck] Password" />
+		<entry key="passwordReset.templateLocation" value="com/gb1/healthcheck/domain/users/passwordResetEmail.vm" />
 	</util:map>
 
 	<!--

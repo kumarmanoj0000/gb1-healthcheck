@@ -15,6 +15,7 @@ import com.gb1.commons.tokens.Token;
 import com.gb1.healthcheck.domain.users.ExposedUser;
 import com.gb1.healthcheck.domain.users.LostPasswordReminder;
 import com.gb1.healthcheck.domain.users.PasswordGenerator;
+import com.gb1.healthcheck.domain.users.PasswordResetNotifier;
 import com.gb1.healthcheck.domain.users.Role;
 import com.gb1.healthcheck.domain.users.UnknownUserException;
 import com.gb1.healthcheck.domain.users.User;
@@ -296,10 +297,17 @@ public class UserServiceImplTest extends TestCase {
 		EasyMock.expect(userRepo.loadUser(user.getId())).andReturn(user);
 		EasyMock.replay(userRepo);
 
+		PasswordResetNotifier notifier = EasyMock.createMock(PasswordResetNotifier.class);
+		notifier.notifyPasswordReset(user);
+		EasyMock.expectLastCall().once();
+		EasyMock.replay(notifier);
+
 		UserServiceImpl svc = new UserServiceImpl();
 		svc.setUserRepository(userRepo);
+		svc.setPasswordResetNotifier(notifier);
 		svc.resetUserPassword(user.getId());
 
 		assertEquals(newPwd, user.getPassword());
+		EasyMock.verify(notifier);
 	}
 }
