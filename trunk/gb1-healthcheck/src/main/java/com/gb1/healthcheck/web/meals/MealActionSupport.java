@@ -14,7 +14,7 @@ import com.gb1.healthcheck.domain.meals.PreparationMethod;
 import com.gb1.healthcheck.domain.users.User;
 import com.gb1.healthcheck.services.foods.FoodService;
 import com.gb1.healthcheck.services.meals.MealService;
-import com.gb1.healthcheck.web.utils.HttpRequestUtils;
+import com.gb1.struts2.security.AuthenticatedUser;
 import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionSupport;
 
@@ -23,6 +23,7 @@ public abstract class MealActionSupport extends ActionSupport {
 	private FoodService foodService;
 	private MealService mealService;
 
+	private User requester;
 	private Long mealId;
 	private List<Food> availableFoods = new LinkedList<Food>();
 
@@ -50,7 +51,12 @@ public abstract class MealActionSupport extends ActionSupport {
 	}
 
 	protected User getRequester() {
-		return HttpRequestUtils.getUser();
+		return requester;
+	}
+
+	@AuthenticatedUser
+	public void setRequester(User requester) {
+		this.requester = requester;
 	}
 
 	public String getActionMessageKey() {

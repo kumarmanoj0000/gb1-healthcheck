@@ -19,6 +19,7 @@ public class WorkbenchAction extends ActionSupport {
 	}
 
 	public void setActionMessageKey(String key) {
+		clearErrorsAndMessages();
 		if (StringUtils.isNotBlank(key)) {
 			addActionMessage(getText(key));
 		}

@@ -14,24 +14,25 @@
 
 	<package name="default" extends="struts-default">
 		<interceptors>
-			<interceptor-stack name="loggingDefaultStack">
+			<interceptor name="acegi" class="com.gb1.struts2.security.AcegiInterceptor" />
+
+			<interceptor-stack name="baseStack">
 				<interceptor-ref name="exception">
 					<param name="logEnabled">true</param>
 					<param name="logLevel">ERROR</param>
 				</interceptor-ref>
 				<interceptor-ref name="alias" />
+				<interceptor-ref name="params" />
 				<interceptor-ref name="servletConfig" />
+				<interceptor-ref name="acegi" />
 				<interceptor-ref name="prepare" />
 				<interceptor-ref name="i18n" />
 				<interceptor-ref name="chain" />
-				<interceptor-ref name="scopedModelDriven" />
 				<interceptor-ref name="modelDriven" />
 				<interceptor-ref name="fileUpload" />
 				<interceptor-ref name="checkbox" />
 				<interceptor-ref name="staticParams" />
-				<interceptor-ref name="params">
-					<param name="excludeParams">dojo\..*</param>
-				</interceptor-ref>
+				<interceptor-ref name="params" />
 				<interceptor-ref name="conversionError" />
 				<interceptor-ref name="validation">
 					<param name="excludeMethods">input,back,cancel,browse</param>
@@ -42,7 +43,7 @@
 			</interceptor-stack>
 		</interceptors>
 
-		<default-interceptor-ref name="loggingDefaultStack" />
+		<default-interceptor-ref name="baseStack" />
 
 		<global-results>
 			<result name="exception">/views/public/error.jsp</result>

@@ -13,7 +13,9 @@ import com.opensymphony.xwork2.Action;
 public class ChangePasswordActionTest extends TestCase {
 	public void testInput() throws Exception {
 		User user = Users.gb();
-		ChangePasswordAction action = createAction(user);
+
+		ChangePasswordAction action = new ChangePasswordAction();
+		action.setRequester(user);
 
 		assertEquals(Action.INPUT, action.input());
 		assertSame(user, action.getUser());
@@ -29,8 +31,9 @@ public class ChangePasswordActionTest extends TestCase {
 		EasyMock.expectLastCall();
 		EasyMock.replay(userSvc);
 
-		ChangePasswordAction action = createAction(user);
+		ChangePasswordAction action = new ChangePasswordAction();
 		action.setUserService(userSvc);
+		action.setRequester(user);
 		action.setCurrentPassword(currentPwd);
 		action.setNewPassword1(newPwd);
 		action.setNewPassword2(newPwd);
@@ -50,8 +53,9 @@ public class ChangePasswordActionTest extends TestCase {
 		EasyMock.expectLastCall().andThrow(new InvalidPasswordException());
 		EasyMock.replay(userSvc);
 
-		ChangePasswordAction action = createAction(user);
+		ChangePasswordAction action = new ChangePasswordAction();
 		action.setUserService(userSvc);
+		action.setRequester(user);
 		action.setCurrentPassword(currentPwd);
 		action.setNewPassword1(newPwd);
 		action.setNewPassword2(newPwd);
@@ -60,15 +64,5 @@ public class ChangePasswordActionTest extends TestCase {
 		assertTrue(action.hasActionErrors());
 
 		EasyMock.verify(userSvc);
-	}
-
-	private ChangePasswordAction createAction(final User user) {
-		ChangePasswordAction action = new ChangePasswordAction() {
-			@Override
-			public User getRequester() {
-				return user;
-			}
-		};
-		return action;
 	}
 }

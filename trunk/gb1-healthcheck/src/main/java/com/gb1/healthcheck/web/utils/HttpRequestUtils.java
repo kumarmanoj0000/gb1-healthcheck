@@ -6,11 +6,8 @@ import java.util.Locale;
 
 import javax.servlet.jsp.PageContext;
 
-import org.acegisecurity.context.SecurityContextHolder;
 import org.apache.struts2.views.jsp.TagUtils;
 
-import com.gb1.healthcheck.domain.users.AcegiUserDetailsAdapter;
-import com.gb1.healthcheck.domain.users.User;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.LocaleProvider;
 import com.opensymphony.xwork2.TextProvider;
@@ -26,23 +23,7 @@ public class HttpRequestUtils {
 	private HttpRequestUtils() {
 	}
 
-	/**
-	 * Returns the connected user. If no user is found, returns null.
-	 * 
-	 * @return The connected user; null if not found
-	 */
-	public static User getUser() {
-		User user = null;
-		AcegiUserDetailsAdapter acegiUser = (AcegiUserDetailsAdapter) SecurityContextHolder
-				.getContext().getAuthentication().getPrincipal();
-
-		if (acegiUser != null) {
-			user = acegiUser.getUser();
-		}
-
-		return user;
-	}
-
+	// TODO Move to more appropriate utility class
 	public static Locale resolveRequestLocale() {
 		Locale result = null;
 		ValueStack stack = ActionContext.getContext().getValueStack();
@@ -64,6 +45,7 @@ public class HttpRequestUtils {
 		return result;
 	}
 
+	// TODO Move to more appropriate utility class
 	public static String resolveResourceKey(String resourceKey, String defaultValue,
 			PageContext pageContext) {
 		String message = null;

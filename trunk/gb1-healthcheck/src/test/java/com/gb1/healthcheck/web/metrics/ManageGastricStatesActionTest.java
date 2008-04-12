@@ -22,12 +22,8 @@ public class ManageGastricStatesActionTest extends TestCase {
 	public void testShow() {
 		final User patient = Users.lg();
 
-		ManageGastricStatesAction action = new ManageGastricStatesAction() {
-			@Override
-			protected User getRequester() {
-				return patient;
-			}
-		};
+		ManageGastricStatesAction action = new ManageGastricStatesAction();
+		action.setRequester(patient);
 		assertEquals(Action.SUCCESS, action.execute());
 		assertEquals(patient, action.getPatient());
 	}

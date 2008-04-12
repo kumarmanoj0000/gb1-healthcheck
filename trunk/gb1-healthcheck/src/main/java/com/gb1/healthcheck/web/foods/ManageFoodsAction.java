@@ -78,6 +78,7 @@ public class ManageFoodsAction extends ActionSupport implements SessionAware {
 	}
 
 	public void setActionMessageKey(String key) {
+		clearErrorsAndMessages();
 		if (StringUtils.isNotBlank(key)) {
 			addActionMessage(getText(key));
 		}

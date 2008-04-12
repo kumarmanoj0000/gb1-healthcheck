@@ -14,7 +14,7 @@ import com.gb1.healthcheck.domain.users.EmailAlreadyExistsException;
 import com.gb1.healthcheck.domain.users.User;
 import com.gb1.healthcheck.domain.users.UserException;
 import com.gb1.healthcheck.services.users.UserService;
-import com.gb1.healthcheck.web.utils.HttpRequestUtils;
+import com.gb1.struts2.security.AuthenticatedUser;
 import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.validator.annotations.EmailValidator;
@@ -35,6 +35,7 @@ public class EditUserAction extends ActionSupport implements SessionAware {
 	private Map<String, Object> sessionMap;
 	private UserService userService;
 
+	private User requester;
 	private Long userId;
 	private String actionMessageKey;
 
@@ -45,7 +46,7 @@ public class EditUserAction extends ActionSupport implements SessionAware {
 	public String input() throws Exception {
 		User userToEdit;
 		if (isEditSelf()) {
-			userToEdit = getUser();
+			userToEdit = requester;
 		}
 		else {
 			userToEdit = userService.loadUser(userId);
@@ -67,9 +68,8 @@ public class EditUserAction extends ActionSupport implements SessionAware {
 			userService.updateUser(updateReq);
 
 			// the Acegi authenticated user may also need to be updated
-			User activeUser = getUser();
-			if (activeUser.getId().equals(updateReq.getUserId())) {
-				activeUser.update(updateReq);
+			if (requester.getId().equals(updateReq.getUserId())) {
+				requester.update(updateReq);
 			}
 
 			sessionMap.remove(MODEL_SESSION_KEY);
@@ -90,18 +90,23 @@ public class EditUserAction extends ActionSupport implements SessionAware {
 		return Action.SUCCESS;
 	}
 
-	public User getUser() {
-		return HttpRequestUtils.getUser();
+	@AuthenticatedUser
+	public void setRequester(User requester) {
+		this.requester = requester;
 	}
 
 	public boolean isEditSelf() {
-		boolean editSelf = (userId == null || userId == getUser().getId());
+		boolean editSelf = (userId == null || userId == requester.getId());
 		return editSelf;
 	}
 
 	public BasicUserUpdateRequest getModel() {
 		BasicUserUpdateRequest model = (BasicUserUpdateRequest) sessionMap.get(MODEL_SESSION_KEY);
 		return model;
+	}
+
+	public Long getUserId() {
+		return userId;
 	}
 
 	public void setUserId(Long userId) {

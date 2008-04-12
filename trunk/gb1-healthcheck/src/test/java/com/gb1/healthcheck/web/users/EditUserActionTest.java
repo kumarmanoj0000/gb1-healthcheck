@@ -16,8 +16,10 @@ import com.opensymphony.xwork2.Action;
 
 public class EditUserActionTest extends TestCase {
 	public void testInputNoUserId() throws Exception {
-		final User user = Users.gb();
-		EditUserAction action = createAction(user);
+		User user = Users.gb();
+
+		EditUserAction action = new EditUserAction();
+		action.setRequester(user);
 		action.setSession(new HashMap<String, Object>());
 
 		assertEquals(Action.INPUT, action.input());
@@ -30,7 +32,8 @@ public class EditUserActionTest extends TestCase {
 		EasyMock.expect(userSvc.loadUser(user.getId())).andReturn(user);
 		EasyMock.replay(userSvc);
 
-		EditUserAction action = createAction(user);
+		EditUserAction action = new EditUserAction();
+		action.setRequester(user);
 		action.setSession(new HashMap<String, Object>());
 		action.setUserService(userSvc);
 		action.setUserId(user.getId());
@@ -51,7 +54,8 @@ public class EditUserActionTest extends TestCase {
 		EasyMock.expect(userSvc.updateUser(request)).andReturn(user);
 		EasyMock.replay(userSvc);
 
-		EditUserAction action = createAction(user);
+		EditUserAction action = new EditUserAction();
+		action.setRequester(user);
 		action.setUserService(userSvc);
 		action.setSession(sessionMap);
 
@@ -77,7 +81,8 @@ public class EditUserActionTest extends TestCase {
 				new EmailAlreadyExistsException(user.getEmail()));
 		EasyMock.replay(userSvc);
 
-		EditUserAction action = createAction(user);
+		EditUserAction action = new EditUserAction();
+		action.setRequester(user);
 		action.setUserService(userSvc);
 		action.setSession(sessionMap);
 
@@ -88,14 +93,18 @@ public class EditUserActionTest extends TestCase {
 
 	public void testCancel() {
 		User user = Users.gb();
-		EditUserAction action = createAction(user);
+
+		EditUserAction action = new EditUserAction();
+		action.setRequester(user);
+
 		assertEquals(Action.SUCCESS, action.cancel());
 	}
 
 	public void testIsEditSelf() {
 		User user = Users.gb();
 
-		EditUserAction action = createAction(user);
+		EditUserAction action = new EditUserAction();
+		action.setRequester(user);
 		assertTrue(action.isEditSelf());
 
 		action.setUserId(user.getId());
@@ -103,15 +112,5 @@ public class EditUserActionTest extends TestCase {
 
 		action.setUserId(Users.lg().getId());
 		assertFalse(action.isEditSelf());
-	}
-
-	private EditUserAction createAction(final User user) {
-		EditUserAction action = new EditUserAction() {
-			@Override
-			public User getUser() {
-				return user;
-			}
-		};
-		return action;
 	}
 }
