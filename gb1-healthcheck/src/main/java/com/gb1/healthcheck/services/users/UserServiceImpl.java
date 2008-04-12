@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.gb1.commons.tokens.Token;
 import com.gb1.healthcheck.domain.users.InvalidPasswordException;
 import com.gb1.healthcheck.domain.users.LostPasswordReminder;
+import com.gb1.healthcheck.domain.users.PasswordResetNotifier;
 import com.gb1.healthcheck.domain.users.UnknownUserException;
 import com.gb1.healthcheck.domain.users.User;
 import com.gb1.healthcheck.domain.users.UserActivationException;
@@ -33,6 +34,7 @@ public class UserServiceImpl implements UserService {
 
 	private UserActivationRequester userActivationRequester;
 	private LostPasswordReminder lostPasswordReminder;
+	private PasswordResetNotifier passwordResetNotifier;
 
 	public UserServiceImpl() {
 	}
@@ -110,6 +112,8 @@ public class UserServiceImpl implements UserService {
 	public void resetUserPassword(Long userId) {
 		User user = userRepository.loadUser(userId);
 		user.resetPassword();
+
+		passwordResetNotifier.notifyPasswordReset(user);
 	}
 
 	// external dependencies
@@ -137,5 +141,10 @@ public class UserServiceImpl implements UserService {
 	@Resource
 	public void setLostPasswordReminder(LostPasswordReminder lostPasswordReminder) {
 		this.lostPasswordReminder = lostPasswordReminder;
+	}
+
+	@Resource
+	public void setPasswordResetNotifier(PasswordResetNotifier notifier) {
+		this.passwordResetNotifier = notifier;
 	}
 }

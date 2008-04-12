@@ -144,12 +144,11 @@ public class User implements Identifiable, UserUpdatePropertyProvider, Serializa
 	}
 
 	/**
-	 * Returns the user's password. <p/> This method is meant to be overriden by unit tests and
-	 * should not be used anywhere else.
+	 * Returns the user's password.
 	 * 
 	 * @return The user's unencrypted password
 	 */
-	String getPassword() {
+	public String getPassword() {
 		return password;
 	}
 

@@ -8,14 +8,15 @@ import junit.framework.TestCase;
 import org.easymock.EasyMock;
 import org.springframework.mail.javamail.JavaMailSender;
 
-public class EmailLostPasswordSenderTest extends TestCase {
-	public void testSendLostPassword() {
+public class EmailPasswordResetNotifierTest extends TestCase {
+	public void testNotifyPasswordReset() {
 		ExposedUser u = new ExposedUser();
 		u.setLogin("u1");
 		u.setEmail("user@gb.com");
+		u.setPassword("1");
 
-		LostPasswordEmailBuilder builder = EasyMock.createMock(LostPasswordEmailBuilder.class);
-		EasyMock.expect(builder.createReminderMessage(EasyMock.isA(User.class))).andReturn(
+		PasswordResetEmailBuilder builder = EasyMock.createMock(PasswordResetEmailBuilder.class);
+		EasyMock.expect(builder.createMessage(EasyMock.isA(User.class))).andReturn(
 				new MimeMessage((Session) null));
 		EasyMock.replay(builder);
 
@@ -24,10 +25,10 @@ public class EmailLostPasswordSenderTest extends TestCase {
 		EasyMock.expectLastCall();
 		EasyMock.replay(mailSender);
 
-		EmailLostPasswordReminder reminder = new EmailLostPasswordReminder();
-		reminder.setLostPasswordEmailBuilder(builder);
-		reminder.setMailSender(mailSender);
-		reminder.remindLostPassword(u);
+		EmailPasswordResetNotifier notifier = new EmailPasswordResetNotifier();
+		notifier.setEmailBuilder(builder);
+		notifier.setMailSender(mailSender);
+		notifier.notifyPasswordReset(u);
 
 		// make sure an email was sent
 		EasyMock.verify(mailSender);
