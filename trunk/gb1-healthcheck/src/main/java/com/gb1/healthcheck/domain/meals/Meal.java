@@ -45,8 +45,10 @@ public class Meal implements Identifiable, MealCreationPropertyProvider, Seriali
 	@JoinTable(name = "MEAL_DISHES", joinColumns = { @JoinColumn(name = "meal_id") }, inverseJoinColumns = { @JoinColumn(name = "dish_id") })
 	private Set<PreparedFood> dishes = new HashSet<PreparedFood>();
 
+	/**
+	 * Package-protected constructor for JPA.
+	 */
 	Meal() {
-		// for JPA
 	}
 
 	Meal(Long id, User eater, Date instant) {
@@ -60,12 +62,8 @@ public class Meal implements Identifiable, MealCreationPropertyProvider, Seriali
 	}
 
 	public Meal(MealCreationPropertyProvider propertyProvider) {
-		this.eater = propertyProvider.getEater();
-		this.instant = new Date(propertyProvider.getInstant().getTime());
-
-		for (PreparedFood dish : propertyProvider.getDishes()) {
-			addDish(dish);
-		}
+		this(propertyProvider.getEater(), propertyProvider.getInstant());
+		addDishes(propertyProvider.getDishes());
 	}
 
 	public Long getId() {

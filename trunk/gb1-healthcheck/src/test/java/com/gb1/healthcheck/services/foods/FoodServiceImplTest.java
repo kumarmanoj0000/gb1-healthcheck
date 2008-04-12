@@ -18,6 +18,8 @@ import com.gb1.healthcheck.domain.foods.Foods;
 import com.gb1.healthcheck.domain.foods.Nutrient;
 import com.gb1.healthcheck.domain.foods.SimpleFood;
 import com.gb1.healthcheck.domain.foods.SimpleFoodValidator;
+import com.gb1.healthcheck.services.foods.support.ComplexFoodCreationPropertyProviderAdapter;
+import com.gb1.healthcheck.services.foods.support.ComplexFoodUpdatePropertyProviderAdapter;
 
 public class FoodServiceImplTest extends TestCase {
 	public void testGetSimpleFoods() {
@@ -112,15 +114,22 @@ public class FoodServiceImplTest extends TestCase {
 		EasyMock.expectLastCall();
 		EasyMock.replay(validator);
 
-		FoodRepository foodRepo = EasyMock.createMock(FoodRepository.class);
+		final FoodRepository foodRepo = EasyMock.createMock(FoodRepository.class);
+		for (Food ing : food.getIngredients()) {
+			EasyMock.expect(foodRepo.loadFood(ing.getId())).andReturn(ing);
+		}
 		foodRepo.saveFood(EasyMock.eq(food));
-		EasyMock.expectLastCall();
+		EasyMock.expectLastCall().once();
 		EasyMock.replay(foodRepo);
 
 		FoodServiceImpl svc = new FoodServiceImpl() {
 			@Override
-			protected ComplexFood createComplexFoodFromRequest(ComplexFoodCreationRequest request) {
-				return food;
+			protected ComplexFoodCreationPropertyProviderAdapter createComplexFoodCreationPropertyProviderAdapter(
+					ComplexFoodCreationRequest request) {
+				ComplexFoodCreationPropertyProviderAdapter adapter = new ComplexFoodCreationPropertyProviderAdapter(
+						request);
+				adapter.setFoodRepository(foodRepo);
+				return adapter;
 			}
 		};
 		svc.setComplexFoodCreationValidator(validator);
@@ -196,11 +205,23 @@ public class FoodServiceImplTest extends TestCase {
 		EasyMock.expectLastCall();
 		EasyMock.replay(validator);
 
-		FoodRepository foodRepo = EasyMock.createMock(FoodRepository.class);
+		final FoodRepository foodRepo = EasyMock.createMock(FoodRepository.class);
+		for (Food ing : oldSpag.getIngredients()) {
+			EasyMock.expect(foodRepo.loadFood(ing.getId())).andReturn(ing);
+		}
 		EasyMock.expect(foodRepo.loadComplexFood(oldSpag.getId())).andReturn(oldSpag);
 		EasyMock.replay(foodRepo);
 
-		FoodServiceImpl svc = new FoodServiceImpl();
+		FoodServiceImpl svc = new FoodServiceImpl() {
+			@Override
+			protected ComplexFoodUpdatePropertyProviderAdapter createComplexFoodUpdatePropertyProviderAdapter(
+					ComplexFoodUpdateRequest request) {
+				ComplexFoodUpdatePropertyProviderAdapter adapter = new ComplexFoodUpdatePropertyProviderAdapter(
+						request);
+				adapter.setFoodRepository(foodRepo);
+				return adapter;
+			}
+		};
 		svc.setComplexFoodUpdateValidator(validator);
 		svc.setFoodRepository(foodRepo);
 		svc.updateComplexFood(updateReq);

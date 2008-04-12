@@ -92,17 +92,21 @@ public class User implements Identifiable, UserUpdatePropertyProvider, Serializa
 	User() {
 	}
 
+	public User(String login, String email, String password) {
+		this.login = login;
+		this.email = email;
+		this.password = password;
+	}
+
 	/**
 	 * Creates a new user based on the properties provided by the property provider.
 	 * 
 	 * @param propertyProvider The user property provider
 	 */
-	public User(UserCreationPropertyProvider propertyProvider) {
-		login = propertyProvider.getLogin();
-		email = propertyProvider.getEmail();
-		password = propertyProvider.getPassword();
+	public User(UserCreationPropertyProvider pp) {
+		this(pp.getLogin(), pp.getEmail(), pp.getPassword());
 
-		for (Role role : propertyProvider.getRoles()) {
+		for (Role role : pp.getRoles()) {
 			roles.add(role);
 		}
 	}
@@ -327,10 +331,10 @@ public class User implements Identifiable, UserUpdatePropertyProvider, Serializa
 	/**
 	 * Updates the current user based on the given property provider.
 	 * 
-	 * @param propertyProvider The update property provider
+	 * @param pp The update property provider
 	 */
-	public void update(UserUpdatePropertyProvider propertyProvider) {
-		email = propertyProvider.getEmail();
+	public void update(UserUpdatePropertyProvider pp) {
+		setEmail(pp.getEmail());
 	}
 
 	@Resource

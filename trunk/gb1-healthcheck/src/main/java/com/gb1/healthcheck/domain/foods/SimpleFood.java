@@ -9,6 +9,7 @@ import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 
+import org.apache.commons.lang.Validate;
 import org.hibernate.annotations.CollectionOfElements;
 
 @Entity
@@ -20,6 +21,9 @@ public class SimpleFood extends Food implements SimpleFoodCreationPropertyProvid
 	@CollectionOfElements(fetch = FetchType.EAGER)
 	private Set<Nutrient> nutrients = new HashSet<Nutrient>();
 
+	/**
+	 * Package-protected constructor for JPA.
+	 */
 	SimpleFood() {
 		super("");
 	}
@@ -34,9 +38,9 @@ public class SimpleFood extends Food implements SimpleFoodCreationPropertyProvid
 		setFoodGroup(foodGroup);
 	}
 
-	public SimpleFood(SimpleFoodCreationPropertyProvider propertyProvider) {
-		this(propertyProvider.getName(), propertyProvider.getFoodGroup());
-		nutrients.addAll(propertyProvider.getNutrients());
+	public SimpleFood(SimpleFoodCreationPropertyProvider pp) {
+		this(pp.getName(), pp.getFoodGroup());
+		setNutrients(pp.getNutrients());
 	}
 
 	public FoodGroup getFoodGroup() {
@@ -53,8 +57,14 @@ public class SimpleFood extends Food implements SimpleFoodCreationPropertyProvid
 		return foodGroup.equals(group);
 	}
 
-	protected SimpleFood addNutrient(Nutrient nutrient) {
+	public SimpleFood addNutrient(Nutrient nutrient) {
+		Validate.notNull(nutrient);
 		nutrients.add(nutrient);
+		return this;
+	}
+
+	public SimpleFood removeNutrient(Nutrient nutrient) {
+		nutrients.remove(nutrient);
 		return this;
 	}
 
@@ -68,7 +78,7 @@ public class SimpleFood extends Food implements SimpleFoodCreationPropertyProvid
 		return nutrients.contains(nutrient);
 	}
 
-	protected SimpleFood setNutrients(Set<Nutrient> nutrients) {
+	private SimpleFood setNutrients(Set<Nutrient> nutrients) {
 		this.nutrients.clear();
 		this.nutrients.addAll(nutrients);
 		return this;
