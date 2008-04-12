@@ -15,13 +15,33 @@
 	<package name="default" extends="struts-default">
 		<interceptors>
 			<interceptor-stack name="loggingDefaultStack">
-				<interceptor-ref name="defaultStack">
-					<param name="exception.logEnabled">true</param>
-					<param name="exception.logLevel">ERROR</param>
-					<param name="exception.logCategory">com.gb1</param>
+				<interceptor-ref name="exception">
+					<param name="logEnabled">true</param>
+					<param name="logLevel">ERROR</param>
+				</interceptor-ref>
+				<interceptor-ref name="alias" />
+				<interceptor-ref name="servletConfig" />
+				<interceptor-ref name="prepare" />
+				<interceptor-ref name="i18n" />
+				<interceptor-ref name="chain" />
+				<interceptor-ref name="scopedModelDriven" />
+				<interceptor-ref name="modelDriven" />
+				<interceptor-ref name="fileUpload" />
+				<interceptor-ref name="checkbox" />
+				<interceptor-ref name="staticParams" />
+				<interceptor-ref name="params">
+					<param name="excludeParams">dojo\..*</param>
+				</interceptor-ref>
+				<interceptor-ref name="conversionError" />
+				<interceptor-ref name="validation">
+					<param name="excludeMethods">input,back,cancel,browse</param>
+				</interceptor-ref>
+				<interceptor-ref name="workflow">
+					<param name="excludeMethods">input,back,cancel,browse</param>
 				</interceptor-ref>
 			</interceptor-stack>
 		</interceptors>
+
 		<default-interceptor-ref name="loggingDefaultStack" />
 
 		<global-results>
