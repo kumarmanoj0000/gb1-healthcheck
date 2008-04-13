@@ -24,7 +24,7 @@
 		class="org.acegisecurity.ui.webapp.AuthenticationProcessingFilter">
 		<property name="authenticationManager" ref="authenticationManager" />
 		<property name="authenticationFailureUrl"
-			value="/views/public/security/signin.jsp?login_error=1" />
+			value="/views/public/security/login.jsp?login_error=1" />
 		<property name="defaultTargetUrl" value="/workbench/workbench.go" />
 		<property name="filterProcessesUrl" value="/j_acegi_security_check" />
 		<property name="rememberMeServices" ref="rememberMeServices" />
@@ -36,7 +36,7 @@
 
 	<bean id="authenticationEntryPoint"
 		class="org.acegisecurity.ui.webapp.AuthenticationProcessingFilterEntryPoint">
-		<property name="loginFormUrl" value="/views/public/security/signin.jsp" />
+		<property name="loginFormUrl" value="/views/public/security/login.jsp" />
 	</bean>
 
 	<bean id="filterSecurityInterceptor"

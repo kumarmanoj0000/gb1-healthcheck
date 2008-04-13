@@ -17,9 +17,12 @@ import com.opensymphony.xwork2.Action;
 @Namespace("/public/security")
 @ParentPackage("default")
 @Result(type = ServletRedirectResult.class, value = "/")
-public class SignOffAction implements ServletRequestAware, ServletResponseAware {
+public class LogoutAction implements ServletRequestAware, ServletResponseAware {
 	private HttpServletRequest request;
 	private HttpServletResponse response;
+
+	public LogoutAction() {
+	}
 
 	public String execute() {
 		request.getSession().invalidate();
