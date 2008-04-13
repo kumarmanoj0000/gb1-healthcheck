@@ -7,16 +7,16 @@ HealthCheck
   - correlation food <=> gastric states (generated image? Flex component?)
 
 . bugs:
-  - edit user action should return to previous action, not necessarily workbench
-    (broader technical concept: reusable workflows)
+  - edit own user action should return to previous action, not necessarily workbench
+    (broader concept: redirect injection)
     (if using ServletActionRedirectResult, WW-2170/2297 is blocking => use flash interceptor)
 
 . technical
-  - scopes: flash (develop?), conversation => squeeze a wizard somewhere
-  - use more useable time picker
-  - prevent double submits (use <s:token>)
+  - scopes: flash (develop result / interceptor?), conversation (squeeze a wizard somewhere?)
+  - replace time picker with more useable one
+  - prevent double submits (use <s:token> and TokenInterceptor / TokenSessionInterceptor)
   - improve UI presentation
-  - reduce HTML tags (create /reuse Struts2 theme)
+  - reduce HTML tags (create / reuse Struts2 theme)
 
 . pain points
   - ServiceRequest / Adapter / PropertyProvider: more code, is it really useful?
@@ -27,5 +27,3 @@ HealthCheck
     . confusing use of literals and OGNL/EL expressions in tags
     . passing primitive with redirect result is not always working (WW-2170/2297)
     . flash scope not supported
-  - cannot test Velocity-based email builders
-  - "AnnotationBeanConfigurerAspect has not been set up and is unable to configure bean instances. Proceeding without injection." messages
