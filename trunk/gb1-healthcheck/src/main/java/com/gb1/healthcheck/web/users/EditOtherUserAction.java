@@ -13,8 +13,8 @@ import com.opensymphony.xwork2.validator.annotations.Validation;
 @ParentPackage("default")
 @Results( {
 		@Result(name = "input", value = "/views/users/editOtherUser.jsp"),
-		@Result(type = ServletActionRedirectResult.class, value = "workbench", params = {
-				"namespace", "/workbench", "parse", "true", "actionMessageKey",
+		@Result(type = ServletActionRedirectResult.class, value = "manageUsers", params = {
+				"namespace", "/admin/users", "parse", "true", "actionMessageKey",
 				"${actionMessageKey}" }) })
 @Validation
 public class EditOtherUserAction extends EditUserActionSupport {
