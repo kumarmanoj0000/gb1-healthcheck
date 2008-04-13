@@ -1,4 +1,4 @@
-package com.gb1.healthcheck.web.admin;
+package com.gb1.healthcheck.web.users;
 
 import java.util.Arrays;
 import java.util.HashSet;
@@ -6,6 +6,7 @@ import java.util.Set;
 
 import javax.annotation.Resource;
 
+import org.apache.struts2.config.Namespace;
 import org.apache.struts2.config.ParentPackage;
 import org.apache.struts2.config.Result;
 import org.apache.struts2.dispatcher.ServletActionRedirectResult;
@@ -14,9 +15,11 @@ import com.gb1.healthcheck.services.users.UserService;
 import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionSupport;
 
+@Namespace("/admin/users")
 @ParentPackage("default")
 @Result(type = ServletActionRedirectResult.class, value = "manageUsers", params = { "namespace",
-		"/admin", "parse", "true", "actionMessageKey", "${actionMessageKey}", "refreshList", "true" })
+		"/admin/users", "parse", "true", "actionMessageKey", "${actionMessageKey}", "refreshList",
+		"true" })
 public class DeleteUsersAction extends ActionSupport {
 	private UserService userService;
 	private Long[] userIds;

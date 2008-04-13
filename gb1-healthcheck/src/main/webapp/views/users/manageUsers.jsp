@@ -4,14 +4,14 @@
 <%@ include file="/views/fragments/actionMessages.jsp"%>
 <h2><s:text name="users.list.title" /></h2>
 
-<s:url id="listUsersUrl" namespace="/admin" action="manageUsers" />
-<s:url id="editUserUrl" namespace="/admin" action="editUser" method="input" />
+<s:url id="listUsersUrl" namespace="/admin/users" action="manageUsers" />
+<s:url id="editUserUrl" namespace="/admin/users" action="editOtherUser" method="input" />
 
-<s:form namespace="/admin" action="deleteUsers">
+<s:form namespace="/admin/users" action="deleteUsers">
 	<display:table name="users" id="user"
 			requestURI="${listUsersUrl}" excludedParams="*"
 			pagesize="${userListPageSize}" class="listTable"
-			sort="list" defaultsort="2" decorator="com.gb1.healthcheck.web.admin.UserListTableDecorator">
+			sort="list" defaultsort="2" decorator="com.gb1.healthcheck.web.users.UserListTableDecorator">
 		<display:column style="width: 4%; text-align: center">
 			<%-- bug WW-2339 prevents us from using the s:checkbox tag --%>
 			<input type="checkbox" name="userIds" value="${user.id}" />
