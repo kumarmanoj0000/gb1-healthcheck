@@ -197,35 +197,35 @@ form div.actions {
 	border-top: 1px solid;
 }
 
-#signin {
+#login {
 	border: none;
 	margin-left: 20px;
 }
 
-#signinForm {
+#loginForm {
 	width: 240px;
 }
 
-#signinForm div.actions {
+#loginForm div.actions {
 	text-align: right;
 }
 
-#signinActions {
+#loginActions {
 	padding-left: 0px;
 }
 
-#signinActions li {
+#loginActions li {
 	display: inline;
 	border-right: 1px dotted;
 	padding-right: 10px;
 	padding-left: 6px;
 }
 
-#signinActions .first {
+#loginActions .first {
 	padding-left: 0px;
 }
 
-#signinActions .last {
+#loginActions .last {
 	border-right: 0px solid;
 }
 

@@ -45,7 +45,7 @@
 				<div id="content"><decorator:body /></div>
 			</authz:authorize>
 			<authz:authorize ifAnyGranted="role_anonymous">
-				<div id="signin"><decorator:body /></div>
+				<div id="login"><decorator:body /></div>
 			</authz:authorize>
 
 			<div id="footer"><%@ include file="/views/fragments/footer.jsp"%></div>
