@@ -1,7 +1,8 @@
-package com.gb1.healthcheck.web.admin;
+package com.gb1.healthcheck.web.users;
 
 import javax.annotation.Resource;
 
+import org.apache.struts2.config.Namespace;
 import org.apache.struts2.config.ParentPackage;
 import org.apache.struts2.config.Result;
 import org.apache.struts2.dispatcher.ServletActionRedirectResult;
@@ -9,9 +10,10 @@ import org.apache.struts2.dispatcher.ServletActionRedirectResult;
 import com.gb1.healthcheck.services.users.UserService;
 import com.opensymphony.xwork2.Action;
 
+@Namespace("/admin/users")
 @ParentPackage("default")
 @Result(type = ServletActionRedirectResult.class, value = "manageUsers", params = { "namespace",
-		"/admin", "actionName", "manageUsers", "actionMessageKey", "${actionMessageKey}" })
+		"/admin/users", "actionName", "manageUsers", "actionMessageKey", "${actionMessageKey}" })
 public class ResetPasswordAction {
 	private UserService userService;
 	private Long userId;

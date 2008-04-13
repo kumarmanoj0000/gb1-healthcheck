@@ -1,4 +1,4 @@
-package com.gb1.healthcheck.web.admin;
+package com.gb1.healthcheck.web.users;
 
 import java.util.HashMap;
 
@@ -11,7 +11,7 @@ import com.gb1.healthcheck.domain.users.Users;
 import com.gb1.healthcheck.services.users.UserService;
 import com.opensymphony.xwork2.Action;
 
-public class EditUserActionTest extends TestCase {
+public class EditOtherUserActionTest extends TestCase {
 	public void testInput() throws Exception {
 		User user = Users.lg();
 
@@ -19,7 +19,7 @@ public class EditUserActionTest extends TestCase {
 		EasyMock.expect(userSvc.loadUser(user.getId())).andReturn(user);
 		EasyMock.replay(userSvc);
 
-		EditUserAction action = new EditUserAction();
+		EditOtherUserAction action = new EditOtherUserAction();
 		action.setSession(new HashMap<String, Object>());
 		action.setUserService(userSvc);
 		action.setUserId(user.getId());

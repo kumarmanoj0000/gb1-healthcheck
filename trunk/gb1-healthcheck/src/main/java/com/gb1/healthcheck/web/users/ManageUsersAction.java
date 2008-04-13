@@ -1,4 +1,4 @@
-package com.gb1.healthcheck.web.admin;
+package com.gb1.healthcheck.web.users;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,6 +8,7 @@ import java.util.Set;
 import javax.annotation.Resource;
 
 import org.apache.commons.lang.StringUtils;
+import org.apache.struts2.config.Namespace;
 import org.apache.struts2.config.ParentPackage;
 import org.apache.struts2.config.Result;
 import org.apache.struts2.interceptor.SessionAware;
@@ -18,8 +19,9 @@ import com.gb1.healthcheck.web.WebConstants;
 import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionSupport;
 
+@Namespace("/admin/users")
 @ParentPackage("default")
-@Result(value = "/views/admin/manageUsers.jsp")
+@Result(value = "/views/users/manageUsers.jsp")
 public class ManageUsersAction extends ActionSupport implements SessionAware {
 	public static final String USER_LIST_SESSION_KEY = ManageUsersAction.class.getName()
 			+ ".cachedUserList";

@@ -3,19 +3,20 @@ HealthCheck
 -----------
 
 . features:
-  - correlation food <=> gastric states (generated image? Flex component?)
   - gastric states evolution (generated image? Flex component?)
+  - correlation food <=> gastric states (generated image? Flex component?)
 
 . bugs:
   - edit user action should return to previous action, not necessarily workbench
+    (broader technical concept: reusable workflows)
     (if using ServletActionRedirectResult, WW-2170/2297 is blocking => use flash interceptor)
 
 . technical
-  - develop flash interceptor
-  - use better time picker
-  - use <s:token> to prevent double submit
-  - create Struts2 theme to reduce HTML tags
-  - write integration tests (Spring TestContext?)
+  - scopes: flash (develop?), conversation => squeeze a wizard somewhere
+  - use more useable time picker
+  - prevent double submits (use <s:token>)
+  - improve UI presentation
+  - reduce HTML tags (create /reuse Struts2 theme)
 
 . pain points
   - ServiceRequest / Adapter / PropertyProvider: more code, is it really useful?
@@ -27,3 +28,4 @@ HealthCheck
     . passing primitive with redirect result is not always working (WW-2170/2297)
     . flash scope not supported
   - cannot test Velocity-based email builders
+  - "AnnotationBeanConfigurerAspect has not been set up and is unable to configure bean instances. Proceeding without injection." messages

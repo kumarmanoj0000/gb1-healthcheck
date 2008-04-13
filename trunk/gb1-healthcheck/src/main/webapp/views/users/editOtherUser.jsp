@@ -3,7 +3,7 @@
 <h2><s:text name="users.edit.title" /></h2>
 <s:actionerror />
 
-<s:form namespace="/admin" action="editUser">
+<s:form namespace="/admin/users" action="editOtherUser">
 	<s:hidden name="model.userId" />
 
 	<div class="required">

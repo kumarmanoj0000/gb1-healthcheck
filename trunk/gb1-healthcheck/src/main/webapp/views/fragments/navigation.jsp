@@ -6,7 +6,7 @@
 <ul>
 	<authz:authorize ifAllGranted="role_administrator">
 		<li class="navAction">
-			<s:url id="manageUsersUrl" namespace="/admin" action="manageUsers">
+			<s:url id="manageUsersUrl" namespace="/admin/users" action="manageUsers">
 				<s:param name="refreshList" value="true" />
 			</s:url>
 			<a href='${manageUsersUrl}'><s:text name="navigation.actions.manageUsers" /></a>
