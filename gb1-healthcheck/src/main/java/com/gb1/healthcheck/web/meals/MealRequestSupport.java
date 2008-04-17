@@ -14,7 +14,7 @@ public abstract class MealRequestSupport {
 	private Long eaterId;
 	private Date instant;
 
-	private Map<String, BasicPreparedFoodRequest> pfRequests = new LinkedHashMap<String, BasicPreparedFoodRequest>();
+	private Map<Integer, BasicPreparedFoodRequest> dishRequests = new LinkedHashMap<Integer, BasicPreparedFoodRequest>();
 
 	protected MealRequestSupport() {
 	}
@@ -58,17 +58,17 @@ public abstract class MealRequestSupport {
 		this.instant = instant;
 	}
 
-	public Map<String, BasicPreparedFoodRequest> getDishes() {
-		return pfRequests;
+	public Map<Integer, BasicPreparedFoodRequest> getDishes() {
+		return dishRequests;
 	}
 
-	public void setDishes(Map<String, BasicPreparedFoodRequest> dishes) {
-		pfRequests.clear();
-		pfRequests.putAll(dishes);
+	public void setDishes(Map<Integer, BasicPreparedFoodRequest> dishes) {
+		dishRequests.clear();
+		dishRequests.putAll(dishes);
 	}
 
 	protected void addDish(PreparedFood dish) {
-		pfRequests.put(Integer.toString(pfRequests.size()), new BasicPreparedFoodRequest(dish
-				.getIngredient().getId(), dish.getPreparationMethod()));
+		dishRequests.put(dishRequests.size(), new BasicPreparedFoodRequest(dish.getIngredient()
+				.getId(), dish.getPreparationMethod()));
 	}
 }
