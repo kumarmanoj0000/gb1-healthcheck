@@ -1,8 +1,5 @@
 package com.gb1.healthcheck.web.meals;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import junit.framework.TestCase;
 
 import org.easymock.EasyMock;
@@ -12,12 +9,9 @@ import com.gb1.healthcheck.domain.meals.MealException;
 import com.gb1.healthcheck.domain.meals.Meals;
 import com.gb1.healthcheck.services.meals.FullMealHydrater;
 import com.gb1.healthcheck.services.meals.MealService;
-import com.gb1.healthcheck.services.meals.MealUpdateRequest;
 import com.opensymphony.xwork2.Action;
 
 public class UpdateMealActionTest extends TestCase {
-	private static final String MODEL_SESSION_KEY = UpdateMealAction.class.getName() + ".model";
-
 	@SuppressWarnings("unchecked")
 	public void testInput() {
 		Meal dinner = Meals.fullItalianDinner();
@@ -31,8 +25,6 @@ public class UpdateMealActionTest extends TestCase {
 
 		UpdateMealAction action = new UpdateMealAction();
 		action.setMealService(mealSvc);
-
-		action.setSession(new HashMap());
 		action.setMealId(dinner.getId());
 		String result = action.input();
 
@@ -44,10 +36,7 @@ public class UpdateMealActionTest extends TestCase {
 	@SuppressWarnings("unchecked")
 	public void testUpdate() throws Exception {
 		Meal meal = Meals.fullItalianDinner();
-		MealUpdateRequest model = new BasicMealUpdateRequest(meal);
-
-		Map session = new HashMap();
-		session.put(MODEL_SESSION_KEY, model);
+		BasicMealUpdateRequest model = new BasicMealUpdateRequest(meal);
 
 		MealService mealSvc = EasyMock.createMock(MealService.class);
 		mealSvc.updateMeal(model);
@@ -56,23 +45,17 @@ public class UpdateMealActionTest extends TestCase {
 
 		UpdateMealAction action = new UpdateMealAction();
 		action.setMealService(mealSvc);
-
-		action.setSession(session);
 		action.setMealId(meal.getId());
-		String result = action.execute();
+		action.setModel(model);
 
-		assertEquals(Action.SUCCESS, result);
-		assertFalse(session.containsKey(MODEL_SESSION_KEY));
+		assertEquals(Action.SUCCESS, action.execute());
 		EasyMock.verify(mealSvc);
 	}
 
 	@SuppressWarnings("unchecked")
 	public void testUpdateWithErrors() throws MealException {
 		Meal meal = Meals.fullItalianDinner();
-		MealUpdateRequest model = new BasicMealUpdateRequest(meal);
-
-		Map session = new HashMap();
-		session.put(MODEL_SESSION_KEY, model);
+		BasicMealUpdateRequest model = new BasicMealUpdateRequest(meal);
 
 		MealService mealSvc = EasyMock.createMock(MealService.class);
 		mealSvc.updateMeal(model);
@@ -82,14 +65,11 @@ public class UpdateMealActionTest extends TestCase {
 
 		UpdateMealAction action = new UpdateMealAction();
 		action.setMealService(mealSvc);
-
-		action.setSession(session);
 		action.setMealId(meal.getId());
-		String result = action.execute();
+		action.setModel(model);
 
-		assertEquals(Action.INPUT, result);
+		assertEquals(Action.INPUT, action.execute());
 		assertTrue(action.hasActionErrors());
-		assertTrue(session.containsKey(MODEL_SESSION_KEY));
 	}
 
 	public void testCancel() {

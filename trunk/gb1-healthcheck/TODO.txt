@@ -6,17 +6,13 @@ HealthCheck
   - gastric states evolution (generated image? Flex component?)
   - correlation food <=> gastric states (generated image? Flex component?)
 
-. bugs:
-  - edit own user action should return to previous action, not necessarily workbench
-    (broader concept: redirect injection)
-    (if using ServletActionRedirectResult, WW-2170/2297 is blocking => use flash interceptor)
-
 . technical
+  - upgrade to Spring Security 2.0
   - scopes: flash (develop result / interceptor?), conversation (squeeze a wizard somewhere?)
-  - replace time picker with more useable one
-  - prevent double submits (use <s:token> and TokenInterceptor / TokenSessionInterceptor)
-  - improve UI presentation
   - reduce HTML tags (create / reuse Struts2 theme)
+  - prevent double submits (use <s:token> and TokenInterceptor / TokenSessionInterceptor)
+  - replace time picker with more useable one
+  - improve UI presentation
 
 . pain points
   - ServiceRequest / Adapter / PropertyProvider: more code, is it really useful?
