@@ -6,7 +6,7 @@
 		<script type="text/javascript" src='<s:url value="/scripts/jquery/jquery.js" />'></script>
 
 		<script type="text/javascript">
-			var nbSingleDishDivs = <s:property value="model.selectedFoodIds.length" />;
+			var nbSingleDishDivs = <s:property value="model.dishes.size()" />;
 			var maxSingleDishDivIndex = nbSingleDishDivs - 1;
 
 			function addSingleDishDiv() {
@@ -15,6 +15,8 @@
 
 				var newSingleDishDiv = $('#mockSingleDishDiv').clone()
 					.attr('id', 'singleDish-' + maxSingleDishDivIndex).get();
+				$('select:first', newSingleDishDiv).attr('name', 'model.dishes[' + maxSingleDishDivIndex + '].ingredientId');
+				$('select:last', newSingleDishDiv).attr('name', 'model.dishes[' + maxSingleDishDivIndex + '].preparationMethodName');
 				$('a:first', newSingleDishDiv).attr('onClick', 'javascript:removeSingleDishDiv(' + maxSingleDishDivIndex + ')');
 				$(newSingleDishDiv).insertBefore('#addSingleDishLinkDiv').show();
 			}
@@ -30,7 +32,6 @@
 
 	<body>
 		<h2><s:text name="meals.edit.title" /></h2>
-
 		<s:actionerror />
 
 		<s:form namespace="/meals" action="%{model.mealId == null ? 'createMeal' : 'updateMeal'}">
@@ -55,13 +56,13 @@
 			<fieldset id="dishes">
 				<legend><s:text name="meal.dishes" /></legend>
 
-				<s:iterator value="model.selectedFoodIds" status="it">
+				<s:iterator value="model.dishes" status="it">
 					<div id="singleDish-${it.index}">
 						<div>
 							<label><s:text name="meal.dish" />:</label>
 							<s:select
-								name="model.selectedFoodIds"
-								value="model.selectedFoodIds[#it.index]"
+								name="model.dishes[%{#it.index}].ingredientId"
+								value="model.dishes[#it.index].ingredientId"
 								list="availableFoods"
 								listKey="id"
 								listValue="name"
@@ -71,8 +72,8 @@
 						<div>
 							<label><s:text name="preparationMethod" />:</label>
 							<s:select
-								name="model.selectedPreparationMethodNames"
-								value="model.selectedPreparationMethodNames[#it.index]"
+								name="model.dishes[%{#it.index}].preparationMethodName"
+								value="model.dishes[#it.index].preparationMethodName"
 								list="availablePreparationMethods"
 								listKey="name()"
 								listValue="%{getText('preparationMethod.' + name())}"
@@ -101,7 +102,7 @@
 			<div>
 				<label><s:text name="meal.dish" />:</label>
 				<s:select
-					name="model.selectedFoodIds"
+					name="mockIngredientId"
 					list="availableFoods"
 					listKey="id"
 					listValue="name"
@@ -111,7 +112,7 @@
 			<div>
 				<label><s:text name="preparationMethod" />:</label>
 				<s:select
-					name="model.selectedPreparationMethodNames"
+					name="mockPreparationMethodName"
 					list="availablePreparationMethods"
 					listKey="name()"
 					listValue="%{getText('preparationMethod.' + name())}"

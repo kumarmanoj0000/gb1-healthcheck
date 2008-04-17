@@ -16,6 +16,7 @@ import com.gb1.healthcheck.domain.foods.Foods;
 import com.gb1.healthcheck.domain.meals.MealAlreadyExistsException;
 import com.gb1.healthcheck.domain.meals.MealException;
 import com.gb1.healthcheck.domain.meals.PreparationMethod;
+import com.gb1.healthcheck.domain.users.User;
 import com.gb1.healthcheck.domain.users.Users;
 import com.gb1.healthcheck.services.foods.FoodService;
 import com.gb1.healthcheck.services.meals.MealCreationRequest;
@@ -48,8 +49,8 @@ public class CreateMealActionTest extends TestCase {
 	@SuppressWarnings("unchecked")
 	public void testPrepare() {
 		CreateMealAction action = new CreateMealAction();
-		action.setRequester(Users.lg());
 		action.setFoodService(foodService);
+		action.setRequester(Users.lg());
 		action.prepare();
 
 		assertTrue(CollectionUtils.isEqualCollection(Arrays.asList(PreparationMethod.values()),
@@ -58,31 +59,37 @@ public class CreateMealActionTest extends TestCase {
 	}
 
 	public void testSubmit() throws MealException {
+		User requester = Users.lg();
+		BasicMealCreationRequest model = new BasicMealCreationRequest(requester);
+
 		MealService mealSvc = EasyMock.createMock(MealService.class);
-		mealSvc.createMeal(EasyMock.isA(MealCreationRequest.class));
+		mealSvc.createMeal(model);
 		EasyMock.expectLastCall();
 		EasyMock.replay(mealSvc);
 
 		CreateMealAction action = new CreateMealAction();
-		action.setRequester(Users.lg());
 		action.setFoodService(foodService);
 		action.setMealService(mealSvc);
-		action.prepare();
+		action.setRequester(requester);
+		action.setModel(model);
 
 		assertEquals(Action.SUCCESS, action.execute());
 	}
 
 	public void testSubmitWithErrors() throws MealException {
+		User requester = Users.lg();
+		BasicMealCreationRequest model = new BasicMealCreationRequest(requester);
+
 		MealService mealSvc = EasyMock.createMock(MealService.class);
 		mealSvc.createMeal(EasyMock.isA(MealCreationRequest.class));
 		EasyMock.expectLastCall().andThrow(new MealAlreadyExistsException());
 		EasyMock.replay(mealSvc);
 
 		CreateMealAction action = new CreateMealAction();
-		action.setRequester(Users.lg());
 		action.setFoodService(foodService);
 		action.setMealService(mealSvc);
-		action.prepare();
+		action.setRequester(requester);
+		action.setModel(model);
 
 		assertEquals(Action.INPUT, action.execute());
 		assertTrue(action.hasFieldErrors());

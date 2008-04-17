@@ -1,19 +1,14 @@
 package com.gb1.healthcheck.web.meals;
 
-import java.util.Map;
-
 import org.apache.struts2.config.ParentPackage;
 import org.apache.struts2.config.Result;
 import org.apache.struts2.config.Results;
 import org.apache.struts2.dispatcher.ServletActionRedirectResult;
-import org.apache.struts2.interceptor.SessionAware;
 
 import com.gb1.healthcheck.domain.meals.Meal;
 import com.gb1.healthcheck.domain.meals.MealException;
 import com.gb1.healthcheck.services.meals.FullMealHydrater;
-import com.gb1.healthcheck.services.meals.MealUpdateRequest;
 import com.opensymphony.xwork2.Action;
-import com.opensymphony.xwork2.Preparable;
 
 @ParentPackage("default")
 @Results( {
@@ -21,22 +16,16 @@ import com.opensymphony.xwork2.Preparable;
 		@Result(type = ServletActionRedirectResult.class, value = "manageMeals", params = {
 				"namespace", "/meals", "parse", "true", "actionMessageKey", "${actionMessageKey}",
 				"refreshList", "true" }) })
-public class UpdateMealAction extends MealActionSupport implements Preparable, SessionAware {
-	private static final String MODEL_SESSION_KEY = UpdateMealAction.class.getName() + ".model";
-
-	private Map<String, Object> session;
+public class UpdateMealAction extends MealActionSupport {
+	private BasicMealUpdateRequest model;
 
 	public UpdateMealAction() {
-	}
-
-	public void prepare() throws Exception {
-		loadAvailableFoods();
 	}
 
 	@Override
 	public String input() {
 		Meal meal = getMealService().loadMeal(getMealId(), new FullMealHydrater());
-		session.put(MODEL_SESSION_KEY, new BasicMealUpdateRequest(meal));
+		model = new BasicMealUpdateRequest(meal);
 
 		return Action.INPUT;
 	}
@@ -47,7 +36,6 @@ public class UpdateMealAction extends MealActionSupport implements Preparable, S
 
 		try {
 			getMealService().updateMeal(getModel());
-			session.remove(MODEL_SESSION_KEY);
 
 			setActionMessageKey("meals.edit.success");
 			result = Action.SUCCESS;
@@ -63,13 +51,11 @@ public class UpdateMealAction extends MealActionSupport implements Preparable, S
 		return getRequester().getId();
 	}
 
-	public MealUpdateRequest getModel() {
-		MealUpdateRequest model = (MealUpdateRequest) session.get(MODEL_SESSION_KEY);
+	public BasicMealUpdateRequest getModel() {
 		return model;
 	}
 
-	@SuppressWarnings("unchecked")
-	public void setSession(Map session) {
-		this.session = session;
+	public void setModel(BasicMealUpdateRequest model) {
+		this.model = model;
 	}
 }

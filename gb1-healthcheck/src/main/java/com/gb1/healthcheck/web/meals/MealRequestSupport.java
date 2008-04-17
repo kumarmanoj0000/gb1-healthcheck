@@ -1,24 +1,23 @@
 package com.gb1.healthcheck.web.meals;
 
 import java.util.Date;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Set;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 import com.gb1.healthcheck.domain.meals.Meal;
-import com.gb1.healthcheck.domain.meals.PreparationMethod;
 import com.gb1.healthcheck.domain.meals.PreparedFood;
 import com.gb1.healthcheck.domain.users.User;
-import com.gb1.healthcheck.services.meals.PreparedFoodCreationRequest;
-import com.gb1.healthcheck.services.meals.PreparedFoodUpdateRequest;
 import com.opensymphony.xwork2.conversion.annotations.TypeConversion;
 
 public abstract class MealRequestSupport {
 	private Long mealId;
 	private Long eaterId;
 	private Date instant;
-	private List<Long> selectedFoodIds = new LinkedList<Long>();
-	private List<String> selectedPrepMethodNames = new LinkedList<String>();
+
+	private Map<String, BasicPreparedFoodRequest> pfRequests = new LinkedHashMap<String, BasicPreparedFoodRequest>();
+
+	protected MealRequestSupport() {
+	}
 
 	public MealRequestSupport(User eater) {
 		eaterId = eater.getId();
@@ -28,15 +27,26 @@ public abstract class MealRequestSupport {
 		mealId = meal.getId();
 		eaterId = meal.getEater().getId();
 		instant = meal.getInstant();
-		setDishes(meal.getDishes());
+
+		for (PreparedFood dish : meal.getDishes()) {
+			addDish(dish);
+		}
 	}
 
 	public Long getMealId() {
 		return mealId;
 	}
 
+	public void setMealId(Long mealId) {
+		this.mealId = mealId;
+	}
+
 	public Long getEaterId() {
 		return eaterId;
+	}
+
+	public void setEaterId(Long eaterId) {
+		this.eaterId = eaterId;
 	}
 
 	public Date getInstant() {
@@ -48,54 +58,17 @@ public abstract class MealRequestSupport {
 		this.instant = instant;
 	}
 
-	protected void setDishes(Set<PreparedFood> dishes) {
-		selectedFoodIds.clear();
-		selectedPrepMethodNames.clear();
-
-		for (PreparedFood dish : dishes) {
-			selectedFoodIds.add(dish.getIngredient().getId());
-			selectedPrepMethodNames.add(dish.getPreparationMethod().name());
-		}
+	public Map<String, BasicPreparedFoodRequest> getDishes() {
+		return pfRequests;
 	}
 
-	public void setSelectedFoodIds(Long[] foodIds) {
-		selectedFoodIds.clear();
-		for (Long foodId : foodIds) {
-			selectedFoodIds.add(foodId);
-		}
+	public void setDishes(Map<String, BasicPreparedFoodRequest> dishes) {
+		pfRequests.clear();
+		pfRequests.putAll(dishes);
 	}
 
-	public Long[] getSelectedFoodIds() {
-		return selectedFoodIds.toArray(new Long[0]);
-	}
-
-	public void setSelectedPreparationMethodNames(String[] prepMethodNames) {
-		selectedPrepMethodNames.clear();
-		for (String prepMethodName : prepMethodNames) {
-			selectedPrepMethodNames.add(prepMethodName);
-		}
-	}
-
-	public String[] getSelectedPreparationMethodNames() {
-		return selectedPrepMethodNames.toArray(new String[0]);
-	}
-
-	protected static class PreparedFoodCreationAndUpdateRequest implements
-			PreparedFoodCreationRequest, PreparedFoodUpdateRequest {
-		private Long ingredientId;
-		private String prepMethodName;
-
-		public PreparedFoodCreationAndUpdateRequest(Long ingredientId, String prepMethodName) {
-			this.ingredientId = ingredientId;
-			this.prepMethodName = prepMethodName;
-		}
-
-		public Long getIngredientId() {
-			return ingredientId;
-		}
-
-		public PreparationMethod getPreparationMethod() {
-			return PreparationMethod.valueOf(prepMethodName);
-		}
+	protected void addDish(PreparedFood dish) {
+		pfRequests.put(Integer.toString(pfRequests.size()), new BasicPreparedFoodRequest(dish
+				.getIngredient().getId(), dish.getPreparationMethod()));
 	}
 }

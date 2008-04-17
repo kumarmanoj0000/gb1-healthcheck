@@ -22,8 +22,8 @@
 					<param name="logLevel">ERROR</param>
 				</interceptor-ref>
 				<interceptor-ref name="alias" />
-				<interceptor-ref name="params" />
 				<interceptor-ref name="servletConfig" />
+				<interceptor-ref name="params" />
 				<interceptor-ref name="acegi" />
 				<interceptor-ref name="prepare" />
 				<interceptor-ref name="i18n" />

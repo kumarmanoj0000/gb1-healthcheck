@@ -7,9 +7,9 @@ import org.apache.struts2.dispatcher.ServletActionRedirectResult;
 
 import com.gb1.healthcheck.domain.meals.MealAlreadyExistsException;
 import com.gb1.healthcheck.domain.meals.MealException;
-import com.gb1.healthcheck.services.meals.MealCreationRequest;
+import com.gb1.healthcheck.domain.users.User;
+import com.gb1.struts2.security.AuthenticatedUser;
 import com.opensymphony.xwork2.Action;
-import com.opensymphony.xwork2.Preparable;
 import com.opensymphony.xwork2.validator.annotations.RequiredFieldValidator;
 import com.opensymphony.xwork2.validator.annotations.Validation;
 import com.opensymphony.xwork2.validator.annotations.Validations;
@@ -21,15 +21,17 @@ import com.opensymphony.xwork2.validator.annotations.Validations;
 				"namespace", "/meals", "parse", "true", "actionMessageKey", "${actionMessageKey}",
 				"refreshList", "true" }) })
 @Validation
-public class CreateMealAction extends MealActionSupport implements Preparable {
-	private MealCreationRequest model;
+public class CreateMealAction extends MealActionSupport {
+	private User requester;
+	private BasicMealCreationRequest model;
 
 	public CreateMealAction() {
 	}
 
-	public void prepare() {
-		loadAvailableFoods();
-		model = new BasicMealCreationRequest(getRequester());
+	@Override
+	public String input() {
+		model = new BasicMealCreationRequest(requester);
+		return Action.INPUT;
 	}
 
 	@Override
@@ -38,7 +40,7 @@ public class CreateMealAction extends MealActionSupport implements Preparable {
 		String result = Action.INPUT;
 
 		try {
-			getMealService().createMeal(model);
+			getMealService().createMeal(getModel());
 			setActionMessageKey("meals.edit.success");
 			result = Action.SUCCESS;
 		}
@@ -52,7 +54,16 @@ public class CreateMealAction extends MealActionSupport implements Preparable {
 		return result;
 	}
 
-	public MealCreationRequest getModel() {
+	public BasicMealCreationRequest getModel() {
 		return model;
+	}
+
+	public void setModel(BasicMealCreationRequest model) {
+		this.model = model;
+	}
+
+	@AuthenticatedUser
+	public void setRequester(User requester) {
+		this.requester = requester;
 	}
 }

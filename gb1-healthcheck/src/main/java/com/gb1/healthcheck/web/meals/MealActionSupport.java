@@ -17,8 +17,9 @@ import com.gb1.healthcheck.services.meals.MealService;
 import com.gb1.struts2.security.AuthenticatedUser;
 import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionSupport;
+import com.opensymphony.xwork2.Preparable;
 
-public abstract class MealActionSupport extends ActionSupport {
+public abstract class MealActionSupport extends ActionSupport implements Preparable {
 	private String actionMessageKey;
 	private FoodService foodService;
 	private MealService mealService;
@@ -30,7 +31,7 @@ public abstract class MealActionSupport extends ActionSupport {
 	protected MealActionSupport() {
 	}
 
-	protected void loadAvailableFoods() {
+	public void prepare() {
 		availableFoods.addAll(getFoodService().getSimpleFoods());
 		availableFoods
 				.addAll(getFoodService().getComplexFoods(new IdentityHydrater<ComplexFood>()));
