@@ -1,17 +1,17 @@
-<%@ taglib prefix="authz" uri="http://acegisecurity.org/authz"%>
+<%@ taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
 <%@ taglib prefix="s" uri="/struts-tags" %>
 
 <h2><s:text name="navigation.actions.title" /></h2>
 
 <ul>
-	<authz:authorize ifAllGranted="role_administrator">
+	<security:authorize ifAllGranted="ROLE_ADMINISTRATOR">
 		<li class="navAction">
 			<s:url id="manageUsersUrl" namespace="/admin/users" action="manageUsers">
 				<s:param name="refreshList" value="true" />
 			</s:url>
 			<a href='${manageUsersUrl}'><s:text name="navigation.actions.manageUsers" /></a>
 		</li>
-	</authz:authorize>
+	</security:authorize>
 	<li class="navAction">
 		<s:url id="manageFoodsUrl" namespace="/foods" action="manageFoods">
 				<s:param name="refreshList" value="true" />

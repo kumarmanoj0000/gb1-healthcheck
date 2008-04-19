@@ -5,6 +5,7 @@
 	xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:dwr="http://www.directwebremoting.org/schema/spring-dwr"
 	xmlns:jee="http://www.springframework.org/schema/jee"
+	xmlns:security="http://www.springframework.org/schema/security"
 	xmlns:tx="http://www.springframework.org/schema/tx"
 	xmlns:util="http://www.springframework.org/schema/util"
 	xsi:schemaLocation="
@@ -12,6 +13,7 @@
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd
 		http://www.directwebremoting.org/schema/spring-dwr http://www.directwebremoting.org/schema/spring-dwr-2.0.xsd
 		http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-2.5.xsd
+		http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-2.0.xsd
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd
 		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-2.5.xsd">
 
@@ -105,10 +107,27 @@
 	</bean>
 
 	<!--
-	  | Acegi security
+	  | Security
 	  -->
 
-	<import resource="applicationContext-security.xml" />
+	<security:http auto-config="true" lowercase-comparisons="false">
+		<security:intercept-url pattern="/images/**" filters="none" />
+		<security:intercept-url pattern="/scripts/**" filters="none" />
+		<security:intercept-url pattern="/styles/**" filters="none" />
+		<security:intercept-url pattern="/views/index.jsp" filters="none" />
+		<security:intercept-url pattern="/views/public/**" filters="none" />
+		<security:intercept-url pattern="/public/**" filters="none" />
+		<security:intercept-url pattern="/admin/**" access="ROLE_ADMINISTRATOR" />
+		<security:intercept-url pattern="/**" access="ROLE_STANDARD,ROLE_ADMINISTRATOR" />
+
+		<security:form-login
+			login-page="/views/public/security/login.jsp"
+			authentication-failure-url="/views/public/security/login.jsp?login_error=1"
+			login-processing-url="/j_security_check"
+		/>
+	</security:http>
+
+	<security:authentication-provider user-service-ref="userDetailsService" />
 
 	<!--
 	  | Scheduling

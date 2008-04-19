@@ -12,17 +12,13 @@
 		<param-value>/WEB-INF/applicationContext.xml</param-value>
 	</context-param>
 
-	<!-- Acegi security filter -->
+	<!-- Spring Security filter -->
 	<filter>
-		<filter-name>securityFilter</filter-name>
-		<filter-class>org.acegisecurity.util.FilterToBeanProxy</filter-class>
-		<init-param>
-			<param-name>targetBean</param-name>
-			<param-value>filterChainProxy</param-value>
-		</init-param>
+		<filter-name>springSecurityFilterChain</filter-name>
+		<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
 	</filter>
 	<filter-mapping>
-		<filter-name>securityFilter</filter-name>
+		<filter-name>springSecurityFilterChain</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
 
@@ -86,9 +82,9 @@
 		<listener-class>org.springframework.web.context.request.RequestContextListener</listener-class>
 	</listener>
 
-	<!-- Acegi HTTP session event publisher -->
+	<!-- Spring Security HTTP session event publisher -->
 	<listener>
-		<listener-class>org.acegisecurity.ui.session.HttpSessionEventPublisher</listener-class>
+		<listener-class>org.springframework.security.ui.session.HttpSessionEventPublisher</listener-class>
 	</listener>
 
 	<!-- Tag libraries -->
@@ -100,10 +96,6 @@
 		<taglib>
 			<taglib-uri>http://java.sun.com/jstl/fmt</taglib-uri>
 			<taglib-location>/taglibs/jstl/fmt.tld</taglib-location>
-		</taglib>
-		<taglib>
-			<taglib-uri>http://acegisecurity.org/authz</taglib-uri>
-			<taglib-location>/taglibs/acegi/authz.tld</taglib-location>
 		</taglib>
 		<taglib>
 			<taglib-uri>http://displaytag.sf.net</taglib-uri>

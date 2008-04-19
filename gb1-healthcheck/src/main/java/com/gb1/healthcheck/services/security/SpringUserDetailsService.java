@@ -2,28 +2,28 @@ package com.gb1.healthcheck.services.security;
 
 import javax.annotation.Resource;
 
-import org.acegisecurity.userdetails.UserDetails;
-import org.acegisecurity.userdetails.UserDetailsService;
-import org.acegisecurity.userdetails.UsernameNotFoundException;
+import org.springframework.security.userdetails.UserDetails;
+import org.springframework.security.userdetails.UserDetailsService;
+import org.springframework.security.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.gb1.healthcheck.domain.users.AcegiUserDetailsAdapter;
+import com.gb1.healthcheck.domain.users.SpringUserDetailsAdapter;
 import com.gb1.healthcheck.domain.users.User;
 import com.gb1.healthcheck.domain.users.UserRepository;
 
 /**
- * An implementation of the Acegi user details service that finds a specific user given its name
- * (login) and provides its details through the required interface.
+ * An implementation of the Spring Security user details service that finds a specific user given
+ * its name (login) and provides its details through the required interface.
  * 
  * @author Guillaume Bilodeau
  */
 @Service("userDetailsService")
 @Transactional(readOnly = true)
-public class AcegiUserDetailsService implements UserDetailsService {
+public class SpringUserDetailsService implements UserDetailsService {
 	private UserRepository userRepo;
 
-	public AcegiUserDetailsService() {
+	public SpringUserDetailsService() {
 	}
 
 	/**
@@ -42,7 +42,7 @@ public class AcegiUserDetailsService implements UserDetailsService {
 		}
 
 		// authorities should be eagerly fetched
-		userDetails = new AcegiUserDetailsAdapter(user);
+		userDetails = new SpringUserDetailsAdapter(user);
 		userDetails.getAuthorities();
 
 		return userDetails;

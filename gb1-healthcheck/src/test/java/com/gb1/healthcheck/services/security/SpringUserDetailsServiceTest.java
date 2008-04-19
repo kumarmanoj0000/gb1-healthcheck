@@ -2,15 +2,15 @@ package com.gb1.healthcheck.services.security;
 
 import junit.framework.TestCase;
 
-import org.acegisecurity.userdetails.UserDetails;
-import org.acegisecurity.userdetails.UsernameNotFoundException;
 import org.easymock.EasyMock;
+import org.springframework.security.userdetails.UserDetails;
+import org.springframework.security.userdetails.UsernameNotFoundException;
 
 import com.gb1.healthcheck.domain.users.ExposedUser;
 import com.gb1.healthcheck.domain.users.Role;
 import com.gb1.healthcheck.domain.users.UserRepository;
 
-public class AcegiUserDetailsServiceTest extends TestCase {
+public class SpringUserDetailsServiceTest extends TestCase {
 	public void testLoadUserByUsernameUnknown() {
 		final String login = "user";
 
@@ -18,7 +18,7 @@ public class AcegiUserDetailsServiceTest extends TestCase {
 		EasyMock.expect(userRepo.findUserByLogin(login)).andReturn(null);
 		EasyMock.replay(userRepo);
 
-		AcegiUserDetailsService svc = new AcegiUserDetailsService();
+		SpringUserDetailsService svc = new SpringUserDetailsService();
 		svc.setUserRepository(userRepo);
 
 		try {
@@ -40,7 +40,7 @@ public class AcegiUserDetailsServiceTest extends TestCase {
 		EasyMock.expect(userRepo.findUserByLogin(login)).andReturn(u);
 		EasyMock.replay(userRepo);
 
-		AcegiUserDetailsService svc = new AcegiUserDetailsService();
+		SpringUserDetailsService svc = new SpringUserDetailsService();
 		svc.setUserRepository(userRepo);
 
 		UserDetails details = svc.loadUserByUsername(login);

@@ -4,20 +4,21 @@ import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
-import org.acegisecurity.GrantedAuthority;
-import org.acegisecurity.userdetails.UserDetails;
 import org.apache.commons.lang.Validate;
+import org.apache.commons.lang.builder.CompareToBuilder;
+import org.springframework.security.GrantedAuthority;
+import org.springframework.security.userdetails.UserDetails;
 
 /**
- * An adapter that allows the use of internal user objects as instances of the Acegi UserDetails
- * interface.
+ * An adapter that allows the use of internal user objects as instances of the Spring Security
+ * UserDetails interface.
  * 
  * @author Guillaume Bilodeau
  */
-public class AcegiUserDetailsAdapter implements UserDetails, Serializable {
+public class SpringUserDetailsAdapter implements UserDetails, Serializable {
 	private User target;
 
-	public AcegiUserDetailsAdapter(User target) {
+	public SpringUserDetailsAdapter(User target) {
 		Validate.notNull(target);
 		this.target = target;
 		this.target.getRoles().size();
@@ -27,7 +28,7 @@ public class AcegiUserDetailsAdapter implements UserDetails, Serializable {
 		Set<GrantedAuthority> authoritySet = new HashSet<GrantedAuthority>();
 
 		for (Role role : target.getRoles()) {
-			authoritySet.add(new AcegiGrantedAuthorityAdapter(role));
+			authoritySet.add(new SpringGrantedAuthorityAdapter(role));
 		}
 
 		GrantedAuthority[] authorityArray = authoritySet.toArray(new GrantedAuthority[0]);
@@ -68,10 +69,10 @@ public class AcegiUserDetailsAdapter implements UserDetails, Serializable {
 		return target.getLogin();
 	}
 
-	public static class AcegiGrantedAuthorityAdapter implements GrantedAuthority, Serializable {
+	public static class SpringGrantedAuthorityAdapter implements GrantedAuthority, Serializable {
 		private Role target;
 
-		public AcegiGrantedAuthorityAdapter(Role target) {
+		public SpringGrantedAuthorityAdapter(Role target) {
 			this.target = target;
 		}
 
@@ -82,6 +83,13 @@ public class AcegiUserDetailsAdapter implements UserDetails, Serializable {
 		@Override
 		public String toString() {
 			return target.getName();
+		}
+
+		public int compareTo(Object o) {
+			SpringGrantedAuthorityAdapter that = (SpringGrantedAuthorityAdapter) o;
+			CompareToBuilder builder = new CompareToBuilder().append(this.getAuthority(), that
+					.getAuthority());
+			return builder.toComparison();
 		}
 	}
 }

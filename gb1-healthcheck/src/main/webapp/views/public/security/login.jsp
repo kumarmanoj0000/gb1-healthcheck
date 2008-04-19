@@ -6,11 +6,11 @@
 	<p id="loginError"><s:text name="errors.login.badcredentials" /></p>
 </s:if>
 
-<form id="loginForm" action="<%= request.getContextPath() %>/j_acegi_security_check">
+<form id="loginForm" action="<%= request.getContextPath() %>/j_security_check">
 	<table>
 		<tr>
 			<td><label class="required"><s:text name="user.login" />:</label></td>
-			<td><s:textfield name="j_username" value="%{#session['ACEGI_SECURITY_LAST_USERNAME']}" /></td>
+			<td><s:textfield name="j_username" value="%{#session['SPRING_SECURITY_LAST_USERNAME']}" /></td>
 		</tr>
 		<tr>
 			<td><label class="required"><s:text name="user.password" />:</label></td>

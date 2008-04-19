@@ -1,26 +1,16 @@
 <%--
- % This is the main decorator for all HealthCheck pages.
- % It includes standard caching, style sheet, header, footer and copyright notice.
+ | This is the main decorator for all HealthCheck pages.
+ | It includes standard caching, style sheet, header, footer and copyright notice.
  --%>
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
 
-<%@ page import="org.acegisecurity.context.SecurityContextHolder"%>
-
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt"%>
 <%@ taglib prefix="decorator" uri="http://www.opensymphony.com/sitemesh/decorator"%>
-<%@ taglib prefix="authz" uri="http://acegisecurity.org/authz"%>
+<%@ taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
 
 <html>
-	<%--
-	 | Define a shortcut to the signed in user once (obtaining it from Acegi is tedious)
-	 --%>
-	<authz:authorize ifNotGranted="role_anonymous">
-		<c:set var="userDetails" value="<%= SecurityContextHolder.getContext().getAuthentication().getPrincipal() %>" />
-		<c:set var="user" scope="request" value="${userDetails.user}" />
-	</authz:authorize>
-
 	<head>
 		<title><decorator:title default="HealthCheck" /></title>
 
@@ -40,13 +30,13 @@
 		<div id="container">
 			<div id="header"><%@ include file="/views/fragments/header.jsp"%></div>
 
-			<authz:authorize ifNotGranted="role_anonymous">
+			<security:authorize ifAnyGranted="ROLE_STANDARD,ROLE_ADMINISTRATOR">
 				<div id="navigation"><%@ include file="/views/fragments/navigation.jsp" %></div>
 				<div id="content"><decorator:body /></div>
-			</authz:authorize>
-			<authz:authorize ifAnyGranted="role_anonymous">
+			</security:authorize>
+			<security:authorize ifNotGranted="ROLE_STANDARD,ROLE_ADMINISTRATOR">
 				<div id="login"><decorator:body /></div>
-			</authz:authorize>
+			</security:authorize>
 
 			<div id="footer"><%@ include file="/views/fragments/footer.jsp"%></div>
 		</div>
