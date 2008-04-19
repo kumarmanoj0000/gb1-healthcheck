@@ -49,7 +49,7 @@ public class EditOwnUserActionTest extends TestCase {
 		// make sure the update was sent to the service layer
 		EasyMock.verify(userSvc);
 
-		// make sure the session's Acegi authenticated user was updated too
+		// make sure the session's authenticated user was updated too
 		assertEquals(request.getEmail(), user.getEmail());
 	}
 

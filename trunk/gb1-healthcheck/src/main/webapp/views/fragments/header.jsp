@@ -1,4 +1,4 @@
-<%@ taglib prefix="authz" uri="http://acegisecurity.org/authz" %>
+<%@ taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
 <%@ taglib prefix="s" uri="/struts-tags" %>
 
 <script type="text/javascript">
@@ -9,9 +9,9 @@
 
 <h1><s:text name="app.name" /></h1>
 
-<authz:authorize ifNotGranted="role_anonymous">
+<security:authorize ifAnyGranted="ROLE_STANDARD,ROLE_ADMINISTRATOR">
 	<div>
-		<s:text name="header.userlogin" />: <authz:authentication operation="username" />
+		<s:text name="header.userlogin" />: <security:authentication property="principal.username" />
 	</div>
 
 	<ul id="headerActions">
@@ -28,4 +28,4 @@
 			<a href="<s:url namespace='/public/security' action='logout' />"><s:text name="header.logout" /></a>
 		</li>
 	</ul>
-</authz:authorize>
+</security:authorize>

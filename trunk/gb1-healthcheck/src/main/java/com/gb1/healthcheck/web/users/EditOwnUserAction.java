@@ -30,7 +30,7 @@ public class EditOwnUserAction extends EditUserActionSupport {
 
 	@Override
 	protected void updateActiveUserIfNecessary(UserUpdatePropertyProvider updateReq) {
-		// the Acegi authenticated user also needs to be updated
+		// the session authenticated user also needs to be updated
 		requester.update(updateReq);
 	}
 

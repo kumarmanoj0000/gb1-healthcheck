@@ -2,10 +2,10 @@ package com.gb1.struts2.security;
 
 import java.lang.reflect.Method;
 
-import org.acegisecurity.Authentication;
-import org.acegisecurity.context.SecurityContextHolder;
+import org.springframework.security.Authentication;
+import org.springframework.security.context.SecurityContextHolder;
 
-import com.gb1.healthcheck.domain.users.AcegiUserDetailsAdapter;
+import com.gb1.healthcheck.domain.users.SpringUserDetailsAdapter;
 import com.opensymphony.xwork2.ActionInvocation;
 import com.opensymphony.xwork2.interceptor.AbstractInterceptor;
 
@@ -16,8 +16,8 @@ import com.opensymphony.xwork2.interceptor.AbstractInterceptor;
  * 
  * @author Guillaume Bilodeau
  */
-public class AcegiUserInterceptor extends AbstractInterceptor {
-	public AcegiUserInterceptor() {
+public class SpringAuthenticatedUserInterceptor extends AbstractInterceptor {
+	public SpringAuthenticatedUserInterceptor() {
 	}
 
 	@Override
@@ -28,8 +28,8 @@ public class AcegiUserInterceptor extends AbstractInterceptor {
 		if (currentUser != null) {
 			for (Method m : action.getClass().getDeclaredMethods()) {
 				if (m.getAnnotation(AuthenticatedUser.class) != null
-						&& currentUser.getPrincipal() instanceof AcegiUserDetailsAdapter) {
-					AcegiUserDetailsAdapter adapter = (AcegiUserDetailsAdapter) currentUser
+						&& currentUser.getPrincipal() instanceof SpringUserDetailsAdapter) {
+					SpringUserDetailsAdapter adapter = (SpringUserDetailsAdapter) currentUser
 							.getPrincipal();
 					m.invoke(action, adapter.getUser());
 				}

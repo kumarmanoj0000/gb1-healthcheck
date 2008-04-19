@@ -14,7 +14,7 @@
 
 	<package name="default" extends="struts-default">
 		<interceptors>
-			<interceptor name="acegi" class="com.gb1.struts2.security.AcegiUserInterceptor" />
+			<interceptor name="authenticatedUser" class="com.gb1.struts2.security.SpringAuthenticatedUserInterceptor" />
 
 			<interceptor-stack name="baseStack">
 				<interceptor-ref name="exception">
@@ -24,7 +24,7 @@
 				<interceptor-ref name="alias" />
 				<interceptor-ref name="servletConfig" />
 				<interceptor-ref name="params" />
-				<interceptor-ref name="acegi" />
+				<interceptor-ref name="authenticatedUser" />
 				<interceptor-ref name="prepare" />
 				<interceptor-ref name="i18n" />
 				<interceptor-ref name="chain" />
