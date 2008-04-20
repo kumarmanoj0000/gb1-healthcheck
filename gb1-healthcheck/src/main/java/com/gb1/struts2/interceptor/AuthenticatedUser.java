@@ -1,4 +1,4 @@
-package com.gb1.struts2.security;
+package com.gb1.struts2.interceptor;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

@@ -11,7 +11,7 @@ import com.gb1.healthcheck.domain.metrics.PatientFile;
 import com.gb1.healthcheck.domain.metrics.PunctualGastricState;
 import com.gb1.healthcheck.domain.users.User;
 import com.gb1.healthcheck.services.metrics.PatientFileService;
-import com.gb1.struts2.security.AuthenticatedUser;
+import com.gb1.struts2.interceptor.AuthenticatedUser;
 import com.opensymphony.xwork2.Action;
 
 @ParentPackage("default")
