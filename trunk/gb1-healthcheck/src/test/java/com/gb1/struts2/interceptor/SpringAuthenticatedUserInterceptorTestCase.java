@@ -1,4 +1,4 @@
-package com.gb1.struts2.security;
+package com.gb1.struts2.interceptor;
 
 import junit.framework.TestCase;
 
