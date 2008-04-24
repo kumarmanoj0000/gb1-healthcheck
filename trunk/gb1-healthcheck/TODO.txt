@@ -20,6 +20,4 @@ HealthCheck
   - Struts2:
     . @ParentPackage duplication in actions
     . confusing use of literals and OGNL/EL expressions in tags
-    . passing primitive with redirect result is not always working (WW-2170/2297)
-    . flash scope not supported
-  - syntaxic / semantic validation is distributed: is this ok?
+  - syntaxic / semantic validation is distributed: centralized solution possible?
