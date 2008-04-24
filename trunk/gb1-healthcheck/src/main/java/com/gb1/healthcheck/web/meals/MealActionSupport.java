@@ -20,7 +20,6 @@ import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.Preparable;
 
 public abstract class MealActionSupport extends ActionSupport implements Preparable {
-	private String actionMessageKey;
 	private FoodService foodService;
 	private MealService mealService;
 
@@ -58,14 +57,6 @@ public abstract class MealActionSupport extends ActionSupport implements Prepara
 	@AuthenticatedUser
 	public void setRequester(User requester) {
 		this.requester = requester;
-	}
-
-	public String getActionMessageKey() {
-		return actionMessageKey;
-	}
-
-	protected void setActionMessageKey(String actionMessageKey) {
-		this.actionMessageKey = actionMessageKey;
 	}
 
 	protected FoodService getFoodService() {

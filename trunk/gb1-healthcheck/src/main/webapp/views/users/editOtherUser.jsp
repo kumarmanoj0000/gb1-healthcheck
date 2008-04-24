@@ -4,8 +4,6 @@
 <s:actionerror />
 
 <s:form namespace="/admin/users" action="editOtherUser">
-	<s:hidden name="model.userId" />
-
 	<div class="required">
 		<label><s:text name="users.edit.email" />:</label>
 		<s:textfield name="model.email" />

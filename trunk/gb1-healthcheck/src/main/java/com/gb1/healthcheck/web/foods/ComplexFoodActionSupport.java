@@ -17,7 +17,6 @@ import com.opensymphony.xwork2.Preparable;
 public abstract class ComplexFoodActionSupport extends ActionSupport implements Preparable {
 	private FoodService foodService;
 	private Long foodId;
-	private String actionMessageKey;
 	private List<Food> availableIngredients = new ArrayList<Food>();
 
 	public void prepare() {
@@ -42,14 +41,6 @@ public abstract class ComplexFoodActionSupport extends ActionSupport implements 
 
 	public List<Food> getAvailableIngredients() {
 		return Collections.unmodifiableList(availableIngredients);
-	}
-
-	public String getActionMessageKey() {
-		return actionMessageKey;
-	}
-
-	protected void setActionMessageKey(String actionMessageKey) {
-		this.actionMessageKey = actionMessageKey;
 	}
 
 	protected FoodService getFoodService() {

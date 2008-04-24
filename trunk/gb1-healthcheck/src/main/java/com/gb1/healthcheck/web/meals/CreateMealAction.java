@@ -3,11 +3,11 @@ package com.gb1.healthcheck.web.meals;
 import org.apache.struts2.config.ParentPackage;
 import org.apache.struts2.config.Result;
 import org.apache.struts2.config.Results;
-import org.apache.struts2.dispatcher.ServletActionRedirectResult;
 
 import com.gb1.healthcheck.domain.meals.MealAlreadyExistsException;
 import com.gb1.healthcheck.domain.meals.MealException;
 import com.gb1.healthcheck.domain.users.User;
+import com.gb1.struts2.dispatcher.FlashResult;
 import com.gb1.struts2.interceptor.AuthenticatedUser;
 import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.validator.annotations.RequiredFieldValidator;
@@ -17,9 +17,8 @@ import com.opensymphony.xwork2.validator.annotations.Validations;
 @ParentPackage("default")
 @Results( {
 		@Result(name = "input", value = "/views/meals/editMeal.jsp"),
-		@Result(type = ServletActionRedirectResult.class, value = "manageMeals", params = {
-				"namespace", "/meals", "parse", "true", "actionMessageKey", "${actionMessageKey}",
-				"refreshList", "true" }) })
+		@Result(type = FlashResult.class, value = "manageMeals", params = { "namespace", "/meals",
+				"parse", "true", "actionMessages", "${actionMessages}", "refreshList", "true" }) })
 @Validation
 public class CreateMealAction extends MealActionSupport {
 	private User requester;
@@ -41,7 +40,7 @@ public class CreateMealAction extends MealActionSupport {
 
 		try {
 			getMealService().createMeal(getModel());
-			setActionMessageKey("meals.edit.success");
+			addActionMessage(getText("meals.edit.success"));
 			result = Action.SUCCESS;
 		}
 		catch (MealAlreadyExistsException e) {

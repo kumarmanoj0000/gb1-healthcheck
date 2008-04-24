@@ -1,6 +1,5 @@
 package com.gb1.healthcheck.web.workbench;
 
-import org.apache.commons.lang.StringUtils;
 import org.apache.struts2.config.ParentPackage;
 import org.apache.struts2.config.Result;
 
@@ -16,12 +15,5 @@ public class WorkbenchAction extends ActionSupport {
 	@Override
 	public String execute() {
 		return Action.SUCCESS;
-	}
-
-	public void setActionMessageKey(String key) {
-		clearErrorsAndMessages();
-		if (StringUtils.isNotBlank(key)) {
-			addActionMessage(getText(key));
-		}
 	}
 }

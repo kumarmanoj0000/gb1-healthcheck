@@ -23,7 +23,6 @@ public abstract class EditUserActionSupport extends ActionSupport implements Ses
 
 	private Map<String, Object> sessionMap;
 	private UserService userService;
-	private String actionMessageKey;
 
 	public EditUserActionSupport() {
 	}
@@ -50,7 +49,7 @@ public abstract class EditUserActionSupport extends ActionSupport implements Ses
 			updateActiveUserIfNecessary(updateReq);
 
 			sessionMap.remove(MODEL_SESSION_KEY);
-			actionMessageKey = "users.edit.success";
+			addActionMessage(getText("users.edit.success"));
 			result = Action.SUCCESS;
 		}
 		catch (EmailAlreadyExistsException e) {
@@ -74,10 +73,6 @@ public abstract class EditUserActionSupport extends ActionSupport implements Ses
 	public BasicUserUpdateRequest getModel() {
 		BasicUserUpdateRequest model = (BasicUserUpdateRequest) sessionMap.get(MODEL_SESSION_KEY);
 		return model;
-	}
-
-	public String getActionMessageKey() {
-		return actionMessageKey;
 	}
 
 	@SuppressWarnings("unchecked")

@@ -8,19 +8,18 @@ import javax.annotation.Resource;
 
 import org.apache.struts2.config.ParentPackage;
 import org.apache.struts2.config.Result;
-import org.apache.struts2.dispatcher.ServletActionRedirectResult;
 
 import com.gb1.healthcheck.services.meals.MealService;
+import com.gb1.struts2.dispatcher.FlashResult;
 import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionSupport;
 
 @ParentPackage("default")
-@Result(type = ServletActionRedirectResult.class, value = "manageMeals", params = { "namespace",
-		"/meals", "parse", "true", "actionMessageKey", "${actionMessageKey}", "refreshList", "true" })
+@Result(type = FlashResult.class, value = "manageMeals", params = { "namespace", "/meals", "parse",
+		"true", "actionMessages", "${actionMessages}", "refreshList", "true" })
 public class DeleteMealsAction extends ActionSupport {
 	private MealService mealService;
 	private Long[] mealIds;
-	private String actionMessageKey;
 
 	public DeleteMealsAction() {
 	}
@@ -32,7 +31,7 @@ public class DeleteMealsAction extends ActionSupport {
 			idsToDelete.addAll(Arrays.asList(mealIds));
 
 			mealService.deleteMeals(idsToDelete);
-			actionMessageKey = "meals.delete.success";
+			addActionMessage(getText("meals.delete.success"));
 		}
 
 		return Action.SUCCESS;
@@ -40,10 +39,6 @@ public class DeleteMealsAction extends ActionSupport {
 
 	public void setMealIds(Long[] mealIds) {
 		this.mealIds = mealIds;
-	}
-
-	public String getActionMessageKey() {
-		return actionMessageKey;
 	}
 
 	@Resource
