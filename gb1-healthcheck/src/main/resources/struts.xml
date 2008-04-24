@@ -15,6 +15,7 @@
 	<package name="default" extends="struts-default">
 		<interceptors>
 			<interceptor name="authenticatedUser" class="com.gb1.struts2.interceptor.SpringAuthenticatedUserInterceptor" />
+			<interceptor name="flash" class="com.gb1.struts2.interceptor.FlashInterceptor" />
 
 			<interceptor-stack name="baseStack">
 				<interceptor-ref name="exception">
@@ -24,6 +25,7 @@
 				<interceptor-ref name="alias" />
 				<interceptor-ref name="servletConfig" />
 				<interceptor-ref name="params" />
+				<interceptor-ref name="flash" />
 				<interceptor-ref name="authenticatedUser" />
 				<interceptor-ref name="prepare" />
 				<interceptor-ref name="i18n" />
