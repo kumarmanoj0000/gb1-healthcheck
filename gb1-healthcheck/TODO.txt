@@ -7,7 +7,7 @@ HealthCheck
   - correlation food <=> gastric states (generated image? Flex component?)
 
 . technical
-  - scopes: flash (develop result / interceptor?), conversation (squeeze a wizard somewhere?)
+  - conversation scope (squeeze a wizard somewhere?)
   - reduce HTML tags (create / reuse Struts2 theme)
   - prevent double submits (use <s:token> and TokenInterceptor / TokenSessionInterceptor)
   - replace time picker with more useable one
