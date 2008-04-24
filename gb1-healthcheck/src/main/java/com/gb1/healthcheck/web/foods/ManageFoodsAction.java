@@ -7,7 +7,6 @@ import java.util.Set;
 
 import javax.annotation.Resource;
 
-import org.apache.commons.lang.StringUtils;
 import org.apache.struts2.config.ParentPackage;
 import org.apache.struts2.config.Result;
 import org.apache.struts2.interceptor.SessionAware;
@@ -75,13 +74,6 @@ public class ManageFoodsAction extends ActionSupport implements SessionAware {
 
 	public void setRefreshList(boolean refreshList) {
 		this.refreshList = refreshList;
-	}
-
-	public void setActionMessageKey(String key) {
-		clearErrorsAndMessages();
-		if (StringUtils.isNotBlank(key)) {
-			addActionMessage(getText(key));
-		}
 	}
 
 	@SuppressWarnings("unchecked")

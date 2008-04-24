@@ -4,13 +4,13 @@ import java.util.Map;
 
 import org.apache.struts2.config.Result;
 import org.apache.struts2.config.Results;
-import org.apache.struts2.dispatcher.ServletActionRedirectResult;
 import org.apache.struts2.interceptor.SessionAware;
 
 import com.gb1.healthcheck.domain.foods.ComplexFood;
 import com.gb1.healthcheck.domain.foods.FoodAlreadyExistsException;
 import com.gb1.healthcheck.domain.foods.FoodException;
 import com.gb1.healthcheck.services.foods.FullComplexFoodHydrater;
+import com.gb1.struts2.dispatcher.FlashResult;
 import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.validator.annotations.RequiredStringValidator;
 import com.opensymphony.xwork2.validator.annotations.Validation;
@@ -18,9 +18,8 @@ import com.opensymphony.xwork2.validator.annotations.Validations;
 
 @Results( {
 		@Result(name = "input", value = "/views/foods/editComplexFood.jsp"),
-		@Result(type = ServletActionRedirectResult.class, value = "manageFoods", params = {
-				"namespace", "/foods", "parse", "true", "actionMessageKey", "${actionMessageKey}",
-				"refreshList", "true" }) })
+		@Result(type = FlashResult.class, value = "manageFoods", params = { "namespace", "/foods",
+				"parse", "true", "actionMessages", "${actionMessages}", "refreshList", "true" }) })
 @Validation
 public class UpdateComplexFoodAction extends ComplexFoodActionSupport implements SessionAware {
 	private static final String MODEL_SESSION_KEY = UpdateComplexFoodAction.class.getName()
@@ -49,7 +48,7 @@ public class UpdateComplexFoodAction extends ComplexFoodActionSupport implements
 			getFoodService().updateComplexFood(getModel());
 			session.remove(MODEL_SESSION_KEY);
 
-			setActionMessageKey("foods.complexFoods.edit.success");
+			addActionMessage(getText("foods.complexFoods.edit.success"));
 			result = Action.SUCCESS;
 		}
 		catch (FoodAlreadyExistsException e) {

@@ -9,21 +9,19 @@ import javax.annotation.Resource;
 import org.apache.struts2.config.Namespace;
 import org.apache.struts2.config.ParentPackage;
 import org.apache.struts2.config.Result;
-import org.apache.struts2.dispatcher.ServletActionRedirectResult;
 
 import com.gb1.healthcheck.services.users.UserService;
+import com.gb1.struts2.dispatcher.FlashResult;
 import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionSupport;
 
 @Namespace("/admin/users")
 @ParentPackage("default")
-@Result(type = ServletActionRedirectResult.class, value = "manageUsers", params = { "namespace",
-		"/admin/users", "parse", "true", "actionMessageKey", "${actionMessageKey}", "refreshList",
-		"true" })
+@Result(type = FlashResult.class, value = "manageUsers", params = { "namespace", "/admin/users",
+		"parse", "true", "actionMessages", "${actionMessages}", "refreshList", "true" })
 public class DeleteUsersAction extends ActionSupport {
 	private UserService userService;
 	private Long[] userIds;
-	private String actionMessageKey;
 
 	public DeleteUsersAction() {
 	}
@@ -35,7 +33,7 @@ public class DeleteUsersAction extends ActionSupport {
 			idsToDelete.addAll(Arrays.asList(userIds));
 
 			userService.deleteUsers(idsToDelete);
-			actionMessageKey = "users.delete.success";
+			addActionMessage(getText("users.delete.success"));
 		}
 
 		return Action.SUCCESS;
@@ -43,10 +41,6 @@ public class DeleteUsersAction extends ActionSupport {
 
 	public void setUserIds(Long[] userIds) {
 		this.userIds = userIds;
-	}
-
-	public String getActionMessageKey() {
-		return actionMessageKey;
 	}
 
 	@Resource
