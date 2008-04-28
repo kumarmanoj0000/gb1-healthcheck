@@ -8,7 +8,6 @@ import com.gb1.healthcheck.domain.meals.MealAlreadyExistsException;
 import com.gb1.healthcheck.domain.meals.MealException;
 import com.gb1.healthcheck.domain.users.User;
 import com.gb1.struts2.dispatcher.FlashResult;
-import com.gb1.struts2.interceptor.AuthenticatedUser;
 import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.validator.annotations.RequiredFieldValidator;
 import com.opensymphony.xwork2.validator.annotations.Validation;
@@ -59,10 +58,5 @@ public class CreateMealAction extends MealActionSupport {
 
 	public void setModel(BasicMealCreationRequest model) {
 		this.model = model;
-	}
-
-	@AuthenticatedUser
-	public void setRequester(User requester) {
-		this.requester = requester;
 	}
 }
