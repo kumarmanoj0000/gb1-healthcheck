@@ -22,6 +22,7 @@ public class ResetPasswordAction extends ActionSupport {
 	public ResetPasswordAction() {
 	}
 
+	@Override
 	public String execute() {
 		userService.resetUserPassword(userId);
 		addActionMessage(getText("users.resetPassword.success"));

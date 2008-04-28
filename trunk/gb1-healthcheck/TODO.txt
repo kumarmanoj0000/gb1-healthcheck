@@ -3,15 +3,14 @@ HealthCheck
 -----------
 
 . features:
-  - gastric states evolution (generated image? Flex component?)
-  - correlation food <=> gastric states (generated image? Flex component?)
+  - gastric states evolution (Flex component)
+  - correlation food <=> gastric states (Flex component)
 
 . technical
   - conversation scope (squeeze a wizard somewhere?)
-  - reduce HTML tags (create / reuse Struts2 theme)
   - prevent double submits (use <s:token> and TokenInterceptor / TokenSessionInterceptor)
   - replace time picker with more useable one
-  - improve UI presentation
+  - reduce HTML tags (create / reuse Struts2 theme)
 
 . pain points
   - ServiceRequest / Adapter / PropertyProvider: more code, is it really useful?

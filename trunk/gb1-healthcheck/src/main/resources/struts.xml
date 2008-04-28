@@ -39,9 +39,6 @@
 				<interceptor-ref name="validation">
 					<param name="excludeMethods">input,back,cancel,browse</param>
 				</interceptor-ref>
-				<interceptor-ref name="workflow">
-					<param name="excludeMethods">input,back,cancel,browse</param>
-				</interceptor-ref>
 			</interceptor-stack>
 		</interceptors>
 
