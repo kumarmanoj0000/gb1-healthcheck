@@ -7,8 +7,6 @@ import java.util.Set;
 import javax.annotation.Resource;
 
 import org.springframework.beans.factory.annotation.Configurable;
-import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Component;
 
 import com.gb1.healthcheck.domain.foods.Food;
 import com.gb1.healthcheck.domain.foods.FoodRepository;
@@ -19,8 +17,6 @@ import com.gb1.healthcheck.domain.users.UserRepository;
 import com.gb1.healthcheck.services.meals.MealCreationRequest;
 import com.gb1.healthcheck.services.meals.PreparedFoodCreationRequest;
 
-@Component("mealCreationPropertyProviderAdapter")
-@Scope("prototype")
 @Configurable
 public class MealCreationPropertyProviderAdapter implements MealCreationPropertyProvider {
 	private MealCreationRequest request;
