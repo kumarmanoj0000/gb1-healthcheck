@@ -7,16 +7,16 @@ HealthCheck
   - correlation food <=> gastric states (Flex component)
 
 . technical
-  - conversation scope (squeeze a wizard somewhere?)
   - prevent double submits (use <s:token> and TokenInterceptor / TokenSessionInterceptor)
   - replace time picker with more useable one
+  - conversation scope (squeeze a wizard somewhere?)
   - reduce HTML tags (create / reuse Struts2 theme)
 
 . pain points
   - ServiceRequest / Adapter / PropertyProvider: more code, is it really useful?
+  - syntaxic / semantic validation is distributed: centralized solution possible?
   - Eclipse / Maven dependencies duplication (integration not ready; is it really useful?)
   - Tomcat restarts on every code change, even JSPs (Jetty? => debug?)
   - Struts2:
     . @ParentPackage duplication in actions
     . confusing use of literals and OGNL/EL expressions in tags
-  - syntaxic / semantic validation is distributed: centralized solution possible?
