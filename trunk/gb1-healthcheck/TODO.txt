@@ -11,9 +11,13 @@ HealthCheck
   - replace time picker with more useable one
   - conversation scope (squeeze a wizard somewhere?)
   - reduce HTML tags (create / reuse Struts2 theme)
+  - upgrade to Struts 2.1
+  - upgrade to Hibernate Core 3.3
 
 . pain points
-  - ServiceRequest / Adapter / PropertyProvider: more code, is it really useful?
+  - ServiceRequest / Adapter / PropertyProvider: lots of code, is it really useful?
+  - transaction-bound EntityManagers require explicit attribute loading (Hydrater) to avoid LazyInitializationExceptions
+  - syntaxic / semantic validation is distributed: centralized solution possible?
   - syntaxic / semantic validation is distributed: centralized solution possible?
   - Eclipse / Maven dependencies duplication (integration not ready; is it really useful?)
   - Tomcat restarts on every code change, even JSPs (Jetty? => debug?)
