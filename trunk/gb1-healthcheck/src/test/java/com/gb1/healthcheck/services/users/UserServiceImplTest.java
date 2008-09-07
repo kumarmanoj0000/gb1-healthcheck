@@ -26,7 +26,6 @@ import com.gb1.healthcheck.domain.users.UserException;
 import com.gb1.healthcheck.domain.users.UserRepository;
 import com.gb1.healthcheck.domain.users.UserValidator;
 import com.gb1.healthcheck.domain.users.Users;
-import com.gb1.healthcheck.services.users.support.UserAssemblerImpl;
 
 public class UserServiceImplTest extends TestCase {
 	public void testRegisterUser() throws UserException {

@@ -22,7 +22,6 @@ import com.gb1.healthcheck.domain.meals.Meals;
 import com.gb1.healthcheck.domain.users.User;
 import com.gb1.healthcheck.domain.users.UserRepository;
 import com.gb1.healthcheck.domain.users.Users;
-import com.gb1.healthcheck.services.meals.support.MealAssembler;
 
 public class MealServiceImplTest extends TestCase {
 	public void testGetMealHistory() {

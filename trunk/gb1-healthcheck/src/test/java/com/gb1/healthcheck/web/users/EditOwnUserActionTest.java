@@ -10,9 +10,9 @@ import org.easymock.EasyMock;
 import com.gb1.healthcheck.domain.users.EmailAlreadyExistsException;
 import com.gb1.healthcheck.domain.users.User;
 import com.gb1.healthcheck.domain.users.Users;
+import com.gb1.healthcheck.services.users.UserAssemblerImpl;
 import com.gb1.healthcheck.services.users.UserService;
 import com.gb1.healthcheck.services.users.UserUpdateRequest;
-import com.gb1.healthcheck.services.users.support.UserAssemblerImpl;
 import com.opensymphony.xwork2.Action;
 
 public class EditOwnUserActionTest extends TestCase {

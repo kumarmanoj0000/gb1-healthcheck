@@ -17,6 +17,7 @@ HealthCheck
   - service interface with domain objects IDs: adds Request / Assembler, is it really necessary? could keep objects in web layer, but what about other clients?
   - transaction-bound EntityManagers require explicit attribute loading (Hydrater) to avoid LazyInitializationExceptions: other solution possible? 
   - syntaxic / semantic validation is distributed: centralized solution possible?
+  - actions still contain lots of code: reduce?
   - Eclipse / Maven dependencies duplication (integration not ready; but is it really useful?)
   - Tomcat restarts on every code change, even JSPs (Jetty? => debug?)
   - Struts2:
