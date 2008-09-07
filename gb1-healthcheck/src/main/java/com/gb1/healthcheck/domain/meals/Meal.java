@@ -30,7 +30,7 @@ import com.gb1.healthcheck.domain.foods.Nutrient;
 import com.gb1.healthcheck.domain.users.User;
 
 @Entity
-public class Meal implements Identifiable, MealCreationPropertyProvider, Serializable {
+public class Meal implements Identifiable, Serializable {
 	@Id
 	@GeneratedValue
 	private Long id;
@@ -61,11 +61,6 @@ public class Meal implements Identifiable, MealCreationPropertyProvider, Seriali
 		this(null, eater, instant);
 	}
 
-	public Meal(MealCreationPropertyProvider propertyProvider) {
-		this(propertyProvider.getEater(), propertyProvider.getInstant());
-		addDishes(propertyProvider.getDishes());
-	}
-
 	public Long getId() {
 		return id;
 	}
@@ -89,25 +84,21 @@ public class Meal implements Identifiable, MealCreationPropertyProvider, Seriali
 		return this;
 	}
 
-	private Meal addDishes(Set<PreparedFood> dishesToAdd) {
-		for (PreparedFood dish : dishesToAdd) {
-			addDish(dish);
-		}
-		return this;
-	}
-
-	private Meal removeDish(PreparedFood dish) {
+	public Meal removeDish(PreparedFood dish) {
 		Validate.notNull(dish);
 		dishes.remove(dish);
 
 		return this;
 	}
 
-	private Meal removeDishes(Set<PreparedFood> dishesToRemove) {
-		for (PreparedFood dish : dishesToRemove) {
-			removeDish(dish);
+	public boolean containsDish(PreparedFood dish) {
+		for (PreparedFood candidate : dishes) {
+			if (candidate.equals(dish)) {
+				return true;
+			}
 		}
-		return this;
+
+		return false;
 	}
 
 	public Set<PreparedFood> getDishes() {
@@ -142,28 +133,6 @@ public class Meal implements Identifiable, MealCreationPropertyProvider, Seriali
 		}
 
 		return false;
-	}
-
-	public void update(MealUpdatePropertyProvider provider) {
-		setInstant(provider.getInstant());
-
-		Set<PreparedFood> dishesToAdd = new HashSet<PreparedFood>();
-		Set<PreparedFood> dishesToRemove = new HashSet<PreparedFood>();
-
-		for (PreparedFood dish : provider.getDishes()) {
-			if (!dishes.contains(dish)) {
-				dishesToAdd.add(dish);
-			}
-		}
-
-		for (PreparedFood dish : dishes) {
-			if (!provider.getDishes().contains(dish)) {
-				dishesToRemove.add(dish);
-			}
-		}
-
-		addDishes(dishesToAdd);
-		removeDishes(dishesToRemove);
 	}
 
 	@Override

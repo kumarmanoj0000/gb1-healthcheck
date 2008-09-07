@@ -22,7 +22,7 @@ import com.gb1.healthcheck.domain.meals.Meals;
 import com.gb1.healthcheck.domain.users.User;
 import com.gb1.healthcheck.domain.users.UserRepository;
 import com.gb1.healthcheck.domain.users.Users;
-import com.gb1.healthcheck.services.meals.support.MealCreationPropertyProviderAdapter;
+import com.gb1.healthcheck.services.meals.support.MealAssembler;
 
 public class MealServiceImplTest extends TestCase {
 	public void testGetMealHistory() {
@@ -92,17 +92,12 @@ public class MealServiceImplTest extends TestCase {
 		EasyMock.expectLastCall();
 		EasyMock.replay(validator);
 
-		final MealCreationPropertyProviderAdapter adapter = new MealCreationPropertyProviderAdapter(
-				createReq);
-		adapter.setUserRepository(userRepo);
+		MealAssembler assembler = EasyMock.createMock(MealAssembler.class);
+		EasyMock.expect(assembler.create(createReq)).andReturn(meal);
+		EasyMock.replay(assembler);
 
-		MealServiceImpl svc = new MealServiceImpl() {
-			@Override
-			protected MealCreationPropertyProviderAdapter createMealCreationPropertyProviderAdapter(
-					MealCreationRequest request) {
-				return adapter;
-			}
-		};
+		MealServiceImpl svc = new MealServiceImpl();
+		svc.setMealAssembler(assembler);
 		svc.setMealRepository(mealRepo);
 		svc.setMealCreationValidator(validator);
 
@@ -129,6 +124,11 @@ public class MealServiceImplTest extends TestCase {
 			}
 		};
 
+		MealAssembler mealAssembler = EasyMock.createMock(MealAssembler.class);
+		mealAssembler.update(oldMeal, updateReq);
+		EasyMock.expectLastCall();
+		EasyMock.replay(mealAssembler);
+
 		MealValidator validator = EasyMock.createMock(MealValidator.class);
 		validator.validate(oldMeal);
 		EasyMock.expectLastCall();
@@ -139,6 +139,7 @@ public class MealServiceImplTest extends TestCase {
 		EasyMock.replay(mealRepo);
 
 		MealServiceImpl svc = new MealServiceImpl();
+		svc.setMealAssembler(mealAssembler);
 		svc.setMealRepository(mealRepo);
 		svc.setMealUpdateValidator(validator);
 

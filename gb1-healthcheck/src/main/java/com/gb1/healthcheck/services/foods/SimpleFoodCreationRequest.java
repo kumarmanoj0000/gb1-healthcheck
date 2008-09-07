@@ -1,6 +1,14 @@
 package com.gb1.healthcheck.services.foods;
 
-import com.gb1.healthcheck.domain.foods.SimpleFoodCreationPropertyProvider;
+import java.util.Set;
 
-public interface SimpleFoodCreationRequest extends SimpleFoodCreationPropertyProvider {
+import com.gb1.healthcheck.domain.foods.FoodGroup;
+import com.gb1.healthcheck.domain.foods.Nutrient;
+
+public interface SimpleFoodCreationRequest {
+	String getName();
+
+	FoodGroup getFoodGroup();
+
+	Set<Nutrient> getNutrients();
 }

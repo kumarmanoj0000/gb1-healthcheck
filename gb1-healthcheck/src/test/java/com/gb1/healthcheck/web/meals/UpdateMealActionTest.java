@@ -12,7 +12,6 @@ import com.gb1.healthcheck.services.meals.MealService;
 import com.opensymphony.xwork2.Action;
 
 public class UpdateMealActionTest extends TestCase {
-	@SuppressWarnings("unchecked")
 	public void testInput() {
 		Meal dinner = Meals.fullItalianDinner();
 
@@ -33,7 +32,6 @@ public class UpdateMealActionTest extends TestCase {
 		assertEquals(dinner.getInstant(), action.getModel().getInstant());
 	}
 
-	@SuppressWarnings("unchecked")
 	public void testUpdate() throws Exception {
 		Meal meal = Meals.fullItalianDinner();
 		BasicMealUpdateRequest model = new BasicMealUpdateRequest(meal);
@@ -52,7 +50,6 @@ public class UpdateMealActionTest extends TestCase {
 		EasyMock.verify(mealSvc);
 	}
 
-	@SuppressWarnings("unchecked")
 	public void testUpdateWithErrors() throws MealException {
 		Meal meal = Meals.fullItalianDinner();
 		BasicMealUpdateRequest model = new BasicMealUpdateRequest(meal);

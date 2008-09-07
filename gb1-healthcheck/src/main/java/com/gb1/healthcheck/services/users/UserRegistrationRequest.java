@@ -1,6 +1,15 @@
 package com.gb1.healthcheck.services.users;
 
-import com.gb1.healthcheck.domain.users.UserCreationPropertyProvider;
+import java.util.Set;
 
-public interface UserRegistrationRequest extends UserCreationPropertyProvider {
+import com.gb1.healthcheck.domain.users.Role;
+
+public interface UserRegistrationRequest {
+	String getLogin();
+
+	String getEmail();
+
+	String getPassword();
+
+	Set<Role> getRoles();
 }

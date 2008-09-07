@@ -14,7 +14,7 @@ import org.hibernate.annotations.CollectionOfElements;
 
 @Entity
 @DiscriminatorValue("S")
-public class SimpleFood extends Food implements SimpleFoodCreationPropertyProvider {
+public class SimpleFood extends Food {
 	@Column(name = "FOOD_GROUP")
 	private FoodGroup foodGroup;
 
@@ -28,6 +28,10 @@ public class SimpleFood extends Food implements SimpleFoodCreationPropertyProvid
 		super("");
 	}
 
+	SimpleFood(Long id, String name) {
+		this(id, name, FoodGroup.OTHERS);
+	}
+
 	SimpleFood(Long id, String name, FoodGroup foodGroup) {
 		this(name, foodGroup);
 		setId(id);
@@ -35,19 +39,20 @@ public class SimpleFood extends Food implements SimpleFoodCreationPropertyProvid
 
 	public SimpleFood(String name, FoodGroup foodGroup) {
 		super(name);
-		setFoodGroup(foodGroup);
+		this.foodGroup = foodGroup;
 	}
 
-	public SimpleFood(SimpleFoodCreationPropertyProvider pp) {
-		this(pp.getName(), pp.getFoodGroup());
-		setNutrients(pp.getNutrients());
+	public SimpleFood(SimpleFood source) {
+		super(source.getName());
+		foodGroup = source.getFoodGroup();
+		nutrients.addAll(source.getNutrients());
 	}
 
 	public FoodGroup getFoodGroup() {
 		return foodGroup;
 	}
 
-	protected SimpleFood setFoodGroup(FoodGroup foodGroup) {
+	public SimpleFood setFoodGroup(FoodGroup foodGroup) {
 		this.foodGroup = foodGroup;
 		return this;
 	}
@@ -68,6 +73,11 @@ public class SimpleFood extends Food implements SimpleFoodCreationPropertyProvid
 		return this;
 	}
 
+	public SimpleFood clearNutrients() {
+		nutrients.clear();
+		return this;
+	}
+
 	@Override
 	public Set<Nutrient> getNutrients() {
 		return Collections.unmodifiableSet(nutrients);
@@ -76,17 +86,5 @@ public class SimpleFood extends Food implements SimpleFoodCreationPropertyProvid
 	@Override
 	public boolean isSourceOfNutrient(Nutrient nutrient) {
 		return nutrients.contains(nutrient);
-	}
-
-	private SimpleFood setNutrients(Set<Nutrient> nutrients) {
-		this.nutrients.clear();
-		this.nutrients.addAll(nutrients);
-		return this;
-	}
-
-	public void update(SimpleFoodUpdatePropertyProvider propertyProvider) {
-		setName(propertyProvider.getName());
-		setFoodGroup(propertyProvider.getFoodGroup());
-		setNutrients(propertyProvider.getNutrients());
 	}
 }

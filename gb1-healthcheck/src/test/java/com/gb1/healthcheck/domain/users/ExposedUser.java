@@ -12,10 +12,6 @@ public class ExposedUser extends User {
 	public ExposedUser() {
 	}
 
-	public ExposedUser(UserCreationPropertyProvider pp) {
-		super(pp);
-	}
-
 	@Override
 	public Long getId() {
 		return super.getId();

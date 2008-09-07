@@ -19,6 +19,7 @@ import com.gb1.healthcheck.domain.users.UserActivationRequester;
 import com.gb1.healthcheck.domain.users.UserException;
 import com.gb1.healthcheck.domain.users.UserRepository;
 import com.gb1.healthcheck.domain.users.UserValidator;
+import com.gb1.healthcheck.services.users.support.UserAssembler;
 
 /**
  * The default implementation of the user service.
@@ -29,6 +30,7 @@ import com.gb1.healthcheck.domain.users.UserValidator;
 @Transactional(rollbackFor = { RuntimeException.class, UserException.class })
 public class UserServiceImpl implements UserService {
 	private UserRepository userRepository;
+	private UserAssembler userAssembler;
 	private UserValidator userCreationValidator;
 	private UserValidator userUpdateValidator;
 
@@ -40,7 +42,7 @@ public class UserServiceImpl implements UserService {
 	}
 
 	public UserActivationRequest registerUser(UserRegistrationRequest request) throws UserException {
-		User user = new User(request);
+		User user = userAssembler.create(request);
 		userCreationValidator.validate(user);
 		UserActivationRequest actRequest = userActivationRequester.requestUserActivation(user);
 		userRepository.saveUser(actRequest.getPendingUser());
@@ -66,7 +68,7 @@ public class UserServiceImpl implements UserService {
 			throw new UnknownUserException();
 		}
 
-		user.update(request);
+		userAssembler.update(user, request);
 		userUpdateValidator.validate(user);
 
 		return user;
@@ -121,6 +123,11 @@ public class UserServiceImpl implements UserService {
 	@Resource
 	public void setUserRepository(UserRepository userRepo) {
 		this.userRepository = userRepo;
+	}
+
+	@Resource
+	public void setUserAssembler(UserAssembler userAssembler) {
+		this.userAssembler = userAssembler;
 	}
 
 	@Resource
