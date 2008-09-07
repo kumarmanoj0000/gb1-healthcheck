@@ -26,10 +26,11 @@ import com.gb1.healthcheck.domain.users.UserException;
 import com.gb1.healthcheck.domain.users.UserRepository;
 import com.gb1.healthcheck.domain.users.UserValidator;
 import com.gb1.healthcheck.domain.users.Users;
+import com.gb1.healthcheck.services.users.support.UserAssemblerImpl;
 
 public class UserServiceImplTest extends TestCase {
 	public void testRegisterUser() throws UserException {
-		UserRegistrationRequest regRequest = new UserRegistrationRequest() {
+		UserRegistrationRequest request = new UserRegistrationRequest() {
 			public Set<Role> getRoles() {
 				return Collections.emptySet();
 			}
@@ -51,7 +52,7 @@ public class UserServiceImplTest extends TestCase {
 		validator.validate(EasyMock.isA(User.class));
 		EasyMock.replay(validator);
 
-		User expectedUser = new ExposedUser(regRequest);
+		User expectedUser = new User(request.getLogin(), request.getEmail(), request.getPassword());
 		UserActivationRequest expectedActRequest = new UserActivationRequest(expectedUser, null);
 
 		UserActivationRequester requester = EasyMock.createMock(UserActivationRequester.class);
@@ -64,11 +65,12 @@ public class UserServiceImplTest extends TestCase {
 		EasyMock.replay(repo);
 
 		UserServiceImpl svc = new UserServiceImpl();
+		svc.setUserAssembler(new UserAssemblerImpl());
 		svc.setUserRepository(repo);
 		svc.setUserActivationRequester(requester);
 		svc.setUserCreationValidator(validator);
 
-		UserActivationRequest actRequest = svc.registerUser(regRequest);
+		UserActivationRequest actRequest = svc.registerUser(request);
 
 		// make sure that the user was validated and saved, and that the activation request was sent
 		assertEquals(expectedActRequest, actRequest);
@@ -98,6 +100,7 @@ public class UserServiceImplTest extends TestCase {
 		EasyMock.replay(userRepo);
 
 		UserServiceImpl svc = new UserServiceImpl();
+		svc.setUserAssembler(new UserAssemblerImpl());
 		svc.setUserRepository(userRepo);
 
 		try {
@@ -139,6 +142,7 @@ public class UserServiceImplTest extends TestCase {
 		EasyMock.replay(userRepo);
 
 		UserServiceImpl svc = new UserServiceImpl();
+		svc.setUserAssembler(new UserAssemblerImpl());
 		svc.setUserRepository(userRepo);
 		svc.setUserUpdateValidator(validator);
 

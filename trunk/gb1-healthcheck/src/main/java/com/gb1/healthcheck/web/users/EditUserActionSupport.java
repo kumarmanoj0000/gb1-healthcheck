@@ -9,7 +9,6 @@ import org.apache.struts2.interceptor.SessionAware;
 import com.gb1.healthcheck.domain.users.EmailAlreadyExistsException;
 import com.gb1.healthcheck.domain.users.User;
 import com.gb1.healthcheck.domain.users.UserException;
-import com.gb1.healthcheck.domain.users.UserUpdatePropertyProvider;
 import com.gb1.healthcheck.services.users.UserService;
 import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionSupport;
@@ -63,7 +62,7 @@ public abstract class EditUserActionSupport extends ActionSupport implements Ses
 	}
 
 	@SuppressWarnings("unused")
-	protected void updateActiveUserIfNecessary(UserUpdatePropertyProvider updateReq) {
+	protected void updateActiveUserIfNecessary(BasicUserUpdateRequest updateReq) {
 	}
 
 	public String cancel() {

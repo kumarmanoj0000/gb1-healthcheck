@@ -13,7 +13,7 @@ import org.apache.commons.lang.Validate;
 
 @Entity
 @DiscriminatorValue("C")
-public class ComplexFood extends Food implements ComplexFoodCreationPropertyProvider {
+public class ComplexFood extends Food {
 	@ManyToMany
 	@JoinTable(name = "FOOD_INGREDIENTS")
 	private Set<Food> ingredients = new HashSet<Food>();
@@ -32,11 +32,6 @@ public class ComplexFood extends Food implements ComplexFoodCreationPropertyProv
 	protected ComplexFood(Long id, String name) {
 		super(name);
 		setId(id);
-	}
-
-	public ComplexFood(ComplexFoodCreationPropertyProvider propertyProvider) {
-		super(propertyProvider.getName());
-		setIngredients(propertyProvider.getIngredients());
 	}
 
 	public ComplexFood addIngredient(Food ingredient) {
@@ -63,13 +58,13 @@ public class ComplexFood extends Food implements ComplexFoodCreationPropertyProv
 		return false;
 	}
 
-	public Set<Food> getIngredients() {
-		return Collections.unmodifiableSet(ingredients);
+	public ComplexFood clearIngredients() {
+		ingredients.clear();
+		return this;
 	}
 
-	private void setIngredients(Set<Food> ingredients) {
-		this.ingredients.clear();
-		this.ingredients.addAll(ingredients);
+	public Set<Food> getIngredients() {
+		return Collections.unmodifiableSet(ingredients);
 	}
 
 	@Override
@@ -101,10 +96,5 @@ public class ComplexFood extends Food implements ComplexFoodCreationPropertyProv
 		}
 
 		return false;
-	}
-
-	public void update(ComplexFoodUpdatePropertyProvider propertyProvider) {
-		setName(propertyProvider.getName());
-		setIngredients(propertyProvider.getIngredients());
 	}
 }

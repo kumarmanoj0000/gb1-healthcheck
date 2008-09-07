@@ -1,6 +1,5 @@
 package com.gb1.healthcheck.domain.users;
 
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -43,23 +42,8 @@ public class JpaUserRepositoryTest extends BaseRepositoryTestCase {
 	}
 
 	public void testSaveUser() {
-		User u = new User(new UserCreationPropertyProvider() {
-			public String getLogin() {
-				return "login";
-			}
-
-			public String getPassword() {
-				return "1";
-			}
-
-			public String getEmail() {
-				return "email";
-			}
-
-			public Set<Role> getRoles() {
-				return Collections.singleton(Role.ADMINISTRATOR);
-			}
-		});
+		User u = new User("login", "email", "1");
+		u.assignRole(Role.ADMINISTRATOR);
 
 		userRepo.saveUser(u);
 		assertEquals(u, userRepo.loadUser(u.getId()));

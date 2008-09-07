@@ -12,6 +12,7 @@ import com.gb1.healthcheck.domain.users.User;
 import com.gb1.healthcheck.domain.users.Users;
 import com.gb1.healthcheck.services.users.UserService;
 import com.gb1.healthcheck.services.users.UserUpdateRequest;
+import com.gb1.healthcheck.services.users.support.UserAssemblerImpl;
 import com.opensymphony.xwork2.Action;
 
 public class EditOwnUserActionTest extends TestCase {
@@ -32,15 +33,16 @@ public class EditOwnUserActionTest extends TestCase {
 		request.setEmail("newEmail@yahoo.com");
 
 		Map<String, Object> sessionMap = new HashMap<String, Object>();
-		sessionMap.put(EditOwnUserAction.MODEL_SESSION_KEY, request);
+		sessionMap.put(EditUserActionSupport.MODEL_SESSION_KEY, request);
 
 		UserService userSvc = EasyMock.createMock(UserService.class);
 		EasyMock.expect(userSvc.updateUser(request)).andReturn(user);
 		EasyMock.replay(userSvc);
 
 		EditOwnUserAction action = new EditOwnUserAction();
-		action.setRequester(user);
+		action.setUserAssembler(new UserAssemblerImpl());
 		action.setUserService(userSvc);
+		action.setRequester(user);
 		action.setSession(sessionMap);
 
 		assertEquals(Action.SUCCESS, action.execute());
@@ -58,7 +60,7 @@ public class EditOwnUserActionTest extends TestCase {
 		UserUpdateRequest request = new BasicUserUpdateRequest(user);
 
 		Map<String, Object> sessionMap = new HashMap<String, Object>();
-		sessionMap.put(EditOwnUserAction.MODEL_SESSION_KEY, request);
+		sessionMap.put(EditUserActionSupport.MODEL_SESSION_KEY, request);
 
 		UserService userSvc = EasyMock.createMock(UserService.class);
 		EasyMock.expect(userSvc.updateUser(request)).andThrow(
@@ -72,6 +74,6 @@ public class EditOwnUserActionTest extends TestCase {
 
 		assertEquals(Action.INPUT, action.execute());
 		assertNotNull(action.getFieldErrors().get("model.email"));
-		assertTrue(sessionMap.containsKey(EditOwnUserAction.MODEL_SESSION_KEY));
+		assertTrue(sessionMap.containsKey(EditUserActionSupport.MODEL_SESSION_KEY));
 	}
 }

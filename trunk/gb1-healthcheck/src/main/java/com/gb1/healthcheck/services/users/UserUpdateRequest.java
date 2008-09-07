@@ -1,7 +1,13 @@
 package com.gb1.healthcheck.services.users;
 
-import com.gb1.healthcheck.domain.users.UserUpdatePropertyProvider;
+import java.util.Set;
 
-public interface UserUpdateRequest extends UserUpdatePropertyProvider {
+import com.gb1.healthcheck.domain.users.Role;
+
+public interface UserUpdateRequest {
 	Long getUserId();
+
+	String getEmail();
+
+	Set<Role> getRoles();
 }

@@ -32,7 +32,6 @@ public class JpaFoodRepository implements FoodRepository {
 		return entityManager.find(ComplexFood.class, foodId);
 	}
 
-	@SuppressWarnings("unchecked")
 	public Food findFoodByName(String name) {
 		List<Food> foods = findFoodsByName(name);
 

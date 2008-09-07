@@ -39,7 +39,7 @@ import com.gb1.commons.tokens.Token;
  */
 @Entity
 @Configurable
-public class User implements Identifiable, UserUpdatePropertyProvider, Serializable {
+public class User implements Identifiable, Serializable {
 	/**
 	 * The user's identifier
 	 */
@@ -98,15 +98,10 @@ public class User implements Identifiable, UserUpdatePropertyProvider, Serializa
 		this.password = password;
 	}
 
-	/**
-	 * Creates a new user based on the properties provided by the property provider.
-	 * 
-	 * @param propertyProvider The user property provider
-	 */
-	public User(UserCreationPropertyProvider pp) {
-		this(pp.getLogin(), pp.getEmail(), pp.getPassword());
+	public User(User source) {
+		this(source.getLogin(), source.getEmail(), source.getPassword());
 
-		for (Role role : pp.getRoles()) {
+		for (Role role : source.getRoles()) {
 			roles.add(role);
 		}
 	}
@@ -158,8 +153,8 @@ public class User implements Identifiable, UserUpdatePropertyProvider, Serializa
 
 	/**
 	 * Sets the user's new password. <p/> Normally the password should be changed through the
-	 * <code>changePassword(String, String)</code> method that provides additional security
-	 * checks. This method is meant to be overriden by unit tests.
+	 * <code>changePassword(String, String)</code> method that provides additional security checks.
+	 * This method is meant to be overriden by unit tests.
 	 * 
 	 * @param password The user's new password
 	 */
@@ -328,13 +323,8 @@ public class User implements Identifiable, UserUpdatePropertyProvider, Serializa
 		return roles.contains(role);
 	}
 
-	/**
-	 * Updates the current user based on the given property provider.
-	 * 
-	 * @param pp The update property provider
-	 */
-	public void update(UserUpdatePropertyProvider pp) {
-		setEmail(pp.getEmail());
+	public void relieveFromAllRoles() {
+		roles.clear();
 	}
 
 	@Resource

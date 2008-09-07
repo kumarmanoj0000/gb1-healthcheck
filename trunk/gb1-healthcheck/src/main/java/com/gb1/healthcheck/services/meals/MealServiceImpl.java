@@ -15,13 +15,13 @@ import com.gb1.healthcheck.domain.meals.MealInactivityNotifier;
 import com.gb1.healthcheck.domain.meals.MealRepository;
 import com.gb1.healthcheck.domain.meals.MealValidator;
 import com.gb1.healthcheck.domain.users.User;
-import com.gb1.healthcheck.services.meals.support.MealCreationPropertyProviderAdapter;
-import com.gb1.healthcheck.services.meals.support.MealUpdatePropertyProviderAdapter;
+import com.gb1.healthcheck.services.meals.support.MealAssembler;
 
 @Service("mealService")
 @Transactional(rollbackFor = { RuntimeException.class, MealException.class })
 public class MealServiceImpl implements MealService {
 	private MealRepository mealRepo;
+	private MealAssembler mealAssembler;
 	private MealValidator mealCreationValidator;
 	private MealValidator mealUpdateValidator;
 	private MealInactivityNotifier mealInactivityNotifier;
@@ -44,19 +44,14 @@ public class MealServiceImpl implements MealService {
 	}
 
 	public void createMeal(MealCreationRequest request) throws MealException {
-		Meal meal = new Meal(createMealCreationPropertyProviderAdapter(request));
+		Meal meal = mealAssembler.create(request);
 		mealCreationValidator.validate(meal);
 		mealRepo.saveMeal(meal);
 	}
 
-	protected MealCreationPropertyProviderAdapter createMealCreationPropertyProviderAdapter(
-			MealCreationRequest request) {
-		return new MealCreationPropertyProviderAdapter(request);
-	}
-
 	public void updateMeal(MealUpdateRequest request) throws MealException {
 		Meal meal = mealRepo.loadMeal(request.getMealId());
-		meal.update(new MealUpdatePropertyProviderAdapter(request));
+		mealAssembler.update(meal, request);
 		mealUpdateValidator.validate(meal);
 	}
 
@@ -71,6 +66,11 @@ public class MealServiceImpl implements MealService {
 	@Resource
 	public void setMealRepository(MealRepository mealRepo) {
 		this.mealRepo = mealRepo;
+	}
+
+	@Resource
+	public void setMealAssembler(MealAssembler mealAssembler) {
+		this.mealAssembler = mealAssembler;
 	}
 
 	@Resource

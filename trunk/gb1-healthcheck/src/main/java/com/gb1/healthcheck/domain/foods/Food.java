@@ -44,7 +44,7 @@ public abstract class Food implements Identifiable, Serializable {
 		return name;
 	}
 
-	protected Food setName(String name) {
+	public Food setName(String name) {
 		Validate.notNull(name);
 		this.name = name;
 

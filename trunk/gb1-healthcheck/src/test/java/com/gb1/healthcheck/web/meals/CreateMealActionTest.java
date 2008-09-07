@@ -46,7 +46,6 @@ public class CreateMealActionTest extends TestCase {
 		assertEquals(Action.SUCCESS, action.cancel());
 	}
 
-	@SuppressWarnings("unchecked")
 	public void testPrepare() {
 		CreateMealAction action = new CreateMealAction();
 		action.setFoodService(foodService);

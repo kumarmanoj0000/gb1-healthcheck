@@ -15,15 +15,18 @@ import com.gb1.healthcheck.domain.foods.FoodRepository;
 import com.gb1.healthcheck.domain.foods.SimpleFood;
 import com.gb1.healthcheck.domain.foods.SimpleFoodValidator;
 import com.gb1.healthcheck.domain.meals.MealException;
-import com.gb1.healthcheck.services.foods.support.ComplexFoodCreationPropertyProviderAdapter;
-import com.gb1.healthcheck.services.foods.support.ComplexFoodUpdatePropertyProviderAdapter;
+import com.gb1.healthcheck.services.foods.support.ComplexFoodAssembler;
+import com.gb1.healthcheck.services.foods.support.SimpleFoodAssembler;
 
 @Service("foodService")
 @Transactional(rollbackFor = { RuntimeException.class, MealException.class })
 public class FoodServiceImpl implements FoodService {
 	private FoodRepository foodRepo;
+
+	private SimpleFoodAssembler simpleFoodAssembler;
 	private SimpleFoodValidator simpleFoodCreationValidator;
 	private SimpleFoodValidator simpleFoodUpdateValidator;
+	private ComplexFoodAssembler complexFoodAssembler;
 	private ComplexFoodValidator complexFoodCreationValidator;
 	private ComplexFoodValidator complexFoodUpdateValidator;
 
@@ -59,38 +62,27 @@ public class FoodServiceImpl implements FoodService {
 	}
 
 	public void createSimpleFood(SimpleFoodCreationRequest request) throws FoodException {
-		SimpleFood food = new SimpleFood(request);
+		SimpleFood food = simpleFoodAssembler.create(request);
 		simpleFoodCreationValidator.validate(food);
 		foodRepo.saveFood(food);
 	}
 
 	public void createComplexFood(ComplexFoodCreationRequest request) throws FoodException {
-		ComplexFood food = new ComplexFood(
-				createComplexFoodCreationPropertyProviderAdapter(request));
+		ComplexFood food = complexFoodAssembler.create(request);
 		complexFoodCreationValidator.validate(food);
 		foodRepo.saveFood(food);
 	}
 
-	protected ComplexFoodCreationPropertyProviderAdapter createComplexFoodCreationPropertyProviderAdapter(
-			ComplexFoodCreationRequest request) {
-		return new ComplexFoodCreationPropertyProviderAdapter(request);
-	}
-
 	public void updateSimpleFood(SimpleFoodUpdateRequest request) throws FoodException {
 		SimpleFood food = foodRepo.loadSimpleFood(request.getFoodId());
-		food.update(request);
+		simpleFoodAssembler.update(food, request);
 		simpleFoodUpdateValidator.validate(food);
 	}
 
 	public void updateComplexFood(ComplexFoodUpdateRequest request) throws FoodException {
 		ComplexFood food = foodRepo.loadComplexFood(request.getFoodId());
-		food.update(createComplexFoodUpdatePropertyProviderAdapter(request));
+		complexFoodAssembler.update(food, request);
 		complexFoodUpdateValidator.validate(food);
-	}
-
-	protected ComplexFoodUpdatePropertyProviderAdapter createComplexFoodUpdatePropertyProviderAdapter(
-			ComplexFoodUpdateRequest request) {
-		return new ComplexFoodUpdatePropertyProviderAdapter(request);
 	}
 
 	public void deleteFoods(Set<Long> foodIds) {
@@ -103,6 +95,11 @@ public class FoodServiceImpl implements FoodService {
 	}
 
 	@Resource
+	public void setSimpleFoodAssembler(SimpleFoodAssembler simpleFoodAssembler) {
+		this.simpleFoodAssembler = simpleFoodAssembler;
+	}
+
+	@Resource
 	public void setSimpleFoodCreationValidator(SimpleFoodValidator validator) {
 		this.simpleFoodCreationValidator = validator;
 	}
@@ -110,6 +107,11 @@ public class FoodServiceImpl implements FoodService {
 	@Resource
 	public void setSimpleFoodUpdateValidator(SimpleFoodValidator validator) {
 		this.simpleFoodUpdateValidator = validator;
+	}
+
+	@Resource
+	public void setComplexFoodAssembler(ComplexFoodAssembler complexFoodAssembler) {
+		this.complexFoodAssembler = complexFoodAssembler;
 	}
 
 	@Resource
