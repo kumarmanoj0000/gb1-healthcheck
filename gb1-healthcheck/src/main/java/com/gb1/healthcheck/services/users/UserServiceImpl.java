@@ -19,7 +19,6 @@ import com.gb1.healthcheck.domain.users.UserActivationRequester;
 import com.gb1.healthcheck.domain.users.UserException;
 import com.gb1.healthcheck.domain.users.UserRepository;
 import com.gb1.healthcheck.domain.users.UserValidator;
-import com.gb1.healthcheck.services.users.support.UserAssembler;
 
 /**
  * The default implementation of the user service.

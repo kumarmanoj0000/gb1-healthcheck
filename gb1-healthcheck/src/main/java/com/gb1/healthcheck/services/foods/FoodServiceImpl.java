@@ -15,8 +15,6 @@ import com.gb1.healthcheck.domain.foods.FoodRepository;
 import com.gb1.healthcheck.domain.foods.SimpleFood;
 import com.gb1.healthcheck.domain.foods.SimpleFoodValidator;
 import com.gb1.healthcheck.domain.meals.MealException;
-import com.gb1.healthcheck.services.foods.support.ComplexFoodAssembler;
-import com.gb1.healthcheck.services.foods.support.SimpleFoodAssembler;
 
 @Service("foodService")
 @Transactional(rollbackFor = { RuntimeException.class, MealException.class })

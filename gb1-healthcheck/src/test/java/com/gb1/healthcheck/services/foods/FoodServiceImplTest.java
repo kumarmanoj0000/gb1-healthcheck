@@ -18,8 +18,6 @@ import com.gb1.healthcheck.domain.foods.Foods;
 import com.gb1.healthcheck.domain.foods.Nutrient;
 import com.gb1.healthcheck.domain.foods.SimpleFood;
 import com.gb1.healthcheck.domain.foods.SimpleFoodValidator;
-import com.gb1.healthcheck.services.foods.support.ComplexFoodAssembler;
-import com.gb1.healthcheck.services.foods.support.SimpleFoodAssembler;
 
 public class FoodServiceImplTest extends TestCase {
 	public void testGetSimpleFoods() {

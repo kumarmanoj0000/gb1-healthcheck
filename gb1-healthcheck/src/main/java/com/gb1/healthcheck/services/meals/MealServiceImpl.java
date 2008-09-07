@@ -15,7 +15,6 @@ import com.gb1.healthcheck.domain.meals.MealInactivityNotifier;
 import com.gb1.healthcheck.domain.meals.MealRepository;
 import com.gb1.healthcheck.domain.meals.MealValidator;
 import com.gb1.healthcheck.domain.users.User;
-import com.gb1.healthcheck.services.meals.support.MealAssembler;
 
 @Service("mealService")
 @Transactional(rollbackFor = { RuntimeException.class, MealException.class })
