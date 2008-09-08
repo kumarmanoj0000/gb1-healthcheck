@@ -27,7 +27,7 @@ public class I18nUtils {
 		Locale result = null;
 		ValueStack stack = ActionContext.getContext().getValueStack();
 
-		for (Iterator it = stack.getRoot().iterator(); it.hasNext();) {
+		for (Iterator<?> it = stack.getRoot().iterator(); it.hasNext();) {
 			Object o = it.next();
 
 			if (o instanceof LocaleProvider) {
@@ -50,7 +50,7 @@ public class I18nUtils {
 		String key = (resourceKey != null) ? resourceKey : defaultValue;
 
 		OgnlValueStack stack = (OgnlValueStack) TagUtils.getStack(pageContext);
-		for (Iterator it = stack.getRoot().iterator(); it.hasNext();) {
+		for (Iterator<?> it = stack.getRoot().iterator(); it.hasNext();) {
 			Object o = it.next();
 
 			if (o instanceof TextProvider) {
