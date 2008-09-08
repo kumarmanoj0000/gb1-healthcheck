@@ -61,7 +61,6 @@ public abstract class EditUserActionSupport extends ActionSupport implements Ses
 		return result;
 	}
 
-	@SuppressWarnings("unused")
 	protected void updateActiveUserIfNecessary(BasicUserUpdateRequest updateReq) {
 	}
 
