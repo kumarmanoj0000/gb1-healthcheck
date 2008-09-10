@@ -14,7 +14,7 @@ public class ComplexFoodAssemblerImpl implements ComplexFoodAssembler {
 	public ComplexFoodAssemblerImpl() {
 	}
 
-	public ComplexFood create(ComplexFoodCreationRequest request) {
+	public ComplexFood createComplexFood(ComplexFoodCreationRequest request) {
 		ComplexFood food = new ComplexFood(request.getName());
 		for (Long ingredientId : request.getIngredientIds()) {
 			food.addIngredient(foodRepo.loadFood(ingredientId));
@@ -23,7 +23,7 @@ public class ComplexFoodAssemblerImpl implements ComplexFoodAssembler {
 		return food;
 	}
 
-	public void update(ComplexFood food, ComplexFoodUpdateRequest request) {
+	public void updateComplexFood(ComplexFood food, ComplexFoodUpdateRequest request) {
 		food.setName(request.getName());
 
 		food.clearIngredients();

@@ -70,7 +70,7 @@ public class MealAssemblerImplTest extends TestCase {
 		assembler.setFoodRepository(foodRepo);
 		assembler.setUserRepository(userRepo);
 
-		Meal meal = assembler.create(request);
+		Meal meal = assembler.createMeal(request);
 		assertEquals(eater, meal.getEater());
 		assertEquals(request.getInstant(), meal.getInstant());
 		assertTrue(CollectionUtils.isEqualCollection(dishes.values(), meal.getDishes()));
@@ -120,7 +120,7 @@ public class MealAssemblerImplTest extends TestCase {
 
 		MealAssemblerImpl assembler = new MealAssemblerImpl();
 		assembler.setFoodRepository(foodRepo);
-		assembler.update(meal, request);
+		assembler.updateMeal(meal, request);
 
 		assertEquals(request.getInstant(), meal.getInstant());
 		assertTrue(CollectionUtils.isEqualCollection(dishes.values(), meal.getDishes()));

@@ -10,7 +10,7 @@ public class SimpleFoodAssemblerImpl implements SimpleFoodAssembler {
 	public SimpleFoodAssemblerImpl() {
 	}
 
-	public SimpleFood create(SimpleFoodCreationRequest request) {
+	public SimpleFood createSimpleFood(SimpleFoodCreationRequest request) {
 		SimpleFood food = new SimpleFood(request.getName(), request.getFoodGroup());
 		for (Nutrient n : request.getNutrients()) {
 			food.addNutrient(n);
@@ -19,7 +19,7 @@ public class SimpleFoodAssemblerImpl implements SimpleFoodAssembler {
 		return food;
 	}
 
-	public void update(SimpleFood food, SimpleFoodUpdateRequest request) {
+	public void updateSimpleFood(SimpleFood food, SimpleFoodUpdateRequest request) {
 		food.setName(request.getName());
 		food.setFoodGroup(request.getFoodGroup());
 

@@ -31,7 +31,7 @@ public class UserAssemblerImplTest extends TestCase {
 		};
 
 		UserAssemblerImpl assembler = new UserAssemblerImpl();
-		User user = assembler.create(request);
+		User user = assembler.createUser(request);
 
 		assertEquals(request.getLogin(), user.getLogin());
 		assertEquals(request.getEmail(), user.getEmail());
@@ -58,7 +58,7 @@ public class UserAssemblerImplTest extends TestCase {
 		};
 
 		UserAssemblerImpl assembler = new UserAssemblerImpl();
-		assembler.update(user, request);
+		assembler.updateMeal(user, request);
 
 		assertEquals("login", user.getLogin());
 		assertEquals(request.getEmail(), user.getEmail());

@@ -21,7 +21,7 @@ public class MealAssemblerImpl implements MealAssembler {
 	public MealAssemblerImpl() {
 	}
 
-	public Meal create(MealCreationRequest request) {
+	public Meal createMeal(MealCreationRequest request) {
 		User eater = userRepo.loadUser(request.getEaterId());
 		Meal meal = new Meal(eater, request.getInstant());
 
@@ -34,7 +34,7 @@ public class MealAssemblerImpl implements MealAssembler {
 		return meal;
 	}
 
-	public void update(Meal meal, MealUpdateRequest request) {
+	public void updateMeal(Meal meal, MealUpdateRequest request) {
 		meal.setInstant(request.getInstant());
 
 		Set<PreparedFood> requestDishes = assembleDishes(request);

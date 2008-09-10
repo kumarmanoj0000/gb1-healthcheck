@@ -41,7 +41,7 @@ public class UserServiceImpl implements UserService {
 	}
 
 	public UserActivationRequest registerUser(UserRegistrationRequest request) throws UserException {
-		User user = userAssembler.create(request);
+		User user = userAssembler.createUser(request);
 		userCreationValidator.validate(user);
 		UserActivationRequest actRequest = userActivationRequester.requestUserActivation(user);
 		userRepository.saveUser(actRequest.getPendingUser());
@@ -67,7 +67,7 @@ public class UserServiceImpl implements UserService {
 			throw new UnknownUserException();
 		}
 
-		userAssembler.update(user, request);
+		userAssembler.updateMeal(user, request);
 		userUpdateValidator.validate(user);
 
 		return user;

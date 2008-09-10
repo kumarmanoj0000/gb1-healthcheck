@@ -3,7 +3,7 @@ package com.gb1.healthcheck.services.foods;
 import com.gb1.healthcheck.domain.foods.ComplexFood;
 
 public interface ComplexFoodAssembler {
-	ComplexFood create(ComplexFoodCreationRequest request);
+	ComplexFood createComplexFood(ComplexFoodCreationRequest request);
 
-	void update(ComplexFood food, ComplexFoodUpdateRequest request);
+	void updateComplexFood(ComplexFood food, ComplexFoodUpdateRequest request);
 }
