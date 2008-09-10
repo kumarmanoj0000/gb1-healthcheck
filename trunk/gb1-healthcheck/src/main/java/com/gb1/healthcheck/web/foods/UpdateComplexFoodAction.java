@@ -31,7 +31,7 @@ public class UpdateComplexFoodAction extends ComplexFoodActionSupport implements
 
 	@Override
 	public String input() {
-		ComplexFood food = getFoodService().loadComplexFood(getFoodId(),
+		ComplexFood food = getFoodService().getComplexFood(getFoodId(),
 				new FullComplexFoodHydrater());
 		BasicComplexFoodUpdateRequest model = new BasicComplexFoodUpdateRequest(food);
 		session.put(MODEL_SESSION_KEY, model);

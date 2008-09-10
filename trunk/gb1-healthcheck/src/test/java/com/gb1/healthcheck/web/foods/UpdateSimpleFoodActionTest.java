@@ -24,7 +24,7 @@ public class UpdateSimpleFoodActionTest extends TestCase {
 		final SimpleFood apple = Foods.apple();
 
 		FoodService foodSvc = EasyMock.createMock(FoodService.class);
-		EasyMock.expect(foodSvc.loadSimpleFood(foodId)).andReturn(apple);
+		EasyMock.expect(foodSvc.getSimpleFood(foodId)).andReturn(apple);
 		EasyMock.replay(foodSvc);
 
 		UpdateSimpleFoodAction action = new UpdateSimpleFoodAction();

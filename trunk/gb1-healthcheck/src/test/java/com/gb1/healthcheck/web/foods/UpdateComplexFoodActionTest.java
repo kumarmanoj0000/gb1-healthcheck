@@ -25,7 +25,7 @@ public class UpdateComplexFoodActionTest extends TestCase {
 
 		FoodService foodSvc = EasyMock.createMock(FoodService.class);
 		EasyMock.expect(
-				foodSvc.loadComplexFood(EasyMock.eq(spag.getId()), EasyMock
+				foodSvc.getComplexFood(EasyMock.eq(spag.getId()), EasyMock
 						.isA(FullComplexFoodHydrater.class))).andReturn(spag);
 		EasyMock.replay(foodSvc);
 

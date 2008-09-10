@@ -238,7 +238,7 @@ public class FoodServiceImplTest extends TestCase {
 		FoodServiceImpl svc = new FoodServiceImpl();
 		svc.setFoodRepository(foodRepo);
 
-		assertEquals(Foods.apple(), svc.loadSimpleFood(foodId));
+		assertEquals(Foods.apple(), svc.getSimpleFood(foodId));
 	}
 
 	public void testDeleteSimpleFood() {

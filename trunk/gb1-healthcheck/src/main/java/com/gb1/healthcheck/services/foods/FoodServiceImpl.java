@@ -32,12 +32,12 @@ public class FoodServiceImpl implements FoodService {
 	}
 
 	@Transactional(readOnly = true)
-	public SimpleFood loadSimpleFood(Long foodId) {
+	public SimpleFood getSimpleFood(Long foodId) {
 		return foodRepo.loadSimpleFood(foodId);
 	}
 
 	@Transactional(readOnly = true)
-	public ComplexFood loadComplexFood(Long foodId, Hydrater<ComplexFood> hydrater) {
+	public ComplexFood getComplexFood(Long foodId, Hydrater<ComplexFood> hydrater) {
 		ComplexFood food = foodRepo.loadComplexFood(foodId);
 		hydrater.hydrate(food);
 

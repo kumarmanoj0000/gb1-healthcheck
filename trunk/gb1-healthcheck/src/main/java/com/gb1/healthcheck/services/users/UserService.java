@@ -23,7 +23,7 @@ public interface UserService {
 	 * @param userId The ID of the user to load
 	 * @return The corresponding user; null if not found
 	 */
-	User loadUser(Long userId);
+	User getUser(Long userId);
 
 	/**
 	 * Finds a user identified by the given login name. If no user corresponds to this login name,

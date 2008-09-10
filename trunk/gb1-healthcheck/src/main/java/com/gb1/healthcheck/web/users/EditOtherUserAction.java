@@ -24,7 +24,7 @@ public class EditOtherUserAction extends EditUserActionSupport {
 
 	@Override
 	protected User getUserToEdit() {
-		User user = getUserService().loadUser(userId);
+		User user = getUserService().getUser(userId);
 		return user;
 	}
 

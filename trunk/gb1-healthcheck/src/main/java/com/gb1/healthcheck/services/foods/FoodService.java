@@ -8,9 +8,9 @@ import com.gb1.healthcheck.domain.foods.FoodException;
 import com.gb1.healthcheck.domain.foods.SimpleFood;
 
 public interface FoodService {
-	SimpleFood loadSimpleFood(Long foodId);
+	SimpleFood getSimpleFood(Long foodId);
 
-	ComplexFood loadComplexFood(Long foodId, Hydrater<ComplexFood> hydrater);
+	ComplexFood getComplexFood(Long foodId, Hydrater<ComplexFood> hydrater);
 
 	Set<SimpleFood> getSimpleFoods();
 
