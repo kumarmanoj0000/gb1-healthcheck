@@ -35,7 +35,7 @@ public class MealServiceImpl implements MealService {
 	}
 
 	@Transactional(readOnly = true)
-	public Meal loadMeal(Long mealId, Hydrater<Meal> hydrater) {
+	public Meal getMeal(Long mealId, Hydrater<Meal> hydrater) {
 		Meal meal = mealRepo.loadMeal(mealId);
 		hydrater.hydrate(meal);
 

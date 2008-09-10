@@ -18,7 +18,7 @@ public class UpdateMealActionTest extends TestCase {
 		MealService mealSvc = EasyMock.createMock(MealService.class);
 		EasyMock
 				.expect(
-						mealSvc.loadMeal(EasyMock.eq(dinner.getId()), EasyMock
+						mealSvc.getMeal(EasyMock.eq(dinner.getId()), EasyMock
 								.isA(FullMealHydrater.class))).andReturn(dinner);
 		EasyMock.replay(mealSvc);
 

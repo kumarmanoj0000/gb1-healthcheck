@@ -16,7 +16,7 @@ public class EditOtherUserActionTest extends TestCase {
 		User user = Users.lg();
 
 		UserService userSvc = EasyMock.createMock(UserService.class);
-		EasyMock.expect(userSvc.loadUser(user.getId())).andReturn(user);
+		EasyMock.expect(userSvc.getUser(user.getId())).andReturn(user);
 		EasyMock.replay(userSvc);
 
 		EditOtherUserAction action = new EditOtherUserAction();

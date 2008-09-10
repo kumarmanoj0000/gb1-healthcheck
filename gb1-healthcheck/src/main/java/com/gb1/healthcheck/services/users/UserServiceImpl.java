@@ -84,7 +84,7 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Transactional(readOnly = true)
-	public User loadUser(Long userId) {
+	public User getUser(Long userId) {
 		User user = userRepository.loadUser(userId);
 		return user;
 	}

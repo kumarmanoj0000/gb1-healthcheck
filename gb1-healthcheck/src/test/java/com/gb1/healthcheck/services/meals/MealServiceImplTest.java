@@ -56,7 +56,7 @@ public class MealServiceImplTest extends TestCase {
 		MealServiceImpl svc = new MealServiceImpl();
 		svc.setMealRepository(mealRepo);
 
-		assertEquals(meal, svc.loadMeal(meal.getId(), hydrater));
+		assertEquals(meal, svc.getMeal(meal.getId(), hydrater));
 		EasyMock.verify(hydrater);
 	}
 
