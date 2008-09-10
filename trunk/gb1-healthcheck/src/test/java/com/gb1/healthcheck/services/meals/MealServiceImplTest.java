@@ -92,7 +92,7 @@ public class MealServiceImplTest extends TestCase {
 		EasyMock.replay(validator);
 
 		MealAssembler assembler = EasyMock.createMock(MealAssembler.class);
-		EasyMock.expect(assembler.create(createReq)).andReturn(meal);
+		EasyMock.expect(assembler.createMeal(createReq)).andReturn(meal);
 		EasyMock.replay(assembler);
 
 		MealServiceImpl svc = new MealServiceImpl();
@@ -124,7 +124,7 @@ public class MealServiceImplTest extends TestCase {
 		};
 
 		MealAssembler mealAssembler = EasyMock.createMock(MealAssembler.class);
-		mealAssembler.update(oldMeal, updateReq);
+		mealAssembler.updateMeal(oldMeal, updateReq);
 		EasyMock.expectLastCall();
 		EasyMock.replay(mealAssembler);
 

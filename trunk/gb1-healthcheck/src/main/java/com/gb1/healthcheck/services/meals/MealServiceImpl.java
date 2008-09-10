@@ -43,14 +43,14 @@ public class MealServiceImpl implements MealService {
 	}
 
 	public void createMeal(MealCreationRequest request) throws MealException {
-		Meal meal = mealAssembler.create(request);
+		Meal meal = mealAssembler.createMeal(request);
 		mealCreationValidator.validate(meal);
 		mealRepo.saveMeal(meal);
 	}
 
 	public void updateMeal(MealUpdateRequest request) throws MealException {
 		Meal meal = mealRepo.loadMeal(request.getMealId());
-		mealAssembler.update(meal, request);
+		mealAssembler.updateMeal(meal, request);
 		mealUpdateValidator.validate(meal);
 	}
 

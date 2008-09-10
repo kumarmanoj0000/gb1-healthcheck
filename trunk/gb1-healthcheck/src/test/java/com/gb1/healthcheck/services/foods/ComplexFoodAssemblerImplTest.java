@@ -40,7 +40,7 @@ public class ComplexFoodAssemblerImplTest extends TestCase {
 		ComplexFoodAssemblerImpl assembler = new ComplexFoodAssemblerImpl();
 		assembler.setFoodRepository(foodRepo);
 
-		ComplexFood food = assembler.create(request);
+		ComplexFood food = assembler.createComplexFood(request);
 		assertEquals(reference, food);
 		assertTrue(CollectionUtils.isEqualCollection(reference.getIngredients(), food
 				.getIngredients()));
@@ -76,7 +76,7 @@ public class ComplexFoodAssemblerImplTest extends TestCase {
 
 		ComplexFoodAssemblerImpl assembler = new ComplexFoodAssemblerImpl();
 		assembler.setFoodRepository(foodRepo);
-		assembler.update(food, request);
+		assembler.updateComplexFood(food, request);
 
 		assertEquals(request.getName(), food.getName());
 		assertEquals(request.getIngredientIds().size(), food.getIngredients().size());

@@ -30,7 +30,7 @@ public class SimpleFoodAssemblerImplTest extends TestCase {
 		};
 
 		SimpleFoodAssemblerImpl assembler = new SimpleFoodAssemblerImpl();
-		SimpleFood food = assembler.create(request);
+		SimpleFood food = assembler.createSimpleFood(request);
 
 		assertEquals(oldFood.getName(), food.getName());
 		assertEquals(oldFood.getFoodGroup(), food.getFoodGroup());
@@ -58,7 +58,7 @@ public class SimpleFoodAssemblerImplTest extends TestCase {
 		};
 
 		SimpleFoodAssemblerImpl assembler = new SimpleFoodAssemblerImpl();
-		assembler.update(food, request);
+		assembler.updateSimpleFood(food, request);
 
 		assertEquals("updated apple", food.getName());
 		assertEquals(food.getFoodGroup(), food.getFoodGroup());

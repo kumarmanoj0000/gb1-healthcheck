@@ -33,7 +33,7 @@ public class EditOwnUserAction extends EditUserActionSupport {
 	@Override
 	protected void updateActiveUserIfNecessary(BasicUserUpdateRequest updateReq) {
 		// the session authenticated user also needs to be updated
-		userAssembler.update(requester, updateReq);
+		userAssembler.updateMeal(requester, updateReq);
 	}
 
 	@AuthenticatedUser

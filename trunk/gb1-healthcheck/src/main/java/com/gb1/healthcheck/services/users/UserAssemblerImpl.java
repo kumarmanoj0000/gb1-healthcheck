@@ -7,7 +7,7 @@ public class UserAssemblerImpl implements UserAssembler {
 	public UserAssemblerImpl() {
 	}
 
-	public User create(UserRegistrationRequest request) {
+	public User createUser(UserRegistrationRequest request) {
 		User user = new User(request.getLogin(), request.getEmail(), request.getPassword());
 		for (Role role : request.getRoles()) {
 			user.assignRole(role);
@@ -16,7 +16,7 @@ public class UserAssemblerImpl implements UserAssembler {
 		return user;
 	}
 
-	public void update(User user, UserUpdateRequest request) {
+	public void updateMeal(User user, UserUpdateRequest request) {
 		user.setEmail(request.getEmail());
 
 		user.relieveFromAllRoles();

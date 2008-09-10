@@ -72,7 +72,7 @@ public class FoodServiceImplTest extends TestCase {
 		};
 
 		SimpleFoodAssembler assembler = EasyMock.createMock(SimpleFoodAssembler.class);
-		EasyMock.expect(assembler.create(request)).andReturn(food);
+		EasyMock.expect(assembler.createSimpleFood(request)).andReturn(food);
 		EasyMock.replay(assembler);
 
 		SimpleFoodValidator validator = EasyMock.createMock(SimpleFoodValidator.class);
@@ -113,7 +113,7 @@ public class FoodServiceImplTest extends TestCase {
 		};
 
 		ComplexFoodAssembler assembler = EasyMock.createMock(ComplexFoodAssembler.class);
-		EasyMock.expect(assembler.create(request)).andReturn(food);
+		EasyMock.expect(assembler.createComplexFood(request)).andReturn(food);
 		EasyMock.replay(assembler);
 
 		ComplexFoodValidator validator = EasyMock.createMock(ComplexFoodValidator.class);
@@ -158,7 +158,7 @@ public class FoodServiceImplTest extends TestCase {
 		};
 
 		SimpleFoodAssembler assembler = EasyMock.createMock(SimpleFoodAssembler.class);
-		assembler.update(oldApple, updateReq);
+		assembler.updateSimpleFood(oldApple, updateReq);
 		EasyMock.expectLastCall();
 		EasyMock.replay(assembler);
 
@@ -204,7 +204,7 @@ public class FoodServiceImplTest extends TestCase {
 		};
 
 		ComplexFoodAssembler assembler = EasyMock.createMock(ComplexFoodAssembler.class);
-		assembler.update(oldSpag, updateReq);
+		assembler.updateComplexFood(oldSpag, updateReq);
 		EasyMock.expectLastCall();
 		EasyMock.replay(assembler);
 

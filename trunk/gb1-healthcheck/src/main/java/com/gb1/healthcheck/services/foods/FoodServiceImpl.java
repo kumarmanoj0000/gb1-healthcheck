@@ -60,26 +60,26 @@ public class FoodServiceImpl implements FoodService {
 	}
 
 	public void createSimpleFood(SimpleFoodCreationRequest request) throws FoodException {
-		SimpleFood food = simpleFoodAssembler.create(request);
+		SimpleFood food = simpleFoodAssembler.createSimpleFood(request);
 		simpleFoodCreationValidator.validate(food);
 		foodRepo.saveFood(food);
 	}
 
 	public void createComplexFood(ComplexFoodCreationRequest request) throws FoodException {
-		ComplexFood food = complexFoodAssembler.create(request);
+		ComplexFood food = complexFoodAssembler.createComplexFood(request);
 		complexFoodCreationValidator.validate(food);
 		foodRepo.saveFood(food);
 	}
 
 	public void updateSimpleFood(SimpleFoodUpdateRequest request) throws FoodException {
 		SimpleFood food = foodRepo.loadSimpleFood(request.getFoodId());
-		simpleFoodAssembler.update(food, request);
+		simpleFoodAssembler.updateSimpleFood(food, request);
 		simpleFoodUpdateValidator.validate(food);
 	}
 
 	public void updateComplexFood(ComplexFoodUpdateRequest request) throws FoodException {
 		ComplexFood food = foodRepo.loadComplexFood(request.getFoodId());
-		complexFoodAssembler.update(food, request);
+		complexFoodAssembler.updateComplexFood(food, request);
 		complexFoodUpdateValidator.validate(food);
 	}
 
