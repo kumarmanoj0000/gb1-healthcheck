@@ -1,15 +1,17 @@
 package com.gb1.healthcheck.services.meals;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+
 import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
-import junit.framework.TestCase;
-
 import org.apache.commons.collections.CollectionUtils;
 import org.easymock.EasyMock;
+import org.junit.Test;
 
 import com.gb1.healthcheck.domain.foods.FoodRepository;
 import com.gb1.healthcheck.domain.meals.Meal;
@@ -20,7 +22,8 @@ import com.gb1.healthcheck.domain.users.User;
 import com.gb1.healthcheck.domain.users.UserRepository;
 import com.gb1.healthcheck.domain.users.Users;
 
-public class MealAssemblerImplTest extends TestCase {
+public class MealAssemblerImplTest {
+	@Test
 	public void testCreate() {
 		final User eater = Users.gb();
 		final Date instant = new Date();
@@ -76,6 +79,7 @@ public class MealAssemblerImplTest extends TestCase {
 		assertTrue(CollectionUtils.isEqualCollection(dishes.values(), meal.getDishes()));
 	}
 
+	@Test
 	public void testUpdate() {
 		final Meal meal = new Meal(Users.gb(), new Date());
 

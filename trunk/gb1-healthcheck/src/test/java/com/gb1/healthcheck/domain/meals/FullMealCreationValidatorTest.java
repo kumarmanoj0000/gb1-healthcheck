@@ -1,16 +1,18 @@
 package com.gb1.healthcheck.domain.meals;
 
+import static org.junit.Assert.fail;
+
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
-import junit.framework.TestCase;
-
 import org.easymock.EasyMock;
+import org.junit.Test;
 
 import com.gb1.healthcheck.domain.users.Users;
 
-public class FullMealCreationValidatorTest extends TestCase {
+public class FullMealCreationValidatorTest {
+	@Test
 	public void testValidateNoDishes() throws MealException {
 		Meal meal = new Meal(Users.gb(), new Date());
 		List<Meal> mealsOnSameInstant = Collections.emptyList();
@@ -31,6 +33,7 @@ public class FullMealCreationValidatorTest extends TestCase {
 		}
 	}
 
+	@Test
 	public void testValidateMealAlreadyExists() throws MealException {
 		Meal meal = Meals.fullItalianDinner();
 		List<Meal> mealsOnSameInstant = Collections.singletonList(meal);
@@ -51,6 +54,7 @@ public class FullMealCreationValidatorTest extends TestCase {
 		}
 	}
 
+	@Test
 	public void testValidateMealOk() throws MealException {
 		Meal meal = Meals.fullItalianDinner();
 		List<Meal> mealsOnSameInstant = Collections.emptyList();

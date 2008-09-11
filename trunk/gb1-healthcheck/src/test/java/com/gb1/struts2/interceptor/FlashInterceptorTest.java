@@ -1,19 +1,24 @@
 package com.gb1.struts2.interceptor;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNull;
+
 import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import junit.framework.TestCase;
+import org.junit.Test;
 
 import com.gb1.struts2.dispatcher.FlashResult;
 import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.mock.MockActionInvocation;
 
-public class FlashInterceptorTest extends TestCase {
+public class FlashInterceptorTest {
+	@Test
 	@SuppressWarnings("unchecked")
 	public void testInterceptNoFlash() throws Exception {
 		TestAction action = new TestAction();
@@ -32,6 +37,7 @@ public class FlashInterceptorTest extends TestCase {
 		assertFalse(sessionMap.containsKey(FlashResult.DEFAULT_SESSION_KEY));
 	}
 
+	@Test
 	@SuppressWarnings("unchecked")
 	public void testIntercept() throws Exception {
 		TestAction action = new TestAction();

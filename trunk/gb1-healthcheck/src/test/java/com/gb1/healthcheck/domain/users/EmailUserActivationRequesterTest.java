@@ -1,17 +1,21 @@
 package com.gb1.healthcheck.domain.users;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
+
 import javax.mail.Session;
 import javax.mail.internet.MimeMessage;
 
-import junit.framework.TestCase;
-
 import org.easymock.EasyMock;
+import org.junit.Test;
 import org.springframework.mail.javamail.JavaMailSender;
 
 import com.gb1.commons.tokens.Token;
 import com.gb1.commons.tokens.TokenFactory;
 
-public class EmailUserActivationRequesterTest extends TestCase {
+public class EmailUserActivationRequesterTest {
+	@Test
 	public void testRequestUserActivationOk() {
 		Token activationToken = new Token("123");
 
@@ -48,8 +52,5 @@ public class EmailUserActivationRequesterTest extends TestCase {
 
 		// makes sure an email has been sent
 		EasyMock.verify(emailSender);
-	}
-
-	public void testRequestUserActivationAlreadyActive() {
 	}
 }

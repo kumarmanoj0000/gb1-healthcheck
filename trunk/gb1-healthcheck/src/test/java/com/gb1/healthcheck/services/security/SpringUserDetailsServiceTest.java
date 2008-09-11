@@ -1,8 +1,10 @@
 package com.gb1.healthcheck.services.security;
 
-import junit.framework.TestCase;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
 
 import org.easymock.EasyMock;
+import org.junit.Test;
 import org.springframework.security.userdetails.UserDetails;
 import org.springframework.security.userdetails.UsernameNotFoundException;
 
@@ -10,7 +12,8 @@ import com.gb1.healthcheck.domain.users.ExposedUser;
 import com.gb1.healthcheck.domain.users.Role;
 import com.gb1.healthcheck.domain.users.UserRepository;
 
-public class SpringUserDetailsServiceTest extends TestCase {
+public class SpringUserDetailsServiceTest {
+	@Test
 	public void testLoadUserByUsernameUnknown() {
 		final String login = "user";
 
@@ -30,6 +33,7 @@ public class SpringUserDetailsServiceTest extends TestCase {
 		}
 	}
 
+	@Test
 	public void testLoadUserByUsernameOk() {
 		final String login = "user";
 		ExposedUser u = new ExposedUser();

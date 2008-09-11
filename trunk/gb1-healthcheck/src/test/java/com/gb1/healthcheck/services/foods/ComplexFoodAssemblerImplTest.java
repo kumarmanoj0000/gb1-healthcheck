@@ -1,19 +1,22 @@
 package com.gb1.healthcheck.services.foods;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+
 import java.util.HashSet;
 import java.util.Set;
 
-import junit.framework.TestCase;
-
 import org.apache.commons.collections.CollectionUtils;
 import org.easymock.EasyMock;
+import org.junit.Test;
 
 import com.gb1.healthcheck.domain.foods.ComplexFood;
 import com.gb1.healthcheck.domain.foods.Food;
 import com.gb1.healthcheck.domain.foods.FoodRepository;
 import com.gb1.healthcheck.domain.foods.Foods;
 
-public class ComplexFoodAssemblerImplTest extends TestCase {
+public class ComplexFoodAssemblerImplTest {
+	@Test
 	public void testCreate() {
 		final ComplexFood reference = Foods.spaghetti();
 
@@ -46,6 +49,7 @@ public class ComplexFoodAssemblerImplTest extends TestCase {
 				.getIngredients()));
 	}
 
+	@Test
 	public void testUpdate() {
 		// no more beef & beef broth!
 

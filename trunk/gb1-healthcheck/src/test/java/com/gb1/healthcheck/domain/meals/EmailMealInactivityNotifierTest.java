@@ -9,17 +9,17 @@ import java.util.Set;
 import javax.mail.Session;
 import javax.mail.internet.MimeMessage;
 
-import junit.framework.TestCase;
-
 import org.apache.commons.lang.time.DateUtils;
 import org.easymock.EasyMock;
+import org.junit.Test;
 import org.springframework.mail.javamail.JavaMailSender;
 
 import com.gb1.healthcheck.domain.users.User;
 import com.gb1.healthcheck.domain.users.UserRepository;
 import com.gb1.healthcheck.domain.users.Users;
 
-public class EmailMealInactivityNotifierTest extends TestCase {
+public class EmailMealInactivityNotifierTest {
+	@Test
 	public void testNotify() {
 		Date today = new Date();
 

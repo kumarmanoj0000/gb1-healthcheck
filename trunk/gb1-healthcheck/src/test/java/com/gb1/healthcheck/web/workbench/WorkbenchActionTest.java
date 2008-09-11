@@ -1,10 +1,13 @@
 package com.gb1.healthcheck.web.workbench;
 
-import junit.framework.TestCase;
+import static org.junit.Assert.assertEquals;
+
+import org.junit.Test;
 
 import com.opensymphony.xwork2.Action;
 
-public class WorkbenchActionTest extends TestCase {
+public class WorkbenchActionTest {
+	@Test
 	public void testExecute() {
 		WorkbenchAction action = new WorkbenchAction();
 		assertEquals(Action.SUCCESS, action.execute());

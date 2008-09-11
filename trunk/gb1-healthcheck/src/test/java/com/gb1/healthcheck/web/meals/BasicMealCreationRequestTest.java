@@ -1,9 +1,13 @@
 package com.gb1.healthcheck.web.meals;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
+
 import java.util.HashMap;
 import java.util.Map;
 
-import junit.framework.TestCase;
+import org.junit.Test;
 
 import com.gb1.healthcheck.domain.foods.Food;
 import com.gb1.healthcheck.domain.foods.Foods;
@@ -13,7 +17,8 @@ import com.gb1.healthcheck.domain.users.User;
 import com.gb1.healthcheck.domain.users.Users;
 import com.gb1.healthcheck.services.meals.PreparedFoodCreationRequest;
 
-public class BasicMealCreationRequestTest extends TestCase {
+public class BasicMealCreationRequestTest {
+	@Test
 	public void testCreate() {
 		final User eater = Users.lg();
 
@@ -22,6 +27,7 @@ public class BasicMealCreationRequestTest extends TestCase {
 		assertEquals(eater.getId(), req.getEaterId());
 	}
 
+	@Test
 	public void testGetCreationRequests() {
 		Map<Long, Food> foods = new HashMap<Long, Food>();
 		foods.put(Foods.spaghetti().getId(), Foods.spaghetti());

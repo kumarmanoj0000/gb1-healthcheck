@@ -1,15 +1,17 @@
 package com.gb1.healthcheck.web.users;
 
-import junit.framework.TestCase;
+import static org.junit.Assert.assertEquals;
 
 import org.easymock.EasyMock;
+import org.junit.Test;
 
 import com.gb1.healthcheck.domain.users.User;
 import com.gb1.healthcheck.domain.users.Users;
 import com.gb1.healthcheck.services.users.UserService;
 import com.opensymphony.xwork2.Action;
 
-public class ResetPasswordActionTest extends TestCase {
+public class ResetPasswordActionTest {
+	@Test
 	public void testExecute() {
 		final User user = Users.gb();
 

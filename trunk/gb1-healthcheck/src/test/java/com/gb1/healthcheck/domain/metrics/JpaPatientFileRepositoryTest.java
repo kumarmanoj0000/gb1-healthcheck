@@ -4,6 +4,7 @@ import com.gb1.healthcheck.domain.support.BaseRepositoryTestCase;
 import com.gb1.healthcheck.domain.users.User;
 import com.gb1.healthcheck.domain.users.Users;
 
+// TODO Migrate to JUnit4-based abstract class
 public class JpaPatientFileRepositoryTest extends BaseRepositoryTestCase {
 	private PatientFileRepository repo;
 

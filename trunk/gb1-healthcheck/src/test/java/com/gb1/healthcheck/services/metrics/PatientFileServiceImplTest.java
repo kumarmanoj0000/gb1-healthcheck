@@ -1,10 +1,11 @@
 package com.gb1.healthcheck.services.metrics;
 
+import static org.junit.Assert.assertEquals;
+
 import java.util.Date;
 
-import junit.framework.TestCase;
-
 import org.easymock.EasyMock;
+import org.junit.Test;
 
 import com.gb1.healthcheck.domain.metrics.GastricState;
 import com.gb1.healthcheck.domain.metrics.PatientFile;
@@ -13,7 +14,8 @@ import com.gb1.healthcheck.domain.users.User;
 import com.gb1.healthcheck.domain.users.UserRepository;
 import com.gb1.healthcheck.domain.users.Users;
 
-public class PatientFileServiceImplTest extends TestCase {
+public class PatientFileServiceImplTest {
+	@Test
 	public void testSetIntestinalState() {
 		User patient = Users.lg();
 		Date now = new Date();
@@ -35,6 +37,7 @@ public class PatientFileServiceImplTest extends TestCase {
 		assertEquals(GastricState.NORMAL, metrics.getGastricState(now));
 	}
 
+	@Test
 	public void testLoadPatientFile() {
 		User patient = Users.lg();
 		PatientFile file = new PatientFile(patient);

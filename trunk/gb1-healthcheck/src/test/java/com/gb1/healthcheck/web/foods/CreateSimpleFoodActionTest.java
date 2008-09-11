@@ -1,15 +1,18 @@
 package com.gb1.healthcheck.web.foods;
 
-import junit.framework.TestCase;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import org.easymock.EasyMock;
+import org.junit.Test;
 
 import com.gb1.healthcheck.domain.foods.FoodAlreadyExistsException;
 import com.gb1.healthcheck.services.foods.FoodService;
 import com.gb1.healthcheck.services.foods.SimpleFoodCreationRequest;
 import com.opensymphony.xwork2.Action;
 
-public class CreateSimpleFoodActionTest extends TestCase {
+public class CreateSimpleFoodActionTest {
+	@Test
 	public void testSubmit() throws Exception {
 		FoodService foodSvc = EasyMock.createMock(FoodService.class);
 		foodSvc.createSimpleFood(EasyMock.isA(SimpleFoodCreationRequest.class));
@@ -23,6 +26,7 @@ public class CreateSimpleFoodActionTest extends TestCase {
 		EasyMock.verify(foodSvc);
 	}
 
+	@Test
 	public void testSubmitWithErrors() throws Exception {
 		FoodService foodSvc = EasyMock.createMock(FoodService.class);
 		foodSvc.createSimpleFood(EasyMock.isA(SimpleFoodCreationRequest.class));
@@ -37,6 +41,7 @@ public class CreateSimpleFoodActionTest extends TestCase {
 		EasyMock.verify(foodSvc);
 	}
 
+	@Test
 	public void testCancel() {
 		CreateSimpleFoodAction action = new CreateSimpleFoodAction();
 		assertEquals(Action.SUCCESS, action.cancel());

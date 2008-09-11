@@ -1,13 +1,15 @@
 package com.gb1.healthcheck.domain.foods;
 
+import static org.junit.Assert.fail;
+
 import java.util.ArrayList;
 import java.util.List;
 
-import junit.framework.TestCase;
-
 import org.easymock.EasyMock;
+import org.junit.Test;
 
-public class FullComplexFoodUpdateValidatorTest extends TestCase {
+public class FullComplexFoodUpdateValidatorTest {
+	@Test
 	public void testValidate() throws FoodException {
 		final ComplexFood food = Foods.spaghetti();
 		final List<Food> foodsWithSameName = new ArrayList<Food>();
@@ -23,6 +25,7 @@ public class FullComplexFoodUpdateValidatorTest extends TestCase {
 		v.validate(food);
 	}
 
+	@Test
 	public void testValidateNameAlreadyTakenSameFood() throws FoodException {
 		final ComplexFood food = Foods.spaghetti();
 		final List<Food> foodsWithSameName = new ArrayList<Food>();
@@ -38,6 +41,7 @@ public class FullComplexFoodUpdateValidatorTest extends TestCase {
 		v.validate(food);
 	}
 
+	@Test
 	public void testValidateNameAlreadyTakenOtherFood() throws FoodException {
 		final ComplexFood food = Foods.spaghetti();
 		food.setId(-1L);
@@ -61,6 +65,7 @@ public class FullComplexFoodUpdateValidatorTest extends TestCase {
 		}
 	}
 
+	@Test
 	public void testValidateNoIngredients() throws FoodException {
 		final ComplexFood food = new ComplexFood("no ingredients");
 		final List<Food> foodsWithSameName = new ArrayList<Food>();

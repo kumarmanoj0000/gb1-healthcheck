@@ -1,13 +1,15 @@
 package com.gb1.healthcheck.web.metrics;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+
 import java.text.ParseException;
 import java.util.Date;
-
-import junit.framework.TestCase;
 
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang.time.DateUtils;
 import org.easymock.EasyMock;
+import org.junit.Test;
 
 import com.gb1.healthcheck.domain.metrics.GastricState;
 import com.gb1.healthcheck.domain.metrics.PatientFile;
@@ -16,9 +18,10 @@ import com.gb1.healthcheck.domain.users.Users;
 import com.gb1.healthcheck.services.metrics.PatientFileService;
 import com.opensymphony.xwork2.Action;
 
-public class ManageGastricStatesActionTest extends TestCase {
+public class ManageGastricStatesActionTest {
 	private static final String[] PARSE_PATTERNS = new String[] { "yyyy-MM-dd hh:mm:ss" };
 
+	@Test
 	public void testShow() {
 		final User patient = Users.lg();
 
@@ -28,6 +31,7 @@ public class ManageGastricStatesActionTest extends TestCase {
 		assertEquals(patient, action.getPatient());
 	}
 
+	@Test
 	public void testLoadStatesFor() throws ParseException {
 		final Date today = new Date();
 		final User patient = Users.lg();
@@ -47,6 +51,7 @@ public class ManageGastricStatesActionTest extends TestCase {
 				.loadGastricStates(patient.getId(), today)));
 	}
 
+	@Test
 	public void testSaveGastricState() {
 		final Date now = new Date();
 		final User patient = Users.lg();

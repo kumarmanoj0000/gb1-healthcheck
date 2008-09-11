@@ -1,12 +1,15 @@
 package com.gb1.healthcheck.domain.meals;
 
-import junit.framework.TestCase;
+import static org.junit.Assert.assertTrue;
+
+import org.junit.Test;
 
 import com.gb1.healthcheck.domain.foods.FoodGroup;
 import com.gb1.healthcheck.domain.foods.Foods;
 import com.gb1.healthcheck.domain.foods.Nutrient;
 
-public class MealTest extends TestCase {
+public class MealTest {
+	@Test
 	public void testContainsFood() {
 		Meal meal = Meals.fullItalianDinner();
 
@@ -15,6 +18,7 @@ public class MealTest extends TestCase {
 		assertTrue(meal.containsGroup(FoodGroup.MEAT_AND_SUBSTITUTES));
 	}
 
+	@Test
 	public void testIsSourceOfNutrient() {
 		Meal meal = Meals.fullItalianDinner();
 

@@ -5,6 +5,7 @@ import java.util.Set;
 
 import com.gb1.healthcheck.domain.support.BaseRepositoryTestCase;
 
+// TODO Migrate to JUnit4-based abstract class
 public class JpaUserRepositoryTest extends BaseRepositoryTestCase {
 	private UserRepository userRepo = null;
 

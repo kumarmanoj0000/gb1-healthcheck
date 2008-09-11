@@ -1,7 +1,10 @@
 package com.gb1.struts2.interceptor;
 
-import junit.framework.TestCase;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertSame;
 
+import org.junit.Test;
 import org.springframework.security.Authentication;
 import org.springframework.security.GrantedAuthority;
 import org.springframework.security.context.SecurityContextHolder;
@@ -14,7 +17,8 @@ import com.gb1.healthcheck.domain.users.Users;
 import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.mock.MockActionInvocation;
 
-public class SpringAuthenticatedUserInterceptorTestCase extends TestCase {
+public class SpringAuthenticatedUserInterceptorTestCase {
+	@Test
 	public void testIntercept() throws Exception {
 		User user = Users.gb();
 

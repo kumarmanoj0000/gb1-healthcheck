@@ -1,14 +1,17 @@
 package com.gb1.healthcheck.web.security;
 
-import junit.framework.TestCase;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import org.easymock.EasyMock;
+import org.junit.Test;
 
 import com.gb1.healthcheck.domain.users.UnknownUserException;
 import com.gb1.healthcheck.services.users.UserService;
 import com.opensymphony.xwork2.Action;
 
-public class LostPasswordActionTest extends TestCase {
+public class LostPasswordActionTest {
+	@Test
 	public void testOnSubmitOk() throws Exception {
 		final String email = "user@gb1.com";
 
@@ -24,6 +27,7 @@ public class LostPasswordActionTest extends TestCase {
 		EasyMock.verify(userSvc);
 	}
 
+	@Test
 	public void testOnSubmitUnknownUser() throws Exception {
 		final String email = "user@gb1.com";
 

@@ -1,17 +1,19 @@
 package com.gb1.healthcheck.domain.meals;
 
+import static org.junit.Assert.fail;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
-import junit.framework.TestCase;
-
 import org.easymock.EasyMock;
+import org.junit.Test;
 
 import com.gb1.healthcheck.domain.users.Users;
 
-public class FullMealUpdateValidatorTest extends TestCase {
+public class FullMealUpdateValidatorTest {
+	@Test
 	public void testValidate() throws MealException {
 		Meal meal = Meals.fullItalianDinner();
 
@@ -25,6 +27,7 @@ public class FullMealUpdateValidatorTest extends TestCase {
 		v.validate(meal);
 	}
 
+	@Test
 	public void testValidateSameInstant() throws MealException {
 		Meal meal = Meals.fullItalianDinner();
 
@@ -48,6 +51,7 @@ public class FullMealUpdateValidatorTest extends TestCase {
 		}
 	}
 
+	@Test
 	public void testValidateNoDishes() throws MealException {
 		Meal meal = new Meal(Users.gb(), new Date());
 

@@ -2,6 +2,7 @@ package com.gb1.healthcheck.domain.support;
 
 import com.gb1.commons.dataaccess.AbstractInMemoryPersistenceTestCase;
 
+// TODO Migrate to JUnit4-based abstract class
 public abstract class BaseRepositoryTestCase extends AbstractInMemoryPersistenceTestCase {
 	private String[] CONFIG_LOCATIONS = { "classpath:applicationContext-tests.xml" };
 	private String[] SQL_SCRIPT_RESOURCE_PATHS = { "classpath:unitTestsData.sql" };

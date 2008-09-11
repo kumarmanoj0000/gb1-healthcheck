@@ -1,14 +1,17 @@
 package com.gb1.healthcheck.web.meals;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
-import junit.framework.TestCase;
-
 import org.apache.commons.collections.CollectionUtils;
 import org.easymock.EasyMock;
+import org.junit.Before;
+import org.junit.Test;
 
 import com.gb1.commons.dataaccess.IdentityHydrater;
 import com.gb1.healthcheck.domain.foods.Food;
@@ -23,13 +26,13 @@ import com.gb1.healthcheck.services.meals.MealCreationRequest;
 import com.gb1.healthcheck.services.meals.MealService;
 import com.opensymphony.xwork2.Action;
 
-public class CreateMealActionTest extends TestCase {
+public class CreateMealActionTest {
 	private final List<Food> availableFoods = new LinkedList<Food>();
 	private FoodService foodService;
 
-	@Override
+	@Before
 	@SuppressWarnings("unchecked")
-	protected void setUp() throws Exception {
+	public void setUp() throws Exception {
 		availableFoods.addAll(Foods.allSimpleFoods());
 		availableFoods.addAll(Foods.allComplexFoods());
 		Collections.sort(availableFoods, new Food.ByNameComparator());
@@ -41,11 +44,13 @@ public class CreateMealActionTest extends TestCase {
 		EasyMock.replay(foodService);
 	}
 
+	@Test
 	public void testCancel() {
 		CreateMealAction action = new CreateMealAction();
 		assertEquals(Action.SUCCESS, action.cancel());
 	}
 
+	@Test
 	public void testPrepare() {
 		CreateMealAction action = new CreateMealAction();
 		action.setFoodService(foodService);
@@ -57,6 +62,7 @@ public class CreateMealActionTest extends TestCase {
 		assertTrue(CollectionUtils.isEqualCollection(availableFoods, action.getAvailableFoods()));
 	}
 
+	@Test
 	public void testSubmit() throws MealException {
 		User requester = Users.lg();
 		BasicMealCreationRequest model = new BasicMealCreationRequest(requester);
@@ -75,6 +81,7 @@ public class CreateMealActionTest extends TestCase {
 		assertEquals(Action.SUCCESS, action.execute());
 	}
 
+	@Test
 	public void testSubmitWithErrors() throws MealException {
 		User requester = Users.lg();
 		BasicMealCreationRequest model = new BasicMealCreationRequest(requester);

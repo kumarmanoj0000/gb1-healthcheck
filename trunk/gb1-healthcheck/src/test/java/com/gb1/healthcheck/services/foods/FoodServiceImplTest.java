@@ -1,12 +1,14 @@
 package com.gb1.healthcheck.services.foods;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+
 import java.util.HashSet;
 import java.util.Set;
 
-import junit.framework.TestCase;
-
 import org.apache.commons.collections.CollectionUtils;
 import org.easymock.EasyMock;
+import org.junit.Test;
 
 import com.gb1.commons.dataaccess.Hydrater;
 import com.gb1.healthcheck.domain.foods.ComplexFood;
@@ -19,7 +21,8 @@ import com.gb1.healthcheck.domain.foods.Nutrient;
 import com.gb1.healthcheck.domain.foods.SimpleFood;
 import com.gb1.healthcheck.domain.foods.SimpleFoodValidator;
 
-public class FoodServiceImplTest extends TestCase {
+public class FoodServiceImplTest {
+	@Test
 	public void testGetSimpleFoods() {
 		Set<SimpleFood> allSimpleFoods = Foods.allSimpleFoods();
 
@@ -34,6 +37,7 @@ public class FoodServiceImplTest extends TestCase {
 	}
 
 	@SuppressWarnings("unchecked")
+	@Test
 	public void testGetComplexFoods() {
 		Set<ComplexFood> allComplexFoods = Foods.allComplexFoods();
 
@@ -54,6 +58,7 @@ public class FoodServiceImplTest extends TestCase {
 		EasyMock.verify(hydrater);
 	}
 
+	@Test
 	public void testCreateSimpleFood() throws Exception {
 		final SimpleFood food = Foods.apple();
 
@@ -95,6 +100,7 @@ public class FoodServiceImplTest extends TestCase {
 		EasyMock.verify(foodRepo);
 	}
 
+	@Test
 	public void testCreateComplexFood() throws Exception {
 		final ComplexFood food = Foods.spaghetti();
 
@@ -136,6 +142,7 @@ public class FoodServiceImplTest extends TestCase {
 		EasyMock.verify(foodRepo);
 	}
 
+	@Test
 	public void testUpdateSimpleFood() throws Exception {
 		final SimpleFood oldApple = Foods.apple();
 
@@ -182,6 +189,7 @@ public class FoodServiceImplTest extends TestCase {
 		EasyMock.verify(foodRepo);
 	}
 
+	@Test
 	public void testUpdateComplexFood() throws Exception {
 		final ComplexFood oldSpag = Foods.spaghetti();
 
@@ -228,6 +236,7 @@ public class FoodServiceImplTest extends TestCase {
 		EasyMock.verify(foodRepo);
 	}
 
+	@Test
 	public void testLoadSimpleFood() {
 		final Long foodId = 1L;
 
@@ -241,6 +250,7 @@ public class FoodServiceImplTest extends TestCase {
 		assertEquals(Foods.apple(), svc.getSimpleFood(foodId));
 	}
 
+	@Test
 	public void testDeleteSimpleFood() {
 		Set<Long> foodIds = new HashSet<Long>();
 		foodIds.add(Foods.apple().getId());

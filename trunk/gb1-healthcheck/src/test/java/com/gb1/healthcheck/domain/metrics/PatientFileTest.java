@@ -1,17 +1,21 @@
 package com.gb1.healthcheck.domain.metrics;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+
 import java.text.ParseException;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
-import junit.framework.TestCase;
-
 import org.apache.commons.lang.time.DateUtils;
+import org.junit.Test;
 
 import com.gb1.healthcheck.domain.users.Users;
 
-public class PatientFileTest extends TestCase {
+public class PatientFileTest {
+	@Test
 	public void testEquals() {
 		PatientFile tr1 = new PatientFile(Users.gb());
 		PatientFile tr2 = new PatientFile(Users.gb());
@@ -21,6 +25,7 @@ public class PatientFileTest extends TestCase {
 		assertFalse(tr1.equals(tr3));
 	}
 
+	@Test
 	public void testGetGastricState() {
 		Date now = new Date();
 		Date tomorrow = DateUtils.addDays(now, 1);
@@ -36,6 +41,7 @@ public class PatientFileTest extends TestCase {
 		assertEquals(GastricState.BLOATED, file.getGastricState(yesterday));
 	}
 
+	@Test
 	public void testGetGastricStatesOnDay() throws ParseException {
 		Date base = DateUtils.parseDate("2007-10-16 20:00:00",
 				new String[] { "yyyy-MM-dd hh:mm:ss" });
@@ -55,6 +61,7 @@ public class PatientFileTest extends TestCase {
 		assertEquals(GastricState.NORMAL, states.get(1).getState());
 	}
 
+	@Test
 	public void testSetGastricState() {
 		Date now = new Date();
 		Date truncatedNow = DateUtils.truncate(now, Calendar.MINUTE);

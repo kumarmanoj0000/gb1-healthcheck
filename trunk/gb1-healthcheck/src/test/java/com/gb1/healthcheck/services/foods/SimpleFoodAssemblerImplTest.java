@@ -1,18 +1,21 @@
 package com.gb1.healthcheck.services.foods;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+
 import java.util.Collections;
 import java.util.Set;
 
-import junit.framework.TestCase;
-
 import org.apache.commons.collections.CollectionUtils;
+import org.junit.Test;
 
 import com.gb1.healthcheck.domain.foods.FoodGroup;
 import com.gb1.healthcheck.domain.foods.Foods;
 import com.gb1.healthcheck.domain.foods.Nutrient;
 import com.gb1.healthcheck.domain.foods.SimpleFood;
 
-public class SimpleFoodAssemblerImplTest extends TestCase {
+public class SimpleFoodAssemblerImplTest {
+	@Test
 	public void testCreate() {
 		final SimpleFood oldFood = Foods.apple();
 		SimpleFoodCreationRequest request = new SimpleFoodCreationRequest() {
@@ -37,6 +40,7 @@ public class SimpleFoodAssemblerImplTest extends TestCase {
 		assertTrue(CollectionUtils.isEqualCollection(oldFood.getNutrients(), food.getNutrients()));
 	}
 
+	@Test
 	public void testUpdate() {
 		final SimpleFood food = Foods.apple();
 		SimpleFoodUpdateRequest request = new SimpleFoodUpdateRequest() {

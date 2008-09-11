@@ -1,10 +1,12 @@
 package com.gb1.healthcheck.web.meals;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+
 import java.util.Date;
 
-import junit.framework.TestCase;
-
 import org.apache.commons.lang.ArrayUtils;
+import org.junit.Test;
 
 import com.gb1.healthcheck.domain.meals.Meal;
 import com.gb1.healthcheck.domain.meals.Meals;
@@ -12,7 +14,8 @@ import com.gb1.healthcheck.domain.meals.PreparedFood;
 import com.gb1.healthcheck.domain.users.Users;
 import com.gb1.healthcheck.services.meals.PreparedFoodUpdateRequest;
 
-public class BasicMealUpdateRequestTest extends TestCase {
+public class BasicMealUpdateRequestTest {
+	@Test
 	public void testNewRequestFromMeal() {
 		final Meal meal = new Meal(Users.gb(), new Date()).addDish(Meals.spaghettiDish()).addDish(
 				Meals.redWineDrink());
