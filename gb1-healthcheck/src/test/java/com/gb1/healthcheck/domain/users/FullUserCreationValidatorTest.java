@@ -1,10 +1,12 @@
 package com.gb1.healthcheck.domain.users;
 
-import junit.framework.TestCase;
+import static org.junit.Assert.fail;
 
 import org.easymock.EasyMock;
+import org.junit.Test;
 
-public class FullUserCreationValidatorTest extends TestCase {
+public class FullUserCreationValidatorTest {
+	@Test
 	public void testValidateOk() throws UserException {
 		User user = buildValidUser();
 
@@ -19,6 +21,7 @@ public class FullUserCreationValidatorTest extends TestCase {
 		v.validate(user);
 	}
 
+	@Test
 	public void testValidateLoginTaken() throws UserException {
 		User user = buildValidUser();
 
@@ -40,6 +43,7 @@ public class FullUserCreationValidatorTest extends TestCase {
 		}
 	}
 
+	@Test
 	public void testValidateEmailTaken() throws UserException {
 		User user = buildValidUser();
 

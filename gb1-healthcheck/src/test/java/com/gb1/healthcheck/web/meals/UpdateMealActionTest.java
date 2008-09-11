@@ -1,8 +1,10 @@
 package com.gb1.healthcheck.web.meals;
 
-import junit.framework.TestCase;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import org.easymock.EasyMock;
+import org.junit.Test;
 
 import com.gb1.healthcheck.domain.meals.Meal;
 import com.gb1.healthcheck.domain.meals.MealException;
@@ -11,15 +13,15 @@ import com.gb1.healthcheck.services.meals.FullMealHydrater;
 import com.gb1.healthcheck.services.meals.MealService;
 import com.opensymphony.xwork2.Action;
 
-public class UpdateMealActionTest extends TestCase {
+public class UpdateMealActionTest {
+	@Test
 	public void testInput() {
 		Meal dinner = Meals.fullItalianDinner();
 
 		MealService mealSvc = EasyMock.createMock(MealService.class);
-		EasyMock
-				.expect(
-						mealSvc.getMeal(EasyMock.eq(dinner.getId()), EasyMock
-								.isA(FullMealHydrater.class))).andReturn(dinner);
+		EasyMock.expect(
+				mealSvc.getMeal(EasyMock.eq(dinner.getId()), EasyMock.isA(FullMealHydrater.class)))
+				.andReturn(dinner);
 		EasyMock.replay(mealSvc);
 
 		UpdateMealAction action = new UpdateMealAction();
@@ -32,6 +34,7 @@ public class UpdateMealActionTest extends TestCase {
 		assertEquals(dinner.getInstant(), action.getModel().getInstant());
 	}
 
+	@Test
 	public void testUpdate() throws Exception {
 		Meal meal = Meals.fullItalianDinner();
 		BasicMealUpdateRequest model = new BasicMealUpdateRequest(meal);
@@ -50,6 +53,7 @@ public class UpdateMealActionTest extends TestCase {
 		EasyMock.verify(mealSvc);
 	}
 
+	@Test
 	public void testUpdateWithErrors() throws MealException {
 		Meal meal = Meals.fullItalianDinner();
 		BasicMealUpdateRequest model = new BasicMealUpdateRequest(meal);
@@ -69,6 +73,7 @@ public class UpdateMealActionTest extends TestCase {
 		assertTrue(action.hasActionErrors());
 	}
 
+	@Test
 	public void testCancel() {
 		UpdateMealAction action = new UpdateMealAction();
 		assertEquals(Action.SUCCESS, action.cancel());

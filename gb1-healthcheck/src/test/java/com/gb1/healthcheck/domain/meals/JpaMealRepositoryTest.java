@@ -13,6 +13,7 @@ import com.gb1.healthcheck.domain.users.ExposedUser;
 import com.gb1.healthcheck.domain.users.User;
 import com.gb1.healthcheck.domain.users.Users;
 
+// TODO Migrate to JUnit4-based abstract class
 public class JpaMealRepositoryTest extends BaseRepositoryTestCase {
 	private MealRepository mealRepo = null;
 

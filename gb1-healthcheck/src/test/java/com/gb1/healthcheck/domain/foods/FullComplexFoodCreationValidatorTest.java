@@ -1,13 +1,15 @@
 package com.gb1.healthcheck.domain.foods;
 
+import static org.junit.Assert.fail;
+
 import java.util.ArrayList;
 import java.util.List;
 
-import junit.framework.TestCase;
-
 import org.easymock.EasyMock;
+import org.junit.Test;
 
-public class FullComplexFoodCreationValidatorTest extends TestCase {
+public class FullComplexFoodCreationValidatorTest {
+	@Test
 	public void testValidate() throws FoodException {
 		final ComplexFood food = Foods.spaghetti();
 
@@ -21,6 +23,7 @@ public class FullComplexFoodCreationValidatorTest extends TestCase {
 		v.validate(food);
 	}
 
+	@Test
 	public void testValidateNameAlreadyTaken() throws FoodException {
 		final ComplexFood food = Foods.spaghetti();
 
@@ -42,6 +45,7 @@ public class FullComplexFoodCreationValidatorTest extends TestCase {
 		}
 	}
 
+	@Test
 	public void testValidateNoIngredients() throws FoodException {
 		final ComplexFood food = new ComplexFood("no ingredients");
 

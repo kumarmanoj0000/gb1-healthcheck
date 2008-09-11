@@ -1,8 +1,10 @@
 package com.gb1.healthcheck.web.users;
 
-import junit.framework.TestCase;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import org.easymock.EasyMock;
+import org.junit.Test;
 
 import com.gb1.healthcheck.domain.users.InvalidPasswordException;
 import com.gb1.healthcheck.domain.users.User;
@@ -10,7 +12,8 @@ import com.gb1.healthcheck.domain.users.Users;
 import com.gb1.healthcheck.services.users.UserService;
 import com.opensymphony.xwork2.Action;
 
-public class ChangePasswordActionTest extends TestCase {
+public class ChangePasswordActionTest {
+	@Test
 	public void testExecute() throws Exception {
 		User user = Users.gb();
 		String currentPwd = "1";
@@ -33,6 +36,7 @@ public class ChangePasswordActionTest extends TestCase {
 		EasyMock.verify(userSvc);
 	}
 
+	@Test
 	public void testExecuteBadCurrentPassword() throws Exception {
 		User user = Users.gb();
 		String currentPwd = "1";

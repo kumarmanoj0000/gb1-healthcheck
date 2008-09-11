@@ -1,17 +1,19 @@
 package com.gb1.healthcheck.web.meals;
 
+import static org.junit.Assert.assertEquals;
+
 import java.util.HashSet;
 import java.util.Set;
 
-import junit.framework.TestCase;
-
 import org.easymock.EasyMock;
+import org.junit.Test;
 
 import com.gb1.healthcheck.domain.meals.Meals;
 import com.gb1.healthcheck.services.meals.MealService;
 import com.opensymphony.xwork2.Action;
 
-public class DeleteMealsActionTest extends TestCase {
+public class DeleteMealsActionTest {
+	@Test
 	public void testDeleteMeals() {
 		Set<Long> mealIds = new HashSet<Long>();
 		mealIds.add(Meals.fullItalianDinner().getId());

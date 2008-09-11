@@ -1,11 +1,14 @@
 package com.gb1.healthcheck.web.foods;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+
 import java.util.HashMap;
 import java.util.Map;
 
-import junit.framework.TestCase;
-
 import org.easymock.EasyMock;
+import org.junit.Test;
 
 import com.gb1.healthcheck.domain.foods.FoodAlreadyExistsException;
 import com.gb1.healthcheck.domain.foods.Foods;
@@ -14,11 +17,12 @@ import com.gb1.healthcheck.services.foods.FoodService;
 import com.gb1.healthcheck.services.foods.SimpleFoodUpdateRequest;
 import com.opensymphony.xwork2.Action;
 
-public class UpdateSimpleFoodActionTest extends TestCase {
+public class UpdateSimpleFoodActionTest {
 	private static final String MODEL_SESSION_KEY = UpdateSimpleFoodAction.class.getName()
 			+ ".model";
 
 	@SuppressWarnings("unchecked")
+	@Test
 	public void testInput() throws Exception {
 		final Long foodId = 1L;
 		final SimpleFood apple = Foods.apple();
@@ -41,6 +45,7 @@ public class UpdateSimpleFoodActionTest extends TestCase {
 	}
 
 	@SuppressWarnings("unchecked")
+	@Test
 	public void testSubmit() throws Exception {
 		BasicSimpleFoodUpdateRequest model = new BasicSimpleFoodUpdateRequest(Foods.apple());
 
@@ -65,6 +70,7 @@ public class UpdateSimpleFoodActionTest extends TestCase {
 	}
 
 	@SuppressWarnings("unchecked")
+	@Test
 	public void testSubmitWithErrors() throws Exception {
 		BasicSimpleFoodUpdateRequest model = new BasicSimpleFoodUpdateRequest(Foods.apple());
 
@@ -88,6 +94,7 @@ public class UpdateSimpleFoodActionTest extends TestCase {
 		EasyMock.verify(foodSvc);
 	}
 
+	@Test
 	public void testCancel() {
 		UpdateSimpleFoodAction action = new UpdateSimpleFoodAction();
 		assertEquals(Action.SUCCESS, action.cancel());

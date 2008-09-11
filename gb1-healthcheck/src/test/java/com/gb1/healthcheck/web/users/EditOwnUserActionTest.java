@@ -1,11 +1,14 @@
 package com.gb1.healthcheck.web.users;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
+
 import java.util.HashMap;
 import java.util.Map;
 
-import junit.framework.TestCase;
-
 import org.easymock.EasyMock;
+import org.junit.Test;
 
 import com.gb1.healthcheck.domain.users.EmailAlreadyExistsException;
 import com.gb1.healthcheck.domain.users.User;
@@ -15,7 +18,8 @@ import com.gb1.healthcheck.services.users.UserService;
 import com.gb1.healthcheck.services.users.UserUpdateRequest;
 import com.opensymphony.xwork2.Action;
 
-public class EditOwnUserActionTest extends TestCase {
+public class EditOwnUserActionTest {
+	@Test
 	public void testInput() throws Exception {
 		User user = Users.lg();
 
@@ -27,6 +31,7 @@ public class EditOwnUserActionTest extends TestCase {
 		assertEquals(user.getId(), action.getModel().getUserId());
 	}
 
+	@Test
 	public void testSubmit() throws Exception {
 		User user = Users.gb();
 		BasicUserUpdateRequest request = new BasicUserUpdateRequest(user);
@@ -55,6 +60,7 @@ public class EditOwnUserActionTest extends TestCase {
 		assertEquals(request.getEmail(), user.getEmail());
 	}
 
+	@Test
 	public void testSubmitWithErrors() throws Exception {
 		User user = Users.gb();
 		UserUpdateRequest request = new BasicUserUpdateRequest(user);

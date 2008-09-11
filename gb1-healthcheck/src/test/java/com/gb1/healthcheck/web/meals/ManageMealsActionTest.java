@@ -1,13 +1,15 @@
 package com.gb1.healthcheck.web.meals;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import junit.framework.TestCase;
-
 import org.apache.commons.collections.CollectionUtils;
 import org.easymock.EasyMock;
+import org.junit.Test;
 
 import com.gb1.healthcheck.domain.meals.Meal;
 import com.gb1.healthcheck.domain.meals.Meals;
@@ -16,7 +18,8 @@ import com.gb1.healthcheck.domain.users.Users;
 import com.gb1.healthcheck.services.meals.MealService;
 import com.opensymphony.xwork2.Action;
 
-public class ManageMealsActionTest extends TestCase {
+public class ManageMealsActionTest {
+	@Test
 	public void testListMeals() {
 		final User requester = Users.gb();
 		final List<Meal> mealHistory = Meals.mealHistory();

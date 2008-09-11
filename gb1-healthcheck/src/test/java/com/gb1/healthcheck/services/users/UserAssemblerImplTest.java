@@ -1,16 +1,20 @@
 package com.gb1.healthcheck.services.users;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+
 import java.util.Collections;
 import java.util.Set;
 
-import junit.framework.TestCase;
-
 import org.apache.commons.collections.CollectionUtils;
+import org.junit.Test;
 
 import com.gb1.healthcheck.domain.users.Role;
 import com.gb1.healthcheck.domain.users.User;
 
-public class UserAssemblerImplTest extends TestCase {
+public class UserAssemblerImplTest {
+	@Test
 	public void testCreate() {
 		UserRegistrationRequest request = new UserRegistrationRequest() {
 			public String getEmail() {
@@ -39,6 +43,7 @@ public class UserAssemblerImplTest extends TestCase {
 		assertTrue(CollectionUtils.isEqualCollection(request.getRoles(), user.getRoles()));
 	}
 
+	@Test
 	public void testUpdate() {
 		final User user = new User("login", "email", "pwd");
 		user.assignRole(Role.STANDARD);

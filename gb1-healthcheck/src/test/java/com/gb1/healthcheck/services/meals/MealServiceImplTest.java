@@ -1,5 +1,8 @@
 package com.gb1.healthcheck.services.meals;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+
 import java.util.Collections;
 import java.util.Date;
 import java.util.HashSet;
@@ -7,10 +10,9 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 
-import junit.framework.TestCase;
-
 import org.apache.commons.collections.CollectionUtils;
 import org.easymock.EasyMock;
+import org.junit.Test;
 
 import com.gb1.commons.dataaccess.Hydrater;
 import com.gb1.healthcheck.domain.meals.Meal;
@@ -23,7 +25,8 @@ import com.gb1.healthcheck.domain.users.User;
 import com.gb1.healthcheck.domain.users.UserRepository;
 import com.gb1.healthcheck.domain.users.Users;
 
-public class MealServiceImplTest extends TestCase {
+public class MealServiceImplTest {
+	@Test
 	public void testGetMealHistory() {
 		final User eater = Users.gb();
 		final List<Meal> mealHistory = Meals.mealHistory();
@@ -42,6 +45,7 @@ public class MealServiceImplTest extends TestCase {
 	}
 
 	@SuppressWarnings("unchecked")
+	@Test
 	public void testLoadMeal() {
 		Meal meal = Meals.fullItalianDinner();
 
@@ -60,6 +64,7 @@ public class MealServiceImplTest extends TestCase {
 		EasyMock.verify(hydrater);
 	}
 
+	@Test
 	public void testCreateMeal() throws MealException {
 		final Meal meal = Meals.fullItalianDinner();
 
@@ -106,6 +111,7 @@ public class MealServiceImplTest extends TestCase {
 		EasyMock.verify(mealRepo);
 	}
 
+	@Test
 	public void testUpdateMeal() throws MealException {
 		final Meal oldMeal = Meals.fullItalianDinner();
 
@@ -147,6 +153,7 @@ public class MealServiceImplTest extends TestCase {
 		EasyMock.verify(validator);
 	}
 
+	@Test
 	public void testDeleteMeals() {
 		Set<Long> mealIds = new HashSet<Long>();
 		mealIds.add(Meals.fullItalianDinner().getId());
@@ -163,6 +170,7 @@ public class MealServiceImplTest extends TestCase {
 		EasyMock.verify(mealRepo);
 	}
 
+	@Test
 	public void testNotifyInactiveUsers() {
 		MealInactivityNotifier notifier = EasyMock.createMock(MealInactivityNotifier.class);
 		notifier.notifyUsersOfMealInactivity();

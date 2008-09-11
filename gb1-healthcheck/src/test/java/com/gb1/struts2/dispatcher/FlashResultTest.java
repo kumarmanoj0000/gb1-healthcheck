@@ -1,15 +1,17 @@
 package com.gb1.struts2.dispatcher;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+
 import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import junit.framework.TestCase;
-
 import org.apache.struts2.StrutsStatics;
 import org.apache.struts2.dispatcher.mapper.DefaultActionMapper;
+import org.junit.Test;
 import org.springframework.mock.web.MockHttpServletRequest;
 import org.springframework.mock.web.MockHttpServletResponse;
 
@@ -22,12 +24,10 @@ import com.opensymphony.xwork2.mock.MockActionProxy;
 import com.opensymphony.xwork2.util.OgnlValueStack;
 import com.opensymphony.xwork2.util.ValueStack;
 
-public class FlashResultTest extends TestCase {
+public class FlashResultTest {
 	private Date today = new Date();
 
-	public FlashResultTest() {
-	}
-
+	@Test
 	@SuppressWarnings("unchecked")
 	public void testExecuteNoParams() throws Exception {
 		MockHttpServletRequest request = new MockHttpServletRequest();
@@ -69,6 +69,7 @@ public class FlashResultTest extends TestCase {
 		assertTrue(flashMap.isEmpty());
 	}
 
+	@Test
 	@SuppressWarnings("unchecked")
 	public void testExecuteParseTrue() throws Exception {
 		MockHttpServletRequest request = new MockHttpServletRequest();
@@ -125,6 +126,7 @@ public class FlashResultTest extends TestCase {
 		assertEquals("paramValue5", flashMap.get("param5"));
 	}
 
+	@Test
 	@SuppressWarnings("unchecked")
 	public void testExecuteParseFalse() throws Exception {
 		MockHttpServletRequest request = new MockHttpServletRequest();

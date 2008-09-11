@@ -1,29 +1,35 @@
 package com.gb1.healthcheck.domain.users;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
+
 import java.util.HashMap;
 import java.util.Map;
 
-import junit.framework.TestCase;
-
 import org.easymock.EasyMock;
+import org.junit.Test;
 
 import com.gb1.commons.tokens.Token;
 
-public class UserTest extends TestCase {
+public class UserTest {
 	private static final Token ACTIVATION_TOKEN = new Token("123");
 	private static final Token WRONG_ACTIVATION_TOKEN = new Token("456");
 
+	@Test
 	public void testCreate() {
 		User u = new User();
 		assertTrue(u.isWaitingForActivationRequest());
 	}
 
+	@Test
 	public void testRequestActivation() {
 		User u = new User();
 		u.activationRequested(new UserActivationRequest(u, ACTIVATION_TOKEN));
 		assertTrue(u.isPendingActivation());
 	}
 
+	@Test
 	public void testActivateOk() throws UserActivationException {
 		User u = new User();
 		u.activationRequested(new UserActivationRequest(u, ACTIVATION_TOKEN));
@@ -31,6 +37,7 @@ public class UserTest extends TestCase {
 		assertTrue(u.isActive());
 	}
 
+	@Test
 	public void testActivateAlreadyActive() throws UserActivationException {
 		User u = new User();
 		u.activationRequested(new UserActivationRequest(u, ACTIVATION_TOKEN));
@@ -48,6 +55,7 @@ public class UserTest extends TestCase {
 		}
 	}
 
+	@Test
 	public void testActivateActivationNotYetRequested() throws UserActivationException {
 		User u = new User();
 
@@ -61,6 +69,7 @@ public class UserTest extends TestCase {
 		}
 	}
 
+	@Test
 	public void testActivateNullToken() throws UserActivationException {
 		User u = new User();
 		u.activationRequested(new UserActivationRequest(u, ACTIVATION_TOKEN));
@@ -75,6 +84,7 @@ public class UserTest extends TestCase {
 		}
 	}
 
+	@Test
 	public void testActivateInvalidToken() throws UserActivationException {
 		User u = new User();
 		u.activationRequested(new UserActivationRequest(u, ACTIVATION_TOKEN));
@@ -89,6 +99,7 @@ public class UserTest extends TestCase {
 		}
 	}
 
+	@Test
 	public void testChangePasswordOk() throws InvalidPasswordException {
 		final String oldPassword = "oldPass";
 		final String newPassword = "newPass";
@@ -98,6 +109,7 @@ public class UserTest extends TestCase {
 		u.changePassword(oldPassword, newPassword);
 	}
 
+	@Test
 	public void testChangePasswordError() {
 		User u = new User();
 		u.setPassword("oldPass");
@@ -111,6 +123,7 @@ public class UserTest extends TestCase {
 		}
 	}
 
+	@Test
 	public void testAssignRoles() {
 		User u = new User();
 		assertTrue(!u.hasRole(Role.STANDARD));
@@ -125,6 +138,7 @@ public class UserTest extends TestCase {
 		assertTrue(!u.hasRole(Role.STANDARD));
 	}
 
+	@Test
 	public void testResetPassword() {
 		String newPwd = "12345678";
 		int length = 8;

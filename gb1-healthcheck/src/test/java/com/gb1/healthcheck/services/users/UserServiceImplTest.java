@@ -1,15 +1,19 @@
 package com.gb1.healthcheck.services.users;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
+
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
-import junit.framework.TestCase;
-
 import org.apache.commons.collections.CollectionUtils;
 import org.easymock.EasyMock;
+import org.junit.Test;
 
 import com.gb1.commons.tokens.Token;
 import com.gb1.healthcheck.domain.users.ExposedUser;
@@ -27,7 +31,8 @@ import com.gb1.healthcheck.domain.users.UserRepository;
 import com.gb1.healthcheck.domain.users.UserValidator;
 import com.gb1.healthcheck.domain.users.Users;
 
-public class UserServiceImplTest extends TestCase {
+public class UserServiceImplTest {
+	@Test
 	public void testRegisterUser() throws UserException {
 		UserRegistrationRequest request = new UserRegistrationRequest() {
 			public Set<Role> getRoles() {
@@ -78,6 +83,7 @@ public class UserServiceImplTest extends TestCase {
 		EasyMock.verify(requester);
 	}
 
+	@Test
 	public void testModifyUnknownUser() throws UserException {
 		final User user = Users.gb();
 		UserUpdateRequest modifReq = new UserUpdateRequest() {
@@ -111,6 +117,7 @@ public class UserServiceImplTest extends TestCase {
 		}
 	}
 
+	@Test
 	public void testModifyUserOk() throws UserException {
 		final ExposedUser originalUser = new ExposedUser();
 		originalUser.setId(1L);
@@ -153,6 +160,7 @@ public class UserServiceImplTest extends TestCase {
 		assertEquals(modifiedUser.getEmail(), updateRequest.getEmail());
 	}
 
+	@Test
 	public void testSendLostPasswordOk() throws UnknownUserException {
 		final String email = "user@gb.com";
 		User u = new ExposedUser();
@@ -176,6 +184,7 @@ public class UserServiceImplTest extends TestCase {
 		EasyMock.verify(sender);
 	}
 
+	@Test
 	public void testSendLostPasswordUnknownUser() {
 		final String email = "user@gb.com";
 
@@ -195,6 +204,7 @@ public class UserServiceImplTest extends TestCase {
 		}
 	}
 
+	@Test
 	public void testActivateUserOk() throws Exception {
 		final String email = "user@gb.com";
 		final Token rightToken = new Token("123");
@@ -214,6 +224,7 @@ public class UserServiceImplTest extends TestCase {
 		assertTrue(activatedUser.isActive());
 	}
 
+	@Test
 	public void testActivateUnknownUser() throws UserActivationException {
 		final String email = "user@gb.com";
 
@@ -233,6 +244,7 @@ public class UserServiceImplTest extends TestCase {
 		}
 	}
 
+	@Test
 	public void testGetAllUsers() {
 		Set<User> allUsers = Users.all();
 
@@ -246,6 +258,7 @@ public class UserServiceImplTest extends TestCase {
 		assertTrue(CollectionUtils.isEqualCollection(allUsers, svc.getAllUsers()));
 	}
 
+	@Test
 	public void testDeleteUsers() {
 		Set<Long> userIds = new HashSet<Long>();
 		userIds.add(Users.gb().getId());
@@ -263,6 +276,7 @@ public class UserServiceImplTest extends TestCase {
 		EasyMock.verify(userRepo);
 	}
 
+	@Test
 	public void testChangeUserPassword() throws Exception {
 		ExposedUser user = new ExposedUser();
 		user.setId(42L);
@@ -279,6 +293,7 @@ public class UserServiceImplTest extends TestCase {
 		assertEquals("2", user.getPassword());
 	}
 
+	@Test
 	public void testResetUserPassword() {
 		String newPwd = "12345678";
 		int length = 8;

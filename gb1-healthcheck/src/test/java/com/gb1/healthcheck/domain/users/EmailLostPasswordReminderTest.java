@@ -3,12 +3,12 @@ package com.gb1.healthcheck.domain.users;
 import javax.mail.Session;
 import javax.mail.internet.MimeMessage;
 
-import junit.framework.TestCase;
-
 import org.easymock.EasyMock;
+import org.junit.Test;
 import org.springframework.mail.javamail.JavaMailSender;
 
-public class EmailLostPasswordReminderTest extends TestCase {
+public class EmailLostPasswordReminderTest {
+	@Test
 	public void testSendLostPassword() {
 		ExposedUser u = new ExposedUser();
 		u.setLogin("u1");

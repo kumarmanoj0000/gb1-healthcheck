@@ -1,10 +1,13 @@
 package com.gb1.healthcheck.domain.foods;
 
-import junit.framework.TestCase;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
 
 import org.easymock.EasyMock;
+import org.junit.Test;
 
-public class FullSimpleFoodCreationValidatorTest extends TestCase {
+public class FullSimpleFoodCreationValidatorTest {
+	@Test
 	public void testValidate() throws Exception {
 		final SimpleFood food = Foods.apple();
 
@@ -17,6 +20,7 @@ public class FullSimpleFoodCreationValidatorTest extends TestCase {
 		v.validate(food);
 	}
 
+	@Test
 	public void testValidateNameAlreadyTaken() throws Exception {
 		final SimpleFood food = Foods.apple();
 

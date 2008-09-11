@@ -1,12 +1,15 @@
 package com.gb1.healthcheck.web.foods;
 
-import junit.framework.TestCase;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import org.apache.commons.lang.ArrayUtils;
+import org.junit.Test;
 
 import com.gb1.healthcheck.domain.foods.Nutrient;
 
-public class SimpleFoodRequestSupportTest extends TestCase {
+public class SimpleFoodRequestSupportTest {
+	@Test
 	public void testSetSelectedNutrients() {
 		SimpleFoodRequestSupport req = new SimpleFoodRequestSupport() {
 		};

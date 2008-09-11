@@ -7,6 +7,7 @@ import org.apache.commons.collections.CollectionUtils;
 
 import com.gb1.healthcheck.domain.support.BaseRepositoryTestCase;
 
+// TODO Migrate to JUnit4-based abstract class
 public class JpaFoodRepositoryTest extends BaseRepositoryTestCase {
 	private FoodRepository foodRepo;
 

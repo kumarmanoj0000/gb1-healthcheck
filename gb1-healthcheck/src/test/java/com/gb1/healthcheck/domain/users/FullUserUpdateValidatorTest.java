@@ -1,13 +1,15 @@
 package com.gb1.healthcheck.domain.users;
 
+import static org.junit.Assert.fail;
+
 import java.util.LinkedList;
 import java.util.List;
 
-import junit.framework.TestCase;
-
 import org.easymock.EasyMock;
+import org.junit.Test;
 
-public class FullUserUpdateValidatorTest extends TestCase {
+public class FullUserUpdateValidatorTest {
+	@Test
 	public void testValidateOk() throws UserException {
 		ExposedUser user = new ExposedUser();
 		user.setId(1L);
@@ -25,6 +27,7 @@ public class FullUserUpdateValidatorTest extends TestCase {
 		validator.validate(user);
 	}
 
+	@Test
 	public void testValidateEmailExistsSameUser() throws UserException {
 		ExposedUser user = new ExposedUser();
 		user.setId(1L);
@@ -44,6 +47,7 @@ public class FullUserUpdateValidatorTest extends TestCase {
 		validator.validate(user);
 	}
 
+	@Test
 	public void testValidateEmailExistsOtherUser() throws UserException {
 		ExposedUser verifiedUser = new ExposedUser();
 		verifiedUser.setId(1L);

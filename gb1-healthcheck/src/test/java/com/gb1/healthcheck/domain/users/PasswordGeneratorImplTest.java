@@ -1,10 +1,13 @@
 package com.gb1.healthcheck.domain.users;
 
-import junit.framework.TestCase;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import org.apache.commons.lang.StringUtils;
+import org.junit.Test;
 
-public class PasswordGeneratorImplTest extends TestCase {
+public class PasswordGeneratorImplTest {
+	@Test
 	public void testGeneratePassword() {
 		final int length = 8;
 		PasswordGeneratorImpl pg = new PasswordGeneratorImpl();

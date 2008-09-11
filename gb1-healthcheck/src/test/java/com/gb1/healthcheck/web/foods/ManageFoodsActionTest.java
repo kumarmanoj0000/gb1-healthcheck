@@ -1,14 +1,16 @@
 package com.gb1.healthcheck.web.foods;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import junit.framework.TestCase;
-
 import org.apache.commons.collections.CollectionUtils;
 import org.easymock.EasyMock;
+import org.junit.Test;
 
 import com.gb1.commons.dataaccess.IdentityHydrater;
 import com.gb1.healthcheck.domain.foods.ComplexFood;
@@ -17,7 +19,8 @@ import com.gb1.healthcheck.domain.foods.SimpleFood;
 import com.gb1.healthcheck.services.foods.FoodService;
 import com.opensymphony.xwork2.Action;
 
-public class ManageFoodsActionTest extends TestCase {
+public class ManageFoodsActionTest {
+	@Test
 	@SuppressWarnings("unchecked")
 	public void testListFoods() {
 		List<SimpleFood> allSimpleFoods = new ArrayList<SimpleFood>(Foods.allSimpleFoods());
