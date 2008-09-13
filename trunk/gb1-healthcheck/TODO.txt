@@ -7,16 +7,22 @@ HealthCheck
   - correlation food <=> gastric states (Flex component?)
 
 . technical
-  - use conversation management (squeeze a wizard somewhere)
+  - use conversation management
   - replace time picker with more useable one
   - reduce HTML tags (create / reuse Struts2 theme)
   - upgrade to Struts 2.1
   - upgrade to Hibernate Core 3.3
 
 . pain points
-  - service interface with domain objects IDs: adds Request / Assembler, is it really necessary? could keep objects in web layer, but what about other clients?
-  - transaction-bound EntityManagers require explicit attribute loading (Hydrater) to avoid LazyInitializationExceptions: other solution possible? 
-  - syntaxic / semantic validation is distributed: centralized solution possible?
+  - service interface with domain objects IDs adds Request / Assembler
+    => problems: more mapping code
+    => solutions: could map directly to domain model in web layer, but what about other clients?
+  - transaction-bound EntityManagers require explicit attribute loading (Hydrater) to avoid LazyInitializationExceptions
+    => problems: web layer affected by implementation choice; more code
+    => solutions: OpenEntityManagerInViewFilter? 
+  - syntaxic / semantic validation
+    => problems: logic is distributed
+    => solutions: annotation-based validator?
   - actions still contain lots of code: reduce?
   - Eclipse / Maven dependencies duplication (integration not ready; but is it really useful?)
   - Tomcat restarts on every code change, even JSPs (Jetty? => debug?)
