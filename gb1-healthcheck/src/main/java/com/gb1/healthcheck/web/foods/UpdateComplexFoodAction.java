@@ -24,7 +24,7 @@ import com.opensymphony.xwork2.validator.annotations.Validations;
 public class UpdateComplexFoodAction extends ComplexFoodActionSupport implements SessionAware {
 	private static final String MODEL_SESSION_KEY = UpdateComplexFoodAction.class.getName()
 			+ ".model";
-	private Map<String, Object> session;
+	private Map<String, Object> sessionMap;
 
 	public UpdateComplexFoodAction() {
 	}
@@ -34,7 +34,7 @@ public class UpdateComplexFoodAction extends ComplexFoodActionSupport implements
 		ComplexFood food = getFoodService().getComplexFood(getFoodId(),
 				new FullComplexFoodHydrater());
 		BasicComplexFoodUpdateRequest model = new BasicComplexFoodUpdateRequest(food);
-		session.put(MODEL_SESSION_KEY, model);
+		sessionMap.put(MODEL_SESSION_KEY, model);
 
 		return Action.INPUT;
 	}
@@ -46,7 +46,7 @@ public class UpdateComplexFoodAction extends ComplexFoodActionSupport implements
 
 		try {
 			getFoodService().updateComplexFood(getModel());
-			session.remove(MODEL_SESSION_KEY);
+			sessionMap.remove(MODEL_SESSION_KEY);
 
 			addActionMessage(getText("foods.complexFoods.edit.success"));
 			result = Action.SUCCESS;
@@ -62,13 +62,13 @@ public class UpdateComplexFoodAction extends ComplexFoodActionSupport implements
 	}
 
 	public BasicComplexFoodUpdateRequest getModel() {
-		BasicComplexFoodUpdateRequest model = (BasicComplexFoodUpdateRequest) session
+		BasicComplexFoodUpdateRequest model = (BasicComplexFoodUpdateRequest) sessionMap
 				.get(MODEL_SESSION_KEY);
 		return model;
 	}
 
 	@SuppressWarnings("unchecked")
-	public void setSession(Map session) {
-		this.session = session;
+	public void setSession(Map sessionMap) {
+		this.sessionMap = sessionMap;
 	}
 }
