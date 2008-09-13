@@ -65,9 +65,9 @@
 	</scm>
 
 	<properties>
-		<spring.version>2.5.1</spring.version>
-		<spring.security.version>2.0.0</spring.security.version>
-		<struts.version>2.0.11</struts.version>
+		<spring.version>2.5.5</spring.version>
+		<spring.security.version>2.0.3</spring.security.version>
+		<struts.version>2.0.11.2</struts.version>
 	</properties>
 
 	<build>
