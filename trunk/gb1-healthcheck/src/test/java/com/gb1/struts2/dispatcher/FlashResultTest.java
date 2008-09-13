@@ -25,7 +25,7 @@ import com.opensymphony.xwork2.util.OgnlValueStack;
 import com.opensymphony.xwork2.util.ValueStack;
 
 public class FlashResultTest {
-	private Date today = new Date();
+	Date today = new Date();
 
 	@Test
 	@SuppressWarnings("unchecked")

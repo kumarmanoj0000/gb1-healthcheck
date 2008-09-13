@@ -61,8 +61,7 @@ public abstract class EditUserActionSupport extends ActionSupport implements Ses
 		return result;
 	}
 
-	protected void updateActiveUserIfNecessary(BasicUserUpdateRequest updateReq) {
-	}
+	protected abstract void updateActiveUserIfNecessary(BasicUserUpdateRequest updateReq);
 
 	public String cancel() {
 		return Action.SUCCESS;

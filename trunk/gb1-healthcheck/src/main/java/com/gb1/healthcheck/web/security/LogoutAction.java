@@ -10,7 +10,7 @@ import org.apache.struts2.config.Result;
 import org.apache.struts2.dispatcher.ServletRedirectResult;
 import org.apache.struts2.interceptor.ServletRequestAware;
 import org.apache.struts2.interceptor.ServletResponseAware;
-import org.springframework.security.ui.rememberme.TokenBasedRememberMeServices;
+import org.springframework.security.ui.rememberme.AbstractRememberMeServices;
 
 import com.opensymphony.xwork2.Action;
 
@@ -27,7 +27,7 @@ public class LogoutAction implements ServletRequestAware, ServletResponseAware {
 	public String execute() {
 		request.getSession().invalidate();
 		Cookie terminate = new Cookie(
-				TokenBasedRememberMeServices.SPRING_SECURITY_REMEMBER_ME_COOKIE_KEY, null);
+				AbstractRememberMeServices.SPRING_SECURITY_REMEMBER_ME_COOKIE_KEY, null);
 		terminate.setMaxAge(0);
 		response.addCookie(terminate);
 

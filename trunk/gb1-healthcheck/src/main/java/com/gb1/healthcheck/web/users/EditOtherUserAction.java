@@ -28,6 +28,10 @@ public class EditOtherUserAction extends EditUserActionSupport {
 		return user;
 	}
 
+	@Override
+	protected void updateActiveUserIfNecessary(BasicUserUpdateRequest updateReq) {
+	}
+
 	public void setUserId(Long userId) {
 		this.userId = userId;
 	}
