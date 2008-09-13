@@ -41,7 +41,7 @@ public class SpringAuthenticatedUserInterceptorTestCase {
 		assertSame(user, action.getUser());
 	}
 
-	private class TestAction {
+	class TestAction {
 		private User user;
 
 		public User getUser() {
