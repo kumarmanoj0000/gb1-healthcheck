@@ -1,8 +1,11 @@
 package com.gb1.healthcheck.services.users;
 
+import org.springframework.stereotype.Component;
+
 import com.gb1.healthcheck.domain.users.Role;
 import com.gb1.healthcheck.domain.users.User;
 
+@Component("userAssembler")
 public class UserAssemblerImpl implements UserAssembler {
 	public UserAssemblerImpl() {
 	}
