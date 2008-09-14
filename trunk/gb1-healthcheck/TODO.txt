@@ -24,7 +24,6 @@ HealthCheck
     => problems: logic is distributed
     => solutions: annotation-based validator?
   - actions still contain lots of code: reduce?
-  - Eclipse / Maven dependencies duplication (integration not ready; but is it really useful?)
   - Tomcat restarts on every code change, even JSPs (Jetty? => debug?)
   - Struts2:
     . @ParentPackage duplication in actions
