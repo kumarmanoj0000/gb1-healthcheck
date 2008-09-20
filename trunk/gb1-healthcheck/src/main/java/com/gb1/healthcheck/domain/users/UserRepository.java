@@ -1,7 +1,6 @@
 package com.gb1.healthcheck.domain.users;
 
 import java.util.List;
-import java.util.Set;
 
 /**
  * A repository for users.
@@ -30,7 +29,7 @@ public interface UserRepository {
 	 * 
 	 * @return The list of registered users
 	 */
-	Set<User> findUsers();
+	List<User> findUsers();
 
 	/**
 	 * Finds a user identified by the given login name. If no user corresponds to this login name,
@@ -61,10 +60,10 @@ public interface UserRepository {
 	List<User> findUsersByEmail(String email);
 
 	/**
-	 * Deletes all users identified by the given IDs. If no user corresponds to a given ID, this ID
-	 * is ignored.
+	 * Deletes the user identified by the given ID. If no user corresponds to this ID, it is
+	 * ignored.
 	 * 
-	 * @param userIds The IDs of the users to delete
+	 * @param userId The ID of the user to delete
 	 */
-	void deleteUsers(Set<Long> userIds);
+	void deleteUser(Long userId);
 }

@@ -7,9 +7,7 @@ import static junit.framework.Assert.assertTrue;
 
 import java.text.ParseException;
 import java.util.Date;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import javax.annotation.Resource;
 
@@ -63,11 +61,10 @@ public class JpaMealRepositoryTest extends AbstractInMemoryPersistenceTestCase {
 
 	@Test
 	public void testDeleteMeal() {
-		Set<Long> mealIds = new HashSet<Long>();
-		mealIds.add(Meals.fullItalianDinner().getId());
+		Long mealId = Meals.fullItalianDinner().getId();
 
-		mealRepo.deleteMeals(mealIds);
-		assertNull(mealRepo.loadMeal(Meals.fullItalianDinner().getId()));
+		mealRepo.deleteMeal(mealId);
+		assertNull(mealRepo.loadMeal(mealId));
 	}
 
 	@Test

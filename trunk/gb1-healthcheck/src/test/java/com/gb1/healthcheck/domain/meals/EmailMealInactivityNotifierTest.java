@@ -1,10 +1,10 @@
 package com.gb1.healthcheck.domain.meals;
 
+import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 import javax.mail.Session;
 import javax.mail.internet.MimeMessage;
@@ -22,10 +22,7 @@ public class EmailMealInactivityNotifierTest {
 	@Test
 	public void testNotify() {
 		Date today = new Date();
-
-		Set<User> users = new LinkedHashSet<User>();
-		users.add(Users.gb());
-		users.add(Users.lg());
+		List<User> users = Arrays.asList(Users.gb(), Users.lg());
 
 		Meal lastMealGb = Meals.fullItalianDinner();
 		lastMealGb.setInstant(DateUtils.addDays(today, -5));

@@ -3,6 +3,7 @@ package com.gb1.healthcheck.web.meals;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.LinkedList;
@@ -14,8 +15,10 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.gb1.commons.dataaccess.IdentityHydrater;
+import com.gb1.healthcheck.domain.foods.ComplexFood;
 import com.gb1.healthcheck.domain.foods.Food;
 import com.gb1.healthcheck.domain.foods.Foods;
+import com.gb1.healthcheck.domain.foods.SimpleFood;
 import com.gb1.healthcheck.domain.meals.MealAlreadyExistsException;
 import com.gb1.healthcheck.domain.meals.MealException;
 import com.gb1.healthcheck.domain.meals.PreparationMethod;
@@ -38,9 +41,10 @@ public class CreateMealActionTest {
 		Collections.sort(availableFoods, new Food.ByNameComparator());
 
 		foodService = EasyMock.createNiceMock(FoodService.class);
-		EasyMock.expect(foodService.getSimpleFoods()).andReturn(Foods.allSimpleFoods());
+		EasyMock.expect(foodService.getSimpleFoods()).andReturn(
+				new ArrayList<SimpleFood>(Foods.allSimpleFoods()));
 		EasyMock.expect(foodService.getComplexFoods(EasyMock.isA(IdentityHydrater.class)))
-				.andReturn(Foods.allComplexFoods());
+				.andReturn(new ArrayList<ComplexFood>(Foods.allComplexFoods()));
 		EasyMock.replay(foodService);
 	}
 

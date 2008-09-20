@@ -55,7 +55,9 @@ public class MealServiceImpl implements MealService {
 	}
 
 	public void deleteMeals(Set<Long> mealIds) {
-		mealRepo.deleteMeals(mealIds);
+		for (Long mealId : mealIds) {
+			mealRepo.deleteMeal(mealId);
+		}
 	}
 
 	public void notifyUsersOfMealInactivity() {

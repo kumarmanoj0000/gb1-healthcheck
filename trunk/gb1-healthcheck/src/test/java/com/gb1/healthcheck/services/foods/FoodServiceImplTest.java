@@ -3,7 +3,9 @@ package com.gb1.healthcheck.services.foods;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import org.apache.commons.collections.CollectionUtils;
@@ -24,7 +26,7 @@ import com.gb1.healthcheck.domain.foods.SimpleFoodValidator;
 public class FoodServiceImplTest {
 	@Test
 	public void testGetSimpleFoods() {
-		Set<SimpleFood> allSimpleFoods = Foods.allSimpleFoods();
+		List<SimpleFood> allSimpleFoods = new ArrayList<SimpleFood>(Foods.allSimpleFoods());
 
 		FoodRepository foodRepo = EasyMock.createMock(FoodRepository.class);
 		EasyMock.expect(foodRepo.findSimpleFoods()).andReturn(allSimpleFoods);
@@ -39,7 +41,7 @@ public class FoodServiceImplTest {
 	@SuppressWarnings("unchecked")
 	@Test
 	public void testGetComplexFoods() {
-		Set<ComplexFood> allComplexFoods = Foods.allComplexFoods();
+		List<ComplexFood> allComplexFoods = new ArrayList<ComplexFood>(Foods.allComplexFoods());
 
 		Hydrater<ComplexFood> hydrater = EasyMock.createMock(Hydrater.class);
 		EasyMock.expect(hydrater.hydrate(EasyMock.isA(ComplexFood.class))).andReturn(null).times(
@@ -256,7 +258,7 @@ public class FoodServiceImplTest {
 		foodIds.add(Foods.apple().getId());
 
 		FoodRepository foodRepo = EasyMock.createMock(FoodRepository.class);
-		foodRepo.deleteFoods(foodIds);
+		foodRepo.deleteFood(Foods.apple().getId());
 		EasyMock.expectLastCall();
 		EasyMock.replay(foodRepo);
 

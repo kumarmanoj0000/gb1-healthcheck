@@ -1,8 +1,6 @@
 package com.gb1.healthcheck.domain.foods;
 
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -52,27 +50,21 @@ public class JpaFoodRepository implements FoodRepository {
 	}
 
 	@SuppressWarnings("unchecked")
-	public Set<SimpleFood> findSimpleFoods() {
+	public List<SimpleFood> findSimpleFoods() {
 		List<SimpleFood> foods = entityManager.createQuery("select sf from SimpleFood sf")
 				.getResultList();
-		Set<SimpleFood> foodSet = new HashSet<SimpleFood>(foods);
-
-		return foodSet;
+		return foods;
 	}
 
 	@SuppressWarnings("unchecked")
-	public Set<ComplexFood> findComplexFoods() {
+	public List<ComplexFood> findComplexFoods() {
 		List<ComplexFood> foods = entityManager.createQuery("select cf from ComplexFood cf")
 				.getResultList();
-		Set<ComplexFood> foodSet = new HashSet<ComplexFood>(foods);
-
-		return foodSet;
+		return foods;
 	}
 
-	public void deleteFoods(Set<Long> foodIds) {
-		for (Long foodId : foodIds) {
-			entityManager.remove(loadFood(foodId));
-		}
+	public void deleteFood(Long foodId) {
+		entityManager.remove(loadFood(foodId));
 	}
 
 	@PersistenceContext

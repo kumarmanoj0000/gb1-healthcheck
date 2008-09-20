@@ -12,10 +12,12 @@ import org.easymock.EasyMock;
 import org.junit.Test;
 
 import com.gb1.commons.dataaccess.IdentityHydrater;
+import com.gb1.healthcheck.domain.foods.ComplexFood;
 import com.gb1.healthcheck.domain.foods.Food;
 import com.gb1.healthcheck.domain.foods.FoodAlreadyExistsException;
 import com.gb1.healthcheck.domain.foods.FoodException;
 import com.gb1.healthcheck.domain.foods.Foods;
+import com.gb1.healthcheck.domain.foods.SimpleFood;
 import com.gb1.healthcheck.services.foods.ComplexFoodCreationRequest;
 import com.gb1.healthcheck.services.foods.FoodService;
 import com.opensymphony.xwork2.Action;
@@ -30,9 +32,10 @@ public class CreateComplexFoodActionTest {
 		Collections.sort(availableIngredients, new Food.ByNameComparator());
 
 		FoodService foodService = EasyMock.createMock(FoodService.class);
-		EasyMock.expect(foodService.getSimpleFoods()).andReturn(Foods.allSimpleFoods());
+		EasyMock.expect(foodService.getSimpleFoods()).andReturn(
+				new ArrayList<SimpleFood>(Foods.allSimpleFoods()));
 		EasyMock.expect(foodService.getComplexFoods(EasyMock.isA(IdentityHydrater.class)))
-				.andReturn(Foods.allComplexFoods());
+				.andReturn(new ArrayList<ComplexFood>(Foods.allComplexFoods()));
 		EasyMock.replay(foodService);
 
 		CreateComplexFoodAction action = new CreateComplexFoodAction();

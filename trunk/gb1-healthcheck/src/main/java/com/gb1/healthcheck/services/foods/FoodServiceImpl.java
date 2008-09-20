@@ -1,5 +1,6 @@
 package com.gb1.healthcheck.services.foods;
 
+import java.util.List;
 import java.util.Set;
 
 import javax.annotation.Resource;
@@ -45,13 +46,13 @@ public class FoodServiceImpl implements FoodService {
 	}
 
 	@Transactional(readOnly = true)
-	public Set<SimpleFood> getSimpleFoods() {
+	public List<SimpleFood> getSimpleFoods() {
 		return foodRepo.findSimpleFoods();
 	}
 
 	@Transactional(readOnly = true)
-	public Set<ComplexFood> getComplexFoods(Hydrater<ComplexFood> hydrater) {
-		Set<ComplexFood> foods = foodRepo.findComplexFoods();
+	public List<ComplexFood> getComplexFoods(Hydrater<ComplexFood> hydrater) {
+		List<ComplexFood> foods = foodRepo.findComplexFoods();
 		for (ComplexFood food : foods) {
 			hydrater.hydrate(food);
 		}
@@ -84,7 +85,9 @@ public class FoodServiceImpl implements FoodService {
 	}
 
 	public void deleteFoods(Set<Long> foodIds) {
-		foodRepo.deleteFoods(foodIds);
+		for (Long foodId : foodIds) {
+			foodRepo.deleteFood(foodId);
+		}
 	}
 
 	@Resource

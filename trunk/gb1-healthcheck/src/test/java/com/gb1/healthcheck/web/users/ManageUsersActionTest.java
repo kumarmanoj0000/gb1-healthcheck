@@ -22,7 +22,7 @@ public class ManageUsersActionTest {
 		List<User> allUsers = new ArrayList<User>(Users.all());
 
 		UserService userSvc = EasyMock.createMock(UserService.class);
-		EasyMock.expect(userSvc.getAllUsers()).andReturn(Users.all()).once();
+		EasyMock.expect(userSvc.getAllUsers()).andReturn(allUsers).once();
 		EasyMock.replay(userSvc);
 
 		Map<String, Object> sessionMap = new HashMap<String, Object>();

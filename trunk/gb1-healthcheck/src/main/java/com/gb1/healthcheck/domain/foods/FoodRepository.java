@@ -1,7 +1,6 @@
 package com.gb1.healthcheck.domain.foods;
 
 import java.util.List;
-import java.util.Set;
 
 public interface FoodRepository {
 	Food loadFood(Long foodId);
@@ -14,11 +13,11 @@ public interface FoodRepository {
 
 	List<Food> findFoodsByName(String name);
 
-	Set<SimpleFood> findSimpleFoods();
+	List<SimpleFood> findSimpleFoods();
 
-	Set<ComplexFood> findComplexFoods();
+	List<ComplexFood> findComplexFoods();
 
 	void saveFood(Food food);
 
-	void deleteFoods(Set<Long> foodIds);
+	void deleteFood(Long foodId);
 }

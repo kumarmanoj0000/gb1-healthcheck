@@ -1,5 +1,6 @@
 package com.gb1.healthcheck.services.foods;
 
+import java.util.List;
 import java.util.Set;
 
 import com.gb1.commons.dataaccess.Hydrater;
@@ -12,9 +13,9 @@ public interface FoodService {
 
 	ComplexFood getComplexFood(Long foodId, Hydrater<ComplexFood> hydrater);
 
-	Set<SimpleFood> getSimpleFoods();
+	List<SimpleFood> getSimpleFoods();
 
-	Set<ComplexFood> getComplexFoods(Hydrater<ComplexFood> hydrater);
+	List<ComplexFood> getComplexFoods(Hydrater<ComplexFood> hydrater);
 
 	void createSimpleFood(SimpleFoodCreationRequest request) throws FoodException;
 

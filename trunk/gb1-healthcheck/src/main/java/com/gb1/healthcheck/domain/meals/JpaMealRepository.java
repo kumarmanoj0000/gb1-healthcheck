@@ -2,7 +2,6 @@ package com.gb1.healthcheck.domain.meals;
 
 import java.util.Date;
 import java.util.List;
-import java.util.Set;
 
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
@@ -43,10 +42,8 @@ public class JpaMealRepository implements MealRepository {
 		entityManager.persist(meal);
 	}
 
-	public void deleteMeals(Set<Long> mealIds) {
-		for (Long mealId : mealIds) {
-			entityManager.remove(loadMeal(mealId));
-		}
+	public void deleteMeal(Long mealId) {
+		entityManager.remove(loadMeal(mealId));
 	}
 
 	public Meal getLastMealBy(User eater) {

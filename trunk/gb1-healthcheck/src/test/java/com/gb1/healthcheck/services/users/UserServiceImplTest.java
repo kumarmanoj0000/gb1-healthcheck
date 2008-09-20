@@ -5,9 +5,11 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
-import java.util.HashSet;
+import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -246,7 +248,7 @@ public class UserServiceImplTest {
 
 	@Test
 	public void testGetAllUsers() {
-		Set<User> allUsers = Users.all();
+		List<User> allUsers = new ArrayList<User>(Users.all());
 
 		UserRepository userRepo = EasyMock.createMock(UserRepository.class);
 		EasyMock.expect(userRepo.findUsers()).andReturn(allUsers);
@@ -260,12 +262,13 @@ public class UserServiceImplTest {
 
 	@Test
 	public void testDeleteUsers() {
-		Set<Long> userIds = new HashSet<Long>();
+		Set<Long> userIds = new LinkedHashSet<Long>();
 		userIds.add(Users.gb().getId());
 		userIds.add(Users.lg().getId());
 
 		UserRepository userRepo = EasyMock.createMock(UserRepository.class);
-		userRepo.deleteUsers(userIds);
+		userRepo.deleteUser(Users.gb().getId());
+		userRepo.deleteUser(Users.lg().getId());
 		EasyMock.expectLastCall();
 		EasyMock.replay(userRepo);
 
