@@ -64,7 +64,8 @@ public class JpaUserRepositoryTest extends AbstractInMemoryPersistenceTestCase {
 
 	@Test
 	public void testDeleteUsers() {
-		userRepo.deleteUser(Users.gb().getId());
-		assertNull(userRepo.loadUser(Users.gb().getId()));
+		User user = userRepo.loadUser(Users.gb().getId());
+		userRepo.deleteUser(user);
+		assertNull(userRepo.loadUser(user.getId()));
 	}
 }

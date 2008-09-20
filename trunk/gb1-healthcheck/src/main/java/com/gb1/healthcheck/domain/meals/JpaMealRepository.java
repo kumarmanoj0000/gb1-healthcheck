@@ -39,8 +39,8 @@ public class JpaMealRepository implements MealRepository {
 		entityManager.persist(meal);
 	}
 
-	public void deleteMeal(Long mealId) {
-		entityManager.remove(loadMeal(mealId));
+	public void deleteMeal(Meal meal) {
+		entityManager.remove(meal);
 	}
 
 	public Meal getLastMealBy(User eater) {

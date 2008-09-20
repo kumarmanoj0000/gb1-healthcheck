@@ -103,7 +103,8 @@ public class UserServiceImpl implements UserService {
 
 	public void deleteUsers(Set<Long> userIds) {
 		for (Long userId : userIds) {
-			userRepository.deleteUser(userId);
+			User user = userRepository.loadUser(userId);
+			userRepository.deleteUser(user);
 		}
 	}
 
