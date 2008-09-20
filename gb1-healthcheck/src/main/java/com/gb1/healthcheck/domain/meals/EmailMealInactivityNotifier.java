@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 import javax.annotation.Resource;
 import javax.mail.internet.MimeMessage;
@@ -29,7 +28,7 @@ public class EmailMealInactivityNotifier implements MealInactivityNotifier {
 
 	public void notifyUsersOfMealInactivity() {
 		Date cutDate = DateUtils.addDays(new Date(), -inactiveDaysThreshold);
-		Set<User> users = userRepository.findUsers();
+		List<User> users = userRepository.findUsers();
 		List<MimeMessage> toSend = new ArrayList<MimeMessage>();
 
 		for (User user : users) {

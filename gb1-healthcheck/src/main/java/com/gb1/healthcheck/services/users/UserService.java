@@ -1,5 +1,6 @@
 package com.gb1.healthcheck.services.users;
 
+import java.util.List;
 import java.util.Set;
 
 import com.gb1.commons.tokens.Token;
@@ -80,7 +81,7 @@ public interface UserService {
 	 * 
 	 * @return All registered system users
 	 */
-	Set<User> getAllUsers();
+	List<User> getAllUsers();
 
 	/**
 	 * Deletes all users identified by the given IDs. If no user corresponds to a given ID, this ID

@@ -4,7 +4,7 @@ import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertNull;
 import static junit.framework.Assert.assertTrue;
 
-import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.annotation.Resource;
@@ -43,23 +43,22 @@ public class JpaFoodRepositoryTest extends AbstractInMemoryPersistenceTestCase {
 	@Test
 	public void testFindSimpleFoods() {
 		Set<SimpleFood> expectedFoods = Foods.allSimpleFoods();
-		Set<SimpleFood> loadedFoods = foodRepo.findSimpleFoods();
+		List<SimpleFood> loadedFoods = foodRepo.findSimpleFoods();
 		assertTrue(CollectionUtils.isEqualCollection(expectedFoods, loadedFoods));
 	}
 
 	@Test
 	public void testFindComplexFoods() {
 		Set<ComplexFood> expectedFoods = Foods.allComplexFoods();
-		Set<ComplexFood> loadedFoods = foodRepo.findComplexFoods();
+		List<ComplexFood> loadedFoods = foodRepo.findComplexFoods();
 		assertTrue(CollectionUtils.isEqualCollection(expectedFoods, loadedFoods));
 	}
 
 	@Test
 	public void testDeleteFood() {
-		Set<Long> foodIds = new HashSet<Long>();
-		foodIds.add(Foods.apple().getId());
+		Long foodId = Foods.apple().getId();
 
-		foodRepo.deleteFoods(foodIds);
-		assertNull(foodRepo.loadFood(Foods.apple().getId()));
+		foodRepo.deleteFood(foodId);
+		assertNull(foodRepo.loadFood(foodId));
 	}
 }

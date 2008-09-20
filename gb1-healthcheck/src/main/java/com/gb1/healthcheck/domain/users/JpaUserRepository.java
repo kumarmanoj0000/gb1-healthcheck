@@ -1,8 +1,6 @@
 package com.gb1.healthcheck.domain.users;
 
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -39,11 +37,9 @@ public class JpaUserRepository implements UserRepository {
 	 * @return The list of registered users
 	 */
 	@SuppressWarnings("unchecked")
-	public Set<User> findUsers() {
+	public List<User> findUsers() {
 		List<User> users = entityManager.createQuery("select u from User u").getResultList();
-		Set<User> usersSet = new HashSet<User>(users);
-
-		return usersSet;
+		return users;
 	}
 
 	/**
@@ -108,10 +104,8 @@ public class JpaUserRepository implements UserRepository {
 		entityManager.persist(user);
 	}
 
-	public void deleteUsers(Set<Long> userIds) {
-		for (Long userId : userIds) {
-			entityManager.remove(loadUser(userId));
-		}
+	public void deleteUser(Long userId) {
+		entityManager.remove(loadUser(userId));
 	}
 
 	@PersistenceContext

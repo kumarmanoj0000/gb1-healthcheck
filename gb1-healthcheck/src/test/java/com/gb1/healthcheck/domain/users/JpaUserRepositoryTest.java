@@ -3,9 +3,6 @@ package com.gb1.healthcheck.domain.users;
 import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertNull;
 
-import java.util.HashSet;
-import java.util.Set;
-
 import javax.annotation.Resource;
 
 import org.junit.Test;
@@ -67,13 +64,7 @@ public class JpaUserRepositoryTest extends AbstractInMemoryPersistenceTestCase {
 
 	@Test
 	public void testDeleteUsers() {
-		Set<Long> userIds = new HashSet<Long>();
-		userIds.add(Users.gb().getId());
-		userIds.add(Users.lg().getId());
-
-		userRepo.deleteUsers(userIds);
-
+		userRepo.deleteUser(Users.gb().getId());
 		assertNull(userRepo.loadUser(Users.gb().getId()));
-		assertNull(userRepo.loadUser(Users.lg().getId()));
 	}
 }

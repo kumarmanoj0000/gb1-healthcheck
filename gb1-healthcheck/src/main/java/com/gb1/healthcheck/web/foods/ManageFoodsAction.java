@@ -1,9 +1,7 @@
 package com.gb1.healthcheck.web.foods;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 import javax.annotation.Resource;
 
@@ -38,16 +36,13 @@ public class ManageFoodsAction extends ActionSupport implements SessionAware {
 	public String execute() {
 		List<SimpleFood> simpleFoodList = getSimpleFoods();
 		if (simpleFoodList == null || refreshList) {
-			Set<SimpleFood> foods = foodService.getSimpleFoods();
-			simpleFoodList = new ArrayList<SimpleFood>(foods);
+			simpleFoodList = foodService.getSimpleFoods();
 			sessionMap.put(SIMPLE_FOODS_LIST_SESSION_KEY, simpleFoodList);
 		}
 
 		List<ComplexFood> complexFoodList = getComplexFoods();
 		if (complexFoodList == null || refreshList) {
-			Set<ComplexFood> foods = foodService
-					.getComplexFoods(new IdentityHydrater<ComplexFood>());
-			complexFoodList = new ArrayList<ComplexFood>(foods);
+			complexFoodList = foodService.getComplexFoods(new IdentityHydrater<ComplexFood>());
 			sessionMap.put(COMPLEX_FOODS_LIST_SESSION_KEY, complexFoodList);
 		}
 

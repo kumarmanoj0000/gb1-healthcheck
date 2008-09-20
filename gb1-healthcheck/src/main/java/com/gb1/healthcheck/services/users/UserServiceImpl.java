@@ -1,5 +1,6 @@
 package com.gb1.healthcheck.services.users;
 
+import java.util.List;
 import java.util.Set;
 
 import javax.annotation.Resource;
@@ -96,12 +97,14 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Transactional(readOnly = true)
-	public Set<User> getAllUsers() {
+	public List<User> getAllUsers() {
 		return userRepository.findUsers();
 	}
 
 	public void deleteUsers(Set<Long> userIds) {
-		userRepository.deleteUsers(userIds);
+		for (Long userId : userIds) {
+			userRepository.deleteUser(userId);
+		}
 	}
 
 	public void changeUserPassword(Long userId, String currentPassword, String newPassword)

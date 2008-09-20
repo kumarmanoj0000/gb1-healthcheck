@@ -1,9 +1,7 @@
 package com.gb1.healthcheck.web.users;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 import javax.annotation.Resource;
 
@@ -37,8 +35,7 @@ public class ManageUsersAction extends ActionSupport implements SessionAware {
 		List<User> userList = getUsers();
 
 		if (userList == null || refreshList) {
-			Set<User> users = userService.getAllUsers();
-			userList = new ArrayList<User>(users);
+			userList = userService.getAllUsers();
 			sessionMap.put(USER_LIST_SESSION_KEY, userList);
 		}
 
