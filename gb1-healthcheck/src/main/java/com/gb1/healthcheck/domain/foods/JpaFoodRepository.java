@@ -43,24 +43,18 @@ public class JpaFoodRepository implements FoodRepository {
 
 	@SuppressWarnings("unchecked")
 	public List<Food> findFoodsByName(String name) {
-		List<Food> foods = entityManager.createQuery("select f from Food f where f.name = ?1")
-				.setParameter(1, name).getResultList();
-
-		return foods;
+		return entityManager.createQuery("select f from Food f where f.name = ?1").setParameter(1,
+				name).getResultList();
 	}
 
 	@SuppressWarnings("unchecked")
 	public List<SimpleFood> findSimpleFoods() {
-		List<SimpleFood> foods = entityManager.createQuery("select sf from SimpleFood sf")
-				.getResultList();
-		return foods;
+		return entityManager.createQuery("select sf from SimpleFood sf").getResultList();
 	}
 
 	@SuppressWarnings("unchecked")
 	public List<ComplexFood> findComplexFoods() {
-		List<ComplexFood> foods = entityManager.createQuery("select cf from ComplexFood cf")
-				.getResultList();
-		return foods;
+		return entityManager.createQuery("select cf from ComplexFood cf").getResultList();
 	}
 
 	public void deleteFood(Long foodId) {
