@@ -6,11 +6,11 @@ import javax.annotation.Resource;
 
 import org.junit.Test;
 
-import com.gb1.healthcheck.domain.support.BaseRepositoryTestCase;
+import com.gb1.commons.test.AbstractInMemoryPersistenceTestCase;
 import com.gb1.healthcheck.domain.users.User;
 import com.gb1.healthcheck.domain.users.Users;
 
-public class JpaPatientFileRepositoryTest extends BaseRepositoryTestCase {
+public class JpaPatientFileRepositoryTest extends AbstractInMemoryPersistenceTestCase {
 	@Resource
 	private PatientFileRepository repo;
 

@@ -16,12 +16,12 @@ import javax.annotation.Resource;
 import org.apache.commons.lang.time.DateUtils;
 import org.junit.Test;
 
-import com.gb1.healthcheck.domain.support.BaseRepositoryTestCase;
+import com.gb1.commons.test.AbstractInMemoryPersistenceTestCase;
 import com.gb1.healthcheck.domain.users.ExposedUser;
 import com.gb1.healthcheck.domain.users.User;
 import com.gb1.healthcheck.domain.users.Users;
 
-public class JpaMealRepositoryTest extends BaseRepositoryTestCase {
+public class JpaMealRepositoryTest extends AbstractInMemoryPersistenceTestCase {
 	@Resource
 	private MealRepository mealRepo = null;
 
