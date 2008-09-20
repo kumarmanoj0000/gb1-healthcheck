@@ -24,7 +24,6 @@ HealthCheck
     => problems: logic is distributed
     => solutions: annotation-based validator?
   - actions still contain lots of code: reduce?
-  - Tomcat restarts on every code change, even JSPs (Jetty? => debug?)
   - Struts2:
     . @ParentPackage duplication in actions
     . confusing use of literals and OGNL/EL expressions in tags
