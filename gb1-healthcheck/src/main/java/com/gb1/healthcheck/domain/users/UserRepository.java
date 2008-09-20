@@ -60,10 +60,9 @@ public interface UserRepository {
 	List<User> findUsersByEmail(String email);
 
 	/**
-	 * Deletes the user identified by the given ID. If no user corresponds to this ID, it is
-	 * ignored.
+	 * Deletes the given user.
 	 * 
-	 * @param userId The ID of the user to delete
+	 * @param user The user to delete
 	 */
-	void deleteUser(Long userId);
+	void deleteUser(User user);
 }

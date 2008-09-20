@@ -57,8 +57,8 @@ public class JpaFoodRepository implements FoodRepository {
 		return entityManager.createQuery("select cf from ComplexFood cf").getResultList();
 	}
 
-	public void deleteFood(Long foodId) {
-		entityManager.remove(loadFood(foodId));
+	public void deleteFood(Food food) {
+		entityManager.remove(food);
 	}
 
 	@PersistenceContext

@@ -159,7 +159,9 @@ public class MealServiceImplTest {
 		mealIds.add(Meals.fullItalianDinner().getId());
 
 		MealRepository mealRepo = EasyMock.createMock(MealRepository.class);
-		mealRepo.deleteMeal(Meals.fullItalianDinner().getId());
+		EasyMock.expect(mealRepo.loadMeal(Meals.fullItalianDinner().getId())).andReturn(
+				Meals.fullItalianDinner());
+		mealRepo.deleteMeal(Meals.fullItalianDinner());
 		EasyMock.expectLastCall().once();
 		EasyMock.replay(mealRepo);
 

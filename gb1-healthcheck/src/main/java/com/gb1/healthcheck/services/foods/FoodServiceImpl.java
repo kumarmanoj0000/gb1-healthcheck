@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.gb1.commons.dataaccess.Hydrater;
 import com.gb1.healthcheck.domain.foods.ComplexFood;
 import com.gb1.healthcheck.domain.foods.ComplexFoodValidator;
+import com.gb1.healthcheck.domain.foods.Food;
 import com.gb1.healthcheck.domain.foods.FoodException;
 import com.gb1.healthcheck.domain.foods.FoodRepository;
 import com.gb1.healthcheck.domain.foods.SimpleFood;
@@ -86,7 +87,8 @@ public class FoodServiceImpl implements FoodService {
 
 	public void deleteFoods(Set<Long> foodIds) {
 		for (Long foodId : foodIds) {
-			foodRepo.deleteFood(foodId);
+			Food food = foodRepo.loadFood(foodId);
+			foodRepo.deleteFood(food);
 		}
 	}
 

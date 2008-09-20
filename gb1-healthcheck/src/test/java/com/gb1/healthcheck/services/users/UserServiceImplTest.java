@@ -267,8 +267,11 @@ public class UserServiceImplTest {
 		userIds.add(Users.lg().getId());
 
 		UserRepository userRepo = EasyMock.createMock(UserRepository.class);
-		userRepo.deleteUser(Users.gb().getId());
-		userRepo.deleteUser(Users.lg().getId());
+		EasyMock.expect(userRepo.loadUser(Users.gb().getId())).andReturn(Users.gb());
+		userRepo.deleteUser(Users.gb());
+		EasyMock.expectLastCall();
+		EasyMock.expect(userRepo.loadUser(Users.lg().getId())).andReturn(Users.lg());
+		userRepo.deleteUser(Users.lg());
 		EasyMock.expectLastCall();
 		EasyMock.replay(userRepo);
 

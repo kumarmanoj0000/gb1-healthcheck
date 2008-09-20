@@ -56,9 +56,8 @@ public class JpaFoodRepositoryTest extends AbstractInMemoryPersistenceTestCase {
 
 	@Test
 	public void testDeleteFood() {
-		Long foodId = Foods.apple().getId();
-
-		foodRepo.deleteFood(foodId);
-		assertNull(foodRepo.loadFood(foodId));
+		Food food = foodRepo.loadFood(Foods.apple().getId());
+		foodRepo.deleteFood(food);
+		assertNull(foodRepo.loadFood(food.getId()));
 	}
 }

@@ -258,7 +258,8 @@ public class FoodServiceImplTest {
 		foodIds.add(Foods.apple().getId());
 
 		FoodRepository foodRepo = EasyMock.createMock(FoodRepository.class);
-		foodRepo.deleteFood(Foods.apple().getId());
+		EasyMock.expect(foodRepo.loadFood(Foods.apple().getId())).andReturn(Foods.apple());
+		foodRepo.deleteFood(Foods.apple());
 		EasyMock.expectLastCall();
 		EasyMock.replay(foodRepo);
 
