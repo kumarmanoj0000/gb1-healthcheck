@@ -12,9 +12,9 @@ import javax.annotation.Resource;
 import org.apache.commons.collections.CollectionUtils;
 import org.junit.Test;
 
-import com.gb1.healthcheck.domain.support.BaseRepositoryTestCase;
+import com.gb1.commons.test.AbstractInMemoryPersistenceTestCase;
 
-public class JpaFoodRepositoryTest extends BaseRepositoryTestCase {
+public class JpaFoodRepositoryTest extends AbstractInMemoryPersistenceTestCase {
 	@Resource
 	private FoodRepository foodRepo;
 

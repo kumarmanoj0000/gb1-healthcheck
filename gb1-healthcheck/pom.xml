@@ -142,13 +142,6 @@
 
 	<dependencies>
 		<dependency>
-			<groupId>com.gb1</groupId>
-			<artifactId>commons</artifactId>
-			<version>1.0-SNAPSHOT</version>
-		</dependency>
-
-		<!-- Java EE -->
-		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>servlet-api</artifactId>
 			<version>2.5</version>
@@ -187,8 +180,6 @@
 			<artifactId>jsr250-api</artifactId>
 			<version>1.0</version>
 		</dependency>
-
-		<!-- Spring -->
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-context-support</artifactId>
@@ -214,8 +205,6 @@
 			<artifactId>spring-aop</artifactId>
 			<version>${spring.version}</version>
 		</dependency>
-
-		<!-- Web layer -->
 		<dependency>
 			<groupId>org.apache.struts</groupId>
 			<artifactId>struts2-core</artifactId>
@@ -251,10 +240,6 @@
 			<artifactId>displaytag</artifactId>
 			<version>1.1.1</version>
 		</dependency>
-
-		<!-- Security -->
-
-		<!-- Spring Security 2.0 depends on an older version of Spring (2.0), so force use of current version -->
 		<dependency>
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-core-tiger</artifactId>
@@ -283,8 +268,6 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
-
-		<!-- Persistence -->
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate</artifactId>
@@ -300,8 +283,6 @@
 			<artifactId>hibernate-annotations</artifactId>
 			<version>3.2.1.ga</version>
 		</dependency>
-
-		<!-- Apache libraries -->
 		<dependency>
 			<groupId>log4j</groupId>
 			<artifactId>log4j</artifactId>
@@ -322,22 +303,16 @@
 			<artifactId>velocity</artifactId>
 			<version>1.5</version>
 		</dependency>
-
 		<dependency>
 			<groupId>opensymphony</groupId>
 			<artifactId>quartz</artifactId>
 			<version>1.6.0</version>
 		</dependency>
-
-		<!-- Necessary to support jetty:run so that Jetty has access to the JDBC DataSource implementation;
-			not necessary for final deployment. -->
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
 			<version>5.0.5</version>
 		</dependency>
-
-		<!-- Unit testing -->
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
@@ -367,6 +342,25 @@
 			<artifactId>spring-aspects</artifactId>
 			<version>${spring.version}</version>
 		</dependency>
+
+		<!-- Java EE -->
+
+		<!-- Spring -->
+
+		<!-- Web layer -->
+
+		<!-- Security -->
+
+		<!-- Spring Security 2.0 depends on an older version of Spring (2.0), so force use of current version -->
+
+		<!-- Persistence -->
+
+		<!-- Apache libraries -->
+
+		<!-- Necessary to support jetty:run so that Jetty has access to the JDBC DataSource implementation;
+			not necessary for final deployment. -->
+
+		<!-- Unit testing -->
 	</dependencies>
 
 	<reporting>

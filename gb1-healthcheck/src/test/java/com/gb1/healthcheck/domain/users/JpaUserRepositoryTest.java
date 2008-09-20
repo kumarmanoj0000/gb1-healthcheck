@@ -10,9 +10,9 @@ import javax.annotation.Resource;
 
 import org.junit.Test;
 
-import com.gb1.healthcheck.domain.support.BaseRepositoryTestCase;
+import com.gb1.commons.test.AbstractInMemoryPersistenceTestCase;
 
-public class JpaUserRepositoryTest extends BaseRepositoryTestCase {
+public class JpaUserRepositoryTest extends AbstractInMemoryPersistenceTestCase {
 	@Resource
 	private UserRepository userRepo = null;
 
