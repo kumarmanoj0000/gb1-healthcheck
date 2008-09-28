@@ -20,7 +20,7 @@ public class RegisterUserActionTest {
 		EasyMock.replay(userSvc);
 
 		RegisterUserAction action = new RegisterUserAction();
-		action.setUserService(userSvc);
+		action.userService = userSvc;
 		String result = action.execute();
 
 		assertEquals(Action.SUCCESS, result);
@@ -35,7 +35,7 @@ public class RegisterUserActionTest {
 		EasyMock.replay(userSvc);
 
 		RegisterUserAction action = new RegisterUserAction();
-		action.setUserService(userSvc);
+		action.userService = userSvc;
 		String result = action.execute();
 
 		assertEquals(Action.INPUT, result);

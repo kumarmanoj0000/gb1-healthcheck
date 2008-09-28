@@ -71,10 +71,10 @@ public class UserServiceImplTest {
 		EasyMock.replay(repo);
 
 		UserServiceImpl svc = new UserServiceImpl();
-		svc.setUserAssembler(new UserAssemblerImpl());
-		svc.setUserRepository(repo);
-		svc.setUserActivationRequester(requester);
-		svc.setUserCreationValidator(validator);
+		svc.userAssembler = new UserAssemblerImpl();
+		svc.userRepository = repo;
+		svc.userActivationRequester = requester;
+		svc.userCreationValidator = validator;
 
 		UserActivationRequest actRequest = svc.registerUser(request);
 
@@ -107,8 +107,8 @@ public class UserServiceImplTest {
 		EasyMock.replay(userRepo);
 
 		UserServiceImpl svc = new UserServiceImpl();
-		svc.setUserAssembler(new UserAssemblerImpl());
-		svc.setUserRepository(userRepo);
+		svc.userAssembler = new UserAssemblerImpl();
+		svc.userRepository = userRepo;
 
 		try {
 			svc.updateUser(modifReq);
@@ -150,9 +150,9 @@ public class UserServiceImplTest {
 		EasyMock.replay(userRepo);
 
 		UserServiceImpl svc = new UserServiceImpl();
-		svc.setUserAssembler(new UserAssemblerImpl());
-		svc.setUserRepository(userRepo);
-		svc.setUserUpdateValidator(validator);
+		svc.userAssembler = new UserAssemblerImpl();
+		svc.userRepository = userRepo;
+		svc.userUpdateValidator = validator;
 
 		User modifiedUser = svc.updateUser(updateRequest);
 
@@ -177,8 +177,8 @@ public class UserServiceImplTest {
 		EasyMock.replay(sender);
 
 		UserServiceImpl svc = new UserServiceImpl();
-		svc.setUserRepository(userRepo);
-		svc.setLostPasswordReminder(sender);
+		svc.userRepository = userRepo;
+		svc.lostPasswordReminder = sender;
 
 		svc.sendLostPassword(email);
 
@@ -195,7 +195,7 @@ public class UserServiceImplTest {
 		EasyMock.replay(userRepo);
 
 		UserServiceImpl svc = new UserServiceImpl();
-		svc.setUserRepository(userRepo);
+		svc.userRepository = userRepo;
 
 		try {
 			svc.sendLostPassword(email);
@@ -220,7 +220,7 @@ public class UserServiceImplTest {
 		EasyMock.replay(userRepo);
 
 		UserServiceImpl svc = new UserServiceImpl();
-		svc.setUserRepository(userRepo);
+		svc.userRepository = userRepo;
 
 		User activatedUser = svc.activateUser(email, rightToken);
 		assertTrue(activatedUser.isActive());
@@ -235,7 +235,7 @@ public class UserServiceImplTest {
 		EasyMock.replay(userRepo);
 
 		UserServiceImpl svc = new UserServiceImpl();
-		svc.setUserRepository(userRepo);
+		svc.userRepository = userRepo;
 
 		try {
 			svc.activateUser(email, new Token("123"));
@@ -255,7 +255,7 @@ public class UserServiceImplTest {
 		EasyMock.replay(userRepo);
 
 		UserServiceImpl svc = new UserServiceImpl();
-		svc.setUserRepository(userRepo);
+		svc.userRepository = userRepo;
 
 		assertTrue(CollectionUtils.isEqualCollection(allUsers, svc.getAllUsers()));
 	}
@@ -276,7 +276,7 @@ public class UserServiceImplTest {
 		EasyMock.replay(userRepo);
 
 		UserServiceImpl svc = new UserServiceImpl();
-		svc.setUserRepository(userRepo);
+		svc.userRepository = userRepo;
 		svc.deleteUsers(userIds);
 
 		EasyMock.verify(userRepo);
@@ -293,7 +293,7 @@ public class UserServiceImplTest {
 		EasyMock.replay(userRepo);
 
 		UserServiceImpl svc = new UserServiceImpl();
-		svc.setUserRepository(userRepo);
+		svc.userRepository = userRepo;
 		svc.changeUserPassword(user.getId(), "1", "2");
 
 		assertEquals("2", user.getPassword());
@@ -327,8 +327,8 @@ public class UserServiceImplTest {
 		EasyMock.replay(notifier);
 
 		UserServiceImpl svc = new UserServiceImpl();
-		svc.setUserRepository(userRepo);
-		svc.setPasswordResetNotifier(notifier);
+		svc.userRepository = userRepo;
+		svc.passwordResetNotifier = notifier;
 		svc.resetUserPassword(user.getId());
 
 		assertEquals(newPwd, user.getPassword());

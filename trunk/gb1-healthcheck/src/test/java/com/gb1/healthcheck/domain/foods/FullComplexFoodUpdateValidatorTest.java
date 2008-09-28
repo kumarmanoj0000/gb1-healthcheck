@@ -20,7 +20,7 @@ public class FullComplexFoodUpdateValidatorTest {
 		EasyMock.replay(foodRepo);
 
 		FullComplexFoodUpdateValidator v = new FullComplexFoodUpdateValidator();
-		v.setFoodRepository(foodRepo);
+		v.foodRepo = foodRepo;
 
 		v.validate(food);
 	}
@@ -36,7 +36,7 @@ public class FullComplexFoodUpdateValidatorTest {
 		EasyMock.replay(foodRepo);
 
 		FullComplexFoodUpdateValidator v = new FullComplexFoodUpdateValidator();
-		v.setFoodRepository(foodRepo);
+		v.foodRepo = foodRepo;
 
 		v.validate(food);
 	}
@@ -55,7 +55,7 @@ public class FullComplexFoodUpdateValidatorTest {
 		EasyMock.replay(foodRepo);
 
 		FullComplexFoodUpdateValidator v = new FullComplexFoodUpdateValidator();
-		v.setFoodRepository(foodRepo);
+		v.foodRepo = foodRepo;
 
 		try {
 			v.validate(food);
@@ -76,7 +76,7 @@ public class FullComplexFoodUpdateValidatorTest {
 		EasyMock.replay(foodRepo);
 
 		FullComplexFoodUpdateValidator v = new FullComplexFoodUpdateValidator();
-		v.setFoodRepository(foodRepo);
+		v.foodRepo = foodRepo;
 
 		try {
 			v.validate(food);

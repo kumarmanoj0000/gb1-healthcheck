@@ -41,7 +41,7 @@ public class ComplexFoodAssemblerImplTest {
 		EasyMock.replay(foodRepo);
 
 		ComplexFoodAssemblerImpl assembler = new ComplexFoodAssemblerImpl();
-		assembler.setFoodRepository(foodRepo);
+		assembler.foodRepo = foodRepo;
 
 		ComplexFood food = assembler.createComplexFood(request);
 		assertEquals(reference, food);
@@ -79,7 +79,7 @@ public class ComplexFoodAssemblerImplTest {
 		EasyMock.replay(foodRepo);
 
 		ComplexFoodAssemblerImpl assembler = new ComplexFoodAssemblerImpl();
-		assembler.setFoodRepository(foodRepo);
+		assembler.foodRepo = foodRepo;
 		assembler.updateComplexFood(food, request);
 
 		assertEquals(request.getName(), food.getName());

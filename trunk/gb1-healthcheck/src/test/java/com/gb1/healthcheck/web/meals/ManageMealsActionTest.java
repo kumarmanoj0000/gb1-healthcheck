@@ -33,7 +33,7 @@ public class ManageMealsActionTest {
 		ManageMealsAction action = new ManageMealsAction();
 		action.setRequester(requester);
 		action.setSession(sessionMap);
-		action.setMealService(mealSvc);
+		action.mealService = mealSvc;
 
 		assertEquals(Action.SUCCESS, action.execute());
 		assertTrue(CollectionUtils.isEqualCollection(mealHistory, action.getMeals()));

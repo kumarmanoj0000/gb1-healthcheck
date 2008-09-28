@@ -26,8 +26,8 @@ public class EmailPasswordResetNotifierTest {
 		EasyMock.replay(mailSender);
 
 		EmailPasswordResetNotifier notifier = new EmailPasswordResetNotifier();
-		notifier.setEmailBuilder(builder);
-		notifier.setMailSender(mailSender);
+		notifier.emailBuilder = builder;
+		notifier.emailSender = mailSender;
 		notifier.notifyPasswordReset(u);
 
 		// make sure an email was sent

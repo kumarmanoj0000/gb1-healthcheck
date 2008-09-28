@@ -18,9 +18,14 @@ import com.gb1.commons.tokens.TokenFactory;
  */
 @Component("userActivationRequester")
 public class EmailUserActivationRequester implements UserActivationRequester {
-	private TokenFactory tokenFactory;
-	private UserActivationRequestEmailBuilder emailBuilder;
-	private JavaMailSender emailSender;
+	@Resource
+	protected TokenFactory tokenFactory;
+
+	@Resource
+	protected UserActivationRequestEmailBuilder emailBuilder;
+
+	@Resource
+	protected JavaMailSender emailSender;
 
 	public EmailUserActivationRequester() {
 	}
@@ -41,22 +46,5 @@ public class EmailUserActivationRequester implements UserActivationRequester {
 		emailSender.send(email);
 
 		return request;
-	}
-
-	// external dependencies
-
-	@Resource
-	public void setTokenFactory(TokenFactory tokenFactory) {
-		this.tokenFactory = tokenFactory;
-	}
-
-	@Resource
-	public void setEmailBuilder(UserActivationRequestEmailBuilder emailBuilder) {
-		this.emailBuilder = emailBuilder;
-	}
-
-	@Resource
-	public void setEmailSender(JavaMailSender emailSender) {
-		this.emailSender = emailSender;
 	}
 }

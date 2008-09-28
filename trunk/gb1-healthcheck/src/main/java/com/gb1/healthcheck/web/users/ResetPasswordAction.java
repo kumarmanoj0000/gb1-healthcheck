@@ -16,7 +16,9 @@ import com.opensymphony.xwork2.ActionSupport;
 @Result(type = FlashResult.class, value = "manageUsers", params = { "namespace", "/admin/users",
 		"actionName", "manageUsers", "actionMessages", "${actionMessages}" })
 public class ResetPasswordAction extends ActionSupport {
-	private UserService userService;
+	@Resource
+	protected UserService userService;
+
 	private Long userId;
 
 	public ResetPasswordAction() {
@@ -32,10 +34,5 @@ public class ResetPasswordAction extends ActionSupport {
 
 	public void setUserId(Long userId) {
 		this.userId = userId;
-	}
-
-	@Resource
-	public void setUserService(UserService userSvc) {
-		this.userService = userSvc;
 	}
 }

@@ -70,8 +70,8 @@ public class MealAssemblerImplTest {
 		EasyMock.replay(userRepo);
 
 		MealAssemblerImpl assembler = new MealAssemblerImpl();
-		assembler.setFoodRepository(foodRepo);
-		assembler.setUserRepository(userRepo);
+		assembler.foodRepo = foodRepo;
+		assembler.userRepo = userRepo;
 
 		Meal meal = assembler.createMeal(request);
 		assertEquals(eater, meal.getEater());
@@ -123,7 +123,7 @@ public class MealAssemblerImplTest {
 		EasyMock.replay(foodRepo);
 
 		MealAssemblerImpl assembler = new MealAssemblerImpl();
-		assembler.setFoodRepository(foodRepo);
+		assembler.foodRepo = foodRepo;
 		assembler.updateMeal(meal, request);
 
 		assertEquals(request.getInstant(), meal.getInstant());

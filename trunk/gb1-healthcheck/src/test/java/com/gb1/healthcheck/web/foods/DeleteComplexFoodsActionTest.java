@@ -32,7 +32,7 @@ public class DeleteComplexFoodsActionTest {
 		EasyMock.replay(foodSvc);
 
 		DeleteComplexFoodsAction action = new DeleteComplexFoodsAction();
-		action.setFoodService(foodSvc);
+		action.foodService = foodSvc;
 		action.setFoodIds(foodIds.toArray(new Long[0]));
 
 		assertEquals(Action.SUCCESS, action.execute());

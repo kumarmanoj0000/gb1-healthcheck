@@ -8,7 +8,8 @@ import org.springframework.stereotype.Component;
 
 @Component("complexFoodUpdateValidator")
 public class FullComplexFoodUpdateValidator implements ComplexFoodValidator {
-	private FoodRepository foodRepo;
+	@Resource
+	protected FoodRepository foodRepo;
 
 	public FullComplexFoodUpdateValidator() {
 	}
@@ -41,10 +42,5 @@ public class FullComplexFoodUpdateValidator implements ComplexFoodValidator {
 
 	private boolean foodHasNoIngredients(ComplexFood food) {
 		return food.getIngredients().isEmpty();
-	}
-
-	@Resource
-	public void setFoodRepository(FoodRepository foodRepo) {
-		this.foodRepo = foodRepo;
 	}
 }

@@ -30,8 +30,8 @@ public class PatientFileServiceImplTest {
 		EasyMock.replay(metricsRepo);
 
 		PatientFileServiceImpl svc = new PatientFileServiceImpl();
-		svc.setUserRepository(userRepo);
-		svc.setPatientFileRepository(metricsRepo);
+		svc.userRepo = userRepo;
+		svc.patientFileRepo = metricsRepo;
 		svc.savePatientGastricState(patient.getId(), now, GastricState.NORMAL);
 
 		assertEquals(GastricState.NORMAL, metrics.getGastricState(now));
@@ -51,8 +51,8 @@ public class PatientFileServiceImplTest {
 		EasyMock.replay(repo);
 
 		PatientFileServiceImpl svc = new PatientFileServiceImpl();
-		svc.setPatientFileRepository(repo);
-		svc.setUserRepository(userRepo);
+		svc.patientFileRepo = repo;
+		svc.userRepo = userRepo;
 
 		assertEquals(patient, svc.loadPatientFile(patient.getId()).getPatient());
 	}

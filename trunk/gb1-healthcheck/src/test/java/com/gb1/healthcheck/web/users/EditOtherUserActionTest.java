@@ -23,7 +23,7 @@ public class EditOtherUserActionTest {
 
 		EditOtherUserAction action = new EditOtherUserAction();
 		action.setSession(new HashMap<String, Object>());
-		action.setUserService(userSvc);
+		action.userService = userSvc;
 		action.setUserId(user.getId());
 
 		assertEquals(Action.INPUT, action.input());

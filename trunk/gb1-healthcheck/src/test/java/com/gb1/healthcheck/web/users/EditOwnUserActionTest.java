@@ -45,8 +45,8 @@ public class EditOwnUserActionTest {
 		EasyMock.replay(userSvc);
 
 		EditOwnUserAction action = new EditOwnUserAction();
-		action.setUserAssembler(new UserAssemblerImpl());
-		action.setUserService(userSvc);
+		action.userAssembler = new UserAssemblerImpl();
+		action.userService = userSvc;
 		action.setRequester(user);
 		action.setSession(sessionMap);
 
@@ -75,7 +75,7 @@ public class EditOwnUserActionTest {
 
 		EditOwnUserAction action = new EditOwnUserAction();
 		action.setRequester(user);
-		action.setUserService(userSvc);
+		action.userService = userSvc;
 		action.setSession(sessionMap);
 
 		assertEquals(Action.INPUT, action.execute());

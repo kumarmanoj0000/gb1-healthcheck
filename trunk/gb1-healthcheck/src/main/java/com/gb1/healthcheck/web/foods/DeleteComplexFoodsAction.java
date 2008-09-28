@@ -18,7 +18,9 @@ import com.opensymphony.xwork2.ActionSupport;
 @Result(type = FlashResult.class, value = "manageFoods", params = { "namespace", "/foods", "parse",
 		"true", "actionMessages", "${actionMessages}", "refreshList", "true" })
 public class DeleteComplexFoodsAction extends ActionSupport {
-	private FoodService foodService;
+	@Resource
+	protected FoodService foodService;
+
 	private Long[] foodIds;
 	private String actionMessageKey;
 
@@ -44,10 +46,5 @@ public class DeleteComplexFoodsAction extends ActionSupport {
 
 	public String getActionMessageKey() {
 		return actionMessageKey;
-	}
-
-	@Resource
-	public void setFoodService(FoodService foodService) {
-		this.foodService = foodService;
 	}
 }

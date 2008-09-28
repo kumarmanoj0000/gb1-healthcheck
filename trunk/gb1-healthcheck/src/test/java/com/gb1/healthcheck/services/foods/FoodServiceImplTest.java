@@ -33,7 +33,7 @@ public class FoodServiceImplTest {
 		EasyMock.replay(foodRepo);
 
 		FoodServiceImpl svc = new FoodServiceImpl();
-		svc.setFoodRepository(foodRepo);
+		svc.foodRepo = foodRepo;
 
 		assertTrue(CollectionUtils.isEqualCollection(allSimpleFoods, svc.getSimpleFoods()));
 	}
@@ -53,7 +53,7 @@ public class FoodServiceImplTest {
 		EasyMock.replay(foodRepo);
 
 		FoodServiceImpl svc = new FoodServiceImpl();
-		svc.setFoodRepository(foodRepo);
+		svc.foodRepo = foodRepo;
 
 		assertTrue(CollectionUtils
 				.isEqualCollection(allComplexFoods, svc.getComplexFoods(hydrater)));
@@ -93,9 +93,9 @@ public class FoodServiceImplTest {
 		EasyMock.replay(foodRepo);
 
 		FoodServiceImpl svc = new FoodServiceImpl();
-		svc.setSimpleFoodAssembler(assembler);
-		svc.setSimpleFoodCreationValidator(validator);
-		svc.setFoodRepository(foodRepo);
+		svc.simpleFoodAssembler = assembler;
+		svc.simpleFoodCreationValidator = validator;
+		svc.foodRepo = foodRepo;
 
 		svc.createSimpleFood(request);
 		EasyMock.verify(validator);
@@ -135,9 +135,9 @@ public class FoodServiceImplTest {
 		EasyMock.replay(foodRepo);
 
 		FoodServiceImpl svc = new FoodServiceImpl();
-		svc.setComplexFoodAssembler(assembler);
-		svc.setComplexFoodCreationValidator(validator);
-		svc.setFoodRepository(foodRepo);
+		svc.complexFoodAssembler = assembler;
+		svc.complexFoodCreationValidator = validator;
+		svc.foodRepo = foodRepo;
 
 		svc.createComplexFood(request);
 		EasyMock.verify(validator);
@@ -181,9 +181,9 @@ public class FoodServiceImplTest {
 		EasyMock.replay(foodRepo);
 
 		FoodServiceImpl svc = new FoodServiceImpl();
-		svc.setSimpleFoodAssembler(assembler);
-		svc.setSimpleFoodUpdateValidator(validator);
-		svc.setFoodRepository(foodRepo);
+		svc.simpleFoodAssembler = assembler;
+		svc.simpleFoodUpdateValidator = validator;
+		svc.foodRepo = foodRepo;
 		svc.updateSimpleFood(updateReq);
 
 		EasyMock.verify(assembler);
@@ -228,9 +228,9 @@ public class FoodServiceImplTest {
 		EasyMock.replay(foodRepo);
 
 		FoodServiceImpl svc = new FoodServiceImpl();
-		svc.setComplexFoodAssembler(assembler);
-		svc.setComplexFoodUpdateValidator(validator);
-		svc.setFoodRepository(foodRepo);
+		svc.complexFoodAssembler = assembler;
+		svc.complexFoodUpdateValidator = validator;
+		svc.foodRepo = foodRepo;
 		svc.updateComplexFood(updateReq);
 
 		EasyMock.verify(assembler);
@@ -247,7 +247,7 @@ public class FoodServiceImplTest {
 		EasyMock.replay(foodRepo);
 
 		FoodServiceImpl svc = new FoodServiceImpl();
-		svc.setFoodRepository(foodRepo);
+		svc.foodRepo = foodRepo;
 
 		assertEquals(Foods.apple(), svc.getSimpleFood(foodId));
 	}
@@ -264,7 +264,7 @@ public class FoodServiceImplTest {
 		EasyMock.replay(foodRepo);
 
 		FoodServiceImpl svc = new FoodServiceImpl();
-		svc.setFoodRepository(foodRepo);
+		svc.foodRepo = foodRepo;
 		svc.deleteFoods(foodIds);
 
 		EasyMock.verify(foodRepo);

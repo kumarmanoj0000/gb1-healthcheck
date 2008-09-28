@@ -38,7 +38,7 @@ public class CreateMealAction extends MealActionSupport {
 		String result = Action.INPUT;
 
 		try {
-			getMealService().createMeal(getModel());
+			mealService.createMeal(getModel());
 			addActionMessage(getText("meals.edit.success"));
 			result = Action.SUCCESS;
 		}

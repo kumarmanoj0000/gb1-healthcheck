@@ -24,7 +24,7 @@ public class ActivateUserActionTest {
 		ActivateUserAction action = new ActivateUserAction();
 		action.setPrincipal(email);
 		action.setCredentials(token);
-		action.setUserService(userSvc);
+		action.userService = userSvc;
 
 		assertEquals(Action.SUCCESS, action.execute());
 	}
@@ -42,7 +42,7 @@ public class ActivateUserActionTest {
 		ActivateUserAction action = new ActivateUserAction();
 		action.setPrincipal(email);
 		action.setCredentials(token);
-		action.setUserService(userSvc);
+		action.userService = userSvc;
 
 		assertEquals(Action.INPUT, action.execute());
 	}

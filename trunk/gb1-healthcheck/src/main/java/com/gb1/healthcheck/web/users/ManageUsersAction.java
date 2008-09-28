@@ -23,9 +23,11 @@ public class ManageUsersAction extends ActionSupport implements SessionAware {
 	public static final String USER_LIST_SESSION_KEY = ManageUsersAction.class.getName()
 			+ ".cachedUserList";
 
+	@Resource
+	protected UserService userService;
+
 	private Map<String, Object> sessionMap;
 	private boolean refreshList;
-	private UserService userService;
 
 	public ManageUsersAction() {
 	}
@@ -59,10 +61,5 @@ public class ManageUsersAction extends ActionSupport implements SessionAware {
 	@SuppressWarnings("unchecked")
 	public void setSession(Map sessionMap) {
 		this.sessionMap = sessionMap;
-	}
-
-	@Resource
-	public void setUserService(UserService userService) {
-		this.userService = userService;
 	}
 }

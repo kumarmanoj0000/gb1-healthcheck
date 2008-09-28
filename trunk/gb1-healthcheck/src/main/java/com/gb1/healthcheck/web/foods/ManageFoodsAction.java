@@ -25,7 +25,9 @@ public class ManageFoodsAction extends ActionSupport implements SessionAware {
 	public static final String COMPLEX_FOODS_LIST_SESSION_KEY = ManageFoodsAction.class.getName()
 			+ ".cachedComplexFoodsList";
 
-	private FoodService foodService;
+	@Resource
+	protected FoodService foodService;
+
 	private Map<String, Object> sessionMap;
 	private boolean refreshList;
 
@@ -74,10 +76,5 @@ public class ManageFoodsAction extends ActionSupport implements SessionAware {
 	@SuppressWarnings("unchecked")
 	public void setSession(Map sessionMap) {
 		this.sessionMap = sessionMap;
-	}
-
-	@Resource
-	public void setFoodService(FoodService foodService) {
-		this.foodService = foodService;
 	}
 }

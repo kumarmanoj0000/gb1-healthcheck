@@ -18,7 +18,9 @@ import com.opensymphony.xwork2.ActionSupport;
 @Results( { @Result(name = "input", value = "/views/public/security/register/activateUser.jsp"),
 		@Result(value = "/views/public/security/register/activateUser-success.jsp") })
 public class ActivateUserAction extends ActionSupport {
-	private UserService userService;
+	@Resource
+	protected UserService userService;
+
 	private String email;
 	private String token;
 
@@ -54,10 +56,5 @@ public class ActivateUserAction extends ActionSupport {
 
 	public String getCredentials() {
 		return token;
-	}
-
-	@Resource
-	public void setUserService(UserService userSvc) {
-		this.userService = userSvc;
 	}
 }

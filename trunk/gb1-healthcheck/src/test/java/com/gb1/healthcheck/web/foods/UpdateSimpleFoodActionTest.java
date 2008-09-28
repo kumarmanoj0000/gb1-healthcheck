@@ -32,7 +32,7 @@ public class UpdateSimpleFoodActionTest {
 		EasyMock.replay(foodSvc);
 
 		UpdateSimpleFoodAction action = new UpdateSimpleFoodAction();
-		action.setFoodService(foodSvc);
+		action.foodService = foodSvc;
 
 		action.setSession(new HashMap());
 		action.setFoodId(foodId);
@@ -58,7 +58,7 @@ public class UpdateSimpleFoodActionTest {
 		EasyMock.replay(foodSvc);
 
 		UpdateSimpleFoodAction action = new UpdateSimpleFoodAction();
-		action.setFoodService(foodSvc);
+		action.foodService = foodSvc;
 
 		action.setSession(session);
 		action.setFoodId(model.getFoodId());
@@ -83,7 +83,7 @@ public class UpdateSimpleFoodActionTest {
 		EasyMock.replay(foodSvc);
 
 		UpdateSimpleFoodAction action = new UpdateSimpleFoodAction();
-		action.setFoodService(foodSvc);
+		action.foodService = foodSvc;
 
 		action.setSession(session);
 		action.setFoodId(model.getFoodId());

@@ -15,8 +15,11 @@ import com.gb1.healthcheck.domain.users.UserRepository;
 
 @Component("mealAssembler")
 public class MealAssemblerImpl implements MealAssembler {
-	private FoodRepository foodRepo;
-	private UserRepository userRepo;
+	@Resource
+	protected FoodRepository foodRepo;
+
+	@Resource
+	protected UserRepository userRepo;
 
 	public MealAssemblerImpl() {
 	}
@@ -83,15 +86,5 @@ public class MealAssemblerImpl implements MealAssembler {
 		}
 
 		return requestDishes;
-	}
-
-	@Resource
-	public void setFoodRepository(FoodRepository foodRepo) {
-		this.foodRepo = foodRepo;
-	}
-
-	@Resource
-	public void setUserRepository(UserRepository userRepo) {
-		this.userRepo = userRepo;
 	}
 }

@@ -29,14 +29,26 @@ import com.gb1.healthcheck.domain.users.UserValidator;
 @Service("userService")
 @Transactional(rollbackFor = { RuntimeException.class, UserException.class })
 public class UserServiceImpl implements UserService {
-	private UserRepository userRepository;
-	private UserAssembler userAssembler;
-	private UserValidator userCreationValidator;
-	private UserValidator userUpdateValidator;
+	@Resource
+	protected UserRepository userRepository;
 
-	private UserActivationRequester userActivationRequester;
-	private LostPasswordReminder lostPasswordReminder;
-	private PasswordResetNotifier passwordResetNotifier;
+	@Resource
+	protected UserAssembler userAssembler;
+
+	@Resource
+	protected UserValidator userCreationValidator;
+
+	@Resource
+	protected UserValidator userUpdateValidator;
+
+	@Resource
+	protected UserActivationRequester userActivationRequester;
+
+	@Resource
+	protected LostPasswordReminder lostPasswordReminder;
+
+	@Resource
+	protected PasswordResetNotifier passwordResetNotifier;
 
 	public UserServiceImpl() {
 	}
@@ -119,42 +131,5 @@ public class UserServiceImpl implements UserService {
 		user.resetPassword();
 
 		passwordResetNotifier.notifyPasswordReset(user);
-	}
-
-	// external dependencies
-
-	@Resource
-	public void setUserRepository(UserRepository userRepo) {
-		this.userRepository = userRepo;
-	}
-
-	@Resource
-	public void setUserAssembler(UserAssembler userAssembler) {
-		this.userAssembler = userAssembler;
-	}
-
-	@Resource
-	public void setUserCreationValidator(UserValidator validator) {
-		this.userCreationValidator = validator;
-	}
-
-	@Resource
-	public void setUserUpdateValidator(UserValidator validator) {
-		this.userUpdateValidator = validator;
-	}
-
-	@Resource
-	public void setUserActivationRequester(UserActivationRequester activationRequester) {
-		this.userActivationRequester = activationRequester;
-	}
-
-	@Resource
-	public void setLostPasswordReminder(LostPasswordReminder lostPasswordReminder) {
-		this.lostPasswordReminder = lostPasswordReminder;
-	}
-
-	@Resource
-	public void setPasswordResetNotifier(PasswordResetNotifier notifier) {
-		this.passwordResetNotifier = notifier;
 	}
 }

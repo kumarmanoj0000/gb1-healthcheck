@@ -24,7 +24,7 @@ public class DeleteMealsActionTest {
 		EasyMock.replay(mealSvc);
 
 		DeleteMealsAction action = new DeleteMealsAction();
-		action.setMealService(mealSvc);
+		action.mealService = mealSvc;
 		action.setMealIds(mealIds.toArray(new Long[0]));
 
 		assertEquals(Action.SUCCESS, action.execute());

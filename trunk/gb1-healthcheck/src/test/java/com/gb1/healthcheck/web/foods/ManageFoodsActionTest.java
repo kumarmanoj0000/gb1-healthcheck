@@ -37,7 +37,7 @@ public class ManageFoodsActionTest {
 
 		ManageFoodsAction action = new ManageFoodsAction();
 		action.setSession(sessionMap);
-		action.setFoodService(foodSvc);
+		action.foodService = foodSvc;
 
 		assertEquals(Action.SUCCESS, action.execute());
 		assertTrue(CollectionUtils.isEqualCollection(allSimpleFoods, action.getSimpleFoods()));

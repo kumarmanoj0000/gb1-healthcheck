@@ -25,7 +25,7 @@ public class ChangePasswordActionTest {
 		EasyMock.replay(userSvc);
 
 		ChangePasswordAction action = new ChangePasswordAction();
-		action.setUserService(userSvc);
+		action.userService = userSvc;
 		action.setRequester(user);
 		action.setCurrentPassword(currentPwd);
 		action.setNewPassword1(newPwd);
@@ -48,7 +48,7 @@ public class ChangePasswordActionTest {
 		EasyMock.replay(userSvc);
 
 		ChangePasswordAction action = new ChangePasswordAction();
-		action.setUserService(userSvc);
+		action.userService = userSvc;
 		action.setRequester(user);
 		action.setCurrentPassword(currentPwd);
 		action.setNewPassword1(newPwd);

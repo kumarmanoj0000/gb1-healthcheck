@@ -25,7 +25,9 @@ import com.opensymphony.xwork2.validator.annotations.Validations;
 				"/workbench", "parse", "true", "actionMessages", "${actionMessages}" }) })
 @Validation
 public class ChangePasswordAction extends ActionSupport {
-	private UserService userService;
+	@Resource
+	protected UserService userService;
+
 	private User requester;
 	private String currentPassword;
 	private String newPassword1;
@@ -85,10 +87,5 @@ public class ChangePasswordAction extends ActionSupport {
 
 	public void setNewPassword2(String newPwd) {
 		this.newPassword2 = newPwd;
-	}
-
-	@Resource
-	public void setUserService(UserService userService) {
-		this.userService = userService;
 	}
 }

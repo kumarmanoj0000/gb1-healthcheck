@@ -22,7 +22,7 @@ public class FullUserUpdateValidatorTest {
 		EasyMock.replay(userRepo);
 
 		FullUserUpdateValidator validator = new FullUserUpdateValidator();
-		validator.setUserRepository(userRepo);
+		validator.userRepo = userRepo;
 
 		validator.validate(user);
 	}
@@ -42,7 +42,7 @@ public class FullUserUpdateValidatorTest {
 		EasyMock.replay(userRepo);
 
 		FullUserUpdateValidator validator = new FullUserUpdateValidator();
-		validator.setUserRepository(userRepo);
+		validator.userRepo = userRepo;
 
 		validator.validate(user);
 	}
@@ -69,7 +69,7 @@ public class FullUserUpdateValidatorTest {
 		EasyMock.replay(userRepo);
 
 		FullUserUpdateValidator validator = new FullUserUpdateValidator();
-		validator.setUserRepository(userRepo);
+		validator.userRepo = userRepo;
 
 		try {
 			validator.validate(verifiedUser);

@@ -25,8 +25,8 @@ public class EmailLostPasswordReminderTest {
 		EasyMock.replay(mailSender);
 
 		EmailLostPasswordReminder reminder = new EmailLostPasswordReminder();
-		reminder.setLostPasswordEmailBuilder(builder);
-		reminder.setMailSender(mailSender);
+		reminder.lostPasswordEmailBuilder = builder;
+		reminder.mailSender = mailSender;
 		reminder.remindLostPassword(u);
 
 		// make sure an email was sent

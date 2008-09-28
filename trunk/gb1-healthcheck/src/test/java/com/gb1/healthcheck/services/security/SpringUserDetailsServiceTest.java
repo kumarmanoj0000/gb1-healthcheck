@@ -22,7 +22,7 @@ public class SpringUserDetailsServiceTest {
 		EasyMock.replay(userRepo);
 
 		SpringUserDetailsService svc = new SpringUserDetailsService();
-		svc.setUserRepository(userRepo);
+		svc.userRepo = userRepo;
 
 		try {
 			svc.loadUserByUsername(login);
@@ -45,7 +45,7 @@ public class SpringUserDetailsServiceTest {
 		EasyMock.replay(userRepo);
 
 		SpringUserDetailsService svc = new SpringUserDetailsService();
-		svc.setUserRepository(userRepo);
+		svc.userRepo = userRepo;
 
 		UserDetails details = svc.loadUserByUsername(login);
 		assertEquals(details.getUsername(), u.getLogin());

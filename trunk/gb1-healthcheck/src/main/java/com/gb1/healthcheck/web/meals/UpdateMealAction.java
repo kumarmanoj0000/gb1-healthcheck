@@ -23,7 +23,7 @@ public class UpdateMealAction extends MealActionSupport {
 
 	@Override
 	public String input() {
-		Meal meal = getMealService().getMeal(getMealId(), new FullMealHydrater());
+		Meal meal = mealService.getMeal(getMealId(), new FullMealHydrater());
 		model = new BasicMealUpdateRequest(meal);
 
 		return Action.INPUT;
@@ -34,7 +34,7 @@ public class UpdateMealAction extends MealActionSupport {
 		String result = Action.INPUT;
 
 		try {
-			getMealService().updateMeal(getModel());
+			mealService.updateMeal(getModel());
 
 			addActionMessage(getText("meals.edit.success"));
 			result = Action.SUCCESS;

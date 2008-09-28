@@ -23,8 +23,12 @@ import org.springframework.ui.velocity.VelocityEngineUtils;
 public class VelocityLostPasswordEmailBuilder implements LostPasswordEmailBuilder {
 	private static final Logger logger = Logger.getLogger(VelocityLostPasswordEmailBuilder.class);
 
-	private JavaMailSender mailSender;
-	private VelocityEngine engine;
+	@Resource
+	protected JavaMailSender mailSender;
+
+	@Resource
+	protected VelocityEngine engine;
+
 	private String templateLocation;
 	private String fromAddress;
 	private String subject;
@@ -55,18 +59,6 @@ public class VelocityLostPasswordEmailBuilder implements LostPasswordEmailBuilde
 		String text = VelocityEngineUtils.mergeTemplateIntoString(engine, templateLocation, model);
 
 		return text;
-	}
-
-	// external dependencies
-
-	@Resource
-	public void setMailSender(JavaMailSender mailSender) {
-		this.mailSender = mailSender;
-	}
-
-	@Resource
-	public void setVelocityEngine(VelocityEngine engine) {
-		this.engine = engine;
 	}
 
 	@Resource

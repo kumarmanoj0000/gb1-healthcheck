@@ -21,7 +21,7 @@ public class ResetPasswordActionTest {
 		EasyMock.replay(userSvc);
 
 		ResetPasswordAction action = new ResetPasswordAction();
-		action.setUserService(userSvc);
+		action.userService = userSvc;
 		action.setUserId(user.getId());
 
 		assertEquals(Action.SUCCESS, action.execute());

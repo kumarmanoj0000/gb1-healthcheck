@@ -29,7 +29,7 @@ public class ManageUsersActionTest {
 
 		ManageUsersAction action = new ManageUsersAction();
 		action.setSession(sessionMap);
-		action.setUserService(userSvc);
+		action.userService = userSvc;
 
 		assertEquals(Action.SUCCESS, action.execute());
 		assertEquals(allUsers, action.getUsers());

@@ -12,8 +12,10 @@ import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionSupport;
 
 public abstract class SimpleFoodActionSupport extends ActionSupport {
+	@Resource
+	protected FoodService foodService;
+
 	private Long foodId = null;
-	private FoodService foodService;
 
 	public SimpleFoodActionSupport() {
 	}
@@ -36,14 +38,5 @@ public abstract class SimpleFoodActionSupport extends ActionSupport {
 
 	public List<Nutrient> getAvailableNutrients() {
 		return Arrays.asList(Nutrient.values());
-	}
-
-	@Resource
-	public void setFoodService(FoodService foodService) {
-		this.foodService = foodService;
-	}
-
-	protected FoodService getFoodService() {
-		return foodService;
 	}
 }
