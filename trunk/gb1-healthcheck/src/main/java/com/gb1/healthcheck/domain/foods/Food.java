@@ -34,18 +34,16 @@ public abstract class Food implements Identifiable, Serializable {
 		return id;
 	}
 
-	Food setId(Long id) {
+	void setId(Long id) {
 		this.id = id;
-		return this;
 	}
 
 	public String getName() {
 		return name;
 	}
 
-	public Food setName(String name) {
+	public void setName(String name) {
 		this.name = name;
-		return this;
 	}
 
 	public abstract boolean isPartOfFoodGroup(FoodGroup foodGroup);
