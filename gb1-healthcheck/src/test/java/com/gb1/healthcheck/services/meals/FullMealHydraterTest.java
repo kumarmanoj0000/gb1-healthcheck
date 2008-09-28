@@ -3,7 +3,6 @@ package com.gb1.healthcheck.services.meals;
 import static org.junit.Assert.assertSame;
 import static org.junit.Assert.assertTrue;
 
-import java.util.Date;
 import java.util.Set;
 import java.util.concurrent.atomic.AtomicBoolean;
 
@@ -18,7 +17,7 @@ public class FullMealHydraterTest {
 	public void testHydrate() {
 		final AtomicBoolean dishesWereLoaded = new AtomicBoolean(false);
 
-		Meal meal = new Meal(Users.lg(), new Date()) {
+		Meal meal = new Meal(Users.lg()) {
 			@Override
 			public Set<PreparedFood> getDishes() {
 				dishesWereLoaded.set(true);

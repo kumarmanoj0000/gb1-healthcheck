@@ -26,7 +26,8 @@ public class MealAssemblerImpl implements MealAssembler {
 
 	public Meal createMeal(MealCreationRequest request) {
 		User eater = userRepo.loadUser(request.getEaterId());
-		Meal meal = new Meal(eater, request.getInstant());
+		Meal meal = new Meal(eater);
+		meal.setInstant(request.getInstant());
 
 		for (PreparedFoodCreationRequest dishRequest : request.getDishCreationRequests()) {
 			PreparedFood dish = new PreparedFood(foodRepo.loadFood(dishRequest.getIngredientId()),

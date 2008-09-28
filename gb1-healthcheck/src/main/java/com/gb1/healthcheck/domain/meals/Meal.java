@@ -38,31 +38,27 @@ public class Meal implements Identifiable, Serializable {
 	@OneToOne
 	private User eater;
 
-	private Date instant;
+	private Date instant = new Date();
 
 	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@Cascade(org.hibernate.annotations.CascadeType.DELETE_ORPHAN)
 	@JoinTable(name = "MEAL_DISHES", joinColumns = { @JoinColumn(name = "meal_id") }, inverseJoinColumns = { @JoinColumn(name = "dish_id") })
 	private Set<PreparedFood> dishes = new HashSet<PreparedFood>();
 
-	/**
-	 * Package-protected constructor for JPA.
-	 */
-	Meal() {
+	public Meal() {
 	}
 
-	Meal(Long id, User eater, Date instant) {
-		this.id = id;
+	public Meal(User eater) {
 		this.eater = eater;
-		setInstant(instant);
-	}
-
-	public Meal(User eater, Date instant) {
-		this(null, eater, instant);
 	}
 
 	public Long getId() {
 		return id;
+	}
+
+	Meal setId(Long id) {
+		this.id = id;
+		return this;
 	}
 
 	public User getEater() {
@@ -73,8 +69,9 @@ public class Meal implements Identifiable, Serializable {
 		return new Date(instant.getTime());
 	}
 
-	public void setInstant(Date instant) {
+	public Meal setInstant(Date instant) {
 		this.instant = new Date(instant.getTime());
+		return this;
 	}
 
 	public Meal addDish(PreparedFood dish) {

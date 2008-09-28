@@ -12,7 +12,6 @@ import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 
-import org.apache.commons.lang.Validate;
 import org.apache.commons.lang.builder.CompareToBuilder;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
@@ -28,16 +27,16 @@ public abstract class Food implements Identifiable, Serializable {
 	private Long id;
 	private String name;
 
-	protected Food(String name) {
-		setName(name);
+	protected Food() {
 	}
 
 	public Long getId() {
 		return id;
 	}
 
-	void setId(Long id) {
+	Food setId(Long id) {
 		this.id = id;
+		return this;
 	}
 
 	public String getName() {
@@ -45,9 +44,7 @@ public abstract class Food implements Identifiable, Serializable {
 	}
 
 	public Food setName(String name) {
-		Validate.notNull(name);
 		this.name = name;
-
 		return this;
 	}
 

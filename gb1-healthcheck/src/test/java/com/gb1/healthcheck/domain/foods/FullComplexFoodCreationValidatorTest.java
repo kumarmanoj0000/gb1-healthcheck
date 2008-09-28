@@ -47,7 +47,7 @@ public class FullComplexFoodCreationValidatorTest {
 
 	@Test
 	public void testValidateNoIngredients() throws FoodException {
-		final ComplexFood food = new ComplexFood("no ingredients");
+		final ComplexFood food = new ComplexFood();
 
 		FoodRepository foodRepo = EasyMock.createMock(FoodRepository.class);
 		EasyMock.expect(foodRepo.findFoodsByName(food.getName())).andReturn(new ArrayList<Food>());

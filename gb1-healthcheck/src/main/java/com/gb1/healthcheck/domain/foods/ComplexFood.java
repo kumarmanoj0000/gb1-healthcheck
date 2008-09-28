@@ -18,20 +18,7 @@ public class ComplexFood extends Food {
 	@JoinTable(name = "FOOD_INGREDIENTS")
 	private Set<Food> ingredients = new HashSet<Food>();
 
-	/**
-	 * Package-protected constructor for JPA.
-	 */
-	ComplexFood() {
-		this(null, "");
-	}
-
-	public ComplexFood(String name) {
-		this(null, name);
-	}
-
-	protected ComplexFood(Long id, String name) {
-		super(name);
-		setId(id);
+	public ComplexFood() {
 	}
 
 	public ComplexFood addIngredient(Food ingredient) {

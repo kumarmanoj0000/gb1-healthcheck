@@ -81,7 +81,7 @@ public class MealAssemblerImplTest {
 
 	@Test
 	public void testUpdate() {
-		final Meal meal = new Meal(Users.gb(), new Date());
+		final Meal meal = new Meal(Users.gb());
 
 		final Date updatedInstant = new Date();
 		final Map<Long, PreparedFood> dishes = new HashMap<Long, PreparedFood>();

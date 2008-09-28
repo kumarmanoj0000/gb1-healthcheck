@@ -3,7 +3,6 @@ package com.gb1.healthcheck.domain.meals;
 import static org.junit.Assert.fail;
 
 import java.util.Collections;
-import java.util.Date;
 import java.util.List;
 
 import org.easymock.EasyMock;
@@ -14,7 +13,7 @@ import com.gb1.healthcheck.domain.users.Users;
 public class FullMealCreationValidatorTest {
 	@Test
 	public void testValidateNoDishes() throws MealException {
-		Meal meal = new Meal(Users.gb(), new Date());
+		Meal meal = new Meal(Users.gb());
 		List<Meal> mealsOnSameInstant = Collections.emptyList();
 
 		MealRepository mealRepo = EasyMock.createMock(MealRepository.class);

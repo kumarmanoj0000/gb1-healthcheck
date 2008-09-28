@@ -15,7 +15,7 @@ public class FullComplexFoodHydraterTest {
 	public void testHydrate() {
 		final AtomicBoolean ingredientsWereLoaded = new AtomicBoolean(false);
 
-		ComplexFood food = new ComplexFood("test") {
+		ComplexFood food = new ComplexFood() {
 			@Override
 			public Set<Food> getIngredients() {
 				ingredientsWereLoaded.set(true);
