@@ -304,18 +304,16 @@ public class UserServiceImplTest {
 		String newPwd = "12345678";
 		int length = 8;
 
+		ExposedUser user = new ExposedUser();
+		user.setId(42L);
+		user.setPassword("old");
+
 		PasswordGenerator pwdGenerator = EasyMock.createMock(PasswordGenerator.class);
 		EasyMock.expect(pwdGenerator.generatePassword(length)).andReturn(newPwd);
 		EasyMock.replay(pwdGenerator);
 
 		Map<String, String> constants = new HashMap<String, String>();
 		constants.put("user.generatedPasswordLength", "8");
-
-		ExposedUser user = new ExposedUser();
-		user.setId(42L);
-		user.setPassword("old");
-		user.setGlobalConstants(constants);
-		user.setPasswordGenerator(pwdGenerator);
 
 		UserRepository userRepo = EasyMock.createMock(UserRepository.class);
 		EasyMock.expect(userRepo.loadUser(user.getId())).andReturn(user);
@@ -328,7 +326,9 @@ public class UserServiceImplTest {
 
 		UserServiceImpl svc = new UserServiceImpl();
 		svc.userRepository = userRepo;
+		svc.passwordGenerator = pwdGenerator;
 		svc.passwordResetNotifier = notifier;
+		svc.setGlobalConstants(constants);
 		svc.resetUserPassword(user.getId());
 
 		assertEquals(newPwd, user.getPassword());
