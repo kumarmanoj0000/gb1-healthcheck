@@ -17,11 +17,11 @@ public interface FoodService {
 
 	List<ComplexFood> getComplexFoods(Hydrater<ComplexFood> hydrater);
 
-	void createSimpleFood(SimpleFoodCreationRequest request) throws FoodException;
+	void createSimpleFood(SimpleFood food) throws FoodException;
 
 	void createComplexFood(ComplexFoodCreationRequest request) throws FoodException;
 
-	void updateSimpleFood(SimpleFoodUpdateRequest request) throws FoodException;
+	void updateSimpleFood(SimpleFood food) throws FoodException;
 
 	void updateComplexFood(ComplexFoodUpdateRequest request) throws FoodException;
 

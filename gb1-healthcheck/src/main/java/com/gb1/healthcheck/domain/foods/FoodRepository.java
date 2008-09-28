@@ -17,7 +17,9 @@ public interface FoodRepository {
 
 	List<ComplexFood> findComplexFoods();
 
-	void saveFood(Food food);
+	void persist(Food food);
 
-	void deleteFood(Food food);
+	void merge(Food food);
+
+	void delete(Food food);
 }

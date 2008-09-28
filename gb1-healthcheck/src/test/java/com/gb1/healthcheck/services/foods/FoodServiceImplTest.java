@@ -16,10 +16,8 @@ import com.gb1.commons.dataaccess.Hydrater;
 import com.gb1.healthcheck.domain.foods.ComplexFood;
 import com.gb1.healthcheck.domain.foods.ComplexFoodValidator;
 import com.gb1.healthcheck.domain.foods.Food;
-import com.gb1.healthcheck.domain.foods.FoodGroup;
 import com.gb1.healthcheck.domain.foods.FoodRepository;
 import com.gb1.healthcheck.domain.foods.Foods;
-import com.gb1.healthcheck.domain.foods.Nutrient;
 import com.gb1.healthcheck.domain.foods.SimpleFood;
 import com.gb1.healthcheck.domain.foods.SimpleFoodValidator;
 
@@ -64,40 +62,21 @@ public class FoodServiceImplTest {
 	public void testCreateSimpleFood() throws Exception {
 		final SimpleFood food = Foods.apple();
 
-		SimpleFoodCreationRequest request = new SimpleFoodCreationRequest() {
-			public FoodGroup getFoodGroup() {
-				return food.getFoodGroup();
-			}
-
-			public String getName() {
-				return food.getName();
-			}
-
-			public Set<Nutrient> getNutrients() {
-				return food.getNutrients();
-			}
-		};
-
-		SimpleFoodAssembler assembler = EasyMock.createMock(SimpleFoodAssembler.class);
-		EasyMock.expect(assembler.createSimpleFood(request)).andReturn(food);
-		EasyMock.replay(assembler);
-
 		SimpleFoodValidator validator = EasyMock.createMock(SimpleFoodValidator.class);
 		validator.validate(EasyMock.eq(food));
 		EasyMock.expectLastCall();
 		EasyMock.replay(validator);
 
 		FoodRepository foodRepo = EasyMock.createMock(FoodRepository.class);
-		foodRepo.saveFood(EasyMock.eq(food));
+		foodRepo.persist(EasyMock.eq(food));
 		EasyMock.expectLastCall();
 		EasyMock.replay(foodRepo);
 
 		FoodServiceImpl svc = new FoodServiceImpl();
-		svc.simpleFoodAssembler = assembler;
 		svc.simpleFoodCreationValidator = validator;
 		svc.foodRepo = foodRepo;
 
-		svc.createSimpleFood(request);
+		svc.createSimpleFood(food);
 		EasyMock.verify(validator);
 		EasyMock.verify(foodRepo);
 	}
@@ -130,7 +109,7 @@ public class FoodServiceImplTest {
 		EasyMock.replay(validator);
 
 		final FoodRepository foodRepo = EasyMock.createMock(FoodRepository.class);
-		foodRepo.saveFood(EasyMock.eq(food));
+		foodRepo.persist(EasyMock.eq(food));
 		EasyMock.expectLastCall().once();
 		EasyMock.replay(foodRepo);
 
@@ -146,47 +125,23 @@ public class FoodServiceImplTest {
 
 	@Test
 	public void testUpdateSimpleFood() throws Exception {
-		final SimpleFood oldApple = Foods.apple();
-
-		SimpleFoodUpdateRequest updateReq = new SimpleFoodUpdateRequest() {
-			public Long getFoodId() {
-				return oldApple.getId();
-			}
-
-			public FoodGroup getFoodGroup() {
-				return oldApple.getFoodGroup();
-			}
-
-			public String getName() {
-				return oldApple.getName() + " (updated)";
-			}
-
-			public Set<Nutrient> getNutrients() {
-				return oldApple.getNutrients();
-			}
-		};
-
-		SimpleFoodAssembler assembler = EasyMock.createMock(SimpleFoodAssembler.class);
-		assembler.updateSimpleFood(oldApple, updateReq);
-		EasyMock.expectLastCall();
-		EasyMock.replay(assembler);
+		final SimpleFood food = Foods.apple();
 
 		SimpleFoodValidator validator = EasyMock.createMock(SimpleFoodValidator.class);
-		validator.validate(oldApple);
+		validator.validate(food);
 		EasyMock.expectLastCall();
 		EasyMock.replay(validator);
 
 		FoodRepository foodRepo = EasyMock.createMock(FoodRepository.class);
-		EasyMock.expect(foodRepo.loadSimpleFood(oldApple.getId())).andReturn(oldApple);
+		foodRepo.merge(food);
+		EasyMock.expectLastCall();
 		EasyMock.replay(foodRepo);
 
 		FoodServiceImpl svc = new FoodServiceImpl();
-		svc.simpleFoodAssembler = assembler;
 		svc.simpleFoodUpdateValidator = validator;
 		svc.foodRepo = foodRepo;
-		svc.updateSimpleFood(updateReq);
+		svc.updateSimpleFood(food);
 
-		EasyMock.verify(assembler);
 		EasyMock.verify(validator);
 		EasyMock.verify(foodRepo);
 	}
@@ -259,7 +214,7 @@ public class FoodServiceImplTest {
 
 		FoodRepository foodRepo = EasyMock.createMock(FoodRepository.class);
 		EasyMock.expect(foodRepo.loadFood(Foods.apple().getId())).andReturn(Foods.apple());
-		foodRepo.deleteFood(Foods.apple());
+		foodRepo.delete(Foods.apple());
 		EasyMock.expectLastCall();
 		EasyMock.replay(foodRepo);
 

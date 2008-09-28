@@ -25,9 +25,6 @@ public class FoodServiceImpl implements FoodService {
 	protected FoodRepository foodRepo;
 
 	@Resource
-	protected SimpleFoodAssembler simpleFoodAssembler;
-
-	@Resource
 	protected SimpleFoodValidator simpleFoodCreationValidator;
 
 	@Resource
@@ -73,22 +70,20 @@ public class FoodServiceImpl implements FoodService {
 		return foods;
 	}
 
-	public void createSimpleFood(SimpleFoodCreationRequest request) throws FoodException {
-		SimpleFood food = simpleFoodAssembler.createSimpleFood(request);
+	public void createSimpleFood(SimpleFood food) throws FoodException {
 		simpleFoodCreationValidator.validate(food);
-		foodRepo.saveFood(food);
+		foodRepo.persist(food);
 	}
 
 	public void createComplexFood(ComplexFoodCreationRequest request) throws FoodException {
 		ComplexFood food = complexFoodAssembler.createComplexFood(request);
 		complexFoodCreationValidator.validate(food);
-		foodRepo.saveFood(food);
+		foodRepo.persist(food);
 	}
 
-	public void updateSimpleFood(SimpleFoodUpdateRequest request) throws FoodException {
-		SimpleFood food = foodRepo.loadSimpleFood(request.getFoodId());
-		simpleFoodAssembler.updateSimpleFood(food, request);
+	public void updateSimpleFood(SimpleFood food) throws FoodException {
 		simpleFoodUpdateValidator.validate(food);
+		foodRepo.merge(food);
 	}
 
 	public void updateComplexFood(ComplexFoodUpdateRequest request) throws FoodException {
@@ -100,7 +95,7 @@ public class FoodServiceImpl implements FoodService {
 	public void deleteFoods(Set<Long> foodIds) {
 		for (Long foodId : foodIds) {
 			Food food = foodRepo.loadFood(foodId);
-			foodRepo.deleteFood(food);
+			foodRepo.delete(food);
 		}
 	}
 }

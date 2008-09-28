@@ -6,6 +6,7 @@ import org.apache.struts2.config.Results;
 
 import com.gb1.healthcheck.domain.foods.FoodAlreadyExistsException;
 import com.gb1.healthcheck.domain.foods.FoodException;
+import com.gb1.healthcheck.domain.foods.SimpleFood;
 import com.gb1.struts2.dispatcher.FlashResult;
 import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.validator.annotations.RequiredStringValidator;
@@ -19,7 +20,7 @@ import com.opensymphony.xwork2.validator.annotations.Validations;
 				"parse", "true", "actionMessages", "${actionMessages}", "refreshList", "true" }) })
 @Validation
 public class CreateSimpleFoodAction extends SimpleFoodActionSupport {
-	private BasicSimpleFoodCreationRequest foodCreationRequest = new BasicSimpleFoodCreationRequest();
+	protected SimpleFoodAdapter food = new SimpleFoodAdapter(new SimpleFood());
 
 	public CreateSimpleFoodAction() {
 	}
@@ -30,7 +31,7 @@ public class CreateSimpleFoodAction extends SimpleFoodActionSupport {
 		String result = Action.INPUT;
 
 		try {
-			foodService.createSimpleFood(getModel());
+			foodService.createSimpleFood(getFood().getTarget());
 			addActionMessage(getText("foods.simpleFoods.edit.success"));
 			result = Action.SUCCESS;
 		}
@@ -44,7 +45,7 @@ public class CreateSimpleFoodAction extends SimpleFoodActionSupport {
 		return result;
 	}
 
-	public BasicSimpleFoodCreationRequest getModel() {
-		return foodCreationRequest;
+	public SimpleFoodAdapter getFood() {
+		return food;
 	}
 }

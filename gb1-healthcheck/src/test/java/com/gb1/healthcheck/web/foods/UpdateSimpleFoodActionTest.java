@@ -14,7 +14,6 @@ import com.gb1.healthcheck.domain.foods.FoodAlreadyExistsException;
 import com.gb1.healthcheck.domain.foods.Foods;
 import com.gb1.healthcheck.domain.foods.SimpleFood;
 import com.gb1.healthcheck.services.foods.FoodService;
-import com.gb1.healthcheck.services.foods.SimpleFoodUpdateRequest;
 import com.opensymphony.xwork2.Action;
 
 public class UpdateSimpleFoodActionTest {
@@ -40,20 +39,20 @@ public class UpdateSimpleFoodActionTest {
 
 		assertEquals(Action.INPUT, result);
 		assertEquals(foodId, action.getFoodId());
-		assertEquals(apple.getName(), action.getModel().getName());
+		assertEquals(apple.getName(), action.getFood().getName());
 		EasyMock.verify(foodSvc);
 	}
 
 	@SuppressWarnings("unchecked")
 	@Test
 	public void testSubmit() throws Exception {
-		BasicSimpleFoodUpdateRequest model = new BasicSimpleFoodUpdateRequest(Foods.apple());
+		SimpleFood food = Foods.apple();
 
 		Map session = new HashMap();
-		session.put(MODEL_SESSION_KEY, model);
+		session.put(MODEL_SESSION_KEY, new SimpleFoodAdapter(food));
 
 		FoodService foodSvc = EasyMock.createMock(FoodService.class);
-		foodSvc.updateSimpleFood(model);
+		foodSvc.updateSimpleFood(food);
 		EasyMock.expectLastCall();
 		EasyMock.replay(foodSvc);
 
@@ -61,7 +60,7 @@ public class UpdateSimpleFoodActionTest {
 		action.foodService = foodSvc;
 
 		action.setSession(session);
-		action.setFoodId(model.getFoodId());
+		action.setFoodId(food.getId());
 		String result = action.execute();
 
 		assertEquals(Action.SUCCESS, result);
@@ -72,13 +71,13 @@ public class UpdateSimpleFoodActionTest {
 	@SuppressWarnings("unchecked")
 	@Test
 	public void testSubmitWithErrors() throws Exception {
-		BasicSimpleFoodUpdateRequest model = new BasicSimpleFoodUpdateRequest(Foods.apple());
+		SimpleFood food = Foods.apple();
 
 		Map session = new HashMap();
-		session.put(MODEL_SESSION_KEY, model);
+		session.put(MODEL_SESSION_KEY, new SimpleFoodAdapter(food));
 
 		FoodService foodSvc = EasyMock.createMock(FoodService.class);
-		foodSvc.updateSimpleFood(EasyMock.isA(SimpleFoodUpdateRequest.class));
+		foodSvc.updateSimpleFood(food);
 		EasyMock.expectLastCall().andThrow(new FoodAlreadyExistsException("apple"));
 		EasyMock.replay(foodSvc);
 
@@ -86,7 +85,7 @@ public class UpdateSimpleFoodActionTest {
 		action.foodService = foodSvc;
 
 		action.setSession(session);
-		action.setFoodId(model.getFoodId());
+		action.setFoodId(food.getId());
 		String result = action.execute();
 
 		assertEquals(Action.INPUT, result);

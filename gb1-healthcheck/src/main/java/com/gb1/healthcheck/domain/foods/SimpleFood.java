@@ -34,9 +34,8 @@ public class SimpleFood extends Food {
 		return foodGroup;
 	}
 
-	public SimpleFood setFoodGroup(FoodGroup foodGroup) {
+	public void setFoodGroup(FoodGroup foodGroup) {
 		this.foodGroup = foodGroup;
-		return this;
 	}
 
 	@Override
@@ -44,20 +43,17 @@ public class SimpleFood extends Food {
 		return foodGroup.equals(group);
 	}
 
-	public SimpleFood addNutrient(Nutrient nutrient) {
+	public void addNutrient(Nutrient nutrient) {
 		Validate.notNull(nutrient);
 		nutrients.add(nutrient);
-		return this;
 	}
 
-	public SimpleFood removeNutrient(Nutrient nutrient) {
+	public void removeNutrient(Nutrient nutrient) {
 		nutrients.remove(nutrient);
-		return this;
 	}
 
-	public SimpleFood clearNutrients() {
+	public void clearNutrients() {
 		nutrients.clear();
-		return this;
 	}
 
 	@Override

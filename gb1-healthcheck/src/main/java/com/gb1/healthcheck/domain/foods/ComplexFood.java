@@ -21,11 +21,9 @@ public class ComplexFood extends Food {
 	public ComplexFood() {
 	}
 
-	public ComplexFood addIngredient(Food ingredient) {
+	public void addIngredient(Food ingredient) {
 		Validate.notNull(ingredient);
 		ingredients.add(ingredient);
-
-		return this;
 	}
 
 	public boolean containsIngredient(Food ingredient) {
@@ -45,9 +43,8 @@ public class ComplexFood extends Food {
 		return false;
 	}
 
-	public ComplexFood clearIngredients() {
+	public void clearIngredients() {
 		ingredients.clear();
-		return this;
 	}
 
 	public Set<Food> getIngredients() {

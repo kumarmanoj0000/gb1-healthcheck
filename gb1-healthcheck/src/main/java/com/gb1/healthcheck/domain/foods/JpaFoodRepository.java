@@ -14,8 +14,12 @@ public class JpaFoodRepository implements FoodRepository {
 	public JpaFoodRepository() {
 	}
 
-	public void saveFood(Food food) {
+	public void persist(Food food) {
 		entityManager.persist(food);
+	}
+
+	public void merge(Food food) {
+		entityManager.merge(food);
 	}
 
 	public Food loadFood(Long foodId) {
@@ -57,7 +61,7 @@ public class JpaFoodRepository implements FoodRepository {
 		return entityManager.createQuery("select cf from ComplexFood cf").getResultList();
 	}
 
-	public void deleteFood(Food food) {
+	public void delete(Food food) {
 		entityManager.remove(food);
 	}
 
