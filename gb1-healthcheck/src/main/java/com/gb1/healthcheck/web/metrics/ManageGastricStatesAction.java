@@ -3,6 +3,8 @@ package com.gb1.healthcheck.web.metrics;
 import java.util.Date;
 import java.util.List;
 
+import javax.annotation.Resource;
+
 import org.apache.struts2.config.ParentPackage;
 import org.apache.struts2.config.Result;
 
@@ -17,7 +19,9 @@ import com.opensymphony.xwork2.Action;
 @ParentPackage("default")
 @Result(value = "/views/metrics/gastricStates.jsp")
 public class ManageGastricStatesAction {
-	private PatientFileService patientFileService;
+	@Resource
+	protected PatientFileService patientFileService;
+
 	private User requester;
 
 	public ManageGastricStatesAction() {
@@ -45,9 +49,5 @@ public class ManageGastricStatesAction {
 	@AuthenticatedUser
 	public void setRequester(User requester) {
 		this.requester = requester;
-	}
-
-	public void setPatientFileService(PatientFileService svc) {
-		this.patientFileService = svc;
 	}
 }

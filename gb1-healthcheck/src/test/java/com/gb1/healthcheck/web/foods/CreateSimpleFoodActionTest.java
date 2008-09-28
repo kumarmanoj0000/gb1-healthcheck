@@ -20,7 +20,7 @@ public class CreateSimpleFoodActionTest {
 		EasyMock.replay(foodSvc);
 
 		CreateSimpleFoodAction action = new CreateSimpleFoodAction();
-		action.setFoodService(foodSvc);
+		action.foodService = foodSvc;
 
 		assertEquals(Action.SUCCESS, action.execute());
 		EasyMock.verify(foodSvc);
@@ -34,7 +34,7 @@ public class CreateSimpleFoodActionTest {
 		EasyMock.replay(foodSvc);
 
 		CreateSimpleFoodAction action = new CreateSimpleFoodAction();
-		action.setFoodService(foodSvc);
+		action.foodService = foodSvc;
 
 		assertEquals(Action.INPUT, action.execute());
 		assertTrue(action.hasFieldErrors());

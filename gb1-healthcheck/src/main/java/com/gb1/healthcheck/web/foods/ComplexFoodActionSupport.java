@@ -15,15 +15,17 @@ import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.Preparable;
 
 public abstract class ComplexFoodActionSupport extends ActionSupport implements Preparable {
-	private FoodService foodService;
+	@Resource
+	protected FoodService foodService;
+
 	private Long foodId;
 	private List<Food> availableIngredients = new ArrayList<Food>();
 
 	public void prepare() {
 		availableIngredients.clear();
-		availableIngredients.addAll(getFoodService().getSimpleFoods());
-		availableIngredients.addAll(getFoodService().getComplexFoods(
-				new IdentityHydrater<ComplexFood>()));
+		availableIngredients.addAll(foodService.getSimpleFoods());
+		availableIngredients.addAll(foodService
+				.getComplexFoods(new IdentityHydrater<ComplexFood>()));
 		Collections.sort(availableIngredients, new Food.ByNameComparator());
 	}
 
@@ -41,14 +43,5 @@ public abstract class ComplexFoodActionSupport extends ActionSupport implements 
 
 	public List<Food> getAvailableIngredients() {
 		return Collections.unmodifiableList(availableIngredients);
-	}
-
-	protected FoodService getFoodService() {
-		return foodService;
-	}
-
-	@Resource
-	public void setFoodService(FoodService foodSvc) {
-		this.foodService = foodSvc;
 	}
 }

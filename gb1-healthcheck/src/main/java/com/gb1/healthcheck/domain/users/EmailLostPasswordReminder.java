@@ -13,8 +13,11 @@ import org.springframework.stereotype.Component;
  */
 @Component("lostPasswordReminder")
 public class EmailLostPasswordReminder implements LostPasswordReminder {
-	private LostPasswordEmailBuilder lostPasswordEmailBuilder;
-	private JavaMailSender mailSender;
+	@Resource
+	protected LostPasswordEmailBuilder lostPasswordEmailBuilder;
+
+	@Resource
+	protected JavaMailSender mailSender;
 
 	public EmailLostPasswordReminder() {
 	}
@@ -27,15 +30,5 @@ public class EmailLostPasswordReminder implements LostPasswordReminder {
 	public void remindLostPassword(User user) {
 		MimeMessage email = lostPasswordEmailBuilder.createReminderMessage(user);
 		mailSender.send(email);
-	}
-
-	@Resource
-	public void setLostPasswordEmailBuilder(LostPasswordEmailBuilder lostPasswordEmailBuilder) {
-		this.lostPasswordEmailBuilder = lostPasswordEmailBuilder;
-	}
-
-	@Resource
-	public void setMailSender(JavaMailSender mailSender) {
-		this.mailSender = mailSender;
 	}
 }

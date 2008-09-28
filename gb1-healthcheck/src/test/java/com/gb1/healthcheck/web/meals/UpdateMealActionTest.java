@@ -25,7 +25,7 @@ public class UpdateMealActionTest {
 		EasyMock.replay(mealSvc);
 
 		UpdateMealAction action = new UpdateMealAction();
-		action.setMealService(mealSvc);
+		action.mealService = mealSvc;
 		action.setMealId(dinner.getId());
 		String result = action.input();
 
@@ -45,7 +45,7 @@ public class UpdateMealActionTest {
 		EasyMock.replay(mealSvc);
 
 		UpdateMealAction action = new UpdateMealAction();
-		action.setMealService(mealSvc);
+		action.mealService = mealSvc;
 		action.setMealId(meal.getId());
 		action.setModel(model);
 
@@ -65,7 +65,7 @@ public class UpdateMealActionTest {
 		EasyMock.replay(mealSvc);
 
 		UpdateMealAction action = new UpdateMealAction();
-		action.setMealService(mealSvc);
+		action.mealService = mealSvc;
 		action.setMealId(meal.getId());
 		action.setModel(model);
 

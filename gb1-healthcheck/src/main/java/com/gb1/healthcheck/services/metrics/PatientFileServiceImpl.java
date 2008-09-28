@@ -16,8 +16,11 @@ import com.gb1.healthcheck.domain.users.UserRepository;
 @Service("patientFileService")
 @Transactional(rollbackFor = { RuntimeException.class })
 public class PatientFileServiceImpl implements PatientFileService {
-	private UserRepository userRepo;
-	private PatientFileRepository patientFileRepo;
+	@Resource
+	protected UserRepository userRepo;
+
+	@Resource
+	protected PatientFileRepository patientFileRepo;
 
 	public PatientFileServiceImpl() {
 	}
@@ -34,15 +37,5 @@ public class PatientFileServiceImpl implements PatientFileService {
 		PatientFile file = patientFileRepo.loadPatientFileFor(patient);
 
 		return file;
-	}
-
-	@Resource
-	public void setUserRepository(UserRepository userRepo) {
-		this.userRepo = userRepo;
-	}
-
-	@Resource
-	public void setPatientFileRepository(PatientFileRepository patientFileRepo) {
-		this.patientFileRepo = patientFileRepo;
 	}
 }

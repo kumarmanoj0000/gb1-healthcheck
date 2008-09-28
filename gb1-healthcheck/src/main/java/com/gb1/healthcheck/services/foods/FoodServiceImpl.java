@@ -21,14 +21,26 @@ import com.gb1.healthcheck.domain.meals.MealException;
 @Service("foodService")
 @Transactional(rollbackFor = { RuntimeException.class, MealException.class })
 public class FoodServiceImpl implements FoodService {
-	private FoodRepository foodRepo;
+	@Resource
+	protected FoodRepository foodRepo;
 
-	private SimpleFoodAssembler simpleFoodAssembler;
-	private SimpleFoodValidator simpleFoodCreationValidator;
-	private SimpleFoodValidator simpleFoodUpdateValidator;
-	private ComplexFoodAssembler complexFoodAssembler;
-	private ComplexFoodValidator complexFoodCreationValidator;
-	private ComplexFoodValidator complexFoodUpdateValidator;
+	@Resource
+	protected SimpleFoodAssembler simpleFoodAssembler;
+
+	@Resource
+	protected SimpleFoodValidator simpleFoodCreationValidator;
+
+	@Resource
+	protected SimpleFoodValidator simpleFoodUpdateValidator;
+
+	@Resource
+	protected ComplexFoodAssembler complexFoodAssembler;
+
+	@Resource
+	protected ComplexFoodValidator complexFoodCreationValidator;
+
+	@Resource
+	protected ComplexFoodValidator complexFoodUpdateValidator;
 
 	public FoodServiceImpl() {
 	}
@@ -90,40 +102,5 @@ public class FoodServiceImpl implements FoodService {
 			Food food = foodRepo.loadFood(foodId);
 			foodRepo.deleteFood(food);
 		}
-	}
-
-	@Resource
-	public void setFoodRepository(FoodRepository foodRepo) {
-		this.foodRepo = foodRepo;
-	}
-
-	@Resource
-	public void setSimpleFoodAssembler(SimpleFoodAssembler simpleFoodAssembler) {
-		this.simpleFoodAssembler = simpleFoodAssembler;
-	}
-
-	@Resource
-	public void setSimpleFoodCreationValidator(SimpleFoodValidator validator) {
-		this.simpleFoodCreationValidator = validator;
-	}
-
-	@Resource
-	public void setSimpleFoodUpdateValidator(SimpleFoodValidator validator) {
-		this.simpleFoodUpdateValidator = validator;
-	}
-
-	@Resource
-	public void setComplexFoodAssembler(ComplexFoodAssembler complexFoodAssembler) {
-		this.complexFoodAssembler = complexFoodAssembler;
-	}
-
-	@Resource
-	public void setComplexFoodCreationValidator(ComplexFoodValidator validator) {
-		this.complexFoodCreationValidator = validator;
-	}
-
-	@Resource
-	public void setComplexFoodUpdateValidator(ComplexFoodValidator validator) {
-		this.complexFoodUpdateValidator = validator;
 	}
 }

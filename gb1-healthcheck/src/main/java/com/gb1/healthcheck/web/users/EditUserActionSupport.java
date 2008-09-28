@@ -20,8 +20,10 @@ public abstract class EditUserActionSupport extends ActionSupport implements Ses
 	protected static final String MODEL_SESSION_KEY = EditUserActionSupport.class.getName()
 			+ ".model";
 
+	@Resource
+	protected UserService userService;
+
 	private Map<String, Object> sessionMap;
-	private UserService userService;
 
 	public EditUserActionSupport() {
 	}
@@ -75,14 +77,5 @@ public abstract class EditUserActionSupport extends ActionSupport implements Ses
 	@SuppressWarnings("unchecked")
 	public void setSession(Map sessionMap) {
 		this.sessionMap = sessionMap;
-	}
-
-	protected UserService getUserService() {
-		return userService;
-	}
-
-	@Resource
-	public void setUserService(UserService userSvc) {
-		this.userService = userSvc;
 	}
 }

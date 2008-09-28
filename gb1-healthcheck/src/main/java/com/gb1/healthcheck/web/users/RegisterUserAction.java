@@ -27,7 +27,9 @@ import com.opensymphony.xwork2.validator.annotations.VisitorFieldValidator;
 		@Result(value = "/views/public/security/register/registerUser-success.jsp") })
 @Validation
 public class RegisterUserAction extends ActionSupport {
-	private UserService userService;
+	@Resource
+	protected UserService userService;
+
 	private BasicUserRegistrationRequest userRegRequest = new BasicUserRegistrationRequest(
 			Role.STANDARD);
 
@@ -63,10 +65,5 @@ public class RegisterUserAction extends ActionSupport {
 	@VisitorFieldValidator(message = "")
 	public BasicUserRegistrationRequest getModel() {
 		return userRegRequest;
-	}
-
-	@Resource
-	public void setUserService(UserService userService) {
-		this.userService = userService;
 	}
 }

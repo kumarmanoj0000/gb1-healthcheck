@@ -20,8 +20,11 @@ import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.Preparable;
 
 public abstract class MealActionSupport extends ActionSupport implements Preparable {
-	private FoodService foodService;
-	private MealService mealService;
+	@Resource
+	protected FoodService foodService;
+
+	@Resource
+	protected MealService mealService;
 
 	private User requester;
 	private Long mealId;
@@ -31,9 +34,8 @@ public abstract class MealActionSupport extends ActionSupport implements Prepara
 	}
 
 	public void prepare() {
-		availableFoods.addAll(getFoodService().getSimpleFoods());
-		availableFoods
-				.addAll(getFoodService().getComplexFoods(new IdentityHydrater<ComplexFood>()));
+		availableFoods.addAll(foodService.getSimpleFoods());
+		availableFoods.addAll(foodService.getComplexFoods(new IdentityHydrater<ComplexFood>()));
 		Collections.sort(availableFoods, new Food.ByNameComparator());
 	}
 
@@ -57,24 +59,6 @@ public abstract class MealActionSupport extends ActionSupport implements Prepara
 	@AuthenticatedUser
 	public void setRequester(User requester) {
 		this.requester = requester;
-	}
-
-	protected FoodService getFoodService() {
-		return foodService;
-	}
-
-	@Resource
-	public void setFoodService(FoodService foodSvc) {
-		this.foodService = foodSvc;
-	}
-
-	protected MealService getMealService() {
-		return mealService;
-	}
-
-	@Resource
-	public void setMealService(MealService mealSvc) {
-		this.mealService = mealSvc;
 	}
 
 	public Long getMealId() {

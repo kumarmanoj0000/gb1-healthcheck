@@ -40,9 +40,9 @@ public class EmailUserActivationRequesterTest {
 		EasyMock.replay(emailSender);
 
 		EmailUserActivationRequester activator = new EmailUserActivationRequester();
-		activator.setTokenFactory(factory);
-		activator.setEmailBuilder(emailBuilder);
-		activator.setEmailSender(emailSender);
+		activator.tokenFactory = factory;
+		activator.emailBuilder = emailBuilder;
+		activator.emailSender = emailSender;
 
 		UserActivationRequest request = activator.requestUserActivation(user);
 

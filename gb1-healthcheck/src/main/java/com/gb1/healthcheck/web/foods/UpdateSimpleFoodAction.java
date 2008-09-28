@@ -37,7 +37,7 @@ public class UpdateSimpleFoodAction extends SimpleFoodActionSupport implements S
 
 	@Override
 	public String input() {
-		SimpleFood food = getFoodService().getSimpleFood(getFoodId());
+		SimpleFood food = foodService.getSimpleFood(getFoodId());
 		BasicSimpleFoodUpdateRequest model = new BasicSimpleFoodUpdateRequest(food);
 		sessionMap.put(MODEL_SESSION_KEY, model);
 
@@ -50,7 +50,7 @@ public class UpdateSimpleFoodAction extends SimpleFoodActionSupport implements S
 		String result = Action.INPUT;
 
 		try {
-			getFoodService().updateSimpleFood(getModel());
+			foodService.updateSimpleFood(getModel());
 			sessionMap.remove(MODEL_SESSION_KEY);
 
 			addActionMessage(getText("foods.simpleFoods.edit.success"));

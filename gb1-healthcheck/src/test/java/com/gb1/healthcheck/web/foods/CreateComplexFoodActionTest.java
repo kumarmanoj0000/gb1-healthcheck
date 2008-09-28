@@ -39,7 +39,7 @@ public class CreateComplexFoodActionTest {
 		EasyMock.replay(foodService);
 
 		CreateComplexFoodAction action = new CreateComplexFoodAction();
-		action.setFoodService(foodService);
+		action.foodService = foodService;
 		action.prepare();
 
 		assertTrue(CollectionUtils.isEqualCollection(availableIngredients, action
@@ -54,7 +54,7 @@ public class CreateComplexFoodActionTest {
 		EasyMock.replay(foodSvc);
 
 		CreateComplexFoodAction action = new CreateComplexFoodAction();
-		action.setFoodService(foodSvc);
+		action.foodService = foodSvc;
 
 		assertEquals(Action.SUCCESS, action.execute());
 		EasyMock.verify(foodSvc);
@@ -68,7 +68,7 @@ public class CreateComplexFoodActionTest {
 		EasyMock.replay(foodSvc);
 
 		CreateComplexFoodAction action = new CreateComplexFoodAction();
-		action.setFoodService(foodSvc);
+		action.foodService = foodSvc;
 
 		assertEquals(Action.INPUT, action.execute());
 		assertTrue(action.hasFieldErrors());

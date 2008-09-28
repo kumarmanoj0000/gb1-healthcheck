@@ -32,7 +32,7 @@ public class DeleteUsersActionTest {
 		EasyMock.replay(userSvc);
 
 		DeleteUsersAction action = new DeleteUsersAction();
-		action.setUserService(userSvc);
+		action.userService = userSvc;
 		action.setUserIds(userIds.toArray(new Long[0]));
 
 		assertEquals(Action.SUCCESS, action.execute());

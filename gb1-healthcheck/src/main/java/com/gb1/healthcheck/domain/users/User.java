@@ -30,10 +30,13 @@ import com.gb1.commons.tokens.Token;
 
 /**
  * A user of the current system. A user is identified by the usual properties such as a login name
- * and an email address. <p/> When initially created, a user is considered inactive. His activation
- * must first be requested, at which point the user will be informed and provided an activation
- * token. This token must then be confirmed in order to activate his account. <p/> A user can have
- * zero or many roles that will give him access to priviledged actions.
+ * and an email address.
+ * <p/>
+ * When initially created, a user is considered inactive. His activation must first be requested, at
+ * which point the user will be informed and provided an activation token. This token must then be
+ * confirmed in order to activate his account.
+ * <p/>
+ * A user can have zero or many roles that will give him access to priviledged actions.
  * 
  * @author Guillaume Bilodeau
  */
@@ -152,7 +155,9 @@ public class User implements Identifiable, Serializable {
 	}
 
 	/**
-	 * Sets the user's new password. <p/> Normally the password should be changed through the
+	 * Sets the user's new password.
+	 * <p/>
+	 * Normally the password should be changed through the
 	 * <code>changePassword(String, String)</code> method that provides additional security checks.
 	 * This method is meant to be overriden by unit tests.
 	 * 

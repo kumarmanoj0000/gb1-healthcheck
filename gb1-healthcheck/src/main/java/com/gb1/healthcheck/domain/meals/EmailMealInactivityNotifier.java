@@ -17,10 +17,18 @@ import com.gb1.healthcheck.domain.users.UserRepository;
 
 @Component("emailInactivityNotifier")
 public class EmailMealInactivityNotifier implements MealInactivityNotifier {
-	private UserRepository userRepository;
-	private MealRepository mealRepository;
-	private JavaMailSender mailSender;
-	private MealInactivityEmailBuilder emailBuilder;
+	@Resource
+	protected UserRepository userRepository;
+
+	@Resource
+	protected MealRepository mealRepository;
+
+	@Resource
+	protected JavaMailSender mailSender;
+
+	@Resource
+	protected MealInactivityEmailBuilder emailBuilder;
+
 	private int inactiveDaysThreshold;
 
 	public EmailMealInactivityNotifier() {
@@ -42,26 +50,6 @@ public class EmailMealInactivityNotifier implements MealInactivityNotifier {
 		for (MimeMessage msg : toSend) {
 			mailSender.send(msg);
 		}
-	}
-
-	@Resource
-	public void setUserRepository(UserRepository userRepo) {
-		this.userRepository = userRepo;
-	}
-
-	@Resource
-	public void setMealRepository(MealRepository mealRepo) {
-		this.mealRepository = mealRepo;
-	}
-
-	@Resource
-	public void setJavaMailSender(JavaMailSender mailSender) {
-		this.mailSender = mailSender;
-	}
-
-	@Resource
-	public void setUserInactivityEmailBuilder(MealInactivityEmailBuilder builder) {
-		this.emailBuilder = builder;
 	}
 
 	@Resource

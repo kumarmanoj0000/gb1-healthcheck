@@ -57,7 +57,7 @@ public class CreateMealActionTest {
 	@Test
 	public void testPrepare() {
 		CreateMealAction action = new CreateMealAction();
-		action.setFoodService(foodService);
+		action.foodService = foodService;
 		action.setRequester(Users.lg());
 		action.prepare();
 
@@ -77,8 +77,8 @@ public class CreateMealActionTest {
 		EasyMock.replay(mealSvc);
 
 		CreateMealAction action = new CreateMealAction();
-		action.setFoodService(foodService);
-		action.setMealService(mealSvc);
+		action.foodService = foodService;
+		action.mealService = mealSvc;
 		action.setRequester(requester);
 		action.setModel(model);
 
@@ -96,8 +96,8 @@ public class CreateMealActionTest {
 		EasyMock.replay(mealSvc);
 
 		CreateMealAction action = new CreateMealAction();
-		action.setFoodService(foodService);
-		action.setMealService(mealSvc);
+		action.foodService = foodService;
+		action.mealService = mealSvc;
 		action.setRequester(requester);
 		action.setModel(model);
 

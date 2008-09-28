@@ -9,7 +9,8 @@ import com.gb1.healthcheck.domain.foods.FoodRepository;
 
 @Component("complexFoodAssembler")
 public class ComplexFoodAssemblerImpl implements ComplexFoodAssembler {
-	private FoodRepository foodRepo;
+	@Resource
+	protected FoodRepository foodRepo;
 
 	public ComplexFoodAssemblerImpl() {
 	}
@@ -30,10 +31,5 @@ public class ComplexFoodAssemblerImpl implements ComplexFoodAssembler {
 		for (Long ingredientId : request.getIngredientIds()) {
 			food.addIngredient(foodRepo.loadFood(ingredientId));
 		}
-	}
-
-	@Resource
-	public void setFoodRepository(FoodRepository foodRepo) {
-		this.foodRepo = foodRepo;
 	}
 }

@@ -14,7 +14,8 @@ import org.springframework.stereotype.Component;
  */
 @Component("userUpdateValidator")
 public class FullUserUpdateValidator implements UserValidator {
-	private UserRepository userRepo;
+	@Resource
+	protected UserRepository userRepo;
 
 	public FullUserUpdateValidator() {
 	}
@@ -49,10 +50,5 @@ public class FullUserUpdateValidator implements UserValidator {
 		}
 
 		return owned;
-	}
-
-	@Resource
-	public void setUserRepository(UserRepository userRepo) {
-		this.userRepo = userRepo;
 	}
 }

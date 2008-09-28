@@ -6,7 +6,8 @@ import org.springframework.stereotype.Component;
 
 @Component("simpleFoodCreationValidator")
 public class FullSimpleFoodCreationValidator implements SimpleFoodValidator {
-	private FoodRepository foodRepo;
+	@Resource
+	protected FoodRepository foodRepo;
 
 	public FullSimpleFoodCreationValidator() {
 	}
@@ -15,10 +16,5 @@ public class FullSimpleFoodCreationValidator implements SimpleFoodValidator {
 		if (foodRepo.findFoodByName(food.getName()) != null) {
 			throw new FoodAlreadyExistsException(food.getName());
 		}
-	}
-
-	@Resource
-	public void setFoodRepository(FoodRepository foodRepo) {
-		this.foodRepo = foodRepo;
 	}
 }

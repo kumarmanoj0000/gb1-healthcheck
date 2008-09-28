@@ -17,7 +17,7 @@ public class FullUserCreationValidatorTest {
 		EasyMock.replay(userRepo);
 
 		FullUserCreationValidator v = new FullUserCreationValidator();
-		v.setUserRepository(userRepo);
+		v.userRepository = userRepo;
 		v.validate(user);
 	}
 
@@ -32,7 +32,7 @@ public class FullUserCreationValidatorTest {
 		EasyMock.replay(userRepo);
 
 		FullUserCreationValidator v = new FullUserCreationValidator();
-		v.setUserRepository(userRepo);
+		v.userRepository = userRepo;
 
 		try {
 			v.validate(user);
@@ -54,7 +54,7 @@ public class FullUserCreationValidatorTest {
 		EasyMock.replay(userRepo);
 
 		FullUserCreationValidator v = new FullUserCreationValidator();
-		v.setUserRepository(userRepo);
+		v.userRepository = userRepo;
 
 		try {
 			v.validate(user);

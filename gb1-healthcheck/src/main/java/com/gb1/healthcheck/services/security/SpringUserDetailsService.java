@@ -21,7 +21,8 @@ import com.gb1.healthcheck.domain.users.UserRepository;
 @Service("userDetailsService")
 @Transactional(readOnly = true)
 public class SpringUserDetailsService implements UserDetailsService {
-	private UserRepository userRepo;
+	@Resource
+	protected UserRepository userRepo;
 
 	public SpringUserDetailsService() {
 	}
@@ -46,10 +47,5 @@ public class SpringUserDetailsService implements UserDetailsService {
 		userDetails.getAuthorities();
 
 		return userDetails;
-	}
-
-	@Resource
-	public void setUserRepository(UserRepository userRepo) {
-		this.userRepo = userRepo;
 	}
 }

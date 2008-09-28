@@ -18,10 +18,8 @@ import com.opensymphony.xwork2.util.TextParseUtil;
  * A result that participates in implementing flash scope. Before redirecting to a given namespaced
  * action, it creates a "flash map" from properties retrieved from the current value stack and saves
  * it in the user session so that it survives the HTTP redirect and gets picked up by the flash
- * interceptor.
- * 
- * Clearly this implementation is very similar to {@link ServletActionRedirectResult}. Some
- * refactoring should be done.
+ * interceptor. Clearly this implementation is very similar to {@link ServletActionRedirectResult}.
+ * Some refactoring should be done.
  * 
  * @author Guillaume Bilodeau
  */

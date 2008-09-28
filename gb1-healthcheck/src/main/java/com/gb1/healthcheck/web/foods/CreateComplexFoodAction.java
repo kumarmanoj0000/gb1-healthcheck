@@ -31,7 +31,7 @@ public class CreateComplexFoodAction extends ComplexFoodActionSupport {
 		String result = Action.INPUT;
 
 		try {
-			getFoodService().createComplexFood(foodCreationRequest);
+			foodService.createComplexFood(foodCreationRequest);
 			addActionMessage(getText("foods.complexFoods.edit.success"));
 			result = Action.SUCCESS;
 		}

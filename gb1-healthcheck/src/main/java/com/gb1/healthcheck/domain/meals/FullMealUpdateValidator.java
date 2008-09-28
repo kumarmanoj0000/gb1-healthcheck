@@ -8,7 +8,8 @@ import org.springframework.stereotype.Component;
 
 @Component("mealUpdateValidator")
 public class FullMealUpdateValidator implements MealValidator {
-	private MealRepository mealRepo;
+	@Resource
+	protected MealRepository mealRepo;
 
 	public FullMealUpdateValidator() {
 	}
@@ -41,10 +42,5 @@ public class FullMealUpdateValidator implements MealValidator {
 
 	private boolean mealHasNoDishes(Meal meal) {
 		return meal.getDishes().isEmpty();
-	}
-
-	@Resource
-	public void setMealRepository(MealRepository mealRepo) {
-		this.mealRepo = mealRepo;
 	}
 }

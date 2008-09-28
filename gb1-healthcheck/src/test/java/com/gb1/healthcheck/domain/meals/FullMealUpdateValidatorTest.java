@@ -23,7 +23,7 @@ public class FullMealUpdateValidatorTest {
 		EasyMock.replay(mealRepo);
 
 		FullMealUpdateValidator v = new FullMealUpdateValidator();
-		v.setMealRepository(mealRepo);
+		v.mealRepo = mealRepo;
 		v.validate(meal);
 	}
 
@@ -41,7 +41,7 @@ public class FullMealUpdateValidatorTest {
 		EasyMock.replay(mealRepo);
 
 		FullMealUpdateValidator v = new FullMealUpdateValidator();
-		v.setMealRepository(mealRepo);
+		v.mealRepo = mealRepo;
 
 		try {
 			v.validate(meal);
@@ -61,7 +61,7 @@ public class FullMealUpdateValidatorTest {
 		EasyMock.replay(mealRepo);
 
 		FullMealUpdateValidator v = new FullMealUpdateValidator();
-		v.setMealRepository(mealRepo);
+		v.mealRepo = mealRepo;
 
 		try {
 			v.validate(meal);

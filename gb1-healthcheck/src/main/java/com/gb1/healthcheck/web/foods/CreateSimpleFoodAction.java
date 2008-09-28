@@ -30,7 +30,7 @@ public class CreateSimpleFoodAction extends SimpleFoodActionSupport {
 		String result = Action.INPUT;
 
 		try {
-			getFoodService().createSimpleFood(getModel());
+			foodService.createSimpleFood(getModel());
 			addActionMessage(getText("foods.simpleFoods.edit.success"));
 			result = Action.SUCCESS;
 		}

@@ -16,7 +16,7 @@ public class FullSimpleFoodCreationValidatorTest {
 		EasyMock.replay(foodRepo);
 
 		FullSimpleFoodCreationValidator v = new FullSimpleFoodCreationValidator();
-		v.setFoodRepository(foodRepo);
+		v.foodRepo = foodRepo;
 		v.validate(food);
 	}
 
@@ -29,7 +29,7 @@ public class FullSimpleFoodCreationValidatorTest {
 		EasyMock.replay(foodRepo);
 
 		FullSimpleFoodCreationValidator v = new FullSimpleFoodCreationValidator();
-		v.setFoodRepository(foodRepo);
+		v.foodRepo = foodRepo;
 
 		try {
 			v.validate(food);

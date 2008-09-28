@@ -17,7 +17,9 @@ import com.opensymphony.xwork2.ActionSupport;
 @Results( { @Result(name = "input", value = "/views/public/security/lostPassword.jsp"),
 		@Result(value = "/views/public/security/lostPassword-success.jsp") })
 public class LostPasswordAction extends ActionSupport {
-	private UserService userService;
+	@Resource
+	protected UserService userService;
+
 	private String email;
 
 	public LostPasswordAction() {
@@ -44,10 +46,5 @@ public class LostPasswordAction extends ActionSupport {
 
 	public String getEmail() {
 		return email;
-	}
-
-	@Resource
-	public void setUserService(UserService userService) {
-		this.userService = userService;
 	}
 }

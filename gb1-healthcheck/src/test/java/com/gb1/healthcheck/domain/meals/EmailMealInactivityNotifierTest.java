@@ -53,10 +53,10 @@ public class EmailMealInactivityNotifierTest {
 
 		EmailMealInactivityNotifier notifier = new EmailMealInactivityNotifier();
 		notifier.setGlobalConstants(constants);
-		notifier.setUserRepository(userRepo);
-		notifier.setMealRepository(mealRepo);
-		notifier.setUserInactivityEmailBuilder(builder);
-		notifier.setJavaMailSender(mailSender);
+		notifier.userRepository = userRepo;
+		notifier.mealRepository = mealRepo;
+		notifier.emailBuilder = builder;
+		notifier.mailSender = mailSender;
 		notifier.notifyUsersOfMealInactivity();
 
 		EasyMock.verify(mailSender);

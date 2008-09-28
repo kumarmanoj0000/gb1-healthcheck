@@ -46,7 +46,7 @@ public class ManageGastricStatesActionTest {
 		EasyMock.replay(svc);
 
 		ManageGastricStatesAction action = new ManageGastricStatesAction();
-		action.setPatientFileService(svc);
+		action.patientFileService = svc;
 		assertTrue(CollectionUtils.isEqualCollection(file.getGastricStatesFor(today), action
 				.loadGastricStates(patient.getId(), today)));
 	}
@@ -62,7 +62,7 @@ public class ManageGastricStatesActionTest {
 		EasyMock.replay(svc);
 
 		ManageGastricStatesAction action = new ManageGastricStatesAction();
-		action.setPatientFileService(svc);
+		action.patientFileService = svc;
 
 		action.saveGastricState(patient.getId(), now, GastricState.NORMAL);
 		EasyMock.verify(svc);

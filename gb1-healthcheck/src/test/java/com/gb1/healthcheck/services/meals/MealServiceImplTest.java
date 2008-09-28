@@ -39,7 +39,7 @@ public class MealServiceImplTest {
 		EasyMock.replay(mealRepo);
 
 		MealServiceImpl svc = new MealServiceImpl();
-		svc.setMealRepository(mealRepo);
+		svc.mealRepo = mealRepo;
 
 		assertTrue(CollectionUtils.isEqualCollection(sortedMealHistory, svc.getMealHistory(eater)));
 	}
@@ -58,7 +58,7 @@ public class MealServiceImplTest {
 		EasyMock.replay(mealRepo);
 
 		MealServiceImpl svc = new MealServiceImpl();
-		svc.setMealRepository(mealRepo);
+		svc.mealRepo = mealRepo;
 
 		assertEquals(meal, svc.getMeal(meal.getId(), hydrater));
 		EasyMock.verify(hydrater);
@@ -101,9 +101,9 @@ public class MealServiceImplTest {
 		EasyMock.replay(assembler);
 
 		MealServiceImpl svc = new MealServiceImpl();
-		svc.setMealAssembler(assembler);
-		svc.setMealRepository(mealRepo);
-		svc.setMealCreationValidator(validator);
+		svc.mealAssembler = assembler;
+		svc.mealRepo = mealRepo;
+		svc.mealCreationValidator = validator;
 
 		svc.createMeal(createReq);
 
@@ -144,9 +144,9 @@ public class MealServiceImplTest {
 		EasyMock.replay(mealRepo);
 
 		MealServiceImpl svc = new MealServiceImpl();
-		svc.setMealAssembler(mealAssembler);
-		svc.setMealRepository(mealRepo);
-		svc.setMealUpdateValidator(validator);
+		svc.mealAssembler = mealAssembler;
+		svc.mealRepo = mealRepo;
+		svc.mealUpdateValidator = validator;
 
 		svc.updateMeal(updateReq);
 
@@ -166,7 +166,7 @@ public class MealServiceImplTest {
 		EasyMock.replay(mealRepo);
 
 		MealServiceImpl svc = new MealServiceImpl();
-		svc.setMealRepository(mealRepo);
+		svc.mealRepo = mealRepo;
 
 		svc.deleteMeals(mealIds);
 		EasyMock.verify(mealRepo);
@@ -180,7 +180,7 @@ public class MealServiceImplTest {
 		EasyMock.replay(notifier);
 
 		MealServiceImpl svc = new MealServiceImpl();
-		svc.setMealInactivityNotifier(notifier);
+		svc.mealInactivityNotifier = notifier;
 		svc.notifyUsersOfMealInactivity();
 
 		EasyMock.verify(notifier);

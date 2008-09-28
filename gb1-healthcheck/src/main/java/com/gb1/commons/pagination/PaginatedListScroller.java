@@ -3,7 +3,8 @@ package com.gb1.commons.pagination;
 import java.util.List;
 
 /**
- * A paginated list scroller that allows stateful navigation through all available pages. <p/>
+ * A paginated list scroller that allows stateful navigation through all available pages.
+ * <p/>
  * Instances are stateful and must be properly initialized before usage. The first call should be to
  * one of the following methods:
  * <ul>
@@ -31,7 +32,9 @@ public class PaginatedListScroller<E> {
 	}
 
 	/**
-	 * Returns the items on the current page. <p/> This call has no effect on the current page.
+	 * Returns the items on the current page.
+	 * <p/>
+	 * This call has no effect on the current page.
 	 * 
 	 * @return The items on the current page
 	 * @throws IllegalStateException When the list has not yet been initialized
@@ -119,8 +122,9 @@ public class PaginatedListScroller<E> {
 	}
 
 	/**
-	 * Verifies whether another page is available following the current one. <p/> This call has no
-	 * effect on the current page.
+	 * Verifies whether another page is available following the current one.
+	 * <p/>
+	 * This call has no effect on the current page.
 	 * 
 	 * @return true if a following page is available; false otherwise
 	 * @throws IllegalStateException When the list has not yet been initialized
@@ -133,8 +137,9 @@ public class PaginatedListScroller<E> {
 	}
 
 	/**
-	 * Verifies whether another page is available preceding the current one. <p/> This call has no
-	 * effect on the current page.
+	 * Verifies whether another page is available preceding the current one.
+	 * <p/>
+	 * This call has no effect on the current page.
 	 * 
 	 * @return true if a preceding page is available; false otherwise
 	 * @throws IllegalStateException When the list has not yet been initialized

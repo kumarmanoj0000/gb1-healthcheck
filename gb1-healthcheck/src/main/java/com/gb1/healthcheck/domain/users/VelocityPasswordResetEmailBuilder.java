@@ -18,8 +18,12 @@ import org.springframework.ui.velocity.VelocityEngineUtils;
 public class VelocityPasswordResetEmailBuilder implements PasswordResetEmailBuilder {
 	private static final Logger logger = Logger.getLogger(VelocityPasswordResetEmailBuilder.class);
 
-	private JavaMailSender mailSender;
-	private VelocityEngine engine;
+	@Resource
+	protected JavaMailSender mailSender;
+
+	@Resource
+	protected VelocityEngine engine;
+
 	private String templateLocation;
 	private String fromAddress;
 	private String subject;
@@ -50,16 +54,6 @@ public class VelocityPasswordResetEmailBuilder implements PasswordResetEmailBuil
 
 		String text = VelocityEngineUtils.mergeTemplateIntoString(engine, templateLocation, model);
 		return text;
-	}
-
-	@Resource
-	public void setMailSender(JavaMailSender mailSender) {
-		this.mailSender = mailSender;
-	}
-
-	@Resource
-	public void setVelocityEngine(VelocityEngine engine) {
-		this.engine = engine;
 	}
 
 	@Resource

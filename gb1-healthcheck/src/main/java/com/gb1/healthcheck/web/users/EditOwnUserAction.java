@@ -19,7 +19,9 @@ import com.opensymphony.xwork2.validator.annotations.Validation;
 				"/admin/users", "parse", "true", "actionMessages", "${actionMessages}" }) })
 @Validation
 public class EditOwnUserAction extends EditUserActionSupport {
-	private UserAssembler userAssembler;
+	@Resource
+	protected UserAssembler userAssembler;
+
 	private User requester;
 
 	public EditOwnUserAction() {
@@ -39,10 +41,5 @@ public class EditOwnUserAction extends EditUserActionSupport {
 	@AuthenticatedUser
 	public void setRequester(User requester) {
 		this.requester = requester;
-	}
-
-	@Resource
-	public void setUserAssembler(UserAssembler userAssembler) {
-		this.userAssembler = userAssembler;
 	}
 }

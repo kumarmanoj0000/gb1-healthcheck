@@ -21,7 +21,7 @@ public class LostPasswordActionTest {
 
 		LostPasswordAction action = new LostPasswordAction();
 		action.setEmail(email);
-		action.setUserService(userSvc);
+		action.userService = userSvc;
 
 		assertEquals(Action.SUCCESS, action.execute());
 		EasyMock.verify(userSvc);
@@ -38,7 +38,7 @@ public class LostPasswordActionTest {
 
 		LostPasswordAction action = new LostPasswordAction();
 		action.setEmail(email);
-		action.setUserService(userSvc);
+		action.userService = userSvc;
 
 		assertEquals(Action.INPUT, action.execute());
 		assertTrue(action.hasFieldErrors());

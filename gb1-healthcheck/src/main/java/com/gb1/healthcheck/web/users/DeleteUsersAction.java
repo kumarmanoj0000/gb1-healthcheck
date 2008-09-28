@@ -20,7 +20,9 @@ import com.opensymphony.xwork2.ActionSupport;
 @Result(type = FlashResult.class, value = "manageUsers", params = { "namespace", "/admin/users",
 		"parse", "true", "actionMessages", "${actionMessages}", "refreshList", "true" })
 public class DeleteUsersAction extends ActionSupport {
-	private UserService userService;
+	@Resource
+	protected UserService userService;
+
 	private Long[] userIds;
 
 	public DeleteUsersAction() {
@@ -41,10 +43,5 @@ public class DeleteUsersAction extends ActionSupport {
 
 	public void setUserIds(Long[] userIds) {
 		this.userIds = userIds;
-	}
-
-	@Resource
-	public void setUserService(UserService userService) {
-		this.userService = userService;
 	}
 }

@@ -13,7 +13,8 @@ import org.springframework.stereotype.Component;
  */
 @Component("userCreationValidator")
 public class FullUserCreationValidator implements UserValidator {
-	private UserRepository userRepository;
+	@Resource
+	protected UserRepository userRepository;
 
 	public FullUserCreationValidator() {
 	}
@@ -50,10 +51,5 @@ public class FullUserCreationValidator implements UserValidator {
 		}
 
 		return taken;
-	}
-
-	@Resource
-	public void setUserRepository(UserRepository userRepo) {
-		this.userRepository = userRepo;
 	}
 }
