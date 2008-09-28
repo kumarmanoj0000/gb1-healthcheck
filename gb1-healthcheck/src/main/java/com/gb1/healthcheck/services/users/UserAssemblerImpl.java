@@ -11,7 +11,9 @@ public class UserAssemblerImpl implements UserAssembler {
 	}
 
 	public User createUser(UserRegistrationRequest request) {
-		User user = new User(request.getLogin(), request.getEmail(), request.getPassword());
+		User user = new User(request.getLogin(), request.getPassword());
+		user.setEmail(request.getEmail());
+
 		for (Role role : request.getRoles()) {
 			user.assignRole(role);
 		}

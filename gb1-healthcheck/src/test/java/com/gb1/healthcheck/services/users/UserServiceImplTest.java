@@ -58,7 +58,7 @@ public class UserServiceImplTest {
 		validator.validate(EasyMock.isA(User.class));
 		EasyMock.replay(validator);
 
-		User expectedUser = new User(request.getLogin(), request.getEmail(), request.getPassword());
+		User expectedUser = new User(request.getLogin(), request.getPassword());
 		UserActivationRequest expectedActRequest = new UserActivationRequest(expectedUser, null);
 
 		UserActivationRequester requester = EasyMock.createMock(UserActivationRequester.class);

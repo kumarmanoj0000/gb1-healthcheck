@@ -45,7 +45,7 @@ public class UserAssemblerImplTest {
 
 	@Test
 	public void testUpdate() {
-		final User user = new User("login", "email", "pwd");
+		final User user = new User("login", "pwd");
 		user.assignRole(Role.STANDARD);
 
 		UserUpdateRequest request = new UserUpdateRequest() {

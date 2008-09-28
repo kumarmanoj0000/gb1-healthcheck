@@ -55,7 +55,8 @@ public class JpaUserRepositoryTest extends AbstractInMemoryPersistenceTestCase {
 
 	@Test
 	public void testSaveUser() {
-		User u = new User("login", "email", "1");
+		User u = new User("login", "pwd");
+		u.setEmail("email@gb1.com");
 		u.assignRole(Role.ADMINISTRATOR);
 
 		userRepo.saveUser(u);

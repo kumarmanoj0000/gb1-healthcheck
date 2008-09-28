@@ -79,23 +79,14 @@ public class User implements Identifiable, Serializable {
 	private Set<Role> roles = new HashSet<Role>();
 
 	/**
-	 * Creates a new user.
+	 * Package-protected constructor for JPA.
 	 */
 	User() {
 	}
 
-	public User(String login, String email, String password) {
+	public User(String login, String password) {
 		this.login = login;
-		this.email = email;
 		this.password = password;
-	}
-
-	public User(User source) {
-		this(source.getLogin(), source.getEmail(), source.getPassword());
-
-		for (Role role : source.getRoles()) {
-			roles.add(role);
-		}
 	}
 
 	/**
