@@ -38,7 +38,7 @@ public class Meals {
 	}
 
 	public static Meal fullItalianDinner() {
-		return new Meal(1L, Users.gb(), parseInstant("2007-10-13 18:00")).addDish(
+		return new Meal(Users.gb()).setId(1L).setInstant(parseInstant("2007-10-13 18:00")).addDish(
 				Meals.spaghettiDish()).addDish(Meals.redWineDrink());
 	}
 
@@ -46,8 +46,8 @@ public class Meals {
 		final List<Meal> mealHistory = new LinkedList<Meal>();
 
 		mealHistory.add(fullItalianDinner());
-		mealHistory.add(new Meal(2L, Users.gb(), parseInstant("2007-10-14 16:00")).addDish(Meals
-				.redWineDrink()));
+		mealHistory.add(new Meal(Users.gb()).setId(2L).setInstant(parseInstant("2007-10-14 16:00"))
+				.addDish(Meals.redWineDrink()));
 
 		return mealHistory;
 	}

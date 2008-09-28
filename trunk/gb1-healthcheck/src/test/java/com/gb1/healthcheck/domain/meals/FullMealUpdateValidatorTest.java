@@ -4,7 +4,6 @@ import static org.junit.Assert.fail;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Date;
 import java.util.List;
 
 import org.easymock.EasyMock;
@@ -53,7 +52,7 @@ public class FullMealUpdateValidatorTest {
 
 	@Test
 	public void testValidateNoDishes() throws MealException {
-		Meal meal = new Meal(Users.gb(), new Date());
+		Meal meal = new Meal(Users.gb());
 
 		MealRepository mealRepo = EasyMock.createMock(MealRepository.class);
 		EasyMock.expect(mealRepo.findMealsBy(meal.getEater(), meal.getInstant())).andReturn(

@@ -11,7 +11,10 @@ public class SimpleFoodAssemblerImpl implements SimpleFoodAssembler {
 	}
 
 	public SimpleFood createSimpleFood(SimpleFoodCreationRequest request) {
-		SimpleFood food = new SimpleFood(request.getName(), request.getFoodGroup());
+		SimpleFood food = new SimpleFood();
+		food.setName(request.getName());
+		food.setFoodGroup(request.getFoodGroup());
+
 		for (Nutrient n : request.getNutrients()) {
 			food.addNutrient(n);
 		}

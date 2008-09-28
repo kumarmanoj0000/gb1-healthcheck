@@ -67,7 +67,7 @@ public class FullComplexFoodUpdateValidatorTest {
 
 	@Test
 	public void testValidateNoIngredients() throws FoodException {
-		final ComplexFood food = new ComplexFood("no ingredients");
+		final ComplexFood food = new ComplexFood();
 		final List<Food> foodsWithSameName = new ArrayList<Food>();
 		foodsWithSameName.add(food);
 

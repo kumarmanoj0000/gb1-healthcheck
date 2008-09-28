@@ -8,49 +8,58 @@ public class Foods {
 	}
 
 	public static SimpleFood water() {
-		return new SimpleFood(1L, "water", FoodGroup.OTHERS);
+		return ((SimpleFood) new SimpleFood().setId(1L).setName("water"))
+				.setFoodGroup(FoodGroup.OTHERS);
 	}
 
 	public static SimpleFood apple() {
-		return new SimpleFood(2L, "apple", FoodGroup.FRUITS).addNutrient(Nutrient.VITAMIN_C);
+		return ((SimpleFood) new SimpleFood().setId(2L).setName("apple")).setFoodGroup(
+				FoodGroup.FRUITS).addNutrient(Nutrient.VITAMIN_C);
 	}
 
 	public static SimpleFood sugar() {
-		return new SimpleFood(3L, "sugar", FoodGroup.OTHERS);
+		return ((SimpleFood) new SimpleFood().setId(3L).setName("sugar"))
+				.setFoodGroup(FoodGroup.OTHERS);
 	}
 
 	public static SimpleFood pasta() {
-		return new SimpleFood(4L, "pasta", FoodGroup.GRAINS);
+		return ((SimpleFood) new SimpleFood().setId(4L).setName("pasta"))
+				.setFoodGroup(FoodGroup.GRAINS);
 	}
 
 	public static SimpleFood beef() {
-		return new SimpleFood(5L, "beef", FoodGroup.MEAT_AND_SUBSTITUTES)
-				.addNutrient(Nutrient.PROTEIN);
+		return ((SimpleFood) new SimpleFood().setId(5L).setName("beef")).setFoodGroup(
+				FoodGroup.MEAT_AND_SUBSTITUTES).addNutrient(Nutrient.PROTEIN);
 	}
 
 	public static SimpleFood tomato() {
-		return new SimpleFood(6L, "tomato", FoodGroup.FRUITS).addNutrient(Nutrient.VITAMIN_C);
+		return ((SimpleFood) new SimpleFood().setId(6L).setName("tomato")).setFoodGroup(
+				FoodGroup.FRUITS).addNutrient(Nutrient.VITAMIN_C);
 	}
 
 	public static SimpleFood redGrape() {
-		return new SimpleFood(7L, "red grape", FoodGroup.FRUITS).addNutrient(Nutrient.VITAMIN_B);
+		return ((SimpleFood) new SimpleFood().setId(7L).setName("red grape")).setFoodGroup(
+				FoodGroup.FRUITS).addNutrient(Nutrient.VITAMIN_B);
 	}
 
 	public static SimpleFood alcohol() {
-		return new SimpleFood(8L, "alcohol", FoodGroup.OTHERS).addNutrient(Nutrient.ALCOHOL);
+		return ((SimpleFood) new SimpleFood().setId(8L).setName("alcohol")).setFoodGroup(
+				FoodGroup.OTHERS).addNutrient(Nutrient.ALCOHOL);
 	}
 
 	public static ComplexFood redWine() {
-		return new ComplexFood(9L, "red wine").addIngredient(redGrape()).addIngredient(alcohol());
+		return ((ComplexFood) new ComplexFood().setId(9L).setName("red wine")).addIngredient(
+				redGrape()).addIngredient(alcohol());
 	}
 
 	public static ComplexFood beefStock() {
-		return new ComplexFood(10L, "beef stock").addIngredient(water()).addIngredient(beef());
+		return ((ComplexFood) new ComplexFood().setId(10L).setName("beef stock")).addIngredient(
+				water()).addIngredient(beef());
 	}
 
 	public static ComplexFood spaghetti() {
-		return new ComplexFood(11L, "spaghetti").addIngredient(tomato()).addIngredient(beef())
-				.addIngredient(beefStock()).addIngredient(pasta());
+		return ((ComplexFood) new ComplexFood().setId(11L).setName("spaghetti")).addIngredient(
+				tomato()).addIngredient(beef()).addIngredient(beefStock()).addIngredient(pasta());
 	}
 
 	public static Set<SimpleFood> allSimpleFoods() {

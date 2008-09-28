@@ -27,10 +27,10 @@ public class JpaMealRepositoryTest extends AbstractInMemoryPersistenceTestCase {
 	public void testLoadMeals() throws ParseException {
 		final User eater = Users.gb();
 
-		Meal meal1 = new Meal(eater, parseInstant("2007-10-15 16:00"))
-				.addDish(Meals.redWineDrink());
-		Meal meal2 = new Meal(eater, parseInstant("2007-10-15 18:30"))
-				.addDish(Meals.redWineDrink()).addDish(Meals.spaghettiDish());
+		Meal meal1 = new Meal(eater).setInstant(parseInstant("2007-10-15 16:00")).addDish(
+				Meals.redWineDrink());
+		Meal meal2 = new Meal(eater).setInstant(parseInstant("2007-10-15 18:30")).addDish(
+				Meals.redWineDrink()).addDish(Meals.spaghettiDish());
 
 		List<Meal> meals = mealRepo.findMealsBy(eater);
 		assertEquals(2, meals.size());
@@ -42,7 +42,7 @@ public class JpaMealRepositoryTest extends AbstractInMemoryPersistenceTestCase {
 	public void testFindMealsByInstant() throws ParseException {
 		final User eater = Users.lg();
 		Date mealInstant = parseInstant("2007-10-16 18:00");
-		Meal meal = new Meal(eater, mealInstant).addDish(Meals.spaghettiDish());
+		Meal meal = new Meal(eater).setInstant(mealInstant).addDish(Meals.spaghettiDish());
 
 		List<Meal> meals = mealRepo.findMealsBy(eater, mealInstant);
 
@@ -52,8 +52,8 @@ public class JpaMealRepositoryTest extends AbstractInMemoryPersistenceTestCase {
 
 	@Test
 	public void testSaveMeal() throws ParseException {
-		Date mealInstant = parseInstant("2007-10-16 18:00");
-		Meal meal = new Meal(Users.lg(), mealInstant).addDish(Meals.spaghettiDish());
+		Meal meal = new Meal(Users.lg()).setInstant(parseInstant("2007-10-16 18:00")).addDish(
+				Meals.spaghettiDish());
 		mealRepo.saveMeal(meal);
 
 		assertEquals(meal, mealRepo.loadMeal(meal.getId()));

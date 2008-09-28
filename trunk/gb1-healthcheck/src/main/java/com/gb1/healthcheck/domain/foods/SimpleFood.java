@@ -16,34 +16,16 @@ import org.hibernate.annotations.CollectionOfElements;
 @DiscriminatorValue("S")
 public class SimpleFood extends Food {
 	@Column(name = "FOOD_GROUP")
-	private FoodGroup foodGroup;
+	private FoodGroup foodGroup = FoodGroup.OTHERS;
 
 	@CollectionOfElements(fetch = FetchType.EAGER)
 	private Set<Nutrient> nutrients = new HashSet<Nutrient>();
 
-	/**
-	 * Package-protected constructor for JPA.
-	 */
-	SimpleFood() {
-		super("");
-	}
-
-	SimpleFood(Long id, String name) {
-		this(id, name, FoodGroup.OTHERS);
-	}
-
-	SimpleFood(Long id, String name, FoodGroup foodGroup) {
-		this(name, foodGroup);
-		setId(id);
-	}
-
-	public SimpleFood(String name, FoodGroup foodGroup) {
-		super(name);
-		this.foodGroup = foodGroup;
+	public SimpleFood() {
 	}
 
 	public SimpleFood(SimpleFood source) {
-		super(source.getName());
+		setName(source.getName());
 		foodGroup = source.getFoodGroup();
 		nutrients.addAll(source.getNutrients());
 	}

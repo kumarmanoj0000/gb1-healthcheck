@@ -3,8 +3,6 @@ package com.gb1.healthcheck.web.meals;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
-import java.util.Date;
-
 import org.apache.commons.lang.ArrayUtils;
 import org.junit.Test;
 
@@ -17,7 +15,7 @@ import com.gb1.healthcheck.services.meals.PreparedFoodUpdateRequest;
 public class BasicMealUpdateRequestTest {
 	@Test
 	public void testNewRequestFromMeal() {
-		final Meal meal = new Meal(Users.gb(), new Date()).addDish(Meals.spaghettiDish()).addDish(
+		final Meal meal = new Meal(Users.gb()).addDish(Meals.spaghettiDish()).addDish(
 				Meals.redWineDrink());
 		BasicMealUpdateRequest req = new BasicMealUpdateRequest(meal);
 
