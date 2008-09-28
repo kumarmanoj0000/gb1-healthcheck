@@ -151,10 +151,7 @@ public class UserTest {
 		constants.put("user.generatedPasswordLength", "8");
 
 		User u = Users.gb();
-		u.setPasswordGenerator(pwdGenerator);
-		u.setGlobalConstants(constants);
-
-		u.resetPassword();
+		u.resetPassword(newPwd);
 		assertEquals(newPwd, u.getPassword());
 	}
 }

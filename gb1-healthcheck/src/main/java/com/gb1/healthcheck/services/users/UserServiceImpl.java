@@ -1,6 +1,7 @@
 package com.gb1.healthcheck.services.users;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import javax.annotation.Resource;
@@ -11,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.gb1.commons.tokens.Token;
 import com.gb1.healthcheck.domain.users.InvalidPasswordException;
 import com.gb1.healthcheck.domain.users.LostPasswordReminder;
+import com.gb1.healthcheck.domain.users.PasswordGenerator;
 import com.gb1.healthcheck.domain.users.PasswordResetNotifier;
 import com.gb1.healthcheck.domain.users.UnknownUserException;
 import com.gb1.healthcheck.domain.users.User;
@@ -48,7 +50,12 @@ public class UserServiceImpl implements UserService {
 	protected LostPasswordReminder lostPasswordReminder;
 
 	@Resource
+	protected PasswordGenerator passwordGenerator;
+
+	@Resource
 	protected PasswordResetNotifier passwordResetNotifier;
+
+	private int generatedPasswordLength;
 
 	public UserServiceImpl() {
 	}
@@ -128,8 +135,13 @@ public class UserServiceImpl implements UserService {
 
 	public void resetUserPassword(Long userId) {
 		User user = userRepository.loadUser(userId);
-		user.resetPassword();
+		user.resetPassword(passwordGenerator.generatePassword(generatedPasswordLength));
 
 		passwordResetNotifier.notifyPasswordReset(user);
+	}
+
+	@Resource
+	public void setGlobalConstants(Map<String, String> constants) {
+		generatedPasswordLength = Integer.parseInt(constants.get("user.generatedPasswordLength"));
 	}
 }
