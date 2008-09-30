@@ -1,5 +1,6 @@
 package com.gb1.healthcheck.domain.foods;
 
+import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
@@ -24,6 +25,12 @@ public class ComplexFood extends Food {
 	public void addIngredient(Food ingredient) {
 		Validate.notNull(ingredient);
 		ingredients.add(ingredient);
+	}
+
+	public void addIngredients(Collection<Food> ingredients) {
+		for (Food ingredient : ingredients) {
+			addIngredient(ingredient);
+		}
 	}
 
 	public boolean containsIngredient(Food ingredient) {

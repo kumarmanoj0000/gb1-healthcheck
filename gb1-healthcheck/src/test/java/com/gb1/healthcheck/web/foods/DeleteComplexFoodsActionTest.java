@@ -3,9 +3,7 @@ package com.gb1.healthcheck.web.foods;
 import static org.junit.Assert.assertEquals;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import org.easymock.EasyMock;
 import org.junit.Test;
@@ -22,7 +20,7 @@ public class DeleteComplexFoodsActionTest {
 		foods.add(Foods.beefStock());
 		foods.add(Foods.redWine());
 
-		Set<Long> foodIds = new HashSet<Long>();
+		List<Long> foodIds = new ArrayList<Long>();
 		foodIds.add(Foods.beefStock().getId());
 		foodIds.add(Foods.redWine().getId());
 

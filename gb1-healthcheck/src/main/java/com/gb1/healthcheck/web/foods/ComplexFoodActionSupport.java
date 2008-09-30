@@ -22,7 +22,6 @@ public abstract class ComplexFoodActionSupport extends ActionSupport implements 
 	private List<Food> availableIngredients = new ArrayList<Food>();
 
 	public void prepare() {
-		availableIngredients.clear();
 		availableIngredients.addAll(foodService.getSimpleFoods());
 		availableIngredients.addAll(foodService
 				.getComplexFoods(new IdentityHydrater<ComplexFood>()));
@@ -42,6 +41,6 @@ public abstract class ComplexFoodActionSupport extends ActionSupport implements 
 	}
 
 	public List<Food> getAvailableIngredients() {
-		return Collections.unmodifiableList(availableIngredients);
+		return availableIngredients;
 	}
 }

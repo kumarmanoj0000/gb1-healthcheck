@@ -15,7 +15,7 @@
 
 	<fieldset id="ingredientsList">
 		<legend><s:text name="food.ingredients" />:</legend>
-		<s:checkboxlist theme="gb1" name="model.selectedIngredientIds" list="availableIngredients" listKey="id" listValue="name" />
+		<s:checkboxlist theme="gb1" name="model.ingredientIds" list="availableIngredients" listKey="id" listValue="name" />
 	</fieldset>
 
 	<div class="actions">
