@@ -3,9 +3,7 @@ package com.gb1.healthcheck.web.users;
 import static org.junit.Assert.assertEquals;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import org.easymock.EasyMock;
 import org.junit.Test;
@@ -22,7 +20,7 @@ public class DeleteUsersActionTest {
 		users.add(Users.gb());
 		users.add(Users.lg());
 
-		Set<Long> userIds = new HashSet<Long>();
+		List<Long> userIds = new ArrayList<Long>();
 		userIds.add(Users.gb().getId());
 		userIds.add(Users.lg().getId());
 

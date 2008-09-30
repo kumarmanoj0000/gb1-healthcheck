@@ -2,7 +2,6 @@ package com.gb1.healthcheck.services.users;
 
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 import javax.annotation.Resource;
 
@@ -120,7 +119,7 @@ public class UserServiceImpl implements UserService {
 		return userRepository.findUsers();
 	}
 
-	public void deleteUsers(Set<Long> userIds) {
+	public void deleteUsers(List<Long> userIds) {
 		for (Long userId : userIds) {
 			User user = userRepository.loadUser(userId);
 			userRepository.deleteUser(user);

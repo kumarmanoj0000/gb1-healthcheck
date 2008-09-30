@@ -8,7 +8,6 @@ import static org.junit.Assert.fail;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
-import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -262,7 +261,7 @@ public class UserServiceImplTest {
 
 	@Test
 	public void testDeleteUsers() {
-		Set<Long> userIds = new LinkedHashSet<Long>();
+		List<Long> userIds = new ArrayList<Long>();
 		userIds.add(Users.gb().getId());
 		userIds.add(Users.lg().getId());
 
