@@ -1,8 +1,6 @@
 package com.gb1.healthcheck.web.users;
 
 import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Set;
 
 import javax.annotation.Resource;
 
@@ -31,10 +29,7 @@ public class DeleteUsersAction extends ActionSupport {
 	@Override
 	public String execute() {
 		if (userIds != null) {
-			Set<Long> idsToDelete = new HashSet<Long>();
-			idsToDelete.addAll(Arrays.asList(userIds));
-
-			userService.deleteUsers(idsToDelete);
+			userService.deleteUsers(Arrays.asList(userIds));
 			addActionMessage(getText("users.delete.success"));
 		}
 

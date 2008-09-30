@@ -1,7 +1,6 @@
 package com.gb1.healthcheck.services.users;
 
 import java.util.List;
-import java.util.Set;
 
 import com.gb1.commons.tokens.Token;
 import com.gb1.healthcheck.domain.users.InvalidPasswordException;
@@ -89,7 +88,7 @@ public interface UserService {
 	 * 
 	 * @param userIds The IDs of the users to delete
 	 */
-	void deleteUsers(Set<Long> userIds);
+	void deleteUsers(List<Long> userIds);
 
 	/**
 	 * Changes a user's password.
