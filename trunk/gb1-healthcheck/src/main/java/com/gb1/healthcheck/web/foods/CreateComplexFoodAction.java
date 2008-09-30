@@ -1,9 +1,13 @@
 package com.gb1.healthcheck.web.foods;
 
+import java.util.Map;
+
 import org.apache.struts2.config.ParentPackage;
 import org.apache.struts2.config.Result;
 import org.apache.struts2.config.Results;
+import org.apache.struts2.interceptor.SessionAware;
 
+import com.gb1.healthcheck.domain.foods.ComplexFood;
 import com.gb1.healthcheck.domain.foods.ComplexFoodHasNoIngredientsException;
 import com.gb1.healthcheck.domain.foods.FoodAlreadyExistsException;
 import com.gb1.healthcheck.domain.foods.FoodException;
@@ -19,10 +23,19 @@ import com.opensymphony.xwork2.validator.annotations.Validations;
 		@Result(type = FlashResult.class, value = "manageFoods", params = { "namespace", "/foods",
 				"parse", "true", "actionMessages", "${actionMessages}", "refreshList", "true" }) })
 @Validation
-public class CreateComplexFoodAction extends ComplexFoodActionSupport {
-	private BasicComplexFoodCreationRequest foodCreationRequest = new BasicComplexFoodCreationRequest();
+public class CreateComplexFoodAction extends ComplexFoodActionSupport implements SessionAware {
+	protected static final String MODEL_SESSION_KEY = CreateComplexFoodAction.class.getName()
+			+ ".model";
+
+	private Map<String, Object> sessionMap;
 
 	public CreateComplexFoodAction() {
+	}
+
+	@Override
+	public String input() throws Exception {
+		sessionMap.put(MODEL_SESSION_KEY, new ComplexFoodAdapter(new ComplexFood(), foodService));
+		return Action.INPUT;
 	}
 
 	@Validations(requiredStrings = { @RequiredStringValidator(fieldName = "model.name", message = "", key = "foods.complexFoods.edit.error.nameRequired") })
@@ -31,7 +44,7 @@ public class CreateComplexFoodAction extends ComplexFoodActionSupport {
 		String result = Action.INPUT;
 
 		try {
-			foodService.createComplexFood(foodCreationRequest);
+			foodService.createComplexFood(getModel().getTarget());
 			addActionMessage(getText("foods.complexFoods.edit.success"));
 			result = Action.SUCCESS;
 		}
@@ -48,7 +61,12 @@ public class CreateComplexFoodAction extends ComplexFoodActionSupport {
 		return result;
 	}
 
-	public BasicComplexFoodCreationRequest getModel() {
-		return foodCreationRequest;
+	public ComplexFoodAdapter getModel() {
+		return (ComplexFoodAdapter) sessionMap.get(MODEL_SESSION_KEY);
+	}
+
+	@SuppressWarnings("unchecked")
+	public void setSession(Map sessionMap) {
+		this.sessionMap = sessionMap;
 	}
 }

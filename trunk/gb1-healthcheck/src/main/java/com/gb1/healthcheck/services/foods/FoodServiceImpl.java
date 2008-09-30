@@ -1,7 +1,7 @@
 package com.gb1.healthcheck.services.foods;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 import javax.annotation.Resource;
 
@@ -29,9 +29,6 @@ public class FoodServiceImpl implements FoodService {
 
 	@Resource
 	protected SimpleFoodValidator simpleFoodUpdateValidator;
-
-	@Resource
-	protected ComplexFoodAssembler complexFoodAssembler;
 
 	@Resource
 	protected ComplexFoodValidator complexFoodCreationValidator;
@@ -70,13 +67,22 @@ public class FoodServiceImpl implements FoodService {
 		return foods;
 	}
 
+	@Transactional(readOnly = true)
+	public List<Food> getFoods(List<Long> foodIds) {
+		List<Food> foods = new ArrayList<Food>();
+		for (Long foodId : foodIds) {
+			foods.add(foodRepo.loadFood(foodId));
+		}
+
+		return foods;
+	}
+
 	public void createSimpleFood(SimpleFood food) throws FoodException {
 		simpleFoodCreationValidator.validate(food);
 		foodRepo.persist(food);
 	}
 
-	public void createComplexFood(ComplexFoodCreationRequest request) throws FoodException {
-		ComplexFood food = complexFoodAssembler.createComplexFood(request);
+	public void createComplexFood(ComplexFood food) throws FoodException {
 		complexFoodCreationValidator.validate(food);
 		foodRepo.persist(food);
 	}
@@ -86,13 +92,12 @@ public class FoodServiceImpl implements FoodService {
 		foodRepo.merge(food);
 	}
 
-	public void updateComplexFood(ComplexFoodUpdateRequest request) throws FoodException {
-		ComplexFood food = foodRepo.loadComplexFood(request.getFoodId());
-		complexFoodAssembler.updateComplexFood(food, request);
+	public void updateComplexFood(ComplexFood food) throws FoodException {
 		complexFoodUpdateValidator.validate(food);
+		foodRepo.merge(food);
 	}
 
-	public void deleteFoods(Set<Long> foodIds) {
+	public void deleteFoods(List<Long> foodIds) {
 		for (Long foodId : foodIds) {
 			Food food = foodRepo.loadFood(foodId);
 			foodRepo.delete(food);

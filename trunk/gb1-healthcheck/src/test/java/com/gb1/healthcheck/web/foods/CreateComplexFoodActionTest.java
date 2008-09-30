@@ -5,7 +5,9 @@ import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.commons.collections.CollectionUtils;
 import org.easymock.EasyMock;
@@ -18,7 +20,6 @@ import com.gb1.healthcheck.domain.foods.FoodAlreadyExistsException;
 import com.gb1.healthcheck.domain.foods.FoodException;
 import com.gb1.healthcheck.domain.foods.Foods;
 import com.gb1.healthcheck.domain.foods.SimpleFood;
-import com.gb1.healthcheck.services.foods.ComplexFoodCreationRequest;
 import com.gb1.healthcheck.services.foods.FoodService;
 import com.opensymphony.xwork2.Action;
 
@@ -48,13 +49,19 @@ public class CreateComplexFoodActionTest {
 
 	@Test
 	public void testSubmit() throws FoodException {
+		ComplexFood food = Foods.spaghetti();
+
+		Map<String, Object> sessionMap = new HashMap<String, Object>();
+		sessionMap.put(CreateComplexFoodAction.MODEL_SESSION_KEY, new ComplexFoodAdapter(food));
+
 		FoodService foodSvc = EasyMock.createMock(FoodService.class);
-		foodSvc.createComplexFood(EasyMock.isA(ComplexFoodCreationRequest.class));
+		foodSvc.createComplexFood(food);
 		EasyMock.expectLastCall();
 		EasyMock.replay(foodSvc);
 
 		CreateComplexFoodAction action = new CreateComplexFoodAction();
 		action.foodService = foodSvc;
+		action.setSession(sessionMap);
 
 		assertEquals(Action.SUCCESS, action.execute());
 		EasyMock.verify(foodSvc);
@@ -62,13 +69,19 @@ public class CreateComplexFoodActionTest {
 
 	@Test
 	public void testSubmitWithError() throws FoodException {
+		ComplexFood food = Foods.spaghetti();
+
+		Map<String, Object> sessionMap = new HashMap<String, Object>();
+		sessionMap.put(CreateComplexFoodAction.MODEL_SESSION_KEY, new ComplexFoodAdapter(food));
+
 		FoodService foodSvc = EasyMock.createMock(FoodService.class);
-		foodSvc.createComplexFood(EasyMock.isA(ComplexFoodCreationRequest.class));
+		foodSvc.createComplexFood(EasyMock.isA(ComplexFood.class));
 		EasyMock.expectLastCall().andThrow(new FoodAlreadyExistsException(""));
 		EasyMock.replay(foodSvc);
 
 		CreateComplexFoodAction action = new CreateComplexFoodAction();
 		action.foodService = foodSvc;
+		action.setSession(sessionMap);
 
 		assertEquals(Action.INPUT, action.execute());
 		assertTrue(action.hasFieldErrors());
