@@ -30,7 +30,7 @@ public class RegisterUserAction extends ActionSupport {
 	@Resource
 	protected UserService userService;
 
-	private BasicUserRegistrationRequest userRegRequest = new BasicUserRegistrationRequest(
+	private UserRegistrationRequest userRegRequest = new UserRegistrationRequest(
 			Role.STANDARD);
 
 	public RegisterUserAction() {
@@ -46,7 +46,7 @@ public class RegisterUserAction extends ActionSupport {
 		String result = Action.INPUT;
 
 		try {
-			userService.registerUser(userRegRequest);
+			userService.registerUser(getModel().build());
 			result = Action.SUCCESS;
 		}
 		catch (LoginAlreadyExistsException e) {
@@ -63,7 +63,7 @@ public class RegisterUserAction extends ActionSupport {
 	}
 
 	@VisitorFieldValidator(message = "")
-	public BasicUserRegistrationRequest getModel() {
+	public UserRegistrationRequest getModel() {
 		return userRegRequest;
 	}
 }

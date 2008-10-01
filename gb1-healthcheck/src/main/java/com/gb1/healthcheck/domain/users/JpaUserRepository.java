@@ -58,8 +58,12 @@ public class JpaUserRepository implements UserRepository {
 				.setParameter(1, email).getResultList();
 	}
 
-	public void saveUser(User user) {
+	public void persistUser(User user) {
 		entityManager.persist(user);
+	}
+
+	public void mergeUser(User user) {
+		entityManager.merge(user);
 	}
 
 	public void deleteUser(User user) {

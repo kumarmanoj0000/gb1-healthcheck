@@ -35,15 +35,15 @@ public interface UserService {
 	User findUserByLogin(String login);
 
 	/**
-	 * Registers a new user based on the given registration request. Following registration, the
-	 * created user is not yet activated. An activation request will be sent to him in order to
-	 * validate his registration and activate his account.
+	 * Registers a new user. Following registration, the created user is not yet activated. An
+	 * activation request will be sent to him in order to validate his registration and activate his
+	 * account.
 	 * 
-	 * @param request The request for user registration
+	 * @param user The user to register
 	 * @return The user activation request that will be sent to the user
 	 * @throws UserException When registration fails
 	 */
-	UserActivationRequest registerUser(UserRegistrationRequest request) throws UserException;
+	UserActivationRequest registerUser(User user) throws UserException;
 
 	/**
 	 * Activates a user account. The user will be activated if his account can be retrieved using
@@ -59,13 +59,12 @@ public interface UserService {
 			UserActivationException;
 
 	/**
-	 * Updates a user based on the given update request.
+	 * Updates the given user.
 	 * 
-	 * @param request The request to update
-	 * @return The updated user
+	 * @param user The user to update
 	 * @throws UserException If the user to update doesn't exist
 	 */
-	User updateUser(UserUpdateRequest request) throws UserException;
+	void updateUser(User user) throws UserException;
 
 	/**
 	 * Sends a user's lost password to his email address.

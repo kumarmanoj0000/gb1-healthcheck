@@ -14,7 +14,8 @@ import com.opensymphony.xwork2.validator.annotations.Validation;
 @Results( {
 		@Result(name = "input", value = "/views/users/editOtherUser.jsp"),
 		@Result(type = FlashResult.class, value = "manageUsers", params = { "namespace",
-				"/admin/users", "parse", "true", "actionMessages", "${actionMessages}" }) })
+				"/admin/users", "parse", "true", "actionMessages", "${actionMessages}",
+				"refreshList", "true" }) })
 @Validation
 public class EditOtherUserAction extends EditUserActionSupport {
 	private Long userId;
@@ -28,7 +29,7 @@ public class EditOtherUserAction extends EditUserActionSupport {
 	}
 
 	@Override
-	protected void updateActiveUserIfNecessary(BasicUserUpdateRequest updateReq) {
+	protected void updateActiveUserIfNecessary(User user) {
 	}
 
 	public void setUserId(Long userId) {

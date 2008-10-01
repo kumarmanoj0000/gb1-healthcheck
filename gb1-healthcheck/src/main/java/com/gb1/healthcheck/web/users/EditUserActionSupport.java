@@ -30,9 +30,7 @@ public abstract class EditUserActionSupport extends ActionSupport implements Ses
 
 	@Override
 	public String input() throws Exception {
-		BasicUserUpdateRequest model = new BasicUserUpdateRequest(getUserToEdit());
-		sessionMap.put(MODEL_SESSION_KEY, model);
-
+		sessionMap.put(MODEL_SESSION_KEY, getUserToEdit());
 		return Action.INPUT;
 	}
 
@@ -44,10 +42,9 @@ public abstract class EditUserActionSupport extends ActionSupport implements Ses
 		String result = Action.INPUT;
 
 		try {
-			BasicUserUpdateRequest updateReq = getModel();
-			userService.updateUser(updateReq);
-
-			updateActiveUserIfNecessary(updateReq);
+			User userToUpdate = getModel();
+			userService.updateUser(userToUpdate);
+			updateActiveUserIfNecessary(userToUpdate);
 
 			sessionMap.remove(MODEL_SESSION_KEY);
 			addActionMessage(getText("users.edit.success"));
@@ -63,15 +60,14 @@ public abstract class EditUserActionSupport extends ActionSupport implements Ses
 		return result;
 	}
 
-	protected abstract void updateActiveUserIfNecessary(BasicUserUpdateRequest updateReq);
+	protected abstract void updateActiveUserIfNecessary(User user);
 
 	public String cancel() {
 		return Action.SUCCESS;
 	}
 
-	public BasicUserUpdateRequest getModel() {
-		BasicUserUpdateRequest model = (BasicUserUpdateRequest) sessionMap.get(MODEL_SESSION_KEY);
-		return model;
+	public User getModel() {
+		return (User) sessionMap.get(MODEL_SESSION_KEY);
 	}
 
 	@SuppressWarnings("unchecked")

@@ -27,6 +27,6 @@ public class EditOtherUserActionTest {
 		action.setUserId(user.getId());
 
 		assertEquals(Action.INPUT, action.input());
-		assertEquals(user.getId(), action.getModel().getUserId());
+		assertEquals(user.getId(), action.getModel().getId());
 	}
 }
