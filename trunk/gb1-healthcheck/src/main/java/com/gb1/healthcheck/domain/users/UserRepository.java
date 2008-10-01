@@ -22,7 +22,9 @@ public interface UserRepository {
 	 * 
 	 * @param user The user to save
 	 */
-	void saveUser(User user);
+	void persistUser(User user);
+
+	void mergeUser(User user);
 
 	/**
 	 * Finds all registered users.

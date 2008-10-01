@@ -46,8 +46,7 @@ public class ManageUsersAction extends ActionSupport implements SessionAware {
 
 	@SuppressWarnings("unchecked")
 	public List<User> getUsers() {
-		List<User> userList = (List<User>) sessionMap.get(USER_LIST_SESSION_KEY);
-		return userList;
+		return (List<User>) sessionMap.get(USER_LIST_SESSION_KEY);
 	}
 
 	public int getUserListPageSize() {

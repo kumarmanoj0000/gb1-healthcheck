@@ -89,6 +89,19 @@ public class User implements Identifiable, Serializable {
 		this.password = password;
 	}
 
+	public User(User source) {
+		this.id = source.id;
+		this.login = source.login;
+		this.password = source.password;
+		this.email = source.email;
+		this.activationToken = source.activationToken;
+		this.status = source.status;
+
+		for (Role r : source.roles) {
+			this.assignRole(r);
+		}
+	}
+
 	/**
 	 * Returns the user's ID.
 	 * 
@@ -312,6 +325,15 @@ public class User implements Identifiable, Serializable {
 
 	public void relieveFromAllRoles() {
 		roles.clear();
+	}
+
+	public void updateFrom(User user) {
+		this.email = user.email;
+
+		this.relieveFromAllRoles();
+		for (Role r : user.roles) {
+			this.assignRole(r);
+		}
 	}
 
 	@Override

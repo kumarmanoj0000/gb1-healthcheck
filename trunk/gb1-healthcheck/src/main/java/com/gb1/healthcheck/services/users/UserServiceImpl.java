@@ -34,9 +34,6 @@ public class UserServiceImpl implements UserService {
 	protected UserRepository userRepository;
 
 	@Resource
-	protected UserAssembler userAssembler;
-
-	@Resource
 	protected UserValidator userCreationValidator;
 
 	@Resource
@@ -59,11 +56,10 @@ public class UserServiceImpl implements UserService {
 	public UserServiceImpl() {
 	}
 
-	public UserActivationRequest registerUser(UserRegistrationRequest request) throws UserException {
-		User user = userAssembler.createUser(request);
+	public UserActivationRequest registerUser(User user) throws UserException {
 		userCreationValidator.validate(user);
 		UserActivationRequest actRequest = userActivationRequester.requestUserActivation(user);
-		userRepository.saveUser(actRequest.getPendingUser());
+		userRepository.persistUser(actRequest.getPendingUser());
 
 		return actRequest;
 	}
@@ -80,16 +76,9 @@ public class UserServiceImpl implements UserService {
 		return user;
 	}
 
-	public User updateUser(UserUpdateRequest request) throws UserException {
-		User user = userRepository.loadUser(request.getUserId());
-		if (user == null) {
-			throw new UnknownUserException();
-		}
-
-		userAssembler.updateMeal(user, request);
+	public void updateUser(User user) throws UserException {
 		userUpdateValidator.validate(user);
-
-		return user;
+		userRepository.mergeUser(user);
 	}
 
 	@Transactional(readOnly = true)
@@ -104,14 +93,12 @@ public class UserServiceImpl implements UserService {
 
 	@Transactional(readOnly = true)
 	public User getUser(Long userId) {
-		User user = userRepository.loadUser(userId);
-		return user;
+		return userRepository.loadUser(userId);
 	}
 
 	@Transactional(readOnly = true)
 	public User findUserByLogin(String login) {
-		User user = userRepository.findUserByLogin(login);
-		return user;
+		return userRepository.findUserByLogin(login);
 	}
 
 	@Transactional(readOnly = true)

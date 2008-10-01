@@ -1,16 +1,13 @@
 package com.gb1.healthcheck.services.users;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 import org.apache.commons.collections.CollectionUtils;
 import org.easymock.EasyMock;
@@ -21,7 +18,6 @@ import com.gb1.healthcheck.domain.users.ExposedUser;
 import com.gb1.healthcheck.domain.users.LostPasswordReminder;
 import com.gb1.healthcheck.domain.users.PasswordGenerator;
 import com.gb1.healthcheck.domain.users.PasswordResetNotifier;
-import com.gb1.healthcheck.domain.users.Role;
 import com.gb1.healthcheck.domain.users.UnknownUserException;
 import com.gb1.healthcheck.domain.users.User;
 import com.gb1.healthcheck.domain.users.UserActivationException;
@@ -35,30 +31,13 @@ import com.gb1.healthcheck.domain.users.Users;
 public class UserServiceImplTest {
 	@Test
 	public void testRegisterUser() throws UserException {
-		UserRegistrationRequest request = new UserRegistrationRequest() {
-			public Set<Role> getRoles() {
-				return Collections.emptySet();
-			}
-
-			public String getLogin() {
-				return "login";
-			}
-
-			public String getPassword() {
-				return "1";
-			}
-
-			public String getEmail() {
-				return null;
-			}
-		};
+		User user = new User("login", "1");
 
 		UserValidator validator = EasyMock.createMock(UserValidator.class);
 		validator.validate(EasyMock.isA(User.class));
 		EasyMock.replay(validator);
 
-		User expectedUser = new User(request.getLogin(), request.getPassword());
-		UserActivationRequest expectedActRequest = new UserActivationRequest(expectedUser, null);
+		UserActivationRequest expectedActRequest = new UserActivationRequest(user, null);
 
 		UserActivationRequester requester = EasyMock.createMock(UserActivationRequester.class);
 		EasyMock.expect(requester.requestUserActivation(EasyMock.isA(User.class))).andReturn(
@@ -66,16 +45,15 @@ public class UserServiceImplTest {
 		EasyMock.replay(requester);
 
 		UserRepository repo = EasyMock.createMock(UserRepository.class);
-		repo.saveUser(EasyMock.isA(User.class));
+		repo.persistUser(EasyMock.isA(User.class));
 		EasyMock.replay(repo);
 
 		UserServiceImpl svc = new UserServiceImpl();
-		svc.userAssembler = new UserAssemblerImpl();
 		svc.userRepository = repo;
 		svc.userActivationRequester = requester;
 		svc.userCreationValidator = validator;
 
-		UserActivationRequest actRequest = svc.registerUser(request);
+		UserActivationRequest actRequest = svc.registerUser(user);
 
 		// make sure that the user was validated and saved, and that the activation request was sent
 		assertEquals(expectedActRequest, actRequest);
@@ -85,80 +63,25 @@ public class UserServiceImplTest {
 	}
 
 	@Test
-	public void testModifyUnknownUser() throws UserException {
-		final User user = Users.gb();
-		UserUpdateRequest modifReq = new UserUpdateRequest() {
-			public Long getUserId() {
-				return user.getId();
-			}
-
-			public String getEmail() {
-				return user.getEmail();
-			}
-
-			public Set<Role> getRoles() {
-				return user.getRoles();
-			}
-		};
-
-		UserRepository userRepo = EasyMock.createMock(UserRepository.class);
-		EasyMock.expect(userRepo.loadUser(user.getId())).andReturn(null);
-		EasyMock.replay(userRepo);
-
-		UserServiceImpl svc = new UserServiceImpl();
-		svc.userAssembler = new UserAssemblerImpl();
-		svc.userRepository = userRepo;
-
-		try {
-			svc.updateUser(modifReq);
-			fail("User was unknown");
-		}
-		catch (UnknownUserException e) {
-			// ok
-		}
-	}
-
-	@Test
 	public void testModifyUserOk() throws UserException {
-		final ExposedUser originalUser = new ExposedUser();
-		originalUser.setId(1L);
-		originalUser.setLogin("user");
-		originalUser.setEmail("user@gb.com");
-		originalUser.setPassword("pass");
-
-		UserUpdateRequest updateRequest = new UserUpdateRequest() {
-			public Long getUserId() {
-				return originalUser.getId();
-			}
-
-			public String getEmail() {
-				return originalUser.getEmail();
-			}
-
-			public Set<Role> getRoles() {
-				return originalUser.getRoles();
-			}
-		};
+		final User user = Users.gb();
 
 		UserValidator validator = EasyMock.createMock(UserValidator.class);
-		validator.validate(originalUser);
+		validator.validate(user);
 		EasyMock.replay(validator);
 
 		UserRepository userRepo = EasyMock.createMock(UserRepository.class);
-		EasyMock.expect(userRepo.loadUser(originalUser.getId())).andReturn(originalUser);
+		userRepo.mergeUser(user);
+		EasyMock.expectLastCall().once();
 		EasyMock.replay(userRepo);
 
 		UserServiceImpl svc = new UserServiceImpl();
-		svc.userAssembler = new UserAssemblerImpl();
-		svc.userRepository = userRepo;
 		svc.userUpdateValidator = validator;
+		svc.userRepository = userRepo;
+		svc.updateUser(user);
 
-		User modifiedUser = svc.updateUser(updateRequest);
-
-		assertNotNull(modifiedUser);
-		assertEquals(modifiedUser, originalUser);
-		assertEquals(modifiedUser.getLogin(), originalUser.getLogin());
-		assertEquals(modifiedUser.getEmail(), updateRequest.getEmail());
+		EasyMock.verify(validator);
+		EasyMock.verify(userRepo);
 	}
 
 	@Test

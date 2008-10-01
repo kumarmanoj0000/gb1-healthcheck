@@ -4,19 +4,19 @@ import java.util.HashSet;
 import java.util.Set;
 
 import com.gb1.healthcheck.domain.users.Role;
-import com.gb1.healthcheck.services.users.UserRegistrationRequest;
+import com.gb1.healthcheck.domain.users.User;
 
-public class BasicUserRegistrationRequest implements UserRegistrationRequest {
+public class UserRegistrationRequest {
 	private String login;
 	private String email;
 	private String password1;
 	private String password2;
 	private Set<Role> roles = new HashSet<Role>();
 
-	public BasicUserRegistrationRequest() {
+	public UserRegistrationRequest() {
 	}
 
-	public BasicUserRegistrationRequest(Role role) {
+	public UserRegistrationRequest(Role role) {
 		roles.add(role);
 	}
 
@@ -36,10 +36,6 @@ public class BasicUserRegistrationRequest implements UserRegistrationRequest {
 		this.email = email;
 	}
 
-	public String getPassword() {
-		return password1;
-	}
-
 	public String getPassword1() {
 		return password1;
 	}
@@ -56,7 +52,14 @@ public class BasicUserRegistrationRequest implements UserRegistrationRequest {
 		this.password2 = password2;
 	}
 
-	public Set<Role> getRoles() {
-		return roles;
+	public User build() {
+		User user = new User(login, password1);
+		user.setEmail(email);
+
+		for (Role r : roles) {
+			user.assignRole(r);
+		}
+
+		return user;
 	}
 }
