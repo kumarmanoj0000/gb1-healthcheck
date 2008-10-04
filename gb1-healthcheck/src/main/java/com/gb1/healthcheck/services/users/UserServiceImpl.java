@@ -108,8 +108,7 @@ public class UserServiceImpl implements UserService {
 
 	public void deleteUsers(List<Long> userIds) {
 		for (Long userId : userIds) {
-			User user = userRepository.loadUser(userId);
-			userRepository.deleteUser(user);
+			userRepository.deleteUser(userRepository.loadUser(userId));
 		}
 	}
 
@@ -122,7 +121,6 @@ public class UserServiceImpl implements UserService {
 	public void resetUserPassword(Long userId) {
 		User user = userRepository.loadUser(userId);
 		user.resetPassword(passwordGenerator.generatePassword(generatedPasswordLength));
-
 		passwordResetNotifier.notifyPasswordReset(user);
 	}
 
