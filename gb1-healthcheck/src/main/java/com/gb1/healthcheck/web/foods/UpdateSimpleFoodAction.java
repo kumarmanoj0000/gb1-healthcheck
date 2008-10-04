@@ -49,7 +49,7 @@ public class UpdateSimpleFoodAction extends SimpleFoodActionSupport implements S
 		String result = Action.INPUT;
 
 		try {
-			foodService.updateSimpleFood(getFood().getTarget());
+			foodService.updateSimpleFood(getModel().getTarget());
 			sessionMap.remove(MODEL_SESSION_KEY);
 
 			addActionMessage(getText("foods.simpleFoods.edit.success"));
@@ -65,7 +65,7 @@ public class UpdateSimpleFoodAction extends SimpleFoodActionSupport implements S
 		return result;
 	}
 
-	public SimpleFoodAdapter getFood() {
+	public SimpleFoodAdapter getModel() {
 		return (SimpleFoodAdapter) sessionMap.get(MODEL_SESSION_KEY);
 	}
 }
