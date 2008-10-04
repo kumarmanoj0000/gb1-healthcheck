@@ -8,9 +8,11 @@ import java.util.HashMap;
 import org.easymock.EasyMock;
 import org.junit.Test;
 
+import com.gb1.healthcheck.domain.foods.Foods;
 import com.gb1.healthcheck.domain.meals.Meal;
 import com.gb1.healthcheck.domain.meals.MealException;
 import com.gb1.healthcheck.domain.meals.Meals;
+import com.gb1.healthcheck.services.foods.FoodService;
 import com.gb1.healthcheck.services.meals.FullMealHydrater;
 import com.gb1.healthcheck.services.meals.MealService;
 import com.opensymphony.xwork2.Action;
@@ -40,6 +42,11 @@ public class UpdateMealActionTest {
 	public void testUpdate() throws Exception {
 		Meal meal = Meals.fullItalianDinner();
 
+		FoodService foodSvc = EasyMock.createMock(FoodService.class);
+		EasyMock.expect(foodSvc.getFood(Foods.spaghetti().getId())).andReturn(Foods.spaghetti());
+		EasyMock.expect(foodSvc.getFood(Foods.redWine().getId())).andReturn(Foods.redWine());
+		EasyMock.replay(foodSvc);
+
 		MealService mealSvc = EasyMock.createMock(MealService.class);
 		EasyMock.expect(
 				mealSvc.getMeal(EasyMock.eq(meal.getId()), EasyMock.isA(FullMealHydrater.class)))
@@ -49,6 +56,7 @@ public class UpdateMealActionTest {
 		EasyMock.replay(mealSvc);
 
 		UpdateMealAction action = new UpdateMealAction();
+		action.foodService = foodSvc;
 		action.mealService = mealSvc;
 		action.setSession(new HashMap<String, Object>());
 		action.setMealId(meal.getId());
@@ -62,6 +70,11 @@ public class UpdateMealActionTest {
 	public void testUpdateWithErrors() throws MealException {
 		Meal meal = Meals.fullItalianDinner();
 
+		FoodService foodSvc = EasyMock.createMock(FoodService.class);
+		EasyMock.expect(foodSvc.getFood(Foods.spaghetti().getId())).andReturn(Foods.spaghetti());
+		EasyMock.expect(foodSvc.getFood(Foods.redWine().getId())).andReturn(Foods.redWine());
+		EasyMock.replay(foodSvc);
+
 		MealService mealSvc = EasyMock.createMock(MealService.class);
 		EasyMock.expect(
 				mealSvc.getMeal(EasyMock.eq(meal.getId()), EasyMock.isA(FullMealHydrater.class)))
@@ -72,6 +85,7 @@ public class UpdateMealActionTest {
 		EasyMock.replay(mealSvc);
 
 		UpdateMealAction action = new UpdateMealAction();
+		action.foodService = foodSvc;
 		action.mealService = mealSvc;
 		action.setSession(new HashMap<String, Object>());
 		action.setMealId(meal.getId());
