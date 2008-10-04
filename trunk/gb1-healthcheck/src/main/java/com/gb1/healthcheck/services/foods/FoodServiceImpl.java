@@ -47,9 +47,7 @@ public class FoodServiceImpl implements FoodService {
 	@Transactional(readOnly = true)
 	public ComplexFood getComplexFood(Long foodId, Hydrater<ComplexFood> hydrater) {
 		ComplexFood food = foodRepo.loadComplexFood(foodId);
-		hydrater.hydrate(food);
-
-		return food;
+		return hydrater.hydrate(food);
 	}
 
 	@Transactional(readOnly = true)
@@ -104,8 +102,7 @@ public class FoodServiceImpl implements FoodService {
 
 	public void deleteFoods(List<Long> foodIds) {
 		for (Long foodId : foodIds) {
-			Food food = foodRepo.loadFood(foodId);
-			foodRepo.delete(food);
+			foodRepo.delete(foodRepo.loadFood(foodId));
 		}
 	}
 }

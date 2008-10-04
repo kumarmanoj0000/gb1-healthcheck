@@ -34,8 +34,6 @@ public class PatientFileServiceImpl implements PatientFileService {
 	@Transactional(readOnly = true)
 	public PatientFile loadPatientFile(Long patientId) {
 		User patient = userRepo.loadUser(patientId);
-		PatientFile file = patientFileRepo.loadPatientFileFor(patient);
-
-		return file;
+		return patientFileRepo.loadPatientFileFor(patient);
 	}
 }

@@ -36,16 +36,13 @@ public class MealServiceImpl implements MealService {
 
 	@Transactional(readOnly = true)
 	public List<Meal> getMealHistory(User eater) {
-		List<Meal> mealHistory = mealRepo.findMealsBy(eater);
-		return mealHistory;
+		return mealRepo.findMealsBy(eater);
 	}
 
 	@Transactional(readOnly = true)
 	public Meal getMeal(Long mealId, Hydrater<Meal> hydrater) {
 		Meal meal = mealRepo.loadMeal(mealId);
-		hydrater.hydrate(meal);
-
-		return meal;
+		return hydrater.hydrate(meal);
 	}
 
 	public void createMeal(Meal meal) throws MealException {
@@ -60,8 +57,7 @@ public class MealServiceImpl implements MealService {
 
 	public void deleteMeals(Set<Long> mealIds) {
 		for (Long mealId : mealIds) {
-			Meal meal = mealRepo.loadMeal(mealId);
-			mealRepo.deleteMeal(meal);
+			mealRepo.deleteMeal(mealRepo.loadMeal(mealId));
 		}
 	}
 
