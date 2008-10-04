@@ -17,6 +17,8 @@ public interface FoodService {
 
 	List<ComplexFood> getComplexFoods(Hydrater<ComplexFood> hydrater);
 
+	Food getFood(Long foodId);
+
 	List<Food> getFoods(List<Long> foodIds);
 
 	void createSimpleFood(SimpleFood food) throws FoodException;

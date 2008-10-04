@@ -34,10 +34,7 @@
 		<h2><s:text name="meals.edit.title" /></h2>
 		<s:actionerror />
 
-		<s:form namespace="/meals" action="%{model.mealId == null ? 'createMeal' : 'updateMeal'}">
-			<s:hidden name="model.mealId" />
-			<s:hidden name="model.eaterId" />
-
+		<s:form namespace="/meals" action="%{model.id == null ? 'createMeal' : 'updateMeal'}">
 			<div class="required">
 				<label><s:text name="meal.instant" />:</label>
 				<s:date id="instant" name="model.instant" format="yyyy-MM-dd HH:mm" />

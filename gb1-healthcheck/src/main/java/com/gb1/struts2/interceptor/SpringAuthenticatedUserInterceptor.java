@@ -26,7 +26,7 @@ public class SpringAuthenticatedUserInterceptor extends AbstractInterceptor {
 		Authentication currentUser = SecurityContextHolder.getContext().getAuthentication();
 
 		if (currentUser != null) {
-			for (Method m : action.getClass().getDeclaredMethods()) {
+			for (Method m : action.getClass().getMethods()) {
 				if (m.getAnnotation(AuthenticatedUser.class) != null
 						&& currentUser.getPrincipal() instanceof SpringUserDetailsAdapter) {
 					SpringUserDetailsAdapter adapter = (SpringUserDetailsAdapter) currentUser

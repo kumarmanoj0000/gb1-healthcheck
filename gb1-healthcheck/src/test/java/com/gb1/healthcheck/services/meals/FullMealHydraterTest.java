@@ -3,7 +3,7 @@ package com.gb1.healthcheck.services.meals;
 import static org.junit.Assert.assertSame;
 import static org.junit.Assert.assertTrue;
 
-import java.util.Set;
+import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 import org.junit.Test;
@@ -17,13 +17,14 @@ public class FullMealHydraterTest {
 	public void testHydrate() {
 		final AtomicBoolean dishesWereLoaded = new AtomicBoolean(false);
 
-		Meal meal = new Meal(Users.lg()) {
+		Meal meal = new Meal() {
 			@Override
-			public Set<PreparedFood> getDishes() {
+			public List<PreparedFood> getDishes() {
 				dishesWereLoaded.set(true);
 				return super.getDishes();
 			}
 		};
+		meal.setEater(Users.lg());
 
 		FullMealHydrater h = new FullMealHydrater();
 		assertSame(meal, h.hydrate(meal));

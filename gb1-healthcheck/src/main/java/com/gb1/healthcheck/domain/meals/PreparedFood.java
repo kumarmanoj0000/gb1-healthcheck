@@ -7,7 +7,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 
-import org.apache.commons.lang.Validate;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 
@@ -34,8 +33,6 @@ public class PreparedFood implements Identifiable {
 	}
 
 	public PreparedFood(Food ingredient, PreparationMethod preparationMethod) {
-		Validate.notNull(ingredient);
-
 		this.ingredient = ingredient;
 		this.preparationMethod = preparationMethod;
 	}
@@ -79,6 +76,10 @@ public class PreparedFood implements Identifiable {
 
 	public PreparationMethod getPreparationMethod() {
 		return preparationMethod;
+	}
+
+	public void setPreparationMethod(PreparationMethod preparationMethod) {
+		this.preparationMethod = preparationMethod;
 	}
 
 	@Override

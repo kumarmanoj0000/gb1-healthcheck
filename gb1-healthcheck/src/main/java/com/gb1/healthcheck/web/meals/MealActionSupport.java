@@ -27,13 +27,13 @@ public abstract class MealActionSupport extends ActionSupport implements Prepara
 	protected MealService mealService;
 
 	private User requester;
-	private Long mealId;
 	private List<Food> availableFoods = new LinkedList<Food>();
 
 	protected MealActionSupport() {
 	}
 
 	public void prepare() {
+		availableFoods.clear();
 		availableFoods.addAll(foodService.getSimpleFoods());
 		availableFoods.addAll(foodService.getComplexFoods(new IdentityHydrater<ComplexFood>()));
 		Collections.sort(availableFoods, new Food.ByNameComparator());
@@ -44,12 +44,11 @@ public abstract class MealActionSupport extends ActionSupport implements Prepara
 	}
 
 	public List<PreparationMethod> getAvailablePreparationMethods() {
-		List<PreparationMethod> methods = Arrays.asList(PreparationMethod.values());
-		return Collections.unmodifiableList(methods);
+		return Arrays.asList(PreparationMethod.values());
 	}
 
 	public List<Food> getAvailableFoods() {
-		return Collections.unmodifiableList(availableFoods);
+		return availableFoods;
 	}
 
 	protected User getRequester() {
@@ -59,13 +58,5 @@ public abstract class MealActionSupport extends ActionSupport implements Prepara
 	@AuthenticatedUser
 	public void setRequester(User requester) {
 		this.requester = requester;
-	}
-
-	public Long getMealId() {
-		return mealId;
-	}
-
-	public void setMealId(Long mealId) {
-		this.mealId = mealId;
 	}
 }

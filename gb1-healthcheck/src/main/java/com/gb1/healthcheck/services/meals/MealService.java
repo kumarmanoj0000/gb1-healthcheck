@@ -26,20 +26,20 @@ public interface MealService {
 	Meal getMeal(Long mealId, Hydrater<Meal> hydrater);
 
 	/**
-	 * Creates a new meal, based on a creation request.
+	 * Creates a new meal.
 	 * 
-	 * @param request The creation request
+	 * @param meal The meal to create
 	 * @throws MealException When creation fails
 	 */
-	void createMeal(MealCreationRequest request) throws MealException;
+	void createMeal(Meal meal) throws MealException;
 
 	/**
-	 * Updates an existing meal, based on an update request.
+	 * Updates an existing meal.
 	 * 
-	 * @param request The update request
+	 * @param meal The meal to update
 	 * @throws MealException When update fails
 	 */
-	void updateMeal(MealUpdateRequest request) throws MealException;
+	void updateMeal(Meal meal) throws MealException;
 
 	/**
 	 * Deletes the meals identified by the given IDs.

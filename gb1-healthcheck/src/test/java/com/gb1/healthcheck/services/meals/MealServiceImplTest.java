@@ -4,7 +4,6 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 import java.util.Collections;
-import java.util.Date;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
@@ -68,44 +67,25 @@ public class MealServiceImplTest {
 	public void testCreateMeal() throws MealException {
 		final Meal meal = Meals.fullItalianDinner();
 
-		MealCreationRequest createReq = new MealCreationRequest() {
-			public Long getEaterId() {
-				return meal.getEater().getId();
-			}
-
-			public Date getInstant() {
-				return meal.getInstant();
-			}
-
-			public Set<PreparedFoodCreationRequest> getDishCreationRequests() {
-				return Collections.emptySet();
-			}
-		};
-
 		UserRepository userRepo = EasyMock.createMock(UserRepository.class);
 		EasyMock.expect(userRepo.loadUser(meal.getEater().getId())).andReturn(meal.getEater());
 		EasyMock.replay(userRepo);
 
 		MealRepository mealRepo = EasyMock.createMock(MealRepository.class);
-		mealRepo.saveMeal(EasyMock.eq(meal));
+		mealRepo.persistMeal(meal);
 		EasyMock.expectLastCall();
 		EasyMock.replay(mealRepo);
 
 		MealValidator validator = EasyMock.createMock(MealValidator.class);
-		validator.validate(EasyMock.eq(meal));
+		validator.validate(meal);
 		EasyMock.expectLastCall();
 		EasyMock.replay(validator);
 
-		MealAssembler assembler = EasyMock.createMock(MealAssembler.class);
-		EasyMock.expect(assembler.createMeal(createReq)).andReturn(meal);
-		EasyMock.replay(assembler);
-
 		MealServiceImpl svc = new MealServiceImpl();
-		svc.mealAssembler = assembler;
 		svc.mealRepo = mealRepo;
 		svc.mealCreationValidator = validator;
 
-		svc.createMeal(createReq);
+		svc.createMeal(meal);
 
 		EasyMock.verify(validator);
 		EasyMock.verify(mealRepo);
@@ -113,42 +93,23 @@ public class MealServiceImplTest {
 
 	@Test
 	public void testUpdateMeal() throws MealException {
-		final Meal oldMeal = Meals.fullItalianDinner();
-
-		MealUpdateRequest updateReq = new MealUpdateRequest() {
-			public Long getMealId() {
-				return oldMeal.getId();
-			}
-
-			public Date getInstant() {
-				return new Date();
-			}
-
-			public Set<PreparedFoodUpdateRequest> getDishUpdateRequests() {
-				return Collections.emptySet();
-			}
-		};
-
-		MealAssembler mealAssembler = EasyMock.createMock(MealAssembler.class);
-		mealAssembler.updateMeal(oldMeal, updateReq);
-		EasyMock.expectLastCall();
-		EasyMock.replay(mealAssembler);
+		final Meal meal = Meals.fullItalianDinner();
 
 		MealValidator validator = EasyMock.createMock(MealValidator.class);
-		validator.validate(oldMeal);
+		validator.validate(meal);
 		EasyMock.expectLastCall();
 		EasyMock.replay(validator);
 
 		MealRepository mealRepo = EasyMock.createMock(MealRepository.class);
-		EasyMock.expect(mealRepo.loadMeal(oldMeal.getId())).andReturn(oldMeal);
+		mealRepo.mergeMeal(meal);
+		EasyMock.expectLastCall();
 		EasyMock.replay(mealRepo);
 
 		MealServiceImpl svc = new MealServiceImpl();
-		svc.mealAssembler = mealAssembler;
 		svc.mealRepo = mealRepo;
 		svc.mealUpdateValidator = validator;
 
-		svc.updateMeal(updateReq);
+		svc.updateMeal(meal);
 
 		EasyMock.verify(validator);
 	}

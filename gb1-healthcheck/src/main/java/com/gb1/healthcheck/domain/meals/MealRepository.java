@@ -12,7 +12,9 @@ public interface MealRepository {
 
 	List<Meal> findMealsBy(User eater, Date instant);
 
-	void saveMeal(Meal meal);
+	void persistMeal(Meal meal);
+
+	void mergeMeal(Meal meal);
 
 	void deleteMeal(Meal meal);
 
