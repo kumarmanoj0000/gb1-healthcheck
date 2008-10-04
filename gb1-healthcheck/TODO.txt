@@ -3,6 +3,7 @@ HealthCheck
 -----------
 
 . bugs
+  - simple food nutrients are not properly checked on UI
   - cannot delete a dish from a meal
 
 . features:

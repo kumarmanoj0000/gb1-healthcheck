@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository("foodRepository")
 public class JpaFoodRepository implements FoodRepository {
+	@PersistenceContext
 	private EntityManager entityManager = null;
 
 	public JpaFoodRepository() {
@@ -63,10 +64,5 @@ public class JpaFoodRepository implements FoodRepository {
 
 	public void delete(Food food) {
 		entityManager.remove(food);
-	}
-
-	@PersistenceContext
-	public void setEntityManager(EntityManager em) {
-		this.entityManager = em;
 	}
 }

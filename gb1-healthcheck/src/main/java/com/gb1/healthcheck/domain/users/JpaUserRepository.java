@@ -14,6 +14,7 @@ import org.springframework.stereotype.Repository;
  */
 @Repository("userRepository")
 public class JpaUserRepository implements UserRepository {
+	@PersistenceContext
 	private EntityManager entityManager = null;
 
 	public JpaUserRepository() {
@@ -68,10 +69,5 @@ public class JpaUserRepository implements UserRepository {
 
 	public void deleteUser(User user) {
 		entityManager.remove(user);
-	}
-
-	@PersistenceContext
-	public void setEntityManager(EntityManager em) {
-		this.entityManager = em;
 	}
 }

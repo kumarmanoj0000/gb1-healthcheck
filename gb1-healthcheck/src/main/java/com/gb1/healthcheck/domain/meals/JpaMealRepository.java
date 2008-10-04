@@ -13,6 +13,7 @@ import com.gb1.healthcheck.domain.users.User;
 
 @Repository("mealRepository")
 public class JpaMealRepository implements MealRepository {
+	@PersistenceContext
 	private EntityManager entityManager = null;
 
 	public JpaMealRepository() {
@@ -60,10 +61,5 @@ public class JpaMealRepository implements MealRepository {
 		}
 
 		return lastMeal;
-	}
-
-	@PersistenceContext
-	public void setEntityManager(EntityManager em) {
-		this.entityManager = em;
 	}
 }
