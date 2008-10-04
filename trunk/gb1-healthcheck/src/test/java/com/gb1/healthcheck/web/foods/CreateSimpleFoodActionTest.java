@@ -24,7 +24,7 @@ public class CreateSimpleFoodActionTest {
 
 		CreateSimpleFoodAction action = new CreateSimpleFoodAction();
 		action.foodService = foodSvc;
-		action.food = new SimpleFoodAdapter(food);
+		action.model = new SimpleFoodAdapter(food);
 
 		assertEquals(Action.SUCCESS, action.execute());
 		EasyMock.verify(foodSvc);
@@ -41,7 +41,7 @@ public class CreateSimpleFoodActionTest {
 
 		CreateSimpleFoodAction action = new CreateSimpleFoodAction();
 		action.foodService = foodSvc;
-		action.food = new SimpleFoodAdapter(food);
+		action.model = new SimpleFoodAdapter(food);
 
 		assertEquals(Action.INPUT, action.execute());
 		assertTrue(action.hasFieldErrors());

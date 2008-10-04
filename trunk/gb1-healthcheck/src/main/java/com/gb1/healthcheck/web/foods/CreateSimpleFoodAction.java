@@ -20,7 +20,7 @@ import com.opensymphony.xwork2.validator.annotations.Validations;
 				"parse", "true", "actionMessages", "${actionMessages}", "refreshList", "true" }) })
 @Validation
 public class CreateSimpleFoodAction extends SimpleFoodActionSupport {
-	protected SimpleFoodAdapter food = new SimpleFoodAdapter(new SimpleFood());
+	protected SimpleFoodAdapter model = new SimpleFoodAdapter(new SimpleFood());
 
 	public CreateSimpleFoodAction() {
 	}
@@ -31,7 +31,7 @@ public class CreateSimpleFoodAction extends SimpleFoodActionSupport {
 		String result = Action.INPUT;
 
 		try {
-			foodService.createSimpleFood(getFood().getTarget());
+			foodService.createSimpleFood(getModel().getTarget());
 			addActionMessage(getText("foods.simpleFoods.edit.success"));
 			result = Action.SUCCESS;
 		}
@@ -45,7 +45,7 @@ public class CreateSimpleFoodAction extends SimpleFoodActionSupport {
 		return result;
 	}
 
-	public SimpleFoodAdapter getFood() {
-		return food;
+	public SimpleFoodAdapter getModel() {
+		return model;
 	}
 }

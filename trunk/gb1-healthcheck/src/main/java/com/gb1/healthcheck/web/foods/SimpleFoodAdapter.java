@@ -36,16 +36,16 @@ public class SimpleFoodAdapter {
 		food.setFoodGroup(foodGroup);
 	}
 
-	public String[] getNutrients() {
+	public String[] getNutrientNames() {
 		List<String> nutrientNames = new ArrayList<String>();
 		for (Nutrient n : food.getNutrients()) {
 			nutrientNames.add(n.name());
 		}
 
-		return (String[]) nutrientNames.toArray();
+		return nutrientNames.toArray(new String[0]);
 	}
 
-	public void setNutrients(String[] nutrientNames) {
+	public void setNutrientNames(String[] nutrientNames) {
 		food.clearNutrients();
 		for (String nutrientName : nutrientNames) {
 			food.addNutrient(Nutrient.valueOf(nutrientName));

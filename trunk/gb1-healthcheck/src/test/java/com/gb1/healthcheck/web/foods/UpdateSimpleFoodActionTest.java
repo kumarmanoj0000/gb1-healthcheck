@@ -39,7 +39,7 @@ public class UpdateSimpleFoodActionTest {
 
 		assertEquals(Action.INPUT, result);
 		assertEquals(foodId, action.getFoodId());
-		assertEquals(apple.getName(), action.getFood().getName());
+		assertEquals(apple.getName(), action.getModel().getName());
 		EasyMock.verify(foodSvc);
 	}
 
