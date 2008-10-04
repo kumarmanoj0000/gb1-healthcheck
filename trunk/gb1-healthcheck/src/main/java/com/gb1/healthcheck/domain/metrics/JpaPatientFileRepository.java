@@ -11,6 +11,7 @@ import com.gb1.healthcheck.domain.users.User;
 
 @Repository("patientFileRepository")
 public class JpaPatientFileRepository implements PatientFileRepository {
+	@PersistenceContext
 	private EntityManager entityManager;
 
 	public JpaPatientFileRepository() {
@@ -32,10 +33,5 @@ public class JpaPatientFileRepository implements PatientFileRepository {
 		}
 
 		return file;
-	}
-
-	@PersistenceContext
-	public void setEntityManager(EntityManager entityManager) {
-		this.entityManager = entityManager;
 	}
 }
