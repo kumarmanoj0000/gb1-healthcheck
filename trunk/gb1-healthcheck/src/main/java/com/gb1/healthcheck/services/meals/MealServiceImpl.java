@@ -23,9 +23,6 @@ public class MealServiceImpl implements MealService {
 	protected MealRepository mealRepo;
 
 	@Resource
-	protected MealAssembler mealAssembler;
-
-	@Resource
 	protected MealValidator mealCreationValidator;
 
 	@Resource
@@ -51,16 +48,14 @@ public class MealServiceImpl implements MealService {
 		return meal;
 	}
 
-	public void createMeal(MealCreationRequest request) throws MealException {
-		Meal meal = mealAssembler.createMeal(request);
+	public void createMeal(Meal meal) throws MealException {
 		mealCreationValidator.validate(meal);
-		mealRepo.saveMeal(meal);
+		mealRepo.persistMeal(meal);
 	}
 
-	public void updateMeal(MealUpdateRequest request) throws MealException {
-		Meal meal = mealRepo.loadMeal(request.getMealId());
-		mealAssembler.updateMeal(meal, request);
+	public void updateMeal(Meal meal) throws MealException {
 		mealUpdateValidator.validate(meal);
+		mealRepo.mergeMeal(meal);
 	}
 
 	public void deleteMeals(Set<Long> mealIds) {

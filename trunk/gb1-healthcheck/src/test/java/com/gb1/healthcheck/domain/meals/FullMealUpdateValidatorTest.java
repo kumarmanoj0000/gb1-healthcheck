@@ -52,7 +52,7 @@ public class FullMealUpdateValidatorTest {
 
 	@Test
 	public void testValidateNoDishes() throws MealException {
-		Meal meal = new Meal(Users.gb());
+		Meal meal = new Meal().setEater(Users.gb());
 
 		MealRepository mealRepo = EasyMock.createMock(MealRepository.class);
 		EasyMock.expect(mealRepo.findMealsBy(meal.getEater(), meal.getInstant())).andReturn(

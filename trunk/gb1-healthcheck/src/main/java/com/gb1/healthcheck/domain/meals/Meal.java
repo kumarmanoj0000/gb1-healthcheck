@@ -1,11 +1,11 @@
 package com.gb1.healthcheck.domain.meals;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -14,8 +14,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 
 import org.apache.commons.lang.Validate;
 import org.apache.commons.lang.builder.CompareToBuilder;
@@ -35,7 +35,8 @@ public class Meal implements Identifiable, Serializable {
 	@GeneratedValue
 	private Long id;
 
-	@OneToOne
+	@ManyToOne
+	@JoinColumn(name = "eater_id", nullable = false)
 	private User eater;
 
 	private Date instant = new Date();
@@ -43,13 +44,9 @@ public class Meal implements Identifiable, Serializable {
 	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@Cascade(org.hibernate.annotations.CascadeType.DELETE_ORPHAN)
 	@JoinTable(name = "MEAL_DISHES", joinColumns = { @JoinColumn(name = "meal_id") }, inverseJoinColumns = { @JoinColumn(name = "dish_id") })
-	private Set<PreparedFood> dishes = new HashSet<PreparedFood>();
+	private List<PreparedFood> dishes = new ArrayList<PreparedFood>();
 
 	public Meal() {
-	}
-
-	public Meal(User eater) {
-		this.eater = eater;
 	}
 
 	public Long getId() {
@@ -63,6 +60,11 @@ public class Meal implements Identifiable, Serializable {
 
 	public User getEater() {
 		return eater;
+	}
+
+	public Meal setEater(User eater) {
+		this.eater = eater;
+		return this;
 	}
 
 	public Date getInstant() {
@@ -88,6 +90,11 @@ public class Meal implements Identifiable, Serializable {
 		return this;
 	}
 
+	public Meal clearDishes() {
+		dishes.clear();
+		return this;
+	}
+
 	public boolean containsDish(PreparedFood dish) {
 		for (PreparedFood candidate : dishes) {
 			if (candidate.equals(dish)) {
@@ -98,8 +105,8 @@ public class Meal implements Identifiable, Serializable {
 		return false;
 	}
 
-	public Set<PreparedFood> getDishes() {
-		return Collections.unmodifiableSet(dishes);
+	public List<PreparedFood> getDishes() {
+		return Collections.unmodifiableList(dishes);
 	}
 
 	public boolean containsFood(Food food) {

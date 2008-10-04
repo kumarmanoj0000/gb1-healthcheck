@@ -35,8 +35,12 @@ public class JpaMealRepository implements MealRepository {
 				.setParameter(1, eater).setParameter(2, instant).getResultList();
 	}
 
-	public void saveMeal(Meal meal) {
+	public void persistMeal(Meal meal) {
 		entityManager.persist(meal);
+	}
+
+	public void mergeMeal(Meal meal) {
+		entityManager.merge(meal);
 	}
 
 	public void deleteMeal(Meal meal) {

@@ -38,16 +38,17 @@ public class Meals {
 	}
 
 	public static Meal fullItalianDinner() {
-		return new Meal(Users.gb()).setId(1L).setInstant(parseInstant("2007-10-13 18:00")).addDish(
-				Meals.spaghettiDish()).addDish(Meals.redWineDrink());
+		return new Meal().setId(1L).setEater(Users.gb()).setInstant(
+				parseInstant("2007-10-13 18:00")).addDish(Meals.spaghettiDish()).addDish(
+				Meals.redWineDrink());
 	}
 
 	public static List<Meal> mealHistory() {
 		final List<Meal> mealHistory = new LinkedList<Meal>();
 
 		mealHistory.add(fullItalianDinner());
-		mealHistory.add(new Meal(Users.gb()).setId(2L).setInstant(parseInstant("2007-10-14 16:00"))
-				.addDish(Meals.redWineDrink()));
+		mealHistory.add(new Meal().setId(2L).setEater(Users.gb()).setInstant(
+				parseInstant("2007-10-14 16:00")).addDish(Meals.redWineDrink()));
 
 		return mealHistory;
 	}

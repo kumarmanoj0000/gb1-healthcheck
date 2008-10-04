@@ -68,6 +68,11 @@ public class FoodServiceImpl implements FoodService {
 	}
 
 	@Transactional(readOnly = true)
+	public Food getFood(Long foodId) {
+		return foodRepo.loadFood(foodId);
+	}
+
+	@Transactional(readOnly = true)
 	public List<Food> getFoods(List<Long> foodIds) {
 		List<Food> foods = new ArrayList<Food>();
 		for (Long foodId : foodIds) {

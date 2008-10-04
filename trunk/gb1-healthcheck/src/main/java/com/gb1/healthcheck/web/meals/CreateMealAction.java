@@ -1,12 +1,15 @@
 package com.gb1.healthcheck.web.meals;
 
+import java.util.Map;
+
 import org.apache.struts2.config.ParentPackage;
 import org.apache.struts2.config.Result;
 import org.apache.struts2.config.Results;
+import org.apache.struts2.interceptor.SessionAware;
 
+import com.gb1.healthcheck.domain.meals.Meal;
 import com.gb1.healthcheck.domain.meals.MealAlreadyExistsException;
 import com.gb1.healthcheck.domain.meals.MealException;
-import com.gb1.healthcheck.domain.users.User;
 import com.gb1.struts2.dispatcher.FlashResult;
 import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.validator.annotations.RequiredFieldValidator;
@@ -19,16 +22,17 @@ import com.opensymphony.xwork2.validator.annotations.Validations;
 		@Result(type = FlashResult.class, value = "manageMeals", params = { "namespace", "/meals",
 				"parse", "true", "actionMessages", "${actionMessages}", "refreshList", "true" }) })
 @Validation
-public class CreateMealAction extends MealActionSupport {
-	private User requester;
-	private BasicMealCreationRequest model;
+public class CreateMealAction extends MealActionSupport implements SessionAware {
+	protected static final String MODEL_SESSION_KEY = CreateMealAction.class.getName() + ".model";
+
+	private Map<String, Object> sessionMap;
 
 	public CreateMealAction() {
 	}
 
 	@Override
 	public String input() {
-		model = new BasicMealCreationRequest(requester);
+		sessionMap.put(MODEL_SESSION_KEY, new MealBuilder(new Meal().setEater(getRequester())));
 		return Action.INPUT;
 	}
 
@@ -38,7 +42,7 @@ public class CreateMealAction extends MealActionSupport {
 		String result = Action.INPUT;
 
 		try {
-			mealService.createMeal(getModel());
+			mealService.createMeal(getModel().build(foodService));
 			addActionMessage(getText("meals.edit.success"));
 			result = Action.SUCCESS;
 		}
@@ -52,11 +56,12 @@ public class CreateMealAction extends MealActionSupport {
 		return result;
 	}
 
-	public BasicMealCreationRequest getModel() {
-		return model;
+	public MealBuilder getModel() {
+		return (MealBuilder) sessionMap.get(MODEL_SESSION_KEY);
 	}
 
-	public void setModel(BasicMealCreationRequest model) {
-		this.model = model;
+	@SuppressWarnings("unchecked")
+	public void setSession(Map sessionMap) {
+		this.sessionMap = sessionMap;
 	}
 }

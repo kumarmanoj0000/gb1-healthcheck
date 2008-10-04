@@ -61,12 +61,12 @@ public class FoodServiceImplTest {
 		final SimpleFood food = Foods.apple();
 
 		SimpleFoodValidator validator = EasyMock.createMock(SimpleFoodValidator.class);
-		validator.validate(EasyMock.eq(food));
+		validator.validate(food);
 		EasyMock.expectLastCall();
 		EasyMock.replay(validator);
 
 		FoodRepository foodRepo = EasyMock.createMock(FoodRepository.class);
-		foodRepo.persist(EasyMock.eq(food));
+		foodRepo.persist(food);
 		EasyMock.expectLastCall();
 		EasyMock.replay(foodRepo);
 

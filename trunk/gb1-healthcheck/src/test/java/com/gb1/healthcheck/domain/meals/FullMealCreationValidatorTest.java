@@ -13,7 +13,8 @@ import com.gb1.healthcheck.domain.users.Users;
 public class FullMealCreationValidatorTest {
 	@Test
 	public void testValidateNoDishes() throws MealException {
-		Meal meal = new Meal(Users.gb());
+		Meal meal = new Meal();
+		meal.setEater(Users.gb());
 		List<Meal> mealsOnSameInstant = Collections.emptyList();
 
 		MealRepository mealRepo = EasyMock.createMock(MealRepository.class);
