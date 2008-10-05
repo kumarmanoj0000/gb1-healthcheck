@@ -5,9 +5,9 @@ import javax.annotation.Resource;
 import org.apache.struts2.config.Namespace;
 import org.apache.struts2.config.ParentPackage;
 import org.apache.struts2.config.Result;
+import org.apache.struts2.dispatcher.FlashResult;
 
 import com.gb1.healthcheck.services.users.UserService;
-import com.gb1.struts2.dispatcher.FlashResult;
 import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionSupport;
 
