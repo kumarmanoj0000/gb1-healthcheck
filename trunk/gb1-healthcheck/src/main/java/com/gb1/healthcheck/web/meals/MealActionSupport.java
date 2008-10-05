@@ -9,6 +9,7 @@ import java.util.Map;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 
+import org.apache.struts2.interceptor.AuthenticatedUser;
 import org.apache.struts2.interceptor.SessionAware;
 
 import com.gb1.healthcheck.domain.foods.ComplexFood;
@@ -18,7 +19,6 @@ import com.gb1.healthcheck.domain.users.User;
 import com.gb1.healthcheck.services.IdentityHydrater;
 import com.gb1.healthcheck.services.foods.FoodService;
 import com.gb1.healthcheck.services.meals.MealService;
-import com.gb1.struts2.interceptor.AuthenticatedUser;
 import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionSupport;
 

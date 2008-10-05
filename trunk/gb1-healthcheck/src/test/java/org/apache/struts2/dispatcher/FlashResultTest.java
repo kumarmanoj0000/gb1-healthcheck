@@ -1,4 +1,4 @@
-package com.gb1.struts2.dispatcher;
+package org.apache.struts2.dispatcher;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;

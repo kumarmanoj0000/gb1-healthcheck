@@ -1,4 +1,4 @@
-package com.gb1.struts2.dispatcher;
+package org.apache.struts2.dispatcher;
 
 import java.util.Arrays;
 import java.util.HashMap;

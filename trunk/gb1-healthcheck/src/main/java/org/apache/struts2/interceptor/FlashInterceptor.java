@@ -1,11 +1,12 @@
-package com.gb1.struts2.interceptor;
+package org.apache.struts2.interceptor;
 
 import java.util.Map;
+
+import org.apache.struts2.dispatcher.FlashResult;
 
 import ognl.Ognl;
 import ognl.OgnlException;
 
-import com.gb1.struts2.dispatcher.FlashResult;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionInvocation;
 import com.opensymphony.xwork2.interceptor.AbstractInterceptor;

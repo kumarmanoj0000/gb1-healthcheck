@@ -14,8 +14,8 @@
 
 	<package name="default" extends="struts-default">
 		<interceptors>
-			<interceptor name="authenticatedUser" class="com.gb1.struts2.interceptor.SpringAuthenticatedUserInterceptor" />
-			<interceptor name="flash" class="com.gb1.struts2.interceptor.FlashInterceptor" />
+			<interceptor name="authenticatedUser" class="org.apache.struts2.interceptor.SpringAuthenticatedUserInterceptor" />
+			<interceptor name="flash" class="org.apache.struts2.interceptor.FlashInterceptor" />
 
 			<interceptor-stack name="baseStack">
 				<interceptor-ref name="exception">

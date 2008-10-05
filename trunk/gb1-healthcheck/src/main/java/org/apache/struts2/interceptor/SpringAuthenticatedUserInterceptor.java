@@ -1,4 +1,4 @@
-package com.gb1.struts2.interceptor;
+package org.apache.struts2.interceptor;
 
 import java.lang.reflect.Method;
 
