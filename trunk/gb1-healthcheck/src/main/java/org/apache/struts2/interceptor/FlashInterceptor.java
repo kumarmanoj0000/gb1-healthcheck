@@ -2,10 +2,10 @@ package org.apache.struts2.interceptor;
 
 import java.util.Map;
 
-import org.apache.struts2.dispatcher.FlashResult;
-
 import ognl.Ognl;
 import ognl.OgnlException;
+
+import org.apache.struts2.dispatcher.FlashResult;
 
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionInvocation;
