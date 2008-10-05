@@ -1,11 +1,8 @@
 package com.gb1.healthcheck.web.meals;
 
-import java.util.Map;
-
 import org.apache.struts2.config.ParentPackage;
 import org.apache.struts2.config.Result;
 import org.apache.struts2.config.Results;
-import org.apache.struts2.interceptor.SessionAware;
 
 import com.gb1.healthcheck.domain.meals.Meal;
 import com.gb1.healthcheck.domain.meals.MealAlreadyExistsException;
@@ -22,17 +19,15 @@ import com.opensymphony.xwork2.validator.annotations.Validations;
 		@Result(type = FlashResult.class, value = "manageMeals", params = { "namespace", "/meals",
 				"parse", "true", "actionMessages", "${actionMessages}", "refreshList", "true" }) })
 @Validation
-public class CreateMealAction extends MealActionSupport implements SessionAware {
-	protected static final String MODEL_SESSION_KEY = CreateMealAction.class.getName() + ".model";
-
-	private Map<String, Object> sessionMap;
-
+public class CreateMealAction extends MealActionSupport {
 	public CreateMealAction() {
 	}
 
 	@Override
 	public String input() {
-		sessionMap.put(MODEL_SESSION_KEY, new MealBuilder(new Meal().setEater(getRequester())));
+		MealBuilder model = new MealBuilder(new Meal().setEater(requester));
+		saveModel(model);
+
 		return Action.INPUT;
 	}
 
@@ -43,6 +38,8 @@ public class CreateMealAction extends MealActionSupport implements SessionAware 
 
 		try {
 			mealService.createMeal(getModel().build(foodService));
+
+			unloadModel();
 			addActionMessage(getText("meals.edit.success"));
 			result = Action.SUCCESS;
 		}
@@ -54,14 +51,5 @@ public class CreateMealAction extends MealActionSupport implements SessionAware 
 		}
 
 		return result;
-	}
-
-	public MealBuilder getModel() {
-		return (MealBuilder) sessionMap.get(MODEL_SESSION_KEY);
-	}
-
-	@SuppressWarnings("unchecked")
-	public void setSession(Map sessionMap) {
-		this.sessionMap = sessionMap;
 	}
 }

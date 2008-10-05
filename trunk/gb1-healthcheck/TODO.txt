@@ -2,14 +2,12 @@
 HealthCheck
 -----------
 
-. bugs
-  - cannot delete a dish from a meal
-
 . features:
   - gastric states evolution (JFreeChart)
   - correlation food <=> gastric states (JFreeChart)
 
 . technical
+  - use DWR annotations
   - use conversation management
   - implement BeginTransactionInterceptor, OpenEntityManagerInConversationInterceptor
   - replace time picker with more useable one
@@ -18,12 +16,15 @@ HealthCheck
 . pain points
   - transaction-bound EntityManagers require explicit attribute loading (Hydrater) to avoid LazyInitializationExceptions
     => problems: web layer affected by implementation choice; more code
-    => solutions: BeginTransactionInterceptor, OpenEntityManagerInConversationInterceptor
+    => solutions: OpenEntityManagerInView? BeginTransactionInterceptor + OpenEntityManagerInConversationInterceptor?
   - syntaxic / semantic validation
     => problems: logic is distributed
     => solutions: XWork validation, Hibernate Validator
+  - web state management
+    => problems: done manually, error prone and fragile
+    => solutions: conversation management, use narrower scope
   - repositories mostly delegate to EntityManager => remove?
-  - services mostly delegate, but currently necessary for transaction boundaries => BeginTransactionInterceptor
+  - services mostly delegate, but currently necessary for transaction boundaries => BeginTransactionInterceptor then remove?
   - Struts2:
     . @ParentPackage duplication in actions
     . confusing use of literals and OGNL/EL expressions in tags

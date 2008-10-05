@@ -1,5 +1,7 @@
 package com.gb1.healthcheck.domain.meals;
 
+import java.io.Serializable;
+
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -17,7 +19,7 @@ import com.gb1.healthcheck.domain.foods.FoodGroup;
 import com.gb1.healthcheck.domain.foods.Nutrient;
 
 @Entity
-public class PreparedFood implements Identifiable {
+public class PreparedFood implements Identifiable, Serializable {
 	@Id
 	@GeneratedValue
 	private Long id;
