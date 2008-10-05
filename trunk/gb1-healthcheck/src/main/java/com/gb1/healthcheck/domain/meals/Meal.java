@@ -23,7 +23,7 @@ import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.hibernate.annotations.Cascade;
 
-import com.gb1.commons.Identifiable;
+import com.gb1.healthcheck.core.Identifiable;
 import com.gb1.healthcheck.domain.foods.Food;
 import com.gb1.healthcheck.domain.foods.FoodGroup;
 import com.gb1.healthcheck.domain.foods.Nutrient;

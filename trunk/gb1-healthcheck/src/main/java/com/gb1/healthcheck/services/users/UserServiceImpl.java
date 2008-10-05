@@ -8,7 +8,7 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.gb1.commons.tokens.Token;
+import com.gb1.healthcheck.core.Token;
 import com.gb1.healthcheck.domain.users.InvalidPasswordException;
 import com.gb1.healthcheck.domain.users.LostPasswordReminder;
 import com.gb1.healthcheck.domain.users.PasswordGenerator;

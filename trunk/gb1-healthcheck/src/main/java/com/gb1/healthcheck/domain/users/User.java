@@ -21,8 +21,8 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.commons.lang.builder.ToStringBuilder;
 import org.hibernate.annotations.CollectionOfElements;
 
-import com.gb1.commons.Identifiable;
-import com.gb1.commons.tokens.Token;
+import com.gb1.healthcheck.core.Identifiable;
+import com.gb1.healthcheck.core.Token;
 
 /**
  * A user of the current system. A user is identified by the usual properties such as a login name

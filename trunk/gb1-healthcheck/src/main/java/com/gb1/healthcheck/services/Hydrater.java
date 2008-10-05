@@ -1,4 +1,4 @@
-package com.gb1.commons.dataaccess;
+package com.gb1.healthcheck.services;
 
 /**
  * A callback used to explicitly load an object's associations, i.e. to "hydrate" an object. This

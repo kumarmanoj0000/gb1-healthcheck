@@ -3,7 +3,7 @@ package com.gb1.healthcheck.domain.users;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 
-import com.gb1.commons.tokens.Token;
+import com.gb1.healthcheck.core.Token;
 
 /**
  * A user activation request.

@@ -8,13 +8,13 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.gb1.commons.dataaccess.Hydrater;
 import com.gb1.healthcheck.domain.meals.Meal;
 import com.gb1.healthcheck.domain.meals.MealException;
 import com.gb1.healthcheck.domain.meals.MealInactivityNotifier;
 import com.gb1.healthcheck.domain.meals.MealRepository;
 import com.gb1.healthcheck.domain.meals.MealValidator;
 import com.gb1.healthcheck.domain.users.User;
+import com.gb1.healthcheck.services.Hydrater;
 
 @Service("mealService")
 @Transactional(rollbackFor = { RuntimeException.class, MealException.class })

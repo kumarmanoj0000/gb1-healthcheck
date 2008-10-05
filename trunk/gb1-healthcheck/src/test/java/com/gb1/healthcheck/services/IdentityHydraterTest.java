@@ -1,4 +1,4 @@
-package com.gb1.commons.dataaccess;
+package com.gb1.healthcheck.services;
 
 import static org.junit.Assert.assertSame;
 

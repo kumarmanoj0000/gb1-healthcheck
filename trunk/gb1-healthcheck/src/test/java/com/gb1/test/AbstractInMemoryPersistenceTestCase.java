@@ -1,4 +1,4 @@
-package com.gb1.commons.test;
+package com.gb1.test;
 
 import org.apache.log4j.Logger;
 import org.springframework.test.context.ContextConfiguration;

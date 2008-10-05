@@ -1,4 +1,4 @@
-package com.gb1.commons.dataaccess;
+package com.gb1.healthcheck.services;
 
 public class IdentityHydrater<E> implements Hydrater<E> {
 	public IdentityHydrater() {

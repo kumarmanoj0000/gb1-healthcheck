@@ -6,9 +6,9 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
-import com.gb1.commons.dataaccess.IdentityHydrater;
 import com.gb1.healthcheck.domain.foods.ComplexFood;
 import com.gb1.healthcheck.domain.foods.Food;
+import com.gb1.healthcheck.services.IdentityHydrater;
 import com.gb1.healthcheck.services.foods.FoodService;
 import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionSupport;

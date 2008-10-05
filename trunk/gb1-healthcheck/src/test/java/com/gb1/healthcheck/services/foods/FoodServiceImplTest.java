@@ -11,13 +11,13 @@ import org.apache.commons.collections.CollectionUtils;
 import org.easymock.EasyMock;
 import org.junit.Test;
 
-import com.gb1.commons.dataaccess.Hydrater;
 import com.gb1.healthcheck.domain.foods.ComplexFood;
 import com.gb1.healthcheck.domain.foods.ComplexFoodValidator;
 import com.gb1.healthcheck.domain.foods.FoodRepository;
 import com.gb1.healthcheck.domain.foods.Foods;
 import com.gb1.healthcheck.domain.foods.SimpleFood;
 import com.gb1.healthcheck.domain.foods.SimpleFoodValidator;
+import com.gb1.healthcheck.services.Hydrater;
 
 public class FoodServiceImplTest {
 	@Test

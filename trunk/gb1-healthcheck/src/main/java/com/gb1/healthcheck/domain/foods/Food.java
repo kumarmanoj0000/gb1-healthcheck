@@ -16,7 +16,7 @@ import org.apache.commons.lang.builder.CompareToBuilder;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 
-import com.gb1.commons.Identifiable;
+import com.gb1.healthcheck.core.Identifiable;
 
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)

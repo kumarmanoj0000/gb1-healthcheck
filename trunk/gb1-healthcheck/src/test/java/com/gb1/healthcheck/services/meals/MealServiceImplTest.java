@@ -13,7 +13,6 @@ import org.apache.commons.collections.CollectionUtils;
 import org.easymock.EasyMock;
 import org.junit.Test;
 
-import com.gb1.commons.dataaccess.Hydrater;
 import com.gb1.healthcheck.domain.meals.Meal;
 import com.gb1.healthcheck.domain.meals.MealException;
 import com.gb1.healthcheck.domain.meals.MealInactivityNotifier;
@@ -23,6 +22,7 @@ import com.gb1.healthcheck.domain.meals.Meals;
 import com.gb1.healthcheck.domain.users.User;
 import com.gb1.healthcheck.domain.users.UserRepository;
 import com.gb1.healthcheck.domain.users.Users;
+import com.gb1.healthcheck.services.Hydrater;
 
 public class MealServiceImplTest {
 	@Test

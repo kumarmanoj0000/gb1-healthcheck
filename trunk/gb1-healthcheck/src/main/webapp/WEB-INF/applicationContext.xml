@@ -70,7 +70,7 @@
 	  | Services
 	  -->
 
-	<bean id="tokenFactory" class="com.gb1.commons.tokens.UuidTokenFactory" />
+	<bean id="tokenFactory" class="com.gb1.healthcheck.core.UuidTokenFactory" />
 
 	<bean id="emailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
 		<property name="session">

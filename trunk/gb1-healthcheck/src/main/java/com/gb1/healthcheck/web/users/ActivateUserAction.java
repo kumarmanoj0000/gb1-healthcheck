@@ -7,7 +7,7 @@ import org.apache.struts2.config.ParentPackage;
 import org.apache.struts2.config.Result;
 import org.apache.struts2.config.Results;
 
-import com.gb1.commons.tokens.Token;
+import com.gb1.healthcheck.core.Token;
 import com.gb1.healthcheck.domain.users.UserException;
 import com.gb1.healthcheck.services.users.UserService;
 import com.opensymphony.xwork2.Action;
