@@ -2,11 +2,14 @@ package com.gb1.healthcheck.core;
 
 import java.util.UUID;
 
+import org.springframework.stereotype.Component;
+
 /**
  * A token factory that assigns a world-wide unique UUID to each generated token.
  * 
  * @author Guillaume Bilodeau
  */
+@Component("tokenFactory")
 public class UuidTokenFactory implements TokenFactory {
 	public UuidTokenFactory() {
 	}
@@ -18,7 +21,6 @@ public class UuidTokenFactory implements TokenFactory {
 	 */
 	public Token newToken() {
 		String value = UUID.randomUUID().toString();
-		Token token = new Token(value);
-		return token;
+		return new Token(value);
 	}
 }
