@@ -11,8 +11,8 @@ import org.easymock.EasyMock;
 import org.junit.Test;
 import org.springframework.mail.javamail.JavaMailSender;
 
-import com.gb1.commons.tokens.Token;
-import com.gb1.commons.tokens.TokenFactory;
+import com.gb1.healthcheck.core.Token;
+import com.gb1.healthcheck.core.TokenFactory;
 
 public class EmailUserActivationRequesterTest {
 	@Test

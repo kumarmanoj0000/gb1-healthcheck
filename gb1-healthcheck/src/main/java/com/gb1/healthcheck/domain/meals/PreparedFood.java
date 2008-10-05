@@ -12,7 +12,7 @@ import javax.persistence.OneToOne;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 
-import com.gb1.commons.Identifiable;
+import com.gb1.healthcheck.core.Identifiable;
 import com.gb1.healthcheck.domain.foods.ComplexFood;
 import com.gb1.healthcheck.domain.foods.Food;
 import com.gb1.healthcheck.domain.foods.FoodGroup;

@@ -2,7 +2,7 @@ package com.gb1.healthcheck.services.users;
 
 import java.util.List;
 
-import com.gb1.commons.tokens.Token;
+import com.gb1.healthcheck.core.Token;
 import com.gb1.healthcheck.domain.users.InvalidPasswordException;
 import com.gb1.healthcheck.domain.users.UnknownUserException;
 import com.gb1.healthcheck.domain.users.User;

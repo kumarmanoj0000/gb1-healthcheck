@@ -11,11 +11,11 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.struts2.interceptor.SessionAware;
 
-import com.gb1.commons.dataaccess.IdentityHydrater;
 import com.gb1.healthcheck.domain.foods.ComplexFood;
 import com.gb1.healthcheck.domain.foods.Food;
 import com.gb1.healthcheck.domain.meals.PreparationMethod;
 import com.gb1.healthcheck.domain.users.User;
+import com.gb1.healthcheck.services.IdentityHydrater;
 import com.gb1.healthcheck.services.foods.FoodService;
 import com.gb1.healthcheck.services.meals.MealService;
 import com.gb1.struts2.interceptor.AuthenticatedUser;

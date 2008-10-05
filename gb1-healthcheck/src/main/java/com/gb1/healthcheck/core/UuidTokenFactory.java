@@ -1,4 +1,4 @@
-package com.gb1.commons.tokens;
+package com.gb1.healthcheck.core;
 
 import java.util.UUID;
 

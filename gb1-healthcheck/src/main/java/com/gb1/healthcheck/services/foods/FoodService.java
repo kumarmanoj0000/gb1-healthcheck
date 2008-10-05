@@ -2,11 +2,11 @@ package com.gb1.healthcheck.services.foods;
 
 import java.util.List;
 
-import com.gb1.commons.dataaccess.Hydrater;
 import com.gb1.healthcheck.domain.foods.ComplexFood;
 import com.gb1.healthcheck.domain.foods.Food;
 import com.gb1.healthcheck.domain.foods.FoodException;
 import com.gb1.healthcheck.domain.foods.SimpleFood;
+import com.gb1.healthcheck.services.Hydrater;
 
 public interface FoodService {
 	SimpleFood getSimpleFood(Long foodId);

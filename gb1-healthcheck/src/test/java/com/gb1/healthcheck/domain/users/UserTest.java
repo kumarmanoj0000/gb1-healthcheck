@@ -10,7 +10,7 @@ import java.util.Map;
 import org.easymock.EasyMock;
 import org.junit.Test;
 
-import com.gb1.commons.tokens.Token;
+import com.gb1.healthcheck.core.Token;
 
 public class UserTest {
 	private static final Token ACTIVATION_TOKEN = new Token("123");

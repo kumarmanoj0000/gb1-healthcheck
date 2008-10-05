@@ -6,8 +6,8 @@ import javax.mail.internet.MimeMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Component;
 
-import com.gb1.commons.tokens.Token;
-import com.gb1.commons.tokens.TokenFactory;
+import com.gb1.healthcheck.core.Token;
+import com.gb1.healthcheck.core.TokenFactory;
 
 /**
  * A user activation requester that sends an email to the given user requesting his own activation.

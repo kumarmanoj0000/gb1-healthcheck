@@ -5,7 +5,7 @@ import static org.junit.Assert.assertEquals;
 import org.easymock.EasyMock;
 import org.junit.Test;
 
-import com.gb1.commons.tokens.Token;
+import com.gb1.healthcheck.core.Token;
 import com.gb1.healthcheck.domain.users.ExposedUser;
 import com.gb1.healthcheck.domain.users.InvalidTokenException;
 import com.gb1.healthcheck.services.users.UserService;

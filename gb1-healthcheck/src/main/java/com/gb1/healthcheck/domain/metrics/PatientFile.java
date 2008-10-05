@@ -23,7 +23,7 @@ import org.apache.commons.lang.time.DateUtils;
 import org.hibernate.annotations.CollectionOfElements;
 import org.hibernate.annotations.MapKey;
 
-import com.gb1.commons.Identifiable;
+import com.gb1.healthcheck.core.Identifiable;
 import com.gb1.healthcheck.domain.users.User;
 
 @Entity

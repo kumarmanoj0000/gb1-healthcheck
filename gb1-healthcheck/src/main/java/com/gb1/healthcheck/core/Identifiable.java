@@ -1,4 +1,4 @@
-package com.gb1.commons;
+package com.gb1.healthcheck.core;
 
 /**
  * Defines the interface of identifiable objects.

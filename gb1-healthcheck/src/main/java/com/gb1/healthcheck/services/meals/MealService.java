@@ -3,10 +3,10 @@ package com.gb1.healthcheck.services.meals;
 import java.util.List;
 import java.util.Set;
 
-import com.gb1.commons.dataaccess.Hydrater;
 import com.gb1.healthcheck.domain.meals.Meal;
 import com.gb1.healthcheck.domain.meals.MealException;
 import com.gb1.healthcheck.domain.users.User;
+import com.gb1.healthcheck.services.Hydrater;
 
 public interface MealService {
 	/**

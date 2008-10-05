@@ -1,10 +1,10 @@
-package com.gb1.commons.tokens;
+package com.gb1.healthcheck.core;
 
 import static org.junit.Assert.assertNotNull;
 
 import org.junit.Test;
 
-public class UuidActivationTokenFactoryTest {
+public class UuidTokenFactoryTest {
 	@Test
 	public void testNewActivationTokenOk() {
 		UuidTokenFactory factory = new UuidTokenFactory();

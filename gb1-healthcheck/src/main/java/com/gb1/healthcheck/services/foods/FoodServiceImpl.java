@@ -8,7 +8,6 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.gb1.commons.dataaccess.Hydrater;
 import com.gb1.healthcheck.domain.foods.ComplexFood;
 import com.gb1.healthcheck.domain.foods.ComplexFoodValidator;
 import com.gb1.healthcheck.domain.foods.Food;
@@ -17,6 +16,7 @@ import com.gb1.healthcheck.domain.foods.FoodRepository;
 import com.gb1.healthcheck.domain.foods.SimpleFood;
 import com.gb1.healthcheck.domain.foods.SimpleFoodValidator;
 import com.gb1.healthcheck.domain.meals.MealException;
+import com.gb1.healthcheck.services.Hydrater;
 
 @Service("foodService")
 @Transactional(rollbackFor = { RuntimeException.class, MealException.class })
