@@ -1,7 +1,13 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jstl/core"%>
 <%@ taglib prefix="s" uri="/struts-tags" %>
 
 <html>
 	<head>
+		<s:set name="mealAction" value="%{model.id == null ? 'CreateMealAction' : 'UpdateMealAction'}"></s:set>
+		<script type='text/javascript' src='<c:url value="/dwr/interface/${mealAction}.js" />'></script>
+		<script type='text/javascript' src='<c:url value="/dwr/engine.js" />'></script>
+		<script type='text/javascript' src='<c:url value="/dwr/util.js" />'></script>
+
 		<%@ include file="/views/fragments/calendar.jsp" %>
 		<script type="text/javascript" src='<s:url value="/scripts/jquery/jquery.js" />'></script>
 
@@ -10,6 +16,10 @@
 			var maxSingleDishDivIndex = nbSingleDishDivs - 1;
 
 			function addSingleDishDiv() {
+				${mealAction}.addDish(dishAdded);
+			}
+
+			function dishAdded() {
 				maxSingleDishDivIndex++;
 				nbSingleDishDivs++;
 
@@ -23,9 +33,13 @@
 
 			function removeSingleDishDiv(index) {
 				if (nbSingleDishDivs > 1) {
-					$('#singleDish-' + index).remove();
-					nbSingleDishDivs--;
+					${mealAction}.removeDish(index, dishRemoved);
 				}
+			}
+
+			function dishRemoved(index) {
+				$('#singleDish-' + index).remove();
+				nbSingleDishDivs--;
 			}
 		</script>
 	</head>

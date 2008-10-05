@@ -54,7 +54,6 @@ public class CreateMealActionTest {
 		CreateMealAction action = new CreateMealAction();
 		action.foodService = foodService;
 		action.setRequester(Users.lg());
-		action.prepare();
 
 		assertTrue(CollectionUtils.isEqualCollection(Arrays.asList(PreparationMethod.values()),
 				action.getAvailablePreparationMethods()));

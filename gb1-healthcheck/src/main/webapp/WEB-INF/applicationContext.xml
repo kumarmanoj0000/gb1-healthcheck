@@ -98,8 +98,21 @@
 		<dwr:convert type="bean" class="com.gb1.healthcheck.domain.metrics.PunctualGastricState" />
 	</dwr:configuration>
 
+	<bean id="createMealAction" class="com.gb1.healthcheck.web.meals.CreateMealAction" scope="prototype">
+		<dwr:remote javascript="CreateMealAction">
+			<dwr:include method="addDish" />
+			<dwr:include method="removeDish" />
+		</dwr:remote>
+	</bean>
+
+	<bean id="updateMealAction" class="com.gb1.healthcheck.web.meals.UpdateMealAction" scope="prototype">
+		<dwr:remote javascript="UpdateMealAction">
+			<dwr:include method="addDish" />
+			<dwr:include method="removeDish" />
+		</dwr:remote>
+	</bean>
+
 	<bean id="manageGastricStatesAction" class="com.gb1.healthcheck.web.metrics.ManageGastricStatesAction" scope="prototype">
-		<property name="patientFileService" ref="patientFileService" />
 		<dwr:remote javascript="ManageGastricStatesAction">
 			<dwr:include method="loadGastricStates"/>
 			<dwr:include method="saveGastricState"/>

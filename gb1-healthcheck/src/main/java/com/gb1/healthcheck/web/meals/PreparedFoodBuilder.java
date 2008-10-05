@@ -1,10 +1,12 @@
 package com.gb1.healthcheck.web.meals;
 
+import java.io.Serializable;
+
 import com.gb1.healthcheck.domain.meals.PreparationMethod;
 import com.gb1.healthcheck.domain.meals.PreparedFood;
 import com.gb1.healthcheck.services.foods.FoodService;
 
-public class PreparedFoodBuilder {
+public class PreparedFoodBuilder implements Serializable {
 	private Long ingredientId;
 	private String preparationMethodName;
 
