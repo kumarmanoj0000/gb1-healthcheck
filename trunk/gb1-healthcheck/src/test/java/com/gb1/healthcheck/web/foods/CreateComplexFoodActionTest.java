@@ -51,10 +51,16 @@ public class CreateComplexFoodActionTest {
 	public void testSubmit() throws FoodException {
 		ComplexFood food = Foods.spaghetti();
 
+		List<Long> foodIds = new ArrayList<Long>();
+		for (Food ingredient : food.getIngredients()) {
+			foodIds.add(ingredient.getId());
+		}
+
 		Map<String, Object> sessionMap = new HashMap<String, Object>();
-		sessionMap.put(CreateComplexFoodAction.MODEL_SESSION_KEY, new ComplexFoodAdapter(food));
+		sessionMap.put(CreateComplexFoodAction.MODEL_SESSION_KEY, new ComplexFoodBuilder(food));
 
 		FoodService foodSvc = EasyMock.createMock(FoodService.class);
+		EasyMock.expect(foodSvc.getFoods(foodIds)).andReturn(food.getIngredients());
 		foodSvc.createComplexFood(food);
 		EasyMock.expectLastCall();
 		EasyMock.replay(foodSvc);
@@ -71,10 +77,16 @@ public class CreateComplexFoodActionTest {
 	public void testSubmitWithError() throws FoodException {
 		ComplexFood food = Foods.spaghetti();
 
+		List<Long> foodIds = new ArrayList<Long>();
+		for (Food ingredient : food.getIngredients()) {
+			foodIds.add(ingredient.getId());
+		}
+
 		Map<String, Object> sessionMap = new HashMap<String, Object>();
-		sessionMap.put(CreateComplexFoodAction.MODEL_SESSION_KEY, new ComplexFoodAdapter(food));
+		sessionMap.put(CreateComplexFoodAction.MODEL_SESSION_KEY, new ComplexFoodBuilder(food));
 
 		FoodService foodSvc = EasyMock.createMock(FoodService.class);
+		EasyMock.expect(foodSvc.getFoods(foodIds)).andReturn(food.getIngredients());
 		foodSvc.createComplexFood(EasyMock.isA(ComplexFood.class));
 		EasyMock.expectLastCall().andThrow(new FoodAlreadyExistsException(""));
 		EasyMock.replay(foodSvc);

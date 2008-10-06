@@ -34,7 +34,7 @@ public class CreateComplexFoodAction extends ComplexFoodActionSupport implements
 
 	@Override
 	public String input() throws Exception {
-		sessionMap.put(MODEL_SESSION_KEY, new ComplexFoodAdapter(new ComplexFood(), foodService));
+		sessionMap.put(MODEL_SESSION_KEY, new ComplexFoodBuilder(new ComplexFood()));
 		return Action.INPUT;
 	}
 
@@ -44,7 +44,9 @@ public class CreateComplexFoodAction extends ComplexFoodActionSupport implements
 		String result = Action.INPUT;
 
 		try {
-			foodService.createComplexFood(getModel().getTarget());
+			foodService.createComplexFood(getModel().build(foodService));
+
+			sessionMap.remove(MODEL_SESSION_KEY);
 			addActionMessage(getText("foods.complexFoods.edit.success"));
 			result = Action.SUCCESS;
 		}
@@ -61,8 +63,8 @@ public class CreateComplexFoodAction extends ComplexFoodActionSupport implements
 		return result;
 	}
 
-	public ComplexFoodAdapter getModel() {
-		return (ComplexFoodAdapter) sessionMap.get(MODEL_SESSION_KEY);
+	public ComplexFoodBuilder getModel() {
+		return (ComplexFoodBuilder) sessionMap.get(MODEL_SESSION_KEY);
 	}
 
 	@SuppressWarnings("unchecked")

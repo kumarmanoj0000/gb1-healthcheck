@@ -7,7 +7,6 @@ HealthCheck
   - correlation food <=> gastric states (JFreeChart)
 
 . technical
-  - use DWR annotations
   - use conversation management
   - implement BeginTransactionInterceptor, OpenEntityManagerInConversationInterceptor
   - replace time picker with more useable one

@@ -32,7 +32,7 @@ public class UpdateComplexFoodAction extends ComplexFoodActionSupport implements
 	@Override
 	public String input() {
 		ComplexFood food = foodService.getComplexFood(getFoodId(), new FullComplexFoodHydrater());
-		sessionMap.put(MODEL_SESSION_KEY, new ComplexFoodAdapter(food, foodService));
+		sessionMap.put(MODEL_SESSION_KEY, new ComplexFoodBuilder(food));
 
 		return Action.INPUT;
 	}
@@ -43,9 +43,9 @@ public class UpdateComplexFoodAction extends ComplexFoodActionSupport implements
 		String result = Action.INPUT;
 
 		try {
-			foodService.updateComplexFood(getModel().getTarget());
-			sessionMap.remove(MODEL_SESSION_KEY);
+			foodService.updateComplexFood(getModel().build(foodService));
 
+			sessionMap.remove(MODEL_SESSION_KEY);
 			addActionMessage(getText("foods.complexFoods.edit.success"));
 			result = Action.SUCCESS;
 		}
@@ -59,8 +59,8 @@ public class UpdateComplexFoodAction extends ComplexFoodActionSupport implements
 		return result;
 	}
 
-	public ComplexFoodAdapter getModel() {
-		return (ComplexFoodAdapter) sessionMap.get(MODEL_SESSION_KEY);
+	public ComplexFoodBuilder getModel() {
+		return (ComplexFoodBuilder) sessionMap.get(MODEL_SESSION_KEY);
 	}
 
 	@SuppressWarnings("unchecked")
