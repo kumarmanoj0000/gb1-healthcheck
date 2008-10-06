@@ -30,8 +30,7 @@ public class RegisterUserAction extends ActionSupport {
 	@Resource
 	protected UserService userService;
 
-	private UserRegistrationRequest userRegRequest = new UserRegistrationRequest(
-			Role.STANDARD);
+	private UserBuilder userBuilder = new UserBuilder(Role.STANDARD);
 
 	public RegisterUserAction() {
 	}
@@ -63,7 +62,7 @@ public class RegisterUserAction extends ActionSupport {
 	}
 
 	@VisitorFieldValidator(message = "")
-	public UserRegistrationRequest getModel() {
-		return userRegRequest;
+	public UserBuilder getModel() {
+		return userBuilder;
 	}
 }
