@@ -5,6 +5,9 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 
+import org.springframework.security.userdetails.UserDetails;
+import org.springframework.security.userdetails.UserDetailsService;
+import org.springframework.security.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -13,6 +16,7 @@ import com.gb1.healthcheck.domain.users.InvalidPasswordException;
 import com.gb1.healthcheck.domain.users.LostPasswordReminder;
 import com.gb1.healthcheck.domain.users.PasswordGenerator;
 import com.gb1.healthcheck.domain.users.PasswordResetNotifier;
+import com.gb1.healthcheck.domain.users.SpringUserDetailsAdapter;
 import com.gb1.healthcheck.domain.users.UnknownUserException;
 import com.gb1.healthcheck.domain.users.User;
 import com.gb1.healthcheck.domain.users.UserActivationException;
@@ -29,7 +33,7 @@ import com.gb1.healthcheck.domain.users.UserValidator;
  */
 @Service("userService")
 @Transactional(rollbackFor = { RuntimeException.class, UserException.class })
-public class UserServiceImpl implements UserService {
+public class UserServiceImpl implements UserService, UserDetailsService {
 	@Resource
 	protected UserRepository userRepository;
 
@@ -99,6 +103,22 @@ public class UserServiceImpl implements UserService {
 	@Transactional(readOnly = true)
 	public User findUserByLogin(String login) {
 		return userRepository.findUserByLogin(login);
+	}
+
+	@Transactional(readOnly = true)
+	public UserDetails loadUserByUsername(String username) {
+		UserDetails userDetails = null;
+		User user = findUserByLogin(username);
+
+		if (user == null) {
+			throw new UsernameNotFoundException(username);
+		}
+
+		// authorities should be eagerly fetched
+		userDetails = new SpringUserDetailsAdapter(user);
+		userDetails.getAuthorities();
+
+		return userDetails;
 	}
 
 	@Transactional(readOnly = true)

@@ -12,12 +12,15 @@ import java.util.Map;
 import org.apache.commons.collections.CollectionUtils;
 import org.easymock.EasyMock;
 import org.junit.Test;
+import org.springframework.security.userdetails.UserDetails;
+import org.springframework.security.userdetails.UsernameNotFoundException;
 
 import com.gb1.healthcheck.core.Token;
 import com.gb1.healthcheck.domain.users.ExposedUser;
 import com.gb1.healthcheck.domain.users.LostPasswordReminder;
 import com.gb1.healthcheck.domain.users.PasswordGenerator;
 import com.gb1.healthcheck.domain.users.PasswordResetNotifier;
+import com.gb1.healthcheck.domain.users.Role;
 import com.gb1.healthcheck.domain.users.UnknownUserException;
 import com.gb1.healthcheck.domain.users.User;
 import com.gb1.healthcheck.domain.users.UserActivationException;
@@ -255,5 +258,45 @@ public class UserServiceImplTest {
 
 		assertEquals(newPwd, user.getPassword());
 		EasyMock.verify(notifier);
+	}
+
+	@Test
+	public void testLoadUserByUsernameUnknown() {
+		final String login = "user";
+
+		UserRepository userRepo = EasyMock.createMock(UserRepository.class);
+		EasyMock.expect(userRepo.findUserByLogin(login)).andReturn(null);
+		EasyMock.replay(userRepo);
+
+		UserServiceImpl svc = new UserServiceImpl();
+		svc.userRepository = userRepo;
+
+		try {
+			svc.loadUserByUsername(login);
+			fail("Username was unknown");
+		}
+		catch (UsernameNotFoundException e) {
+			// ok
+		}
+	}
+
+	@Test
+	public void testLoadUserByUsernameOk() {
+		final String login = "user";
+		ExposedUser u = new ExposedUser();
+		u.setLogin(login);
+		u.assignRole(Role.STANDARD);
+
+		UserRepository userRepo = EasyMock.createMock(UserRepository.class);
+		EasyMock.expect(userRepo.findUserByLogin(login)).andReturn(u);
+		EasyMock.replay(userRepo);
+
+		UserServiceImpl svc = new UserServiceImpl();
+		svc.userRepository = userRepo;
+
+		UserDetails details = svc.loadUserByUsername(login);
+		assertEquals(details.getUsername(), u.getLogin());
+		assertEquals(1, details.getAuthorities().length);
+		assertEquals(details.getAuthorities()[0].getAuthority(), Role.STANDARD.getName());
 	}
 }
