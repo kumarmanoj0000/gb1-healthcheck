@@ -4,13 +4,16 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.easymock.EasyMock;
 import org.junit.Test;
 
 import com.gb1.healthcheck.domain.foods.ComplexFood;
+import com.gb1.healthcheck.domain.foods.Food;
 import com.gb1.healthcheck.domain.foods.FoodAlreadyExistsException;
 import com.gb1.healthcheck.domain.foods.Foods;
 import com.gb1.healthcheck.services.foods.FoodService;
@@ -49,24 +52,27 @@ public class UpdateComplexFoodActionTest {
 	@SuppressWarnings("unchecked")
 	public void testSubmit() throws Exception {
 		ComplexFood food = Foods.spaghetti();
-		ComplexFoodAdapter model = new ComplexFoodAdapter(food);
+
+		List<Long> foodIds = new ArrayList<Long>();
+		for (Food ingredient : food.getIngredients()) {
+			foodIds.add(ingredient.getId());
+		}
 
 		Map session = new HashMap();
-		session.put(MODEL_SESSION_KEY, model);
+		session.put(MODEL_SESSION_KEY, new ComplexFoodBuilder(food));
 
 		FoodService foodSvc = EasyMock.createMock(FoodService.class);
-		foodSvc.updateComplexFood(model.getTarget());
+		EasyMock.expect(foodSvc.getFoods(foodIds)).andReturn(food.getIngredients());
+		foodSvc.updateComplexFood(food);
 		EasyMock.expectLastCall();
 		EasyMock.replay(foodSvc);
 
 		UpdateComplexFoodAction action = new UpdateComplexFoodAction();
 		action.foodService = foodSvc;
-
 		action.setSession(session);
-		action.setFoodId(model.getTarget().getId());
-		String result = action.execute();
+		action.setFoodId(food.getId());
 
-		assertEquals(Action.SUCCESS, result);
+		assertEquals(Action.SUCCESS, action.execute());
 		assertFalse(session.containsKey(MODEL_SESSION_KEY));
 		EasyMock.verify(foodSvc);
 	}
@@ -75,12 +81,17 @@ public class UpdateComplexFoodActionTest {
 	@SuppressWarnings("unchecked")
 	public void testSubmitWithErrors() throws Exception {
 		ComplexFood food = Foods.spaghetti();
-		ComplexFoodAdapter model = new ComplexFoodAdapter(food);
+
+		List<Long> foodIds = new ArrayList<Long>();
+		for (Food ingredient : food.getIngredients()) {
+			foodIds.add(ingredient.getId());
+		}
 
 		Map session = new HashMap();
-		session.put(MODEL_SESSION_KEY, model);
+		session.put(MODEL_SESSION_KEY, new ComplexFoodBuilder(food));
 
 		FoodService foodSvc = EasyMock.createMock(FoodService.class);
+		EasyMock.expect(foodSvc.getFoods(foodIds)).andReturn(food.getIngredients());
 		foodSvc.updateComplexFood(EasyMock.isA(ComplexFood.class));
 		EasyMock.expectLastCall().andThrow(new FoodAlreadyExistsException("spaghetti"));
 		EasyMock.replay(foodSvc);
@@ -89,10 +100,9 @@ public class UpdateComplexFoodActionTest {
 		action.foodService = foodSvc;
 
 		action.setSession(session);
-		action.setFoodId(model.getTarget().getId());
-		String result = action.execute();
+		action.setFoodId(food.getId());
 
-		assertEquals(Action.INPUT, result);
+		assertEquals(Action.INPUT, action.execute());
 		assertTrue(action.hasFieldErrors());
 		EasyMock.verify(foodSvc);
 	}

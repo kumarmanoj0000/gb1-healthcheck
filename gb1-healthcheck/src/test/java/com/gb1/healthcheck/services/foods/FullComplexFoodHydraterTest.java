@@ -2,7 +2,7 @@ package com.gb1.healthcheck.services.foods;
 
 import static org.junit.Assert.assertTrue;
 
-import java.util.Set;
+import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 import org.junit.Test;
@@ -17,7 +17,7 @@ public class FullComplexFoodHydraterTest {
 
 		ComplexFood food = new ComplexFood() {
 			@Override
-			public Set<Food> getIngredients() {
+			public List<Food> getIngredients() {
 				ingredientsWereLoaded.set(true);
 				return super.getIngredients();
 			}

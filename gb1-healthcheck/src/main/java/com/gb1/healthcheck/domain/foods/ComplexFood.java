@@ -1,8 +1,10 @@
 package com.gb1.healthcheck.domain.foods;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.DiscriminatorValue;
@@ -17,7 +19,7 @@ import org.apache.commons.lang.Validate;
 public class ComplexFood extends Food {
 	@ManyToMany
 	@JoinTable(name = "FOOD_INGREDIENTS")
-	private Set<Food> ingredients = new HashSet<Food>();
+	private List<Food> ingredients = new ArrayList<Food>();
 
 	public ComplexFood() {
 	}
@@ -54,8 +56,8 @@ public class ComplexFood extends Food {
 		ingredients.clear();
 	}
 
-	public Set<Food> getIngredients() {
-		return Collections.unmodifiableSet(ingredients);
+	public List<Food> getIngredients() {
+		return Collections.unmodifiableList(ingredients);
 	}
 
 	@Override
