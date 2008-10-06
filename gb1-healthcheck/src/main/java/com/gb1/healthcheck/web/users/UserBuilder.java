@@ -6,17 +6,17 @@ import java.util.Set;
 import com.gb1.healthcheck.domain.users.Role;
 import com.gb1.healthcheck.domain.users.User;
 
-public class UserRegistrationRequest {
+public class UserBuilder {
 	private String login;
 	private String email;
 	private String password1;
 	private String password2;
 	private Set<Role> roles = new HashSet<Role>();
 
-	public UserRegistrationRequest() {
+	public UserBuilder() {
 	}
 
-	public UserRegistrationRequest(Role role) {
+	public UserBuilder(Role role) {
 		roles.add(role);
 	}
 
