@@ -48,12 +48,10 @@ public class MealBuilder implements Serializable {
 
 	public void addDish() {
 		dishBuilders.add(new PreparedFoodBuilder());
-		System.err.println("Added dish: dishBuilders.size=" + dishBuilders.size());
 	}
 
 	public void removeDish(int dishIndex) {
 		dishBuilders.remove(dishIndex);
-		System.err.println("Removed dish: dishBuilders.size=" + dishBuilders.size());
 	}
 
 	public Meal build(FoodService foodService) {

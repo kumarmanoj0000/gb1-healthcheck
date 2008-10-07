@@ -21,18 +21,21 @@ import com.gb1.healthcheck.domain.foods.SimpleFood;
 import com.gb1.healthcheck.domain.meals.Meal;
 import com.gb1.healthcheck.domain.meals.MealAlreadyExistsException;
 import com.gb1.healthcheck.domain.meals.MealException;
+import com.gb1.healthcheck.domain.meals.Meals;
 import com.gb1.healthcheck.domain.meals.PreparationMethod;
 import com.gb1.healthcheck.domain.users.User;
 import com.gb1.healthcheck.domain.users.Users;
 import com.gb1.healthcheck.services.IdentityHydrater;
 import com.gb1.healthcheck.services.foods.FoodService;
+import com.gb1.healthcheck.services.meals.FullMealHydrater;
 import com.gb1.healthcheck.services.meals.MealService;
 import com.opensymphony.xwork2.Action;
 
-public class CreateMealActionTest {
+public class SaveMealActionTest {
 	@Test
 	public void testCancel() {
-		CreateMealAction action = new CreateMealAction();
+		SaveMealAction action = new SaveMealAction();
+		action.setSession(new HashMap<String, Object>());
 		assertEquals(Action.SUCCESS, action.cancel());
 	}
 
@@ -51,9 +54,9 @@ public class CreateMealActionTest {
 				.andReturn(new ArrayList<ComplexFood>(Foods.allComplexFoods()));
 		EasyMock.replay(foodService);
 
-		CreateMealAction action = new CreateMealAction();
+		SaveMealAction action = new SaveMealAction();
 		action.foodService = foodService;
-		action.setRequester(Users.lg());
+		action.prepare();
 
 		assertTrue(CollectionUtils.isEqualCollection(Arrays.asList(PreparationMethod.values()),
 				action.getAvailablePreparationMethods()));
@@ -62,7 +65,7 @@ public class CreateMealActionTest {
 
 	@Test
 	@SuppressWarnings("unchecked")
-	public void testSubmit() throws MealException {
+	public void testSubmitCreate() throws MealException {
 		User requester = Users.lg();
 
 		FoodService foodService = EasyMock.createMock(FoodService.class);
@@ -77,7 +80,7 @@ public class CreateMealActionTest {
 		EasyMock.expectLastCall();
 		EasyMock.replay(mealSvc);
 
-		CreateMealAction action = new CreateMealAction();
+		SaveMealAction action = new SaveMealAction();
 		action.foodService = foodService;
 		action.mealService = mealSvc;
 		action.setRequester(requester);
@@ -89,7 +92,7 @@ public class CreateMealActionTest {
 
 	@Test
 	@SuppressWarnings("unchecked")
-	public void testSubmitWithErrors() throws MealException {
+	public void testSubmitCreateWithErrors() throws MealException {
 		User requester = Users.lg();
 
 		FoodService foodService = EasyMock.createMock(FoodService.class);
@@ -104,7 +107,7 @@ public class CreateMealActionTest {
 		EasyMock.expectLastCall().andThrow(new MealAlreadyExistsException());
 		EasyMock.replay(mealSvc);
 
-		CreateMealAction action = new CreateMealAction();
+		SaveMealAction action = new SaveMealAction();
 		action.foodService = foodService;
 		action.mealService = mealSvc;
 		action.setRequester(requester);
@@ -113,5 +116,82 @@ public class CreateMealActionTest {
 		action.input();
 		assertEquals(Action.INPUT, action.execute());
 		assertTrue(action.hasFieldErrors());
+	}
+
+	@Test
+	public void testInput() {
+		Meal dinner = Meals.fullItalianDinner();
+
+		MealService mealSvc = EasyMock.createMock(MealService.class);
+		EasyMock.expect(
+				mealSvc.getMeal(EasyMock.eq(dinner.getId()), EasyMock.isA(FullMealHydrater.class)))
+				.andReturn(dinner);
+		EasyMock.replay(mealSvc);
+
+		SaveMealAction action = new SaveMealAction();
+		action.mealService = mealSvc;
+		action.setSession(new HashMap<String, Object>());
+		action.setMealId(dinner.getId());
+
+		assertEquals(Action.INPUT, action.input());
+		assertEquals(dinner.getId(), action.getModel().getId());
+		assertEquals(dinner.getInstant(), action.getModel().getInstant());
+	}
+
+	@Test
+	public void testSubmitUpdate() throws Exception {
+		Meal meal = Meals.fullItalianDinner();
+
+		FoodService foodSvc = EasyMock.createMock(FoodService.class);
+		EasyMock.expect(foodSvc.getFood(Foods.spaghetti().getId())).andReturn(Foods.spaghetti());
+		EasyMock.expect(foodSvc.getFood(Foods.redWine().getId())).andReturn(Foods.redWine());
+		EasyMock.replay(foodSvc);
+
+		MealService mealSvc = EasyMock.createMock(MealService.class);
+		EasyMock.expect(
+				mealSvc.getMeal(EasyMock.eq(meal.getId()), EasyMock.isA(FullMealHydrater.class)))
+				.andReturn(meal);
+		mealSvc.updateMeal(meal);
+		EasyMock.expectLastCall();
+		EasyMock.replay(mealSvc);
+
+		SaveMealAction action = new SaveMealAction();
+		action.foodService = foodSvc;
+		action.mealService = mealSvc;
+		action.setSession(new HashMap<String, Object>());
+		action.setMealId(meal.getId());
+
+		action.input();
+		assertEquals(Action.SUCCESS, action.execute());
+		EasyMock.verify(mealSvc);
+	}
+
+	@Test
+	public void testSubmitUpdateWithErrors() throws MealException {
+		Meal meal = Meals.fullItalianDinner();
+
+		FoodService foodSvc = EasyMock.createMock(FoodService.class);
+		EasyMock.expect(foodSvc.getFood(Foods.spaghetti().getId())).andReturn(Foods.spaghetti());
+		EasyMock.expect(foodSvc.getFood(Foods.redWine().getId())).andReturn(Foods.redWine());
+		EasyMock.replay(foodSvc);
+
+		MealService mealSvc = EasyMock.createMock(MealService.class);
+		EasyMock.expect(
+				mealSvc.getMeal(EasyMock.eq(meal.getId()), EasyMock.isA(FullMealHydrater.class)))
+				.andReturn(meal);
+		mealSvc.updateMeal(meal);
+		EasyMock.expectLastCall().andThrow(new MealException() {
+		});
+		EasyMock.replay(mealSvc);
+
+		SaveMealAction action = new SaveMealAction();
+		action.foodService = foodSvc;
+		action.mealService = mealSvc;
+		action.setSession(new HashMap<String, Object>());
+		action.setMealId(meal.getId());
+
+		action.input();
+		assertEquals(Action.INPUT, action.execute());
+		assertTrue(action.hasActionErrors());
 	}
 }
