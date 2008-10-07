@@ -3,8 +3,8 @@
 
 <html>
 	<head>
-		<s:set name="mealAction" value="%{model.id == null ? 'CreateMealAction' : 'UpdateMealAction'}"></s:set>
-		<script type='text/javascript' src='<c:url value="/dwr/interface/${mealAction}.js" />'></script>
+		<s:set name="mealAction" value="SaveMealAction"></s:set>
+		<script type='text/javascript' src='<c:url value="/dwr/interface/SaveMealAction.js" />'></script>
 		<script type='text/javascript' src='<c:url value="/dwr/engine.js" />'></script>
 		<script type='text/javascript' src='<c:url value="/dwr/util.js" />'></script>
 
@@ -16,7 +16,7 @@
 			var maxSingleDishDivIndex = nbSingleDishDivs - 1;
 
 			function addSingleDishDiv() {
-				${mealAction}.addDish(dishAdded);
+				SaveMealAction.addDish(dishAdded);
 			}
 
 			function dishAdded() {
@@ -33,7 +33,7 @@
 
 			function removeSingleDishDiv(index) {
 				if (nbSingleDishDivs > 1) {
-					${mealAction}.removeDish(index, dishRemoved);
+					SaveMealAction.removeDish(index, dishRemoved);
 				}
 			}
 
@@ -48,7 +48,7 @@
 		<h2><s:text name="meals.edit.title" /></h2>
 		<s:actionerror />
 
-		<s:form namespace="/meals" action="%{model.id == null ? 'createMeal' : 'updateMeal'}">
+		<s:form namespace="/meals" action="saveMeal">
 			<div class="required">
 				<label><s:text name="meal.instant" />:</label>
 				<s:date id="instant" name="model.instant" format="yyyy-MM-dd HH:mm" />

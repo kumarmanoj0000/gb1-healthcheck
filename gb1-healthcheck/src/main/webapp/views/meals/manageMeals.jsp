@@ -8,7 +8,7 @@
 <s:actionerror />
 
 <s:url id="manageMealsUrl" namespace="/meals" action="manageMeals" />
-<s:url id="editMealUrl" namespace="/meals" action="updateMeal" method="input" />
+<s:url id="editMealUrl" namespace="/meals" action="saveMeal" method="input" />
 
 <s:form namespace="/meals" action="deleteMeals">
 	<display:table name="meals" id="meal"
@@ -25,7 +25,7 @@
 	</display:table>
 
 	<p>
-		<a href='<s:url namespace="/meals" action="createMeal" method="input" />'><s:text name="meals.create" /></a>
+		<a href='<s:url namespace="/meals" action="saveMeal" method="input" />'><s:text name="meals.create" /></a>
 		<s:if test="meals.size() > 0">
 			<s:submit cssClass="button" key="general.delete" />
 		</s:if>
