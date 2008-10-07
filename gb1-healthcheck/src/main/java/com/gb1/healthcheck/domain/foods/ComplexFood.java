@@ -24,6 +24,11 @@ public class ComplexFood extends Food {
 	public ComplexFood() {
 	}
 
+	public ComplexFood(ComplexFood food) {
+		super(food);
+		ingredients.addAll(food.getIngredients());
+	}
+
 	public void addIngredient(Food ingredient) {
 		Validate.notNull(ingredient);
 		ingredients.add(ingredient);

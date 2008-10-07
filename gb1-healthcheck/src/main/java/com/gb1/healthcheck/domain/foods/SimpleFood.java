@@ -24,10 +24,11 @@ public class SimpleFood extends Food {
 	public SimpleFood() {
 	}
 
-	public SimpleFood(SimpleFood source) {
-		setName(source.getName());
-		foodGroup = source.getFoodGroup();
-		nutrients.addAll(source.getNutrients());
+	public SimpleFood(SimpleFood food) {
+		super(food);
+
+		foodGroup = food.getFoodGroup();
+		nutrients.addAll(food.getNutrients());
 	}
 
 	public FoodGroup getFoodGroup() {
