@@ -20,7 +20,6 @@ public class DeleteSimpleFoodsAction extends ActionSupport {
 	protected FoodService foodService;
 
 	private Long[] foodIds;
-	private String actionMessageKey;
 
 	public DeleteSimpleFoodsAction() {
 	}
@@ -37,9 +36,5 @@ public class DeleteSimpleFoodsAction extends ActionSupport {
 
 	public void setFoodIds(Long[] foodIds) {
 		this.foodIds = foodIds;
-	}
-
-	public String getActionMessageKey() {
-		return actionMessageKey;
 	}
 }
