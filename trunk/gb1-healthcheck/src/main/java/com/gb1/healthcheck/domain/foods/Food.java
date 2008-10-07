@@ -30,6 +30,10 @@ public abstract class Food implements Identifiable, Serializable {
 	protected Food() {
 	}
 
+	protected Food(Food food) {
+		this.name = food.getName();
+	}
+
 	public Long getId() {
 		return id;
 	}
