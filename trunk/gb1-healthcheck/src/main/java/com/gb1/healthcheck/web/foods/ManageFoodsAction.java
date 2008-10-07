@@ -20,9 +20,10 @@ import com.opensymphony.xwork2.ActionSupport;
 @ParentPackage("default")
 @Result(value = "/views/foods/manageFoods.jsp")
 public class ManageFoodsAction extends ActionSupport implements SessionAware {
-	public static final String SIMPLE_FOODS_LIST_SESSION_KEY = ManageFoodsAction.class.getName()
+	protected static final String SIMPLE_FOODS_LIST_SESSION_KEY = ManageFoodsAction.class.getName()
 			+ ".cachedSimpleFoodsList";
-	public static final String COMPLEX_FOODS_LIST_SESSION_KEY = ManageFoodsAction.class.getName()
+	protected static final String COMPLEX_FOODS_LIST_SESSION_KEY = ManageFoodsAction.class
+			.getName()
 			+ ".cachedComplexFoodsList";
 
 	@Resource
@@ -32,6 +33,15 @@ public class ManageFoodsAction extends ActionSupport implements SessionAware {
 	private boolean refreshList;
 
 	public ManageFoodsAction() {
+	}
+
+	@SuppressWarnings("unchecked")
+	public void setSession(Map sessionMap) {
+		this.sessionMap = sessionMap;
+	}
+
+	public void setRefreshList(boolean refreshList) {
+		this.refreshList = refreshList;
 	}
 
 	@Override
@@ -67,14 +77,5 @@ public class ManageFoodsAction extends ActionSupport implements SessionAware {
 
 	public int getFoodListPageSize() {
 		return WebConstants.DEFAULT_PAGE_SIZE;
-	}
-
-	public void setRefreshList(boolean refreshList) {
-		this.refreshList = refreshList;
-	}
-
-	@SuppressWarnings("unchecked")
-	public void setSession(Map sessionMap) {
-		this.sessionMap = sessionMap;
 	}
 }
