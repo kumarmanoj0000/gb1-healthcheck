@@ -7,8 +7,8 @@
 <h3><s:text name="foods.simpleFoods" /></h3>
 
 <s:url id="manageFoodsUrl" namespace="/foods" action="manageFoods" />
-<s:url id="editSimpleFoodUrl" namespace="/foods" action="updateSimpleFood" method="input" />
-<s:url id="editComplexFoodUrl" namespace="/foods" action="updateComplexFood" method="input" />
+<s:url id="editSimpleFoodUrl" namespace="/foods" action="saveSimpleFood" method="input" />
+<s:url id="editComplexFoodUrl" namespace="/foods" action="saveComplexFood" method="input" />
 
 <s:form namespace="/foods" action="deleteSimpleFoods">
 	<display:table name="simpleFoods" id="food"
@@ -23,7 +23,7 @@
 	</display:table>
 
 	<p>
-		<a href='<s:url namespace="/foods" action="createSimpleFood" method="input" />'><s:text name="foods.simpleFoods.create" /></a>
+		<a href='<s:url namespace="/foods" action="saveSimpleFood" method="input" />'><s:text name="foods.simpleFoods.create" /></a>
 		<s:if test="simpleFoods.size() > 0">
 			<s:submit cssClass="button" key="general.delete" />
 		</s:if>
@@ -45,7 +45,7 @@
 	</display:table>
 
 	<p>
-		<a href='<s:url namespace="/foods" action="createComplexFood" method="input" />'><s:text name="foods.complexFoods.create" /></a>
+		<a href='<s:url namespace="/foods" action="saveComplexFood" method="input" />'><s:text name="foods.complexFoods.create" /></a>
 		<s:if test="complexFoods.size() > 0">
 			<s:submit cssClass="button" key="general.delete" />
 		</s:if>

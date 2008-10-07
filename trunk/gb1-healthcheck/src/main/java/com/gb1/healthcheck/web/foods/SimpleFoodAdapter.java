@@ -1,5 +1,6 @@
 package com.gb1.healthcheck.web.foods;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,7 +9,7 @@ import com.gb1.healthcheck.domain.foods.Nutrient;
 import com.gb1.healthcheck.domain.foods.SimpleFood;
 import com.opensymphony.xwork2.conversion.annotations.TypeConversion;
 
-public class SimpleFoodAdapter {
+public class SimpleFoodAdapter implements Serializable {
 	private SimpleFood food;
 
 	public SimpleFoodAdapter(SimpleFood food) {

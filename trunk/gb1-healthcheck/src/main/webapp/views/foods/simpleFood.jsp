@@ -4,7 +4,7 @@
 
 <s:actionerror />
 
-<s:form namespace="/foods" action="%{foodId == null ? 'createSimpleFood' : 'updateSimpleFood'}">
+<s:form namespace="/foods" action="saveSimpleFood">
 	<div class="required">
 		<label><s:text name="food.name" />:</label>
 		<s:textfield name="model.name" />

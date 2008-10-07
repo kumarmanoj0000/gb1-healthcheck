@@ -1,5 +1,6 @@
 package com.gb1.healthcheck.web.foods;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -8,7 +9,7 @@ import com.gb1.healthcheck.domain.foods.ComplexFood;
 import com.gb1.healthcheck.domain.foods.Food;
 import com.gb1.healthcheck.services.foods.FoodService;
 
-public class ComplexFoodBuilder {
+public class ComplexFoodBuilder implements Serializable {
 	private ComplexFood source;
 	private String name;
 	private List<Long> ingredientIds = new ArrayList<Long>();
