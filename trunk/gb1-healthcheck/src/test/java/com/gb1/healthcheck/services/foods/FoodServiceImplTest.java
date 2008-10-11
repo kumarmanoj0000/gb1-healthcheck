@@ -11,12 +11,12 @@ import org.apache.commons.collections.CollectionUtils;
 import org.easymock.EasyMock;
 import org.junit.Test;
 
+import com.gb1.healthcheck.core.Validator;
 import com.gb1.healthcheck.domain.foods.ComplexFood;
-import com.gb1.healthcheck.domain.foods.ComplexFoodValidator;
+import com.gb1.healthcheck.domain.foods.FoodException;
 import com.gb1.healthcheck.domain.foods.FoodRepository;
 import com.gb1.healthcheck.domain.foods.Foods;
 import com.gb1.healthcheck.domain.foods.SimpleFood;
-import com.gb1.healthcheck.domain.foods.SimpleFoodValidator;
 import com.gb1.healthcheck.services.Hydrater;
 
 public class FoodServiceImplTest {
@@ -57,10 +57,11 @@ public class FoodServiceImplTest {
 	}
 
 	@Test
+	@SuppressWarnings("unchecked")
 	public void testCreateSimpleFood() throws Exception {
 		final SimpleFood food = Foods.apple();
 
-		SimpleFoodValidator validator = EasyMock.createMock(SimpleFoodValidator.class);
+		Validator<SimpleFood, FoodException> validator = EasyMock.createMock(Validator.class);
 		validator.validate(food);
 		EasyMock.expectLastCall();
 		EasyMock.replay(validator);
@@ -80,10 +81,11 @@ public class FoodServiceImplTest {
 	}
 
 	@Test
+	@SuppressWarnings("unchecked")
 	public void testCreateComplexFood() throws Exception {
 		final ComplexFood food = Foods.spaghetti();
 
-		ComplexFoodValidator validator = EasyMock.createMock(ComplexFoodValidator.class);
+		Validator<ComplexFood, FoodException> validator = EasyMock.createMock(Validator.class);
 		validator.validate(food);
 		EasyMock.expectLastCall();
 		EasyMock.replay(validator);
@@ -103,10 +105,11 @@ public class FoodServiceImplTest {
 	}
 
 	@Test
+	@SuppressWarnings("unchecked")
 	public void testUpdateSimpleFood() throws Exception {
 		final SimpleFood food = Foods.apple();
 
-		SimpleFoodValidator validator = EasyMock.createMock(SimpleFoodValidator.class);
+		Validator<SimpleFood, FoodException> validator = EasyMock.createMock(Validator.class);
 		validator.validate(food);
 		EasyMock.expectLastCall();
 		EasyMock.replay(validator);
@@ -126,10 +129,11 @@ public class FoodServiceImplTest {
 	}
 
 	@Test
+	@SuppressWarnings("unchecked")
 	public void testUpdateComplexFood() throws Exception {
 		final ComplexFood food = Foods.spaghetti();
 
-		ComplexFoodValidator validator = EasyMock.createMock(ComplexFoodValidator.class);
+		Validator<ComplexFood, FoodException> validator = EasyMock.createMock(Validator.class);
 		validator.validate(food);
 		EasyMock.expectLastCall();
 		EasyMock.replay(validator);

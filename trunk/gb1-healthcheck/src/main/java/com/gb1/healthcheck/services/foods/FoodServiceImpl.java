@@ -8,13 +8,12 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.gb1.healthcheck.core.Validator;
 import com.gb1.healthcheck.domain.foods.ComplexFood;
-import com.gb1.healthcheck.domain.foods.ComplexFoodValidator;
 import com.gb1.healthcheck.domain.foods.Food;
 import com.gb1.healthcheck.domain.foods.FoodException;
 import com.gb1.healthcheck.domain.foods.FoodRepository;
 import com.gb1.healthcheck.domain.foods.SimpleFood;
-import com.gb1.healthcheck.domain.foods.SimpleFoodValidator;
 import com.gb1.healthcheck.domain.meals.MealException;
 import com.gb1.healthcheck.services.Hydrater;
 
@@ -25,16 +24,16 @@ public class FoodServiceImpl implements FoodService {
 	protected FoodRepository foodRepo;
 
 	@Resource
-	protected SimpleFoodValidator simpleFoodCreationValidator;
+	protected Validator<SimpleFood, FoodException> simpleFoodCreationValidator;
 
 	@Resource
-	protected SimpleFoodValidator simpleFoodUpdateValidator;
+	protected Validator<SimpleFood, FoodException> simpleFoodUpdateValidator;
 
 	@Resource
-	protected ComplexFoodValidator complexFoodCreationValidator;
+	protected Validator<ComplexFood, FoodException> complexFoodCreationValidator;
 
 	@Resource
-	protected ComplexFoodValidator complexFoodUpdateValidator;
+	protected Validator<ComplexFood, FoodException> complexFoodUpdateValidator;
 
 	public FoodServiceImpl() {
 	}

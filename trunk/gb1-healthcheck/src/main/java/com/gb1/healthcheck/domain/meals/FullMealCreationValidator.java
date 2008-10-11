@@ -6,8 +6,10 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Component;
 
+import com.gb1.healthcheck.core.Validator;
+
 @Component("mealCreationValidator")
-public class FullMealCreationValidator implements MealValidator {
+public class FullMealCreationValidator implements Validator<Meal, MealException> {
 	@Resource
 	protected MealRepository mealRepo;
 

@@ -4,6 +4,8 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Component;
 
+import com.gb1.healthcheck.core.Validator;
+
 /**
  * A user validator used during initial creation. It executes a full check on the available
  * properties. This includes checking that the provided login name and email address are not already
@@ -12,7 +14,7 @@ import org.springframework.stereotype.Component;
  * @author Guillaume Bilodeau
  */
 @Component("userCreationValidator")
-public class FullUserCreationValidator implements UserValidator {
+public class FullUserCreationValidator implements Validator<User, UserException> {
 	@Resource
 	protected UserRepository userRepository;
 

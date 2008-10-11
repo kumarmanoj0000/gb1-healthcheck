@@ -8,11 +8,11 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.gb1.healthcheck.core.Validator;
 import com.gb1.healthcheck.domain.meals.Meal;
 import com.gb1.healthcheck.domain.meals.MealException;
 import com.gb1.healthcheck.domain.meals.MealInactivityNotifier;
 import com.gb1.healthcheck.domain.meals.MealRepository;
-import com.gb1.healthcheck.domain.meals.MealValidator;
 import com.gb1.healthcheck.domain.users.User;
 import com.gb1.healthcheck.services.Hydrater;
 
@@ -23,10 +23,10 @@ public class MealServiceImpl implements MealService {
 	protected MealRepository mealRepo;
 
 	@Resource
-	protected MealValidator mealCreationValidator;
+	protected Validator<Meal, MealException> mealCreationValidator;
 
 	@Resource
-	protected MealValidator mealUpdateValidator;
+	protected Validator<Meal, MealException> mealUpdateValidator;
 
 	@Resource
 	protected MealInactivityNotifier mealInactivityNotifier;
