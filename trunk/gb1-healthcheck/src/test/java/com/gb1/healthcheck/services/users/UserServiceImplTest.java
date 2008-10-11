@@ -178,7 +178,7 @@ public class UserServiceImplTest {
 		List<User> allUsers = new ArrayList<User>(Users.all());
 
 		UserRepository userRepo = EasyMock.createMock(UserRepository.class);
-		EasyMock.expect(userRepo.findUsers()).andReturn(allUsers);
+		EasyMock.expect(userRepo.findAllUsers()).andReturn(allUsers);
 		EasyMock.replay(userRepo);
 
 		UserServiceImpl svc = new UserServiceImpl();

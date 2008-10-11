@@ -33,7 +33,7 @@ public class EmailMealInactivityNotifierTest {
 		constants.put("mealInactivity.daysThreshold", "7");
 
 		UserRepository userRepo = EasyMock.createMock(UserRepository.class);
-		EasyMock.expect(userRepo.findUsers()).andReturn(users);
+		EasyMock.expect(userRepo.findAllUsers()).andReturn(users);
 		EasyMock.replay(userRepo);
 
 		MealRepository mealRepo = EasyMock.createMock(MealRepository.class);

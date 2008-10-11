@@ -36,7 +36,7 @@ public class EmailMealInactivityNotifier implements MealInactivityNotifier {
 
 	public void notifyUsersOfMealInactivity() {
 		Date cutDate = DateUtils.addDays(new Date(), -inactiveDaysThreshold);
-		List<User> users = userRepository.findUsers();
+		List<User> users = userRepository.findAllUsers();
 		List<MimeMessage> toSend = new ArrayList<MimeMessage>();
 
 		for (User user : users) {

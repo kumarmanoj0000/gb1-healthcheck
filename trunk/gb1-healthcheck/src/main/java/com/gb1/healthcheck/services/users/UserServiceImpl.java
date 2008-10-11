@@ -123,7 +123,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
 	@Transactional(readOnly = true)
 	public List<User> getAllUsers() {
-		return userRepository.findUsers();
+		return userRepository.findAllUsers();
 	}
 
 	public void deleteUsers(List<Long> userIds) {
