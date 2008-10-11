@@ -3,11 +3,10 @@ package com.gb1.healthcheck.services.meals;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
+import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Set;
 
 import org.apache.commons.collections.CollectionUtils;
 import org.easymock.EasyMock;
@@ -22,7 +21,6 @@ import com.gb1.healthcheck.domain.meals.Meals;
 import com.gb1.healthcheck.domain.users.User;
 import com.gb1.healthcheck.domain.users.UserRepository;
 import com.gb1.healthcheck.domain.users.Users;
-import com.gb1.healthcheck.services.Hydrater;
 
 public class MealServiceImplTest {
 	@Test
@@ -43,14 +41,9 @@ public class MealServiceImplTest {
 		assertTrue(CollectionUtils.isEqualCollection(sortedMealHistory, svc.getMealHistory(eater)));
 	}
 
-	@SuppressWarnings("unchecked")
 	@Test
 	public void testLoadMeal() {
 		Meal meal = Meals.fullItalianDinner();
-
-		Hydrater<Meal> hydrater = EasyMock.createMock(Hydrater.class);
-		EasyMock.expect(hydrater.hydrate(meal)).andReturn(meal);
-		EasyMock.replay(hydrater);
 
 		MealRepository mealRepo = EasyMock.createMock(MealRepository.class);
 		EasyMock.expect(mealRepo.findMeal(meal.getId())).andReturn(meal);
@@ -59,8 +52,7 @@ public class MealServiceImplTest {
 		MealServiceImpl svc = new MealServiceImpl();
 		svc.mealRepo = mealRepo;
 
-		assertEquals(meal, svc.findMeal(meal.getId(), hydrater));
-		EasyMock.verify(hydrater);
+		assertEquals(meal, svc.findMeal(meal.getId()));
 	}
 
 	@Test
@@ -118,7 +110,7 @@ public class MealServiceImplTest {
 
 	@Test
 	public void testDeleteMeals() {
-		Set<Long> mealIds = new HashSet<Long>();
+		List<Long> mealIds = new ArrayList<Long>();
 		mealIds.add(Meals.fullItalianDinner().getId());
 
 		MealRepository mealRepo = EasyMock.createMock(MealRepository.class);

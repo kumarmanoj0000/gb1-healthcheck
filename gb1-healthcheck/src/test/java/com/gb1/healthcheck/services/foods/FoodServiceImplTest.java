@@ -17,7 +17,6 @@ import com.gb1.healthcheck.domain.foods.FoodException;
 import com.gb1.healthcheck.domain.foods.FoodRepository;
 import com.gb1.healthcheck.domain.foods.Foods;
 import com.gb1.healthcheck.domain.foods.SimpleFood;
-import com.gb1.healthcheck.services.Hydrater;
 
 public class FoodServiceImplTest {
 	@Test
@@ -34,15 +33,9 @@ public class FoodServiceImplTest {
 		assertTrue(CollectionUtils.isEqualCollection(allSimpleFoods, svc.findAllSimpleFoods()));
 	}
 
-	@SuppressWarnings("unchecked")
 	@Test
 	public void testGetComplexFoods() {
 		List<ComplexFood> allComplexFoods = new ArrayList<ComplexFood>(Foods.allComplexFoods());
-
-		Hydrater<ComplexFood> hydrater = EasyMock.createMock(Hydrater.class);
-		EasyMock.expect(hydrater.hydrate(EasyMock.isA(ComplexFood.class))).andReturn(null).times(
-				allComplexFoods.size());
-		EasyMock.replay(hydrater);
 
 		FoodRepository foodRepo = EasyMock.createMock(FoodRepository.class);
 		EasyMock.expect(foodRepo.findAllComplexFoods()).andReturn(allComplexFoods);
@@ -51,9 +44,7 @@ public class FoodServiceImplTest {
 		FoodServiceImpl svc = new FoodServiceImpl();
 		svc.foodRepo = foodRepo;
 
-		assertTrue(CollectionUtils
-				.isEqualCollection(allComplexFoods, svc.findAllComplexFoods(hydrater)));
-		EasyMock.verify(hydrater);
+		assertTrue(CollectionUtils.isEqualCollection(allComplexFoods, svc.findAllComplexFoods()));
 	}
 
 	@Test

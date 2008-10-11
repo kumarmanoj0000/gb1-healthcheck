@@ -16,16 +16,13 @@ import org.apache.struts2.dispatcher.FlashResult;
 import org.apache.struts2.interceptor.AuthenticatedUser;
 import org.apache.struts2.interceptor.SessionAware;
 
-import com.gb1.healthcheck.domain.foods.ComplexFood;
 import com.gb1.healthcheck.domain.foods.Food;
 import com.gb1.healthcheck.domain.meals.Meal;
 import com.gb1.healthcheck.domain.meals.MealAlreadyExistsException;
 import com.gb1.healthcheck.domain.meals.MealException;
 import com.gb1.healthcheck.domain.meals.PreparationMethod;
 import com.gb1.healthcheck.domain.users.User;
-import com.gb1.healthcheck.services.IdentityHydrater;
 import com.gb1.healthcheck.services.foods.FoodService;
-import com.gb1.healthcheck.services.meals.FullMealHydrater;
 import com.gb1.healthcheck.services.meals.MealService;
 import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionSupport;
@@ -73,14 +70,13 @@ public class SaveMealAction extends ActionSupport implements SessionAware, Prepa
 
 	public void prepare() {
 		availableFoods.addAll(foodService.findAllSimpleFoods());
-		availableFoods.addAll(foodService.findAllComplexFoods(new IdentityHydrater<ComplexFood>()));
+		availableFoods.addAll(foodService.findAllComplexFoods());
 		Collections.sort(availableFoods, new Food.ByNameComparator());
 	}
 
 	@Override
 	public String input() {
-		Meal meal = (mealId == null ? new Meal().setEater(requester) : mealService.findMeal(mealId,
-				new FullMealHydrater()));
+		Meal meal = (mealId == null ? new Meal().setEater(requester) : mealService.findMeal(mealId));
 		MealBuilder model = new MealBuilder(meal);
 		sessionMap.put(MODEL_SESSION_KEY, model);
 

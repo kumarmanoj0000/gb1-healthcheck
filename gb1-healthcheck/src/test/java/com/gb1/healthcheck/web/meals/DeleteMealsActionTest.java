@@ -2,8 +2,8 @@ package com.gb1.healthcheck.web.meals;
 
 import static org.junit.Assert.assertEquals;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.easymock.EasyMock;
 import org.junit.Test;
@@ -15,7 +15,7 @@ import com.opensymphony.xwork2.Action;
 public class DeleteMealsActionTest {
 	@Test
 	public void testDeleteMeals() {
-		Set<Long> mealIds = new HashSet<Long>();
+		List<Long> mealIds = new ArrayList<Long>();
 		mealIds.add(Meals.fullItalianDinner().getId());
 
 		MealService mealSvc = EasyMock.createMock(MealService.class);

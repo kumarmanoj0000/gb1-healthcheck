@@ -1,7 +1,6 @@
 package com.gb1.healthcheck.services.meals;
 
 import java.util.List;
-import java.util.Set;
 
 import javax.annotation.Resource;
 
@@ -14,7 +13,6 @@ import com.gb1.healthcheck.domain.meals.MealException;
 import com.gb1.healthcheck.domain.meals.MealInactivityNotifier;
 import com.gb1.healthcheck.domain.meals.MealRepository;
 import com.gb1.healthcheck.domain.users.User;
-import com.gb1.healthcheck.services.Hydrater;
 
 @Service("mealService")
 @Transactional(rollbackFor = { RuntimeException.class, MealException.class })
@@ -40,9 +38,8 @@ public class MealServiceImpl implements MealService {
 	}
 
 	@Transactional(readOnly = true)
-	public Meal findMeal(Long mealId, Hydrater<Meal> hydrater) {
-		Meal meal = mealRepo.findMeal(mealId);
-		return hydrater.hydrate(meal);
+	public Meal findMeal(Long mealId) {
+		return mealRepo.findMeal(mealId);
 	}
 
 	public void createMeal(Meal meal) throws MealException {
@@ -55,7 +52,7 @@ public class MealServiceImpl implements MealService {
 		mealRepo.merge(meal);
 	}
 
-	public void deleteMeals(Set<Long> mealIds) {
+	public void deleteMeals(List<Long> mealIds) {
 		for (Long mealId : mealIds) {
 			mealRepo.delete(mealRepo.findMeal(mealId));
 		}

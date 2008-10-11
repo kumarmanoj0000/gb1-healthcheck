@@ -11,7 +11,6 @@ import org.apache.struts2.interceptor.SessionAware;
 
 import com.gb1.healthcheck.domain.foods.ComplexFood;
 import com.gb1.healthcheck.domain.foods.SimpleFood;
-import com.gb1.healthcheck.services.IdentityHydrater;
 import com.gb1.healthcheck.services.foods.FoodService;
 import com.gb1.healthcheck.web.WebConstants;
 import com.opensymphony.xwork2.Action;
@@ -54,7 +53,7 @@ public class ManageFoodsAction extends ActionSupport implements SessionAware {
 
 		List<ComplexFood> complexFoodList = getComplexFoods();
 		if (complexFoodList == null || refreshList) {
-			complexFoodList = foodService.findAllComplexFoods(new IdentityHydrater<ComplexFood>());
+			complexFoodList = foodService.findAllComplexFoods();
 			sessionMap.put(COMPLEX_FOODS_LIST_SESSION_KEY, complexFoodList);
 		}
 

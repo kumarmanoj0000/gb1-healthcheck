@@ -15,7 +15,6 @@ import com.gb1.healthcheck.domain.foods.FoodException;
 import com.gb1.healthcheck.domain.foods.FoodRepository;
 import com.gb1.healthcheck.domain.foods.SimpleFood;
 import com.gb1.healthcheck.domain.meals.MealException;
-import com.gb1.healthcheck.services.Hydrater;
 
 @Service("foodService")
 @Transactional(rollbackFor = { RuntimeException.class, MealException.class })
@@ -44,9 +43,8 @@ public class FoodServiceImpl implements FoodService {
 	}
 
 	@Transactional(readOnly = true)
-	public ComplexFood findComplexFood(Long foodId, Hydrater<ComplexFood> hydrater) {
-		ComplexFood food = foodRepo.findComplexFood(foodId);
-		return hydrater.hydrate(food);
+	public ComplexFood findComplexFood(Long foodId) {
+		return foodRepo.findComplexFood(foodId);
 	}
 
 	@Transactional(readOnly = true)
@@ -55,13 +53,8 @@ public class FoodServiceImpl implements FoodService {
 	}
 
 	@Transactional(readOnly = true)
-	public List<ComplexFood> findAllComplexFoods(Hydrater<ComplexFood> hydrater) {
-		List<ComplexFood> foods = foodRepo.findAllComplexFoods();
-		for (ComplexFood food : foods) {
-			hydrater.hydrate(food);
-		}
-
-		return foods;
+	public List<ComplexFood> findAllComplexFoods() {
+		return foodRepo.findAllComplexFoods();
 	}
 
 	@Transactional(readOnly = true)

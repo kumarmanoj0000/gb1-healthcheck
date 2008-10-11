@@ -22,6 +22,16 @@
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
 
+	<!-- Allow lazy-loading in views & controllers -->
+	<filter>
+		<filter-name>oemiv</filter-name>
+		<filter-class>org.springframework.orm.jpa.support.OpenEntityManagerInViewFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>oemiv</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+
 	<!-- Struts2 cleanup filter, necessary when using SiteMesh (must be placed before SiteMesh filter! -->
 	<filter>
 		<filter-name>struts-cleanup</filter-name>

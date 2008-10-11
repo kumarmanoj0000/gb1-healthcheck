@@ -15,13 +15,11 @@ import org.junit.Test;
 import com.gb1.healthcheck.domain.foods.ComplexFood;
 import com.gb1.healthcheck.domain.foods.Foods;
 import com.gb1.healthcheck.domain.foods.SimpleFood;
-import com.gb1.healthcheck.services.IdentityHydrater;
 import com.gb1.healthcheck.services.foods.FoodService;
 import com.opensymphony.xwork2.Action;
 
 public class ManageFoodsActionTest {
 	@Test
-	@SuppressWarnings("unchecked")
 	public void testListFoods() {
 		List<SimpleFood> allSimpleFoods = new ArrayList<SimpleFood>(Foods.allSimpleFoods());
 		List<ComplexFood> allComplexFoods = new ArrayList<ComplexFood>(Foods.allComplexFoods());
@@ -29,7 +27,7 @@ public class ManageFoodsActionTest {
 		FoodService foodSvc = EasyMock.createMock(FoodService.class);
 		EasyMock.expect(foodSvc.findAllSimpleFoods()).andReturn(
 				new ArrayList<SimpleFood>(Foods.allSimpleFoods()));
-		EasyMock.expect(foodSvc.findAllComplexFoods(EasyMock.isA(IdentityHydrater.class))).andReturn(
+		EasyMock.expect(foodSvc.findAllComplexFoods()).andReturn(
 				new ArrayList<ComplexFood>(Foods.allComplexFoods()));
 		EasyMock.replay(foodSvc);
 
