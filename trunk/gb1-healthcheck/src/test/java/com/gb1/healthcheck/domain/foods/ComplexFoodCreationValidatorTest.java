@@ -8,7 +8,7 @@ import java.util.List;
 import org.easymock.EasyMock;
 import org.junit.Test;
 
-public class FullComplexFoodCreationValidatorTest {
+public class ComplexFoodCreationValidatorTest {
 	@Test
 	public void testValidate() throws FoodException {
 		final ComplexFood food = Foods.spaghetti();
@@ -17,7 +17,7 @@ public class FullComplexFoodCreationValidatorTest {
 		EasyMock.expect(foodRepo.findFoodsByName(food.getName())).andReturn(new ArrayList<Food>());
 		EasyMock.replay(foodRepo);
 
-		FullComplexFoodCreationValidator v = new FullComplexFoodCreationValidator();
+		ComplexFoodCreationValidator v = new ComplexFoodCreationValidator();
 		v.foodRepo = foodRepo;
 
 		v.validate(food);
@@ -34,7 +34,7 @@ public class FullComplexFoodCreationValidatorTest {
 		EasyMock.expect(foodRepo.findFoodsByName(food.getName())).andReturn(foodsWithSameName);
 		EasyMock.replay(foodRepo);
 
-		FullComplexFoodCreationValidator v = new FullComplexFoodCreationValidator();
+		ComplexFoodCreationValidator v = new ComplexFoodCreationValidator();
 		v.foodRepo = foodRepo;
 
 		try {
@@ -53,7 +53,7 @@ public class FullComplexFoodCreationValidatorTest {
 		EasyMock.expect(foodRepo.findFoodsByName(food.getName())).andReturn(new ArrayList<Food>());
 		EasyMock.replay(foodRepo);
 
-		FullComplexFoodCreationValidator v = new FullComplexFoodCreationValidator();
+		ComplexFoodCreationValidator v = new ComplexFoodCreationValidator();
 		v.foodRepo = foodRepo;
 
 		try {

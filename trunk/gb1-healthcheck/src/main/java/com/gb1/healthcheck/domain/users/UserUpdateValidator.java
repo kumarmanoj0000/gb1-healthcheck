@@ -15,11 +15,11 @@ import com.gb1.healthcheck.core.Validator;
  * @author Guillaume Bilodeau
  */
 @Component("userUpdateValidator")
-public class FullUserUpdateValidator implements Validator<User, UserException> {
+public class UserUpdateValidator implements Validator<User, UserException> {
 	@Resource
 	protected UserRepository userRepo;
 
-	public FullUserUpdateValidator() {
+	public UserUpdateValidator() {
 	}
 
 	/**

@@ -9,11 +9,11 @@ import org.springframework.stereotype.Component;
 import com.gb1.healthcheck.core.Validator;
 
 @Component("mealUpdateValidator")
-public class FullMealUpdateValidator implements Validator<Meal, MealException> {
+public class MealUpdateValidator implements Validator<Meal, MealException> {
 	@Resource
 	protected MealRepository mealRepo;
 
-	public FullMealUpdateValidator() {
+	public MealUpdateValidator() {
 	}
 
 	public void validate(Meal meal) throws MealException {
