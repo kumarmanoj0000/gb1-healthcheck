@@ -40,23 +40,23 @@ public class FoodServiceImpl implements FoodService {
 
 	@Transactional(readOnly = true)
 	public SimpleFood getSimpleFood(Long foodId) {
-		return foodRepo.loadSimpleFood(foodId);
+		return foodRepo.findSimpleFood(foodId);
 	}
 
 	@Transactional(readOnly = true)
 	public ComplexFood getComplexFood(Long foodId, Hydrater<ComplexFood> hydrater) {
-		ComplexFood food = foodRepo.loadComplexFood(foodId);
+		ComplexFood food = foodRepo.findComplexFood(foodId);
 		return hydrater.hydrate(food);
 	}
 
 	@Transactional(readOnly = true)
 	public List<SimpleFood> getSimpleFoods() {
-		return foodRepo.findSimpleFoods();
+		return foodRepo.findAllSimpleFoods();
 	}
 
 	@Transactional(readOnly = true)
 	public List<ComplexFood> getComplexFoods(Hydrater<ComplexFood> hydrater) {
-		List<ComplexFood> foods = foodRepo.findComplexFoods();
+		List<ComplexFood> foods = foodRepo.findAllComplexFoods();
 		for (ComplexFood food : foods) {
 			hydrater.hydrate(food);
 		}
@@ -66,14 +66,14 @@ public class FoodServiceImpl implements FoodService {
 
 	@Transactional(readOnly = true)
 	public Food getFood(Long foodId) {
-		return foodRepo.loadFood(foodId);
+		return foodRepo.findFood(foodId);
 	}
 
 	@Transactional(readOnly = true)
 	public List<Food> getFoods(List<Long> foodIds) {
 		List<Food> foods = new ArrayList<Food>();
 		for (Long foodId : foodIds) {
-			foods.add(foodRepo.loadFood(foodId));
+			foods.add(foodRepo.findFood(foodId));
 		}
 
 		return foods;
@@ -101,7 +101,7 @@ public class FoodServiceImpl implements FoodService {
 
 	public void deleteFoods(List<Long> foodIds) {
 		for (Long foodId : foodIds) {
-			foodRepo.delete(foodRepo.loadFood(foodId));
+			foodRepo.delete(foodRepo.findFood(foodId));
 		}
 	}
 }

@@ -23,15 +23,15 @@ public class JpaFoodRepository implements FoodRepository {
 		entityManager.merge(food);
 	}
 
-	public Food loadFood(Long foodId) {
+	public Food findFood(Long foodId) {
 		return entityManager.find(Food.class, foodId);
 	}
 
-	public SimpleFood loadSimpleFood(Long foodId) {
+	public SimpleFood findSimpleFood(Long foodId) {
 		return entityManager.find(SimpleFood.class, foodId);
 	}
 
-	public ComplexFood loadComplexFood(Long foodId) {
+	public ComplexFood findComplexFood(Long foodId) {
 		return entityManager.find(ComplexFood.class, foodId);
 	}
 
@@ -53,12 +53,12 @@ public class JpaFoodRepository implements FoodRepository {
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<SimpleFood> findSimpleFoods() {
+	public List<SimpleFood> findAllSimpleFoods() {
 		return entityManager.createQuery("select sf from SimpleFood sf").getResultList();
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<ComplexFood> findComplexFoods() {
+	public List<ComplexFood> findAllComplexFoods() {
 		return entityManager.createQuery("select cf from ComplexFood cf").getResultList();
 	}
 

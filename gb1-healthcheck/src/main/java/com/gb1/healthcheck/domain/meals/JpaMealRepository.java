@@ -19,36 +19,36 @@ public class JpaMealRepository implements MealRepository {
 	public JpaMealRepository() {
 	}
 
-	public Meal loadMeal(Long mealId) {
+	public Meal findMeal(Long mealId) {
 		return entityManager.find(Meal.class, mealId);
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<Meal> findMealsBy(User eater) {
+	public List<Meal> findMeals(User eater) {
 		return entityManager.createQuery("select m from Meal m where m.eater = ?1").setParameter(1,
 				eater).getResultList();
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<Meal> findMealsBy(User eater, Date instant) {
+	public List<Meal> findMeals(User eater, Date instant) {
 		return entityManager.createQuery(
 				"select m from Meal m where m.eater = ?1 and m.instant = ?2")
 				.setParameter(1, eater).setParameter(2, instant).getResultList();
 	}
 
-	public void persistMeal(Meal meal) {
+	public void persist(Meal meal) {
 		entityManager.persist(meal);
 	}
 
-	public void mergeMeal(Meal meal) {
+	public void merge(Meal meal) {
 		entityManager.merge(meal);
 	}
 
-	public void deleteMeal(Meal meal) {
+	public void delete(Meal meal) {
 		entityManager.remove(meal);
 	}
 
-	public Meal getLastMealBy(User eater) {
+	public Meal findLastMeal(User eater) {
 		Meal lastMeal = null;
 
 		try {

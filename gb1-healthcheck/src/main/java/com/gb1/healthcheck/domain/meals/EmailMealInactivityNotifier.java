@@ -40,7 +40,7 @@ public class EmailMealInactivityNotifier implements MealInactivityNotifier {
 		List<MimeMessage> toSend = new ArrayList<MimeMessage>();
 
 		for (User user : users) {
-			Meal lastMeal = mealRepository.getLastMealBy(user);
+			Meal lastMeal = mealRepository.findLastMeal(user);
 			if (lastMeal == null || lastMeal.getInstant().before(cutDate)) {
 				MimeMessage msg = emailBuilder.createMessage(user, lastMeal);
 				toSend.add(msg);

@@ -32,7 +32,7 @@ public class JpaMealRepositoryTest extends AbstractInMemoryPersistenceTestCase {
 		Meal meal2 = new Meal().setEater(eater).setInstant(parseInstant("2007-10-15 18:30"))
 				.addDish(Meals.redWineDrink()).addDish(Meals.spaghettiDish());
 
-		List<Meal> meals = mealRepo.findMealsBy(eater);
+		List<Meal> meals = mealRepo.findMeals(eater);
 		assertEquals(2, meals.size());
 		assertTrue(meals.contains(meal1));
 		assertTrue(meals.contains(meal2));
@@ -45,7 +45,7 @@ public class JpaMealRepositoryTest extends AbstractInMemoryPersistenceTestCase {
 		Meal meal = new Meal().setEater(eater).setInstant(mealInstant).addDish(
 				Meals.spaghettiDish());
 
-		List<Meal> meals = mealRepo.findMealsBy(eater, mealInstant);
+		List<Meal> meals = mealRepo.findMeals(eater, mealInstant);
 
 		assertEquals(1, meals.size());
 		assertTrue(meals.contains(meal));
@@ -55,16 +55,16 @@ public class JpaMealRepositoryTest extends AbstractInMemoryPersistenceTestCase {
 	public void testSaveMeal() throws ParseException {
 		Meal meal = new Meal().setEater(Users.lg()).setInstant(parseInstant("2007-10-16 18:00"))
 				.addDish(Meals.spaghettiDish());
-		mealRepo.persistMeal(meal);
+		mealRepo.persist(meal);
 
-		assertEquals(meal, mealRepo.loadMeal(meal.getId()));
+		assertEquals(meal, mealRepo.findMeal(meal.getId()));
 	}
 
 	@Test
 	public void testDeleteMeal() {
-		Meal meal = mealRepo.loadMeal(Meals.fullItalianDinner().getId());
-		mealRepo.deleteMeal(meal);
-		assertNull(mealRepo.loadMeal(meal.getId()));
+		Meal meal = mealRepo.findMeal(Meals.fullItalianDinner().getId());
+		mealRepo.delete(meal);
+		assertNull(mealRepo.findMeal(meal.getId()));
 	}
 
 	@Test
@@ -72,12 +72,12 @@ public class JpaMealRepositoryTest extends AbstractInMemoryPersistenceTestCase {
 		ExposedUser user = new ExposedUser();
 		user.setId(3L);
 
-		assertNull(mealRepo.getLastMealBy(user));
+		assertNull(mealRepo.findLastMeal(user));
 	}
 
 	@Test
 	public void testGetLastMeal() throws Exception {
-		Meal lastMeal = mealRepo.getLastMealBy(Users.gb());
+		Meal lastMeal = mealRepo.findLastMeal(Users.gb());
 		assertNotNull(lastMeal);
 		assertEquals(parseInstant("2007-10-15 18:30"), lastMeal.getInstant());
 	}

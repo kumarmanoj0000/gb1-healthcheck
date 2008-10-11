@@ -34,7 +34,7 @@ public class MealServiceImplTest {
 		Collections.sort(sortedMealHistory, new Meal.ByInstantComparator());
 
 		MealRepository mealRepo = EasyMock.createMock(MealRepository.class);
-		EasyMock.expect(mealRepo.findMealsBy(eater)).andReturn(mealHistory);
+		EasyMock.expect(mealRepo.findMeals(eater)).andReturn(mealHistory);
 		EasyMock.replay(mealRepo);
 
 		MealServiceImpl svc = new MealServiceImpl();
@@ -53,7 +53,7 @@ public class MealServiceImplTest {
 		EasyMock.replay(hydrater);
 
 		MealRepository mealRepo = EasyMock.createMock(MealRepository.class);
-		EasyMock.expect(mealRepo.loadMeal(meal.getId())).andReturn(meal);
+		EasyMock.expect(mealRepo.findMeal(meal.getId())).andReturn(meal);
 		EasyMock.replay(mealRepo);
 
 		MealServiceImpl svc = new MealServiceImpl();
@@ -69,11 +69,11 @@ public class MealServiceImplTest {
 		final Meal meal = Meals.fullItalianDinner();
 
 		UserRepository userRepo = EasyMock.createMock(UserRepository.class);
-		EasyMock.expect(userRepo.loadUser(meal.getEater().getId())).andReturn(meal.getEater());
+		EasyMock.expect(userRepo.findUser(meal.getEater().getId())).andReturn(meal.getEater());
 		EasyMock.replay(userRepo);
 
 		MealRepository mealRepo = EasyMock.createMock(MealRepository.class);
-		mealRepo.persistMeal(meal);
+		mealRepo.persist(meal);
 		EasyMock.expectLastCall();
 		EasyMock.replay(mealRepo);
 
@@ -103,7 +103,7 @@ public class MealServiceImplTest {
 		EasyMock.replay(validator);
 
 		MealRepository mealRepo = EasyMock.createMock(MealRepository.class);
-		mealRepo.mergeMeal(meal);
+		mealRepo.merge(meal);
 		EasyMock.expectLastCall();
 		EasyMock.replay(mealRepo);
 
@@ -122,9 +122,9 @@ public class MealServiceImplTest {
 		mealIds.add(Meals.fullItalianDinner().getId());
 
 		MealRepository mealRepo = EasyMock.createMock(MealRepository.class);
-		EasyMock.expect(mealRepo.loadMeal(Meals.fullItalianDinner().getId())).andReturn(
+		EasyMock.expect(mealRepo.findMeal(Meals.fullItalianDinner().getId())).andReturn(
 				Meals.fullItalianDinner());
-		mealRepo.deleteMeal(Meals.fullItalianDinner());
+		mealRepo.delete(Meals.fullItalianDinner());
 		EasyMock.expectLastCall().once();
 		EasyMock.replay(mealRepo);
 

@@ -63,7 +63,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 	public UserActivationRequest registerUser(User user) throws UserException {
 		userCreationValidator.validate(user);
 		UserActivationRequest actRequest = userActivationRequester.requestUserActivation(user);
-		userRepository.persistUser(actRequest.getPendingUser());
+		userRepository.persist(actRequest.getPendingUser());
 
 		return actRequest;
 	}
@@ -82,7 +82,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
 	public void updateUser(User user) throws UserException {
 		userUpdateValidator.validate(user);
-		userRepository.mergeUser(user);
+		userRepository.merge(user);
 	}
 
 	@Transactional(readOnly = true)
@@ -97,7 +97,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
 	@Transactional(readOnly = true)
 	public User getUser(Long userId) {
-		return userRepository.loadUser(userId);
+		return userRepository.findUser(userId);
 	}
 
 	@Transactional(readOnly = true)
@@ -128,18 +128,18 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
 	public void deleteUsers(List<Long> userIds) {
 		for (Long userId : userIds) {
-			userRepository.deleteUser(userRepository.loadUser(userId));
+			userRepository.delete(userRepository.findUser(userId));
 		}
 	}
 
 	public void changeUserPassword(Long userId, String currentPassword, String newPassword)
 			throws InvalidPasswordException {
-		User user = userRepository.loadUser(userId);
+		User user = userRepository.findUser(userId);
 		user.changePassword(currentPassword, newPassword);
 	}
 
 	public void resetUserPassword(Long userId) {
-		User user = userRepository.loadUser(userId);
+		User user = userRepository.findUser(userId);
 		user.resetPassword(passwordGenerator.generatePassword(generatedPasswordLength));
 		passwordResetNotifier.notifyPasswordReset(user);
 	}

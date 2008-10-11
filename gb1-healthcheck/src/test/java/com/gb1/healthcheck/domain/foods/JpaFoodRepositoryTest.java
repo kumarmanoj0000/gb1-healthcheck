@@ -21,7 +21,7 @@ public class JpaFoodRepositoryTest extends AbstractInMemoryPersistenceTestCase {
 	@Test
 	public void testLoadFood() {
 		final Long foodId = 1L;
-		assertEquals(foodId, foodRepo.loadFood(foodId).getId());
+		assertEquals(foodId, foodRepo.findFood(foodId).getId());
 	}
 
 	@Test
@@ -43,21 +43,21 @@ public class JpaFoodRepositoryTest extends AbstractInMemoryPersistenceTestCase {
 	@Test
 	public void testFindSimpleFoods() {
 		Set<SimpleFood> expectedFoods = Foods.allSimpleFoods();
-		List<SimpleFood> loadedFoods = foodRepo.findSimpleFoods();
+		List<SimpleFood> loadedFoods = foodRepo.findAllSimpleFoods();
 		assertTrue(CollectionUtils.isEqualCollection(expectedFoods, loadedFoods));
 	}
 
 	@Test
 	public void testFindComplexFoods() {
 		Set<ComplexFood> expectedFoods = Foods.allComplexFoods();
-		List<ComplexFood> loadedFoods = foodRepo.findComplexFoods();
+		List<ComplexFood> loadedFoods = foodRepo.findAllComplexFoods();
 		assertTrue(CollectionUtils.isEqualCollection(expectedFoods, loadedFoods));
 	}
 
 	@Test
 	public void testDeleteFood() {
-		Food food = foodRepo.loadFood(Foods.apple().getId());
+		Food food = foodRepo.findFood(Foods.apple().getId());
 		foodRepo.delete(food);
-		assertNull(foodRepo.loadFood(food.getId()));
+		assertNull(foodRepo.findFood(food.getId()));
 	}
 }

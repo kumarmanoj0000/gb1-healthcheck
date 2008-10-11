@@ -16,14 +16,14 @@ public class JpaUserRepositoryTest extends AbstractInMemoryPersistenceTestCase {
 	@Test
 	public void testLoadUser() {
 		final Long userId = 1L;
-		User u = userRepo.loadUser(userId);
+		User u = userRepo.findUser(userId);
 
 		assertEquals(userId, u.getId());
 	}
 
 	@Test
 	public void testLoadUnknownUser() {
-		assertNull(userRepo.loadUser(-1L));
+		assertNull(userRepo.findUser(-1L));
 	}
 
 	@Test
@@ -59,14 +59,14 @@ public class JpaUserRepositoryTest extends AbstractInMemoryPersistenceTestCase {
 		u.setEmail("email@gb1.com");
 		u.assignRole(Role.ADMINISTRATOR);
 
-		userRepo.persistUser(u);
-		assertEquals(u, userRepo.loadUser(u.getId()));
+		userRepo.persist(u);
+		assertEquals(u, userRepo.findUser(u.getId()));
 	}
 
 	@Test
 	public void testDeleteUsers() {
-		User user = userRepo.loadUser(Users.gb().getId());
-		userRepo.deleteUser(user);
-		assertNull(userRepo.loadUser(user.getId()));
+		User user = userRepo.findUser(Users.gb().getId());
+		userRepo.delete(user);
+		assertNull(userRepo.findUser(user.getId()));
 	}
 }

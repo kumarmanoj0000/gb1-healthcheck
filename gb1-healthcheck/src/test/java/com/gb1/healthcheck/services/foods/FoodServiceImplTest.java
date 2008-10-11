@@ -25,7 +25,7 @@ public class FoodServiceImplTest {
 		List<SimpleFood> allSimpleFoods = new ArrayList<SimpleFood>(Foods.allSimpleFoods());
 
 		FoodRepository foodRepo = EasyMock.createMock(FoodRepository.class);
-		EasyMock.expect(foodRepo.findSimpleFoods()).andReturn(allSimpleFoods);
+		EasyMock.expect(foodRepo.findAllSimpleFoods()).andReturn(allSimpleFoods);
 		EasyMock.replay(foodRepo);
 
 		FoodServiceImpl svc = new FoodServiceImpl();
@@ -45,7 +45,7 @@ public class FoodServiceImplTest {
 		EasyMock.replay(hydrater);
 
 		FoodRepository foodRepo = EasyMock.createMock(FoodRepository.class);
-		EasyMock.expect(foodRepo.findComplexFoods()).andReturn(allComplexFoods);
+		EasyMock.expect(foodRepo.findAllComplexFoods()).andReturn(allComplexFoods);
 		EasyMock.replay(foodRepo);
 
 		FoodServiceImpl svc = new FoodServiceImpl();
@@ -157,7 +157,7 @@ public class FoodServiceImplTest {
 		final Long foodId = 1L;
 
 		FoodRepository foodRepo = EasyMock.createMock(FoodRepository.class);
-		EasyMock.expect(foodRepo.loadSimpleFood(foodId)).andReturn(Foods.apple());
+		EasyMock.expect(foodRepo.findSimpleFood(foodId)).andReturn(Foods.apple());
 		EasyMock.replay(foodRepo);
 
 		FoodServiceImpl svc = new FoodServiceImpl();
@@ -169,7 +169,7 @@ public class FoodServiceImplTest {
 	@Test
 	public void testDeleteSimpleFood() {
 		FoodRepository foodRepo = EasyMock.createMock(FoodRepository.class);
-		EasyMock.expect(foodRepo.loadFood(Foods.apple().getId())).andReturn(Foods.apple());
+		EasyMock.expect(foodRepo.findFood(Foods.apple().getId())).andReturn(Foods.apple());
 		foodRepo.delete(Foods.apple());
 		EasyMock.expectLastCall();
 		EasyMock.replay(foodRepo);
