@@ -1,8 +1,6 @@
 package com.gb1.healthcheck.web.meals;
 
 import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Set;
 
 import javax.annotation.Resource;
 
@@ -29,10 +27,7 @@ public class DeleteMealsAction extends ActionSupport {
 	@Override
 	public String execute() {
 		if (mealIds != null) {
-			Set<Long> idsToDelete = new HashSet<Long>();
-			idsToDelete.addAll(Arrays.asList(mealIds));
-
-			mealService.deleteMeals(idsToDelete);
+			mealService.deleteMeals(Arrays.asList(mealIds));
 			addActionMessage(getText("meals.delete.success"));
 		}
 

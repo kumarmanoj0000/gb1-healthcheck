@@ -25,9 +25,7 @@ import com.gb1.healthcheck.domain.meals.Meals;
 import com.gb1.healthcheck.domain.meals.PreparationMethod;
 import com.gb1.healthcheck.domain.users.User;
 import com.gb1.healthcheck.domain.users.Users;
-import com.gb1.healthcheck.services.IdentityHydrater;
 import com.gb1.healthcheck.services.foods.FoodService;
-import com.gb1.healthcheck.services.meals.FullMealHydrater;
 import com.gb1.healthcheck.services.meals.MealService;
 import com.opensymphony.xwork2.Action;
 
@@ -40,7 +38,6 @@ public class SaveMealActionTest {
 	}
 
 	@Test
-	@SuppressWarnings("unchecked")
 	public void testPrepare() {
 		List<Food> availableFoods = new LinkedList<Food>();
 		availableFoods.addAll(Foods.allSimpleFoods());
@@ -50,8 +47,8 @@ public class SaveMealActionTest {
 		FoodService foodService = EasyMock.createMock(FoodService.class);
 		EasyMock.expect(foodService.findAllSimpleFoods()).andReturn(
 				new ArrayList<SimpleFood>(Foods.allSimpleFoods()));
-		EasyMock.expect(foodService.findAllComplexFoods(EasyMock.isA(IdentityHydrater.class)))
-				.andReturn(new ArrayList<ComplexFood>(Foods.allComplexFoods()));
+		EasyMock.expect(foodService.findAllComplexFoods()).andReturn(
+				new ArrayList<ComplexFood>(Foods.allComplexFoods()));
 		EasyMock.replay(foodService);
 
 		SaveMealAction action = new SaveMealAction();
@@ -64,15 +61,14 @@ public class SaveMealActionTest {
 	}
 
 	@Test
-	@SuppressWarnings("unchecked")
 	public void testSubmitCreate() throws MealException {
 		User requester = Users.lg();
 
 		FoodService foodService = EasyMock.createMock(FoodService.class);
 		EasyMock.expect(foodService.findAllSimpleFoods()).andReturn(
 				new ArrayList<SimpleFood>(Foods.allSimpleFoods()));
-		EasyMock.expect(foodService.findAllComplexFoods(EasyMock.isA(IdentityHydrater.class)))
-				.andReturn(new ArrayList<ComplexFood>(Foods.allComplexFoods()));
+		EasyMock.expect(foodService.findAllComplexFoods()).andReturn(
+				new ArrayList<ComplexFood>(Foods.allComplexFoods()));
 		EasyMock.replay(foodService);
 
 		MealService mealSvc = EasyMock.createMock(MealService.class);
@@ -91,15 +87,14 @@ public class SaveMealActionTest {
 	}
 
 	@Test
-	@SuppressWarnings("unchecked")
 	public void testSubmitCreateWithErrors() throws MealException {
 		User requester = Users.lg();
 
 		FoodService foodService = EasyMock.createMock(FoodService.class);
 		EasyMock.expect(foodService.findAllSimpleFoods()).andReturn(
 				new ArrayList<SimpleFood>(Foods.allSimpleFoods()));
-		EasyMock.expect(foodService.findAllComplexFoods(EasyMock.isA(IdentityHydrater.class)))
-				.andReturn(new ArrayList<ComplexFood>(Foods.allComplexFoods()));
+		EasyMock.expect(foodService.findAllComplexFoods()).andReturn(
+				new ArrayList<ComplexFood>(Foods.allComplexFoods()));
 		EasyMock.replay(foodService);
 
 		MealService mealSvc = EasyMock.createMock(MealService.class);
@@ -123,9 +118,7 @@ public class SaveMealActionTest {
 		Meal dinner = Meals.fullItalianDinner();
 
 		MealService mealSvc = EasyMock.createMock(MealService.class);
-		EasyMock.expect(
-				mealSvc.findMeal(EasyMock.eq(dinner.getId()), EasyMock.isA(FullMealHydrater.class)))
-				.andReturn(dinner);
+		EasyMock.expect(mealSvc.findMeal(EasyMock.eq(dinner.getId()))).andReturn(dinner);
 		EasyMock.replay(mealSvc);
 
 		SaveMealAction action = new SaveMealAction();
@@ -148,9 +141,7 @@ public class SaveMealActionTest {
 		EasyMock.replay(foodSvc);
 
 		MealService mealSvc = EasyMock.createMock(MealService.class);
-		EasyMock.expect(
-				mealSvc.findMeal(EasyMock.eq(meal.getId()), EasyMock.isA(FullMealHydrater.class)))
-				.andReturn(meal);
+		EasyMock.expect(mealSvc.findMeal(EasyMock.eq(meal.getId()))).andReturn(meal);
 		mealSvc.updateMeal(meal);
 		EasyMock.expectLastCall();
 		EasyMock.replay(mealSvc);
@@ -176,9 +167,7 @@ public class SaveMealActionTest {
 		EasyMock.replay(foodSvc);
 
 		MealService mealSvc = EasyMock.createMock(MealService.class);
-		EasyMock.expect(
-				mealSvc.findMeal(EasyMock.eq(meal.getId()), EasyMock.isA(FullMealHydrater.class)))
-				.andReturn(meal);
+		EasyMock.expect(mealSvc.findMeal(EasyMock.eq(meal.getId()))).andReturn(meal);
 		mealSvc.updateMeal(meal);
 		EasyMock.expectLastCall().andThrow(new MealException() {
 		});

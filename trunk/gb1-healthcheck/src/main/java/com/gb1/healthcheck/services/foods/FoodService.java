@@ -6,16 +6,15 @@ import com.gb1.healthcheck.domain.foods.ComplexFood;
 import com.gb1.healthcheck.domain.foods.Food;
 import com.gb1.healthcheck.domain.foods.FoodException;
 import com.gb1.healthcheck.domain.foods.SimpleFood;
-import com.gb1.healthcheck.services.Hydrater;
 
 public interface FoodService {
 	SimpleFood findSimpleFood(Long foodId);
 
-	ComplexFood findComplexFood(Long foodId, Hydrater<ComplexFood> hydrater);
+	ComplexFood findComplexFood(Long foodId);
 
 	List<SimpleFood> findAllSimpleFoods();
 
-	List<ComplexFood> findAllComplexFoods(Hydrater<ComplexFood> hydrater);
+	List<ComplexFood> findAllComplexFoods();
 
 	Food findFood(Long foodId);
 

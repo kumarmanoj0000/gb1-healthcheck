@@ -18,9 +18,7 @@ import com.gb1.healthcheck.domain.foods.ComplexFoodHasNoIngredientsException;
 import com.gb1.healthcheck.domain.foods.Food;
 import com.gb1.healthcheck.domain.foods.FoodAlreadyExistsException;
 import com.gb1.healthcheck.domain.foods.FoodException;
-import com.gb1.healthcheck.services.IdentityHydrater;
 import com.gb1.healthcheck.services.foods.FoodService;
-import com.gb1.healthcheck.services.foods.FullComplexFoodHydrater;
 import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.Preparable;
@@ -59,15 +57,14 @@ public class SaveComplexFoodAction extends ActionSupport implements SessionAware
 
 	public void prepare() throws Exception {
 		availableIngredients.addAll(foodService.findAllSimpleFoods());
-		availableIngredients.addAll(foodService
-				.findAllComplexFoods(new IdentityHydrater<ComplexFood>()));
+		availableIngredients.addAll(foodService.findAllComplexFoods());
 		Collections.sort(availableIngredients, new Food.ByNameComparator());
 	}
 
 	@Override
 	public String input() {
-		ComplexFood food = (foodId == null ? new ComplexFood() : foodService.findComplexFood(
-				foodId, new FullComplexFoodHydrater()));
+		ComplexFood food = (foodId == null ? new ComplexFood() : foodService
+				.findComplexFood(foodId));
 		sessionMap.put(MODEL_SESSION_KEY, new ComplexFoodBuilder(food));
 
 		return Action.INPUT;
