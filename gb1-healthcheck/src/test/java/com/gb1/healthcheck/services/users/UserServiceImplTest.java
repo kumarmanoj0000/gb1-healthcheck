@@ -16,6 +16,7 @@ import org.springframework.security.userdetails.UserDetails;
 import org.springframework.security.userdetails.UsernameNotFoundException;
 
 import com.gb1.healthcheck.core.Token;
+import com.gb1.healthcheck.core.Validator;
 import com.gb1.healthcheck.domain.users.ExposedUser;
 import com.gb1.healthcheck.domain.users.LostPasswordReminder;
 import com.gb1.healthcheck.domain.users.PasswordGenerator;
@@ -28,15 +29,15 @@ import com.gb1.healthcheck.domain.users.UserActivationRequest;
 import com.gb1.healthcheck.domain.users.UserActivationRequester;
 import com.gb1.healthcheck.domain.users.UserException;
 import com.gb1.healthcheck.domain.users.UserRepository;
-import com.gb1.healthcheck.domain.users.UserValidator;
 import com.gb1.healthcheck.domain.users.Users;
 
 public class UserServiceImplTest {
 	@Test
+	@SuppressWarnings("unchecked")
 	public void testRegisterUser() throws UserException {
 		User user = new User("login", "1");
 
-		UserValidator validator = EasyMock.createMock(UserValidator.class);
+		Validator<User, UserException> validator = EasyMock.createMock(Validator.class);
 		validator.validate(EasyMock.isA(User.class));
 		EasyMock.replay(validator);
 
@@ -66,10 +67,11 @@ public class UserServiceImplTest {
 	}
 
 	@Test
+	@SuppressWarnings("unchecked")
 	public void testModifyUserOk() throws UserException {
 		final User user = Users.gb();
 
-		UserValidator validator = EasyMock.createMock(UserValidator.class);
+		Validator<User, UserException> validator = EasyMock.createMock(Validator.class);
 		validator.validate(user);
 		EasyMock.replay(validator);
 

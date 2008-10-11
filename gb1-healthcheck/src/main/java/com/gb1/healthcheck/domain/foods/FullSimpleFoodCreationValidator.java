@@ -4,8 +4,10 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Component;
 
+import com.gb1.healthcheck.core.Validator;
+
 @Component("simpleFoodCreationValidator")
-public class FullSimpleFoodCreationValidator implements SimpleFoodValidator {
+public class FullSimpleFoodCreationValidator implements Validator<SimpleFood, FoodException> {
 	@Resource
 	protected FoodRepository foodRepo;
 

@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.gb1.healthcheck.core.Token;
+import com.gb1.healthcheck.core.Validator;
 import com.gb1.healthcheck.domain.users.InvalidPasswordException;
 import com.gb1.healthcheck.domain.users.LostPasswordReminder;
 import com.gb1.healthcheck.domain.users.PasswordGenerator;
@@ -24,7 +25,6 @@ import com.gb1.healthcheck.domain.users.UserActivationRequest;
 import com.gb1.healthcheck.domain.users.UserActivationRequester;
 import com.gb1.healthcheck.domain.users.UserException;
 import com.gb1.healthcheck.domain.users.UserRepository;
-import com.gb1.healthcheck.domain.users.UserValidator;
 
 /**
  * The default implementation of the user service.
@@ -38,10 +38,10 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 	protected UserRepository userRepository;
 
 	@Resource
-	protected UserValidator userCreationValidator;
+	protected Validator<User, UserException> userCreationValidator;
 
 	@Resource
-	protected UserValidator userUpdateValidator;
+	protected Validator<User, UserException> userUpdateValidator;
 
 	@Resource
 	protected UserActivationRequester userActivationRequester;

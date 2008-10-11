@@ -6,6 +6,8 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Component;
 
+import com.gb1.healthcheck.core.Validator;
+
 /**
  * A user validator used for user updates. It executes a full check on the available properties.
  * This includes checking that the provided email address is not already owned by existing users.
@@ -13,7 +15,7 @@ import org.springframework.stereotype.Component;
  * @author Guillaume Bilodeau
  */
 @Component("userUpdateValidator")
-public class FullUserUpdateValidator implements UserValidator {
+public class FullUserUpdateValidator implements Validator<User, UserException> {
 	@Resource
 	protected UserRepository userRepo;
 

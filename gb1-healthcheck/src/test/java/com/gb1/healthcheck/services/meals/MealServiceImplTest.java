@@ -13,11 +13,11 @@ import org.apache.commons.collections.CollectionUtils;
 import org.easymock.EasyMock;
 import org.junit.Test;
 
+import com.gb1.healthcheck.core.Validator;
 import com.gb1.healthcheck.domain.meals.Meal;
 import com.gb1.healthcheck.domain.meals.MealException;
 import com.gb1.healthcheck.domain.meals.MealInactivityNotifier;
 import com.gb1.healthcheck.domain.meals.MealRepository;
-import com.gb1.healthcheck.domain.meals.MealValidator;
 import com.gb1.healthcheck.domain.meals.Meals;
 import com.gb1.healthcheck.domain.users.User;
 import com.gb1.healthcheck.domain.users.UserRepository;
@@ -64,6 +64,7 @@ public class MealServiceImplTest {
 	}
 
 	@Test
+	@SuppressWarnings("unchecked")
 	public void testCreateMeal() throws MealException {
 		final Meal meal = Meals.fullItalianDinner();
 
@@ -76,7 +77,7 @@ public class MealServiceImplTest {
 		EasyMock.expectLastCall();
 		EasyMock.replay(mealRepo);
 
-		MealValidator validator = EasyMock.createMock(MealValidator.class);
+		Validator<Meal, MealException> validator = EasyMock.createMock(Validator.class);
 		validator.validate(meal);
 		EasyMock.expectLastCall();
 		EasyMock.replay(validator);
@@ -92,10 +93,11 @@ public class MealServiceImplTest {
 	}
 
 	@Test
+	@SuppressWarnings("unchecked")
 	public void testUpdateMeal() throws MealException {
 		final Meal meal = Meals.fullItalianDinner();
 
-		MealValidator validator = EasyMock.createMock(MealValidator.class);
+		Validator<Meal, MealException> validator = EasyMock.createMock(Validator.class);
 		validator.validate(meal);
 		EasyMock.expectLastCall();
 		EasyMock.replay(validator);
