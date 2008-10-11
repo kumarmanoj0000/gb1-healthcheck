@@ -8,7 +8,7 @@ import java.util.List;
 import org.easymock.EasyMock;
 import org.junit.Test;
 
-public class FullSimpleFoodUpdateValidatorTest {
+public class SimpleFoodUpdateValidatorTest {
 	@Test
 	public void testValidate() throws Exception {
 		final SimpleFood food = Foods.apple();
@@ -17,7 +17,7 @@ public class FullSimpleFoodUpdateValidatorTest {
 		EasyMock.expect(foodRepo.findFoodsByName(food.getName())).andReturn(new ArrayList<Food>());
 		EasyMock.replay(foodRepo);
 
-		FullSimpleFoodUpdateValidator v = new FullSimpleFoodUpdateValidator();
+		SimpleFoodUpdateValidator v = new SimpleFoodUpdateValidator();
 		v.foodRepo = foodRepo;
 		v.validate(food);
 	}
@@ -32,7 +32,7 @@ public class FullSimpleFoodUpdateValidatorTest {
 		EasyMock.expect(foodRepo.findFoodsByName(food.getName())).andReturn(foodsWithSameName);
 		EasyMock.replay(foodRepo);
 
-		FullSimpleFoodUpdateValidator v = new FullSimpleFoodUpdateValidator();
+		SimpleFoodUpdateValidator v = new SimpleFoodUpdateValidator();
 		v.foodRepo = foodRepo;
 		v.validate(food);
 	}
@@ -51,7 +51,7 @@ public class FullSimpleFoodUpdateValidatorTest {
 				foodsWithSameName);
 		EasyMock.replay(foodRepo);
 
-		FullSimpleFoodUpdateValidator v = new FullSimpleFoodUpdateValidator();
+		SimpleFoodUpdateValidator v = new SimpleFoodUpdateValidator();
 		v.foodRepo = foodRepo;
 
 		try {

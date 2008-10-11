@@ -2,6 +2,7 @@ package com.gb1.healthcheck.domain.meals;
 
 import static org.junit.Assert.fail;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -10,40 +11,35 @@ import org.junit.Test;
 
 import com.gb1.healthcheck.domain.users.Users;
 
-public class FullMealCreationValidatorTest {
+public class MealUpdateValidatorTest {
 	@Test
-	public void testValidateNoDishes() throws MealException {
-		Meal meal = new Meal();
-		meal.setEater(Users.gb());
-		List<Meal> mealsOnSameInstant = Collections.emptyList();
+	public void testValidate() throws MealException {
+		Meal meal = Meals.fullItalianDinner();
 
 		MealRepository mealRepo = EasyMock.createMock(MealRepository.class);
 		EasyMock.expect(mealRepo.findMealsBy(meal.getEater(), meal.getInstant())).andReturn(
-				mealsOnSameInstant);
+				Collections.singletonList(meal));
 		EasyMock.replay(mealRepo);
 
-		FullMealCreationValidator v = new FullMealCreationValidator();
+		MealUpdateValidator v = new MealUpdateValidator();
 		v.mealRepo = mealRepo;
-
-		try {
-			v.validate(meal);
-			fail("Meal has no dishes");
-		}
-		catch (MealHasNoDishesException expected) {
-		}
+		v.validate(meal);
 	}
 
 	@Test
-	public void testValidateMealAlreadyExists() throws MealException {
+	public void testValidateSameInstant() throws MealException {
 		Meal meal = Meals.fullItalianDinner();
-		List<Meal> mealsOnSameInstant = Collections.singletonList(meal);
+
+		List<Meal> mealsForInstant = new ArrayList<Meal>();
+		mealsForInstant.add(meal);
+		mealsForInstant.add(meal);
 
 		MealRepository mealRepo = EasyMock.createMock(MealRepository.class);
 		EasyMock.expect(mealRepo.findMealsBy(meal.getEater(), meal.getInstant())).andReturn(
-				mealsOnSameInstant);
+				mealsForInstant);
 		EasyMock.replay(mealRepo);
 
-		FullMealCreationValidator v = new FullMealCreationValidator();
+		MealUpdateValidator v = new MealUpdateValidator();
 		v.mealRepo = mealRepo;
 
 		try {
@@ -55,18 +51,22 @@ public class FullMealCreationValidatorTest {
 	}
 
 	@Test
-	public void testValidateMealOk() throws MealException {
-		Meal meal = Meals.fullItalianDinner();
-		List<Meal> mealsOnSameInstant = Collections.emptyList();
+	public void testValidateNoDishes() throws MealException {
+		Meal meal = new Meal().setEater(Users.gb());
 
 		MealRepository mealRepo = EasyMock.createMock(MealRepository.class);
 		EasyMock.expect(mealRepo.findMealsBy(meal.getEater(), meal.getInstant())).andReturn(
-				mealsOnSameInstant);
+				Collections.singletonList(meal));
 		EasyMock.replay(mealRepo);
 
-		FullMealCreationValidator v = new FullMealCreationValidator();
+		MealUpdateValidator v = new MealUpdateValidator();
 		v.mealRepo = mealRepo;
 
-		v.validate(meal);
+		try {
+			v.validate(meal);
+			fail("Meal has no dishes");
+		}
+		catch (MealHasNoDishesException expected) {
+		}
 	}
 }

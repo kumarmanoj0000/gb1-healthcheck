@@ -8,7 +8,7 @@ import java.util.List;
 import org.easymock.EasyMock;
 import org.junit.Test;
 
-public class FullUserUpdateValidatorTest {
+public class UserUpdateValidatorTest {
 	@Test
 	public void testValidateOk() throws UserException {
 		ExposedUser user = new ExposedUser();
@@ -21,7 +21,7 @@ public class FullUserUpdateValidatorTest {
 				new LinkedList<User>());
 		EasyMock.replay(userRepo);
 
-		FullUserUpdateValidator validator = new FullUserUpdateValidator();
+		UserUpdateValidator validator = new UserUpdateValidator();
 		validator.userRepo = userRepo;
 
 		validator.validate(user);
@@ -41,7 +41,7 @@ public class FullUserUpdateValidatorTest {
 		EasyMock.expect(userRepo.findUsersByEmail(user.getEmail())).andReturn(usersWithSameEmail);
 		EasyMock.replay(userRepo);
 
-		FullUserUpdateValidator validator = new FullUserUpdateValidator();
+		UserUpdateValidator validator = new UserUpdateValidator();
 		validator.userRepo = userRepo;
 
 		validator.validate(user);
@@ -68,7 +68,7 @@ public class FullUserUpdateValidatorTest {
 				usersWithSameEmail);
 		EasyMock.replay(userRepo);
 
-		FullUserUpdateValidator validator = new FullUserUpdateValidator();
+		UserUpdateValidator validator = new UserUpdateValidator();
 		validator.userRepo = userRepo;
 
 		try {

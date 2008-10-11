@@ -5,7 +5,7 @@ import static org.junit.Assert.fail;
 import org.easymock.EasyMock;
 import org.junit.Test;
 
-public class FullUserCreationValidatorTest {
+public class UserCreationValidatorTest {
 	@Test
 	public void testValidateOk() throws UserException {
 		User user = buildValidUser();
@@ -16,7 +16,7 @@ public class FullUserCreationValidatorTest {
 		EasyMock.expect(userRepo.findUserByLogin(user.getLogin())).andReturn(null);
 		EasyMock.replay(userRepo);
 
-		FullUserCreationValidator v = new FullUserCreationValidator();
+		UserCreationValidator v = new UserCreationValidator();
 		v.userRepository = userRepo;
 		v.validate(user);
 	}
@@ -31,7 +31,7 @@ public class FullUserCreationValidatorTest {
 		EasyMock.expect(userRepo.findUserByEmail(user.getEmail())).andReturn(null);
 		EasyMock.replay(userRepo);
 
-		FullUserCreationValidator v = new FullUserCreationValidator();
+		UserCreationValidator v = new UserCreationValidator();
 		v.userRepository = userRepo;
 
 		try {
@@ -53,7 +53,7 @@ public class FullUserCreationValidatorTest {
 		EasyMock.expect(userRepo.findUserByEmail(user.getEmail())).andReturn(new User());
 		EasyMock.replay(userRepo);
 
-		FullUserCreationValidator v = new FullUserCreationValidator();
+		UserCreationValidator v = new UserCreationValidator();
 		v.userRepository = userRepo;
 
 		try {

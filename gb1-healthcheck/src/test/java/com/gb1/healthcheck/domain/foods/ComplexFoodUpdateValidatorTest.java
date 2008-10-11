@@ -8,7 +8,7 @@ import java.util.List;
 import org.easymock.EasyMock;
 import org.junit.Test;
 
-public class FullComplexFoodUpdateValidatorTest {
+public class ComplexFoodUpdateValidatorTest {
 	@Test
 	public void testValidate() throws FoodException {
 		final ComplexFood food = Foods.spaghetti();
@@ -19,7 +19,7 @@ public class FullComplexFoodUpdateValidatorTest {
 		EasyMock.expect(foodRepo.findFoodsByName(food.getName())).andReturn(foodsWithSameName);
 		EasyMock.replay(foodRepo);
 
-		FullComplexFoodUpdateValidator v = new FullComplexFoodUpdateValidator();
+		ComplexFoodUpdateValidator v = new ComplexFoodUpdateValidator();
 		v.foodRepo = foodRepo;
 
 		v.validate(food);
@@ -35,7 +35,7 @@ public class FullComplexFoodUpdateValidatorTest {
 		EasyMock.expect(foodRepo.findFoodsByName(food.getName())).andReturn(foodsWithSameName);
 		EasyMock.replay(foodRepo);
 
-		FullComplexFoodUpdateValidator v = new FullComplexFoodUpdateValidator();
+		ComplexFoodUpdateValidator v = new ComplexFoodUpdateValidator();
 		v.foodRepo = foodRepo;
 
 		v.validate(food);
@@ -54,7 +54,7 @@ public class FullComplexFoodUpdateValidatorTest {
 		EasyMock.expect(foodRepo.findFoodsByName(food.getName())).andReturn(foodsWithSameName);
 		EasyMock.replay(foodRepo);
 
-		FullComplexFoodUpdateValidator v = new FullComplexFoodUpdateValidator();
+		ComplexFoodUpdateValidator v = new ComplexFoodUpdateValidator();
 		v.foodRepo = foodRepo;
 
 		try {
@@ -75,7 +75,7 @@ public class FullComplexFoodUpdateValidatorTest {
 		EasyMock.expect(foodRepo.findFoodsByName(food.getName())).andReturn(foodsWithSameName);
 		EasyMock.replay(foodRepo);
 
-		FullComplexFoodUpdateValidator v = new FullComplexFoodUpdateValidator();
+		ComplexFoodUpdateValidator v = new ComplexFoodUpdateValidator();
 		v.foodRepo = foodRepo;
 
 		try {
