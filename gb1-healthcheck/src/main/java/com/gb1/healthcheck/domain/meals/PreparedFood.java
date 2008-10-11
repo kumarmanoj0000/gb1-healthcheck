@@ -52,17 +52,13 @@ public class PreparedFood implements Identifiable, Serializable {
 	}
 
 	public boolean containsIngredient(Food food) {
-		boolean contains;
+		boolean contains = false;
 
 		if (ingredient.equals(food)) {
 			contains = true;
 		}
-		// TODO Ugly instanceof - polymorphism possible?
 		else if (ingredient instanceof ComplexFood) {
 			contains = ((ComplexFood) ingredient).containsIngredient(food);
-		}
-		else {
-			contains = false;
 		}
 
 		return contains;
