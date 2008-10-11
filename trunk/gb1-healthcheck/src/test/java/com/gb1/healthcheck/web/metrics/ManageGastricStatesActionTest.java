@@ -42,7 +42,7 @@ public class ManageGastricStatesActionTest {
 		file.setGastricState(parseDateTime("2007-11-25 20:00:00"), GastricState.SLIGHTLY_BLOATED);
 
 		PatientFileService svc = EasyMock.createMock(PatientFileService.class);
-		EasyMock.expect(svc.loadPatientFile(patient.getId())).andReturn(file);
+		EasyMock.expect(svc.findPatientFile(patient.getId())).andReturn(file);
 		EasyMock.replay(svc);
 
 		ManageGastricStatesAction action = new ManageGastricStatesAction();

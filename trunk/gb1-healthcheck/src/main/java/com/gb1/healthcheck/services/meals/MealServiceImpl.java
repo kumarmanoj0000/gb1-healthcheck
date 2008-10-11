@@ -40,7 +40,7 @@ public class MealServiceImpl implements MealService {
 	}
 
 	@Transactional(readOnly = true)
-	public Meal getMeal(Long mealId, Hydrater<Meal> hydrater) {
+	public Meal findMeal(Long mealId, Hydrater<Meal> hydrater) {
 		Meal meal = mealRepo.findMeal(mealId);
 		return hydrater.hydrate(meal);
 	}

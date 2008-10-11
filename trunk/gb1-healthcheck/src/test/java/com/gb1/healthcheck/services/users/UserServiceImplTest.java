@@ -184,7 +184,7 @@ public class UserServiceImplTest {
 		UserServiceImpl svc = new UserServiceImpl();
 		svc.userRepository = userRepo;
 
-		assertTrue(CollectionUtils.isEqualCollection(allUsers, svc.getAllUsers()));
+		assertTrue(CollectionUtils.isEqualCollection(allUsers, svc.findAllUsers()));
 	}
 
 	@Test

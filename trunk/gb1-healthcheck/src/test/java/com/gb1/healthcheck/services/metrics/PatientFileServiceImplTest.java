@@ -54,6 +54,6 @@ public class PatientFileServiceImplTest {
 		svc.patientFileRepo = repo;
 		svc.userRepo = userRepo;
 
-		assertEquals(patient, svc.loadPatientFile(patient.getId()).getPatient());
+		assertEquals(patient, svc.findPatientFile(patient.getId()).getPatient());
 	}
 }

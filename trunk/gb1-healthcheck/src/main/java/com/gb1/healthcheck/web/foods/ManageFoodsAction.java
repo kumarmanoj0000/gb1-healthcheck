@@ -48,13 +48,13 @@ public class ManageFoodsAction extends ActionSupport implements SessionAware {
 	public String execute() {
 		List<SimpleFood> simpleFoodList = getSimpleFoods();
 		if (simpleFoodList == null || refreshList) {
-			simpleFoodList = foodService.getSimpleFoods();
+			simpleFoodList = foodService.findAllSimpleFoods();
 			sessionMap.put(SIMPLE_FOODS_LIST_SESSION_KEY, simpleFoodList);
 		}
 
 		List<ComplexFood> complexFoodList = getComplexFoods();
 		if (complexFoodList == null || refreshList) {
-			complexFoodList = foodService.getComplexFoods(new IdentityHydrater<ComplexFood>());
+			complexFoodList = foodService.findAllComplexFoods(new IdentityHydrater<ComplexFood>());
 			sessionMap.put(COMPLEX_FOODS_LIST_SESSION_KEY, complexFoodList);
 		}
 

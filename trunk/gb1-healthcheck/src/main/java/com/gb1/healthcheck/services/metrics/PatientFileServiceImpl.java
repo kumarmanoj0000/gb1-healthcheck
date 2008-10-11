@@ -32,7 +32,7 @@ public class PatientFileServiceImpl implements PatientFileService {
 	}
 
 	@Transactional(readOnly = true)
-	public PatientFile loadPatientFile(Long patientId) {
+	public PatientFile findPatientFile(Long patientId) {
 		User patient = userRepo.findUser(patientId);
 		return patientFileRepo.findPatientFile(patient);
 	}

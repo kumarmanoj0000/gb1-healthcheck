@@ -32,7 +32,7 @@ public class ManageGastricStatesAction {
 	}
 
 	public List<PunctualGastricState> loadGastricStates(Long patientId, Date date) {
-		PatientFile file = patientFileService.loadPatientFile(patientId);
+		PatientFile file = patientFileService.findPatientFile(patientId);
 		List<PunctualGastricState> states = file.getGastricStatesFor(date);
 
 		return states;

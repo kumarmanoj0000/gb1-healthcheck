@@ -23,7 +23,7 @@ public interface MealService {
 	 * @param hydrater The callback to hydrate meal associations
 	 * @return The corresponding meal; null if non existent
 	 */
-	Meal getMeal(Long mealId, Hydrater<Meal> hydrater);
+	Meal findMeal(Long mealId, Hydrater<Meal> hydrater);
 
 	/**
 	 * Creates a new meal.

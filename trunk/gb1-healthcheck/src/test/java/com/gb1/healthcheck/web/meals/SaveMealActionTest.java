@@ -48,9 +48,9 @@ public class SaveMealActionTest {
 		Collections.sort(availableFoods, new Food.ByNameComparator());
 
 		FoodService foodService = EasyMock.createMock(FoodService.class);
-		EasyMock.expect(foodService.getSimpleFoods()).andReturn(
+		EasyMock.expect(foodService.findAllSimpleFoods()).andReturn(
 				new ArrayList<SimpleFood>(Foods.allSimpleFoods()));
-		EasyMock.expect(foodService.getComplexFoods(EasyMock.isA(IdentityHydrater.class)))
+		EasyMock.expect(foodService.findAllComplexFoods(EasyMock.isA(IdentityHydrater.class)))
 				.andReturn(new ArrayList<ComplexFood>(Foods.allComplexFoods()));
 		EasyMock.replay(foodService);
 
@@ -69,9 +69,9 @@ public class SaveMealActionTest {
 		User requester = Users.lg();
 
 		FoodService foodService = EasyMock.createMock(FoodService.class);
-		EasyMock.expect(foodService.getSimpleFoods()).andReturn(
+		EasyMock.expect(foodService.findAllSimpleFoods()).andReturn(
 				new ArrayList<SimpleFood>(Foods.allSimpleFoods()));
-		EasyMock.expect(foodService.getComplexFoods(EasyMock.isA(IdentityHydrater.class)))
+		EasyMock.expect(foodService.findAllComplexFoods(EasyMock.isA(IdentityHydrater.class)))
 				.andReturn(new ArrayList<ComplexFood>(Foods.allComplexFoods()));
 		EasyMock.replay(foodService);
 
@@ -96,9 +96,9 @@ public class SaveMealActionTest {
 		User requester = Users.lg();
 
 		FoodService foodService = EasyMock.createMock(FoodService.class);
-		EasyMock.expect(foodService.getSimpleFoods()).andReturn(
+		EasyMock.expect(foodService.findAllSimpleFoods()).andReturn(
 				new ArrayList<SimpleFood>(Foods.allSimpleFoods()));
-		EasyMock.expect(foodService.getComplexFoods(EasyMock.isA(IdentityHydrater.class)))
+		EasyMock.expect(foodService.findAllComplexFoods(EasyMock.isA(IdentityHydrater.class)))
 				.andReturn(new ArrayList<ComplexFood>(Foods.allComplexFoods()));
 		EasyMock.replay(foodService);
 
@@ -124,7 +124,7 @@ public class SaveMealActionTest {
 
 		MealService mealSvc = EasyMock.createMock(MealService.class);
 		EasyMock.expect(
-				mealSvc.getMeal(EasyMock.eq(dinner.getId()), EasyMock.isA(FullMealHydrater.class)))
+				mealSvc.findMeal(EasyMock.eq(dinner.getId()), EasyMock.isA(FullMealHydrater.class)))
 				.andReturn(dinner);
 		EasyMock.replay(mealSvc);
 
@@ -143,13 +143,13 @@ public class SaveMealActionTest {
 		Meal meal = Meals.fullItalianDinner();
 
 		FoodService foodSvc = EasyMock.createMock(FoodService.class);
-		EasyMock.expect(foodSvc.getFood(Foods.spaghetti().getId())).andReturn(Foods.spaghetti());
-		EasyMock.expect(foodSvc.getFood(Foods.redWine().getId())).andReturn(Foods.redWine());
+		EasyMock.expect(foodSvc.findFood(Foods.spaghetti().getId())).andReturn(Foods.spaghetti());
+		EasyMock.expect(foodSvc.findFood(Foods.redWine().getId())).andReturn(Foods.redWine());
 		EasyMock.replay(foodSvc);
 
 		MealService mealSvc = EasyMock.createMock(MealService.class);
 		EasyMock.expect(
-				mealSvc.getMeal(EasyMock.eq(meal.getId()), EasyMock.isA(FullMealHydrater.class)))
+				mealSvc.findMeal(EasyMock.eq(meal.getId()), EasyMock.isA(FullMealHydrater.class)))
 				.andReturn(meal);
 		mealSvc.updateMeal(meal);
 		EasyMock.expectLastCall();
@@ -171,13 +171,13 @@ public class SaveMealActionTest {
 		Meal meal = Meals.fullItalianDinner();
 
 		FoodService foodSvc = EasyMock.createMock(FoodService.class);
-		EasyMock.expect(foodSvc.getFood(Foods.spaghetti().getId())).andReturn(Foods.spaghetti());
-		EasyMock.expect(foodSvc.getFood(Foods.redWine().getId())).andReturn(Foods.redWine());
+		EasyMock.expect(foodSvc.findFood(Foods.spaghetti().getId())).andReturn(Foods.spaghetti());
+		EasyMock.expect(foodSvc.findFood(Foods.redWine().getId())).andReturn(Foods.redWine());
 		EasyMock.replay(foodSvc);
 
 		MealService mealSvc = EasyMock.createMock(MealService.class);
 		EasyMock.expect(
-				mealSvc.getMeal(EasyMock.eq(meal.getId()), EasyMock.isA(FullMealHydrater.class)))
+				mealSvc.findMeal(EasyMock.eq(meal.getId()), EasyMock.isA(FullMealHydrater.class)))
 				.andReturn(meal);
 		mealSvc.updateMeal(meal);
 		EasyMock.expectLastCall().andThrow(new MealException() {

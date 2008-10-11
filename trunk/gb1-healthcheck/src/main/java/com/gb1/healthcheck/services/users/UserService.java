@@ -23,7 +23,7 @@ public interface UserService {
 	 * @param userId The ID of the user to load
 	 * @return The corresponding user; null if not found
 	 */
-	User getUser(Long userId);
+	User findUser(Long userId);
 
 	/**
 	 * Finds a user identified by the given login name. If no user corresponds to this login name,
@@ -79,7 +79,7 @@ public interface UserService {
 	 * 
 	 * @return All registered system users
 	 */
-	List<User> getAllUsers();
+	List<User> findAllUsers();
 
 	/**
 	 * Deletes all users identified by the given IDs. If no user corresponds to a given ID, this ID

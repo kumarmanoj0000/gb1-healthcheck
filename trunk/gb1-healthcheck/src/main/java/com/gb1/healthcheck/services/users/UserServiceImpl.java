@@ -96,7 +96,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 	}
 
 	@Transactional(readOnly = true)
-	public User getUser(Long userId) {
+	public User findUser(Long userId) {
 		return userRepository.findUser(userId);
 	}
 
@@ -122,7 +122,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 	}
 
 	@Transactional(readOnly = true)
-	public List<User> getAllUsers() {
+	public List<User> findAllUsers() {
 		return userRepository.findAllUsers();
 	}
 

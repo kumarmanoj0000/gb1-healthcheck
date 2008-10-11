@@ -43,7 +43,7 @@ public class ComplexFoodBuilder implements Serializable {
 	public ComplexFood build(FoodService foodSvc) {
 		source.setName(name);
 		source.clearIngredients();
-		source.addIngredients(foodSvc.getFoods(ingredientIds));
+		source.addIngredients(foodSvc.findFoods(ingredientIds));
 
 		return source;
 	}

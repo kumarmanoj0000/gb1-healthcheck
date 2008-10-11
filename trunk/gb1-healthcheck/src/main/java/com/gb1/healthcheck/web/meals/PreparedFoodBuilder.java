@@ -35,7 +35,7 @@ public class PreparedFoodBuilder implements Serializable {
 	}
 
 	public PreparedFood build(FoodService foodService) {
-		return new PreparedFood(foodService.getFood(ingredientId), PreparationMethod
+		return new PreparedFood(foodService.findFood(ingredientId), PreparationMethod
 				.valueOf(preparationMethodName));
 	}
 }

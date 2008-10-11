@@ -37,7 +37,7 @@ public class ManageUsersAction extends ActionSupport implements SessionAware {
 		List<User> userList = getUsers();
 
 		if (userList == null || refreshList) {
-			userList = userService.getAllUsers();
+			userList = userService.findAllUsers();
 			sessionMap.put(USER_LIST_SESSION_KEY, userList);
 		}
 

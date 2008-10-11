@@ -72,14 +72,14 @@ public class SaveMealAction extends ActionSupport implements SessionAware, Prepa
 	}
 
 	public void prepare() {
-		availableFoods.addAll(foodService.getSimpleFoods());
-		availableFoods.addAll(foodService.getComplexFoods(new IdentityHydrater<ComplexFood>()));
+		availableFoods.addAll(foodService.findAllSimpleFoods());
+		availableFoods.addAll(foodService.findAllComplexFoods(new IdentityHydrater<ComplexFood>()));
 		Collections.sort(availableFoods, new Food.ByNameComparator());
 	}
 
 	@Override
 	public String input() {
-		Meal meal = (mealId == null ? new Meal().setEater(requester) : mealService.getMeal(mealId,
+		Meal meal = (mealId == null ? new Meal().setEater(requester) : mealService.findMeal(mealId,
 				new FullMealHydrater()));
 		MealBuilder model = new MealBuilder(meal);
 		sessionMap.put(MODEL_SESSION_KEY, model);
