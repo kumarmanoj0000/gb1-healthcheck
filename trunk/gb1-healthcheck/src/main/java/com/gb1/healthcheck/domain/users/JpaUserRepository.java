@@ -20,7 +20,7 @@ public class JpaUserRepository implements UserRepository {
 	public JpaUserRepository() {
 	}
 
-	public User loadUser(Long userId) {
+	public User findUser(Long userId) {
 		return entityManager.find(User.class, userId);
 	}
 
@@ -59,15 +59,15 @@ public class JpaUserRepository implements UserRepository {
 				.setParameter(1, email).getResultList();
 	}
 
-	public void persistUser(User user) {
+	public void persist(User user) {
 		entityManager.persist(user);
 	}
 
-	public void mergeUser(User user) {
+	public void merge(User user) {
 		entityManager.merge(user);
 	}
 
-	public void deleteUser(User user) {
+	public void delete(User user) {
 		entityManager.remove(user);
 	}
 }

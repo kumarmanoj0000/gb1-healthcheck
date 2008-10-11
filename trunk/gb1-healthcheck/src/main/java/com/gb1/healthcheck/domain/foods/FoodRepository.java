@@ -3,19 +3,19 @@ package com.gb1.healthcheck.domain.foods;
 import java.util.List;
 
 public interface FoodRepository {
-	Food loadFood(Long foodId);
+	Food findFood(Long foodId);
 
-	SimpleFood loadSimpleFood(Long foodId);
+	SimpleFood findSimpleFood(Long foodId);
 
-	ComplexFood loadComplexFood(Long foodId);
+	ComplexFood findComplexFood(Long foodId);
 
 	Food findFoodByName(String name);
 
 	List<Food> findFoodsByName(String name);
 
-	List<SimpleFood> findSimpleFoods();
+	List<SimpleFood> findAllSimpleFoods();
 
-	List<ComplexFood> findComplexFoods();
+	List<ComplexFood> findAllComplexFoods();
 
 	void persist(Food food);
 

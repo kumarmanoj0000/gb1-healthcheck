@@ -18,7 +18,7 @@ public class JpaPatientFileRepositoryTest extends AbstractInMemoryPersistenceTes
 	public void testLoadPatientFileNewPatient() {
 		// this user doesn't have any patient file in the test database yet
 		User patient = Users.gb();
-		PatientFile metrics = repo.loadPatientFileFor(patient);
+		PatientFile metrics = repo.findPatientFile(patient);
 		assertEquals(patient, metrics.getPatient());
 	}
 
@@ -26,7 +26,7 @@ public class JpaPatientFileRepositoryTest extends AbstractInMemoryPersistenceTes
 	public void testLoadPatientFileExistingPatient() {
 		// this user already has a patient file saved in the database
 		User patient = Users.lg();
-		PatientFile metrics = repo.loadPatientFileFor(patient);
+		PatientFile metrics = repo.findPatientFile(patient);
 		assertEquals(patient, metrics.getPatient());
 	}
 }

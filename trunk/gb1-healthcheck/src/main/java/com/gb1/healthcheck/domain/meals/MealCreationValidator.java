@@ -26,7 +26,7 @@ public class MealCreationValidator implements Validator<Meal, MealException> {
 	}
 
 	private boolean mealAlreadyExists(Meal meal) {
-		List<Meal> mealsOnSameInstant = mealRepo.findMealsBy(meal.getEater(), meal.getInstant());
+		List<Meal> mealsOnSameInstant = mealRepo.findMeals(meal.getEater(), meal.getInstant());
 		return !mealsOnSameInstant.isEmpty();
 	}
 

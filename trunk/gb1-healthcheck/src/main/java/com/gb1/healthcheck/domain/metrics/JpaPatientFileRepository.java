@@ -18,7 +18,7 @@ public class JpaPatientFileRepository implements PatientFileRepository {
 	}
 
 	@SuppressWarnings("unchecked")
-	public PatientFile loadPatientFileFor(User patient) {
+	public PatientFile findPatientFile(User patient) {
 		PatientFile file;
 		List<PatientFile> files = entityManager.createQuery(
 				"select pf from PatientFile pf where pf.patient = ?1").setParameter(1, patient)

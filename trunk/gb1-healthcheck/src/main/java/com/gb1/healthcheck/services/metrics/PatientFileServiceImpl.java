@@ -26,14 +26,14 @@ public class PatientFileServiceImpl implements PatientFileService {
 	}
 
 	public void savePatientGastricState(Long patientId, Date instant, GastricState state) {
-		User patient = userRepo.loadUser(patientId);
-		PatientFile metrics = patientFileRepo.loadPatientFileFor(patient);
+		User patient = userRepo.findUser(patientId);
+		PatientFile metrics = patientFileRepo.findPatientFile(patient);
 		metrics.setGastricState(instant, state);
 	}
 
 	@Transactional(readOnly = true)
 	public PatientFile loadPatientFile(Long patientId) {
-		User patient = userRepo.loadUser(patientId);
-		return patientFileRepo.loadPatientFileFor(patient);
+		User patient = userRepo.findUser(patientId);
+		return patientFileRepo.findPatientFile(patient);
 	}
 }

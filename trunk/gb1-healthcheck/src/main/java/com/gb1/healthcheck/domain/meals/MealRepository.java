@@ -6,17 +6,17 @@ import java.util.List;
 import com.gb1.healthcheck.domain.users.User;
 
 public interface MealRepository {
-	Meal loadMeal(Long mealId);
+	Meal findMeal(Long mealId);
 
-	List<Meal> findMealsBy(User eater);
+	List<Meal> findMeals(User eater);
 
-	List<Meal> findMealsBy(User eater, Date instant);
+	List<Meal> findMeals(User eater, Date instant);
 
-	void persistMeal(Meal meal);
+	Meal findLastMeal(User eater);
 
-	void mergeMeal(Meal meal);
+	void persist(Meal meal);
 
-	void deleteMeal(Meal meal);
+	void merge(Meal meal);
 
-	Meal getLastMealBy(User eater);
+	void delete(Meal meal);
 }

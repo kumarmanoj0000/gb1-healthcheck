@@ -22,11 +22,11 @@ public class PatientFileServiceImplTest {
 		PatientFile metrics = new PatientFile(patient);
 
 		UserRepository userRepo = EasyMock.createMock(UserRepository.class);
-		EasyMock.expect(userRepo.loadUser(patient.getId())).andReturn(patient);
+		EasyMock.expect(userRepo.findUser(patient.getId())).andReturn(patient);
 		EasyMock.replay(userRepo);
 
 		PatientFileRepository metricsRepo = EasyMock.createMock(PatientFileRepository.class);
-		EasyMock.expect(metricsRepo.loadPatientFileFor(patient)).andReturn(metrics);
+		EasyMock.expect(metricsRepo.findPatientFile(patient)).andReturn(metrics);
 		EasyMock.replay(metricsRepo);
 
 		PatientFileServiceImpl svc = new PatientFileServiceImpl();
@@ -43,11 +43,11 @@ public class PatientFileServiceImplTest {
 		PatientFile file = new PatientFile(patient);
 
 		UserRepository userRepo = EasyMock.createMock(UserRepository.class);
-		EasyMock.expect(userRepo.loadUser(patient.getId())).andReturn(patient);
+		EasyMock.expect(userRepo.findUser(patient.getId())).andReturn(patient);
 		EasyMock.replay(userRepo);
 
 		PatientFileRepository repo = EasyMock.createMock(PatientFileRepository.class);
-		EasyMock.expect(repo.loadPatientFileFor(patient)).andReturn(file);
+		EasyMock.expect(repo.findPatientFile(patient)).andReturn(file);
 		EasyMock.replay(repo);
 
 		PatientFileServiceImpl svc = new PatientFileServiceImpl();

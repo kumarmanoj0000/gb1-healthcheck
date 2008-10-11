@@ -37,8 +37,8 @@ public class EmailMealInactivityNotifierTest {
 		EasyMock.replay(userRepo);
 
 		MealRepository mealRepo = EasyMock.createMock(MealRepository.class);
-		EasyMock.expect(mealRepo.getLastMealBy(Users.gb())).andReturn(lastMealGb);
-		EasyMock.expect(mealRepo.getLastMealBy(Users.lg())).andReturn(lastMealLg);
+		EasyMock.expect(mealRepo.findLastMeal(Users.gb())).andReturn(lastMealGb);
+		EasyMock.expect(mealRepo.findLastMeal(Users.lg())).andReturn(lastMealLg);
 		EasyMock.replay(mealRepo);
 
 		MealInactivityEmailBuilder builder = EasyMock.createMock(MealInactivityEmailBuilder.class);

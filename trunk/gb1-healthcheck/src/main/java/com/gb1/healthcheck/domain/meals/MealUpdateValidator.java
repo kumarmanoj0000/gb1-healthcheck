@@ -27,7 +27,7 @@ public class MealUpdateValidator implements Validator<Meal, MealException> {
 
 	private boolean mealAlreadyExists(Meal meal) {
 		boolean exists;
-		List<Meal> mealsForInstant = mealRepo.findMealsBy(meal.getEater(), meal.getInstant());
+		List<Meal> mealsForInstant = mealRepo.findMeals(meal.getEater(), meal.getInstant());
 
 		if (mealsForInstant.isEmpty()) {
 			exists = false;

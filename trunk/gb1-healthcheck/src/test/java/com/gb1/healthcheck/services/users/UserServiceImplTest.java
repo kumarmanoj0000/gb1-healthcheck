@@ -49,7 +49,7 @@ public class UserServiceImplTest {
 		EasyMock.replay(requester);
 
 		UserRepository repo = EasyMock.createMock(UserRepository.class);
-		repo.persistUser(EasyMock.isA(User.class));
+		repo.persist(EasyMock.isA(User.class));
 		EasyMock.replay(repo);
 
 		UserServiceImpl svc = new UserServiceImpl();
@@ -76,7 +76,7 @@ public class UserServiceImplTest {
 		EasyMock.replay(validator);
 
 		UserRepository userRepo = EasyMock.createMock(UserRepository.class);
-		userRepo.mergeUser(user);
+		userRepo.merge(user);
 		EasyMock.expectLastCall().once();
 		EasyMock.replay(userRepo);
 
@@ -194,11 +194,11 @@ public class UserServiceImplTest {
 		userIds.add(Users.lg().getId());
 
 		UserRepository userRepo = EasyMock.createMock(UserRepository.class);
-		EasyMock.expect(userRepo.loadUser(Users.gb().getId())).andReturn(Users.gb());
-		userRepo.deleteUser(Users.gb());
+		EasyMock.expect(userRepo.findUser(Users.gb().getId())).andReturn(Users.gb());
+		userRepo.delete(Users.gb());
 		EasyMock.expectLastCall();
-		EasyMock.expect(userRepo.loadUser(Users.lg().getId())).andReturn(Users.lg());
-		userRepo.deleteUser(Users.lg());
+		EasyMock.expect(userRepo.findUser(Users.lg().getId())).andReturn(Users.lg());
+		userRepo.delete(Users.lg());
 		EasyMock.expectLastCall();
 		EasyMock.replay(userRepo);
 
@@ -216,7 +216,7 @@ public class UserServiceImplTest {
 		user.setPassword("1");
 
 		UserRepository userRepo = EasyMock.createMock(UserRepository.class);
-		EasyMock.expect(userRepo.loadUser(user.getId())).andReturn(user);
+		EasyMock.expect(userRepo.findUser(user.getId())).andReturn(user);
 		EasyMock.replay(userRepo);
 
 		UserServiceImpl svc = new UserServiceImpl();
@@ -243,7 +243,7 @@ public class UserServiceImplTest {
 		constants.put("user.generatedPasswordLength", "8");
 
 		UserRepository userRepo = EasyMock.createMock(UserRepository.class);
-		EasyMock.expect(userRepo.loadUser(user.getId())).andReturn(user);
+		EasyMock.expect(userRepo.findUser(user.getId())).andReturn(user);
 		EasyMock.replay(userRepo);
 
 		PasswordResetNotifier notifier = EasyMock.createMock(PasswordResetNotifier.class);
