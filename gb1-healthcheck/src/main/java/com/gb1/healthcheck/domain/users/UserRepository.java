@@ -19,7 +19,7 @@ public interface UserRepository {
 	 */
 	List<User> findUsersByEmail(String email);
 
-	List<User> findUsers();
+	List<User> findAllUsers();
 
 	void persist(User user);
 

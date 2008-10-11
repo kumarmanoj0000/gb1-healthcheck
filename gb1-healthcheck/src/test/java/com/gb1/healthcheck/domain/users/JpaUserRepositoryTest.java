@@ -28,7 +28,7 @@ public class JpaUserRepositoryTest extends AbstractInMemoryPersistenceTestCase {
 
 	@Test
 	public void testFindUsers() {
-		assertEquals(52, userRepo.findUsers().size());
+		assertEquals(52, userRepo.findAllUsers().size());
 	}
 
 	@Test

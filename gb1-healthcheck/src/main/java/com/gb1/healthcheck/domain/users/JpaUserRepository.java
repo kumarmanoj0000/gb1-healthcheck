@@ -25,7 +25,7 @@ public class JpaUserRepository implements UserRepository {
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<User> findUsers() {
+	public List<User> findAllUsers() {
 		return entityManager.createQuery("select u from User u").getResultList();
 	}
 
