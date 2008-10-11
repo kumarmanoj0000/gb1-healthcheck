@@ -31,7 +31,7 @@ public class FoodServiceImplTest {
 		FoodServiceImpl svc = new FoodServiceImpl();
 		svc.foodRepo = foodRepo;
 
-		assertTrue(CollectionUtils.isEqualCollection(allSimpleFoods, svc.getSimpleFoods()));
+		assertTrue(CollectionUtils.isEqualCollection(allSimpleFoods, svc.findAllSimpleFoods()));
 	}
 
 	@SuppressWarnings("unchecked")
@@ -52,7 +52,7 @@ public class FoodServiceImplTest {
 		svc.foodRepo = foodRepo;
 
 		assertTrue(CollectionUtils
-				.isEqualCollection(allComplexFoods, svc.getComplexFoods(hydrater)));
+				.isEqualCollection(allComplexFoods, svc.findAllComplexFoods(hydrater)));
 		EasyMock.verify(hydrater);
 	}
 
@@ -163,7 +163,7 @@ public class FoodServiceImplTest {
 		FoodServiceImpl svc = new FoodServiceImpl();
 		svc.foodRepo = foodRepo;
 
-		assertEquals(Foods.apple(), svc.getSimpleFood(foodId));
+		assertEquals(Foods.apple(), svc.findSimpleFood(foodId));
 	}
 
 	@Test

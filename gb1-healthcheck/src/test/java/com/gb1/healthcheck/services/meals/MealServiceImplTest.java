@@ -59,7 +59,7 @@ public class MealServiceImplTest {
 		MealServiceImpl svc = new MealServiceImpl();
 		svc.mealRepo = mealRepo;
 
-		assertEquals(meal, svc.getMeal(meal.getId(), hydrater));
+		assertEquals(meal, svc.findMeal(meal.getId(), hydrater));
 		EasyMock.verify(hydrater);
 	}
 

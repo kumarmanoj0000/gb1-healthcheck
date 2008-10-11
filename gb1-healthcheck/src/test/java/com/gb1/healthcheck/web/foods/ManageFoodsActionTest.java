@@ -27,9 +27,9 @@ public class ManageFoodsActionTest {
 		List<ComplexFood> allComplexFoods = new ArrayList<ComplexFood>(Foods.allComplexFoods());
 
 		FoodService foodSvc = EasyMock.createMock(FoodService.class);
-		EasyMock.expect(foodSvc.getSimpleFoods()).andReturn(
+		EasyMock.expect(foodSvc.findAllSimpleFoods()).andReturn(
 				new ArrayList<SimpleFood>(Foods.allSimpleFoods()));
-		EasyMock.expect(foodSvc.getComplexFoods(EasyMock.isA(IdentityHydrater.class))).andReturn(
+		EasyMock.expect(foodSvc.findAllComplexFoods(EasyMock.isA(IdentityHydrater.class))).andReturn(
 				new ArrayList<ComplexFood>(Foods.allComplexFoods()));
 		EasyMock.replay(foodSvc);
 

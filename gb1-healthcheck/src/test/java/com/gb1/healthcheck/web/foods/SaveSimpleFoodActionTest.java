@@ -29,7 +29,7 @@ public class SaveSimpleFoodActionTest {
 		final SimpleFood apple = Foods.apple();
 
 		FoodService foodSvc = EasyMock.createMock(FoodService.class);
-		EasyMock.expect(foodSvc.getSimpleFood(apple.getId())).andReturn(apple);
+		EasyMock.expect(foodSvc.findSimpleFood(apple.getId())).andReturn(apple);
 		EasyMock.replay(foodSvc);
 
 		SaveSimpleFoodAction action = new SaveSimpleFoodAction();

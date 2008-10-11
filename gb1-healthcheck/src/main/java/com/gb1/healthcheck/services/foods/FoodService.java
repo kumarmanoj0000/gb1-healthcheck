@@ -9,17 +9,17 @@ import com.gb1.healthcheck.domain.foods.SimpleFood;
 import com.gb1.healthcheck.services.Hydrater;
 
 public interface FoodService {
-	SimpleFood getSimpleFood(Long foodId);
+	SimpleFood findSimpleFood(Long foodId);
 
-	ComplexFood getComplexFood(Long foodId, Hydrater<ComplexFood> hydrater);
+	ComplexFood findComplexFood(Long foodId, Hydrater<ComplexFood> hydrater);
 
-	List<SimpleFood> getSimpleFoods();
+	List<SimpleFood> findAllSimpleFoods();
 
-	List<ComplexFood> getComplexFoods(Hydrater<ComplexFood> hydrater);
+	List<ComplexFood> findAllComplexFoods(Hydrater<ComplexFood> hydrater);
 
-	Food getFood(Long foodId);
+	Food findFood(Long foodId);
 
-	List<Food> getFoods(List<Long> foodIds);
+	List<Food> findFoods(List<Long> foodIds);
 
 	void createSimpleFood(SimpleFood food) throws FoodException;
 

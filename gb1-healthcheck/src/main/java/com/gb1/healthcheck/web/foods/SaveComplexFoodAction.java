@@ -58,16 +58,16 @@ public class SaveComplexFoodAction extends ActionSupport implements SessionAware
 	}
 
 	public void prepare() throws Exception {
-		availableIngredients.addAll(foodService.getSimpleFoods());
+		availableIngredients.addAll(foodService.findAllSimpleFoods());
 		availableIngredients.addAll(foodService
-				.getComplexFoods(new IdentityHydrater<ComplexFood>()));
+				.findAllComplexFoods(new IdentityHydrater<ComplexFood>()));
 		Collections.sort(availableIngredients, new Food.ByNameComparator());
 	}
 
 	@Override
 	public String input() {
-		ComplexFood food = (foodId == null ? new ComplexFood() : foodService.getComplexFood(foodId,
-				new FullComplexFoodHydrater()));
+		ComplexFood food = (foodId == null ? new ComplexFood() : foodService.findComplexFood(
+				foodId, new FullComplexFoodHydrater()));
 		sessionMap.put(MODEL_SESSION_KEY, new ComplexFoodBuilder(food));
 
 		return Action.INPUT;

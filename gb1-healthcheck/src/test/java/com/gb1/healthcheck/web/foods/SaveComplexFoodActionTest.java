@@ -35,7 +35,7 @@ public class SaveComplexFoodActionTest {
 		sessionMap.put(SaveComplexFoodAction.MODEL_SESSION_KEY, new ComplexFoodBuilder(food));
 
 		FoodService foodSvc = EasyMock.createMock(FoodService.class);
-		EasyMock.expect(foodSvc.getFoods(foodIds)).andReturn(food.getIngredients());
+		EasyMock.expect(foodSvc.findFoods(foodIds)).andReturn(food.getIngredients());
 		foodSvc.createComplexFood(food);
 		EasyMock.expectLastCall();
 		EasyMock.replay(foodSvc);
@@ -61,7 +61,7 @@ public class SaveComplexFoodActionTest {
 		sessionMap.put(SaveComplexFoodAction.MODEL_SESSION_KEY, new ComplexFoodBuilder(food));
 
 		FoodService foodSvc = EasyMock.createMock(FoodService.class);
-		EasyMock.expect(foodSvc.getFoods(foodIds)).andReturn(food.getIngredients());
+		EasyMock.expect(foodSvc.findFoods(foodIds)).andReturn(food.getIngredients());
 		foodSvc.createComplexFood(EasyMock.isA(ComplexFood.class));
 		EasyMock.expectLastCall().andThrow(new FoodAlreadyExistsException(""));
 		EasyMock.replay(foodSvc);
@@ -88,7 +88,7 @@ public class SaveComplexFoodActionTest {
 
 		FoodService foodSvc = EasyMock.createMock(FoodService.class);
 		EasyMock.expect(
-				foodSvc.getComplexFood(EasyMock.eq(spag.getId()), EasyMock
+				foodSvc.findComplexFood(EasyMock.eq(spag.getId()), EasyMock
 						.isA(FullComplexFoodHydrater.class))).andReturn(spag);
 		EasyMock.replay(foodSvc);
 
@@ -116,7 +116,7 @@ public class SaveComplexFoodActionTest {
 		session.put(SaveComplexFoodAction.MODEL_SESSION_KEY, new ComplexFoodBuilder(food));
 
 		FoodService foodSvc = EasyMock.createMock(FoodService.class);
-		EasyMock.expect(foodSvc.getFoods(foodIds)).andReturn(food.getIngredients());
+		EasyMock.expect(foodSvc.findFoods(foodIds)).andReturn(food.getIngredients());
 		foodSvc.updateComplexFood(food);
 		EasyMock.expectLastCall();
 		EasyMock.replay(foodSvc);
@@ -144,7 +144,7 @@ public class SaveComplexFoodActionTest {
 		session.put(SaveComplexFoodAction.MODEL_SESSION_KEY, new ComplexFoodBuilder(food));
 
 		FoodService foodSvc = EasyMock.createMock(FoodService.class);
-		EasyMock.expect(foodSvc.getFoods(foodIds)).andReturn(food.getIngredients());
+		EasyMock.expect(foodSvc.findFoods(foodIds)).andReturn(food.getIngredients());
 		foodSvc.updateComplexFood(EasyMock.isA(ComplexFood.class));
 		EasyMock.expectLastCall().andThrow(new FoodAlreadyExistsException("spaghetti"));
 		EasyMock.replay(foodSvc);

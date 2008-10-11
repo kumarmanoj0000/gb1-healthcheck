@@ -8,5 +8,5 @@ import com.gb1.healthcheck.domain.metrics.PatientFile;
 public interface PatientFileService {
 	void savePatientGastricState(Long patientId, Date instant, GastricState state);
 
-	PatientFile loadPatientFile(Long patientId);
+	PatientFile findPatientFile(Long patientId);
 }

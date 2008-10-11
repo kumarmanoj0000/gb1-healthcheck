@@ -54,7 +54,7 @@ public class SaveSimpleFoodAction extends ActionSupport implements SessionAware 
 
 	@Override
 	public String input() {
-		SimpleFood food = (foodId == null ? new SimpleFood() : foodService.getSimpleFood(foodId));
+		SimpleFood food = (foodId == null ? new SimpleFood() : foodService.findSimpleFood(foodId));
 		sessionMap.put(MODEL_SESSION_KEY, new SimpleFoodAdapter(food));
 
 		return Action.INPUT;
