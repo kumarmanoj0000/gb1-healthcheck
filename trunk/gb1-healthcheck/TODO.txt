@@ -7,19 +7,12 @@ HealthCheck
   - correlation food <=> gastric states (JFreeChart)
 
 . technical
-  - improve syntaxic validation: review annotations usage
   - integrate conversation management: implement ConversationInterceptor?
-  - move transaction management up to web layer: implement TransactionInterceptor?
-  - extend persistence context to conversation: implement OpenEntityManagerInConversationInterceptor?
 
 . pain points
   - web state management
     => problems: done manually, error prone and fragile
     => solutions: conversation management, use narrower scope
-  - services mostly delegate, but currently necessary for transaction boundaries => TransactionInterceptor then remove?
   - UI
     => problems: poor look and interactivity, lots of code required
-    => solutions: Struts2 theme; JSF
-  - Struts2:
-    . @ParentPackage duplication in actions
-    . confusing use of literals and OGNL/EL expressions in tags
+    => solutions: more Ajax; JSF
